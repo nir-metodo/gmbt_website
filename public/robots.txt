@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# Block internal app routes
+Disallow: /api/
+Disallow: /chats/
+Disallow: /contacts/
+Disallow: /campaigns/
+Disallow: /templates/
+Disallow: /botomation/
+Disallow: /dashboard/
+Disallow: /settings/
+Disallow: /users/
+Disallow: /leads/
+
+# Block AI training bots
+User-agent: CCBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+Sitemap: https://gambot.co.il/sitemap.xml

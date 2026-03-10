@@ -1,0 +1,191 @@
+﻿/**
+ * Blog posts metadata for SSG.
+ * Full content lives in the individual page components.
+ * Images should be placed in /public/blog/ folder.
+ */
+export const BLOG_POSTS = [
+  {
+    id: 1,
+    slug: 'מה-זה-whatsapp-api-ואיך-הוא-משדרג-את-העסק-שלך',
+    slugEn: 'what-is-whatsapp-api-and-how-does-it-upgrade-your-business',
+    title: { he: 'מה זה WhatsApp API ואיך הוא משדרג את העסק שלך?', en: 'What is WhatsApp API and How Does It Upgrade Your Business?' },
+    description: { he: 'גלה איך WhatsApp API מאפשר לעסקים לתקשר עם לקוחות בצורה ישירה, אוטומטית ויעילה. כל היתרונות, הפתרונות והאפשרויות.', en: 'Discover how WhatsApp API enables businesses to communicate with customers directly and automatically. All the benefits and possibilities.' },
+    seoTitle: { he: 'WhatsApp API ישראל | מדריך מלא 2026 + מחירים | Gambot', en: 'WhatsApp API Israel | Complete Guide 2026 + Pricing | Gambot' },
+    metaDescription: { he: 'מדריך מקיף ל-WhatsApp API בישראל ✓ מחירים ✓ התקנה ✓ אוטומציה ✓ בוטים. למד איך לשדרג את העסק עם WhatsApp Business API', en: 'Complete guide to WhatsApp API in Israel ✓ Pricing ✓ Setup ✓ Automation ✓ Bots. Learn how to upgrade your business with WhatsApp Business API' },
+    keywords: { he: 'whatsapp api, whatsapp api ישראל, וואטסאפ עסקי, בוט whatsapp, אוטומציה whatsapp', en: 'whatsapp api, whatsapp business api, whatsapp automation, whatsapp bot, whatsapp israel' },
+    category: 'WhatsApp API',
+    author: 'ניר סגס',
+    publishedDate: '2025-04-22',
+    image: '/blog/post1.jpg',
+    readTime: 8,
+  },
+  {
+    id: 2,
+    slug: 'שימושים-נפוצים-ב-whatsapp-business-api',
+    slugEn: 'common-uses-of-whatsapp-business-api',
+    title: { he: 'שימושים נפוצים ב-WhatsApp Business API', en: 'Common Uses of WhatsApp Business API' },
+    description: { he: 'גלה את השימושים הנפוצים ביותר ב-WhatsApp Business API — מאוטומציה ועד שירות לקוחות. מקרי שימוש אמיתיים.', en: 'Discover the most common uses of WhatsApp Business API — from automation to customer service with real use cases.' },
+    seoTitle: { he: 'שימושים נפוצים ב-WhatsApp API לעסקים | מדריך 2026', en: 'Common WhatsApp Business API Uses | Complete Guide 2026' },
+    metaDescription: { he: 'שימושים מובילים ב-WhatsApp Business API לעסקים בישראל - אוטומציה, שיווק, שירות לקוחות ועוד. מקרי שימוש עם דוגמאות.', en: 'Leading WhatsApp Business API uses for businesses - automation, marketing, customer service and more with real examples.' },
+    keywords: { he: 'whatsapp business api שימושים, אוטומציה וואטסאפ, שיווק וואטסאפ, שירות לקוחות וואטסאפ', en: 'whatsapp business api uses, whatsapp automation, whatsapp marketing, customer service' },
+    category: 'Best Practices',
+    author: 'ניר סגס',
+    publishedDate: '2025-05-10',
+    image: '/blog/post2.jpg',
+    readTime: 6,
+  },
+  {
+    id: 3,
+    slug: 'איך-לבנות-בוט-ai-לוואטסאפ',
+    slugEn: 'how-to-build-ai-bot-for-whatsapp',
+    title: { he: 'איך לבנות בוט AI לוואטסאפ — מדריך צעד אחר צעד', en: 'How to Build an AI Bot for WhatsApp — Step by Step Guide' },
+    description: { he: 'מדריך מפורט לבניית בוט AI לוואטסאפ עם Gambot — ללא קוד. מטריגרים ועד אקשנס, מ-AI ועד אינטגרציות.', en: 'Detailed guide to building an AI WhatsApp bot with Gambot — no code. From triggers to actions, AI to integrations.' },
+    seoTitle: { he: 'איך לבנות בוט AI לוואטסאפ | מדריך מלא | גמבוט 2026', en: 'How to Build AI WhatsApp Bot | Complete Guide | Gambot 2026' },
+    metaDescription: { he: 'צעד אחר צעד: בניית בוט AI לוואטסאפ עם Workflow Designer. טריגרים, אקשנס, AI, אינטגרציות — הכל ללא קוד.', en: 'Step by step: Build an AI WhatsApp bot with Workflow Designer. Triggers, actions, AI, integrations — all without code.' },
+    keywords: { he: 'בוט ai וואטסאפ, בניית בוט, workflow designer, gambot tutorial', en: 'ai whatsapp bot, build bot, workflow designer, gambot tutorial' },
+    category: 'Tutorial',
+    author: 'ניר סגס',
+    publishedDate: '2025-06-05',
+    image: '/blog/post3.jpg',
+    readTime: 10,
+  },
+  {
+    id: 4,
+    slug: 'איך-להגדיר-אוטומציה-בוואטסאפ',
+    slugEn: 'how-to-set-up-whatsapp-automation',
+    title: { he: 'איך להגדיר אוטומציה בוואטסאפ — Botomation מתחילים ועד מתקדמים', en: 'How to Set Up WhatsApp Automation — Botomation from Beginner to Advanced' },
+    description: { he: 'מדריך מקיף לאוטומציה בוואטסאפ עם Botomation — טריגרים, תנאים, API, CRM ועוד. לכל רמות הניסיון.', en: 'Comprehensive guide to WhatsApp automation with Botomation — triggers, conditions, API, CRM and more for all levels.' },
+    seoTitle: { he: 'אוטומציה בוואטסאפ | Botomation מדריך מלא 2026', en: 'WhatsApp Automation | Botomation Complete Guide 2026' },
+    metaDescription: { he: 'מדריך מלא לאוטומציה בוואטסאפ עם Botomation. טריגרים, תנאים, API calls, Google Sheets, CRM ועוד.', en: 'Complete guide to WhatsApp automation with Botomation. Triggers, conditions, API calls, Google Sheets, CRM and more.' },
+    keywords: { he: 'אוטומציה וואטסאפ, botomation, workflow אוטומטי, gambot automation', en: 'whatsapp automation, botomation, automated workflow, gambot' },
+    category: 'Automation',
+    author: 'ניר סגס',
+    publishedDate: '2025-06-20',
+    image: '/blog/post4.jpg',
+    readTime: 12,
+  },
+  {
+    id: 6,
+    slug: 'שירות-לקוחות-24-7-בוואטסאפ',
+    slugEn: 'customer-service-24-7-whatsapp',
+    title: { he: 'שירות לקוחות 24/7 בוואטסאפ — מדריך מלא', en: '24/7 Customer Service via WhatsApp — Complete Guide' },
+    description: { he: 'כיצד לבנות שירות לקוחות 24/7 בוואטסאפ עם בוטים, ניתוב חכם ואינטגרציות. הגדילו CSAT והפחיתו עלויות.', en: 'How to build 24/7 customer service on WhatsApp with bots, smart routing and integrations. Increase CSAT and reduce costs.' },
+    seoTitle: { he: 'שירות לקוחות 24/7 בוואטסאפ | מדריך 2026 | גמבוט', en: 'WhatsApp 24/7 Customer Service Guide 2026 | Gambot' },
+    metaDescription: { he: 'בנו שירות לקוחות אוטומטי 24/7 בוואטסאפ. בוטים חכמים, ניתוב פניות, SLA ועוד. שפרו CSAT ב-40%.', en: 'Build automated 24/7 customer service on WhatsApp. Smart bots, routing, SLA and more. Improve CSAT by 40%.' },
+    keywords: { he: 'שירות לקוחות וואטסאפ, customer service bot, CSAT, תמיכה אוטומטית', en: 'whatsapp customer service, support bot, CSAT, automated support' },
+    category: 'Customer Service',
+    author: 'ניר סגס',
+    publishedDate: '2025-07-10',
+    image: '/blog/post6.jpg',
+    readTime: 7,
+  },
+  {
+    id: 7,
+    slug: 'כיצד-להגדיל-מכירות-עם-וואטסאפ',
+    slugEn: 'how-to-increase-sales-with-whatsapp',
+    title: { he: 'כיצד להגדיל מכירות עם וואטסאפ — 10 אסטרטגיות מוכחות', en: 'How to Increase Sales with WhatsApp — 10 Proven Strategies' },
+    description: { he: '10 אסטרטגיות מוכחות להגדלת מכירות עם וואטסאפ — מניהול לידים ועד סגירת עסקאות, עם דוגמאות אמיתיות.', en: '10 proven strategies to increase sales with WhatsApp — from lead management to closing deals with real examples.' },
+    seoTitle: { he: 'להגדיל מכירות עם וואטסאפ | 10 אסטרטגיות 2026', en: 'Increase Sales with WhatsApp | 10 Strategies 2026' },
+    metaDescription: { he: '10 אסטרטגיות להגדלת מכירות עם וואטסאפ בעסק שלך. ניהול לידים, follow-up, שיחות מכירה ועוד.', en: '10 strategies to boost sales with WhatsApp for your business. Lead management, follow-up, sales conversations and more.' },
+    keywords: { he: 'מכירות וואטסאפ, sales whatsapp, ניהול לידים, sales bot', en: 'whatsapp sales, lead management, sales bot, increase revenue' },
+    category: 'Sales',
+    author: 'ניר סגס',
+    publishedDate: '2025-07-25',
+    image: '/blog/post7.jpg',
+    readTime: 9,
+  },
+  {
+    id: 8,
+    slug: 'קמפיינים-שיווקיים-בוואטסאפ-מדריך-מלא',
+    slugEn: 'whatsapp-marketing-campaigns-complete-guide',
+    title: { he: 'קמפיינים שיווקיים בוואטסאפ — מדריך מלא לשנת 2026', en: 'WhatsApp Marketing Campaigns — Complete Guide 2026' },
+    description: { he: 'מדריך מלא לניהול קמפיינים שיווקיים בוואטסאפ — תכנון, יצירת תבניות, סגמנטציה, שליחה ומדידה.', en: 'Complete guide to managing WhatsApp marketing campaigns — planning, template creation, segmentation, sending and measurement.' },
+    seoTitle: { he: 'קמפיינים שיווקיים בוואטסאפ | מדריך מלא 2026 | גמבוט', en: 'WhatsApp Marketing Campaigns | Complete Guide 2026 | Gambot' },
+    metaDescription: { he: 'מדריך מלא לקמפיינים שיווקיים בוואטסאפ. תכנון, תבניות, סגמנטציה, שליחה ומדידה. הגדילו המרות ב-40%.', en: 'Complete guide to WhatsApp marketing campaigns. Planning, templates, segmentation, sending and measurement. Increase conversions by 40%.' },
+    keywords: { he: 'קמפיין וואטסאפ, שיווק בוואטסאפ, WhatsApp marketing, bulk messaging', en: 'whatsapp campaign, whatsapp marketing, bulk messaging, marketing automation' },
+    category: 'Marketing',
+    author: 'ניר סגס',
+    publishedDate: '2025-08-15',
+    image: '/blog/post8.jpg',
+    readTime: 11,
+  },
+  {
+    id: 9,
+    slug: 'ai-בוואטסאפ-מדריך-לעסקים',
+    slugEn: 'ai-on-whatsapp-guide-for-businesses',
+    title: { he: 'AI בוואטסאפ — מדריך לעסקים שרוצים להישאר קדימה', en: 'AI on WhatsApp — Guide for Businesses That Want to Stay Ahead' },
+    description: { he: 'כיצד ליישם AI בוואטסאפ — chatbot AI, ניתוח שיחות, המלצות אוטומטיות ועוד. עתיד העסקים הוא כאן.', en: 'How to implement AI on WhatsApp — AI chatbot, conversation analysis, automated recommendations and more.' },
+    seoTitle: { he: 'AI בוואטסאפ לעסקים | Gambot AI | מדריך 2026', en: 'AI on WhatsApp for Business | Gambot AI Guide 2026' },
+    metaDescription: { he: 'יישום AI בוואטסאפ לעסק שלך. Chatbot AI, ניתוח שיחות, כוונות ותגובות חכמות. העתיד כבר כאן.', en: 'Implement AI on WhatsApp for your business. AI chatbot, conversation analysis, smart intent detection.' },
+    keywords: { he: 'ai וואטסאפ, chatbot ai, בינה מלאכותית וואטסאפ, gambot ai', en: 'ai whatsapp, ai chatbot, whatsapp artificial intelligence, gambot ai' },
+    category: 'AI & Technology',
+    author: 'ניר סגס',
+    publishedDate: '2025-09-01',
+    image: '/blog/post9.jpg',
+    readTime: 8,
+  },
+  {
+    id: 11,
+    slug: 'whatsapp-api-vs-whatsapp-business',
+    slugEn: 'whatsapp-api-vs-whatsapp-business',
+    title: { he: 'WhatsApp API לעומת WhatsApp Business — מה ההבדל?', en: 'WhatsApp API vs WhatsApp Business — What\'s the Difference?' },
+    description: { he: 'השוואה מקיפה בין WhatsApp API ל-WhatsApp Business — תכונות, מחירים, מגבלות וכיצד לבחור.', en: 'Comprehensive comparison of WhatsApp API vs WhatsApp Business — features, pricing, limitations and how to choose.' },
+    seoTitle: { he: 'WhatsApp API לעומת WhatsApp Business | השוואה 2026', en: 'WhatsApp API vs WhatsApp Business App | Comparison 2026' },
+    metaDescription: { he: 'השוואה מלאה: WhatsApp API לעומת WhatsApp Business. תכונות, מחירים, מגבלות ומה מתאים לעסק שלך.', en: 'Full comparison: WhatsApp API vs WhatsApp Business. Features, pricing, limitations and which suits your business.' },
+    keywords: { he: 'whatsapp api vs business, השוואה whatsapp, whatsapp business api, whatsapp לעסקים', en: 'whatsapp api vs business, whatsapp comparison, choose whatsapp plan' },
+    category: 'WhatsApp API',
+    author: 'ניר סגס',
+    publishedDate: '2025-09-20',
+    image: '/blog/post11.jpg',
+    readTime: 7,
+  },
+  {
+    id: 12,
+    slug: 'אוטומציה-שיווקית-בוואטסאפ',
+    slugEn: 'marketing-automation-whatsapp',
+    title: { he: 'אוטומציה שיווקית בוואטסאפ — מדריך מלא לשנת 2026', en: 'Marketing Automation on WhatsApp — Complete Guide 2026' },
+    description: { he: 'כיצד לבנות אוטומציה שיווקית בוואטסאפ — תהליכי nurturing, re-engagement, drip campaigns ועוד.', en: 'How to build marketing automation on WhatsApp — nurturing flows, re-engagement, drip campaigns and more.' },
+    seoTitle: { he: 'אוטומציה שיווקית בוואטסאפ | מדריך מלא 2026 | גמבוט', en: 'WhatsApp Marketing Automation | Complete Guide 2026 | Gambot' },
+    metaDescription: { he: 'בנו אוטומציה שיווקית בוואטסאפ. drip campaigns, re-engagement, nurturing ועוד. הגדילו ROI.', en: 'Build WhatsApp marketing automation. Drip campaigns, re-engagement, nurturing and more. Increase ROI.' },
+    keywords: { he: 'אוטומציה שיווקית וואטסאפ, drip campaign, marketing automation, nurturing', en: 'whatsapp marketing automation, drip campaign, nurturing, re-engagement' },
+    category: 'Marketing Automation',
+    author: 'ניר סגס',
+    publishedDate: '2025-10-10',
+    image: '/blog/post12.jpg',
+    readTime: 9,
+  },
+  {
+    id: 14,
+    slug: 'איך-להגדיל-מספר-הודעות-בוואטסאפ-api',
+    slugEn: 'how-to-increase-whatsapp-api-messaging-limits',
+    title: { he: 'איך להגדיל את מספר ההודעות שניתן לשלוח ב-WhatsApp API', en: 'How to Increase WhatsApp API Messaging Limits' },
+    description: { he: 'מדריך מלא להגדלת מגבלות ה-messaging ב-WhatsApp Business API — Quality Rating, Tier upgrade ועוד.', en: 'Complete guide to increasing WhatsApp Business API messaging limits — Quality Rating, Tier upgrade and more.' },
+    seoTitle: { he: 'הגדלת מגבלות הודעות WhatsApp API | מדריך 2026', en: 'Increase WhatsApp API Messaging Limits | Guide 2026' },
+    metaDescription: { he: 'כיצד להגדיל את מגבלות ה-messaging ב-WhatsApp API. Quality Rating, Tier upgrade, best practices.', en: 'How to increase WhatsApp API messaging limits. Quality Rating, Tier upgrade, best practices.' },
+    keywords: { he: 'הגדלת מגבלות וואטסאפ, whatsapp tier, quality rating, whatsapp limits', en: 'whatsapp messaging limits, tier upgrade, quality rating, increase limit' },
+    category: 'Technical',
+    author: 'ניר סגס',
+    publishedDate: '2025-11-05',
+    image: '/blog/post14.jpg',
+    readTime: 8,
+  },
+];
+
+export function getPostBySlug(slug) {
+  return BLOG_POSTS.find(p => p.slug === slug || p.slugEn === slug || String(p.id) === String(slug));
+}
+
+export function getPostById(id) {
+  return BLOG_POSTS.find(p => String(p.id) === String(id));
+}
+
+export function getAllSlugs() {
+  const params = [];
+  BLOG_POSTS.forEach(p => {
+    params.push({ id: String(p.id), slug: p.slug });
+    if (p.slugEn && p.slugEn !== p.slug) {
+      params.push({ id: String(p.id), slug: p.slugEn });
+    }
+  });
+  return params;
+}

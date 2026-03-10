@@ -1,0 +1,76 @@
+.TermOfUse-container {
+    padding: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 70px;
+    text-align: right;
+    direction: rtl;
+    font-family: "Varela Round", sans-serif;
+  }
+  
+  .TermOfUse-header, .TermOfUse-privacy-header {
+    color: #003092;
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 7px; 
+    border-bottom: 2px solid #003092; 
+    display: inline-block; 
+}
+
+  
+  .TermOfUse-section {
+    margin-bottom: 20px;
+    padding-bottom: 7px; 
+    border-bottom: 0.5px solid #003092; 
+    display: inline-block; 
+  }
+  
+  .TermOfUse-subheader {
+    color: #333;
+    font-size: 20px;
+  }
+  
+  .TermOfUse-paragraph {
+    direction: rtl;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  .TermOfUse-list {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .TermOfUse-list-item {
+    margin-bottom: 10px;
+  }
+  
+  .TermOfUse-link {
+    color: #1e90ff;
+    text-decoration: none;
+  }
+  
+  .TermOfUse-link:hover {
+    text-decoration: underline;
+  }
+  
+  .TermOfUse-privacy-paragraph {
+    margin-bottom: 15px;
+  }
+
+  .TermOfUse-subsection {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-right: 4px solid #003092;
+    border-radius: 4px;
+  }
+
+  .TermOfUse-small-header {
+    color: #003092;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  

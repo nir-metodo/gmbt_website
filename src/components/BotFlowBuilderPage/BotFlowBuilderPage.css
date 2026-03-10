@@ -1,0 +1,70 @@
+.bot-flow-builder-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
+  padding: 24px;
+  position: relative;
+}
+
+.bot-flow-builder-page__back {
+  position: absolute;
+  top: 20px;
+  inset-inline-end: 24px;
+  padding: 8px 16px;
+  background: #fff;
+  color: #2e6155;
+  border: 1px solid #2e6155;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.bot-flow-builder-page__back:hover {
+  background: #2e6155;
+  color: #fff;
+}
+
+.bot-flow-builder-page__header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.bot-flow-builder-page__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 8px;
+}
+
+.bot-flow-builder-page__subtitle {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0 0 16px;
+}
+
+.bot-flow-builder-page__cta {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #2e6155 0%, #3a7a6a 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bot-flow-builder-page__cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(46, 97, 85, 0.3);
+}
+
+.bot-flow-builder-page__canvas {
+  height: calc(100vh - 220px);
+  min-height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}

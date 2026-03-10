@@ -1,0 +1,254 @@
+.hero {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: white;
+  padding: 64px 0 48px;
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover { color: #25D366; }
+
+.badge {
+  display: inline-block;
+  background: rgba(37,211,102,0.15);
+  border: 1px solid rgba(37,211,102,0.3);
+  color: #25D366;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.meta {
+  display: flex;
+  gap: 20px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.desc {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  max-width: 800px;
+  line-height: 1.7;
+}
+
+/* Layout */
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 48px;
+}
+
+.main {}
+
+.transitionNote {
+  background: #f0fff4;
+  border: 1px solid #25D366;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.transitionNote p {
+  color: #2d3748;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.readFullBtn {
+  display: inline-block;
+  background: #25D366;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.readFullBtn:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+}
+
+.content {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #2d3748;
+}
+
+.content h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 32px 0 16px;
+  color: #1a1a2e;
+}
+
+.content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.content ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ctaBox {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 32px;
+  border-radius: 16px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.ctaBox h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ctaBox p {
+  opacity: 0.85;
+  margin-bottom: 20px;
+}
+
+.ctaBtn {
+  display: inline-block;
+  background: white;
+  color: #667eea;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.ctaBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sideCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.sideCard h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #1a1a2e;
+}
+
+.relatedPost {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.relatedPost:last-child { border-bottom: none; }
+
+.relatedPost:hover strong { color: #25D366; }
+
+.relatedPost strong {
+  font-size: 0.9rem;
+  color: #2d3748;
+  line-height: 1.4;
+}
+
+.relatedPost span {
+  font-size: 0.8rem;
+  color: #718096;
+}
+
+.sideCard p {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.trialBtn {
+  display: block;
+  text-align: center;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  padding: 12px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+}
+
+.trialBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 32px 16px;
+    gap: 32px;
+  }
+  .sidebar { order: -1; }
+}
+
+@media (max-width: 640px) {
+  .layout { padding: 24px 12px; }
+  .hero { padding: 48px 0 32px; }
+  .title { font-size: 1.4rem; }
+  .desc { font-size: 0.95rem; }
+  .meta { gap: 10px; font-size: 0.8rem; }
+  .ctaBox { padding: 24px 16px; }
+  .ctaBox h3 { font-size: 1.1rem; }
+  .content h2 { font-size: 1.15rem; }
+  .sideCard { padding: 16px; }
+}

@@ -1,0 +1,102 @@
+/* src/components/Website/TermOfPayments/TermOfPayments.css */
+.terms-of-payments {
+    margin: 20px;
+    padding: 50px;
+    text-align: right; /* Align all text to the right by default for Hebrew */
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+    font-family: "Varela Round", sans-serif;
+    direction: rtl;
+}
+
+.terms-of-payments h1 {
+    color: #003092;
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 7px; 
+    border-bottom: 2px solid #003092; 
+    display: inline-block; 
+}
+
+.terms-of-payments h2 {
+    color: #444;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.terms-of-payments p {
+    margin-bottom: 20px;
+    padding-bottom: 7px; 
+    border-bottom: 0.5px solid #003092; 
+    display: inline-block; 
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 15px;
+    direction: rtl; /* RTL text direction for Hebrew */
+}
+
+.terms-of-payments ul.term-of-payment-add-on-rtl-list {
+    list-style-type: disc;
+    padding-right: 20px; /* Provide padding for RTL alignment */
+    text-align: right; /* Align list items to the right */
+}
+
+.terms-of-payments ul.term-of-payment-add-on-rtl-list li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.terms-of-payments a {
+    direction: ltr;
+    text-align: left;
+    color: #1a73e8; /* Link color */
+    text-decoration: none;
+}
+
+.terms-of-payments a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .terms-of-payments {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    .terms-of-payments h1 {
+        font-size: 20px;
+    }
+
+    .terms-of-payments h2 {
+        font-size: 18px;
+    }
+
+    .terms-of-payments p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terms-of-payments {
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .terms-of-payments h1 {
+        font-size: 18px;
+    }
+
+    .terms-of-payments h2 {
+        font-size: 16px;
+    }
+
+    .terms-of-payments p {
+        font-size: 13px;
+    }
+}

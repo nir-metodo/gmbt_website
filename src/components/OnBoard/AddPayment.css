@@ -1,0 +1,1043 @@
+/* Add payment specific styles */
+.addpayment-container {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(15px, 4vw, 40px);
+    background-color: #fff;
+    max-width: 600px;
+    padding-top: clamp(80px, 15vw, 150px);
+    margin: auto;
+    box-sizing: border-box; 
+    text-align: right;
+    min-height: 100vh;
+}
+
+.addpayment-container-header {
+    border-bottom: 1px solid #9DC08B; 
+    font-size: clamp(20px, 4vw, 24px);
+    color: #333;
+    margin-bottom: clamp(10px, 2vw, 20px);
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.addpayment-container-plan-info,
+.addpayment-container-sim-price,
+.addpayment-container-total-amount {
+    font-size: clamp(15px, 3.5vw, 18px);
+    margin: clamp(8px, 2vw, 15px) 0;
+    text-align: right;
+    direction: rtl;
+    display: flex;
+    align-items: center;
+    gap: clamp(6px, 1.5vw, 10px);
+    flex-wrap: wrap;
+}
+
+.addpayment-container-plan-info u {
+    direction: ltr;
+    display: inline; 
+    text-align: right; 
+}
+
+.addpayment-container-purchase-btn {
+    background-color:#2e6155;
+    color: white;
+    padding: clamp(10px, 2vw, 12px) clamp(20px, 5vw, 30px);
+    font-size: clamp(14px, 3vw, 16px);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    margin-top: clamp(15px, 3vw, 25px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 12px);
+    min-height: 48px; /* Touch-friendly */
+}
+
+.addpayment-container-purchase-btn:hover {
+    background-color: #86A788;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 97, 85, 0.3);
+}
+
+.addpayment-vat-disclaimer {
+    color: rgb(117, 117, 117);
+    font-size: clamp(12px, 2.5vw, 14px);
+    text-align: right;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    font-style: italic;
+    direction: rtl;
+}
+
+/* Payment info notice */
+.payment-info-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: right;
+    direction: rtl;
+}
+
+.payment-info-notice .info-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.payment-info-notice p {
+    margin: 0;
+    color: #1976d2;
+    font-size: clamp(13px, 2.8vw, 15px);
+    line-height: 1.5;
+}
+
+/* Next charge date notice */
+.next-charge-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    text-align: right;
+    direction: rtl;
+}
+
+.next-charge-notice .calendar-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.next-charge-notice p {
+    margin: 0;
+    color: #856404;
+    font-size: clamp(13px, 2.8vw, 15px);
+    line-height: 1.5;
+}
+
+.next-charge-notice .charge-date {
+    font-weight: 700;
+    color: #ff6f00;
+    font-size: clamp(14px, 3vw, 16px);
+}
+
+.addpayment-error-message {
+    color: red;
+    font-size: clamp(14px, 3vw, 16px);
+    margin-top: clamp(10px, 2vw, 15px);
+    padding: 10px;
+    background: #fee;
+    border-radius: 8px;
+    border: 1px solid #fcc;
+}
+
+/* ✅ Tranzila iframe styles */
+.tranzila-iframe-wrapper {
+    width: 100%;
+    margin-top: 30px;
+    animation: slideDown 0.4s ease-out;
+}
+
+.tranzila-iframe-header {
+    background: linear-gradient(135deg, #2e6155 0%, #3d7a68 100%);
+    padding: 20px;
+    border-radius: 12px 12px 0 0;
+    text-align: center;
+}
+
+.security-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.security-icon {
+    font-size: 20px;
+}
+
+.security-text {
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.iframe-instruction {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 14px;
+    margin: 10px 0 0 0;
+    line-height: 1.5;
+}
+
+.tranzila-iframe-container {
+    background: #f9f9f9;
+    padding: 0;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.tranzila-iframe {
+    width: 100%;
+    height: 650px;
+    border: none;
+    display: block;
+    background: white;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive iframe */
+@media (max-width: 768px) {
+    .tranzila-iframe {
+        height: 700px;
+    }
+    
+    .tranzila-iframe-header {
+        padding: 15px;
+    }
+    
+    .security-text {
+        font-size: 14px;
+    }
+    
+    .iframe-instruction {
+        font-size: 13px;
+    }
+}
+
+.addpayment-container-sim-price,
+.addpayment-container-total-amount {
+    margin-top: clamp(12px, 2.5vw, 18px);
+}
+
+.addpayment-container-purchase-btn:active {
+    transform: scale(0.98);
+}
+
+.checkmark-icon {
+    font-size: clamp(18px, 4vw, 22px);
+    color: #2e6155;
+    flex-shrink: 0;
+}
+
+.payment-icon {
+    font-size: clamp(18px, 4vw, 22px);
+    flex-shrink: 0;
+}
+
+.plan-price-info {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.addpayment-container label{
+    display: block;
+    margin-bottom: clamp(5px, 1vw, 8px);
+    font-size: clamp(14px, 2.5vw, 16px);
+}
+
+.addpayment-container input, .addpayment-container select{
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: clamp(8px, 2vw, 12px);
+    width: 100%;
+    font-size: clamp(14px, 2.5vw, 16px);
+}
+
+/* Modal Background */
+.addpayment-credit-card-info-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: clamp(10px, 3vw, 20px);
+    backdrop-filter: blur(2px);
+    overflow-y: auto;
+}
+
+/* Modal Content Box */
+.addpayment-credit-card-info-modal-content {
+    background-color: #fff;
+    padding: clamp(15px, 4vw, 30px);
+    padding-bottom: clamp(20px, 5vw, 35px); /* Extra bottom padding */
+    border-radius: clamp(8px, 2vw, 16px);
+    width: calc(100% - 20px);
+    max-width: 550px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+/* Close Button Styling */
+.addpayment-credit-card-info-close-btn {
+    color: red;
+    background: none;
+    border: none;
+    font-size: clamp(24px, 5vw, 32px);
+    cursor: pointer;
+    position: absolute;
+    top: clamp(10px, 2vw, 15px);
+    right: clamp(10px, 2vw, 15px);
+    width: clamp(32px, 6vw, 44px);
+    height: clamp(32px, 6vw, 44px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    z-index: 10;
+}
+
+.addpayment-credit-card-info-close-btn:hover {
+    background: rgba(255, 0, 0, 0.1);
+    transform: rotate(90deg);
+}
+
+/* The rest of the CSS for forms and inputs remains the same, just add the "addpayment-" prefix for all the class names */
+.addpayment-credit-card-info-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.addpayment-credit-card-info-form * {
+    box-sizing: border-box;
+}
+
+.addpayment-credit-card-info-form-group {
+    margin-bottom: clamp(15px, 3vw, 25px);
+    width: 100%;
+}
+
+.addpayment-credit-card-info-label {
+    font-weight: 600;
+    margin-bottom: clamp(5px, 1vw, 8px);
+    text-align: left;
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: #333;
+    display: block;
+}
+
+.addpayment-credit-card-info-input-container {
+    position: relative;
+    width: 100%;
+}
+
+.addpayment-credit-card-info-input {
+    padding: clamp(10px, 2.5vw, 14px);
+    padding-right: clamp(35px, 8vw, 45px); /* Space for icon */
+    font-size: clamp(14px, 3vw, 16px);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    max-width: 100%;
+}
+
+.addpayment-credit-card-info-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.addpayment-credit-card-info-icon {
+    position: absolute;
+    right: clamp(10px, 2vw, 15px);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(18px, 4vw, 22px);
+    color: #666;
+}
+
+.addpayment-credit-card-info-error {
+    color: #dc3545;
+    font-size: clamp(11px, 2vw, 13px);
+    margin-top: clamp(4px, 1vw, 6px);
+    text-align: left;
+}
+
+.addpayment-credit-card-info-form-group-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: clamp(10px, 2vw, 15px);
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.addpayment-credit-card-info-expiration,
+.addpayment-credit-card-info-cvv {
+    flex: 1;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.addpayment-credit-card-info-expiration input,
+.addpayment-credit-card-info-cvv input {
+    width: 100%;
+    max-width: 100%;
+}
+
+.addpayment-credit-card-info-submit-btn {
+    background-color: #2e6155;
+    color: white;
+    padding: clamp(12px, 2.5vw, 16px);
+    font-size: clamp(14px, 3vw, 16px);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "Varela Round", sans-serif;
+    width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    min-height: 48px; /* Touch-friendly */
+    font-weight: 600;
+    margin-top: clamp(15px, 3vw, 20px);
+}
+
+.addpayment-credit-card-info-submit-btn:hover:not(:disabled) {
+    background-color: #86A788;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 97, 85, 0.3);
+}
+
+.addpayment-credit-card-info-submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.addpayment-credit-card-info-submit-btn:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Adjusting error message positions */
+.addpayment-credit-card-info-form-group-flex .addpayment-credit-card-info-expiration,
+.addpayment-credit-card-info-form-group-flex .addpayment-credit-card-info-cvv {
+    position: relative;
+}
+
+.addpayment-credit-card-info-expiration .addpayment-credit-card-info-error,
+.addpayment-credit-card-info-cvv .addpayment-credit-card-info-error {
+    position: absolute;
+    bottom: clamp(-22px, -4vw, -18px);
+    left: 0;
+}
+
+.addpayment-credit-card-info-form-group-flex {
+    margin-bottom: clamp(35px, 8vw, 55px);
+}
+
+.addpayment-credit-card-info-brand-message {
+    text-align: left;
+    margin-bottom: clamp(15px, 3vw, 25px);
+    font-size: clamp(13px, 2.5vw, 15px);
+}
+
+.addpayment-credit-card-info-brand-message span {
+    margin-right: clamp(8px, 2vw, 12px);
+}
+
+.addpayment-credit-card-info-modal-header {
+    text-align: center;
+    font-size: clamp(18px, 4vw, 24px);
+    margin-bottom: clamp(15px, 3vw, 25px);
+    color: #333;
+}
+
+.addpayment-credit-card-info-form-group-checkbox-conatiner {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 12px !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 15px 0 !important;
+    background: transparent !important;
+    min-height: 50px !important;
+}
+
+.addpayment-credit-card-info-form-group-checkbox-input {
+    width: 20px !important;
+    height: 20px !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    margin-top: 2px !important;
+    flex-shrink: 0 !important;
+    min-width: 20px !important;
+    accent-color: #2e6155 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 10 !important;
+    display: block !important;
+    appearance: auto !important;
+    -webkit-appearance: checkbox !important;
+}
+
+.addpayment-credit-card-info-checkbox-termofpayments {
+    font-size: 14px !important;
+    color: #333 !important;
+    text-align: left !important;
+    line-height: 1.6 !important;
+    display: block !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    flex: 1 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin: 0 !important;
+    background: transparent !important;
+}
+
+.addpayment-credit-card-info-checkbox-termofpayments a {
+    color: #2e6155 !important;
+    text-decoration: none !important;
+    margin-left: 4px !important;
+    margin-right: 4px !important;
+    font-weight: 500 !important;
+}
+
+.addpayment-credit-card-info-checkbox-termofpayments a:hover {
+    text-decoration: underline !important;
+    color: #86A788 !important;
+}
+
+/* Ensure the checkbox form group is visible */
+.addpayment-credit-card-info-form-group:has(.addpayment-credit-card-info-form-group-checkbox-conatiner) {
+    margin-bottom: clamp(20px, 4vw, 30px);
+    padding-bottom: 5px;
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+   ========================= */
+
+/* Extra Small Devices (phones, less than 400px) */
+@media (max-width: 399px) {
+    .addpayment-container {
+        padding: 12px;
+        padding-top: 80px;
+    }
+
+    .addpayment-container-header {
+        font-size: 18px;
+    }
+
+    .addpayment-credit-card-info-modal {
+        padding: 10px;
+    }
+
+    .addpayment-credit-card-info-modal-content {
+        padding: 12px;
+        width: calc(100% - 20px);
+        min-width: 0;
+    }
+
+    .addpayment-credit-card-info-modal-header {
+        font-size: 18px;
+        padding-right: 35px; /* Space for close button */
+    }
+
+    .addpayment-credit-card-info-form-group-flex {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .addpayment-credit-card-info-expiration,
+    .addpayment-credit-card-info-cvv {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .addpayment-credit-card-info-form input {
+        font-size: 14px;
+    }
+}
+
+/* Small Devices (phones, 400px-600px) */
+@media (min-width: 400px) and (max-width: 600px) {
+    .addpayment-container {
+        padding: 15px;
+        padding-top: 100px;
+    }
+
+    .addpayment-credit-card-info-form-group-flex {
+        gap: 40px;
+    }
+}
+
+/* Medium Devices (tablets, 601px-900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+    .addpayment-container {
+        padding: 25px;
+        max-width: 550px;
+    }
+
+    .addpayment-credit-card-info-modal-content {
+        max-width: 500px;
+    }
+}
+
+/* Large Devices (desktops, 901px and up) */
+@media (min-width: 901px) {
+    .addpayment-container {
+        padding: 30px 40px;
+    }
+
+    .addpayment-credit-card-info-modal-content {
+        max-width: 550px;
+    }
+}
+
+/* Landscape Orientation Adjustments */
+@media (orientation: landscape) and (max-height: 600px) {
+    .addpayment-container {
+        padding-top: 60px;
+        min-height: auto;
+    }
+
+    .addpayment-credit-card-info-modal-content {
+        max-height: 85vh;
+        padding: 20px;
+    }
+
+    .addpayment-container-header {
+        margin-bottom: 10px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .addpayment-container-purchase-btn,
+    .addpayment-credit-card-info-submit-btn {
+        min-height: 52px; /* Larger touch targets */
+    }
+
+    .addpayment-credit-card-info-close-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* High Resolution Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .addpayment-container {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Extra Large Screens */
+@media (min-width: 1400px) {
+    .addpayment-container {
+        max-width: 650px;
+    }
+
+    .addpayment-credit-card-info-modal-content {
+        max-width: 600px;
+    }
+}
+
+/* Success Dialog Styles */
+.success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.success-dialog {
+    background: white;
+    padding: clamp(40px, 6vw, 60px);
+    border-radius: 24px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.4s ease-out;
+}
+
+.success-icon {
+    width: clamp(80px, 12vw, 100px);
+    height: clamp(80px, 12vw, 100px);
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(50px, 8vw, 60px);
+    font-weight: bold;
+    margin: 0 auto 30px;
+    animation: scaleIn 0.5s ease-out 0.2s backwards;
+}
+
+.success-dialog h2 {
+    font-size: clamp(24px, 4vw, 32px);
+    color: #2e6155;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.success-dialog p {
+    font-size: clamp(16px, 2.5vw, 18px);
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.redirect-message {
+    font-size: clamp(14px, 2vw, 16px);
+    color: #999;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* ✅ Terms of Payment Acceptance Styles */
+/* ✅ UNIQUE ADDPAYMENT CHECKBOX STYLES - NO CONFLICTS */
+.addpayment-terms-acceptance-container {
+    margin: 25px 0 !important;
+    padding: 20px !important;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%) !important;
+    border-radius: 12px !important;
+    border: 3px solid #2d6a4f !important;
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2) !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+.addpayment-terms-checkbox-label {
+    display: flex !important;
+    align-items: flex-start !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    gap: 12px !important;
+    direction: rtl !important;
+    text-align: right !important;
+    position: relative !important;
+}
+
+.addpayment-terms-checkbox {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    cursor: pointer !important;
+    margin-top: 2px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    accent-color: #2d6a4f !important;
+    flex-shrink: 0 !important;
+    /* ✅ Make checkbox SUPER visible with !important */
+    border: 3px solid #2d6a4f !important;
+    border-radius: 6px !important;
+    background: white !important;
+    appearance: auto !important;
+    -webkit-appearance: checkbox !important;
+    -moz-appearance: checkbox !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+.addpayment-terms-checkbox:hover {
+    transform: scale(1.1) !important;
+    transition: transform 0.2s ease !important;
+    border-color: #1b4332 !important;
+}
+
+.addpayment-terms-checkbox:checked {
+    background-color: #2d6a4f !important;
+    border-color: #2d6a4f !important;
+}
+
+.addpayment-terms-text {
+    font-size: 16px !important;
+    color: #1b4332 !important;
+    line-height: 1.6 !important;
+    font-weight: 500 !important;
+}
+
+.addpayment-terms-link {
+    color: #2d6a4f !important;
+    text-decoration: underline !important;
+    font-weight: 700 !important;
+    transition: background-color 0.2s ease !important, color 0.2s ease !important, border-color 0.2s ease !important, box-shadow 0.2s ease !important, opacity 0.2s ease !important, transform 0.2s ease !important;
+}
+
+.addpayment-terms-link:hover {
+    color: #1b4332 !important;
+    text-decoration: none !important;
+    background: rgba(45, 106, 79, 0.1) !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+}
+
+.addpayment-terms-required-message {
+    margin-top: 12px !important;
+    padding: 12px 16px !important;
+    background: #fff5f5 !important;
+    border: 2px solid #dc3545 !important;
+    border-radius: 8px !important;
+    color: #dc3545 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    direction: rtl !important;
+}
+
+.terms-required-message::before {
+    content: "⚠️";
+    font-size: 16px;
+}
+
+/* ✅ Disabled Button Style */
+.addpayment-container-purchase-btn:disabled {
+    background: linear-gradient(135deg, #adb5bd 0%, #868e96 100%);
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+.addpayment-container-purchase-btn:disabled:hover {
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ RTL Support for Terms */
+[dir="rtl"] .addpayment-terms-checkbox-label {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+[dir="rtl"] .addpayment-terms-text {
+    text-align: right !important;
+}
+
+.addpayment-terms-checkbox-label:hover .addpayment-terms-checkbox {
+    border-color: #1b4332 !important;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+    /* ✅ Reduce container padding for mobile */
+    .addpayment-container {
+        padding: 15px;
+        padding-top: 80px;
+    }
+    
+    /* ✅ Reduce margins between elements */
+    .addpayment-container-plan-info,
+    .addpayment-container-sim-price,
+    .addpayment-container-total-amount {
+        margin: 8px 0;
+    }
+    
+    .addpayment-container-header {
+        margin-bottom: 12px;
+        font-size: 20px;
+    }
+    
+    /* ✅ Compact payment info notice */
+    .payment-info-notice {
+        padding: 12px;
+        margin: 12px 0;
+    }
+    
+    .payment-info-notice p {
+        font-size: 13px;
+    }
+    
+    /* ✅ Compact next charge notice */
+    .next-charge-notice {
+        padding: 12px;
+        margin: 12px 0;
+    }
+    
+    .next-charge-notice p {
+        font-size: 13px;
+    }
+    
+    /* ✅ Reduce VAT disclaimer margin */
+    .addpayment-vat-disclaimer {
+        margin-top: 5px;
+        margin-bottom: 8px;
+        font-size: 11px;
+    }
+    
+    /* ✅ Compact terms container */
+    .addpayment-terms-acceptance-container {
+        padding: 12px !important;
+        margin: 12px 0 !important;
+    }
+    
+    .addpayment-terms-checkbox {
+        width: 24px !important;
+        height: 24px !important;
+        min-width: 24px !important;
+        min-height: 24px !important;
+    }
+    
+    .addpayment-terms-text {
+        font-size: 13px !important;
+    }
+    
+    .addpayment-terms-required-message {
+        font-size: 12px !important;
+        margin-top: 8px !important;
+        padding: 8px 12px !important;
+    }
+    
+    /* ✅ Reduce button margin */
+    .addpayment-container-purchase-btn {
+        margin-top: 12px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* ✅ Extra small screens - even more compact */
+@media (max-width: 480px) {
+    .addpayment-container {
+        padding: 12px;
+        padding-top: 70px;
+    }
+    
+    .addpayment-container-header {
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    
+    .addpayment-container-plan-info,
+    .addpayment-container-sim-price,
+    .addpayment-container-total-amount {
+        margin: 6px 0;
+        font-size: 14px;
+    }
+    
+    .payment-info-notice,
+    .next-charge-notice {
+        padding: 10px;
+        margin: 10px 0;
+    }
+    
+    .payment-info-notice p,
+    .next-charge-notice p {
+        font-size: 12px;
+    }
+    
+    .addpayment-vat-disclaimer {
+        margin-top: 4px;
+        margin-bottom: 6px;
+        font-size: 10px;
+    }
+    
+    .addpayment-terms-acceptance-container {
+        padding: 10px !important;
+        margin: 10px 0 !important;
+    }
+    
+    .addpayment-terms-checkbox {
+        width: 26px !important;
+        height: 26px !important;
+        min-width: 26px !important;
+        min-height: 26px !important;
+    }
+    
+    .addpayment-terms-text {
+        font-size: 12px !important;
+    }
+    
+    .addpayment-terms-required-message {
+        font-size: 11px !important;
+        margin-top: 6px !important;
+        padding: 6px 10px !important;
+    }
+    
+    .addpayment-container-purchase-btn {
+        margin-top: 10px;
+        padding: 10px 16px;
+        font-size: 13px;
+        min-height: 44px;
+    }
+}

@@ -1,0 +1,78 @@
+.fb-login-button {
+  background: linear-gradient(135deg, #1877f2 0%, #166fe5 100%);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  font-family: "Varela Round", sans-serif;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 56px;
+}
+
+.fb-login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4);
+  background: linear-gradient(135deg, #166fe5 0%, #1565d8 100%);
+}
+
+.fb-login-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(24, 119, 242, 0.3);
+}
+
+.fb-login-button:focus {
+  outline: none;
+  box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3), 0 0 0 3px rgba(24, 119, 242, 0.2);
+}
+
+.fb-login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading state */
+.fb-login-button.loading {
+  pointer-events: none;
+}
+
+.fb-login-button .loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Facebook icon */
+.fb-login-button .fb-icon {
+  font-size: 18px;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .fb-login-button {
+    font-size: 14px;
+    padding: 14px 20px;
+    min-height: 50px;
+  }
+}
