@@ -22,7 +22,7 @@ const POST_CARDS = {
   15: { gradient: 'linear-gradient(135deg,#1B5E20,#43A047)', icon: '📈', labelHe: 'שיווק דיגיטלי', labelEn: 'Digital Marketing' },
   16: { gradient: 'linear-gradient(135deg,#006064,#00838F)', icon: '💎', labelHe: 'שירות לקוחות', labelEn: 'Customer Service' },
   17: { gradient: 'linear-gradient(135deg,#0277BD,#01579B)', icon: '📢', labelHe: 'ניהול תקשורת', labelEn: 'Communication Management' },
-  18: { gradient: 'linear-gradient(135deg,#37474F,#455A64)', icon: '📧', labelHe: 'WhatsApp vs Email', labelEn: 'WhatsApp vs Email' },
+  18: { gradient: 'linear-gradient(135deg,#4527A0,#7B1FA2)', icon: '🧠', labelHe: 'בוט AI', labelEn: 'AI Bot' },
 };
 const FALLBACK_CARD = { gradient: 'linear-gradient(135deg,#1565C0,#0288D1)', icon: '💬', labelHe: 'WhatsApp', labelEn: 'WhatsApp' };
 
@@ -49,13 +49,15 @@ export default function BlogContent() {
   const tx = TEXT[lang] || TEXT.he;
   const dir = lang === 'he' ? 'rtl' : 'ltr';
 
-  const localizedPosts = getLocalizedPosts(lang).map(p => {
-    const card = POST_CARDS[p.id] || FALLBACK_CARD;
-    return {
-      ...p,
-      card: { ...card, label: lang === 'en' ? card.labelEn : card.labelHe },
-    };
-  });
+  const localizedPosts = getLocalizedPosts(lang)
+    .map(p => {
+      const card = POST_CARDS[p.id] || FALLBACK_CARD;
+      return {
+        ...p,
+        card: { ...card, label: lang === 'en' ? card.labelEn : card.labelHe },
+      };
+    })
+    .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
 
   return (
     <div style={{ paddingTop: '68px' }} dir={dir}>

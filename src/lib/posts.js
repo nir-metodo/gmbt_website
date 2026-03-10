@@ -6631,7 +6631,9 @@ const posts = [
       
       <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
         <h3 style="color: #128C7E;">❓ האם אני מאבד משהו במעבר?</h3>
-        <p>חלק מהפיצ'רים לא נתמכים (כמו קבוצות, הודעות נעלמות), אבל בתמורה אתה מקבל יכולות הרבה יותר מתקדמות. ראה את הטבלה המלאה למעלה.</p>
+        <p><strong>קבוצות — לא מאבדים כלום.</strong> ממשיכים לעבוד עם קבוצות בדיוק כמו קודם דרך אפליקציית WhatsApp Business — זה לא משתנה.</p>
+        <p><strong>דיוור המוני בסיסי</strong> (Broadcast Lists של האפליקציה) — הפיצ'ר הזה לא נתמך דרך ה-API, אבל בתמורה מקבלים כלי דיוור עוצמתי ביותר: קמפיינים ממוקדים עם סגמנטציה, תבניות, דוחות ביצועים ואחוזי פתיחה. שדרוג משמעותי, לא הורדה.</p>
+        <p>ראה את הטבלה המלאה למעלה לכל הפרטים.</p>
       </div>
       
       <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
@@ -6848,6 +6850,7 @@ const posts = [
   },
   {
     id: 18,
+    featured: true,
     
     // ===== SEO CRITICAL FIELDS =====
     seoTitle: {

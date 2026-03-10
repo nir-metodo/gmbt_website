@@ -10,7 +10,7 @@ export const SOLUTIONS = {
         desc: 'Workflow Designer חזותי מתקדם. בנו אוטומציות מורכבות עם טריגרים, AI ואינטגרציות — תוך דקות.',
         stats: [
           { value: '95%', label: 'אחוזי פתיחה' }, { value: '24/7', label: 'מענה אוטומטי' },
-          { value: '70%', label: 'חיסכון בזמן' }, { value: '500+', label: 'עסקים פעילים' },
+          { value: '70%', label: 'חיסכון בזמן' }, { value: '✅', label: 'שותף Meta רשמי' },
         ],
       },
       features: [
@@ -48,7 +48,7 @@ export const SOLUTIONS = {
         desc: 'Advanced visual Workflow Designer. Build complex automations with triggers, AI and integrations — in minutes.',
         stats: [
           { value: '95%', label: 'Open Rate' }, { value: '24/7', label: 'Automated Response' },
-          { value: '70%', label: 'Time Saved' }, { value: '500+', label: 'Active Businesses' },
+          { value: '70%', label: 'Time Saved' }, { value: '✅', label: 'Official Meta Partner' },
         ],
       },
       features: [
@@ -89,7 +89,7 @@ export const SOLUTIONS = {
         desc: 'קמפיינים שיווקיים אפקטיביים שמגיעים לקהל הנכון. בנו קמפיינים, נהלו תגובות ועקבו אחר תוצאות.',
         stats: [
           { value: '95%', label: 'אחוזי פתיחה' }, { value: '3x', label: 'המרה גבוהה vs. אימייל' },
-          { value: '30 דקות', label: 'לפתיחת קמפיין' }, { value: '5,000+', label: 'קמפיינים שהורצו' },
+          { value: '30 דקות', label: 'לפתיחת קמפיין' }, { value: 'API', label: 'רשמי של Meta' },
         ],
       },
       features: [
@@ -127,7 +127,7 @@ export const SOLUTIONS = {
         desc: 'Effective marketing campaigns that reach the right audience. Build campaigns, manage responses and track results.',
         stats: [
           { value: '95%', label: 'Open Rate' }, { value: '3x', label: 'Higher Conversion vs. Email' },
-          { value: '30 min', label: 'To Launch a Campaign' }, { value: '5,000+', label: 'Campaigns Run' },
+          { value: '30 min', label: 'To Launch a Campaign' }, { value: 'API', label: 'Official Meta API' },
         ],
       },
       features: [
@@ -167,8 +167,8 @@ export const SOLUTIONS = {
         titleText: 'קמפיינים בוואטסאפ שמביאים תוצאות אמיתיות',
         desc: 'שלחו קמפיינים ממוקדים לאנשי הקשר שלכם. תכננו, שלחו ועקבו אחר תוצאות בקלות.',
         stats: [
-          { value: '95%', label: 'אחוזי פתיחה' }, { value: '40%', label: 'אחוזי CTR ממוצע' },
-          { value: '5 דקות', label: 'לפתיחת קמפיין' }, { value: '1M+', label: 'הודעות נשלחו' },
+          { value: '95%', label: 'אחוזי פתיחה (מקור: Meta)' }, { value: '40%', label: 'CTR ממוצע בוואטסאפ' },
+          { value: '5 דקות', label: 'לפתיחת קמפיין' }, { value: '✅', label: 'שותף Meta רשמי' },
         ],
       },
       features: [
@@ -194,8 +194,8 @@ export const SOLUTIONS = {
         titleText: 'WhatsApp Campaigns That Deliver Real Results',
         desc: 'Send targeted campaigns to your contacts. Plan, send and track results with ease.',
         stats: [
-          { value: '95%', label: 'Open Rate' }, { value: '40%', label: 'Average CTR' },
-          { value: '5 min', label: 'To Launch Campaign' }, { value: '1M+', label: 'Messages Sent' },
+          { value: '95%', label: 'Open Rate (Meta)' }, { value: '40%', label: 'Avg WhatsApp CTR' },
+          { value: '5 min', label: 'To Launch Campaign' }, { value: '✅', label: 'Official Meta Partner' },
         ],
       },
       features: [
@@ -224,8 +224,8 @@ export const SOLUTIONS = {
         titleText: 'אוטומציה בוואטסאפ — תנו לטכנולוגיה לעבוד בשבילכם',
         desc: 'בנו תהליכים אוטומטיים שמגיבים ללקוחות, מנהלים לידים ומפעילים פעולות — ללא התערבות ידנית.',
         stats: [
-          { value: '70%', label: 'חיסכון בזמן עבודה' }, { value: '24/7', label: 'פעילות רציפה' },
-          { value: '90%', label: 'שביעות רצון לקוחות' }, { value: '500+', label: 'עסקים משתמשים' },
+          { value: '70%', label: 'חיסכון בזמן (Forrester)' }, { value: '24/7', label: 'פעילות רציפה' },
+          { value: 'x3–5', label: 'יותר ביקורות גוגל' }, { value: 'ללא קוד', label: 'Workflow Designer' },
         ],
       },
       features: [
@@ -264,8 +264,8 @@ export const SOLUTIONS = {
         titleText: 'WhatsApp Automation — Let Technology Work for You',
         desc: 'Build automated workflows that respond to customers, manage leads and trigger actions — without manual intervention.',
         stats: [
-          { value: '70%', label: 'Work Time Saved' }, { value: '24/7', label: 'Continuous Operation' },
-          { value: '90%', label: 'Customer Satisfaction' }, { value: '500+', label: 'Businesses Using It' },
+          { value: '70%', label: 'Time Saved (Forrester)' }, { value: '24/7', label: 'Continuous Operation' },
+          { value: 'x3–5', label: 'More Google Reviews' }, { value: 'No-code', label: 'Workflow Designer' },
         ],
       },
       features: [
@@ -305,8 +305,8 @@ export const SOLUTIONS = {
         titleText: 'צ\'אטבוט לוואטסאפ — שירות לקוחות 24/7 ללא הפסקה',
         desc: 'צ\'אטבוט חכם שמטפל בפניות, עונה על שאלות ומנהל שיחות — בזמן אמת, בכל שעה.',
         stats: [
-          { value: '24/7', label: 'זמינות מלאה' }, { value: '80%', label: 'שאלות נפתרות אוטומטית' },
-          { value: '3 שניות', label: 'זמן תגובה ממוצע' }, { value: '60%', label: 'חיסכון בעלויות תמיכה' },
+          { value: '24/7', label: 'זמינות מלאה' }, { value: 'AI', label: 'Powered by GPT' },
+          { value: '3 שניות', label: 'זמן תגובה ממוצע' }, { value: '✅', label: 'שותף Meta רשמי' },
         ],
       },
       features: [
@@ -343,8 +343,8 @@ export const SOLUTIONS = {
         titleText: 'WhatsApp Chatbot — 24/7 Customer Service Without a Break',
         desc: 'Smart chatbot that handles inquiries, answers questions and manages conversations — in real time, at any hour.',
         stats: [
-          { value: '24/7', label: 'Full Availability' }, { value: '80%', label: 'Questions Resolved Automatically' },
-          { value: '3 sec', label: 'Average Response Time' }, { value: '60%', label: 'Support Cost Savings' },
+          { value: '24/7', label: 'Full Availability' }, { value: 'AI', label: 'Powered by GPT' },
+          { value: '3 sec', label: 'Average Response Time' }, { value: '✅', label: 'Official Meta Partner' },
         ],
       },
       features: [
@@ -384,8 +384,8 @@ export const SOLUTIONS = {
         titleText: 'בוט לידים לוואטסאפ — הפכו כל שיחה להזדמנות עסקית',
         desc: 'בוט שמסנן, מכשיר ומנהל לידים אוטומטית. שלחו רק לידים חמים לנציגי המכירות.',
         stats: [
-          { value: '3x', label: 'יותר לידים מאותה תנועה' }, { value: '60%', label: 'חיסכון בזמן מכירות' },
-          { value: '2 דקות', label: 'מהפנייה לסינון' }, { value: '200+', label: 'עסקים משתמשים' },
+          { value: '95%', label: 'אחוזי פתיחה (Meta)' }, { value: 'CRM', label: 'אינטגרציה ישירה' },
+          { value: '2 דקות', label: 'מהפנייה לסינון' }, { value: 'AI', label: 'מנוע סינון חכם' },
         ],
       },
       features: [
@@ -422,8 +422,8 @@ export const SOLUTIONS = {
         titleText: 'WhatsApp Leads Bot — Turn Every Conversation into a Business Opportunity',
         desc: 'A bot that automatically filters, qualifies and manages leads. Send only hot leads to your sales reps.',
         stats: [
-          { value: '3x', label: 'More Leads from Same Traffic' }, { value: '60%', label: 'Sales Time Saved' },
-          { value: '2 min', label: 'From Inquiry to Filtering' }, { value: '200+', label: 'Businesses Using It' },
+          { value: '95%', label: 'Open Rate (Meta)' }, { value: 'CRM', label: 'Direct Integration' },
+          { value: '2 min', label: 'From Inquiry to Filtering' }, { value: 'AI', label: 'Smart Lead Scoring' },
         ],
       },
       features: [
@@ -463,8 +463,8 @@ export const SOLUTIONS = {
         titleText: 'זימון תורים בוואטסאפ — ביומן ב-2 דקות',
         desc: 'לקוחות מזמינים תור ישירות בוואטסאפ. ללא המתנה, ללא טפסים מיותרים — רק תיאום מהיר וחלק.',
         stats: [
-          { value: '70%', label: 'פחות ביטולים' }, { value: '24/7', label: 'זמינות לזימון' },
-          { value: '2 דקות', label: 'לזמן תור' }, { value: '95%', label: 'שביעות רצון לקוחות' },
+          { value: 'Google', label: 'אינטגרציה עם יומן' }, { value: '24/7', label: 'זמינות לזימון' },
+          { value: '2 דקות', label: 'לזמן תור' }, { value: '✅', label: 'ללא אפליקציה נוספת' },
         ],
       },
       features: [
@@ -501,8 +501,8 @@ export const SOLUTIONS = {
         titleText: 'WhatsApp Appointment Booking — On the Calendar in 2 Minutes',
         desc: 'Customers book appointments directly on WhatsApp. No waiting, no unnecessary forms — just fast and smooth scheduling.',
         stats: [
-          { value: '70%', label: 'Fewer Cancellations' }, { value: '24/7', label: 'Booking Availability' },
-          { value: '2 min', label: 'To Book Appointment' }, { value: '95%', label: 'Customer Satisfaction' },
+          { value: 'Google', label: 'Calendar Integration' }, { value: '24/7', label: 'Booking Availability' },
+          { value: '2 min', label: 'To Book Appointment' }, { value: '✅', label: 'No Extra App Needed' },
         ],
       },
       features: [
@@ -623,8 +623,8 @@ export const SOLUTIONS = {
         titleText: 'חתימה דיגיטלית בוואטסאפ — חתמו על חוזים מרחוק',
         desc: 'שלחו מסמכים לחתימה ישירות בוואטסאפ. הלקוח חותם בשנייה, המסמך חוזר אליכם מאובטח.',
         stats: [
-          { value: '95%', label: 'מסמכים נחתמים ב-24 שעות' }, { value: '0', label: 'צורך בפגישה פיזית' },
-          { value: '100%', label: 'תוקף משפטי' }, { value: '5 דקות', label: 'מהשליחה לחתימה' },
+          { value: '✅', label: 'ללא אפליקציה לחתימה' }, { value: '0', label: 'צורך בפגישה פיזית' },
+          { value: '100%', label: 'תוקף משפטי מלא' }, { value: '5 דקות', label: 'מהשליחה לחתימה' },
         ],
       },
       features: [
@@ -661,8 +661,8 @@ export const SOLUTIONS = {
         titleText: 'Digital Signature on WhatsApp — Sign Contracts Remotely',
         desc: 'Send documents for signing directly on WhatsApp. The customer signs in seconds, the document returns to you securely.',
         stats: [
-          { value: '95%', label: 'Documents Signed within 24h' }, { value: '0', label: 'Physical Meeting Needed' },
-          { value: '100%', label: 'Legal Validity' }, { value: '5 min', label: 'From Sending to Signature' },
+          { value: '✅', label: 'No App to Sign' }, { value: '0', label: 'Physical Meeting Needed' },
+          { value: '100%', label: 'Full Legal Validity' }, { value: '5 min', label: 'From Sending to Signature' },
         ],
       },
       features: [
@@ -702,8 +702,8 @@ export const SOLUTIONS = {
         titleText: 'הצעות מחיר בוואטסאפ — סגרו עסקאות מהר יותר',
         desc: 'שלחו הצעות מחיר מקצועיות ישירות בוואטסאפ. הלקוח מאשר, הצוות מקבל התראה — הכל אוטומטי.',
         stats: [
-          { value: '60%', label: 'פחות זמן ליצירת הצעה' }, { value: '40%', label: 'יותר הצעות מאושרות' },
-          { value: '5 דקות', label: 'ליצירת הצעת מחיר' }, { value: '100+', label: 'עסקים משתמשים' },
+          { value: '✅', label: 'אישור בלחיצה אחת' }, { value: 'CRM', label: 'מחובר ל-CRM' },
+          { value: '5 דקות', label: 'ליצירת הצעת מחיר' }, { value: 'PDF', label: 'מקצועי ומותאם אישית' },
         ],
       },
       features: [
@@ -740,8 +740,8 @@ export const SOLUTIONS = {
         titleText: 'WhatsApp Quotations — Close Deals Faster',
         desc: 'Send professional quotes directly on WhatsApp. Customer approves, team gets notified — all automated.',
         stats: [
-          { value: '60%', label: 'Less Time Creating Quotes' }, { value: '40%', label: 'More Quotes Approved' },
-          { value: '5 min', label: 'To Create a Quote' }, { value: '100+', label: 'Businesses Using It' },
+          { value: '✅', label: 'One-Click Approval' }, { value: 'CRM', label: 'CRM Integrated' },
+          { value: '5 min', label: 'To Create a Quote' }, { value: 'PDF', label: 'Professional & Branded' },
         ],
       },
       features: [
@@ -781,8 +781,8 @@ export const SOLUTIONS = {
         titleText: 'דיוור בוואטסאפ — הגיעו לכל לקוח ב-2 שניות',
         desc: 'שלחו עדכונים, ניוזלטרים ומבצעים ישירות לוואטסאפ. אחוזי פתיחה שלא ניתן להשיג בשום ערוץ אחר.',
         stats: [
-          { value: '95%', label: 'אחוזי פתיחה' }, { value: '10x', label: 'גבוה מאימייל' },
-          { value: '2 שניות', label: 'ממוצע פתיחת ההודעה' }, { value: '1M+', label: 'הודעות שנשלחו' },
+          { value: '95%', label: 'אחוזי פתיחה (מקור: Meta)' }, { value: 'x10', label: 'מעל אימייל' },
+          { value: '2 שניות', label: 'זמן פתיחה ממוצע' }, { value: '✅', label: 'שותף Meta רשמי' },
         ],
       },
       features: [
@@ -819,8 +819,8 @@ export const SOLUTIONS = {
         titleText: 'WhatsApp Mailing — Reach Every Customer in 2 Seconds',
         desc: 'Send updates, newsletters and promotions directly to WhatsApp. Open rates unachievable on any other channel.',
         stats: [
-          { value: '95%', label: 'Open Rate' }, { value: '10x', label: 'Higher than Email' },
-          { value: '2 sec', label: 'Average Message Open Time' }, { value: '1M+', label: 'Messages Sent' },
+          { value: '95%', label: 'Open Rate (Meta)' }, { value: 'x10', label: 'Above Email' },
+          { value: '2 sec', label: 'Average Open Time' }, { value: '✅', label: 'Official Meta Partner' },
         ],
       },
       features: [
@@ -860,8 +860,8 @@ export const SOLUTIONS = {
         titleText: 'בוט מכירות לוואטסאפ — מכרו 24/7 ללא צוות מכירות',
         desc: 'בוט מכירות חכם שמייצר לידים, מציג מוצרים, שולח הצעות מחיר וסוגר עסקאות — אוטומטית.',
         stats: [
-          { value: '3x', label: 'יותר שיחות מכירה' }, { value: '24/7', label: 'מכירות ללא הפסקה' },
-          { value: '40%', label: 'עלייה בשיעור סגירה' }, { value: '500+', label: 'עסקים משתמשים' },
+          { value: '95%', label: 'אחוזי פתיחה (Meta)' }, { value: '24/7', label: 'מכירות ללא הפסקה' },
+          { value: '✅', label: 'API Meta רשמי' }, { value: 'AI', label: 'סוכן מכירות חכם' },
         ],
       },
       features: [
@@ -898,8 +898,8 @@ export const SOLUTIONS = {
         titleText: 'WhatsApp Sales Bot — Sell 24/7 Without a Sales Team',
         desc: 'Smart sales bot that generates leads, presents products, sends quotes and closes deals — automatically.',
         stats: [
-          { value: '3x', label: 'More Sales Conversations' }, { value: '24/7', label: 'Non-Stop Sales' },
-          { value: '40%', label: 'Increase in Close Rate' }, { value: '500+', label: 'Businesses Using It' },
+          { value: '95%', label: 'Open Rate (Meta)' }, { value: '24/7', label: 'Non-Stop Sales' },
+          { value: '✅', label: 'Official Meta API' }, { value: 'AI', label: 'Smart Sales Agent' },
         ],
       },
       features: [
@@ -939,8 +939,8 @@ export const SOLUTIONS = {
         titleText: 'בוט שירות לקוחות בוואטסאפ — תמיכה 24/7',
         desc: 'בוט שפותר פניות, עונה על שאלות ומנתב לנציג כשצריך. שביעות רצון לקוחות גבוהה יותר, פחות עומס על הצוות.',
         stats: [
-          { value: '80%', label: 'פניות נפתרות אוטומטית' }, { value: '24/7', label: 'זמינות מלאה' },
-          { value: '60%', label: 'פחות עומס על נציגים' }, { value: '90%', label: 'שביעות רצון לקוחות' },
+          { value: 'AI', label: 'Powered by GPT' }, { value: '24/7', label: 'זמינות מלאה' },
+          { value: '95%', label: 'אחוזי פתיחה בוואטסאפ' }, { value: '✅', label: 'שותף Meta רשמי' },
         ],
       },
       features: [
@@ -977,8 +977,8 @@ export const SOLUTIONS = {
         titleText: 'WhatsApp Customer Service Bot — 24/7 Support',
         desc: 'Bot that resolves inquiries, answers questions and routes to agents when needed. Higher customer satisfaction, less team workload.',
         stats: [
-          { value: '80%', label: 'Inquiries Resolved Automatically' }, { value: '24/7', label: 'Full Availability' },
-          { value: '60%', label: 'Less Agent Workload' }, { value: '90%', label: 'Customer Satisfaction' },
+          { value: 'AI', label: 'Powered by GPT' }, { value: '24/7', label: 'Full Availability' },
+          { value: '95%', label: 'WhatsApp Open Rate' }, { value: '✅', label: 'Official Meta Partner' },
         ],
       },
       features: [
@@ -1100,7 +1100,7 @@ export const SOLUTIONS = {
         desc: 'חיבור ל-WhatsApp Business API הרשמי של מטא. נהלו שיחות, קמפיינים ואוטומציה בפלטפורמה אחת.',
         stats: [
           { value: '2B+', label: 'משתמשי וואטסאפ בעולם' }, { value: '95%', label: 'אחוזי פתיחה' },
-          { value: 'Official', label: 'שותף מטא רשמי' }, { value: '500+', label: 'עסקים' },
+          { value: '✅', label: 'שותף מטא רשמי' }, { value: 'API', label: 'רשמי בלבד' },
         ],
       },
       features: [
@@ -1138,7 +1138,7 @@ export const SOLUTIONS = {
         desc: 'Connect to Meta\'s official WhatsApp Business API. Manage conversations, campaigns and automation in one platform.',
         stats: [
           { value: '2B+', label: 'WhatsApp Users Worldwide' }, { value: '95%', label: 'Open Rate' },
-          { value: 'Official', label: 'Meta Official Partner' }, { value: '500+', label: 'Businesses' },
+          { value: '✅', label: 'Meta Official Partner' }, { value: 'API', label: 'Official API Only' },
         ],
       },
       features: [

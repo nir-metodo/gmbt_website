@@ -193,7 +193,71 @@
   padding: 12px;
 }
 
+.guideNav {
+  margin: 40px 0 0;
+}
+
+.guideNavInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.guideNavBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border: 2px solid #e8f5e9;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1a1a5e;
+  background: #f9fffe;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  min-width: 0;
+}
+
+.guideNavBtn:hover {
+  border-color: #25D366;
+  background: #e8f5e9;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.15);
+}
+
+.guideNavPrev { justify-content: flex-start; }
+.guideNavNext { justify-content: flex-end; text-align: end; }
+
+.guideNavArrow {
+  font-size: 1.4rem;
+  color: #25D366;
+  flex-shrink: 0;
+}
+
+.guideNavText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.guideNavText small {
+  font-size: 0.75rem;
+  color: #25D366;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.guideNavText strong {
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @media (max-width: 768px) {
   .layout { grid-template-columns: 1fr; }
   .hero h1 { font-size: 1.5rem; }
+  .guideNavInner { grid-template-columns: 1fr; }
+  .guideNavNext { justify-content: flex-start; text-align: start; }
 }

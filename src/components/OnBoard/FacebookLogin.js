@@ -1,10 +1,11 @@
-﻿  import React, { useEffect, useState } from 'react';
+'use client';
+  import React, { useEffect, useState } from 'react';
   import './FacebookLogin.css';
-  import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+  import { useRouter } from 'next/navigation';
   import { FaFacebookF } from 'react-icons/fa';
 
   const FacebookLogin = ({organization , buisnessEmail , organizationName, isCoexisting = false, coexistingPhoneNumber}) => {
-      const navigate = useNavigate(); // Initialize navigate function
+      const router = useRouter();
       const [isLoading, setIsLoading] = useState(false);
       const [isSDKLoaded, setIsSDKLoaded] = useState(false);
     
@@ -54,9 +55,9 @@
           });
 
           const data = await response.json();
-          if (data?.message?.contains('successfully')) {
+          if (data?.message?.includes('successfully')) {
               console.log('Business token received:', data.businessToken);
-              navigate('/Login');
+              router.push('/login');
               // You can now use the business token to interact with the WhatsApp Business API
           } else {
               console.log('Error exchanging token');

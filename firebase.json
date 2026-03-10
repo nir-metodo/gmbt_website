@@ -18,13 +18,93 @@
       {
         "source": "**/*.css",
         "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      },
+      {
+        "source": "/video-sitemap.xml",
+        "headers": [{ "key": "Content-Type", "value": "application/xml; charset=utf-8" }, { "key": "Cache-Control", "value": "public, max-age=86400" }]
+      },
+      {
+        "source": "/sitemap.xml",
+        "headers": [{ "key": "Content-Type", "value": "application/xml; charset=utf-8" }, { "key": "Cache-Control", "value": "public, max-age=86400" }]
       }
     ],
     "cleanUrls": true,
+    "redirects": [
+      { "source": "/Contacts", "destination": "https://app.gambot.co.il/Contacts", "type": 301 },
+      { "source": "/Contacts/**", "destination": "https://app.gambot.co.il/Contacts", "type": 301 },
+      { "source": "/leads", "destination": "https://app.gambot.co.il/leads", "type": 301 },
+      { "source": "/leads/**", "destination": "https://app.gambot.co.il/leads", "type": 301 },
+      { "source": "/Leads", "destination": "https://app.gambot.co.il/leads", "type": 301 },
+      { "source": "/Leads/**", "destination": "https://app.gambot.co.il/leads", "type": 301 },
+      { "source": "/cases", "destination": "https://app.gambot.co.il/cases", "type": 301 },
+      { "source": "/cases/**", "destination": "https://app.gambot.co.il/cases", "type": 301 },
+      { "source": "/Cases", "destination": "https://app.gambot.co.il/cases", "type": 301 },
+      { "source": "/Cases/**", "destination": "https://app.gambot.co.il/cases", "type": 301 },
+      { "source": "/tasks", "destination": "https://app.gambot.co.il/tasks", "type": 301 },
+      { "source": "/tasks/**", "destination": "https://app.gambot.co.il/tasks", "type": 301 },
+      { "source": "/Tasks", "destination": "https://app.gambot.co.il/tasks", "type": 301 },
+      { "source": "/Tasks/**", "destination": "https://app.gambot.co.il/tasks", "type": 301 },
+      { "source": "/reports", "destination": "https://app.gambot.co.il/reports", "type": 301 },
+      { "source": "/reports/**", "destination": "https://app.gambot.co.il/reports", "type": 301 },
+      { "source": "/Reports", "destination": "https://app.gambot.co.il/reports", "type": 301 },
+      { "source": "/Reports/**", "destination": "https://app.gambot.co.il/reports", "type": 301 },
+      { "source": "/quotes", "destination": "https://app.gambot.co.il/quotes", "type": 301 },
+      { "source": "/quotes/**", "destination": "https://app.gambot.co.il/quotes", "type": 301 },
+      { "source": "/Quotes", "destination": "https://app.gambot.co.il/quotes", "type": 301 },
+      { "source": "/Quotes/**", "destination": "https://app.gambot.co.il/quotes", "type": 301 },
+      { "source": "/invoices", "destination": "https://app.gambot.co.il/invoices", "type": 301 },
+      { "source": "/invoices/**", "destination": "https://app.gambot.co.il/invoices", "type": 301 },
+      { "source": "/settings", "destination": "https://app.gambot.co.il/settings", "type": 301 },
+      { "source": "/settings/**", "destination": "https://app.gambot.co.il/settings", "type": 301 },
+      { "source": "/Settings", "destination": "https://app.gambot.co.il/settings", "type": 301 },
+      { "source": "/Settings/**", "destination": "https://app.gambot.co.il/settings", "type": 301 },
+      { "source": "/users", "destination": "https://app.gambot.co.il/users", "type": 301 },
+      { "source": "/users/**", "destination": "https://app.gambot.co.il/users", "type": 301 },
+      { "source": "/esignature", "destination": "https://app.gambot.co.il/esignature", "type": 301 },
+      { "source": "/esignature/**", "destination": "https://app.gambot.co.il/esignature", "type": 301 },
+      { "source": "/ESignatures", "destination": "https://app.gambot.co.il/esignature", "type": 301 },
+      { "source": "/ESignatures/**", "destination": "https://app.gambot.co.il/esignature", "type": 301 },
+      { "source": "/BotFlows", "destination": "https://app.gambot.co.il/Botomations", "type": 301 },
+      { "source": "/BotFlows/**", "destination": "https://app.gambot.co.il/Botomations", "type": 301 },
+      { "source": "/Botomations", "destination": "https://app.gambot.co.il/Botomations", "type": 301 },
+      { "source": "/Botomations/**", "destination": "https://app.gambot.co.il/Botomations", "type": 301 },
+      { "source": "/Campaign", "destination": "https://app.gambot.co.il/Campaign", "type": 301 },
+      { "source": "/Campaign/**", "destination": "https://app.gambot.co.il/Campaign", "type": 301 },
+      { "source": "/Campaigns", "destination": "https://app.gambot.co.il/Campaign", "type": 301 },
+      { "source": "/Campaigns/**", "destination": "https://app.gambot.co.il/Campaign", "type": 301 },
+      { "source": "/Templates", "destination": "https://app.gambot.co.il/Templates", "type": 301 },
+      { "source": "/Templates/**", "destination": "https://app.gambot.co.il/Templates", "type": 301 },
+      { "source": "/Chats", "destination": "https://app.gambot.co.il/Contacts", "type": 301 },
+      { "source": "/Chats/**", "destination": "https://app.gambot.co.il/Contacts", "type": 301 },
+      { "source": "/chat", "destination": "https://app.gambot.co.il/Contacts", "type": 301 },
+      { "source": "/chat/**", "destination": "https://app.gambot.co.il/Contacts", "type": 301 },
+      { "source": "/media-manager", "destination": "https://app.gambot.co.il/media-manager", "type": 301 },
+      { "source": "/catalog", "destination": "https://app.gambot.co.il/catalog", "type": 301 },
+      { "source": "/Dashbord", "destination": "https://app.gambot.co.il/Dashbord", "type": 301 },
+      { "source": "/ActivityLog", "destination": "https://app.gambot.co.il/ActivityLog", "type": 301 },
+      { "source": "/ActivityLog/**", "destination": "https://app.gambot.co.il/ActivityLog", "type": 301 },
+      { "source": "/GambotAi", "destination": "https://app.gambot.co.il/GambotAi", "type": 301 },
+      { "source": "/Integrations", "destination": "https://app.gambot.co.il/Integrations", "type": 301 },
+      { "source": "/Connections", "destination": "https://app.gambot.co.il/Connections", "type": 301 },
+      { "source": "/FacebookLogin", "destination": "https://app.gambot.co.il/FacebookLogin", "type": 301 },
+      { "source": "/FacebookLogin/**", "destination": "https://app.gambot.co.il/FacebookLogin", "type": 301 },
+      { "source": "/phoneCalls", "destination": "https://app.gambot.co.il/phoneCalls", "type": 301 },
+      { "source": "/phoneCalls/**", "destination": "https://app.gambot.co.il/phoneCalls", "type": 301 },
+      { "source": "/custom-tables", "destination": "https://app.gambot.co.il/custom-tables", "type": 301 },
+      { "source": "/custom-tables/**", "destination": "https://app.gambot.co.il/custom-tables", "type": 301 },
+      { "source": "/email/templates", "destination": "https://app.gambot.co.il/email/templates", "type": 301 },
+      { "source": "/email/campaigns", "destination": "https://app.gambot.co.il/email/campaigns", "type": 301 },
+      { "source": "/sms/templates", "destination": "https://app.gambot.co.il/sms/templates", "type": 301 },
+      { "source": "/sms/campaign", "destination": "https://app.gambot.co.il/sms/campaign", "type": 301 }
+    ],
     "rewrites": [
       {
+        "source": "/complete-waba",
+        "destination": "/complete-waba/index.html"
+      },
+      {
         "source": "/complete-waba/**",
-        "destination": "/complete-waba"
+        "destination": "/complete-waba/index.html"
       }
     ]
   }

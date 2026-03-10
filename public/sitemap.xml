@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
@@ -15,8 +15,13 @@
   <url><loc>https://gambot.co.il/בוט-שירות-לקוחות-וואטסאפ/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.88</priority></url>
   <url><loc>https://gambot.co.il/בוט-מכירות-וואטסאפ/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.87</priority></url>
   <url><loc>https://gambot.co.il/וואטסאפ-עסקי/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://gambot.co.il/מערכת-שיווק-בוואטסאפ/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://gambot.co.il/וואטסאפ-crm/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.93</priority></url>
+  <url><loc>https://gambot.co.il/הצעות-מחיר/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://gambot.co.il/חתימה-דיגיטלית/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://gambot.co.il/מערכת-שיווק-בוואטסאפ/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://gambot.co.il/ניהול-מדיה/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://gambot.co.il/PriceList/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://gambot.co.il/PriceList/WhatsAppMessagingPricingBlog/</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
   <url><loc>https://gambot.co.il/whatsapp-api-pricing/</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://gambot.co.il/Blog/</loc><lastmod>2026-03-09</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://gambot.co.il/guide/</loc><lastmod>2026-03-09</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
@@ -42,4 +47,12 @@
   <url><loc>https://gambot.co.il/blog/12/marketing-automation-whatsapp/</loc><lastmod>2025-10-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://gambot.co.il/blog/14/איך-להגדיל-מספר-הודעות-בוואטסאפ-api/</loc><lastmod>2025-11-05</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://gambot.co.il/blog/14/how-to-increase-whatsapp-api-messaging-limits/</loc><lastmod>2025-11-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gambot.co.il/blog/15/שיווק-בוואטסאפ-לעסקים-קטנים/</loc><lastmod>2025-12-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://gambot.co.il/blog/15/whatsapp-marketing-for-small-businesses/</loc><lastmod>2025-12-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gambot.co.il/blog/16/שירות-לקוחות-בוואטסאפ/</loc><lastmod>2025-12-15</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://gambot.co.il/blog/16/customer-service-whatsapp/</loc><lastmod>2025-12-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gambot.co.il/blog/17/coexistence-של-whatsapp-מה-זה-ומה-חשוב-לדעת-לפני-שבוחרים/</loc><lastmod>2026-01-10</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://gambot.co.il/blog/17/whatsapp-coexistence-what-you-need-to-know/</loc><lastmod>2026-01-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gambot.co.il/blog/18/בוט-ai-לעסקים-בוואטסאפ/</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://gambot.co.il/blog/18/ai-bot-for-whatsapp-business/</loc><lastmod>2026-03-09</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
 </urlset>

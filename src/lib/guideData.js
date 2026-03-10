@@ -30,7 +30,230 @@ export const getGuideBySlug = (slug, language = 'he') => {
 };
 
 const guideData = [
-    {
+
+  {
+    id: 12,
+    slug: 'whatsapp-coexistence',
+    title: {
+      he: 'איך מייצרים חשבון WhatsApp Coexistence עם גמבוט',
+      en: 'How to Create a WhatsApp Coexistence Account with Gambot',
+    },
+    category: {
+      he: 'התחלה',
+      en: 'Getting Started',
+    },
+    difficulty: {
+      he: 'בינוני',
+      en: 'Medium',
+    },
+    estimatedTime: 20,
+    keywords: [
+      'WhatsApp Coexistence',
+      'coexistence וואטסאפ',
+      'API ואפליקציה במקביל',
+      "שמירת היסטוריית צ'אטים",
+      'WhatsApp Business API ואפליקציה',
+      'גמבוט coexistence',
+      'הגדרת Coexistence וואטסאפ',
+      'סנכרון שיחות וואטסאפ',
+      'WhatsApp API בישראל',
+      'אוטומציה ואפליקציה וואטסאפ ביחד',
+    ],
+    description: {
+      he: 'מדריך שלב-אחר-שלב להקמת חשבון WhatsApp Coexistence בגמבוט — המאפשר לכם להמשיך להשתמש באפליקציית WhatsApp Business לצד ממשק ה-API המלא, תוך שמירה על היסטוריית השיחות.',
+      en: 'Step-by-step guide to setting up a WhatsApp Coexistence account with Gambot — allowing you to keep using the WhatsApp Business app alongside the full API interface, while preserving chat history.',
+    },
+    path: '/guide/whatsapp-coexistence',
+    icon: FaUserPlus,
+    videoUrl: 'https://www.youtube.com/embed/mBBmoxCRRmI?start=383',
+    content: {
+      he: `
+        <h2>🔗 WhatsApp Coexistence — מה זה ולמה זה שימושי?</h2>
+        <p>מסלול ה-Coexistence מאפשר לכם <strong>לשלב בין אפליקציית WhatsApp Business הרגילה לבין ממשק ה-API של גמבוט</strong> — כלומר, להמשיך לנהל שיחות ישירות מהנייד, ובמקביל ליהנות מכל יכולות הצוות, האוטומציה והקמפיינים.</p>
+
+        <h3>✅ היתרונות של Coexistence:</h3>
+        <ul>
+          <li><strong>שמירת היסטוריית שיחות</strong> — סנכרון צ'אטים קיימים כך שהמשך השיחה עם לקוחות ותיקים נשמר</li>
+          <li><strong>מעבר חלק</strong> — ממשיכים לעבוד עם האפליקציה בנייד, ובמקביל הצוות עובד דרך גמבוט</li>
+          <li><strong>ניהול צוותי מתקדם</strong> — הקצאת שיחות לנציגים, אוטומציות, קמפיינים — מתוך ממשק הניהול</li>
+          <li><strong>ניראות מלאה</strong> — ממשק הניהול מציג הודעות שנשלחו מהנייד לצד הודעות שנשלחו מהמערכת</li>
+        </ul>
+
+        <h3>📋 שלבי הקמת חשבון Coexistence:</h3>
+        <ul>
+          <li><strong>שלב 1 — בחירת מסלול:</strong> בתהליך ה-Onboarding בגמבוט, בוחרים "Coexistence" — שמירת המספר הקיים לצד ה-API</li>
+          <li><strong>שלב 2 — פרטי עסק:</strong> ממלאים שם תצוגה, קטגוריה עסקית וכתובת</li>
+          <li><strong>שלב 3 — חיבור Facebook Business:</strong> מתחברים לחשבון פייסבוק עסקי ומוסיפים אמצעי תשלום פעיל</li>
+          <li><strong>שלב 4 — סנכרון צ'אטים:</strong> מאפשרים סנכרון היסטוריית שיחות — חשוב לשמירת רצף עם לקוחות קיימים</li>
+          <li><strong>שלב 5 — הפעלה:</strong> החשבון עולה לאוויר, ניתן להתחיל לנהל שיחות מ-2 ממשקים בו-זמנית</li>
+        </ul>
+
+        <h3>💡 טיפים חשובים:</h3>
+        <ul>
+          <li>חיבור ל-Facebook Business Manager עם אמצעי תשלום הוא <strong>חובה</strong> לשליחת הודעות יוזמות (קמפיינים)</li>
+          <li>ניתן לעקוב מי שלח הודעה — מהנייד או מהמערכת — דרך ממשק הניהול</li>
+          <li>Coexistence אינו מגביל אתכם — כל יכולות ה-API (אוטומציות, קמפיינים, בוטים) זמינות</li>
+        </ul>
+
+        <p>🎥 צפו בסרטון לדוגמה מלאה של תהליך ההקמה מתחילה ועד סוף.</p>
+      `,
+      en: `
+        <h2>🔗 WhatsApp Coexistence — What It Is and Why It's Useful</h2>
+        <p>The Coexistence mode allows you to <strong>combine the WhatsApp Business app with Gambot's API interface</strong> — meaning you can continue managing conversations directly from your phone, while also enjoying all team management, automation, and campaign capabilities.</p>
+
+        <h3>✅ Coexistence Advantages:</h3>
+        <ul>
+          <li><strong>Preserving chat history</strong> — Sync existing chats so conversation continuity with existing customers is maintained</li>
+          <li><strong>Smooth transition</strong> — Continue using the mobile app while the team works through Gambot simultaneously</li>
+          <li><strong>Advanced team management</strong> — Assign conversations to agents, automations, campaigns — all from the management interface</li>
+          <li><strong>Full visibility</strong> — The management interface shows messages sent from mobile alongside messages sent from the system</li>
+        </ul>
+
+        <h3>📋 Coexistence Account Setup Steps:</h3>
+        <ul>
+          <li><strong>Step 1 — Choose route:</strong> In the Gambot Onboarding process, select "Coexistence" — keeping the existing number alongside the API</li>
+          <li><strong>Step 2 — Business details:</strong> Fill in display name, business category and address</li>
+          <li><strong>Step 3 — Connect Facebook Business:</strong> Connect to a business Facebook account and add an active payment method</li>
+          <li><strong>Step 4 — Sync chats:</strong> Enable chat history synchronization — important for maintaining continuity with existing customers</li>
+          <li><strong>Step 5 — Activation:</strong> The account goes live and you can manage conversations from 2 interfaces simultaneously</li>
+        </ul>
+
+        <h3>💡 Important Tips:</h3>
+        <ul>
+          <li>Connecting to Facebook Business Manager with a payment method is <strong>mandatory</strong> for sending outbound messages (campaigns)</li>
+          <li>You can track who sent a message — from mobile or from the system — via the management interface</li>
+          <li>Coexistence does not limit you — all API capabilities (automations, campaigns, bots) remain fully available</li>
+        </ul>
+
+        <p>🎥 Watch the video for a complete example of the setup process from start to finish.</p>
+      `,
+    },
+  },
+
+  {
+    id: 13,
+    slug: 'bot-builder',
+    title: {
+      he: 'איך לתכנן בוט עם ה-Bot Builder של גמבוט',
+      en: 'How to Plan a Bot with Gambot\'s Bot Builder',
+    },
+    category: {
+      he: 'אוטומציה ובוטים',
+      en: 'Automation and Bots',
+    },
+    difficulty: {
+      he: 'בינוני',
+      en: 'Medium',
+    },
+    estimatedTime: 25,
+    keywords: [
+      'Bot Builder גמבוט',
+      'תכנון בוט וואטסאפ',
+      'עץ שיחה אוטומטי',
+      'אפיון בוט וואטסאפ',
+      'תרשים זרימה בוט',
+      'Workflow Designer וואטסאפ',
+      'טריגרים ותגובות WhatsApp',
+      'משתנים אישיים בבוט',
+      'ניתוב לנציג אוטומטי',
+      'AI בוט WhatsApp',
+    ],
+    description: {
+      he: 'מדריך לשימוש ב-Bot Builder של גמבוט — כלי ויזואלי לאפיון ותכנון עצי שיחה מורכבים לפני הטמעתם. תלמדו לבנות טריגרים, הודעות עם מדיה, משתנים מותאמים אישית, פעולות ניהוליות ושילוב AI.',
+      en: 'Guide to using Gambot\'s Bot Builder — a visual tool for designing and planning complex conversation trees before implementation. Learn to build triggers, media messages, personal variables, administrative actions and AI integration.',
+    },
+    path: '/guide/bot-builder',
+    icon: FaRobot,
+    videoUrl: 'https://www.youtube.com/embed/zLzrD6Tpt30',
+    content: {
+      he: `
+        <h2>🤖 Bot Builder — כלי האפיון הויזואלי של גמבוט</h2>
+        <p>ה-Bot Builder הוא ממשק גרפי המאפשר לכם <strong>לאפיין ולתכנן את זרימת הבוט ויזואלית</strong> — לפני שהצוות הטכני מממש אותו. זה מושלם לעסקים שרוצים לחשוב על חווית הלקוח לפני ההטמעה.</p>
+
+        <h3>🌳 מה ניתן לבנות ב-Bot Builder?</h3>
+        <ul>
+          <li><strong>עץ החלטות (Decision Tree)</strong> — תרשים שיחה ויזואלי עם ענפים ומסלולים שונים</li>
+          <li><strong>טריגרים</strong> — הגדרת מה מפעיל את הבוט: הודעה נכנסת, מילת מפתח, לחיצת כפתור ועוד</li>
+          <li><strong>הודעות טקסט ומדיה</strong> — תכנון הודעות עם תמונות, סרטונים וקבצים</li>
+          <li><strong>משתנים מותאמים אישית</strong> — שימוש בנתוני הלקוח (שם, מספר, היסטוריה) בתוך ההודעות</li>
+          <li><strong>לחצני ניווט</strong> — כפתורים שמנתבים את הלקוח למכירות, שירות, מחלקה מסוימת ועוד</li>
+        </ul>
+
+        <h3>🤖 שילוב AI בתכנון:</h3>
+        <ul>
+          <li>הגדרת נקודות בזרימה שבהן ה-AI עונה על שאלות כלליות</li>
+          <li>מתי הבוט מסתמך על בסיס הידע ומתי מנתב לנציג אנושי</li>
+          <li>תרחישי fallback — מה קורה כשהלקוח שולח משהו לא צפוי</li>
+        </ul>
+
+        <h3>⚙️ פעולות ניהוליות שניתן לתכנן:</h3>
+        <ul>
+          <li><strong>שיוך שיחה לנציג</strong> — הגדרה מתי ואיך השיחה עוברת לאדם</li>
+          <li><strong>עדכון סטטוס ליד</strong> — שינוי סטטוס אוטומטי (חדש → בטיפול → סגור) בהתאם לתגובת הלקוח</li>
+          <li><strong>יצירת פנייה (Ticket)</strong> — פתיחת פנייה אוטומטית במערכת כשנדרש טיפול</li>
+          <li><strong>הוספה לקמפיין</strong> — הכנסת הלקוח לרשימת מעקב ספציפית</li>
+        </ul>
+
+        <h3>🎯 מטרת ה-Bot Builder:</h3>
+        <p>הכלי נועד לאפשר לכם <strong>לחשוב ולתכנן לפני שמתכנתים</strong>. תרשים הזרימה שתיצרו ב-Bot Builder הופך למתווה עבודה ברור — שהצוות הטכני יכול לתרגם לבוט פעיל ב-Botomation.</p>
+
+        <h3>📊 תהליך עבודה מומלץ:</h3>
+        <ul>
+          <li>מפו את תרחישי השיחה הנפוצים עם הלקוחות שלכם</li>
+          <li>בנו את עץ ההחלטות ב-Bot Builder ויזואלית</li>
+          <li>הגדירו טריגרים, הודעות ופעולות לכל ענף</li>
+          <li>הציגו לצוות / ללקוח לאישור לפני ביצוע</li>
+          <li>העבירו לצוות הטכני להטמעה ב-Botomation</li>
+        </ul>
+
+        <p>🎥 צפו בסרטון לדגמה מלאה של בניית עץ שיחה ב-Bot Builder — מהרעיון ועד לתרשים המוגמר.</p>
+      `,
+      en: `
+        <h2>🤖 Bot Builder — Gambot's Visual Design Tool</h2>
+        <p>The Bot Builder is a graphical interface that allows you to <strong>design and plan the bot's conversation flow visually</strong> — before the technical team implements it. It's perfect for businesses that want to think through the customer experience before implementation.</p>
+
+        <h3>🌳 What Can You Build in Bot Builder?</h3>
+        <ul>
+          <li><strong>Decision Tree</strong> — Visual conversation diagram with different branches and paths</li>
+          <li><strong>Triggers</strong> — Define what activates the bot: incoming message, keyword, button press and more</li>
+          <li><strong>Text and media messages</strong> — Plan messages with images, videos and files</li>
+          <li><strong>Personal variables</strong> — Use customer data (name, number, history) inside messages</li>
+          <li><strong>Navigation buttons</strong> — Buttons that route customers to sales, service, a specific department and more</li>
+        </ul>
+
+        <h3>🤖 Integrating AI in Planning:</h3>
+        <ul>
+          <li>Define points in the flow where AI answers general questions</li>
+          <li>When the bot relies on the knowledge base vs. when it routes to a human agent</li>
+          <li>Fallback scenarios — what happens when the customer sends something unexpected</li>
+        </ul>
+
+        <h3>⚙️ Administrative Actions You Can Plan:</h3>
+        <ul>
+          <li><strong>Assign conversation to agent</strong> — Define when and how the conversation transfers to a person</li>
+          <li><strong>Update lead status</strong> — Automatic status change (New → In Progress → Closed) based on customer response</li>
+          <li><strong>Create ticket</strong> — Automatic ticket creation in the system when handling is required</li>
+          <li><strong>Add to campaign</strong> — Adding the customer to a specific follow-up list</li>
+        </ul>
+
+        <h3>🎯 Purpose of Bot Builder:</h3>
+        <p>The tool is designed to allow you to <strong>think and plan before programming</strong>. The flowchart you create in Bot Builder becomes a clear work template — that the technical team can translate into an active bot in Botomation.</p>
+
+        <h3>📊 Recommended Workflow:</h3>
+        <ul>
+          <li>Map out common conversation scenarios with your customers</li>
+          <li>Build the decision tree visually in Bot Builder</li>
+          <li>Define triggers, messages and actions for each branch</li>
+          <li>Present to team / client for approval before execution</li>
+          <li>Hand off to technical team for implementation in Botomation</li>
+        </ul>
+
+        <p>🎥 Watch the video for a full demonstration of building a conversation tree in Bot Builder — from concept to completed flowchart.</p>
+      `,
+    },
+  },
+
+  {
     id: 1,
     slug: 'create-account',
     title: {

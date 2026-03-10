@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  
+  <!-- ========== VIDEO GUIDES ========== -->
+  
+  <!-- Guide #1: Create Account -->
+  <url>
+    <loc>https://gambot.co.il/guide/create-account</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/6y8A61Z7Zv4/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>איך ליצור חשבון וואטסאפ API בעזרת גמבוט</video:title>
+      <video:description>במדריך זה תלמד כיצד לפתוח חשבון WhatsApp API דרך גמבוט, כולל התחברות עם פייסבוק, הוספת אמצעי תשלום ובחירת מספר.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=6y8A61Z7Zv4</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/6y8A61Z7Zv4</video:player_loc>
+      <video:duration>600</video:duration>
+      <video:publication_date>2025-01-10T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>WhatsApp API</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:tag>WhatsApp Business</video:tag>
+      <video:tag>פתיחת חשבון</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+  </url>
+  
+  <!-- Guide #2: Manage Contacts -->
+  <url>
+    <loc>https://gambot.co.il/guide/manage-contacts</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/lWftFBJN3cg/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>ניהול אנשי קשר חכם ודינמי בגמבוט</video:title>
+      <video:description>למד איך לנהל ולייבא אנשי קשר בהתאמה אישית מלאה עם שדות גמישים ומבנה מתקדם.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=lWftFBJN3cg</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/lWftFBJN3cg</video:player_loc>
+      <video:duration>900</video:duration>
+      <video:publication_date>2025-01-10T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>ניהול אנשי קשר</video:tag>
+      <video:tag>CRM WhatsApp</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:tag>WhatsApp API</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+  </url>
+  
+  <!-- Guide #3: Create Template -->
+  <url>
+    <loc>https://gambot.co.il/guide/create-template</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/j4KB3WOHbnE/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>יצירת טמפלטים ב־WhatsApp API</video:title>
+      <video:description>במדריך זה תלמד כיצד ליצור, לערוך ולנהל טמפלטים בגמבוט, כולל Header, Body, Footer, וכפתורים אינטראקטיביים.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=j4KB3WOHbnE</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/j4KB3WOHbnE</video:player_loc>
+      <video:duration>1200</video:duration>
+      <video:publication_date>2025-01-10T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>WhatsApp Templates</video:tag>
+      <video:tag>תבניות וואטסאפ</video:tag>
+      <video:tag>WhatsApp API</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+  </url>
+  
+  <!-- Guide #4: Real-time Chat -->
+  <url>
+    <loc>https://gambot.co.il/guide/real-time-chat</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/ntSw7Wqfrk8/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>עבודה עם הצ׳אט</video:title>
+      <video:description>במדריך זה תלמד איך להתכתב עם לקוחות כמו בווטסאפ ווב – כולל תמיכה במדיה, שליחת טמפלטים, תיעוד בציר זמן וחיוג ישיר מהצ'אט.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=ntSw7Wqfrk8</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/ntSw7Wqfrk8</video:player_loc>
+      <video:duration>720</video:duration>
+      <video:publication_date>2025-01-10T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>צ'אט וואטסאפ</video:tag>
+      <video:tag>WhatsApp Chat</video:tag>
+      <video:tag>שירות לקוחות</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+  </url>
+  
+  <!-- Guide #5: Create Campaigns -->
+  <url>
+    <loc>https://gambot.co.il/guide/create-campaigns</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/nc3NtwQJj6s/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>יצירת קמפיינים ב-WhatsApp API עם גמבוט</video:title>
+      <video:description>במדריך זה נלמד איך לבנות קמפיינים אוטומטיים ומדויקים ב-Gambot – כולל קמפיינים מיידיים ומתוזמנים, ניתוח תוצאות ושימוש בכפתורים אינטראקטיביים.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=nc3NtwQJj6s</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/nc3NtwQJj6s</video:player_loc>
+      <video:duration>1500</video:duration>
+      <video:publication_date>2025-01-10T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>קמפיינים WhatsApp</video:tag>
+      <video:tag>שיווק בוואטסאפ</video:tag>
+      <video:tag>WhatsApp Marketing</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+  </url>
+  
+  <!-- Guide #6: Botomation -->
+  <url>
+    <loc>https://gambot.co.il/guide/botomation</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/FpRqTJPZXw8/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>אוטומציות (Botomation) - מדריך שלם</video:title>
+      <video:description>למד איך לבנות אוטומציות מורכבות ב-Gambot - מ-triggers פשוטים ועד workflows מתקדמים עם תנאים, לולאות, AI ושילובים עם מערכות חיצוניות.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=FpRqTJPZXw8</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/FpRqTJPZXw8</video:player_loc>
+      <video:duration>1800</video:duration>
+      <video:publication_date>2025-01-10T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>אוטומציה WhatsApp API</video:tag>
+      <video:tag>Botomation</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:tag>Workflow automation</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+  </url>
+  
+  <!-- Guide #7: Manage Users -->
+  <url>
+    <loc>https://gambot.co.il/guide/manage-users</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/0lrwmOXgT1Y/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>ניהול משתמשים במערכת גמבוט</video:title>
+      <video:description>למד איך לנהל משתמשים במערכת גמבוט - כולל הגדרת תפקידים, הרשאות, אזורי זמן והודעות פנימיות בין חברי הצוות.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=0lrwmOXgT1Y</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/0lrwmOXgT1Y</video:player_loc>
+      <video:duration>900</video:duration>
+      <video:publication_date>2025-01-10T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>ניהול משתמשים</video:tag>
+      <video:tag>הרשאות גמבוט</video:tag>
+      <video:tag>WhatsApp API</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+  </url>
+  
+  <!-- Guide #8: Manage Tasks -->
+  <url>
+    <loc>https://gambot.co.il/guide/manage-tasks</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/hMw9i9M1Cx4/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>ניהול משימות במערכת גמבוט</video:title>
+      <video:description>למד איך ליצור ולנהל משימות בגמבוט - כולל יצירה, הקצאה, תזמון תזכורות, שיוך ללקוחות ומעקב אחר ביצוע.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=hMw9i9M1Cx4</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/hMw9i9M1Cx4</video:player_loc>
+      <video:duration>720</video:duration>
+      <video:publication_date>2025-01-10T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>משימות גמבוט</video:tag>
+      <video:tag>ניהול משימות</video:tag>
+      <video:tag>WhatsApp API</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+  </url>
+  
+  <!-- Guide #9: Digital Signature -->
+  <url>
+    <loc>https://gambot.co.il/guide/digital-signature</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/_3QbSdmKxqo/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>חתימה דיגיטלית - מדריך מלא</video:title>
+      <video:description>למד איך להשתמש במערכת החתימה הדיגיטלית של גמבוט - יצירת מסמכים, ניהול סבב חותמים, רצף כרונולוגי ומעקב בזמן אמת.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=_3QbSdmKxqo</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/_3QbSdmKxqo</video:player_loc>
+      <video:duration>1080</video:duration>
+      <video:publication_date>2025-01-10T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>חתימה דיגיטלית</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:tag>חתימה אלקטרונית</video:tag>
+      <video:tag>מסמכים דיגיטליים</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+  </url>
+  
+  <!-- use-gambot-ai, advanced-templates: הוסרו - אין עדיין סרטונים אמיתיים -->
+  
+</urlset>
