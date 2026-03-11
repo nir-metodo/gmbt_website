@@ -89,6 +89,37 @@
     "recoveryError": "Failed to send recovery email",
     "backToLogin": "Back to Login"
   },
+  "loginError": {
+    "invalidCredentials": {
+      "title": "Invalid Login Credentials",
+      "message": "Email or password is incorrect. Please check the details you entered."
+    },
+    "trialExpired": {
+      "title": "Trial Period Expired",
+      "message": "Your 30-day trial period has ended. Complete payment details to continue using the system.",
+      "completePaymentButton": "Complete Payment Details"
+    },
+    "suspended": {
+      "title": "Account Suspended",
+      "message": "Your account has been suspended due to payment failure. Please contact support for resolution."
+    },
+    "waitingOnboarding": {
+      "title": "Complete Onboarding Process",
+      "message": "You haven't completed the onboarding process yet. Complete the Facebook connection to start using the system.",
+      "completeOnboardingButton": "Complete Onboarding"
+    },
+    "paymentFailed": {
+      "title": "Payment Failed",
+      "message": "The attempt to charge your credit card failed. Please update your payment details.",
+      "updatePaymentButton": "Update Payment Details"
+    },
+    "generalError": {
+      "title": "Login Error",
+      "message": "An error occurred during login. Please try again or contact support."
+    },
+    "needHelp": "Need help?",
+    "contactSupport": "Contact Support"
+  },
   "nav": {
     "home": "Home",
     "about": "About",

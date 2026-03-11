@@ -5,12 +5,16 @@ import Image from 'next/image';
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
 import styles from './Footer.module.css';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
   const [phone, setPhone] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { currentLanguage } = useLanguage();
   const isEn = currentLanguage === 'en';
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/complete-waba')) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

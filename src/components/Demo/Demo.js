@@ -380,6 +380,136 @@ const Demo = () => {
         ))}
         <button className="demo-btn secondary small" onClick={addServiceType}>+ הוספת שירות</button>
       </div>
+
+      <div className="demo-config-section demo-comm-tools-section">
+        <div className="demo-comm-tools-header" onClick={() => setShowCommunicationTools(prev => !prev)}>
+          <h3 className="demo-section-title" style={{ margin: 0 }}>💬 כלי תקשורת AI</h3>
+          <span className="demo-comm-toggle">{showCommunicationTools ? '▲ סגור' : '▼ הרחב'}</span>
+        </div>
+        <p className="demo-section-description">הגדירו הודעות, מדיה ומיקום שהבוט ישלח אוטומטית בהתאם להקשר השיחה.</p>
+
+        {showCommunicationTools && (
+          <div className="demo-comm-tools-content">
+
+            {/* הודעות טקסט */}
+            <div className="demo-comm-subsection demo-comm-messages">
+              <div className="demo-comm-subsection-header">
+                <h4>✉️ הודעות טקסט</h4>
+                <button className="demo-btn secondary small" onClick={addRegularMessage}>+ הוספת הודעה</button>
+              </div>
+              <p className="demo-comm-hint">הגדירו הודעות מוכנות שהבוט ישלח כשנדרש — לדוגמה: הצעת מחיר, אישור פגישה וכו׳.</p>
+              {aiSendableMessages.length === 0 ? (
+                <p className="demo-comm-empty">אין הודעות עדיין. לחצו על "הוספת הודעה" כדי להוסיף.</p>
+              ) : (
+                <div className="demo-comm-items">
+                  {aiSendableMessages.map((msg) => (
+                    <div key={msg.id} className="demo-comm-card">
+                      <div className="demo-comm-card-header">
+                        <span className="demo-comm-card-title">{msg.name || 'הודעה ללא שם'}</span>
+                        <button className="demo-btn-icon remove" onClick={() => removeRegularMessage(msg.id)}>✕</button>
+                      </div>
+                      <div className="demo-field">
+                        <label>שם ההודעה</label>
+                        <input type="text" className="demo-input" placeholder="לדוגמה: אישור פגישה" value={msg.name} onChange={(e) => updateRegularMessage(msg.id, 'name', e.target.value)} />
+                      </div>
+                      <div className="demo-field">
+                        <label>תוכן ההודעה</label>
+                        <textarea className="demo-textarea" rows={3} placeholder="תוכן ההודעה שהבוט ישלח..." value={msg.message} onChange={(e) => updateRegularMessage(msg.id, 'message', e.target.value)} />
+                      </div>
+                      <div className="demo-field demo-comm-ai-instructions">
+                        <label>מתי לשלוח?</label>
+                        <textarea className="demo-textarea" rows={2} placeholder="הנחיה לבוט — לדוגמה: שלח כאשר הלקוח מבקש אישור פגישה" value={msg.whenToUse} onChange={(e) => updateRegularMessage(msg.id, 'whenToUse', e.target.value)} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* מדיה */}
+            <div className="demo-comm-subsection demo-comm-media">
+              <div className="demo-comm-subsection-header">
+                <h4>🖼️ מדיה (תמונות, וידאו, מסמכים, קישורים)</h4>
+                <div className="demo-comm-media-buttons">
+                  {DEMO_MEDIA_TYPES.map(mt => (
+                    <button key={mt.value} className={`demo-btn secondary small demo-media-btn-${mt.value}`} onClick={() => addMedia(mt.value)}>{mt.icon} {mt.label}</button>
+                  ))}
+                </div>
+              </div>
+              <p className="demo-comm-hint">הוסיפו קבצי מדיה או קישורים שהבוט ישלח לפי הצורך בשיחה.</p>
+              {aiSendableMedia.length === 0 ? (
+                <p className="demo-comm-empty">אין מדיה עדיין. בחרו סוג מדיה להוספה.</p>
+              ) : (
+                <div className="demo-comm-items">
+                  {aiSendableMedia.map((media) => {
+                    const mediaType = DEMO_MEDIA_TYPES.find(t => t.value === media.type);
+                    return (
+                      <div key={media.id} className="demo-comm-card">
+                        <div className="demo-comm-card-header">
+                          <span className="demo-comm-card-title">{mediaType?.icon} {media.name || mediaType?.label || media.type}</span>
+                          <button className="demo-btn-icon remove" onClick={() => removeMedia(media.id)}>✕</button>
+                        </div>
+                        <div className="demo-field demo-comm-field-full">
+                          <label>שם</label>
+                          <input type="text" className="demo-input" placeholder="שם לקובץ / קישור" value={media.name} onChange={(e) => updateMedia(media.id, 'name', e.target.value)} />
+                        </div>
+                        <div className="demo-field demo-comm-field-full">
+                          <label>כתובת URL</label>
+                          <input type="url" className="demo-input" dir="ltr" placeholder={mediaType?.placeholder || 'https://...'} value={media.url} onChange={(e) => updateMedia(media.id, 'url', e.target.value)} />
+                        </div>
+                        {media.type !== 'link' && (
+                          <div className="demo-comm-upload-row">
+                            <span className="demo-comm-upload-label">או העלו קובץ:</span>
+                            <label className="demo-btn secondary small demo-upload-btn">
+                              {mediaUploading[media.id] ? <span className="demo-spinner"></span> : '⬆ העלאה'}
+                              <input type="file" onChange={(e) => { if (e.target.files?.[0]) handleMediaFileUpload(media.id, e.target.files[0], media.type); e.target.value = ''; }} />
+                            </label>
+                          </div>
+                        )}
+                        {media.type !== 'link' && (
+                          <div className="demo-field">
+                            <label>כיתוב (אופציונלי)</label>
+                            <input type="text" className="demo-input" placeholder="תיאור קצר למדיה..." value={media.caption} onChange={(e) => updateMedia(media.id, 'caption', e.target.value)} />
+                          </div>
+                        )}
+                        <div className="demo-field demo-comm-ai-instructions">
+                          <label>מתי לשלוח?</label>
+                          <textarea className="demo-textarea" rows={2} placeholder="הנחיה לבוט — לדוגמה: שלח כאשר הלקוח מבקש מידע על המוצר" value={media.whenToUse} onChange={(e) => updateMedia(media.id, 'whenToUse', e.target.value)} />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* מיקום */}
+            <div className="demo-comm-subsection demo-comm-location">
+              <div className="demo-comm-subsection-header">
+                <label className="demo-checkbox-label">
+                  <input type="checkbox" checked={aiSendableLocation.enabled} onChange={(e) => setAiSendableLocation(prev => ({ ...prev, enabled: e.target.checked }))} />
+                  <h4>📍 שיתוף מיקום</h4>
+                </label>
+              </div>
+              <p className="demo-comm-hint">אפשרו לבוט לשתף את מיקום העסק כשלקוח שואל איפה אתם נמצאים.</p>
+              {aiSendableLocation.enabled && (
+                <div className="demo-comm-location-fields">
+                  <div className="demo-field">
+                    <label>כתובת העסק</label>
+                    <input type="text" className="demo-input" placeholder="לדוגמה: רחוב הרצל 1, תל אביב" value={aiSendableLocation.custom.address} onChange={(e) => setAiSendableLocation(prev => ({ ...prev, custom: { ...prev.custom, address: e.target.value } }))} />
+                  </div>
+                  <div className="demo-field demo-comm-ai-instructions">
+                    <label>מתי לשתף?</label>
+                    <textarea className="demo-textarea" rows={2} placeholder="הנחיה לבוט — לדוגמה: שתף מיקום כאשר לקוח שואל איפה הסניף" value={aiSendableLocation.whenToUse} onChange={(e) => setAiSendableLocation(prev => ({ ...prev, whenToUse: e.target.value }))} />
+                  </div>
+                </div>
+              )}
+            </div>
+
+          </div>
+        )}
+      </div>
+
       <div className="demo-actions"><button className="demo-btn secondary" onClick={() => setCurrentStep(2)}>חזרה</button><button className="demo-btn primary" onClick={handleConfigNext}>המשך לאימות</button></div>
     </div>
   );

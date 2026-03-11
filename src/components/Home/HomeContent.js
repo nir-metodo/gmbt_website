@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LeadForm from '@/components/LeadForm/LeadForm';
 import styles from '@/app/page.module.css';
@@ -331,6 +332,9 @@ export default function HomeContent() {
         </div>
       </section>
 
+      {/* Secure Area — returning customer login widget */}
+      <SecureAreaWidget isHe={isHe} />
+
       {/* Lead Form CTA */}
       <section className={styles.ctaSection}>
         <div className={styles.container}>
@@ -340,5 +344,186 @@ export default function HomeContent() {
         </div>
       </section>
     </>
+  );
+}
+
+/* ── Secure Area Widget ─────────────────────────────────────────── */
+function SecureAreaWidget({ isHe }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const API_URL = 'https://gambot.azurewebsites.net';
+  const APP_URL = 'https://app.gambot.co.il';
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (!email || !password) { setError(isHe ? 'יש להזין אימייל וסיסמה' : 'Please enter email and password'); return; }
+    setLoading(true); setError('');
+    try {
+      const res = await fetch(`${API_URL}/api/Webhooks/authenticate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: email, password }),
+      });
+      const data = await res.json();
+      if (!data?.Success) throw new Error(data?.Message || 'Login failed');
+      const user = data.userData;
+      const token = data?.userCredential?.Credential?.IdToken;
+      const refreshToken = data?.userCredential?.Credential?.RefreshToken;
+      const rawLanguage = user?.Language || user?.language || 'hebrew';
+      const userLanguage = (rawLanguage.toLowerCase() === 'english' || rawLanguage.toLowerCase() === 'en') ? 'en' : 'he';
+      const newUser = {
+        fullname: user.UserName || user.userName || email,
+        email: user.UserEmail || user.userEmail || email,
+        photoURL: data.userCredential?.photoURL || null,
+        userId: data.userCredential?.Uid || user.uID,
+        organization: user.Organization || user.organization,
+        wabaNumber: user.wabaNumber || null,
+        timeZone: user?.timeZone || null,
+        phoneNumber: user?.PhoneNumber || user?.phoneNumber || null,
+        uID: user?.uID || null,
+        Email: user?.Email || user?.email || email,
+        PhoneNumber: user?.PhoneNumber || user?.phoneNumber || null,
+        authToken: token,
+        refreshToken: refreshToken || null,
+        SecurityRole: user?.SecurityRole || user?.securityRole || 'Admin',
+        Permissions: user?.Permissions || user?.permissions || null,
+        hasItsOwnSim: user?.hasItsOwnSim || false,
+        planName: user?.PlanName || user?.planName || null,
+        language: userLanguage,
+        Language: userLanguage,
+      };
+      const encodedUser = btoa(encodeURIComponent(JSON.stringify(newUser)));
+      window.location.href = `${APP_URL}/auth?user=${encodedUser}&token=${encodeURIComponent(token || '')}`;
+    } catch (err) {
+      setError(isHe ? 'שם משתמש או סיסמה שגויים' : 'Invalid credentials');
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section style={{
+      background: 'linear-gradient(135deg, #f0fdf4 0%, #e8f5e9 50%, #f0f9ff 100%)',
+      padding: '80px 20px',
+      direction: isHe ? 'rtl' : 'ltr',
+    }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', alignItems: 'center', gap: '60px', flexWrap: 'wrap', justifyContent: 'center' }}>
+
+        {/* Text side */}
+        <div style={{ flex: '1', minWidth: '280px', maxWidth: '440px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'linear-gradient(135deg,#2e6155,#3a7966)', color: '#fff', padding: '6px 14px', borderRadius: '50px', fontSize: '13px', fontWeight: 700, marginBottom: '20px', boxShadow: '0 4px 14px rgba(46,97,85,.25)' }}>
+            <span style={{ animation: 'spin 4s linear infinite', display: 'inline-block' }}>✦</span>
+            {isHe ? 'אזור מאובטח' : 'Secure Area'}
+          </div>
+          <h2 style={{ fontSize: '32px', fontWeight: 800, color: '#1e293b', margin: '0 0 16px', lineHeight: 1.3 }}>
+            {isHe ? 'כבר לקוח גמבוט?' : 'Already a Gambot customer?'}
+          </h2>
+          <p style={{ fontSize: '17px', color: '#475569', lineHeight: 1.7, margin: '0 0 28px' }}>
+            {isHe
+              ? 'היכנסו לאיזור האישי שלכם — ניהול שיחות, בוטים, קמפיינים ועוד, הכל במקום אחד.'
+              : 'Log in to your personal area — manage conversations, bots, campaigns and more, all in one place.'}
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '15px', color: '#374151' }}>
+            {[
+              { icon: '🔒', text: isHe ? 'חיבור מוצפן SSL' : 'SSL encrypted connection' },
+              { icon: '⚡', text: isHe ? 'גישה מיידית לכל הכלים' : 'Instant access to all tools' },
+              { icon: '📱', text: isHe ? 'זמין מכל מכשיר' : 'Available from any device' },
+            ].map((item, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <span>{item.icon}</span><span>{item.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Login card */}
+        <div style={{
+          background: 'rgba(255,255,255,0.95)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '24px',
+          padding: '36px 32px',
+          boxShadow: '0 20px 60px rgba(0,0,0,.08), 0 8px 25px rgba(0,0,0,.05)',
+          border: '1px solid rgba(255,255,255,.9)',
+          width: '100%',
+          maxWidth: '380px',
+          direction: 'rtl',
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: '24px', paddingBottom: '20px', borderBottom: '1px solid rgba(46,97,85,.1)' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '7px', background: 'linear-gradient(135deg,#2e6155,#3a7966)', color: '#fff', padding: '5px 12px', borderRadius: '50px', fontSize: '12px', fontWeight: 600, marginBottom: '14px' }}>
+              <span style={{ fontSize: '13px' }}>✦</span>
+              {isHe ? 'אזור מאובטח' : 'Secure Area'}
+            </div>
+            <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#1e293b', margin: '0 0 10px' }}>
+              {isHe ? 'התחברות' : 'Login'}
+            </h3>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#f1f5f9', padding: '5px 12px', borderRadius: '20px', fontSize: '12px', color: '#475569' }}>
+              <span>🛡️</span>
+              <span>{isHe ? 'SSL חיבור מאובטח' : 'SSL Secure Connection'}</span>
+            </div>
+          </div>
+
+          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div style={{ position: 'relative' }}>
+              <span style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: '14px', color: '#94a3b8', fontSize: '16px', pointerEvents: 'none' }}>✉</span>
+              <input
+                type="email"
+                placeholder={isHe ? 'כתובת אימייל' : 'Email address'}
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                disabled={loading}
+                style={{ width: '100%', padding: '13px 44px 13px 14px', border: '1.5px solid #e2e8f0', borderRadius: '12px', fontSize: '15px', background: '#f8fafc', boxSizing: 'border-box', outline: 'none', fontFamily: 'inherit', direction: 'ltr', textAlign: 'right' }}
+              />
+            </div>
+            <div style={{ position: 'relative' }}>
+              <span style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: '14px', color: '#94a3b8', fontSize: '16px', pointerEvents: 'none' }}>🔒</span>
+              <input
+                type="password"
+                placeholder={isHe ? 'סיסמה' : 'Password'}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                disabled={loading}
+                style={{ width: '100%', padding: '13px 44px 13px 14px', border: '1.5px solid #e2e8f0', borderRadius: '12px', fontSize: '15px', background: '#f8fafc', boxSizing: 'border-box', outline: 'none', fontFamily: 'inherit', direction: 'ltr', textAlign: 'right' }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13px' }}>
+              <Link href="/login" style={{ color: '#2e6155', textDecoration: 'none', fontWeight: 500 }}>
+                {isHe ? 'שכחת סיסמה?' : 'Forgot password?'}
+              </Link>
+              <span style={{ color: '#64748b' }}>{isHe ? 'זכור אותי' : 'Remember me'}</span>
+            </div>
+
+            {error && (
+              <div style={{ background: '#fef2f2', border: '1px solid #fca5a5', borderRadius: '10px', padding: '10px 14px', color: '#dc2626', fontSize: '13px', textAlign: 'center' }}>
+                {error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              style={{ background: loading ? '#94a3b8' : 'linear-gradient(135deg,#2e6155,#3a7966)', color: '#fff', border: 'none', borderRadius: '12px', padding: '14px', fontSize: '16px', fontWeight: 700, cursor: loading ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', transition: 'opacity .2s', fontFamily: 'inherit' }}
+            >
+              {loading ? (
+                <span style={{ display: 'inline-block', width: '18px', height: '18px', border: '2px solid rgba(255,255,255,.3)', borderTopColor: '#fff', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }}></span>
+              ) : (
+                <>{isHe ? '👤 התחבר' : '👤 Login'}</>
+              )}
+            </button>
+          </form>
+
+          <p style={{ textAlign: 'center', marginTop: '16px', fontSize: '13px', color: '#64748b' }}>
+            {isHe ? 'אין לך חשבון עדיין?' : "Don't have an account?"}{' '}
+            <Link href="/OnboardingProcess/" style={{ color: '#2e6155', fontWeight: 600, textDecoration: 'none' }}>
+              {isHe ? 'הירשם עכשיו' : 'Sign up now'}
+            </Link>
+          </p>
+        </div>
+      </div>
+
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    </section>
   );
 }

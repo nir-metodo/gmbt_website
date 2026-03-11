@@ -34,12 +34,26 @@ export function LanguageProvider({ children, defaultLanguage = 'he' }) {
 
   const isRTL = currentLanguage === 'he';
 
+  const getCurrency = () => (currentLanguage === 'he' ? 'ILS' : 'USD');
+  const getCurrencySymbol = () => (currentLanguage === 'he' ? '₪' : '$');
+  const getExchangeRate = () => 3.5;
+  const getPlanPrices = () => {
+    if (currentLanguage === 'he') {
+      return { Basic: 143, Premium: 287, Enterprise: 865, sim: 35 };
+    }
+    return { Basic: 41, Premium: 82, Enterprise: 247, sim: 10 };
+  };
+
   const value = {
     t,
     currentLanguage,
     setCurrentLanguage,
     isRTL,
     language: currentLanguage,
+    getCurrency,
+    getCurrencySymbol,
+    getExchangeRate,
+    getPlanPrices,
   };
 
   return (
@@ -59,7 +73,17 @@ export function useLanguage() {
       if (params && typeof resolved === 'string') return resolved.replace(/\{(\w+)\}/g, (_, k) => params[k] !== undefined ? params[k] : `{${k}}`);
       return resolved;
     };
-    return { t, currentLanguage: 'he', isRTL: true, language: 'he', setCurrentLanguage: () => {} };
+    return {
+      t,
+      currentLanguage: 'he',
+      isRTL: true,
+      language: 'he',
+      setCurrentLanguage: () => {},
+      getCurrency: () => 'ILS',
+      getCurrencySymbol: () => '₪',
+      getExchangeRate: () => 3.5,
+      getPlanPrices: () => ({ Basic: 143, Premium: 287, Enterprise: 865, sim: 35 }),
+    };
   }
   return ctx;
 }
