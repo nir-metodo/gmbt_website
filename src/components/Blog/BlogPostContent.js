@@ -55,21 +55,40 @@ export default function BlogPostContent({ post }) {
 
   const slug = getSeoUrl(title);
 
-  const schema = {
+  const SITE = 'https://gambot.co.il';
+  const image = post.image || '/new_logo.png';
+  const pageUrl = `${SITE}/blog/${post.id}/${slug}/`;
+
+  const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: title,
     description,
     datePublished: post.publishedDate,
-    author: { '@type': 'Person', name: post.author || 'גמבוט' },
+    dateModified: post.modifiedDate || post.publishedDate,
+    author: {
+      '@type': 'Person',
+      name: post.author || 'ניר סגס',
+      url: SITE,
+    },
     publisher: {
       '@type': 'Organization',
       name: 'גמבוט',
-      logo: { '@type': 'ImageObject', url: 'https://gambot.co.il/apple-touch-icon.png' },
+      url: SITE,
+      logo: { '@type': 'ImageObject', url: `${SITE}/apple-touch-icon.png` },
     },
-    url: `https://gambot.co.il/blog/${post.id}/${slug}/`,
-    inLanguage: 'he',
-          ...(faq.length > 0 ? {
+    image: { '@type': 'ImageObject', url: `${SITE}${image}`, width: 1200, height: 630 },
+    url: pageUrl,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+    inLanguage: lang === 'en' ? 'en' : 'he',
+    articleSection: loc(post.category),
+    keywords: loc(post.keywords),
+    // Speakable for GEO / AI assistants — marks headline + description as speakable
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '.blog-post-desc'],
+    },
+    ...(faq.length > 0 ? {
       mainEntity: {
         '@type': 'FAQPage',
         mainEntity: faq.map(f => ({
@@ -77,8 +96,28 @@ export default function BlogPostContent({ post }) {
           name: loc(f.question),
           acceptedAnswer: { '@type': 'Answer', text: loc(f.answer) },
         })),
-      }
+      },
     } : {}),
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: lang === 'en' ? 'Home' : 'דף בית', item: SITE },
+      { '@type': 'ListItem', position: 2, name: lang === 'en' ? 'Blog' : 'בלוג', item: `${SITE}/blog/` },
+      { '@type': 'ListItem', position: 3, name: title, item: pageUrl },
+    ],
+  };
+
+  const orgSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'גמבוט | Gambot',
+    url: SITE,
+    logo: `${SITE}/new_logo.png`,
+    contactPoint: { '@type': 'ContactPoint', telephone: '+972-3-376-8997', contactType: 'customer service', availableLanguage: ['Hebrew', 'English'] },
+    sameAs: ['https://www.facebook.com/profile.php?id=61553659007668', 'https://www.linkedin.com/company/gambot-platform', 'https://www.instagram.com/gambot_il'],
   };
 
   const breadcrumbHome = lang === 'en' ? 'Home' : 'דף בית';
@@ -97,10 +136,9 @@ export default function BlogPostContent({ post }) {
         }} />
       </div>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
 
       {/* Hero */}
       <section className={styles.hero}>
@@ -115,7 +153,7 @@ export default function BlogPostContent({ post }) {
             {post.publishedDate && <span>📅 {post.publishedDate}</span>}
             {post.readTime && <span>⏱️ {post.readTime} {lang === 'en' ? 'min read' : 'דקות קריאה'}</span>}
           </div>
-          <p className={styles.desc}>{description}</p>
+          <p className={`${styles.desc} blog-post-desc`}>{description}</p>
         </div>
       </section>
 

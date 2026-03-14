@@ -29,7 +29,6 @@ const packages = [
     name: 'הטמעה מקצועית',
     price: 1700,
     icon: <FaStar />,
-    popular: true,
     description: 'כולל כל מה שבמסלול הבסיסי, ובנוסף',
     features: [
       'כל מה שבהטמעה הבסיסית',
@@ -38,13 +37,14 @@ const packages = [
       'התאמת התהליך לצרכים העסקיים',
       'בדיקות + מעבר לאוויר',
     ],
-    note: '⭐ זהו המסלול הכי פופולרי, כי הלקוח יוצא עם מערכת שעובדת אוטומטית מהיום הראשון',
+    note: '🔸 ללא אינטגרציות עם מערכות חיצוניות',
   },
   {
     id: 'advanced',
     name: 'הטמעה מתקדמת',
     price: 2500,
     icon: <FaRocket />,
+    popular: true,
     description: 'כולל כל מה שבשני המסלולים הקודמים, ובנוסף',
     features: [
       'כל מה שבהטמעה המקצועית',
@@ -89,7 +89,7 @@ export default function OnboardingServicesContent() {
               {pkg.popular && (
                 <div className="popular-badge">
                   <FaStar className="star-icon" />
-                  <span>הכי פופולרי</span>
+                  <span>המומלץ ביותר</span>
                 </div>
               )}
               <div className="package-header">

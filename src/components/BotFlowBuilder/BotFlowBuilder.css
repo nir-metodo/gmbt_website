@@ -654,3 +654,104 @@
   gap: 12px;
   justify-content: flex-end;
 }
+
+/* ── Guide video badge ── */
+.guide-video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.35);
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.guide-video-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 0, 0, 0.45);
+  background: linear-gradient(135deg, #ff1a1a 0%, #e60000 100%);
+}
+.guide-video-btn:active { transform: translateY(0); }
+
+/* Modal overlay */
+.guide-video-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 100000;
+  padding: 40px 20px;
+  overflow-y: auto;
+  animation: gvb-fadeIn 0.3s ease;
+}
+@keyframes gvb-fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.guide-video-modal-content {
+  background: white;
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: gvb-slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+@keyframes gvb-slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.guide-video-modal-content.rtl { direction: rtl; }
+
+.gvb-modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s, transform 0.2s;
+}
+.guide-video-modal-content.rtl .gvb-modal-close { right: auto; left: 16px; }
+.gvb-modal-close:hover { background: rgba(0,0,0,0.9); transform: rotate(90deg); }
+
+.gvb-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 24px 16px;
+}
+.gvb-play-icon { font-size: 24px; color: #ff0000; }
+.gvb-modal-header h3 { margin: 0; font-size: 20px; font-weight: 700; color: #1e293b; }
+
+.guide-video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: #000;
+}
+.guide-video-container iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+.gvb-modal-description {
+  padding: 16px 24px 24px;
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.5;
+}

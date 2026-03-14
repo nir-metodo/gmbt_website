@@ -94,8 +94,8 @@ export default function Navbar() {
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
       <div className={styles.container}>
-        {/* Logo */}
-        <Link href="/" className={styles.logo}>
+        {/* Logo — in RTL (Hebrew) pushed to the LEFT (order 1), hamburger takes the RIGHT (order -1) */}
+        <Link href="/" className={styles.logo} style={isRTL ? { order: 1 } : {}}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/gambot_logo_transparent.png"
@@ -173,11 +173,12 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Hamburger — opposite side from logo */}
+        {/* Hamburger — in RTL: RIGHT side (order -1 = before logo); in LTR: RIGHT side (space-between end) */}
         <button
           className={`${styles.hamburger} ${isOpen ? styles.hamburgerOpen : ''}`}
           onClick={() => setIsOpen(!isOpen)}
           aria-label="תפריט"
+          style={isRTL ? { order: -1 } : {}}
         >
           <span /><span /><span />
         </button>

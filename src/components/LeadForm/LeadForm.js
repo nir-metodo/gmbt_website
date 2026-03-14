@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
 import styles from './LeadForm.module.css';
 
 export default function LeadForm({ source = 'website' }) {
@@ -11,11 +12,14 @@ export default function LeadForm({ source = 'website' }) {
     if (!form.phone) return;
     setStatus('loading');
     try {
-      await fetch('https://prod-00.northeurope.logic.azure.com:443/workflows/24826d9f1f30448cb12884561d7bcc2b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=RMrmjA9SPjryV5VE5iP8elY_V6tFdxhMgjs-zQI8FPQ', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, source, ClientId: 'R9f6r4oe5PSCLr6CnYRQ' }),
-      });
+      await Promise.allSettled([
+        fetch('https://prod-00.northeurope.logic.azure.com:443/workflows/24826d9f1f30448cb12884561d7bcc2b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=RMrmjA9SPjryV5VE5iP8elY_V6tFdxhMgjs-zQI8FPQ', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...form, source, ClientId: 'R9f6r4oe5PSCLr6CnYRQ' }),
+        }),
+        sendLeadWebhook({ name: form.name, email: form.email, phone: form.phone, businessName: form.businessName }),
+      ]);
       setStatus('success');
     } catch {
       setStatus('error');

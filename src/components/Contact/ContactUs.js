@@ -1,5 +1,6 @@
 'use client';
 import { useState } from "react";
+import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
 import "./ContactUs.css";
 import { FaPhone, FaPaperPlane, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import { MdEmail, MdSend } from "react-icons/md";
@@ -46,20 +47,21 @@ const ContactUs = () => {
   
       try {
         // Send request to the endpoint
-        const response = await fetch("https://prod-63.northeurope.logic.azure.com:443/workflows/ddf6cff7db1b4d438d460e8c4221e768/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ll3QhRKnU64AkU4nk7kF31ob5ZrQzdJElP_ubUtKM5o", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(requestData),
-        });
+        const [response] = await Promise.allSettled([
+          fetch("https://prod-63.northeurope.logic.azure.com:443/workflows/ddf6cff7db1b4d438d460e8c4221e768/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ll3QhRKnU64AkU4nk7kF31ob5ZrQzdJElP_ubUtKM5o", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestData),
+          }),
+          sendLeadWebhook({ name: formData.name, email: formData.email, phone: formData.phone, message: formData.message }),
+        ]);
   
-        // Check if the request was successful
-        if (response.ok) {
+        // Check if the primary request was successful
+        if (response.status === 'fulfilled' && response.value?.ok) {
           setSubmitStatus('success');
           setFormData({ name: "", email: "", phone: "", message: "" });
         } else {
-          console.error('Request failed with status:', response.status);
+          console.error('Request failed:', response);
           setSubmitStatus('error');
         }
       } catch (error) {
