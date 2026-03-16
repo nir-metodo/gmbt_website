@@ -11,7 +11,8 @@ const NAV_LINKS_HE = [
     label: 'פתרונות',
     children: [
       { href: '/בוט-וואטסאפ/', label: '🤖 בוטים לוואטסאפ' },
-      { href: '/בוט-לידים-וואטסאפ/', label: '🧠 בוט AI לוואטסאפ' },
+      { href: '/בוט-ai-וואטסאפ/', label: '🧠 בוט AI לוואטסאפ' },
+      { href: '/בוט-לידים-וואטסאפ/', label: '🎯 בוט לידים וואטסאפ' },
       { href: '/אוטומציה-בוואטסאפ/', label: '⚡ אוטומציות וואטסאפ' },
       { href: '/שיווק-בוואטסאפ/', label: '📢 שיווק וקמפיינים' },
       { href: '/מערכת-שיווק-בוואטסאפ/', label: '💬 מערכת התכתבות' },
@@ -33,7 +34,8 @@ const NAV_LINKS_EN = [
     label: 'Solutions',
     children: [
       { href: '/בוט-וואטסאפ/', label: '🤖 WhatsApp Bots' },
-      { href: '/בוט-לידים-וואטסאפ/', label: '🧠 AI Bot for WhatsApp' },
+      { href: '/בוט-ai-וואטסאפ/', label: '🧠 WhatsApp AI Bot' },
+      { href: '/בוט-לידים-וואטסאפ/', label: '🎯 WhatsApp Leads Bot' },
       { href: '/אוטומציה-בוואטסאפ/', label: '⚡ WhatsApp Automations' },
       { href: '/שיווק-בוואטסאפ/', label: '📢 Marketing & Campaigns' },
       { href: '/מערכת-שיווק-בוואטסאפ/', label: '💬 Messaging System' },

@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
+import { sendThankYouEmail } from '@/utils/sendThankYouEmail';
 import styles from './ContactContent.module.css';
 
 export default function ContactContent() {
@@ -18,6 +19,7 @@ export default function ContactContent() {
           body: JSON.stringify({ ...form, source: 'contact-page', ClientId: 'R9f6r4oe5PSCLr6CnYRQ' }),
         }),
         sendLeadWebhook({ name: form.name, email: form.email, phone: form.phone, message: form.message }),
+        sendThankYouEmail({ name: form.name, email: form.email, source: 'contact-page' }),
       ]);
       setStatus('success');
     } catch {

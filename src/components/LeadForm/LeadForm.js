@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
+import { sendThankYouEmail } from '@/utils/sendThankYouEmail';
 import styles from './LeadForm.module.css';
 
 export default function LeadForm({ source = 'website' }) {
@@ -19,6 +20,7 @@ export default function LeadForm({ source = 'website' }) {
           body: JSON.stringify({ ...form, source, ClientId: 'R9f6r4oe5PSCLr6CnYRQ' }),
         }),
         sendLeadWebhook({ name: form.name, email: form.email, phone: form.phone, businessName: form.businessName }),
+        sendThankYouEmail({ name: form.name, email: form.email, source }),
       ]);
       window.location.href = '/תודה';
     } catch {

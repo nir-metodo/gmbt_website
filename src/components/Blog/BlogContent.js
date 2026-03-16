@@ -37,6 +37,8 @@ const POST_CARDS = {
   27: { gradient: 'linear-gradient(135deg,#0369a1,#1d4ed8)', icon: '🎧', labelHe: 'שירות לקוחות', labelEn: 'Customer Service' },
   28: { gradient: 'linear-gradient(135deg,#166534,#15803d)', icon: '🏠', labelHe: 'נדל"ן', labelEn: 'Real Estate' },
   29: { gradient: 'linear-gradient(135deg,#be123c,#e11d48)', icon: '🏥', labelHe: 'בריאות', labelEn: 'Healthcare' },
+  33: { gradient: 'linear-gradient(135deg,#7c3aed,#4f46e5)', icon: '🧠', labelHe: 'Gambot AI', labelEn: 'Gambot AI' },
+  34: { gradient: 'linear-gradient(135deg,#0f766e,#0369a1)', icon: '🎯', labelHe: 'בוט לידים AI', labelEn: 'AI Leads Bot' },
   30: { gradient: 'linear-gradient(135deg,#b45309,#92400e)', icon: '🎉', labelHe: 'קמפיינים עונתיים', labelEn: 'Holiday Campaigns' },
   31: { gradient: 'linear-gradient(135deg,#0891b2,#0e7490)', icon: '🛍️', labelHe: 'קמעונאות', labelEn: 'Retail' },
   32: { gradient: 'linear-gradient(135deg,#374151,#111827)', icon: '⚖️', labelHe: 'API vs Business', labelEn: 'API vs Business' },

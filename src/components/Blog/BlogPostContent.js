@@ -29,7 +29,9 @@ export default function BlogPostContent({ post }) {
 
   const title = loc(post.title);
   const description = loc(post.description);
-  const content = loc(post.content);
+  // Strip all <img> tags from content — images slow down page load and hurt Core Web Vitals
+  const rawContent = loc(post.content);
+  const content = rawContent ? rawContent.replace(/<img\b[^>]*>/gi, '') : rawContent;
   const category = loc(post.category);
   const faq = post.faq
     ? (Array.isArray(post.faq) ? post.faq : (post.faq[lang] || post.faq.he || post.faq.en || []))

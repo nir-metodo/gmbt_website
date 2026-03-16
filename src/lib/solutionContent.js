@@ -380,79 +380,214 @@ export const SOLUTIONS = {
   whatsappLeadsBot: {
     he: {
       hero: {
-        badge: '🎯 בוט לידים לוואטסאפ',
-        titleText: 'בוט לידים לוואטסאפ — הפכו כל שיחה להזדמנות עסקית',
-        desc: 'בוט שמסנן, מכשיר ומנהל לידים אוטומטית. שלחו רק לידים חמים לנציגי המכירות.',
+        badge: '🎯 בוט לידים AI לוואטסאפ',
+        titleText: 'בוט לידים AI לוואטסאפ — מהשיחה הראשונה לפגישה קבועה ביומן, אוטומטית',
+        desc: 'Gambot AI מנהל שיחת מכירה ראשונית, מסנן לידים, קובע פגישות ביומן ושולח לכם סיכום AI עם כל פרטי הלקוח — הכל אוטומטי, 24/7.',
         stats: [
-          { value: '95%', label: 'אחוזי פתיחה (Meta)' }, { value: 'CRM', label: 'אינטגרציה ישירה' },
-          { value: '2 דקות', label: 'מהפנייה לסינון' }, { value: 'AI', label: 'מנוע סינון חכם' },
+          { value: '95%', label: 'אחוזי פתיחה (Meta)' }, { value: 'AI', label: 'סיכום שיחה אוטומטי' },
+          { value: '2 דקות', label: 'מהפנייה לפגישה קבועה' }, { value: '24/7', label: 'זמין תמיד' },
         ],
       },
       features: [
         { icon: '🎯', title: 'סינון לידים אוטומטי', desc: 'הבוט שואל שאלות מכשירות וסוגר את הליד לנציג רק כשמתאים' },
-        { icon: '🤖', title: 'AI לניהול שיחת מכירה', desc: 'AI מבוסס GPT שמנהל שיחת מכירה ראשונית בצורה טבעית' },
+        { icon: '🤖', title: 'AI לניהול שיחת מכירה', desc: 'AI מבוסס GPT שמנהל שיחת מכירה ראשונית בצורה טבעית ומשיג מטרות' },
+        { icon: '📅', title: 'קביעת פגישה ביומן', desc: 'Gambot AI קובע פגישות ישירות ב-Google Calendar / Outlook — תאריך, שעה ומשך — ללא מגע אנושי' },
+        { icon: '📋', title: 'סיכום AI אחרי כל שיחה', desc: 'לאחר כל שיחה תקבלו סיכום AI: שם, טלפון, מייל הלקוח, הצרכים שלו ומה סוכם — מוכן לנציג המכירות' },
+        { icon: '🔗', title: 'אינטגרציה עם CRM', desc: 'כל ליד עם הפרטים המלאים נכנס ישירות ל-CRM שלכם' },
         { icon: '📊', title: 'מעקב ניקוד ליד', desc: 'נקדו לידים לפי קריטריונים שהגדרתם וספקו לנציגים רק את הטובים' },
-        { icon: '🔗', title: 'אינטגרציה עם CRM', desc: 'כל ליד נכנס ישירות ל-CRM שלכם עם כל המידע שנאסף' },
-        { icon: '📅', title: 'תיאום פגישה אוטומטי', desc: 'הבוט מתאם פגישות ישירות ביומן של הנציג' },
-        { icon: '📢', title: 'התראות לנציגים', desc: 'נציגים מקבלים התראה מיידית על ליד חם שמחכה' },
       ],
       faq: [
-        { q: 'מה עושה בוט לידים בדיוק?', a: 'מסנן פניות, שואל שאלות מכשירות, מנהל שיחה ראשונית ומעביר לנציג רק לידים חמים.' },
+        { q: 'מה עושה בוט לידים בדיוק?', a: 'מנהל שיחת מכירה ראשונית, שואל שאלות מכשירות, קובע פגישה ביומן ושולח לכם סיכום AI עם כל פרטי הלקוח.' },
+        { q: 'איך הסיכום AI נשלח אלינו?', a: 'לאחר כל שיחה, Gambot AI מייצר סיכום אוטומטי עם שם, טלפון, מייל, צרכי הלקוח ומה סוכם בשיחה — ושולח אותו לנציג הרלוונטי.' },
+        { q: 'איך הפגישה מתואמת ביומן?', a: 'הלקוח בוחר שעה נוחה בשיחה, Gambot AI מוסיף אירוע ל-Google Calendar / Outlook, ושני הצדדים מקבלים אישור.' },
         { q: 'האם ניתן להגדיר קריטריוני סינון?', a: 'כן! קבעו את השאלות, ציוני הסף וקריטריוני ה-qualified lead.' },
-        { q: 'מה קורה עם ליד שלא מתאים?', a: 'הבוט שומר את הפרטים, שולח תגובה נעימה ומתזמן follow-up.' },
-        { q: 'עם אילו CRM מתחבר?', a: 'Salesforce, HubSpot, Dynamics 365, Monday.com ועוד.' },
+        { q: 'עם אילו CRM מתחבר?', a: 'Salesforce, HubSpot, Dynamics 365, Monday.com ועוד — דרך API / Webhook.' },
       ],
       useCases: [
-        { icon: '🏢', title: 'נדל"ן', desc: 'סינון לידים, תיאום ביקורים ומעקב עסקאות' },
-        { icon: '💰', title: 'פיננסים', desc: 'הכשרת לקוחות לפוליסות, הלוואות ועוד' },
-        { icon: '🎓', title: 'חינוך', desc: 'סינון מועמדים לקורסים ותוכניות לימוד' },
-        { icon: '🚗', title: 'רכב', desc: 'שיחת מכירה ראשונית על רכבים ותיאום נסיעת מבחן' },
+        { icon: '🏢', title: 'נדל"ן', desc: 'סינון לידים, תיאום ביקורי נכס ביומן וסיכום AI לנציג' },
+        { icon: '💰', title: 'פיננסים', desc: 'הכשרת לקוחות לפוליסות, תיאום פגישת יועץ וסיכום הצרכים' },
+        { icon: '🎓', title: 'חינוך', desc: 'סינון מועמדים, תיאום שיחת ייעוץ ושליחת סיכום לנציג' },
+        { icon: '🚗', title: 'רכב', desc: 'שיחת מכירה ראשונית, תיאום נסיעת מבחן וסיכום AI' },
       ],
       steps: [
         { step: '01', title: 'הגדרת קריטריוני ליד', desc: 'קבעו מה הופך פנייה ל-qualified lead' },
         { step: '02', title: 'בניית שאלות הכשרה', desc: 'הגדירו את השאלות שהבוט ישאל' },
-        { step: '03', title: 'חיבור ל-CRM', desc: 'חברו לכלי ניהול הלידים הקיים' },
-        { step: '04', title: 'הפעלה ומדידה', desc: 'עקבו אחר שיעורי הסינון ואיכות הלידים' },
+        { step: '03', title: 'חיבור יומן ו-CRM', desc: 'חברו Google Calendar / Outlook וכלי ה-CRM הקיים' },
+        { step: '04', title: 'הפעלה ומדידה', desc: 'עקבו אחר שיעורי הסינון, פגישות שנקבעו וסיכומי AI' },
       ],
-      pageTitle: 'בוט לידים לוואטסאפ',
+      pageTitle: 'בוט לידים AI לוואטסאפ',
     },
     en: {
       hero: {
-        badge: '🎯 WhatsApp Leads Bot',
-        titleText: 'WhatsApp Leads Bot — Turn Every Conversation into a Business Opportunity',
-        desc: 'A bot that automatically filters, qualifies and manages leads. Send only hot leads to your sales reps.',
+        badge: '🎯 WhatsApp AI Leads Bot',
+        titleText: 'WhatsApp AI Leads Bot — From First Message to Calendar Meeting, Automatically',
+        desc: 'Gambot AI manages the initial sales conversation, qualifies leads, books calendar meetings and sends you an AI summary with all customer details — fully automated, 24/7.',
         stats: [
-          { value: '95%', label: 'Open Rate (Meta)' }, { value: 'CRM', label: 'Direct Integration' },
-          { value: '2 min', label: 'From Inquiry to Filtering' }, { value: 'AI', label: 'Smart Lead Scoring' },
+          { value: '95%', label: 'Open Rate (Meta)' }, { value: 'AI', label: 'Auto Conversation Summary' },
+          { value: '2 min', label: 'From Inquiry to Booked Meeting' }, { value: '24/7', label: 'Always Available' },
         ],
       },
       features: [
         { icon: '🎯', title: 'Automatic Lead Filtering', desc: 'The bot asks qualifying questions and routes to a rep only when suitable' },
-        { icon: '🤖', title: 'AI Sales Conversation', desc: 'GPT-based AI that naturally manages an initial sales conversation' },
+        { icon: '🤖', title: 'AI Sales Conversation', desc: 'GPT-based AI that naturally manages an initial sales conversation and achieves goals' },
+        { icon: '📅', title: 'Calendar Meeting Booking', desc: 'Gambot AI books meetings directly in Google Calendar / Outlook — date, time and duration — no human touch needed' },
+        { icon: '📋', title: 'AI Summary After Every Conversation', desc: 'After each conversation you receive an AI summary: customer name, phone, email, needs and what was agreed — ready for your sales rep' },
+        { icon: '🔗', title: 'CRM Integration', desc: 'Every lead with full details goes directly into your CRM' },
         { icon: '📊', title: 'Lead Scoring', desc: 'Score leads by your criteria and deliver only the best to reps' },
-        { icon: '🔗', title: 'CRM Integration', desc: 'Every lead goes directly into your CRM with all collected info' },
-        { icon: '📅', title: 'Automatic Meeting Scheduling', desc: 'The bot schedules meetings directly in the rep\'s calendar' },
-        { icon: '📢', title: 'Agent Notifications', desc: 'Agents get instant alerts for a hot lead waiting' },
       ],
       faq: [
-        { q: 'What exactly does a leads bot do?', a: 'It filters inquiries, asks qualifying questions, manages initial conversation and passes only hot leads to reps.' },
+        { q: 'What exactly does a leads bot do?', a: 'It manages an initial sales conversation, asks qualifying questions, books a calendar meeting and sends you an AI summary with all customer details.' },
+        { q: 'How is the AI summary delivered?', a: 'After each conversation, Gambot AI generates an automatic summary with the customer\'s name, phone, email, stated needs and what was agreed — and delivers it to the relevant rep.' },
+        { q: 'How does the meeting get booked in the calendar?', a: 'The customer picks a convenient time during the conversation, Gambot AI adds an event to Google Calendar / Outlook, and both parties receive a confirmation.' },
         { q: 'Can I define filtering criteria?', a: 'Yes! Set the questions, score thresholds and qualified lead criteria.' },
-        { q: 'What happens with a non-qualifying lead?', a: 'The bot saves the details, sends a polite response and schedules follow-up.' },
-        { q: 'Which CRMs does it connect to?', a: 'Salesforce, HubSpot, Dynamics 365, Monday.com and more.' },
+        { q: 'Which CRMs does it connect to?', a: 'Salesforce, HubSpot, Dynamics 365, Monday.com and more — via API / Webhook.' },
       ],
       useCases: [
-        { icon: '🏢', title: 'Real Estate', desc: 'Lead filtering, visit scheduling and deal tracking' },
-        { icon: '💰', title: 'Finance', desc: 'Qualifying clients for policies, loans and more' },
-        { icon: '🎓', title: 'Education', desc: 'Screening candidates for courses and programs' },
-        { icon: '🚗', title: 'Automotive', desc: 'Initial sales conversation and test drive scheduling' },
+        { icon: '🏢', title: 'Real Estate', desc: 'Lead filtering, property visit booking in calendar and AI summary for the agent' },
+        { icon: '💰', title: 'Finance', desc: 'Qualifying clients, booking advisor meetings and summarizing needs' },
+        { icon: '🎓', title: 'Education', desc: 'Screening candidates, scheduling consultation calls and sending AI summary to rep' },
+        { icon: '🚗', title: 'Automotive', desc: 'Initial sales conversation, test drive scheduling and AI summary' },
       ],
       steps: [
         { step: '01', title: 'Define Lead Criteria', desc: 'Set what makes an inquiry a qualified lead' },
         { step: '02', title: 'Build Qualifying Questions', desc: 'Define what questions the bot will ask' },
-        { step: '03', title: 'Connect to CRM', desc: 'Integrate with your existing lead management tool' },
-        { step: '04', title: 'Activate & Measure', desc: 'Track filtering rates and lead quality' },
+        { step: '03', title: 'Connect Calendar & CRM', desc: 'Connect Google Calendar / Outlook and your CRM tool' },
+        { step: '04', title: 'Activate & Measure', desc: 'Track filtering rates, booked meetings and AI summaries' },
       ],
-      pageTitle: 'WhatsApp Leads Bot',
+      pageTitle: 'WhatsApp AI Leads Bot',
+    },
+  },
+
+  whatsappAiBot: {
+    he: {
+      hero: {
+        badge: '🧠 Gambot AI — בוט AI לוואטסאפ',
+        titleText: 'בוט AI לוואטסאפ שמבין, מרגיש ופועל — בדיוק כמו נציג אמיתי',
+        desc: 'Gambot AI מנהל שיחות טבעיות, שולח תמונות ומסמכים, סורק את האתר שלכם, מתאם פגישות ביומן ומשיג מטרות — הכל אוטומטית.',
+        stats: [
+          { value: '24/7', label: 'זמין תמיד ללא הפסקה' },
+          { value: 'GPT-4', label: 'מנוע שפה מתקדם' },
+          { value: '5 דקות', label: 'הגדרה ראשונית' },
+          { value: 'ללא קוד', label: 'הגדרה ויזואלית' },
+        ],
+      },
+      features: [
+        {
+          icon: '🖼️',
+          title: 'שליחת מדיה חכמה',
+          desc: 'הבוט שולח תמונות, סרטונים וקטלוגים בהתאם לשאלה. לדוגמה: "שלח לי צילום של דגם X בצבע אגוז לוז" — הבוט ישלח את התמונה המתאימה.'
+        },
+        {
+          icon: '🌐',
+          title: 'סריקת אתר אוטומטית',
+          desc: 'Gambot AI סורק את אתר העסק שלכם אוטומטית ומחלץ מידע על המוצרים, שירותים, מחירים ושאלות נפוצות. ה-AI מכיר את העסק שלכם לעומק.'
+        },
+        {
+          icon: '💬',
+          title: 'שאלות ותשובות — קל להגדרה',
+          desc: 'הגדירו שאלות ותשובות בממשק ויזואלי פשוט. ה-AI משתמש בהן כבסיס ידע וענה אפילו על וריאציות ושאלות חלקיות.'
+        },
+        {
+          icon: '🎯',
+          title: 'ביצוע מטרות',
+          desc: 'הגדירו מה המטרה של הבוט — גביית פרטים, הרשמה, מכירה — וה-AI ינווט את השיחה להשיג אותה בצורה טבעית ולא דוחפת.'
+        },
+        {
+          icon: '📅',
+          title: 'קביעת פגישה ביומן + סיכום AI',
+          desc: 'Gambot AI קובע פגישות ישירות ב-Google Calendar / Outlook — ולאחר כל שיחה שולח סיכום AI: שם, טלפון, מייל, צרכי הלקוח ומה סוכם.'
+        },
+        {
+          icon: '🔄',
+          title: 'זיכרון שיחה מלא',
+          desc: 'הבוט זוכר מה שנאמר קודם בשיחה ומנהל קונטקסט רציף — כמו נציג שמכיר את הלקוח.'
+        },
+      ],
+      faq: [
+        { q: 'איך ה-AI יודע מה לענות?', a: 'הוא מסתמך על שלושה מקורות: סריקת האתר שלכם, שאלות ותשובות שהגדרתם, והנחיות שכתבתם בשפה חופשית. ביחד הם יוצרים בסיס ידע מקיף.' },
+        { q: 'האם הבוט יכול לשלוח תמונות ספציפיות?', a: 'כן! ניתן לחבר ספריית מדיה ולהגדיר מתי לשלוח כל תמונה. הבוט יזהה בקשות ויענה עם הקובץ הנכון.' },
+        { q: 'כמה זמן לוקח להגדיר?', a: 'הגדרה בסיסית של 5 דקות — חברו את הוואטסאפ, לחצו "סרוק אתר" וה-AI מוכן. הגדרות מתקדמות לוקחות כשעה.' },
+        { q: 'האם ה-AI יכול להעביר לנציג?', a: 'בהחלט. ניתן להגדיר מתי להעביר — לפי מילות מפתח, נושאים רגישים, או בקשת הלקוח.' },
+        { q: 'האם ה-AI יכול לבצע פעולות?', a: 'כן, Gambot AI יכול לשלוח הודעות, לרשום מידע, לעדכן CRM, לשלוח ווובהוק ולתאם ביומן — הכל אוטומטית.' },
+      ],
+      useCases: [
+        { icon: '🛒', title: 'חנויות ואיקומרס', desc: 'ענה על שאלות מוצר, שלח תמונות ומידות, עזור בהזמנה' },
+        { icon: '🏥', title: 'רפואה וקליניקות', desc: 'מידע על טיפולים, תיאום תורים ותשובות על שאלות נפוצות' },
+        { icon: '🏠', title: 'נדל"ן', desc: 'שלח תמונות נכסים, מידע ומחירים, תאם ביקורים' },
+        { icon: '🎓', title: 'חינוך', desc: 'ענה על שאלות קורסים, שלח סילבוסים, תאם שיחות' },
+      ],
+      steps: [
+        { step: '01', title: 'חברו את הוואטסאפ', desc: 'חיבור פשוט לחשבון WhatsApp Business שלכם' },
+        { step: '02', title: 'סרקו את האתר', desc: 'לחצו "סרוק אתר" — ה-AI לומד מהאתר שלכם אוטומטית' },
+        { step: '03', title: 'הגדירו הנחיות ומדיה', desc: 'הוסיפו שאלות ותשובות, תמונות ומטרות בממשק ויזואלי' },
+        { step: '04', title: 'הפעילו ומדדו', desc: 'הבוט עובד 24/7 — עקבו אחר שיחות ושפרו בזמן אמת' },
+      ],
+      pageTitle: 'בוט AI לוואטסאפ',
+    },
+    en: {
+      hero: {
+        badge: '🧠 Gambot AI — WhatsApp AI Bot',
+        titleText: 'WhatsApp AI Bot That Understands, Feels and Acts — Just Like a Real Agent',
+        desc: 'Gambot AI conducts natural conversations, sends images and documents, scans your website, schedules calendar appointments and achieves goals — all automatically.',
+        stats: [
+          { value: '24/7', label: 'Always Available' },
+          { value: 'GPT-4', label: 'Advanced Language Engine' },
+          { value: '5 min', label: 'Initial Setup' },
+          { value: 'No Code', label: 'Visual Configuration' },
+        ],
+      },
+      features: [
+        {
+          icon: '🖼️',
+          title: 'Smart Media Sending',
+          desc: 'The bot sends images, videos and catalogs based on the question. For example: "Send me a photo of Model X in hazelnut color" — the bot sends the matching image.'
+        },
+        {
+          icon: '🌐',
+          title: 'Automatic Website Scanning',
+          desc: 'Gambot AI automatically scans your business website and extracts information about products, services, prices and FAQs. The AI deeply knows your business.'
+        },
+        {
+          icon: '💬',
+          title: 'Q&A — Easy to Configure',
+          desc: 'Set up Q&A pairs in a simple visual interface. The AI uses them as a knowledge base and answers even variations and partial questions.'
+        },
+        {
+          icon: '🎯',
+          title: 'Goal Achievement',
+          desc: 'Define the bot\'s goal — collecting details, registration, sale — and the AI guides the conversation to achieve it naturally and non-pushily.'
+        },
+        {
+          icon: '📅',
+          title: 'Calendar Booking + AI Summary',
+          desc: 'Gambot AI books meetings directly in Google Calendar / Outlook — and after every conversation sends an AI summary: name, phone, email, customer needs and what was agreed.'
+        },
+        {
+          icon: '🔄',
+          title: 'Full Conversation Memory',
+          desc: 'The bot remembers what was said earlier in the conversation and maintains continuous context — like an agent who knows the customer.'
+        },
+      ],
+      faq: [
+        { q: 'How does the AI know what to answer?', a: 'It relies on three sources: scanning your website, Q&A pairs you defined, and instructions you wrote in plain language. Together they create a comprehensive knowledge base.' },
+        { q: 'Can the bot send specific images?', a: 'Yes! You can connect a media library and define when to send each image. The bot identifies requests and responds with the right file.' },
+        { q: 'How long does setup take?', a: 'Basic setup takes 5 minutes — connect WhatsApp, click "Scan Website" and the AI is ready. Advanced settings take about an hour.' },
+        { q: 'Can the AI hand off to a human agent?', a: 'Absolutely. You can define when to hand off — by keywords, sensitive topics, or customer request.' },
+        { q: 'Can the AI take actions?', a: 'Yes, Gambot AI can send messages, record information, update CRM, send webhooks and schedule calendar events — all automatically.' },
+      ],
+      useCases: [
+        { icon: '🛒', title: 'Shops & E-commerce', desc: 'Answer product questions, send images and measurements, assist with ordering' },
+        { icon: '🏥', title: 'Healthcare & Clinics', desc: 'Treatment information, appointment scheduling and FAQ answers' },
+        { icon: '🏠', title: 'Real Estate', desc: 'Send property photos, info and prices, schedule visits' },
+        { icon: '🎓', title: 'Education', desc: 'Answer course questions, send syllabi, schedule calls' },
+      ],
+      steps: [
+        { step: '01', title: 'Connect WhatsApp', desc: 'Simple connection to your WhatsApp Business account' },
+        { step: '02', title: 'Scan Your Website', desc: 'Click "Scan Website" — the AI learns from your site automatically' },
+        { step: '03', title: 'Set Instructions & Media', desc: 'Add Q&A pairs, images and goals in a visual interface' },
+        { step: '04', title: 'Activate & Measure', desc: 'The bot works 24/7 — track conversations and improve in real time' },
+      ],
+      pageTitle: 'WhatsApp AI Bot',
     },
   },
 
