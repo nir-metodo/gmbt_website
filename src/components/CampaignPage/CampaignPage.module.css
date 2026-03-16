@@ -1,0 +1,423 @@
+/* ============================
+   CAMPAIGN LANDING PAGE
+   ============================ */
+
+.page {
+  font-family: 'Heebo', 'Segoe UI', sans-serif;
+  background: #fff;
+  color: #1a1a2e;
+  direction: rtl;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.logo {
+  height: 38px;
+  object-fit: contain;
+}
+
+.headerWa {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(37,211,102,0.3);
+}
+.headerWa:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37,211,102,0.4);
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  color: #fff;
+  padding: 80px 20px 70px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37,211,102,0.1), transparent);
+}
+
+.hero .container { position: relative; z-index: 1; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(37,211,102,0.15);
+  border: 1px solid rgba(37,211,102,0.35);
+  color: #34D399;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+  letter-spacing: 0.3px;
+}
+
+.heroTitle {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 18px;
+}
+
+.green {
+  background: linear-gradient(135deg, #25D366, #34D399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroDesc {
+  font-size: 1.15rem;
+  opacity: 0.85;
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.ctaMain {
+  display: inline-block;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  border: none;
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(37,211,102,0.35);
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 460px;
+  text-decoration: none;
+}
+.ctaMain:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37,211,102,0.45);
+}
+
+.ctaSub {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* PAIN POINTS */
+.pains {
+  background: #f8fafc;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  margin-bottom: 36px;
+  color: #1a1a2e;
+}
+
+.painsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.painCard {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 28px 18px;
+  text-align: center;
+  transition: all 0.3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.painCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  border-color: #25D366;
+}
+
+.painIcon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.painCard p {
+  font-size: 0.95rem;
+  color: #4a5568;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.painCta {
+  background: linear-gradient(135deg, rgba(37,211,102,0.12), rgba(18,140,126,0.12));
+  border: 1px solid rgba(37,211,102,0.25);
+  border-radius: 12px;
+  padding: 18px 24px;
+  font-size: 1.05rem;
+  color: #0f6b4f;
+  margin-top: 10px;
+}
+
+/* BENEFITS */
+.benefits {
+  background: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 22px;
+}
+
+.benefitCard {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 28px 18px;
+  transition: all 0.3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.benefitCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  border-color: #25D366;
+}
+
+.benefitIcon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.benefitCard h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1a1a2e;
+}
+
+.benefitCard p {
+  font-size: 0.88rem;
+  color: #4a5568;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* TRY LIVE */
+.tryLive {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.tryLive::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37,211,102,0.08), transparent);
+}
+
+.tryLive .container { position: relative; z-index: 1; }
+.tryLive .sectionTitle { color: #fff; }
+
+.tryDesc {
+  font-size: 1.05rem;
+  opacity: 0.85;
+  margin-bottom: 30px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.ctaWa {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  border: none;
+  padding: 16px 36px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(37,211,102,0.35);
+  transition: all 0.3s;
+}
+.ctaWa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37,211,102,0.45);
+}
+
+/* STEPS */
+.steps {
+  background: #f8fafc;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.step {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.stepNum {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #25D366;
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* FORM */
+.formSection {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  padding: 80px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.formTitle {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+  font-size: 1rem;
+  text-align: right;
+  direction: rtl;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+.input::placeholder { color: rgba(255,255,255,0.7); }
+.input:focus { border-color: #fff; background: rgba(255,255,255,0.25); }
+
+.ctaFormBtn {
+  display: inline-block;
+  background: #fff;
+  color: #128C7E;
+  border: none;
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  transition: all 0.3s;
+  width: 100%;
+}
+.ctaFormBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.thanks {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  padding: 30px;
+}
+
+.privacy {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: 12px;
+}
+
+/* FOOTER */
+.footer {
+  background: #0f2027;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  padding: 24px;
+  font-size: 0.85rem;
+}
+
+.footer a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: underline;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .hero { padding: 56px 16px 48px; }
+  .ctaMain { font-size: 1rem; padding: 14px 24px; }
+  .painsGrid { grid-template-columns: 1fr 1fr; }
+  .benefitsGrid { grid-template-columns: 1fr 1fr; }
+  .stepsGrid { grid-template-columns: 1fr 1fr; }
+}

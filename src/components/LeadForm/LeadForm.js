@@ -20,21 +20,11 @@ export default function LeadForm({ source = 'website' }) {
         }),
         sendLeadWebhook({ name: form.name, email: form.email, phone: form.phone, businessName: form.businessName }),
       ]);
-      setStatus('success');
+      window.location.href = '/תודה';
     } catch {
       setStatus('error');
     }
   };
-
-  if (status === 'success') {
-    return (
-      <div className={styles.success}>
-        <div className={styles.successIcon}>✅</div>
-        <h3>תודה! נחזור אליך בקרוב</h3>
-        <p>נציג שלנו יצור איתך קשר תוך שעה בשעות העבודה</p>
-      </div>
-    );
-  }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} dir="rtl">

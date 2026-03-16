@@ -58,6 +58,34 @@ export const HebrewContent = () => (
       </p>
     </section>
 
+    {/* Meta Platform Data */}
+    <section className="TermOfUse-section">
+      <h2 className="TermOfUse-subheader">2א. נתוני פלטפורמת Meta (Facebook)</h2>
+      <p className="TermOfUse-paragraph">
+        גמבוט משתמשת ב-<strong>Meta Platform APIs</strong>, כולל WhatsApp Business API ו-Facebook Lead Ads API, בהתאם ל-<a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener noreferrer">Meta Platform Terms</a>.
+      </p>
+      <p className="TermOfUse-paragraph">
+        <strong>leads_retrieval — אחזור לידים מ-Facebook Lead Ads:</strong>
+      </p>
+      <ul className="TermOfUse-list">
+        <li className="TermOfUse-list-item">
+          <strong>מה אנחנו ניגשים אליו:</strong> כאשר עסק מחבר טופס לידים של Facebook לחשבון גמבוט, אנו ניגשים לנתוני הלידים שהוגשו (שם, אימייל, טלפון) דרך ה-API הרשמי של Meta.
+        </li>
+        <li className="TermOfUse-list-item">
+          <strong>מטרת השימוש:</strong> נתוני הלידים מועברים אוטומטית למערכת ה-CRM של העסק בגמבוט ומשמשים לניהול ומעקב אחר לקוחות פוטנציאליים.
+        </li>
+        <li className="TermOfUse-list-item">
+          <strong>שמירת נתונים:</strong> נתוני לידים נשמרים בחשבון הארגון המקושר בלבד ואינם משותפים עם צדדים שלישיים.
+        </li>
+        <li className="TermOfUse-list-item">
+          <strong>מחיקה:</strong> ניתן למחוק נתוני לידים בכל עת דרך ממשק גמבוט או על ידי פנייה אלינו.
+        </li>
+      </ul>
+      <p className="TermOfUse-paragraph">
+        <strong>חשוב:</strong> אנו לא משתמשים בנתוני פלטפורמת Meta לפרסום, למכירה לצדדים שלישיים, או לכל מטרה שאינה מפורטת במדיניות זו. השימוש בנתוני Meta Platform כפוף ל-<a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener noreferrer">Meta Platform Terms</a>.
+      </p>
+    </section>
+
     {/* 3. Data Sharing */}
     <section className="TermOfUse-section">
       <h2 className="TermOfUse-subheader">3. שיתוף נתונים</h2>
@@ -299,6 +327,34 @@ export const EnglishContent = () => (
 
       <p className="TermOfUse-paragraph">
         <strong>Google User Data Specific Use:</strong> We use your Google account information solely for authentication. We do NOT access, read, or process your Gmail, Drive, or other Google services data.
+      </p>
+    </section>
+
+    {/* Meta Platform Data */}
+    <section className="TermOfUse-section">
+      <h2 className="TermOfUse-subheader">2a. Meta Platform Data (Facebook)</h2>
+      <p className="TermOfUse-paragraph">
+        Gambot uses <strong>Meta Platform APIs</strong>, including the WhatsApp Business API and Facebook Lead Ads API, in accordance with the <a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener noreferrer">Meta Platform Terms</a>.
+      </p>
+      <p className="TermOfUse-paragraph">
+        <strong>leads_retrieval — Retrieving Leads from Facebook Lead Ads:</strong>
+      </p>
+      <ul className="TermOfUse-list">
+        <li className="TermOfUse-list-item">
+          <strong>What we access:</strong> When a business connects a Facebook Lead Ads form to their Gambot account, we access submitted lead data (name, email, phone number) via Meta's official API.
+        </li>
+        <li className="TermOfUse-list-item">
+          <strong>Purpose:</strong> Lead data is automatically transferred to the business's CRM within Gambot and is used solely for managing and following up with potential customers.
+        </li>
+        <li className="TermOfUse-list-item">
+          <strong>Storage:</strong> Lead data is stored only within the linked organization's account and is not shared with any third parties.
+        </li>
+        <li className="TermOfUse-list-item">
+          <strong>Deletion:</strong> Lead data can be deleted at any time via the Gambot interface or by contacting us directly.
+        </li>
+      </ul>
+      <p className="TermOfUse-paragraph">
+        <strong>Important:</strong> We do not use Meta Platform Data for advertising, sell it to third parties, or use it for any purpose not described in this policy. Use of Meta Platform Data is subject to the <a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener noreferrer">Meta Platform Terms</a>.
       </p>
     </section>
 

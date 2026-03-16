@@ -4964,7 +4964,7 @@
       "basic": {
         "name": "Basic", "description": "The basic package for your business",
         "features": ["Up to 3 users - each additional user $8","SIM ownership purchased from us for $10/month","Up to 5,000 contacts","AI up to 120 responses / operations (each 500 extra $15)","Up to 1,000 calls/month"],
-        "moreFeatures": ["50 active leads","30 support cases","8 quotes/month","8 e-signatures/month","1,000 campaign recipients/month","1,000 campaign messages/month","CSV export","Basic reports"]
+        "moreFeatures": ["30 active leads","30 support cases","5 quotes/month","5 e-signatures/month","1,000 campaign recipients/month","1,000 campaign messages/month","CSV export","Basic reports"]
       },
       "premium": {
         "name": "Premium", "description": "The premium package for your business",
@@ -5170,7 +5170,7 @@
           "3 users (additional user ₪30)",
           "Basic support"
         ],
-        "moreFeatures": ["50 active leads","30 support cases","8 quotes/month","8 e-signatures/month","1,000 campaign recipients/month","1,000 campaign messages/month","CSV export","Basic reports"]
+        "moreFeatures": ["30 active leads","30 support cases","5 quotes/month","5 e-signatures/month","1,000 campaign recipients/month","1,000 campaign messages/month","CSV export","Basic reports"]
       }
     },
     "modal": {

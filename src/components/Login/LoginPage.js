@@ -15,6 +15,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [organization, setOrganization] = useState('');
+  const [adminMode, setAdminMode] = useState('org'); // 'org' | 'admin'
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetMessage, setResetMessage] = useState('');
@@ -37,23 +38,26 @@ export default function LoginPage() {
   const handleShowForgotPassword = () => { resetFormStates(); setShowForgotPassword(true); };
   const handleShowLoginForm = () => { resetFormStates(); setShowForgotPassword(false); };
 
+  const isGambotAdmin = email.toLowerCase().endsWith('@gambot.co.il');
+
   const signInWithEmailAndPassword = async () => {
     setEmailError(''); setPasswordError('');
 
     if (!isValidEmail(email)) { setEmailError(t('login.invalidEmail')); return; }
     if (!password) { setPasswordError(t('login.passwordRequired')); return; }
-    if (email === 'info@gambot.co.il' && !organization) {
+    if (isGambotAdmin && adminMode === 'org' && !organization) {
       setEmailError(t('login.organizationRequired')); return;
     }
 
     setIsLoading(true);
 
     try {
-      const endpoint = email === 'info@gambot.co.il'
+      const useOrgEndpoint = isGambotAdmin && adminMode === 'org' && organization;
+      const endpoint = useOrgEndpoint
         ? '/api/Webhooks/authenticateInfoByOrg'
         : '/api/Webhooks/authenticate';
 
-      const payload = email === 'info@gambot.co.il'
+      const payload = useOrgEndpoint
         ? { username: email, password, organization }
         : { username: email, password };
 
@@ -100,8 +104,9 @@ export default function LoginPage() {
       // Encode user data for cross-domain handoff
       const encodedUser = btoa(encodeURIComponent(JSON.stringify(newUser)));
 
-      // Redirect to app.gambot.co.il/auth with token and user data
-      window.location.href = `${APP_URL}/auth?user=${encodedUser}&token=${encodeURIComponent(token || '')}`;
+      // Admin mode → go to /admin, org mode → go to /auth
+      const destination = (isGambotAdmin && adminMode === 'admin') ? '/admin' : '/auth';
+      window.location.href = `${APP_URL}${destination}?user=${encodedUser}&token=${encodeURIComponent(token || '')}`;
 
     } catch (error) {
       console.error('Login Error:', error);
@@ -201,7 +206,31 @@ export default function LoginPage() {
                 {passwordError && <p className="error-message">{passwordError}</p>}
               </div>
 
-              {email === 'info@gambot.co.il' && (
+              {/* Admin Mode Toggle — only for @gambot.co.il */}
+              {isGambotAdmin && (
+                <div className="admin-mode-toggle">
+                  <button
+                    type="button"
+                    className={`admin-mode-btn ${adminMode === 'org' ? 'active' : ''}`}
+                    onClick={() => { setAdminMode('org'); setOrganization(''); }}
+                    disabled={isLoading}
+                  >
+                    <FaBuilding style={{ marginLeft: '6px' }} />
+                    כניסה לארגון
+                  </button>
+                  <button
+                    type="button"
+                    className={`admin-mode-btn ${adminMode === 'admin' ? 'active' : ''}`}
+                    onClick={() => { setAdminMode('admin'); setOrganization(''); }}
+                    disabled={isLoading}
+                  >
+                    <FaShieldAlt style={{ marginLeft: '6px' }} />
+                    Admin Panel
+                  </button>
+                </div>
+              )}
+
+              {isGambotAdmin && adminMode === 'org' && (
                 <div className="input-group">
                   <div className="input-wrapper">
                     <FaBuilding className="login-input-icon" />

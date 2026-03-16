@@ -65,8 +65,8 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Rubik:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap"
           rel="stylesheet"
         />
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFMXYNTV1N" />
+        {/* Google Analytics + Google Ads */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18018385768" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -74,6 +74,7 @@ export default function RootLayout({ children }) {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-GFMXYNTV1N');
+              gtag('config', 'AW-18018385768');
             `,
           }}
         />

@@ -70,7 +70,7 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (pathname?.startsWith('/complete-waba')) return null;
+  if (pathname?.startsWith('/complete-waba') || pathname?.startsWith('/קמפיין-')) return null;
 
   useEffect(() => {
     setIsOpen(false);

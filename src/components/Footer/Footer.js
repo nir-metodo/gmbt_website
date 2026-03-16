@@ -14,7 +14,7 @@ export default function Footer() {
   const isEn = currentLanguage === 'en';
   const pathname = usePathname();
 
-  if (pathname?.startsWith('/complete-waba')) return null;
+  if (pathname?.startsWith('/complete-waba') || pathname?.startsWith('/קמפיין-')) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
