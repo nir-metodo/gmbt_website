@@ -73,8 +73,8 @@ const plans = {
     },
        {
       name: "Business",
-      price: 865,
-      yearlyPrice: 692 * 12, 
+      price: 587,
+      yearlyPrice: 470 * 12, 
       description: "חבילה מותאמת לארגון גדול",
       features: [
         "3 בוטים / תהליכי אוטומציה",
@@ -154,6 +154,25 @@ const [showModal, setShowModal] = useState(false);
  
   const [selectedSessionsAI, setSelectedSessionsAI] = useState(sessionOptionsAI[0]);
   const [selectedProActive, setSelectedProActive] = useState(proActiveOptions[0]);
+  const [showAiCalc, setShowAiCalc] = useState(false);
+  const [calcServiceType, setCalcServiceType] = useState('support');
+  const [calcConversations, setCalcConversations] = useState(300);
+  const [calcAvgResponses, setCalcAvgResponses] = useState(3);
+  const [calcPlan, setCalcPlan] = useState('pro');
+
+  const servicePresets = {
+    support:      { label: 'שירות לקוחות', avg: 6, desc: 'שאלות ותמיכה — לרוב שיחות ארוכות יותר' },
+    leads:        { label: 'ניהול לידים', avg: 4, desc: 'הסמכת לידים, שאלות ממוקדות לפני העברה לנציג' },
+    appointments: { label: 'תיאום פגישות', avg: 3, desc: 'שיחות קצרות וממוקדות — AI מנחה לבחירת זמן' },
+  };
+  const calcPlanIncluded = { growth: 120, pro: 300, business: 1250 };
+  const calcPlanPrice    = { growth: 143, pro: 287, business: 587 };
+  const calcPlanLabel    = { growth: 'Growth', pro: 'Pro', business: 'Business' };
+  const totalAiMonthly   = calcConversations * calcAvgResponses;
+  const includedAi       = calcPlanIncluded[calcPlan] || 0;
+  const extraAi          = Math.max(0, totalAiMonthly - includedAi);
+  const extraCost        = Math.ceil(extraAi / 500) * 50;
+  const totalMonthlyCost = calcPlanPrice[calcPlan] + extraCost;
 
   const handleProActiveChange = (event) => {
     const selectedValue = parseInt(event.target.value, 10);
@@ -456,8 +475,93 @@ const [showModal, setShowModal] = useState(false);
             <span className="addon-price">{formatPrice(selectedSessionsAI.price).currency}{formatPrice(selectedSessionsAI.price).amount}</span>
             <span className="addon-period">{t('pricing.ui.perMonth')}</span>
           </div>
+          <button className="ai-calc-trigger-btn" onClick={() => setShowAiCalc(true)}>
+            🧮 &nbsp;מחשבון תגובות AI — כמה תצטרכו בחודש?
+          </button>
         </div>
       </div>
+
+      {/* AI Calculator Modal */}
+      {showAiCalc && (
+        <div className="ai-calc-overlay" onClick={() => setShowAiCalc(false)}>
+          <div className="ai-calc-modal" dir="rtl" onClick={e => e.stopPropagation()}>
+            <button className="ai-calc-close" onClick={() => setShowAiCalc(false)}>✕</button>
+            <div className="ai-calc-header">
+              <span className="ai-calc-header-icon">🧮</span>
+              <h2>מחשבון תגובות AI</h2>
+              <p>הבינו כמה תגובות AI תצטרכו בחודש ומה יהיה העלות הנוספת</p>
+            </div>
+
+            <div className="ai-calc-section">
+              <label className="ai-calc-label">1. סוג השירות שלכם</label>
+              <div className="ai-calc-service-grid">
+                {Object.entries(servicePresets).map(([key, s]) => (
+                  <button key={key}
+                    className={`ai-calc-service-btn${calcServiceType === key ? ' active' : ''}`}
+                    onClick={() => { setCalcServiceType(key); setCalcAvgResponses(s.avg); }}>
+                    <span className="ai-calc-service-icon">{key === 'support' ? '🎧' : key === 'leads' ? '🎯' : '📅'}</span>
+                    <span className="ai-calc-service-label">{s.label}</span>
+                    <span className="ai-calc-service-avg">~{s.avg} תגובות AI לשיחה</span>
+                    <span className="ai-calc-service-desc">{s.desc}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="ai-calc-section">
+              <label className="ai-calc-label">
+                2. כמה שיחות חדשות בחודש?
+                <span className="ai-calc-value-badge">{calcConversations.toLocaleString()}</span>
+              </label>
+              <input type="range" min={50} max={5000} step={50} value={calcConversations}
+                onChange={e => setCalcConversations(Number(e.target.value))} className="ai-calc-slider" />
+              <div className="ai-calc-slider-labels"><span>50</span><span>1,000</span><span>2,500</span><span>5,000</span></div>
+            </div>
+
+            <div className="ai-calc-section">
+              <label className="ai-calc-label">
+                3. ממוצע תגובות AI לשיחה
+                <span className="ai-calc-value-badge">{calcAvgResponses}</span>
+              </label>
+              <input type="range" min={1} max={15} step={1} value={calcAvgResponses}
+                onChange={e => setCalcAvgResponses(Number(e.target.value))} className="ai-calc-slider" />
+              <div className="ai-calc-slider-labels"><span>1</span><span>5</span><span>10</span><span>15</span></div>
+              <div className="ai-calc-tip">
+                💡 <strong>המלצת גמבוט:</strong> 2–3 תשובות AI ראשונות לשיחה — הבוט מכוון את הלקוח מההתחלה ו-AI קורא את ההיסטוריה כך שהתשובות הראשונות הן הכי אפקטיביות.
+              </div>
+              <div className="ai-calc-settings-note">
+                ⚙️ <strong>טיפ:</strong> בהגדרות המערכת ניתן להגביל את מספר תגובות ה-AI המקסימלי לשיחה — כך תשלטו בצריכה ולא תגיעו להפתעות בחיוב.
+              </div>
+            </div>
+
+            <div className="ai-calc-section">
+              <label className="ai-calc-label">4. החבילה שלכם</label>
+              <div className="ai-calc-plan-row">
+                {Object.entries(calcPlanLabel).map(([key, label]) => (
+                  <button key={key}
+                    className={`ai-calc-plan-btn${calcPlan === key ? ' active' : ''}`}
+                    onClick={() => setCalcPlan(key)}>
+                    {label}
+                    <span>{calcPlanIncluded[key].toLocaleString()} AI כלול</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className={`ai-calc-result${extraCost === 0 ? ' result-ok' : extraCost > 200 ? ' result-high' : ''}`}>
+              <div className="ai-calc-result-row"><span>סה&quot;כ תגובות AI חודשיות</span><strong>{totalAiMonthly.toLocaleString()}</strong></div>
+              <div className="ai-calc-result-row"><span>כלול בחבילת {calcPlanLabel[calcPlan]}</span><strong>{includedAi.toLocaleString()}</strong></div>
+              <div className={`ai-calc-result-row${extraAi > 0 ? ' extra' : ''}`}><span>תגובות נוספות נדרשות</span><strong>{extraAi.toLocaleString()}</strong></div>
+              <div className="ai-calc-result-divider" />
+              <div className="ai-calc-result-row total"><span>תוספת חודשית בגין AI</span><strong className="ai-calc-cost">₪{extraCost}</strong></div>
+              <div className="ai-calc-result-row grand-total"><span>סה&quot;כ עלות חודשית משוערת</span><strong className="ai-calc-grand">₪{totalMonthlyCost.toLocaleString()}</strong></div>
+              {extraCost === 0 && <div className="ai-calc-ok-msg">✅ הכמות הזו כלולה בחבילה שלכם — אין תוספת עלות!</div>}
+            </div>
+
+            <a href="/PriceList/OnboardingServices" className="ai-calc-cta">לתחילת ניסיון חינם ←</a>
+          </div>
+        </div>
+      )}
 
       {/* ⚡ Pro Active Add-on */}
       <div className="addon-section">

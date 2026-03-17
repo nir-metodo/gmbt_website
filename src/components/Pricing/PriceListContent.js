@@ -450,9 +450,7 @@ export default function PriceListContent() {
               )}
             </div>
 
-            <a href="/contact" className="ai-calc-cta">
-              דברו איתנו להצעה מותאמת אישית →
-            </a>
+            <a href="/PriceList/OnboardingServices" className="ai-calc-cta">לתחילת ניסיון חינם ←</a>
           </div>
         </div>
       )}

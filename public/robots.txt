@@ -27,3 +27,4 @@ User-agent: Google-Extended
 Disallow: /
 
 Sitemap: https://gambot.co.il/sitemap.xml
+Sitemap: https://gambot.co.il/video-sitemap.xml
