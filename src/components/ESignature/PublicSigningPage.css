@@ -1,0 +1,1691 @@
+.public-signing-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.signing-header {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2d6a4f;
+}
+
+.signing-content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.document-info-section {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.document-info-section h1 {
+  color: #2d6a4f;
+  margin-bottom: 15px;
+}
+
+.document-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.sent-by {
+  color: #666;
+  font-size: 14px;
+}
+
+.document-preview-section {
+  margin-bottom: 30px;
+}
+
+.document-preview-section h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.pdf-preview {
+  margin-bottom: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.esig-public-btn-view-full {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #2d6a4f;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+.esig-public-btn-view-full:hover {
+  background: #1b4332;
+}
+
+.esig-public-signature-form h3 {
+  color: #333;
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
+.esig-public-form-group {
+  margin-bottom: 20px;
+}
+
+.esig-public-form-group label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.esig-public-form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.esig-public-form-group input:focus {
+  outline: none;
+  border-color: #2d6a4f;
+}
+
+.signature-section {
+  margin: 30px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.signature-section .hint {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.signature-canvas-wrapper {
+  border: 2px solid #2d6a4f;
+  border-radius: 8px;
+  background: white;
+  display: inline-block;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.signature-canvas {
+  display: block;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.esig-public-btn-clear-signature {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #495057;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+.esig-public-btn-clear-signature:hover {
+  background: #e9ecef;
+}
+
+.esig-public-btn-submit-signature {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s, opacity 0.3s, transform 0.3s;
+  margin-top: 20px;
+}
+
+.esig-public-btn-submit-signature:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+}
+
+.esig-public-btn-submit-signature:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.legal-text {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.5;
+}
+
+/* ========== HEADER ========== */
+.esig-public-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 24px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(45, 106, 79, 0.1);
+}
+
+.esig-public-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.esig-public-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.esig-public-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.esig-public-brand-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2d6a4f;
+  letter-spacing: -0.5px;
+}
+
+.esig-public-brand-tagline {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.esig-public-secure-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  color: #166534;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ========== FOOTER ========== */
+.esig-public-footer {
+  max-width: 900px;
+  margin: 32px auto 0;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8fafb 0%, #ffffff 100%);
+  border-radius: 16px;
+  border-top: 1px solid rgba(45, 106, 79, 0.1);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.esig-public-footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.esig-public-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #374151;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.esig-public-footer-brand:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(45, 106, 79, 0.15);
+}
+
+.esig-public-footer-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  opacity: 1;
+}
+
+.esig-public-footer-text {
+  font-size: 15px;
+  color: #6b7280;
+}
+
+.esig-public-footer-text strong {
+  color: #2d6a4f;
+  font-weight: 700;
+}
+
+.esig-public-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.esig-public-footer-tagline {
+  color: #9ca3af;
+}
+
+.esig-public-footer-separator {
+  color: #d1d5db;
+}
+
+.esig-public-footer-links a {
+  color: #2d6a4f;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.esig-public-footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* ========== LOADING STATE WITH BRANDING ========== */
+.esig-public-loading-branded {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 24px;
+}
+
+.esig-public-loading-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  animation: esig-pulse 2s ease-in-out infinite;
+}
+
+@keyframes esig-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.98); }
+}
+
+.esig-public-loading-branded .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #2d6a4f;
+  border-radius: 50%;
+  animation: esig-spin 1s linear infinite;
+}
+
+@keyframes esig-spin {
+  to { transform: rotate(360deg); }
+}
+
+.esig-public-loading-branded p {
+  color: #6b7280;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Legacy footer (keep for backward compatibility) */
+.signing-footer {
+  max-width: 1400px;
+  margin: 20px auto 0;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.loading-state,
+.error-state,
+.success-state {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #2d6a4f;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+  color: #666;
+  font-size: 16px;
+}
+
+.error-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.error-state h2 {
+  color: #dc3545;
+  margin-bottom: 15px;
+}
+
+.error-state p {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.error-state .hint {
+  color: #999;
+  font-size: 14px;
+}
+
+.success-icon {
+  margin-bottom: 20px;
+}
+
+.success-state h2 {
+  color: #28a745;
+  margin-bottom: 15px;
+}
+
+.success-state p {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.success-state .hint {
+  color: #999;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* ✅ Waiting for other signer state */
+.esig-public-waiting-state {
+  text-align: center;
+}
+
+.esig-public-waiting-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+.esig-public-waiting-state h2 {
+  color: #ff9800;
+  margin-bottom: 15px;
+}
+
+.esig-public-waiting-message {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.esig-public-waiting-details {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.esig-public-waiting-details p {
+  color: #856404;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.esig-public-waiting-details strong {
+  color: #664d03;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .signing-content {
+    padding: 20px;
+  }
+
+  .signature-canvas {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  .signature-canvas-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .document-preview-section iframe {
+    height: 400px;
+  }
+}
+
+/* ========================================
+   ✅ MULTI-STEP WIZARD STYLES
+   ======================================== */
+
+/* Stepper Container */
+.esig-public-stepper-container {
+  max-width: 900px;
+  margin: 0 auto 30px;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Stepper */
+.esig-public-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.esig-public-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.esig-public-step-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #e9ecef;
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.esig-public-step.active .esig-public-step-circle {
+  background: #2d6a4f;
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+}
+
+.esig-public-step.completed .esig-public-step-circle {
+  background: #28a745;
+  color: white;
+}
+
+.esig-public-step-label {
+  font-size: 13px;
+  color: #6c757d;
+  text-align: center;
+  font-weight: 500;
+}
+
+.esig-public-step.active .esig-public-step-label {
+  color: #2d6a4f;
+  font-weight: 600;
+}
+
+.esig-public-step-line {
+  flex: 1;
+  height: 3px;
+  background: #e9ecef;
+  margin: 0 10px;
+  margin-bottom: 40px;
+  transition: background 0.3s ease;
+}
+
+.esig-public-step-line.completed {
+  background: #28a745;
+}
+
+.esig-public-step-progress {
+  text-align: center;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Step Content */
+.esig-public-step-content {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.esig-public-step-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.esig-public-step-header h1 {
+  color: #2d6a4f;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.esig-public-step-subtitle {
+  color: #6c757d;
+  font-size: 16px;
+}
+
+/* Form Card */
+.esig-public-form-card {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.esig-public-form-group {
+  margin-bottom: 25px;
+}
+
+.esig-public-form-group label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.esig-public-form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+[dir="rtl"] .esig-public-form-group input {
+  text-align: right;
+  direction: rtl;
+}
+
+[dir="rtl"] .esig-public-form-group input[type="tel"],
+[dir="rtl"] .esig-public-form-group input[type="number"] {
+  text-align: right;
+  direction: ltr;
+  unicode-bidi: plaintext;
+}
+
+.esig-public-form-group input:focus {
+  outline: none;
+  border-color: #2d6a4f;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+}
+
+.esig-public-form-group input.error {
+  border-color: #dc3545;
+}
+
+.esig-public-error-text {
+  display: block;
+  color: #dc3545;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* Document Preview Mini */
+.esig-public-document-preview-mini {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #dee2e6;
+  margin-top: 25px;
+}
+
+.esig-public-document-icon {
+  font-size: 40px;
+}
+
+.esig-public-document-name {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.esig-public-document-meta {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+/* Document Viewer */
+.esig-public-document-viewer {
+  margin-bottom: 30px;
+}
+
+.esig-public-pdf-frame {
+  border: 2px solid #dee2e6;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.esig-public-scroll-hint {
+  text-align: center;
+  color: #6c757d;
+  font-size: 14px;
+  margin-top: 15px;
+  font-style: italic;
+}
+
+/* Signature Section */
+.esig-public-signature-form {
+  margin-top: 20px;
+}
+
+.esig-public-signature-section {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.esig-public-signature-label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.esig-public-signature-hint {
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.esig-public-signature-canvas-wrapper {
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.esig-public-signature-canvas {
+  width: 100% !important;
+  height: 200px !important;
+  cursor: crosshair;
+}
+
+.esig-public-btn-clear {
+  padding: 10px 20px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.esig-public-btn-clear:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+/* Legal Notice */
+.esig-public-legal-notice {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+
+.esig-public-legal-notice p {
+  color: #856404;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Step Actions */
+.esig-public-step-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+/* ✅ No reversal - Green button always on RIGHT in both Hebrew and English */
+
+.esig-public-btn-primary,
+.esig-public-btn-secondary {
+  flex: 1;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.esig-public-btn-primary {
+  background: #2d6a4f;
+  color: white;
+}
+
+.esig-public-btn-primary:hover:not(:disabled) {
+  background: #1e4d38;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+}
+
+.esig-public-btn-primary:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Download button for signed document */
+.esig-public-btn-download {
+  display: inline-block;
+  padding: 15px 35px;
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+.esig-public-btn-download:hover {
+  background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4);
+  color: white;
+}
+
+/* ✅ Signature Modal */
+.esig-public-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.esig-public-modal-content {
+  background: white;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.esig-public-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.esig-public-modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.esig-public-modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+.esig-public-modal-close:hover {
+  background: #f3f4f6;
+  color: #1e293b;
+}
+
+.esig-public-modal-body {
+  padding: 25px;
+}
+
+.esig-public-modal-canvas {
+  margin: 15px 0;
+}
+
+.esig-public-modal-footer {
+  display: flex;
+  gap: 12px;
+  padding: 20px 25px;
+  border-top: 1px solid #e5e7eb;
+  justify-content: flex-end;
+}
+
+/* ✅ Signature Progress */
+.esig-public-signature-progress {
+  background: #f0f9ff;
+  border: 2px solid #38bdf8;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.esig-public-signature-progress p {
+  margin: 0;
+  color: #0c4a6e;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.esig-public-signature-progress strong {
+  color: #075985;
+  font-size: 18px;
+}
+
+/* ✅ Interactive signing view */
+.esig-public-signing-view {
+  margin: 20px 0;
+}
+
+/* ✅ Clickable field states */
+.esig-public-field-clickable {
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.esig-public-field-clickable:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(45, 106, 79, 0.4);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(45, 106, 79, 0);
+  }
+}
+
+.esig-public-field-signed {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border: 2px solid #10b981 !important;
+  cursor: default;
+}
+
+.esig-public-field-signature-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.esig-public-field-text-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: center;
+  padding: 4px;
+  word-wrap: break-word;
+}
+
+/* ✅ PDF Fallback */
+.esig-public-pdf-fallback {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.esig-public-pdf-fallback p {
+  margin: 10px 0;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.esig-public-btn-secondary {
+  background: #f8f9fa;
+  color: #333;
+  border: 2px solid #dee2e6;
+}
+
+.esig-public-btn-secondary:hover:not(:disabled) {
+  background: #e9ecef;
+  transform: translateY(-2px);
+}
+
+/* Success Page */
+.esig-public-success-page {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.esig-public-success-icon {
+  margin-bottom: 30px;
+  animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.esig-public-success-message {
+  font-size: 18px;
+  color: #6c757d;
+  margin: 20px 0 40px;
+}
+
+.esig-public-success-details {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 0 auto 30px;
+  text-align: left;
+}
+
+.esig-public-success-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.esig-public-success-row:last-child {
+  border-bottom: none;
+}
+
+.esig-public-label {
+  font-weight: 600;
+  color: #666;
+}
+
+.esig-public-value {
+  color: #333;
+}
+
+.esig-public-close-hint {
+  color: #6c757d;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .esig-public-header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    margin: 0 auto 16px;
+  }
+
+  .esig-public-logo {
+    height: 32px;
+  }
+
+  .esig-public-brand-name {
+    font-size: 18px;
+  }
+
+  .esig-public-secure-badge {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .esig-public-footer {
+    margin: 24px auto 0;
+    padding: 16px;
+  }
+
+  .esig-public-footer-links {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .esig-public-footer-separator {
+    display: none;
+  }
+
+  .esig-public-footer-logo {
+    height: 24px;
+  }
+
+  /* ✅ KEEP STEPS HORIZONTAL ON MOBILE */
+  .esig-public-stepper {
+    flex-direction: row !important; /* Force horizontal */
+    gap: 5px;
+    justify-content: space-between;
+  }
+  
+  .esig-public-step {
+    flex: 1;
+    min-width: 0; /* Allow shrinking */
+  }
+  
+  .esig-public-step-circle {
+    width: 36px; /* Smaller on mobile */
+    height: 36px;
+    font-size: 14px;
+  }
+  
+  .esig-public-step-label {
+    font-size: 10px; /* Smaller text */
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
+  }
+
+  .esig-public-step-line {
+    height: 2px; /* Keep line but thinner */
+    margin-bottom: 28px;
+    margin-left: 3px;
+    margin-right: 3px;
+    min-width: 10px;
+    flex: 0.5; /* Shorter lines */
+  }
+
+  .esig-public-step-actions {
+    flex-direction: column-reverse;
+  }
+
+  .esig-public-btn-primary,
+  .esig-public-btn-secondary {
+    width: 100%;
+  }
+
+  .esig-public-step-header h1 {
+    font-size: 24px;
+  }
+
+  .signing-content {
+    padding: 20px;
+  }
+
+  .esig-public-form-card,
+  .esig-public-signature-section {
+    padding: 20px;
+  }
+}
+
+/* ✅ Fullscreen PDF Button */
+.esig-public-btn-fullscreen {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.esig-public-btn-fullscreen:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+/* ✅ Fullscreen PDF Modal */
+.esig-public-fullscreen-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  animation: fadeIn 0.3s ease;
+}
+
+.esig-public-fullscreen-content {
+  background: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (min-width: 769px) {
+  .esig-public-fullscreen-modal {
+    padding: 20px;
+  }
+  .esig-public-fullscreen-content {
+    width: 95vw;
+    height: 95vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.esig-public-fullscreen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+  flex-shrink: 0;
+}
+
+@media (min-width: 769px) {
+  .esig-public-fullscreen-header {
+    padding: 20px 30px;
+  }
+}
+
+.esig-public-fullscreen-header h3 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 16px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 50%;
+}
+
+@media (min-width: 769px) {
+  .esig-public-fullscreen-header h3 {
+    font-size: 20px;
+    max-width: 70%;
+  }
+}
+
+.esig-public-btn-close-fullscreen {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 769px) {
+  .esig-public-btn-close-fullscreen {
+    padding: 10px 20px;
+    font-size: 14px;
+    gap: 6px;
+  }
+}
+
+.esig-public-btn-close-fullscreen:hover {
+  background: #dc2626;
+}
+
+.esig-public-fullscreen-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #f3f4f6;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.esig-public-fullscreen-body canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fields Summary - Shows name/date that will appear on document */
+.esig-public-fields-summary {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.esig-public-fields-summary h3 {
+  color: #0369a1;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.esig-public-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.esig-public-field-item {
+  background: white;
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.esig-public-field-label {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.esig-public-field-value {
+  color: #1e293b;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Fields to fill in document (Step 2) */
+.esig-public-fields-to-fill {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 1px solid #f59e0b;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.esig-public-fields-to-fill h3 {
+  color: #92400e;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+}
+
+.esig-public-fields-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.esig-public-field-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.esig-public-field-badge.esig-public-field-signature {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border: 1px solid #3b82f6;
+  color: #1e40af;
+}
+
+.esig-public-field-badge.esig-public-field-name {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border: 1px solid #22c55e;
+  color: #166534;
+}
+
+.esig-public-field-badge.esig-public-field-date {
+  background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+  border: 1px solid #ec4899;
+  color: #9d174d;
+}
+
+.esig-public-field-badge.esig-public-field-text {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+  border: 1px solid #a855f7;
+  color: #7c3aed;
+}
+
+.esig-public-field-badge strong {
+  font-weight: 700;
+}
+
+.esig-public-field-page {
+  background: rgba(0,0,0,0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-left: auto;
+}
+
+.esig-public-fields-note {
+  color: #92400e;
+  font-size: 13px;
+  margin: 16px 0 0 0;
+  font-style: italic;
+}
+
+/* ========== INTERACTIVE PDF VIEWER ========== */
+.esig-public-pdf-container {
+  display: flex;
+  justify-content: center;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 20px;
+  overflow: auto;
+  max-height: 70vh;
+}
+
+.esig-public-pdf-page-wrapper {
+  position: relative;
+  display: inline-block;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.esig-public-pdf-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  color: #64748b;
+}
+
+/* Iframe fallback wrapper */
+.esig-public-pdf-iframe-wrapper {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.esig-public-pdf-iframe-wrapper iframe {
+  display: block;
+  min-height: 600px;
+}
+
+/* PDF Navigation */
+.esig-public-pdf-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.esig-public-pdf-nav-btn {
+  padding: 8px 16px;
+  background: #2d6a4f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.esig-public-pdf-nav-btn:hover:not(:disabled) {
+  background: #1e4d38;
+}
+
+.esig-public-pdf-nav-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.esig-public-pdf-page-info {
+  font-weight: 600;
+  color: #334155;
+  font-size: 14px;
+}
+
+/* Field Overlays on PDF */
+.esig-public-field-overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+  overflow: hidden;
+  padding: 4px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.esig-public-field-overlay:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Signature field overlay */
+.esig-public-field-overlay-signature {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.15);
+}
+
+.esig-public-field-overlay-signature:hover {
+  background: rgba(59, 130, 246, 0.25);
+}
+
+/* Name/Text field overlay */
+.esig-public-field-overlay-name,
+.esig-public-field-overlay-text {
+  border-color: #22c55e;
+  background: rgba(34, 197, 94, 0.15);
+}
+
+.esig-public-field-overlay-name:hover,
+.esig-public-field-overlay-text:hover {
+  background: rgba(34, 197, 94, 0.25);
+}
+
+/* Date field overlay */
+.esig-public-field-overlay-date {
+  border-color: #ec4899;
+  background: rgba(236, 72, 153, 0.15);
+}
+
+.esig-public-field-overlay-date:hover {
+  background: rgba(236, 72, 153, 0.25);
+}
+
+.esig-public-field-overlay-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.esig-public-field-overlay-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.esig-public-field-overlay-value {
+  font-size: 11px;
+  color: #1e293b;
+  font-weight: 500;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Responsive PDF */
+@media (max-width: 768px) {
+  .esig-public-pdf-container {
+    padding: 10px;
+    max-height: 50vh;
+  }
+  
+  .esig-public-pdf-nav {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .esig-public-pdf-nav-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .esig-public-field-overlay-label {
+    font-size: 8px;
+  }
+  
+  .esig-public-field-overlay-icon {
+    font-size: 14px;
+  }
+}
+

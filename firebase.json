@@ -105,6 +105,10 @@
       {
         "source": "/complete-waba/**",
         "destination": "/complete-waba/index.html"
+      },
+      {
+        "source": "/*/esignature/*/sign/*",
+        "destination": "/esig/index.html"
       }
     ]
   }

@@ -341,20 +341,20 @@ export const EnglishContent = () => (
       </p>
       <ul className="TermOfUse-list">
         <li className="TermOfUse-list-item">
-          <strong>What we access:</strong> When a business connects a Facebook Lead Ads form to their Gambot account, we access submitted lead data (name, email, phone number) via Meta's official API.
+          <strong>What we access:</strong> When a business connects a Facebook Lead Ads form to their Gambot account, we access lead data (such as name, email, and phone number) submitted by users through Facebook Lead Ads forms, with the user's consent, via Meta's official APIs.
         </li>
         <li className="TermOfUse-list-item">
           <strong>Purpose:</strong> Lead data is automatically transferred to the business's CRM within Gambot and is used solely for managing and following up with potential customers.
         </li>
         <li className="TermOfUse-list-item">
-          <strong>Storage:</strong> Lead data is stored only within the linked organization's account and is not shared with any third parties.
+          <strong>Storage:</strong> Lead data is securely stored within the organization's account and is not shared with third parties.
         </li>
         <li className="TermOfUse-list-item">
-          <strong>Deletion:</strong> Lead data can be deleted at any time via the Gambot interface or by contacting us directly.
+          <strong>Deletion:</strong> Lead data can be deleted at any time via the Gambot interface or by contacting us at <a href="mailto:info@gambot.co.il">info@gambot.co.il</a>.
         </li>
       </ul>
       <p className="TermOfUse-paragraph">
-        <strong>Important:</strong> We do not use Meta Platform Data for advertising, sell it to third parties, or use it for any purpose not described in this policy. Use of Meta Platform Data is subject to the <a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener noreferrer">Meta Platform Terms</a>.
+        <strong>Important:</strong> We do not use Meta Platform Data for advertising, sell it to third parties, or use it for any purpose not described in this policy. Use of Meta Platform Data is subject to <a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener noreferrer">Meta Platform Terms</a>.
       </p>
     </section>
 
