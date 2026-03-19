@@ -1,10 +1,12 @@
-﻿import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import './PaymentSuccess.css';
 
 const PaymentSuccess = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { language } = useLanguage();
   const [countdown, setCountdown] = useState(5);
   const isRTL = language === 'he';
@@ -15,7 +17,7 @@ const PaymentSuccess = () => {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(countdownInterval);
-          navigate('/Login');
+          router.push('/login');
           return 0;
         }
         return prev - 1;
@@ -23,14 +25,14 @@ const PaymentSuccess = () => {
     }, 1000);
 
     return () => clearInterval(countdownInterval);
-  }, [navigate]);
+  }, [router]);
 
   return (
     <div className="payment-success-overlay">
       <div className="payment-success-container" dir={isRTL ? 'rtl' : 'ltr'}>
         {/* Logo */}
         <div className="payment-success-logo">
-          <img src="/logo192.png" alt="Gambot" />
+          <img src="/GamBot_Logo.png" alt="Gambot" />
         </div>
 
         {/* Success Icon */}
@@ -85,7 +87,7 @@ const PaymentSuccess = () => {
             </p>
             <button 
               className="redirect-now-btn"
-              onClick={() => navigate('/Login')}
+              onClick={() => router.push('/login')}
             >
               {isRTL ? 'עבור עכשיו' : 'Go Now'}
             </button>

@@ -1,22 +1,22 @@
-﻿import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+'use client';
+
+import React, { Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import './PaymentFailure.css';
 
-const PaymentFailure = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+const PaymentFailureInner = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { language } = useLanguage();
   const isRTL = language === 'he';
   
   // Extract error message from URL if available
-  const queryParams = new URLSearchParams(location.search);
-  const errorCode = queryParams.get('code');
-  const errorMessage = queryParams.get('error');
+  const errorCode = searchParams.get('code');
+  const errorMessage = searchParams.get('error');
 
   const handleRetry = () => {
-    // Go back to previous page (AddPayment)
-    navigate(-1);
+    router.back();
   };
 
   const handleContactSupport = () => {
@@ -28,7 +28,7 @@ const PaymentFailure = () => {
       <div className="payment-failure-container" dir={isRTL ? 'rtl' : 'ltr'}>
         {/* Logo */}
         <div className="payment-failure-logo">
-          <img src="/logo192.png" alt="Gambot" />
+          <img src="/GamBot_Logo.png" alt="Gambot" />
         </div>
 
         {/* Error Icon */}
@@ -94,6 +94,12 @@ const PaymentFailure = () => {
     </div>
   );
 };
+
+const PaymentFailure = () => (
+  <Suspense fallback={<div />}>
+    <PaymentFailureInner />
+  </Suspense>
+);
 
 export default PaymentFailure;
 

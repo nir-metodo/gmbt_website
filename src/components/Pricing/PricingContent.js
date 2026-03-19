@@ -2,19 +2,69 @@
 import { useState } from 'react';
 import styles from './PricingContent.module.css';
 
+const QUIZ = [
+  {
+    q: 'כמה שיחות WhatsApp חדשות בחודש אתם מצפים?',
+    hint: 'שיחה חדשה = איש קשר שלא דיברתם איתו בשבועיים האחרונים',
+    answers: [
+      { label: 'עד 300 שיחות', plan: 'Growth' },
+      { label: '300 – 1,000 שיחות', plan: 'Pro' },
+      { label: 'מעל 1,000 שיחות', plan: 'Business' },
+    ],
+  },
+  {
+    q: 'כמה נציגים/עובדים יצטרכו גישה למערכת?',
+    hint: 'כולל מנהלים, נציגי שירות ומכירות',
+    answers: [
+      { label: '1–2 נציגים', plan: 'Growth' },
+      { label: '3–5 נציגים', plan: 'Pro' },
+      { label: '6 ומעלה', plan: 'Business' },
+    ],
+  },
+  {
+    q: 'האם תרצו עזרה בבניית אוטומציות ובוטים?',
+    hint: 'בוטים שמטפלים בלידים, שולחים תזכורות, מנהלים שיחות אוטומטיות וכו\'',
+    answers: [
+      { label: 'לא — אני מגדיר הכל לבד', plan: 'Growth' },
+      { label: 'כן — תמיכה בסיסית מספיקה לי', plan: 'Pro' },
+      { label: 'כן — אני צריך ליווי וסיוע מלא', plan: 'Business' },
+    ],
+  },
+  {
+    q: 'מה הכי חשוב לכם בבחירת מערכת?',
+    hint: '',
+    answers: [
+      { label: '💸 מחיר נמוך ככל האפשר', plan: 'Growth' },
+      { label: '⚡ יחס מחיר-ערך טוב + תמיכה', plan: 'Pro' },
+      { label: '🏆 פתרון מלא + ניהול חשבון אישי', plan: 'Business' },
+    ],
+  },
+  {
+    q: 'מה המטרה העיקרית שלכם עם WhatsApp עסקי?',
+    hint: '',
+    answers: [
+      { label: 'לנסות ולראות אם זה מתאים לי', plan: 'Growth' },
+      { label: 'לשפר שירות לקוחות ולסגור יותר מכירות', plan: 'Pro' },
+      { label: 'אוטומציה מלאה + שיווק + ניהול לידים בקנה מידה', plan: 'Business' },
+    ],
+  },
+];
+
 const PLANS = [
   {
     name: 'Growth',
     price: 143,
     yearlyPrice: 115,
-    description: 'חבילת הבסיס לעסקים מתחילים',
+    description: 'למשתמשים טכנולוגיים בלבד — ללא סיוע אנושי',
     features: [
       '1 בוט / תהליך אוטומציה',
       '500 שיחות חדשות בחודש',
       '120 תגובות AI',
       '25 הודעות Pro Active',
       '3 משתמשים',
-      'תמיכה בסיסית',
+      '❌ ללא תמיכה בוואטסאפ / זום / הסמעה',
+      '❌ ללא עזרה בהגדרת בוטים',
+      '📚 מרכז ידע בלבד (סרטונים והדרכות)',
     ],
   },
   {
@@ -29,7 +79,7 @@ const PLANS = [
       '300 תגובות AI',
       '50 הודעות Pro Active',
       '5 משתמשים',
-      'תמיכה משופרת + SLA',
+      'תמיכה בסיסית בוואטסאפ בלבד',
     ],
   },
   {
@@ -43,7 +93,7 @@ const PLANS = [
       '600 תגובות AI',
       '100 הודעות Pro Active',
       '10 משתמשים',
-      'תמיכה מועדפת + מנהל חשבון',
+      'תמיכה עודפת + מנהל חשבון ייעודי',
     ],
   },
 ];
@@ -54,16 +104,28 @@ const META_PRICING = [
   { category: 'אימות (Authentication)', price: 0.0067, desc: 'קודי OTP ואימות זהות' },
 ];
 
+function calcQuizResult(answers) {
+  const scores = { Growth: 0, Pro: 0, Business: 0 };
+  answers.forEach(p => scores[p]++);
+  if (scores.Business > scores.Pro && scores.Business > scores.Growth) return 'Business';
+  if (scores.Growth > scores.Pro && scores.Growth > scores.Business) return 'Growth';
+  return 'Pro';
+}
+
 export default function PricingContent() {
   const [billing, setBilling] = useState('monthly');
   const [openFaq, setOpenFaq] = useState(null);
+  const [quizStep, setQuizStep] = useState(0);
+  const [quizAnswers, setQuizAnswers] = useState([]);
+  const [quizResult, setQuizResult] = useState(null);
+  const [showQuiz, setShowQuiz] = useState(false);
 
   const FAQ = [
     { q: 'האם יש ניסיון חינמי?', a: 'כן! ניסיון חינמי של 14 יום — ללא כרטיס אשראי.' },
     { q: 'מה כוללות שיחות חדשות?', a: 'שיחה חדשה היא שיחה עם איש קשר שלא הייתה בשבועיים האחרונים.' },
     { q: 'מה עלות הודעות Meta?', a: 'מחיר Meta לישראל: ≈₪0.044 להודעה שיווקית, ₪0.0067 לשירות/אימות. בנוסף לדמי המנוי.' },
     { q: 'האם ניתן לשדרג/לשנמך?', a: 'כן, ניתן לשנות תוכנית בכל עת. השינוי נכנס לתוקף בחידוש הבא.' },
-    { q: 'מה הגדרת תמיכה?', a: 'Growth — אימייל. Pro — אימייל + צ׳אט עדיפות. Business — מנהל חשבון ייעודי.' },
+    { q: 'מה הגדרת תמיכה?', a: 'Growth — מרכז ידע בלבד (סרטונים והדרכות), ללא תמיכה אנושית. Pro — תמיכה בסיסית בוואטסאפ בלבד. Business — תמיכה עודפת + מנהל חשבון ייעודי.' },
   ];
 
   return (
@@ -90,6 +152,104 @@ export default function PricingContent() {
               שנתי <span className={styles.discount}>20% הנחה</span>
             </button>
           </div>
+        </div>
+      </section>
+
+      {/* Quiz */}
+      <section className={`${styles.section} ${styles.bgLight}`}>
+        <div className={styles.container}>
+          {!showQuiz ? (
+            <div className={styles.quizTeaser}>
+              <div className={styles.quizTeaserIcon}>🎯</div>
+              <h2 className={styles.sectionTitle}>לא בטוחים איזו חבילה מתאימה לכם?</h2>
+              <p className={styles.sectionDesc}>ענו על 5 שאלות קצרות וקבלו המלצה מותאמת אישית — תוך 60 שניות</p>
+              <button className={styles.quizStartBtn} onClick={() => setShowQuiz(true)}>
+                🔍 גלו את החבילה שלכם
+              </button>
+            </div>
+          ) : !quizResult ? (
+            <div className={styles.quizCard}>
+              <div className={styles.quizProgress}>
+                {QUIZ.map((_, i) => (
+                  <div key={i} className={`${styles.quizDot} ${i < quizStep ? styles.quizDotDone : i === quizStep ? styles.quizDotActive : ''}`} />
+                ))}
+              </div>
+              <p className={styles.quizStepLabel}>שאלה {quizStep + 1} מתוך {QUIZ.length}</p>
+              <h3 className={styles.quizQuestion}>{QUIZ[quizStep].q}</h3>
+              {QUIZ[quizStep].hint && <p className={styles.quizHint}>{QUIZ[quizStep].hint}</p>}
+              <div className={styles.quizOptions}>
+                {QUIZ[quizStep].answers.map((ans, i) => (
+                  <button
+                    key={i}
+                    className={styles.quizOption}
+                    onClick={() => {
+                      const next = [...quizAnswers, ans.plan];
+                      if (quizStep + 1 < QUIZ.length) {
+                        setQuizAnswers(next);
+                        setQuizStep(quizStep + 1);
+                      } else {
+                        setQuizResult(calcQuizResult(next));
+                        setQuizAnswers(next);
+                      }
+                    }}
+                  >
+                    {ans.label}
+                  </button>
+                ))}
+              </div>
+              {quizStep > 0 && (
+                <button className={styles.quizBack} onClick={() => { setQuizStep(quizStep - 1); setQuizAnswers(quizAnswers.slice(0, -1)); }}>
+                  ← חזרה
+                </button>
+              )}
+            </div>
+          ) : (
+            <div className={styles.quizCard}>
+              <div className={styles.quizResultIcon}>
+                {quizResult === 'Business' ? '🏆' : quizResult === 'Pro' ? '⚡' : '📚'}
+              </div>
+              <h3 className={styles.quizResultTitle}>
+                החבילה המומלצת עבורכם:
+                <span className={`${styles.quizResultPlan} ${quizResult === 'Business' ? styles.quizPlanBusiness : quizResult === 'Pro' ? styles.quizPlanPro : styles.quizPlanGrowth}`}>
+                  {quizResult}
+                </span>
+              </h3>
+              {quizResult === 'Business' && (
+                <p className={styles.quizResultDesc}>הפרופיל שלכם מצביע על צרכים ארגוניים ברמה גבוהה — Business נותנת לכם מנהל חשבון ייעודי, תמיכה עודפת וגבולות שמתאימים לקנה המידה שלכם.</p>
+              )}
+              {quizResult === 'Pro' && (
+                <p className={styles.quizResultDesc}>Pro היא הבחירה החכמה לרוב העסקים — תמיכה בסיסית, יחס מחיר-ערך מצוין, וכל הכלים שצריך כדי לצמוח.</p>
+              )}
+              {quizResult === 'Growth' && (
+                <p className={styles.quizResultWarning}>
+                  ⚠️ Growth מיועדת למשתמשים עצמאיים לחלוטין — ללא תמיכה אנושית, ללא עזרה בהגדרה. <strong>90% מהלקוחות שהתחילו ב-Growth עברו ל-Pro תוך חודש.</strong> שקלו Pro מהיום כדי לחסוך זמן.
+                </p>
+              )}
+              <div className={styles.quizResultActions}>
+                <a
+                  href="https://wa.me/97233768997?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%AA%D7%97%D7%99%D7%9C%20%F0%9F%9A%80"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.quizCta} ${quizResult === 'Business' ? styles.quizCtaBusiness : quizResult === 'Pro' ? styles.quizCtaPro : styles.quizCtaGrowth}`}
+                >
+                  התחילו ב-{quizResult} →
+                </a>
+                {quizResult === 'Growth' && (
+                  <a
+                    href="https://wa.me/97233768997?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%AA%D7%97%D7%99%D7%9C%20%F0%9F%9A%80"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${styles.quizCta} ${styles.quizCtaPro}`}
+                  >
+                    ⭐ נסו Pro במקום
+                  </a>
+                )}
+              </div>
+              <button className={styles.quizBack} onClick={() => { setQuizStep(0); setQuizAnswers([]); setQuizResult(null); }}>
+                🔄 התחילו מחדש
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

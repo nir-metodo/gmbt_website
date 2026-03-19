@@ -109,6 +109,10 @@
       {
         "source": "/*/esignature/*/sign/*",
         "destination": "/esig/index.html"
+      },
+      {
+        "source": "/addpayment**",
+        "destination": "/addpayment/index.html"
       }
     ]
   }

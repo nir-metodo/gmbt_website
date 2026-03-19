@@ -10,7 +10,7 @@ const packages = [
   {
     id: 'basic',
     name: 'הטמעה בסיסית',
-    price: 1200,
+    price: 1500,
     icon: <FaCheckCircle />,
     description: 'מיועד לעסקים שרוצים להתחיל בצורה מסודרת, עם ליווי ראשוני',
     features: [
@@ -27,7 +27,7 @@ const packages = [
   {
     id: 'professional',
     name: 'הטמעה מקצועית',
-    price: 2500,
+    price: 2970,
     icon: <FaStar />,
     description: 'כולל כל מה שבמסלול הבסיסי, ובנוסף',
     features: [
@@ -42,7 +42,7 @@ const packages = [
   {
     id: 'advanced',
     name: 'הטמעה מתקדמת',
-    price: 3500,
+    price: 3970,
     icon: <FaRocket />,
     popular: true,
     description: 'כולל כל מה שבשני המסלולים הקודמים, ובנוסף',

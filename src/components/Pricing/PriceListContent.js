@@ -27,7 +27,7 @@ const plans = [
     name: "Growth",
     price: 143,
     yearlyPrice: 115 * 12,
-    description: "חבילת הבסיס לעסק שלכם",
+    description: "למשתמשים טכנולוגיים בלבד — ללא סיוע אנושי",
     features: [
       "1 בוט / תהליך אוטומציה",
       "200 שיחות בחודש",
@@ -35,7 +35,9 @@ const plans = [
       "עד 1,000 אנשי קשר",
       "50 פעולות AI בחודש (כל 500 נוספות 50 ₪)",
       "1 משתמש (משתמש נוסף 30 ₪)",
-      "ניסיון בלבד",
+      "❌ ללא תמיכה בוואטסאפ / זום / הסמעה",
+      "❌ ללא עזרה בהגדרת בוטים",
+      "📚 מרכז ידע בלבד (סרטונים והדרכות)",
     ],
     moreFeatures: [
       "ניהול לידים בסיסי",
@@ -57,7 +59,7 @@ const plans = [
       "300 תגובות / פעולות AI (כל 500 נוספות 50 ₪)",
       "⚡ 50 הודעות Pro Active כלולות (כל 25 נוספות 15 ₪)",
       "5 משתמשים (כל משתמש נוסף 30 ₪)",
-      "תמיכה משופרת",
+      "תמיכה בסיסית בוואטסאפ בלבד",
     ],
     moreFeatures: [
       "ניהול לידים ו-CRM מלא",
@@ -80,7 +82,7 @@ const plans = [
       "1,500 פעולות AI",
       "200 הודעות Pro Active",
       "10 משתמשים",
-      "תוכנית עדיפה",
+      "תמיכה עודפת",
     ],
     moreFeatures: [
       "ניהול לידים ו-CRM מלא",
@@ -515,7 +517,7 @@ export default function PriceListContent() {
               <h3 className="service-option-title">הטמעה ושירותים מקצועיים</h3>
               <p className="service-option-description">תן לצוות שלנו לטפל בהכל — מהקמה ועד אוטומציה</p>
               <ul className="service-option-features">
-                <li><FaCheck className="check-icon" /> שירות הטמעה מלא (₪950 - ₪2,500)</li>
+                <li><FaCheck className="check-icon" /> שירות הטמעה מלא (₪1,500 - ₪3,970)</li>
                 <li><FaCheck className="check-icon" /> בניית בוטים ואוטומציות</li>
                 <li><FaCheck className="check-icon" /> שחזור היסטוריית וואטסאפ</li>
                 <li><FaCheck className="check-icon" /> תמיכה ייעודית</li>

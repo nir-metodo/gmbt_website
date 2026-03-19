@@ -1,17 +1,32 @@
-﻿import React, { useState, useEffect } from "react";
+'use client';
+
+import React, { useState, useEffect, Suspense } from "react";
 import axios from "axios";
 import CreditCardInfo from "./CreditCardInfo"; // Credit card info component
 import "./AddPayment.css";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { MdOutlinePayment } from "react-icons/md";
 import LoadingOverlay from './LoadingOverlay'; // Adjust the path if needed
-import { useLocation, useNavigate } from "react-router-dom"; // To get URL params and navigate
+import { useSearchParams } from "next/navigation";
 import { useLanguage } from '@/contexts/LanguageContext'; // Import language context
 
-const AddPayment = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const queryParams = new URLSearchParams(location.search); // Get the query string parameters
+const AddPaymentInner = () => {
+  // ✅ Fix malformed URLs where WhatsApp strips '?' from template button variables
+  // WhatsApp converts "addpayment?org=..." to "addpaymentorg=..." (strips '?')
+  // Firebase rewrite serves this page for "/addpayment**", so we detect and fix it here
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const pathname = window.location.pathname; // e.g. "/addpaymentorganizationName=..."
+    if (pathname.startsWith('/addpayment') && pathname.length > '/addpayment'.length && !pathname.startsWith('/addpayment/')) {
+      // Params are baked into the path — extract and redirect to proper URL
+      const rawParams = pathname.replace('/addpayment', ''); // "organizationName=...&plan=..."
+      const existingSearch = window.location.search.replace(/^[?&]/, '&'); // preserve any real query params
+      window.location.replace('/addpayment?' + rawParams + existingSearch);
+    }
+  }, []);
+
+  const searchParams = useSearchParams();
+  const queryParams = searchParams;
 
   // Extract values from query parameters
   const organizationName = queryParams.get("organizationName");
@@ -30,13 +45,13 @@ const AddPayment = () => {
   const nextChargeDate = queryParams.get("nextChargeDate"); // Next charge date from reminder URL
   
   // Get language context and currency helpers
-  const { language, changeLanguage } = useLanguage();
+  const { language, setCurrentLanguage } = useLanguage();
   
   // Set initial language based on currency (run only once on mount)
   // Note: User can still manually change language via header toggle after mount
   useEffect(() => {
     const targetLanguage = urlCurrency === "ILS" ? "he" : "en";
-    changeLanguage(targetLanguage);
+    if (setCurrentLanguage) setCurrentLanguage(targetLanguage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlCurrency]); // Only re-run if URL currency changes
   
@@ -518,7 +533,15 @@ const AddPayment = () => {
                 : (effectiveLanguage === 'he' ? 'חיוב שנתי החל מה-' : 'Annual billing starting ')
               }
             </strong>
-            <span className="charge-date">{nextChargeDate}</span>
+            <span className="charge-date">
+              {(() => {
+                const d = new Date(nextChargeDate);
+                if (isNaN(d.getTime())) return nextChargeDate;
+                return d.toLocaleDateString(effectiveLanguage === 'he' ? 'he-IL' : 'en-US', {
+                  year: 'numeric', month: 'long', day: 'numeric'
+                });
+              })()}
+            </span>
           </p>
         </div>
       )}
@@ -621,6 +644,12 @@ const AddPayment = () => {
     </div>
   );
 };
+
+const AddPayment = () => (
+  <Suspense fallback={<div />}>
+    <AddPaymentInner />
+  </Suspense>
+);
 
 export default AddPayment;
 

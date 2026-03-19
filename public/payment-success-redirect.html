@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Success</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        }
+        .loader {
+            text-align: center;
+            color: white;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 20px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        h2 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="spinner"></div>
+        <h2>✓ Success!</h2>
+        <h2>הצלחה! ✓</h2>
+        <p>Redirecting...</p>
+        <p>מעביר...</p>
+    </div>
+    
+    <script>
+        // Break out of iframe and redirect parent window
+        if (window.parent && window.parent !== window) {
+            // We're inside an iframe
+            window.parent.location.href = window.location.origin + '/payment-success';
+        } else {
+            // Direct navigation (shouldn't happen, but just in case)
+            window.location.href = '/payment-success';
+        }
+    </script>
+</body>
+</html>
+
