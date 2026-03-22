@@ -22,6 +22,17 @@ export default function LeadForm({ source = 'website' }) {
         sendLeadWebhook({ name: form.name, email: form.email, phone: form.phone, businessName: form.businessName }),
         sendThankYouEmail({ name: form.name, email: form.email, source }),
       ]);
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'lead_form',
+          event_label: source,
+        });
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-18018385768/zoGcCMK4-IwcEOj-6o9D',
+          value: 1.0,
+          currency: 'ILS',
+        });
+      }
       window.location.href = '/תודה';
     } catch {
       setStatus('error');

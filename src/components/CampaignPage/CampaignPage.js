@@ -26,8 +26,23 @@ const STEPS = [
   { num: '04', text: 'מחליטים — בלי לחץ, בלי מחויבות' },
 ];
 
+function trackWAClick(location = 'button') {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'whatsapp_click', {
+      event_category: 'engagement',
+      event_label: location,
+    });
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-18018385768/tTojCPDWio0cEOj-6o9D',
+      value: 1.0,
+      currency: 'ILS',
+    });
+  }
+  window.open(`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`, '_blank');
+}
+
 export default function CampaignPage() {
-  const openWA = () => window.open(`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`, '_blank');
+  const openWA = (location = 'button') => trackWAClick(location);
 
   return (
     <div className={styles.page} dir="rtl">
@@ -36,7 +51,8 @@ export default function CampaignPage() {
       <header className={styles.header}>
         <img src="/new_logo.png" alt="Gambot" className={styles.logo} />
         <a href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`} target="_blank" rel="noreferrer"
-          className={styles.headerWa}>
+          className={styles.headerWa}
+          onClick={(e) => { e.preventDefault(); trackWAClick('header'); }}>
           💬 דברו איתנו עכשיו
         </a>
       </header>
@@ -52,7 +68,7 @@ export default function CampaignPage() {
           <p className={styles.heroDesc}>
             שלחו לנו וואטסאפ עכשיו — תוך שניות תחוו בעצמכם איך הבוט עונה, שואל ומסדר הכל
           </p>
-          <button className={styles.ctaMain} onClick={openWA}>
+          <button className={styles.ctaMain} onClick={() => openWA('hero')}>
             💬 שלחו וואטסאפ — הבוט עונה עכשיו
           </button>
           <p className={styles.ctaSub}>⚡ לא צריך להירשם · לא צריך כרטיס אשראי · פשוט שלחו הודעה</p>
@@ -101,7 +117,7 @@ export default function CampaignPage() {
             לא צריך שיצרו לכם כלום — פשוט שלחו לנו הודעה עכשיו.<br />
             הבוט שלנו יענה לכם, ישאל שאלות, יסדר ואפילו יקבע פגישה — בדיוק כמו שיעשה ללקוחות שלכם
           </p>
-          <button className={styles.ctaWa} onClick={openWA}>
+          <button className={styles.ctaWa} onClick={() => openWA('try_live')}>
             💬 שלחו הודעה — הבוט עונה עכשיו
           </button>
         </div>
