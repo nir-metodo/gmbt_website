@@ -3,10 +3,11 @@ const GAMBOT_WEBHOOK_TOKEN = 'Bearer EAAJT4Xz94h0BOZBFZBE8X7JG09mddZAGTO0wxAnyLi
 
 /**
  * Sends a lead to the Gambot backend webhook.
- * Field names match the API contract exactly (including the typo in "buisnessname").
+ * The HandleWebhook endpoint expects the contact nested under a "contact" key,
+ * with phoneNumber (camelCase) and a keys array for CRM tagging.
  * Failures are swallowed so they never block the user-facing form submission.
  */
-export async function sendLeadWebhook({ name = '', email = '', phone = '', message = '', businessName = '' }) {
+export async function sendLeadWebhook({ name = '', email = '', phone = '', message = '', businessName = '', source = 'website' }) {
   try {
     await fetch(GAMBOT_WEBHOOK_URL, {
       method: 'POST',
@@ -15,11 +16,15 @@ export async function sendLeadWebhook({ name = '', email = '', phone = '', messa
         'Authorization': GAMBOT_WEBHOOK_TOKEN,
       },
       body: JSON.stringify({
-        name,
-        email,
-        phonenumber: phone,
-        message,
-        buisnessname: businessName,
+        contact: {
+          name,
+          email,
+          phoneNumber: phone.replace(/\D/g, ''),
+          message,
+          businessName,
+          keys: ['Leads'],
+          from: source,
+        },
       }),
     });
   } catch {
