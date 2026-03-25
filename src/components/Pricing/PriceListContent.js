@@ -517,7 +517,7 @@ export default function PriceListContent() {
               <h3 className="service-option-title">הטמעה ושירותים מקצועיים</h3>
               <p className="service-option-description">תן לצוות שלנו לטפל בהכל — מהקמה ועד אוטומציה</p>
               <ul className="service-option-features">
-                <li><FaCheck className="check-icon" /> שירות הטמעה מלא (₪1,500 - ₪3,970)</li>
+                <li><FaCheck className="check-icon" /> שירות הטמעה מלא (₪1,500 - ₪3,970 כולל CRM)</li>
                 <li><FaCheck className="check-icon" /> בניית בוטים ואוטומציות</li>
                 <li><FaCheck className="check-icon" /> שחזור היסטוריית וואטסאפ</li>
                 <li><FaCheck className="check-icon" /> תמיכה ייעודית</li>

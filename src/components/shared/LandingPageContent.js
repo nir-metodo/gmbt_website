@@ -152,10 +152,29 @@ export default function LandingPageContent({ content }) {
                     <span>{item.q}</span>
                     <span className={styles.faqArrow}>{openFaq === i ? '▲' : '▼'}</span>
                   </div>
-                  {openFaq === i && <p className={styles.faqA}>{item.a}</p>}
+                  <p className={`${styles.faqA} ${openFaq !== i ? styles.faqHidden : ''}`}>{item.a}</p>
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* Article — rich text content for SEO */}
+      {c.article && (
+        <section className={`${styles.section} ${styles.bgLight}`}>
+          <div className={styles.container}>
+            <article className={styles.article}>
+              {c.article.map((block, i) =>
+                block.type === 'h2' ? (
+                  <h2 key={i} className={styles.articleH2}>{block.text}</h2>
+                ) : block.type === 'h3' ? (
+                  <h3 key={i} className={styles.articleH3}>{block.text}</h3>
+                ) : (
+                  <p key={i} className={styles.articleP}>{block.text}</p>
+                )
+              )}
+            </article>
           </div>
         </section>
       )}

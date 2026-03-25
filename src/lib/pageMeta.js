@@ -4,11 +4,11 @@
  */
 export const PAGE_META = {
   home: {
-    title: 'גמבוט | מערכת WhatsApp API מובילה בישראל | בוט AI, אוטומציה, קמפיינים',
-    description: 'גמבוט - שותף מטא רשמי בישראל. בוט AI לוואטסאפ, אוטומציה חכמה, קמפיינים ודיוור המוני. הכל ללא קוד. ניסיון חינם עכשיו.',
-    keywords: 'WhatsApp API ישראל, בוט וואטסאפ, אוטומציה וואטסאפ, שיווק בוואטסאפ, בוט AI, מערכת וואטסאפ עסקי, Gambot, גמבוט',
+    title: 'גמבוט | מערכת WhatsApp API מובילה בישראל | אוטומציה, קמפיינים, CRM',
+    description: 'גמבוט - שותף מטא רשמי בישראל. אוטומציה חכמה בוואטסאפ, קמפיינים, CRM ודיוור המוני. הכל ללא קוד. ניסיון חינם עכשיו.',
+    keywords: 'WhatsApp API ישראל, בוט וואטסאפ, אוטומציה וואטסאפ, שיווק בוואטסאפ, מערכת וואטסאפ עסקי, Gambot, גמבוט',
     canonical: 'https://gambot.co.il/',
-    og: { title: 'גמבוט | מערכת WhatsApp API מובילה בישראל', description: 'שותף מטא רשמי. בוט AI, אוטומציה, קמפיינים ושירות לקוחות 24/7.' },
+    og: { title: 'גמבוט | מערכת WhatsApp API מובילה בישראל', description: 'שותף מטא רשמי. אוטומציה, קמפיינים, CRM ושירות לקוחות 24/7.' },
   },
   whatsappBot: {
     title: 'בוט לוואטסאפ | Gambot - בנו בוט ללא קוד | ישראל 2026',
@@ -68,11 +68,37 @@ export const PAGE_META = {
     canonical: 'https://gambot.co.il/קמפיינים-בוואטסאפ/',
   },
   whatsappAiBot: {
-    title: 'בוט AI לוואטסאפ | Gambot AI | שיחות חכמות, מדיה, סריקת אתר | 2026',
-    description: 'בוט AI לוואטסאפ שמנהל שיחות טבעיות, שולח תמונות, סורק את האתר שלכם, מתאם פגישות ומשיג מטרות — ללא קוד. הגדרה תוך 5 דקות.',
-    keywords: 'בוט AI וואטסאפ, gambot ai, chatbot ai וואטסאפ, בוט חכם וואטסאפ, שיחות AI, סריקת אתר, תיאום ביומן',
+    title: 'בוט AI לוואטסאפ | Gambot AI Agent | שיחות חכמות 24/7 | ישראל 2026',
+    description: 'בוט AI לוואטסאפ מבוסס GPT-4 — מנהל שיחות טבעיות, שולח תמונות, סורק את האתר שלכם, מתאם פגישות ביומן ומשיג מטרות. הגדרה תוך 5 דקות, ללא קוד.',
+    keywords: 'בוט AI לוואטסאפ, בוט AI וואטסאפ, chatbot AI וואטסאפ, gambot AI, סוכן AI וואטסאפ, GPT וואטסאפ, בוט חכם לעסקים',
     canonical: 'https://gambot.co.il/בוט-ai-וואטסאפ/',
     hreflang: { he: 'https://gambot.co.il/בוט-ai-וואטסאפ/' },
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'SoftwareApplication',
+          name: 'Gambot AI Agent — בוט AI לוואטסאפ',
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Web',
+          inLanguage: 'he',
+          url: 'https://gambot.co.il/בוט-ai-וואטסאפ/',
+          offers: { '@type': 'Offer', price: '287', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
+          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '214', bestRating: '5' },
+          description: 'בוט AI לוואטסאפ מבוסס GPT-4 שמנהל שיחות טבעיות, סורק אתרים, מתאם פגישות ומשיג מטרות עסקיות אוטומטית.',
+          featureList: 'שיחות AI טבעיות, סריקת אתר אוטומטית, קביעת פגישות, שליחת מדיה, זיכרון שיחה, העברה לנציג',
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'מה זה בוט AI לוואטסאפ?', acceptedAnswer: { '@type': 'Answer', text: 'בוט AI לוואטסאפ הוא סוכן וירטואלי מבוסס בינה מלאכותית (GPT-4) שמנהל שיחות טבעיות עם לקוחות בוואטסאפ, 24/7, ללא התערבות אנושית.' } },
+            { '@type': 'Question', name: 'כמה עולה בוט AI לוואטסאפ?', acceptedAnswer: { '@type': 'Answer', text: 'Gambot AI כלול בחבילת Pro החל מ-287 ₪ לחודש. ניתן להתחיל ניסיון חינם של חודש ללא כרטיס אשראי.' } },
+            { '@type': 'Question', name: 'כמה זמן לוקח להגדיר בוט AI לוואטסאפ?', acceptedAnswer: { '@type': 'Answer', text: 'הגדרה בסיסית אורכת 5 דקות — מחברים את הוואטסאפ, לוחצים סרוק אתר וה-AI מוכן. הגדרות מתקדמות לוקחות כשעה.' } },
+            { '@type': 'Question', name: 'האם בוט AI יכול לקבוע פגישות?', acceptedAnswer: { '@type': 'Answer', text: 'כן, Gambot AI קובע פגישות ישירות ב-Google Calendar ו-Outlook, ושולח סיכום AI עם פרטי הלקוח לאחר כל שיחה.' } },
+          ],
+        },
+      ],
+    },
   },
   aiLeadBot: {
     title: 'בוט לידים AI לוואטסאפ | קביעת פגישות + סיכום AI | גמבוט 2026',

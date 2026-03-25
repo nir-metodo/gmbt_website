@@ -112,6 +112,56 @@ export default function Footer() {
         </div>
       </div>
 
+      {!isEn && (
+        <div className={styles.seoLinks}>
+          <div className={styles.seoLinksGroup}>
+            <span className={styles.seoLinksTitle}>בוטים לוואטסאפ</span>
+            <div className={styles.seoLinksRow}>
+              <Link href="/בוט-וואטסאפ/">בוט וואטסאפ</Link>
+              <Link href="/בוט-ai-וואטסאפ/">בוט AI לוואטסאפ</Link>
+              <Link href="/בוט-לידים-וואטסאפ/">בוט לידים</Link>
+              <Link href="/בוט-מכירות-וואטסאפ/">בוט מכירות</Link>
+              <Link href="/בוט-שירות-לקוחות-וואטסאפ/">בוט שירות לקוחות</Link>
+              <Link href="/צאטבוט-וואטסאפ/">צ׳אטבוט וואטסאפ</Link>
+              <Link href="/סוגי-בוט-וואטסאפ/">סוגי בוטים</Link>
+            </div>
+          </div>
+          <div className={styles.seoLinksGroup}>
+            <span className={styles.seoLinksTitle}>שיווק וקמפיינים</span>
+            <div className={styles.seoLinksRow}>
+              <Link href="/שיווק-בוואטסאפ/">שיווק בוואטסאפ</Link>
+              <Link href="/שיווק-בוואטסאפ-לעסקים/">שיווק לעסקים</Link>
+              <Link href="/דיוור-בוואטסאפ/">דיוור בוואטסאפ</Link>
+              <Link href="/קמפיינים-בוואטסאפ/">קמפיינים בוואטסאפ</Link>
+              <Link href="/אוטומציה-בוואטסאפ/">אוטומציה בוואטסאפ</Link>
+              <Link href="/זימון-תורים-וואטסאפ/">זימון תורים</Link>
+            </div>
+          </div>
+          <div className={styles.seoLinksGroup}>
+            <span className={styles.seoLinksTitle}>מערכת ו-CRM</span>
+            <div className={styles.seoLinksRow}>
+              <Link href="/וואטסאפ-crm/">WhatsApp CRM</Link>
+              <Link href="/crm-לעסקים/">CRM לעסקים</Link>
+              <Link href="/מערכת-וואטסאפ-לעסקים/">מערכת וואטסאפ לעסקים</Link>
+              <Link href="/מערכת-שיווק-בוואטסאפ/">מערכת שיווק</Link>
+              <Link href="/וואטסאפ-עסקי/">וואטסאפ עסקי</Link>
+              <Link href="/הצעות-מחיר/">הצעות מחיר</Link>
+              <Link href="/חתימה-דיגיטלית/">חתימה דיגיטלית</Link>
+            </div>
+          </div>
+          <div className={styles.seoLinksGroup}>
+            <span className={styles.seoLinksTitle}>מחירים ומידע</span>
+            <div className={styles.seoLinksRow}>
+              <Link href="/PriceList/">מחירון</Link>
+              <Link href="/PriceList/OnboardingServices/">שירותי הטמעה</Link>
+              <Link href="/whatsapp-api-pricing/">עלות הודעות WhatsApp</Link>
+              <Link href="/blog/">בלוג</Link>
+              <Link href="/guide/">מדריך למשתמש</Link>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className={styles.bottom}>
         <div className={styles.social}>
           <a href="https://www.linkedin.com/company/gambot-platform" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
