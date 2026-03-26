@@ -45,7 +45,7 @@ const MODULES = [
     id: 'routing',
     icon: '🎯',
     title: 'ניתוב וסינון חכם',
-    color: '#0d7a4e',
+    color: '#128C7E',
     features: [
       'כל נציג רואה רק את התחום שלו',
       'מכירות ראה לידים חדשים בלבד',

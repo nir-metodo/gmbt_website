@@ -21,7 +21,6 @@ const INTEGRATIONS = [
   { icon: '🌐', name: 'דפי נחיתה', desc: 'הטמעת קוד פשוט — כל ליד מדף הנחיתה נכנס ישירות' },
   { icon: '💬', name: 'וואטסאפ', desc: 'ליד שפנה בוואטסאפ → נוצר קשר ופותחת שיחה אוטומטית' },
   { icon: '🔗', name: 'Webhook / API', desc: 'חיבור לכל מערכת — Zapier, Make, API פרטי' },
-  { icon: '📊', name: 'Google Sheets', desc: 'ייצוא ויצירת לידים מגיליון — סנכרון דו-כיווני' },
 ];
 
 const KANBAN_STAGES = [

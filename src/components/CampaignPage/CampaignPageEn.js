@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './CampaignPage.module.css';
 import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
 import { sendThankYouEmail } from '@/utils/sendThankYouEmail';
@@ -105,6 +105,15 @@ function FaqItem({ q, a }) {
 }
 
 export default function CampaignPageEn() {
+  useEffect(() => {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+    return () => {
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'he';
+    };
+  }, []);
+
   return (
     <div className={styles.page} dir="ltr">
       <header className={styles.header}>

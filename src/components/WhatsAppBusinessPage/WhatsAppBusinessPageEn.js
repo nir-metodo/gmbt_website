@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './WhatsAppBusinessPage.module.css';
 import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
 import { sendThankYouEmail } from '@/utils/sendThankYouEmail';
@@ -41,7 +41,7 @@ const MODULES = [
     id: 'routing',
     icon: '🎯',
     title: 'Smart Routing & Filtering',
-    color: '#0d7a4e',
+    color: '#128C7E',
     features: [
       'Each agent sees only their area',
       'Sales sees only new leads',
@@ -160,6 +160,15 @@ function MiniLeadForm({ source = 'wa-business-en' }) {
 export default function WhatsAppBusinessPageEn() {
   const [activeModule, setActiveModule] = useState('inbox');
   const mod = MODULES.find(m => m.id === activeModule);
+
+  useEffect(() => {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+    return () => {
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'he';
+    };
+  }, []);
 
   return (
     <div className={styles.page} dir="ltr">

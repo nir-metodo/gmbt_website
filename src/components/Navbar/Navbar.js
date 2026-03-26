@@ -72,7 +72,9 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (pathname?.startsWith('/complete-waba') || pathname?.startsWith('/קמפיין-')) return null;
+  const EN_CAMPAIGN_PATHS = ['/whatsapp-bot-campaign', '/crm-for-business', '/whatsapp-business-system', '/whatsapp-marketing', '/whatsapp-bot-types'];
+  const isEnCampaign = EN_CAMPAIGN_PATHS.some(p => pathname?.startsWith(p));
+  if (pathname?.startsWith('/complete-waba') || pathname?.startsWith('/קמפיין-') || isEnCampaign) return null;
 
   useEffect(() => {
     setIsOpen(false);

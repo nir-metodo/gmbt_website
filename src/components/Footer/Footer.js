@@ -14,7 +14,9 @@ export default function Footer() {
   const isEn = currentLanguage === 'en';
   const pathname = usePathname();
 
-  if (pathname?.startsWith('/complete-waba') || pathname?.startsWith('/קמפיין-')) return null;
+  const EN_CAMPAIGN_PATHS = ['/whatsapp-bot-campaign', '/crm-for-business', '/whatsapp-business-system', '/whatsapp-marketing', '/whatsapp-bot-types'];
+  const isEnCampaign = EN_CAMPAIGN_PATHS.some(p => pathname?.startsWith(p));
+  if (pathname?.startsWith('/complete-waba') || pathname?.startsWith('/קמפיין-') || isEnCampaign) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -157,6 +159,17 @@ export default function Footer() {
               <Link href="/whatsapp-api-pricing/">עלות הודעות WhatsApp</Link>
               <Link href="/blog/">בלוג</Link>
               <Link href="/guide/">מדריך למשתמש</Link>
+            </div>
+          </div>
+          <div className={styles.seoLinksGroup}>
+            <span className={styles.seoLinksTitle}>דפי קמפיין</span>
+            <div className={styles.seoLinksRow}>
+              <Link href="/קמפיין-בוט-וואטסאפ/">קמפיין בוט וואטסאפ</Link>
+              <Link href="/קמפיין-בוט-ai-לעסקים/">קמפיין בוט AI</Link>
+              <Link href="/crm-לעסקים/">CRM לעסקים</Link>
+              <Link href="/מערכת-וואטסאפ-לעסקים/">מערכת וואטסאפ לעסקים</Link>
+              <Link href="/שיווק-בוואטסאפ-לעסקים/">שיווק בוואטסאפ לעסקים</Link>
+              <Link href="/סוגי-בוט-וואטסאפ/">סוגי בוטים לוואטסאפ</Link>
             </div>
           </div>
         </div>

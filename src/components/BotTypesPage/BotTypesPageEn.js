@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './BotTypesPage.module.css';
 import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
 import { sendThankYouEmail } from '@/utils/sendThankYouEmail';
@@ -163,6 +163,15 @@ function MiniLeadForm({ source = 'bot-types-en' }) {
 export default function BotTypesPageEn() {
   const [selected, setSelected] = useState('rule');
   const current = BOT_TYPES.find(b => b.id === selected);
+
+  useEffect(() => {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+    return () => {
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'he';
+    };
+  }, []);
 
   return (
     <div className={styles.page} dir="ltr">

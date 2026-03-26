@@ -20,13 +20,48 @@ const PAINS = [
   { icon: '🌙', text: 'אין מענה בלילות ובסופ"ש — לידים הולכים לאיבוד' },
 ];
 
+const BOT_TYPES = [
+  {
+    icon: '🤖',
+    title: 'בוט קלאסי',
+    subtitle: 'פשוט ויעיל',
+    desc: 'תפריטים, כפתורים ונתיבים קבועים. מושלם לעסקים שרוצים תסריט ברור ושליטה מלאה בכל שיחה.',
+    tags: ['מהיר להגדרה', 'שליטה מלאה', 'חסכוני'],
+    cta: 'בוט קלאסי',
+  },
+  {
+    icon: '🧠',
+    title: 'בוט AI',
+    subtitle: 'חכם ואנושי',
+    desc: 'עונה בשפה טבעית לכל שאלה, מבין הקשר, ומרגיש כמו נציג אמיתי — 24/7 ללא עייפות.',
+    tags: ['שפה טבעית', 'עונה לכל שאלה', 'מרגיש אנושי'],
+    cta: 'בוט AI',
+  },
+  {
+    icon: '⚡',
+    title: 'בוט משולב',
+    subtitle: 'הטוב משני העולמות',
+    desc: 'AI שעונה חופשי + לוגיקה מובנית לניתוב לידים, פולואפ ואוטומציות. הפתרון הכי חזק.',
+    tags: ['AI + לוגיקה', 'פולואפ אוטומטי', 'מקסימום המרות'],
+    cta: 'בוט משולב',
+    highlight: true,
+  },
+];
+
 const BENEFITS = [
   { icon: '🤖', title: 'מענה אוטומטי 24/7', desc: 'הבוט עונה בשניות — בלילה, בשבת, בחגים. לא תאבדו ליד אחד' },
-  { icon: '📋', title: 'כל השיחות במקום אחד', desc: 'סטטוס ברור, אחראי ידוע, אין דברים שנופלים בין הכיסאות' },
-  { icon: '🎯', title: 'מסנן ומנתב לידים', desc: 'שולח לאדם הנכון רק את מה שרלוונטי — חוסך שעות של מיון' },
-  { icon: '📅', title: 'קובע פגישות לבד', desc: 'הלקוח קובע פגישה ישירות עם הבוט — בלי לחכות לנציג' },
-  { icon: '📊', title: 'CRM מובנה', desc: 'כל ליד, שיחה ועסקה נשמרים אוטומטית — מעקב מלא ללא מאמץ' },
-  { icon: '🔔', title: 'התראות חכמות', desc: 'קבלו התראה רק כשצריך התערבות אנושית — שאר הזמן הבוט מטפל' },
+  { icon: '🔄', title: 'פולואפ אוטומטי מובנה', desc: 'לא ענה אחרי שעתיים? הבוט שולח תזכורת. אחרי 5 שעות — סוגר את הפניה. הכל אוטומטי, אפס מאמץ' },
+  { icon: '📊', title: 'דוחות שיווק מתקדמים', desc: 'רואים בדיוק מי לחץ, מתי, כמה הלכו בכל נתיב ומי לא ענה — נתונים אמיתיים לשיפור מתמיד' },
+  { icon: '🎯', title: 'מסנן ומנתב לידים', desc: 'שולח לאדם הנכון רק את מה שרלוונטי — חוסך שעות של מיון ידני' },
+  { icon: '📋', title: 'CRM + מיילים + התראות', desc: 'כל ליד ושיחה מסונכרנים אוטומטית לCRM. שולחים מיילים והתראות — הכל ממקום אחד' },
+  { icon: '📅', title: 'קובע פגישות לבד', desc: 'הלקוח קובע פגישה ישירות עם הבוט — בלי לחכות לנציג אנושי' },
+];
+
+const WHY_GAMBOT = [
+  { icon: '📦', title: 'מערכת מוכנה — לא בונים מ-0', desc: 'בZapier ובMake אתם מחברים חתיכות. בגמבוט הכל כבר בנוי — בוט, CRM, דוחות, פולואפ, מיילים. מוכן לעבוד תוך ימים.' },
+  { icon: '🔄', title: 'פולואפ חכם מובנה', desc: 'מגדירים פעם אחת — הבוט עוקב אוטומטית. לא ענה? תזכורת. עדיין לא? סגירת פניה. בלי שתזכרו לטפל.' },
+  { icon: '📊', title: 'דוחות שמחליפים אנליסט', desc: 'כמה לחצו על כל כפתור? כמה הלכו בנתיב A לעומת B? מי עצר באמצע? הכל גלוי — כדי לשפר כל הזמן.' },
+  { icon: '🇮🇱', title: 'ישראלי, עברית, תמיכה אמיתית', desc: 'לא צ\'אט בוט תמיכה בחו"ל. אנחנו כאן, מדברים עברית, ועונים ב-WhatsApp.' },
 ];
 
 // Testimonials to add once collected from real customers
@@ -255,12 +290,12 @@ export default function CampaignPage() {
         <div className={styles.container}>
           <div className={styles.badge}>🏆 שותף Meta רשמי · עשרות לקוחות בישראל</div>
           <h1 className={styles.heroTitle}>
-            עסקים שחיברו את הבוט<br />
-            <span className={styles.heroHighlight}>חוסכים 15+ שעות בשבוע</span>
+            הבוט שסוגר לידים<br />
+            <span className={styles.heroHighlight}>בזמן שאתם ישנים</span>
           </h1>
           <p className={styles.heroDesc}>
-            הבוט של גמבוט עונה ללקוחות שלכם ב-<strong>שניות</strong> — 24 שעות, 7 ימים.
-            גם בלילה, גם בסופ"ש, גם כשאתם עמוסים.
+            עונה בשניות, שולח פולואפ אוטומטי, מסנן לידים ומעביר לCRM —{' '}
+            <strong>בלי מפתחים, בלי Zapier, בלי לבנות כלום מ-0.</strong>
           </p>
 
           {/* Hero split: CTA + mini form */}
@@ -303,6 +338,33 @@ export default function CampaignPage() {
         </div>
       </section>
 
+      {/* BOT TYPES */}
+      <section className={styles.botTypes}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>🤖 בחרו את הבוט שמתאים לכם</h2>
+          <p className={styles.botTypesDesc}>יש לנו שלושה מסלולים — כולם כלולים במערכת, ללא עלות נוספת</p>
+          <div className={styles.botTypesGrid}>
+            {BOT_TYPES.map((bt, i) => (
+              <div key={i} className={`${styles.botTypeCard} ${bt.highlight ? styles.botTypeHighlight : ''}`}>
+                {bt.highlight && <div className={styles.botTypePopular}>⭐ הכי פופולרי</div>}
+                <div className={styles.botTypeIcon}>{bt.icon}</div>
+                <h3 className={styles.botTypeTitle}>{bt.title}</h3>
+                <p className={styles.botTypeSubtitle}>{bt.subtitle}</p>
+                <p className={styles.botTypeDesc}>{bt.desc}</p>
+                <div className={styles.botTypeTags}>
+                  {bt.tags.map((tag, ti) => (
+                    <span key={ti} className={styles.botTypeTag}>{tag}</span>
+                  ))}
+                </div>
+                <button className={styles.botTypeCta} onClick={() => trackWAClick(`bot_type_${bt.cta}`)}>
+                  💬 אני רוצה {bt.cta}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* BENEFITS */}
       <section className={styles.benefits}>
         <div className={styles.container}>
@@ -320,6 +382,23 @@ export default function CampaignPage() {
             <button className={styles.ctaWa} onClick={() => trackWAClick('benefits')}>
               💬 אני רוצה לנסות — שלחו לי דמו
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY GAMBOT */}
+      <section className={styles.whyGambot}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>💡 למה גמבוט ולא Zapier / Make / פתרון מהאינטרנט?</h2>
+          <p className={styles.whyDesc}>כי אנחנו לא כלי — אנחנו מערכת מוכנה לעסק שלכם</p>
+          <div className={styles.whyGrid}>
+            {WHY_GAMBOT.map((w, i) => (
+              <div key={i} className={styles.whyCard}>
+                <div className={styles.whyIcon}>{w.icon}</div>
+                <h3 className={styles.whyTitle}>{w.title}</h3>
+                <p className={styles.whyDesc2}>{w.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

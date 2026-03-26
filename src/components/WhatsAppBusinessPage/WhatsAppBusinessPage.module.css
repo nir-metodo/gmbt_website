@@ -466,7 +466,7 @@
 
 /* ---- MID CTA ---- */
 .midCta {
-  background: linear-gradient(135deg, #0d7a4e, #128C7E);
+  background: linear-gradient(135deg, #162032, #203a43);
   padding: 48px 20px;
 }
 
@@ -493,7 +493,7 @@
 
 .midCtaBtn {
   background: #fff;
-  color: #0d7a4e;
+  color: #203a43;
   border: none;
   padding: 14px 28px;
   font-size: 1rem;

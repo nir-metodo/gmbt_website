@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './CrmPage.module.css';
 import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
 import { sendThankYouEmail } from '@/utils/sendThankYouEmail';
@@ -21,7 +21,6 @@ const INTEGRATIONS = [
   { icon: '🌐', name: 'Landing Pages', desc: 'Simple embed code — every lead from your page enters directly' },
   { icon: '💬', name: 'WhatsApp', desc: 'Contact via WhatsApp → contact created & conversation opened automatically' },
   { icon: '🔗', name: 'Webhook / API', desc: 'Connect to any system — Zapier, Make, custom API' },
-  { icon: '📊', name: 'Google Sheets', desc: 'Export and create leads from a spreadsheet — two-way sync' },
 ];
 
 const KANBAN_STAGES = [
@@ -176,6 +175,15 @@ function MiniLeadForm({ source = 'crm-en-landing-page' }) {
 
 export default function CrmPageEn() {
   const [activeTab, setActiveTab] = useState('kanban');
+
+  useEffect(() => {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+    return () => {
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'he';
+    };
+  }, []);
 
   return (
     <div className={styles.page} dir="ltr">

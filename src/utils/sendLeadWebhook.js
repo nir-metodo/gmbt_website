@@ -16,15 +16,12 @@ export async function sendLeadWebhook({ name = '', email = '', phone = '', messa
         'Authorization': GAMBOT_WEBHOOK_TOKEN,
       },
       body: JSON.stringify({
-        contact: {
-          name,
-          email,
-          phoneNumber: phone.replace(/\D/g, ''),
-          message,
-          businessName,
-          keys: ['Leads'],
-          from: source,
-        },
+        name,
+        email,
+        phonenumber: phone.replace(/\D/g, ''),
+        message,
+        buisnessname: businessName,
+        form: source,
       }),
     });
   } catch {

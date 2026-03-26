@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './WhatsAppMarketingPage.module.css';
 import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
 import { sendThankYouEmail } from '@/utils/sendThankYouEmail';
@@ -30,7 +30,7 @@ const USE_CASES = [
   {
     icon: '👥', title: 'Existing customers',
     desc: 'Product update, exclusive offer, event invitation — send to your list. 95%+ open rate ensures the message lands.',
-    tag: 'Retention', tagColor: '#0d7a4e',
+    tag: 'Retention', tagColor: '#128C7E',
   },
   {
     icon: '🎯', title: 'Targeted sales campaigns',
@@ -117,6 +117,15 @@ function MiniLeadForm({ source = 'wa-marketing-en' }) {
 }
 
 export default function WhatsAppMarketingPageEn() {
+  useEffect(() => {
+    document.documentElement.dir = 'ltr';
+    document.documentElement.lang = 'en';
+    return () => {
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'he';
+    };
+  }, []);
+
   return (
     <div className={styles.page} dir="ltr">
       <header className={styles.header}>
