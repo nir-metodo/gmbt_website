@@ -134,6 +134,22 @@ const posts = [
       {
         question: "איך מתקינים WhatsApp API?",
         answer: "התקנת WhatsApp API כוללת רישום בFacebook Business Manager, קבלת אישור מ-WhatsApp, חיבור לספק BSP כמו Gambot, והגדרת מספר טלפון עסקי. התהליך לוקח בדרך כלל 3-5 ימי עסקים."
+      },
+      {
+        question: "מה ההבדל בין גמבוט ל-WATI?",
+        answer: "גמבוט היא מערכת וואטסאפ לעסקים ישראלית עם ממשק עברי מלא, CRM מובנה, בוט AI, תמיכה מקומית ומחירים בשקלים. WATI היא פלטפורמה גלובלית עם ממשק אנגלי, ללא CRM מובנה ועם תמיכה מרוחקת בלבד. לעסק ישראלי, גמבוט מציעה חוויה מותאמת בהרבה."
+      },
+      {
+        question: "מה ההבדל בין גמבוט ל-Interakt?",
+        answer: "Interakt מיועדת לשוק ההודי ומתאימה לחנויות Shopify. גמבוט מיועדת לשוק הישראלי עם CRM מלא, ניהול לידים, בוטומציה מתקדמת ותמיכה בעברית. לעסקים ישראלים בתחומי שירות, נדל\"ן, פיננסים ומכירות — גמבוט היא הבחירה הנכונה."
+      },
+      {
+        question: "מה זה בוט AI לוואטסאפ ואיך הוא עובד?",
+        answer: "בוט AI לוואטסאפ הוא מערכת שמשתמשת בבינה מלאכותית (GPT ודומיו) כדי להבין שאלות בשפה חופשית, לנתח כוונת הלקוח ולתת תשובות רלוונטיות — כמו נציג אמיתי. גמבוט משלבת AI עם ידע העסק שלך, אוטומציות ו-CRM לחוויה מקצועית ומלאה."
+      },
+      {
+        question: "האם גמבוט מתאימה גם לעסקים קטנים?",
+        answer: "כן. גמבוט מציעה חבילות לכל גודל עסק — מעסק קטן עם בוט בסיסי, דרך SMB עם CRM וקמפיינים, ועד ארגון גדול עם אינטגרציות מתקדמות ובוטים מורכבים. כל עסק שיש לו לקוחות שתקשרים בוואטסאפ יכול להרוויח מגמבוט."
       }
     ],
     
@@ -962,6 +978,28 @@ const posts = [
       "WhatsApp Business API",
       "גמבוט אוטומציה",
       "מערכת הודעות לעסקים"
+    ],
+    faq: [
+      {
+        question: "מה ניתן לעשות עם WhatsApp API לעסקים?",
+        answer: "עם WhatsApp Business API ניתן לבנות בוט לוואטסאפ שעונה אוטומטית ללקוחות, לשלוח קמפיינים שיווקיים בוואטסאפ, לנהל לידים ב-CRM, לאמת תורים ולשלוח תזכורות — הכל אוטומטי וללא כוח אדם. גמבוט מאפשר את כל זה ללא קוד."
+      },
+      {
+        question: "מה ההבדל בין WhatsApp Business לבין WhatsApp Business API?",
+        answer: "WhatsApp Business הוא אפליקציה לסמארטפון המתאימה לעסקים קטנים מאוד — עם מגבלות על כמות השליחות ותכונות. WhatsApp Business API הוא הממשק המקצועי שמיועד לעסקים בינוניים וגדולים, מאפשר בוט AI לוואטסאפ, קמפיינים בקנה מידה גדול ואינטגרציה עם CRM."
+      },
+      {
+        question: "האם גמבוט היא מערכת וואטסאפ לעסקים?",
+        answer: "כן. גמבוט היא מערכת וואטסאפ לעסקים המבוססת על WhatsApp Business API הרשמי של Meta. המערכת כוללת בוט AI לוואטסאפ, ניהול לידים ו-CRM, קמפיינים, אוטומציה ותבניות מאושרות — כל הכלים שעסק צריך לנהל תקשורת לקוחות בוואטסאפ."
+      },
+      {
+        question: "האם גמבוט עדיפה על WATI לעסקים ישראלים?",
+        answer: "גמבוט בניגוד ל-WATI בנויה מהיסוד לשוק הישראלי — ממשק עברי מלא, תמיכה מקומית, מחירים בשקלים וחיבורים לכלים ישראלים. WATI היא פלטפורמה גלובלית עם ממשק אנגלי בלבד וחוסר הכרה בשוק המקומי."
+      },
+      {
+        question: "כמה עולה מערכת וואטסאפ לעסקים עם WhatsApp API?",
+        answer: "עלות מערכת וואטסאפ לעסקים מורכבת ממחיר הפלטפורמה (כמו גמבוט) ומעלות ה-API של Meta לפי שיחות. גמבוט מציעה חבילות מותאמות לפי גודל העסק — מ-SMB ועד ארגוני, עם כל התכונות כולל CRM, בוט AI ואוטומציה."
+      }
     ]
   },
   {
@@ -1390,6 +1428,24 @@ const posts = [
       "אוטומציה עסקית",
       "CRM ו-WhatsApp",
       "שילוב מערכות ניהול"
+    ],
+    faq: [
+      {
+        question: "מה זה API ואיך זה קשור לבוט לוואטסאפ?",
+        answer: "API (Application Programming Interface) הוא מנגנון שמאפשר למערכות שונות לתקשר זו עם זו. בוט לוואטסאפ פועל דרך WhatsApp Business API — ממשק שמאפשר למערכות כמו גמבוט לשלוח ולקבל הודעות בוואטסאפ באופן אוטומטי, לנהל שיחות ולהפעיל אוטומציה."
+      },
+      {
+        question: "האם צריך ידע טכני כדי להשתמש ב-WhatsApp API?",
+        answer: "כשמשתמשים בפלטפורמה כמו גמבוט — לא. גמבוט מספקת ממשק ויזואלי מלא ללא קוד. ניתן לבנות בוט AI לוואטסאפ, להגדיר אוטומציות ולשלוח קמפיינים ישירות מהדפדפן, ללא כתיבת שורת קוד אחת."
+      },
+      {
+        question: "האם WhatsApp API עובד עם מערכות CRM?",
+        answer: "כן. WhatsApp API מתחבר למערכות CRM כמו גמבוט, Salesforce, HubSpot ועוד. גמבוט CRM כוללת ניהול לידים ולקוחות ישירות מתוך שיחות הוואטסאפ — כך שכל ליד שמגיע מהבוט נשמר, ממויין ועוקבים אחריו אוטומטית."
+      },
+      {
+        question: "מה ההבדל בין WhatsApp API ל-WhatsApp Business רגיל?",
+        answer: "WhatsApp Business רגיל מאפשר לניהול ידני של שיחות לעסקים קטנים. WhatsApp API מאפשר אוטומציה מלאה, בוט AI, שליחה בכמויות גדולות, אינטגרציות עם CRM ומערכות ניהול לידים — זה ההבדל בין כלי פשוט לפלטפורמה עסקית מלאה."
+      }
     ]
   },
   {
@@ -1793,6 +1849,28 @@ const posts = [
       "וואטסאפ שיווק לעסק",
       "מייל שיווקי מול וואטסאפ",
       "sms או וואטסאפ"
+    ],
+    faq: [
+      {
+        question: "מה אחוזי הפתיחה של הודעות וואטסאפ לעומת אימייל?",
+        answer: "שיווק בוואטסאפ מגיע לאחוזי פתיחה של 95%–98%, לעומת 15%–25% בדיוור אימייל ו-20%–35% ב-SMS. זה הופך את קמפיינים בוואטסאפ לאפקטיביים פי 4–5 מאפיקי שיווק מסורתיים, במיוחד לקהל ישראלי שגולש בעיקר בוואטסאפ."
+      },
+      {
+        question: "האם דיוור בוואטסאפ חוקי בישראל?",
+        answer: "כן, דיוור בוואטסאפ חוקי לחלוטין בישראל, בתנאי שנשלח לאנשים שנתנו הסכמה לקבל הודעות שיווקיות (opt-in). גמבוט עוזרת לנהל הסכמות תקינות ולשלוח קמפיינים תוך עמידה מלאה בחוק הספאם הישראלי ובמדיניות Meta."
+      },
+      {
+        question: "מתי כדאי לשלוח קמפיין בוואטסאפ ולא בדיוור אימייל?",
+        answer: "קמפיין בוואטסאפ עדיף כשרוצים תגובה מיידית — תזכורת לפגישה, מבצע לטווח קצר, עדכון שירות או תוכן מותאם אישית. דיוור אימייל עדיף לניוזלטרים ארוכים. לרוב העסקים הישראלים, שיווק בוואטסאפ מניב יחס המרה גבוה משמעותית."
+      },
+      {
+        question: "מה עדיף — שיווק בוואטסאפ או SMS?",
+        answer: "שיווק בוואטסאפ עדיף על SMS בכמה היבטים: תומך בתמונות, וידאו וכפתורים, אינטראקטיבי, חינמי לנמען, ומאפשר שיחה דו-כיוונית. SMS אינו יקר בדרך כלל אך מוגבל לטקסט בלבד וחד-כיווני. לעסקים ישראלים, וואטסאפ הוא ה-SMS החדש."
+      },
+      {
+        question: "האם ניתן לשלוח קמפיינים בוואטסאפ לאלפי אנשי קשר?",
+        answer: "כן. עם WhatsApp Business API ומערכת כמו גמבוט, ניתן לשלוח קמפיינים בוואטסאפ לאלפי ואף מאות אלפי אנשי קשר בו-זמנית. המגבלות תלויות ברמת ה-tier של חשבונך ב-Meta ועולות ככל שהחשבון בונה היסטוריה חיובית."
+      }
     ]
   },
   {
@@ -2144,6 +2222,28 @@ const posts = [
       "API וואטסאפ בקלות",
       "וואטסאפ לעסקים פתרון ללא קוד",
       "הטמעת וואטסאפ API בגמבוט"
+    ],
+    faq: [
+      {
+        question: "איך מתחילים עם WhatsApp Business API?",
+        answer: "כדי להתחיל עם WhatsApp Business API: 1) פתחו חשבון Meta Business Suite, 2) הגישו בקשה לגישה ל-API, 3) בחרו ספק BSP מורשה כמו גמבוט, 4) חברו את מספר הטלפון שלכם, 5) צרו תבניות מאושרות ותתחילו לשלוח. גמבוט מלווה אתכם בכל השלבים."
+      },
+      {
+        question: "כמה זמן לוקח להפעיל מערכת וואטסאפ לעסקים?",
+        answer: "עם גמבוט, פתיחת מערכת וואטסאפ לעסקים לוקחת בין שעה לכמה ימי עסקים — תלוי בתהליך אישור Meta. ברוב המקרים עסקים מתחילים לשלוח הודעות ביום הראשון לאחר חיבור המספר ואישור תבנית ראשונה."
+      },
+      {
+        question: "האם צריך מספר טלפון ייעודי ל-WhatsApp API?",
+        answer: "כן, נדרש מספר טלפון שאינו רשום כבר ל-WhatsApp. ניתן להשתמש במספר קווי, VoIP או סלולרי — כל עוד הוא פנוי. גמבוט עוזרת לבחור ולאמת את המספר הנכון ולחברו לממשק ה-API בתוך דקות."
+      },
+      {
+        question: "מה ההבדל בין ספקי WhatsApp API השונים?",
+        answer: "ספקי WhatsApp API (BSP) שונים במחיר, בשפת הממשק, בתמיכה ובתכונות. גמבוט היא הפלטפורמה הישראלית היחידה עם ממשק עברי מלא, תמיכה מקומית, CRM מובנה ובוט AI — לעומת מתחרות כמו WATI, Interakt ו-360dialog שהן בינלאומיות ואנגלוצנטריות."
+      },
+      {
+        question: "האם ניתן לבנות בוט AI לוואטסאפ ללא קוד?",
+        answer: "כן. גמבוט מאפשרת לבנות בוט AI לוואטסאפ מלא ללא שורת קוד אחת, באמצעות עורך ויזואלי בגרור-ושחרר. ניתן לבנות זרימות שיחה, תנאים, השתלבות עם CRM ואינטגרציות — הכל מהממשק הגרפי."
+      }
     ]
   },
   {
@@ -2472,6 +2572,24 @@ const posts = [
       "שירות לקוחות אוטומטי",
       "בוט שירות לקוחות",
       "תמיכה בוואטסאפ"
+    ],
+    faq: [
+      {
+        question: "האם בוט לוואטסאפ יכול לספק שירות לקוחות 24/7?",
+        answer: "כן. בוט לוואטסאפ פועל 24/7 ללא הפסקה — עונה לשאלות נפוצות, מנתב פניות לנציגים הרלוונטיים, שולח מידע ועדכונים, ומטפל בבקשות בצורה אוטומטית. גמבוט מאפשרת להגדיר בוט AI מלא שמחקה שיחה אנושית ומפנה לנציג רק כשצריך."
+      },
+      {
+        question: "מה היתרון של שירות לקוחות בוואטסאפ לעומת אימייל ותמיכה טלפונית?",
+        answer: "שירות לקוחות בוואטסאפ מהיר פי 3-5 מאימייל ויעיל יותר מתמיכה טלפונית — הלקוח לא ממתין בתור, מקבל תשובה מיידית ויכול להמשיך את השיחה בזמנו. אחוזי שביעות רצון לקוחות בתמיכה דרך וואטסאפ גבוהים ב-30% לעומת ערוצים מסורתיים."
+      },
+      {
+        question: "האם ניתן לנהל מספר שיחות וואטסאפ בו-זמנית?",
+        answer: "כן. עם מערכת וואטסאפ לעסקים כמו גמבוט, נציג אחד יכול לנהל עשרות שיחות בו-זמנית. הבוט מסנן ועונה על השאלות הנפוצות אוטומטית, ורק שיחות שדורשות התערבות אנושית מועברות לנציג — עם כל הקשר השיחה גלוי."
+      },
+      {
+        question: "מה זה בוט AI לוואטסאפ ואיך הוא שונה מבוט רגיל?",
+        answer: "בוט רגיל לוואטסאפ פועל לפי תסריטים קבועים ועונה על שאלות מוגדרות מראש. בוט AI לוואטסאפ משתמש בבינה מלאכותית (GPT ודומיו) להבין שאלות בשפה חופשית ולתת תשובות גמישות. גמבוט תומכת בשניהם — גם בוטים מבוססי תסריט וגם שילוב AI."
+      }
     ]
   },
   {
@@ -2918,6 +3036,28 @@ const posts = [
       "WhatsApp marketing campaigns",
       "דיוור בוואטסאפ",
       "מכירות בוואטסאפ"
+    ],
+    faq: [
+      {
+        question: "איך יוצרים קמפיין בוואטסאפ יעיל?",
+        answer: "קמפיין בוואטסאפ יעיל מורכב מ: 1) רשימת אנשי קשר שנתנו הסכמה, 2) תבנית מאושרת על ידי Meta עם קריאה לפעולה, 3) פרסונליזציה עם שם ופרטי הלקוח, 4) תזמון נכון (לא בשעות שינה), 5) בוט שמטפל בתגובות אוטומטית. גמבוט מאפשרת לנהל את כל השלבים ממקום אחד."
+      },
+      {
+        question: "מה ההבדל בין קמפיין וואטסאפ לקמפיין SMS?",
+        answer: "קמפיין וואטסאפ עדיף ב: עשיר מדיה (תמונות, וידאו, קטלוגים), כפתורי פעולה (CTA), שיחה דו-כיוונית, אחוז פתיחה גבוה יותר, ומחיר נמוך יותר. קמפיין SMS מתאים כגיבוי כשאין וואטסאפ. לשוק הישראלי, קמפיין וואטסאפ הוא הבחירה הברורה."
+      },
+      {
+        question: "האם ניתן לשלוח קמפיין וואטסאפ לרשימת לקוחות מאקסל?",
+        answer: "כן. גמבוט מאפשרת ייבוא רשימת אנשי קשר מקובץ Excel, אסיגנציה לסגמנטים ושליחת קמפיין וואטסאפ מותאם אישית לכל אחד. המערכת מציגה דוחות פתיחות, קריאות ותגובות בזמן אמת."
+      },
+      {
+        question: "האם שיווק בוואטסאפ מתאים לכל סוגי העסקים?",
+        answer: "שיווק בוואטסאפ מתאים במיוחד לעסקים שמוכרים ישירות ללקוחות: נדל\"ן, קוסמטיקה, פיננסים, בריאות, מסחר אלקטרוני, שירותים מקצועיים ועוד. כל עסק שיש לו מאגר לקוחות קיים יכול להגדיל הכנסות ב-20%–40% עם קמפיין וואטסאפ נכון."
+      },
+      {
+        question: "מה ההגבלות של Meta על קמפיינים בוואטסאפ?",
+        answer: "Meta דורשת שכל קמפיין וואטסאפ ישלח לאנשי קשר שנתנו הסכמה (opt-in). תבניות ההודעות חייבות לקבל אישור מראש. יש מגבלות על מספר ההודעות לפי רמת ה-tier של החשבון — מ-1,000 ביום ל-100,000+ ביום. גמבוט מנהלת את כל זה אוטומטית."
+      }
     ]
   },
   {
@@ -3376,6 +3516,24 @@ const posts = [
       "ניהול לידים בוואטסאפ",
       "מכירות אוטומטיות",
       "CRM WhatsApp"
+    ],
+    faq: [
+      {
+        question: "איך אוטומציה בוואטסאפ מגדילה מכירות?",
+        answer: "אוטומציה בוואטסאפ מגדילה מכירות בכמה דרכים: 1) תגובה מיידית לכל ליד תוך שניות — מחקרים מראים שתגובה ב-5 דקות הראשונות מגדילה סיכוי לסגירה פי 21, 2) מעקב אוטומטי אחרי לידים שלא ענו, 3) שליחת הצעות מחיר ומידע אוטומטית, 4) תזמון פגישות ללא מגע אדם."
+      },
+      {
+        question: "מה זה אוטומציה בוואטסאפ ואיך היא עובדת?",
+        answer: "אוטומציה בוואטסאפ היא שימוש ב-WhatsApp Business API לשליחה ותגובה אוטומטית להודעות על פי תרחישים מוגדרים. למשל: ליד ממלא טופס → מקבל הודעת ברוכים הבאים אוטומטית → אם לא עונה → נשלחת תזכורת → מופנה לנציג. גמבוט מאפשרת לבנות את כל הזרימות הללו ויזואלית."
+      },
+      {
+        question: "האם ניתן לחבר CRM לאוטומציה בוואטסאפ?",
+        answer: "כן. גמבוט משלבת CRM מובנה עם אוטומציה בוואטסאפ — כל ליד שמגיע דרך הבוט נשמר אוטומטית ב-CRM עם כל פרטי השיחה, נמשיך במעקב, ומנציגי המכירות רואים את כל ההיסטוריה בלחיצה אחת."
+      },
+      {
+        question: "מה ניתן לאוטמט בתהליך מכירה בוואטסאפ?",
+        answer: "ניתן לאוטמט: קבלת לידים וסיווגם, שאלות כשירות ראשוניות, שליחת קטלוגים ומחירים, קביעת פגישות, תזכורות לפגישות, מעקב לאחר הצעת מחיר, שאלות שביעות רצון לאחר רכישה ועוד. גמבוט מאפשרת לאוטמט כל שלב בתהליך המכירה."
+      }
     ]
   },
   {
@@ -3858,6 +4016,28 @@ const posts = [
       "חיבור וואטסאפ ל-CRM",
       "ניהול לקוחות וואטסאפ",
       "CRM automation"
+    ],
+    faq: [
+      {
+        question: "מה זה מערכת CRM לניהול לידים בוואטסאפ?",
+        answer: "מערכת CRM לניהול לידים בוואטסאפ היא פלטפורמה שמשלבת ניהול קשרי לקוחות (CRM) עם תקשורת בוואטסאפ. כל ליד שמגיע דרך וואטסאפ — ממודעה, מטופס, מבוט — נשמר אוטומטית ב-CRM, ניתן למעקב, לסיווג ולניהול תהליך המכירה. גמבוט היא מערכת CRM + וואטסאפ ב-One."
+      },
+      {
+        question: "האם ניתן לחבר WhatsApp לסאלספורס או לHubSpot?",
+        answer: "כן. WhatsApp Business API מתחבר ל-CRM כמו Salesforce, HubSpot, Monday.com ועוד דרך webhooks ו-API. גמבוט כוללת CRM מובנה ישראלי, או אלטרנטיבית מתחברת לכל CRM חיצוני שיש לכם — ללא צורך בפיתוח מורכב."
+      },
+      {
+        question: "מה היתרון של מערכת CRM עם וואטסאפ לעומת CRM רגיל?",
+        answer: "CRM עם וואטסאפ מגביר מהירות תגובה פי 10, מאפשר תקשורת אחד על אחד בערוץ שהלקוח אוהב, ומאפשר אוטומציה של מעקב אוטומטי. לקוחות מגיבים לוואטסאפ הרבה יותר מאשר לאימייל — אחוז פתיחה של 95% לעומת 20% באימייל."
+      },
+      {
+        question: "איך מנהלים לידים בוואטסאפ בצורה מסודרת?",
+        answer: "ניהול לידים בוואטסאפ מסודר מצריך: 1) מערכת CRM עם תיבת הודעות אחודה, 2) תיוג וסיווג לידים אוטומטי לפי מקור, 3) pipeline ויזואלי לשלבי מכירה, 4) תזכורות מעקב אוטומטיות, 5) דוחות ביצועים. גמבוט מספקת את כל אלה בפלטפורמה אחת."
+      },
+      {
+        question: "מה ההבדל בין גמבוט ל-WATI בניהול לידים?",
+        answer: "גמבוט כוללת CRM מלא מובנה לניהול לידים — pipeline, משימות, תיוגים ואוטומציות מכירה. WATI מתמקדת בתקשורת וואטסאפ אבל ה-CRM שלה בסיסי ומוגבל. לעסקים ישראלים שרוצים פתרון All-in-One עם עברית מלאה, גמבוט היא הבחירה הברורה."
+      }
     ]
   },
   {
@@ -4447,6 +4627,24 @@ const posts = [
       "בחירת מספר לעסק",
       "מטא אימות מספר",
       "WhatsApp API setup"
+    ],
+    faq: [
+      {
+        question: "האם ניתן להשתמש במספר הטלפון הקיים שלי ל-WhatsApp API?",
+        answer: "ניתן להשתמש במספר קיים ל-WhatsApp API — אבל קודם יש לנתק אותו מחשבון WhatsApp Business קיים. אם המספר רשום ל-WhatsApp Personal או WhatsApp Business, יש לאפס אותו תחילה. גמבוט מדריכה אתכם בתהליך צעד אחר צעד."
+      },
+      {
+        question: "האם צריך מספר ישראלי ל-WhatsApp Business API?",
+        answer: "לא בהכרח. WhatsApp API תומך במספרים מכל מדינה — ישראלי (05X), קווי ישראלי, ואפילו מספרים בינלאומיים. עם זאת, לקהל ישראלי מומלץ להשתמש במספר ישראלי (05X) כי הלקוחות מרגישים יותר בנוח ומזהים אותו בקלות."
+      },
+      {
+        question: "מה קורה אם כבר השתמשתי במספר ב-WhatsApp Business?",
+        answer: "אם המספר רשום ל-WhatsApp Business האפליקציה, יש לנתק אותו לפני חיבור ל-API. תהליך הניתוק פשוט — מחיקת החשבון מהאפליקציה — ולאחר מכן ניתן לרשום את המספר ל-WhatsApp Business API דרך Meta Business Manager."
+      },
+      {
+        question: "מה ההבדל בין מספר קווי לסלולרי ל-WhatsApp API?",
+        answer: "WhatsApp API תומך בשניהם — מספרים קוויים וסלולריים. יתרון מספר קווי הוא שהוא לא 'נאכל' על ידי שימוש אישי ונשאר ייעודי לעסק. גמבוט עובדת עם שני הסוגים ומדריכה לאיזה מספר מתאים לעסק שלך."
+      }
     ]
   },
   {
@@ -5025,6 +5223,24 @@ const posts = [
       "הגנת מידע בוואטסאפ",
       "פרטיות לקוחות",
       "GDPR WhatsApp"
+    ],
+    faq: [
+      {
+        question: "האם WhatsApp API בטוח לשמירת נתוני לקוחות?",
+        answer: "כן. WhatsApp Business API מוצפן קצה לקצה (E2E) בכל ההודעות. ספקי BSP מורשים כמו גמבוט עומדים בתקני אבטחה של Meta ו-ISO. נתוני הלקוחות מאוחסנים בענן מאובטח עם הצפנה מלאה ובקרת גישה."
+      },
+      {
+        question: "האם WhatsApp API עומד בדרישות GDPR?",
+        answer: "כן. WhatsApp Business API עומד ב-GDPR כאשר משתמשים בו נכון — כלומר שולחים הודעות רק לאנשים שנתנו הסכמה (opt-in) ומאפשרים ביטול הרשמה. גמבוט כוללת כלים לניהול הסכמות opt-in ו-opt-out בהתאם לחוקי הפרטיות."
+      },
+      {
+        question: "האם שיחות וואטסאפ עסקיות פרטיות?",
+        answer: "שיחות בין משתמשים ועסקים ב-WhatsApp מוצפנות קצה לקצה. Meta לא יכולה לקרוא תוכן ההודעות. עם זאת, מטא שומרת מטא-דאטה (מי שלח למי ומתי). עסקים שמשתמשים ב-API צריכים לוודא שמדיניות הפרטיות שלהם מתייחסת לשמירת נתוני שיחות."
+      },
+      {
+        question: "איך מגנים על נתוני לקוחות בוואטסאפ לעסקים?",
+        answer: "הגנה על נתוני לקוחות בוואטסאפ כוללת: שליחה רק לאנשי קשר שנתנו הסכמה, אחסון נתונים בשרתים מאובטחים, הצפנה, בקרת גישה לעובדים ומדיניות מחיקת נתונים. גמבוט כוללת את כל אלה כחלק מהפלטפורמה."
+      }
     ]
   },
   {
@@ -5352,6 +5568,24 @@ const posts = [
       "מדידת ביצועים בוואטסאפ",
       "נתונים בוואטסאפ",
       "אופטימיזציה"
+    ],
+    faq: [
+      {
+        question: "אילו מדדים חשוב לעקוב בקמפיינים בוואטסאפ?",
+        answer: "המדדים החשובים לקמפיינים בוואטסאפ: 1) אחוז פתיחה (Delivery Rate), 2) אחוז קריאה (Read Rate), 3) אחוז קליק (CTR) על כפתורים, 4) אחוז תגובה, 5) אחוז חסימה (Opt-out Rate), 6) זמן תגובה ממוצע. גמבוט מציגה את כל המדדים הללו בדשבורד ויזואלי."
+      },
+      {
+        question: "כיצד אפשר לשפר את ביצועי הבוט לוואטסאפ?",
+        answer: "לשיפור ביצועי בוט לוואטסאפ: A/B טסטינג על תוכן ההודעות, אופטימיזציה של זמני שליחה, שיפור תסריטי השיחה על פי נקודות נטישה, הוספת מולטימדיה (תמונות, וידאו), ופרסונליזציה לפי סגמנטים. גמבוט מספקת דוחות שמאפשרים לזהות איפה לקוחות נוטשים את השיחה."
+      },
+      {
+        question: "האם ניתן לדעת כמה לקוחות פתחו הודעת וואטסאפ?",
+        answer: "כן. WhatsApp Business API מספק נתוני משלוח ואישורי קריאה (כלי הקריאה הכחולים). גמבוט מסכמת את הנתונים הללו לדוחות מפורטים — כמה הודעות נמסרו, נקראו, ומה שיעור התגובה, לפי קמפיין, תבנית ותאריך."
+      },
+      {
+        question: "מה שיעור תגובה טוב לבוט לוואטסאפ?",
+        answer: "שיעור תגובה טוב לבוט לוואטסאפ הוא 40%-70%, תלוי בתחום ובאיכות הקהל. לקמפיין שיווקי ממוקד לרשימה חמה, 60%+ הוא מצוין. לבוט שמטפל בלידים נכנסים, מעל 80% תגובה הוא נורמלי. גמבוט עוזרת להשיג שיעורים גבוהים עם תסריטי שיחה מותאמים."
+      }
     ]
   },
   {
@@ -5616,6 +5850,24 @@ const posts = [
       "הגדלת מגבלות",
       "WhatsApp tier",
       "quality rating"
+    ],
+    faq: [
+      {
+        question: "כמה הודעות ניתן לשלוח ביום עם WhatsApp API?",
+        answer: "WhatsApp API עובד בשיטת Tiers: Tier 1 מאפשר 1,000 שיחות/יום, Tier 2 — 10,000/יום, Tier 3 — 100,000/יום, ו-Tier 4 (Unlimited) — ללא הגבלה. עסק חדש מתחיל ב-Tier 1 ועולה אוטומטית ככל שמשמר איכות גבוהה. גמבוט עוזרת לנהל את העלייה בצורה אופטימלית."
+      },
+      {
+        question: "איך מגדילים את מגבלת ההודעות ב-WhatsApp?",
+        answer: "כדי לעלות tier ב-WhatsApp API: 1) שמרו על Quality Rating גבוה (מינימום חסימות), 2) שלחו לאנשי קשר שרוצים לקבל הודעות (opt-in), 3) ענו מהר לפניות נכנסות, 4) הימנעו מהודעות ספאם. גמבוט מנטרת את ה-Quality Rating ומתריעה אם יש ירידה."
+      },
+      {
+        question: "מה קורה אם חורגים ממגבלת ההודעות?",
+        answer: "אם חורגים ממגבלת ה-tier, WhatsApp חוסם שליחה של הודעות נוספות לאותו יום. ההגבלה מתאפסת ב-24 שעות. גמבוט מציגה ניצולת יומית בזמן אמת ומתריעה כשמתקרבים למגבלה — כך תוכלו לתכנן קמפיינים מראש."
+      },
+      {
+        question: "מה זה Quality Rating ב-WhatsApp Business API?",
+        answer: "Quality Rating הוא ציון שמטא נותן לחשבון WhatsApp שלכם — High, Medium, Low. הציון יורד כשלקוחות חוסמים אתכם או מדווחים על ספאם. ציון נמוך עלול להוביל לשדרוג לאחור של ה-tier. גמבוט עוזרת לשמור על Quality Rating גבוה עם שליחה חכמה ומוקדת."
+      }
     ]
   },
   {
@@ -5952,6 +6204,20 @@ const posts = [
       "WhatsApp API setup",
       "בחירת מספר",
       "local number"
+    ],
+    faq: [
+      {
+        question: "איזה מספר טלפון מומלץ ל-WhatsApp Business API בישראל?",
+        answer: "לעסקים ישראלים מומלץ להשתמש במספר ישראלי — סלולרי 05X או קווי — כי לקוחות מזהים מספרים ישראלים ומגיבים בצורה חיובית יותר. מספר VoIP גם מתאים אם ניתן לקבל עליו SMS לאימות. גמבוט מייעצת מה מתאים לעסק הספציפי שלכם."
+      },
+      {
+        question: "האם ניתן לנייד מספר מ-WhatsApp Business ל-WhatsApp API?",
+        answer: "כן, ניתן לנייד מספר קיים מ-WhatsApp Business ל-WhatsApp API. התהליך כולל ניתוק מהאפליקציה ורישום מחדש דרך Meta Business Manager. גמבוט מלווה את התהליך צעד אחר צעד ומבטיחה שלא יאבד היסטוריית שיחות."
+      },
+      {
+        question: "האם כדאי להשתמש במספר טלפון ייעודי לבוט?",
+        answer: "בהחלט מומלץ. מספר ייעודי לבוט לוואטסאפ מאפשר להפריד בין תקשורת אישית לעסקית, מאפשר לנהל את חשבון ה-API ללא חשש שמשתמש אנושי יקלקל משהו, ומאפשר לשנות את הבוט מבלי להשפיע על תקשורת עסקית קיימת."
+      }
     ]
   },
   {
@@ -6263,6 +6529,20 @@ const posts = [
       "what is API",
       "אינטגרציה",
       "automation"
+    ],
+    faq: [
+      {
+        question: "מה זה API ואיך זה עוזר לעסק שלי?",
+        answer: "API (Application Programming Interface) הוא מנגנון שמאפשר למערכות שונות לדבר זו עם זו. לעסק שלך, API אומר: הלקוח ממלא טופס באתר → המידע עובר אוטומטית ל-CRM → CRM שולח הודעת ברוכים הבאים בוואטסאפ → הכל קורה ברגע, בלי מגע ידני."
+      },
+      {
+        question: "האם עסק קטן צריך API?",
+        answer: "עסק קטן שעובד עם WhatsApp API דרך פלטפורמה כמו גמבוט נהנה מכל יתרונות ה-API — בלי לדעת לתכנת. הפלטפורמה מסתירה את המורכבות הטכנית ומציגה ממשק פשוט. כך גם עסק של שני עובדים יכול להפעיל בוט AI לוואטסאפ ואוטומציה מלאה."
+      },
+      {
+        question: "מה ההבדל בין WhatsApp API לבין לינק לוואטסאפ רגיל?",
+        answer: "לינק לוואטסאפ (wa.me) פותח שיחה ידנית בין הלקוח לעסק. WhatsApp API מאפשר בנייה אוטומטית — בוט שעונה, CRM שמנהל, קמפיינים שנשלחים. ההבדל הוא כמו בין מוכר ידני לרצועת ייצור אוטומטית — שניהם מייצרים מוצר, אבל הקנה מידה שונה לגמרי."
+      }
     ]
   },
   {
@@ -6846,7 +7126,25 @@ const posts = [
     ],
     image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&auto=format&fit=crop&q=80",
     date: "2026-01-25",
-    seoUrl: getSeoUrl("Coexistence של WhatsApp - מה זה ומה חשוב לדעת לפני שבוחרים")
+    seoUrl: getSeoUrl("Coexistence של WhatsApp - מה זה ומה חשוב לדעת לפני שבוחרים"),
+    faq: [
+      {
+        question: "מה זה WhatsApp Coexistence ואיך זה עובד?",
+        answer: "WhatsApp Coexistence מאפשר להשתמש באותו מספר טלפון גם ב-WhatsApp Business API (לאוטומציה ובוטים) וגם ב-WhatsApp Business App (לנציגים שרוצים לענות ידנית). כך הנציגים ממשיכים לעבוד עם האפליקציה שהם מכירים, ובמקביל הבוט פועל אוטומטית."
+      },
+      {
+        question: "האם גמבוט תומכת ב-WhatsApp Coexistence?",
+        answer: "כן. גמבוט תומכת ב-WhatsApp Coexistence — מה שמאפשר לעסקים לעבור ל-API בצורה הדרגתית מבלי לוותר על שיחות ידניות. נציגים יכולים להמשיך לעבוד עם אפליקציית WhatsApp Business ובמקביל להפעיל בוטים ואוטומציות דרך גמבוט."
+      },
+      {
+        question: "מה ההבדל בין WhatsApp Coexistence לבין WhatsApp Business API בלבד?",
+        answer: "ב-API בלבד, כל השיחות מנוהלות דרך הפלטפורמה (גמבוט). ב-Coexistence, חלק מהשיחות מטופלות בידי הבוט וחלק ידנית על ידי נציגים דרך האפליקציה. Coexistence מתאים לעסקים שצריכים תקופת מעבר הדרגתית מניהול ידני לאוטומציה."
+      },
+      {
+        question: "מה היתרון של בוט לוואטסאפ עם Coexistence?",
+        answer: "Coexistence מספק את הגמישות הגבוהה ביותר — הבוט מטפל בשאלות חוזרות ופשוטות 24/7, ונציג אנושי מתחבר לשיחה כשיש צורך בשיקול דעת אנושי. זה משלב את הטוב ביותר משני עולמות ומאפשר מעבר הדרגתי לאוטומציה מלאה."
+      }
+    ]
   },
   {
     id: 18,
@@ -7366,7 +7664,10 @@ const posts = [
     { question: "כמה זמן לוקח לבנות בוט לוואטסאפ?", answer: "עם Bot Builder של גמבוט, ניתן לבנות בוט בסיסי תוך שעה. בוט מורכב עם AI ואינטגרציות יכול לקחת 1-2 ימי עבודה." },
     { question: "האם צריך ידע בתכנות?", answer: "לא! Bot Builder של גמבוט מבוסס על ממשק ויזואלי drag-and-drop. אין צורך בשורת קוד אחת." },
     { question: "האם הבוט יכול לדבר עברית?", answer: "כן, הבוט תומך בעברית מלאה כולל RTL, ניב וביטויים מקומיים. ניתן גם להגדיר מספר שפות." },
-    { question: "מה ההבדל בין Bot Builder ל-Botomation?", answer: "Bot Builder מיועד לבניית זרימות שיחה אינטראקטיביות עם הלקוח (תפריטים, שאלות, ניתוב). Botomation מיועד לאוטומציות שמופעלות על-ידי אירועים חיצוניים (webhook, טריגרים)." }
+    { question: "מה ההבדל בין Bot Builder ל-Botomation?", answer: "Bot Builder מיועד לבניית זרימות שיחה אינטראקטיביות עם הלקוח (תפריטים, שאלות, ניתוב). Botomation מיועד לאוטומציות שמופעלות על-ידי אירועים חיצוניים (webhook, טריגרים)." },
+    { question: "מה זה בוט לוואטסאפ ולמה עסקים צריכים אחד?", answer: "בוט לוואטסאפ הוא תוכנה שמנהלת שיחות עם לקוחות בוואטסאפ אוטומטית — עונה לשאלות, אוספת פרטים, מנתבת לנציגים ומבצעת פעולות כמו קביעת תורים. עסקים שמשתמשים בבוט לוואטסאפ חוסכים 60%-80% מזמן הנציגים ומגיבים לכל ליד תוך שניות." },
+    { question: "האם גמבוט עדיפה על WATI לבניית בוט לוואטסאפ?", answer: "גמבוט מציעה Bot Builder ויזואלי בעברית מלאה, עם אינטגרציה לCRM מובנה וניהול לידים. WATI מציעה flow builder בסיסי יותר ללא CRM. לעסק ישראלי שרוצה לבנות בוט לוואטסאפ מקצועי עם מעקב לידים מלא, גמבוט היא הפתרון הטוב ביותר." },
+    { question: "איזה עסקים מתאימים לבוט לוואטסאפ?", answer: "בוט לוואטסאפ מתאים לכל עסק שמקבל פניות מלקוחות: נדל\"ן, ביטוח, פיננסים, בריאות, קוסמטיקה, חינוך, מסחר אלקטרוני, שירותים מקצועיים ועוד. אם אתם עונים על אותן שאלות שוב ושוב בוואטסאפ — בוט לוואטסאפ חוסך לכם שעות ביום." }
   ],
   title: {
     he: "איך בונים בוט לוואטסאפ עם גמבוט — מדריך מלא 2026",
@@ -8779,1637 +9080,6 @@ const posts = [
 }
 ,
 
-{
-  id: 19,
-  featured: true,
-  seoTitle: {
-    he: "איך בונים בוט לוואטסאפ עם גמבוט — מדריך מלא 2026",
-    en: "How to Build a WhatsApp Bot with Gambot — Complete Guide 2026"
-  },
-  metaDescription: {
-    he: "מדריך שלב אחרי שלב לבניית בוט וואטסאפ עם גמבוט: עיצוב זרימות שיחה, יצירת נודים, חיבור ל-CRM, בדיקה ופרסום. כולל דוגמת בוט לנדל\"ן.",
-    en: "Step-by-step guide to building a WhatsApp bot with Gambot: designing conversation flows, creating nodes, connecting to CRM, testing and publishing. Includes real estate lead bot example."
-  },
-  keywords: {
-    he: ["בוט וואטסאפ", "גמבוט", "בניית בוט", "אוטומציה", "זרימת שיחה", "bot builder", "2026"],
-    en: ["WhatsApp bot", "Gambot", "build bot", "automation", "conversation flow", "bot builder", "2026"]
-  },
-  title: {
-    he: "🤖 איך בונים בוט לוואטסאפ עם גמבוט — מדריך מלא 2026",
-    en: "🤖 How to Build a WhatsApp Bot with Gambot — Complete Guide 2026"
-  },
-  description: {
-    he: "מדריך מלא לבניית בוט וואטסאפ עם גמבוט — מהרעיון ועד הפרסום, כולל דוגמת בוט לנדל\"ן.",
-    en: "Complete guide to building a WhatsApp bot with Gambot — from concept to launch, including a real estate lead bot example."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🤖 איך בונים בוט לוואטסאפ עם גמבוט</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">מדריך שלב-אחרי-שלב לשנת 2026 — מהרעיון ועד הפרסום</p>
-  </div>
-
-  <div style="background:#f0fdf4;border-right:4px solid #25d366;padding:20px 24px;border-radius:8px;margin-bottom:32px;">
-    <p style="margin:0;font-size:1.05rem;"><strong>בוטים לוואטסאפ</strong> הם לא עוד כלי טכנולוגי — הם מערכת שעובדת בשבילך 24/7, עונה על שאלות, מסננת לידים, קובעת פגישות ומעבירה ללקוחות ישירות לנציג הנכון. במדריך זה תלמד לבנות בוט מהאפס עם ממשק הויז'ואל של גמבוט.</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">מה זה בוט-פלאו (Bot Flow)?</h2>
-  <p>בוט-פלאו הוא מפת שיחה ויזואלית שמגדירה מה הבוט אומר ומה הוא עושה בהתאם לתשובות הלקוח. כל שיחה היא רצף של <strong>נודים (Nodes)</strong> — תיבות לוגיות שמחברים אחד לשני.</p>
-  <p>סוגי נודים עיקריים:</p>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <div style="font-size:1.5rem;margin-bottom:8px;">💬</div>
-      <strong>נוד טקסט</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;color:#4a5568;">שולח הודעה ללקוח — עם כפתורי תגובה מהירה או רשימה</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <div style="font-size:1.5rem;margin-bottom:8px;">🔀</div>
-      <strong>נוד תנאי</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;color:#4a5568;">מסתעף לפי תשובת הלקוח, שדה CRM, שעה ביום ועוד</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <div style="font-size:1.5rem;margin-bottom:8px;">⚡</div>
-      <strong>נוד פעולה</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;color:#4a5568;">מבצע פעולה: עדכון CRM, שליחת מייל, קביעת פגישה, העברה לנציג</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <div style="font-size:1.5rem;margin-bottom:8px;">📥</div>
-      <strong>נוד קלט</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;color:#4a5568;">מחכה לתגובה חופשית ושומר אותה בשדה מותאם</p>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">שלב 1: כניסה לבנאי הבוט</h2>
-  <p>היכנס לממשק גמבוט ← לחץ על <strong>"אוטומציה"</strong> בתפריט הצד ← בחר <strong>"בוט פלאו"</strong> ← לחץ <strong>"+ בוט חדש"</strong>.</p>
-  <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:10px;padding:16px;margin:20px 0;">
-    <strong>💡 טיפ מקצועי:</strong> לפני שאתה פותח את הבנאי, צייר על נייר את מפת השיחה שלך. חסוך 50% מזמן הבנייה.
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">שלב 2: עיצוב זרימת השיחה</h2>
-  <p>הבנאי הוויזואלי של גמבוט מציג לוח ריק. גרור נודים מהסרגל הצדדי ושחרר אותם על הלוח. חבר אותם בגרירת חיצים.</p>
-  <ol style="padding-right:20px;color:#374151;">
-    <li style="margin-bottom:12px;"><strong>נוד פתיחה:</strong> הגדר את ההודעה הראשונה שהבוט ישלח כשמישהו כותב לראשונה</li>
-    <li style="margin-bottom:12px;"><strong>כפתורי בחירה:</strong> הוסף עד 10 כפתורים מהירים (לדוגמה: "מחירים", "תיאום פגישה", "דבר עם נציג")</li>
-    <li style="margin-bottom:12px;"><strong>סעיף קיבוצי:</strong> צור נודים לכל תשובה אפשרית</li>
-    <li style="margin-bottom:12px;"><strong>תנאים:</strong> הוסף לוגיקה — "אם לחץ מחירים → שלח קטלוג; אחרת → שלח הודעת ברירת מחדל"</li>
-  </ol>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">שלב 3: חיבור ל-CRM</h2>
-  <p>כל ליד שמגיע דרך הבוט נכנס אוטומטית ל-CRM של גמבוט. בנוד הפעולה תוכל:</p>
-  <ul style="padding-right:20px;color:#374151;">
-    <li style="margin-bottom:8px;">לעדכן שדות (שם, טלפון, תחום עניין, תקציב)</li>
-    <li style="margin-bottom:8px;">לשנות שלב בפייפליין</li>
-    <li style="margin-bottom:8px;">לשייך תג (tag) ללקוח</li>
-    <li style="margin-bottom:8px;">לשלוח התראה לנציג ספציפי</li>
-    <li style="margin-bottom:8px;">לקבוע פגישה בלוח שנה</li>
-  </ul>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">שלב 4: בדיקת הבוט (Test Mode)</h2>
-  <p>לפני פרסום, גמבוט מאפשרת לבדוק את הבוט בסימולציה מלאה:</p>
-  <ol style="padding-right:20px;color:#374151;">
-    <li style="margin-bottom:8px;">לחץ <strong>"בדיקה"</strong> בפינה הימנית העליונה</li>
-    <li style="margin-bottom:8px;">הכנס מספר טלפון לבדיקה (בדרך כלל המספר שלך)</li>
-    <li style="margin-bottom:8px;">עבור על כל מסלולי הבוט — ודא שכל תגובה נכונה</li>
-    <li style="margin-bottom:8px;">בדוק שהנתונים נשמרים ב-CRM כנדרש</li>
-  </ol>
-  <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:10px;padding:16px;margin:20px 0;">
-    <strong>⚠️ חשוב:</strong> בדוק גם את "מסלול השגיאה" — מה קורה כשהלקוח כותב משהו לא צפוי
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">שלב 5: פרסום הבוט</h2>
-  <p>לחץ <strong>"פרסם"</strong> — הבוט ייכנס לפעולה מיידית על מספר הוואטסאפ העסקי שלך. ניתן:</p>
-  <ul style="padding-right:20px;color:#374151;">
-    <li style="margin-bottom:8px;">להגדיר שעות פעילות (בוט פעיל בלילה, נציג ביום)</li>
-    <li style="margin-bottom:8px;">לקבוע trigger — "הפעל בוט כשמגיעה הודעה חדשה" או "רק אחרי שעות"</li>
-    <li style="margin-bottom:8px;">לעצור/לשחזר את הבוט בלחיצה אחת</li>
-  </ul>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🏠 דוגמה: בוט לסינון לידים לנדל"ן</h2>
-  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:24px;margin:20px 0;">
-    <p><strong>הודעת פתיחה:</strong> "שלום! אני הבוט של [שם הסוכנות] 🏠 מה תחום העניין שלך?"</p>
-    <p><strong>כפתורים:</strong> 🏢 דירות | 🏘️ בתים פרטיים | 🏗️ קרקעות | 💼 מסחרי</p>
-    <p><strong>אחרי הבחירה:</strong> "מה התקציב שלך? (בש"ח)"</p>
-    <p><strong>תנאי:</strong> אם תקציב > 2M → שלח לנציג VIP; אם > 1M → נציג רגיל; אחרת → שלח קטלוג</p>
-    <p><strong>שאלות נוספות:</strong> אזור מועדף? כמה חדרים? לרכישה עצמית או השקעה?</p>
-    <p><strong>סיכום:</strong> "תודה! נציג יחזור אליך בתוך 30 דקות עם נכסים מתאימים 🏠"</p>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן לבנות את הבוט הראשון שלך?</h3>
-    <p style="margin:0 0 20px;opacity:0.9;">צוות גמבוט יעזור לך לתכנן ולבנות את הבוט המושלם לעסק שלך</p>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🚀 התחל עכשיו בחינם</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🤖 How to Build a WhatsApp Bot with Gambot</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">Step-by-Step Guide for 2026 — From Concept to Launch</p>
-  </div>
-  <h2>What is a Bot Flow?</h2>
-  <p>A bot flow is a visual conversation map that defines what the bot says and does based on customer responses. Each conversation is a sequence of <strong>Nodes</strong> — logical boxes connected to each other.</p>
-  <h2>Step 1: Enter the Bot Builder</h2>
-  <p>Log in to Gambot → Click <strong>"Automation"</strong> in the sidebar → Select <strong>"Bot Flow"</strong> → Click <strong>"+ New Bot"</strong>.</p>
-  <h2>Step 2: Design the Conversation Flow</h2>
-  <p>Drag nodes from the sidebar and drop them on the canvas. Connect them by dragging arrows between nodes.</p>
-  <h2>Step 3: Connect to CRM</h2>
-  <p>Every lead arriving through the bot automatically enters Gambot's CRM. In the Action node you can update fields, change pipeline stage, assign tags, notify agents, and schedule appointments.</p>
-  <h2>Step 4: Test the Bot</h2>
-  <p>Before publishing, use Gambot's simulation mode to walk through all bot paths and verify data is saved correctly in the CRM.</p>
-  <h2>Step 5: Publish</h2>
-  <p>Click <strong>"Publish"</strong> — the bot goes live immediately on your WhatsApp Business number.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Build Your First Bot?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🚀 Start Free Now</a>
-  </div>
-</div>`
-  },
-  category: "Tutorial",
-  author: "ניר סגס",
-  tags: ["WhatsApp Bot", "Gambot", "Automation", "Bot Builder", "Tutorial", "2026"],
-  image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 12,
-  seoUrl: getSeoUrl("איך בונים בוט לוואטסאפ עם גמבוט מדריך מלא 2026")
-},
-
-{
-  id: 20,
-  featured: true,
-  seoTitle: {
-    he: "שיווק בוואטסאפ 2026: המדריך המלא לדיוור שמגיע, נקרא ומוכר",
-    en: "WhatsApp Marketing 2026: The Complete Guide to Campaigns That Reach, Get Read and Sell"
-  },
-  metaDescription: {
-    he: "מדריך שיווק בוואטסאפ 2026: מקורות מידע, סוגי קמפיינים, מעקב תוצאות, ריצה בבלוקים, ROI ואסטרטגיות שמוכרות. כולל השוואה WhatsApp vs Email vs SMS.",
-    en: "WhatsApp marketing guide 2026: data sources, campaign types, result tracking, block sending, ROI examples and selling strategies. Includes WhatsApp vs Email vs SMS comparison."
-  },
-  keywords: {
-    he: ["שיווק וואטסאפ", "קמפיין וואטסאפ", "דיוור וואטסאפ", "ROI", "גמבוט", "2026"],
-    en: ["WhatsApp marketing", "WhatsApp campaign", "bulk WhatsApp", "ROI", "Gambot", "2026"]
-  },
-  title: {
-    he: "📣 שיווק בוואטסאפ 2026: המדריך המלא לדיוור שמגיע, נקרא ומוכר",
-    en: "📣 WhatsApp Marketing 2026: The Complete Guide to Campaigns That Reach, Get Read and Sell"
-  },
-  description: {
-    he: "כל מה שצריך לדעת על שיווק בוואטסאפ — מקורות נתונים, סוגי קמפיינים, מעקב, ROI ואסטרטגיות מנצחות.",
-    en: "Everything you need to know about WhatsApp marketing — data sources, campaign types, tracking, ROI and winning strategies."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">📣 שיווק בוואטסאפ 2026</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">המדריך המלא לדיוור שמגיע, נקרא ומוכר</p>
-  </div>
-
-  <div style="background:#f0fdf4;border-right:4px solid #25d366;padding:20px 24px;border-radius:8px;margin-bottom:32px;">
-    <p style="margin:0;font-size:1.05rem;">מייל נפתח ב-21% מהמקרים. וואטסאפ — ב-<strong>98%</strong>. אם אתה עדיין מסתמך על ניוזלטרים ב-2026, אתה משאיר כסף על השולחן. המדריך הזה יראה לך איך להפוך את רשימת הלקוחות שלך למכונת מכירות.</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">📂 מקורות מידע לקמפיין</h2>
-  <p>מי ישלח לו את ההודעה? ב-גמבוט יש 3 מקורות עיקריים:</p>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:20px 0;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;text-align:center;">
-      <div style="font-size:2rem;margin-bottom:8px;">📊</div>
-      <strong>Excel / CSV</strong>
-      <p style="margin:8px 0 0;font-size:0.85rem;color:#4a5568;">העלה קובץ עם שמות ומספרים — גמבוט מייבאת אוטומטית</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;text-align:center;">
-      <div style="font-size:2rem;margin-bottom:8px;">👥</div>
-      <strong>אנשי קשר מה-CRM</strong>
-      <p style="margin:8px 0 0;font-size:0.85rem;color:#4a5568;">סנן לפי עיר, תג, שלב פייפליין, תאריך הצטרפות</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;text-align:center;">
-      <div style="font-size:2rem;margin-bottom:8px;">🔗</div>
-      <strong>אינטגרציה חיה</strong>
-      <p style="margin:8px 0 0;font-size:0.85rem;color:#4a5568;">לידים מגוגל/פייסבוק שנכנסים בזמן אמת</p>
-    </div>
-  </div>
-  <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:10px;padding:16px;margin:16px 0;">
-    <strong>💡 פילטרים חכמים:</strong> "שלח רק ללקוחות שקנו לפני 6 חודשים", "רק ללידים עם תג 'חם'", "רק לאנשים בתל אביב שלא הגיבו לקמפיין הקודם"
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🎯 סוגי קמפיינים</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0;">
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;">
-      <strong style="color:#25d366;font-size:1.1rem;">🖐️ ידני (On-Demand)</strong>
-      <p style="margin:12px 0 0;font-size:0.9rem;">לחיצת כפתור → שליחה מיידית. מעולה להצעות פלאש, אירועים, עדכונים דחופים.</p>
-    </div>
-    <div style="background:#eff6ff;border:2px solid #3b82f6;border-radius:12px;padding:20px;">
-      <strong style="color:#3b82f6;font-size:1.1rem;">📅 מתוזמן</strong>
-      <p style="margin:12px 0 0;font-size:0.9rem;">תכנן מראש — "שלח יום לפני החג", "שלח ב-9:00 ביום ראשון". מושלם לחגים ומבצעים.</p>
-    </div>
-    <div style="background:#fdf4ff;border:2px solid #a855f7;border-radius:12px;padding:20px;">
-      <strong style="color:#a855f7;font-size:1.1rem;">🔄 מחזורי</strong>
-      <p style="margin:12px 0 0;font-size:0.9rem;">קמפיין שחוזר אוטומטית — "כל שבוע", "כל חודש". מעולה לניוזלטרים ועדכוני מניות.</p>
-    </div>
-    <div style="background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:20px;">
-      <strong style="color:#f97316;font-size:1.1rem;">🤖 מופעל-אוטומטי</strong>
-      <p style="margin:12px 0 0;font-size:0.9rem;">מופעל על ידי אירוע — "ליד חדש נכנס", "לא הגיב 3 ימים", "מלאוי שנה ללקוח".</p>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">📊 מעקב ומדידה בזמן אמת</h2>
-  <p>גמבוט מציגה סטטיסטיקות לכל הודעה שנשלחה:</p>
-  <div style="overflow-x:auto;margin:20px 0;">
-    <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
-      <thead>
-        <tr style="background:#25d366;color:white;">
-          <th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">סטטוס</th>
-          <th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">סמל</th>
-          <th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">משמעות</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:white;"><td style="padding:12px;border:1px solid #e2e8f0;">נשלח</td><td style="padding:12px;border:1px solid #e2e8f0;">✓ (וי אפור)</td><td style="padding:12px;border:1px solid #e2e8f0;">ההודעה יצאה מהשרת שלנו</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e2e8f0;">נמסר</td><td style="padding:12px;border:1px solid #e2e8f0;">✓✓ (2 וי אפור)</td><td style="padding:12px;border:1px solid #e2e8f0;">הגיע לטלפון של הלקוח</td></tr>
-        <tr style="background:white;"><td style="padding:12px;border:1px solid #e2e8f0;">נקרא</td><td style="padding:12px;border:1px solid #e2e8f0;">✓✓ (2 וי כחול)</td><td style="padding:12px;border:1px solid #e2e8f0;">הלקוח פתח את ההודעה</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e2e8f0;">לחיצה</td><td style="padding:12px;border:1px solid #e2e8f0;">👆</td><td style="padding:12px;border:1px solid #e2e8f0;">לחץ על כפתור/קישור בהודעה</td></tr>
-        <tr style="background:white;"><td style="padding:12px;border:1px solid #e2e8f0;">תגובה</td><td style="padding:12px;border:1px solid #e2e8f0;">💬</td><td style="padding:12px;border:1px solid #e2e8f0;">כתב תשובה חופשית</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🚀 ריצה בבלוקים — לקהל גדול</h2>
-  <p>לקמפיינים גדולים (מעל 1,000 אנשי קשר), גמבוט מומלצת לחלק לבלוקים:</p>
-  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:24px;margin:20px 0;">
-    <p><strong>דוגמה: 4,000 אנשי קשר</strong></p>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px;">
-      <div style="background:#f0fdf4;border:1px solid #25d366;border-radius:8px;padding:12px;text-align:center;font-size:0.85rem;"><strong>בלוק 1</strong><br/>0–1,000<br/>שבוע ראשון</div>
-      <div style="background:#f0fdf4;border:1px solid #25d366;border-radius:8px;padding:12px;text-align:center;font-size:0.85rem;"><strong>בלוק 2</strong><br/>1,000–2,000<br/>שבוע שני</div>
-      <div style="background:#f0fdf4;border:1px solid #25d366;border-radius:8px;padding:12px;text-align:center;font-size:0.85rem;"><strong>בלוק 3</strong><br/>2,000–3,000<br/>שבוע שלישי</div>
-      <div style="background:#f0fdf4;border:1px solid #25d366;border-radius:8px;padding:12px;text-align:center;font-size:0.85rem;"><strong>בלוק 4</strong><br/>3,000–4,000<br/>שבוע רביעי</div>
-    </div>
-    <p style="margin:12px 0 0;font-size:0.9rem;color:#4a5568;">✅ מונע חסימת חשבון | ✅ מאפשר אופטימיזציה בין בלוקים | ✅ תוצאות ניתנות לניתוח</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">⚖️ השוואה: WhatsApp vs Email vs SMS</h2>
-  <div style="overflow-x:auto;margin:20px 0;">
-    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
-      <thead>
-        <tr style="background:#1e293b;color:white;">
-          <th style="padding:12px;text-align:right;border:1px solid #334155;">מדד</th>
-          <th style="padding:12px;text-align:center;border:1px solid #334155;">📱 WhatsApp</th>
-          <th style="padding:12px;text-align:center;border:1px solid #334155;">📧 Email</th>
-          <th style="padding:12px;text-align:center;border:1px solid #334155;">💬 SMS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:white;"><td style="padding:12px;border:1px solid #e2e8f0;font-weight:600;">שיעור פתיחה</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">98%</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;">21%</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;">35%</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e2e8f0;font-weight:600;">שיעור לחיצה</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">45-65%</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;">2-5%</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;">7-15%</td></tr>
-        <tr style="background:white;"><td style="padding:12px;border:1px solid #e2e8f0;font-weight:600;">תגובה ב-5 דקות</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">87%</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;">3%</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;">22%</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e2e8f0;font-weight:600;">תמונות/וידאו</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">✅</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;">✅ (לרוב נחסם)</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;">❌</td></tr>
-        <tr style="background:white;"><td style="padding:12px;border:1px solid #e2e8f0;font-weight:600;">עלות לפרסום</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;">בינוני</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;">נמוך</td><td style="padding:12px;text-align:center;border:1px solid #e2e8f0;color:#ef4444;">גבוה</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">💰 ROI: דוגמה מהשטח</h2>
-  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:24px;margin:20px 0;">
-    <p><strong>קמפיין ללידים שלא סגרו (Re-engagement):</strong></p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#25d366;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">1,000</span><span>הודעות נשלחו</span></div>
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#25d366;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">980 (98%)</span><span>נפתחו</span></div>
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#25d366;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">150 (15%)</span><span>לחצו על כפתור "אני מעוניין"</span></div>
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#128c7e;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">40</span><span>קבעו פגישה</span></div>
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#128c7e;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">12</span><span>עסקאות נסגרו (עמלה ממוצעת ₪8,500)</span></div>
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#1e293b;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">ROI x18</span><span><strong>₪102,000 הכנסה על השקעה של ₪5,500</strong></span></div>
-    </div>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן להפעיל את הקמפיין הראשון?</h3>
-    <p style="margin:0 0 20px;opacity:0.9;">גמבוט תעזור לך לבנות קמפיין שמגיע, נקרא ומוכר</p>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">📣 התחל עכשיו</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">📣 WhatsApp Marketing 2026</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">The Complete Guide to Campaigns That Reach, Get Read and Sell</p>
-  </div>
-  <p>Email open rate: 21%. WhatsApp: <strong>98%</strong>. This guide shows you how to turn your contact list into a sales machine.</p>
-  <h2>Data Sources</h2>
-  <p>Import from Excel/CSV, filter CRM contacts by city/tag/pipeline stage, or connect live leads from Google and Facebook.</p>
-  <h2>Campaign Types</h2>
-  <p>Manual (one-click send), Scheduled (plan ahead), Recurring (weekly/monthly), and Trigger-based (event-driven automation).</p>
-  <h2>ROI Example</h2>
-  <p>1,000 sent → 980 opened (98%) → 150 clicked (15%) → 40 meetings → 12 deals → <strong>ROI x18</strong></p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Launch Your First Campaign?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">📣 Start Now</a>
-  </div>
-</div>`
-  },
-  category: "Marketing",
-  author: "ניר סגס",
-  tags: ["WhatsApp Marketing", "Campaign", "ROI", "Bulk Messaging", "Gambot", "2026"],
-  image: "https://images.unsplash.com/photo-1611162617273-8d4a5d78a5f8?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 11,
-  seoUrl: getSeoUrl("שיווק בוואטסאפ המדריך המלא לדיוור שמגיע נקרא ומוכר 2026")
-},
-
-{
-  id: 21,
-  featured: true,
-  seoTitle: {
-    he: "ניהול לידים עם גמבוט: מגוגל ופייסבוק ועד סגירת עסקה 2026",
-    en: "Lead Management with Gambot: From Google & Facebook to Closing Deals 2026"
-  },
-  metaDescription: {
-    he: "מדריך ניהול לידים עם גמבוט: UTM tracking, אינטגרציית פייסבוק, לחץ להודעה בוואטסאפ, שלבי פייפליין, הצעות מחיר וחתימה דיגיטלית.",
-    en: "Lead management guide with Gambot: UTM tracking, Facebook integration, click-to-WhatsApp ads, pipeline stages, quotes and digital signature."
-  },
-  keywords: {
-    he: ["ניהול לידים", "גמבוט CRM", "פייסבוק לידים", "גוגל אדס", "פייפליין", "2026"],
-    en: ["lead management", "Gambot CRM", "Facebook leads", "Google Ads", "pipeline", "2026"]
-  },
-  title: {
-    he: "🎯 ניהול לידים עם גמבוט: מגוגל ופייסבוק ועד סגירת עסקה — המדריך המלא 2026",
-    en: "🎯 Lead Management with Gambot: From Google & Facebook to Closing Deals — 2026"
-  },
-  description: {
-    he: "כיצד לייצר, לנהל ולסגור לידים מכל ערוץ דיגיטלי עם גמבוט — מ-UTM ועד חתימה דיגיטלית.",
-    en: "How to generate, manage and close leads from every digital channel with Gambot — from UTM to digital signature."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🎯 ניהול לידים עם גמבוט</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">מגוגל ופייסבוק ועד סגירת עסקה — המדריך המלא 2026</p>
-  </div>
-
-  <div style="background:#f0fdf4;border-right:4px solid #25d366;padding:20px 24px;border-radius:8px;margin-bottom:32px;">
-    <p style="margin:0;font-size:1.05rem;">הבעיה שרוב העסקים מכירים: לידים נכנסים מגוגל, פייסבוק, אתר, וואטסאפ — לכל מקום אחר. הנציג לא יודע מאיפה הגיע כל ליד, ולא עוקב. גמבוט פותרת את זה עם מערכת אחת שמרכזת הכל.</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">🔍 גוגל אדס → UTM Tracking → גמבוט</h2>
-  <p>כל קמפיין גוגל יכול לשאת UTM parameters שמגדירים מאיפה הגיע הליד:</p>
-  <div style="background:#1e293b;border-radius:10px;padding:20px;margin:16px 0;font-family:monospace;font-size:0.85rem;color:#e2e8f0;direction:ltr;">
-    https://gambot.co.il/ContactUs/?utm_source=google&utm_medium=cpc&utm_campaign=summer2026&utm_term=crm_whatsapp
-  </div>
-  <p>כשהליד ממלא טופס, גמבוט שומרת אוטומטית:</p>
-  <ul style="padding-right:20px;color:#374151;">
-    <li style="margin-bottom:8px;">מקור התנועה (גוגל, פייסבוק, אורגני)</li>
-    <li style="margin-bottom:8px;">שם הקמפיין</li>
-    <li style="margin-bottom:8px;">מילת המפתח שהביאה אותו</li>
-    <li style="margin-bottom:8px;">דפדפן, מכשיר, שעה</li>
-  </ul>
-  <p>זה אומר שאתה יודע בדיוק <strong>אילו מילות מפתח מביאות לקוחות שסוגרים</strong> — לא רק לידים.</p>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">📘 פייסבוק Lead Ads → גמבוט</h2>
-  <p>פייסבוק Lead Ads מאפשרות ללקוחות למלא טופס בפייסבוק בלי לעזוב את האפליקציה. גמבוט מתחברת לפייסבוק Leads API ומקבלת כל ליד בזמן אמת:</p>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;text-align:center;font-size:0.85rem;">
-      <div style="font-size:1.4rem;margin-bottom:6px;">1️⃣</div>
-      לקוח לוחץ על מודעה בפייסבוק
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;text-align:center;font-size:0.85rem;">
-      <div style="font-size:1.4rem;margin-bottom:6px;">2️⃣</div>
-      ממלא טופס (שם, טלפון, מייל)
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;text-align:center;font-size:0.85rem;">
-      <div style="font-size:1.4rem;margin-bottom:6px;">3️⃣</div>
-      גמבוט מקבלת ופותחת contact + שולחת וואטסאפ תוך 30 שניות
-    </div>
-  </div>
-  <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:10px;padding:16px;margin:16px 0;">
-    <strong>⚡ מהירות מענה = כסף:</strong> ליד שמקבל תגובה בתוך 5 דקות — פי 9 יותר סיכוי לסגור לעומת תגובה אחרי שעה.
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">📲 פייסבוק Click-to-WhatsApp Ads</h2>
-  <p>סוג מודעה שמחובר ישירות לוואטסאפ — הלקוח לוחץ על המודעה → נפתח שיחת וואטסאפ → הבוט של גמבוט מגיב אוטומטית.</p>
-  <p>יתרונות:</p>
-  <ul style="padding-right:20px;color:#374151;">
-    <li style="margin-bottom:8px;">אין טופס = פחות חיכוך = יותר לידים</li>
-    <li style="margin-bottom:8px;">הלקוח כבר בוואטסאפ — ניתן לשלוח מדיה, קטלוג, בוט מסנן</li>
-    <li style="margin-bottom:8px;">מספר הטלפון מאומת (לא כמו טפסים)</li>
-  </ul>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🗂️ פייפליין — ניהול שלבי המכירה</h2>
-  <p>גמבוט מאפשרת לך להגדיר שלבי פייפליין מותאמים לעסק שלך. דוגמה לעסק נדל"ן:</p>
-  <div style="display:flex;gap:8px;overflow-x:auto;padding:8px 0;margin:16px 0;">
-    <div style="background:#25d366;color:white;border-radius:8px;padding:10px 14px;font-size:0.85rem;white-space:nowrap;min-width:90px;text-align:center;">🆕 ליד חדש</div>
-    <div style="color:#94a3b8;font-size:1.2rem;align-self:center;">→</div>
-    <div style="background:#3b82f6;color:white;border-radius:8px;padding:10px 14px;font-size:0.85rem;white-space:nowrap;min-width:90px;text-align:center;">📞 יצרנו קשר</div>
-    <div style="color:#94a3b8;font-size:1.2rem;align-self:center;">→</div>
-    <div style="background:#a855f7;color:white;border-radius:8px;padding:10px 14px;font-size:0.85rem;white-space:nowrap;min-width:90px;text-align:center;">🏠 הצגת נכס</div>
-    <div style="color:#94a3b8;font-size:1.2rem;align-self:center;">→</div>
-    <div style="background:#f97316;color:white;border-radius:8px;padding:10px 14px;font-size:0.85rem;white-space:nowrap;min-width:90px;text-align:center;">💰 הצעת מחיר</div>
-    <div style="color:#94a3b8;font-size:1.2rem;align-self:center;">→</div>
-    <div style="background:#ef4444;color:white;border-radius:8px;padding:10px 14px;font-size:0.85rem;white-space:nowrap;min-width:90px;text-align:center;">✍️ חוזה</div>
-    <div style="color:#94a3b8;font-size:1.2rem;align-self:center;">→</div>
-    <div style="background:#1e293b;color:white;border-radius:8px;padding:10px 14px;font-size:0.85rem;white-space:nowrap;min-width:90px;text-align:center;">🎉 סגור!</div>
-  </div>
-  <p>כל מעבר שלב יכול לשגר אוטומציה: "הלקוח עבר להצעת מחיר → שלח הצעה דיגיטלית לוואטסאפ"</p>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">✍️ הצעות מחיר + חתימה דיגיטלית</h2>
-  <p>ברגע שהלקוח מוכן לסגור — גמבוט מאפשרת לך לשלוח ישירות לוואטסאפ:</p>
-  <ul style="padding-right:20px;color:#374151;">
-    <li style="margin-bottom:8px;"><strong>הצעת מחיר דיגיטלית</strong> — עם פריטים, מחירים, הנחות, לוגו</li>
-    <li style="margin-bottom:8px;"><strong>חוזה PDF</strong> — מוכן לחתימה</li>
-    <li style="margin-bottom:8px;"><strong>חתימה דיגיטלית</strong> — הלקוח חותם ישירות בוואטסאפ</li>
-    <li style="margin-bottom:8px;"><strong>אישור קבלה</strong> — שניכם מקבלים עותק חתום</li>
-  </ul>
-  <p>כל התהליך — מ"ליד חדש" ועד "חוזה חתום" — בלי אימייל ובלי פגישה פיזית.</p>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן לנהל לידים כמו מקצוענים?</h3>
-    <p style="margin:0 0 20px;opacity:0.9;">גמבוט מחברת את כל ערוצי הלידים שלך למקום אחד</p>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🎯 התחל ניסיון חינם</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🎯 Lead Management with Gambot</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">From Google & Facebook to Closing Deals — 2026</p>
-  </div>
-  <p>Gambot centralizes leads from all digital channels into one platform — with full UTM tracking, Facebook integration, pipeline management, and digital signatures.</p>
-  <h2>Google Ads UTM Tracking</h2>
-  <p>Know exactly which keywords bring paying customers, not just leads. Gambot stores campaign source, medium, name, and keyword automatically.</p>
-  <h2>Facebook Lead Ads</h2>
-  <p>Gambot connects to Facebook Leads API and receives every lead in real time, automatically opening a contact and sending a WhatsApp follow-up within 30 seconds.</p>
-  <h2>Pipeline Management</h2>
-  <p>Customize pipeline stages for your business. Each stage transition can trigger automations — like sending a digital quote when a lead reaches the proposal stage.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Manage Leads Like a Pro?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🎯 Start Free Trial</a>
-  </div>
-</div>`
-  },
-  category: "CRM",
-  author: "ניר סגס",
-  tags: ["Lead Management", "CRM", "Facebook Ads", "Google Ads", "Pipeline", "WhatsApp"],
-  image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 10,
-  seoUrl: getSeoUrl("ניהול לידים עם גמבוט מגוגל ופייסבוק ועד סגירת עסקה 2026")
-},
-
-{
-  id: 22,
-  featured: true,
-  seoTitle: {
-    he: "חתימה דיגיטלית בוואטסאפ — לסגור עסקאות בלי לצאת מהצ'אט",
-    en: "Digital Signature in WhatsApp — Close Deals Without Leaving the Chat"
-  },
-  metaDescription: {
-    he: "חתימה דיגיטלית בוואטסאפ: 4 שלבים, בסיס משפטי (חוק 2001), תרחישים, השוואה, סטטיסטיקות (80% מהיר יותר) ושאלות נפוצות.",
-    en: "Digital signature in WhatsApp: 4 steps, legal basis, use cases, comparison, stats (80% faster) and FAQ."
-  },
-  keywords: {
-    he: ["חתימה דיגיטלית", "וואטסאפ", "חוזה דיגיטלי", "גמבוט", "סגירת עסקה", "חוק חתימה אלקטרונית"],
-    en: ["digital signature", "WhatsApp", "digital contract", "Gambot", "close deals", "electronic signature law"]
-  },
-  title: {
-    he: "✍️ חתימה דיגיטלית בוואטסאפ — לסגור עסקאות בלי לצאת מהצ'אט",
-    en: "✍️ Digital Signature in WhatsApp — Close Deals Without Leaving the Chat"
-  },
-  description: {
-    he: "כיצד לשלוח חוזים ולקבל חתימות דיגיטליות ישירות בוואטסאפ — מהיר, חוקי ונוח ללקוח.",
-    en: "How to send contracts and receive digital signatures directly in WhatsApp — fast, legal and customer-friendly."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">✍️ חתימה דיגיטלית בוואטסאפ</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">לסגור עסקאות בלי לצאת מהצ'אט</p>
-  </div>
-
-  <div style="background:#fef2f2;border-right:4px solid #ef4444;padding:20px 24px;border-radius:8px;margin-bottom:32px;">
-    <p style="margin:0;font-size:1.05rem;"><strong>הסיפור המוכר:</strong> עסקה כמעט סגורה. שלחת PDF למייל. הלקוח לא פתח. ביקש שתדפיס ותביא פיזית. עברו 3 ימים. הוא קנה אצל המתחרה. 😤</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">⚡ 4 שלבים לחתימה דיגיטלית בוואטסאפ</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;">
-      <div style="font-size:1.8rem;margin-bottom:8px;">1️⃣</div>
-      <strong>שליחת המסמך</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">גמבוט שולחת את החוזה ישירות לוואטסאפ של הלקוח — לינק או PDF</p>
-    </div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;">
-      <div style="font-size:1.8rem;margin-bottom:8px;">2️⃣</div>
-      <strong>קריאת המסמך</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">הלקוח פותח את הקישור, קורא את החוזה על המסך</p>
-    </div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;">
-      <div style="font-size:1.8rem;margin-bottom:8px;">3️⃣</div>
-      <strong>חתימה</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">חותם בקוד OTP לוואטסאפ + חתימה ידנית על המסך (באצבע)</p>
-    </div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;">
-      <div style="font-size:1.8rem;margin-bottom:8px;">4️⃣</div>
-      <strong>אישור מיידי</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">שניכם מקבלים עותק PDF חתום + timestamp + IP לאחסון</p>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">⚖️ בסיס משפטי</h2>
-  <div style="background:#eff6ff;border:1px solid #3b82f6;border-radius:10px;padding:20px;margin:20px 0;">
-    <p style="margin:0;"><strong>חוק חתימה אלקטרונית, תשס"א–2001</strong> קובע כי חתימה אלקטרונית מאובטחת שקולה לחתימה ידנית לכל דבר ועניין. גמבוט משתמשת בחתימה אלקטרונית מאובטחת (Qualified Electronic Signature) הכוללת: אימות זהות, OTP, timestamp מאושר ושרשרת אימות.</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🏢 תרחישים לפי תעשייה</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <strong>🏠 נדל"ן</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">הסכם שכירות, הסכם בלעדיות, הרשאה לפרסום</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <strong>🛡️ ביטוח</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">הצעת ביטוח, טופס הצהרת בריאות, ביטול פוליסה</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <strong>💻 IT / Software</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">הסכם שירות, NDA, הצעת מחיר שאושרה</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <strong>🔨 קבלנות</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">חוזה עבודה, הסכם תשלומים, הרשאת גישה לנכס</p>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">📊 סטטיסטיקות</h2>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:20px 0;">
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;">
-      <div style="font-size:2rem;font-weight:800;color:#25d366;">80%</div>
-      <div style="font-size:0.85rem;color:#4a5568;margin-top:4px;">מהיר יותר מחתימה פיזית</div>
-    </div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;">
-      <div style="font-size:2rem;font-weight:800;color:#25d366;">97%</div>
-      <div style="font-size:0.85rem;color:#4a5568;margin-top:4px;">מהלקוחות מעדיפים מובייל</div>
-    </div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;">
-      <div style="font-size:2rem;font-weight:800;color:#25d366;">4 דק'</div>
-      <div style="font-size:0.85rem;color:#4a5568;margin-top:4px;">זמן ממוצע לחתימה</div>
-    </div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;">
-      <div style="font-size:2rem;font-weight:800;color:#25d366;">93%</div>
-      <div style="font-size:0.85rem;color:#4a5568;margin-top:4px;">שיעור השלמה</div>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">❓ שאלות נפוצות</h2>
-  <div style="display:flex;flex-direction:column;gap:12px;margin:20px 0;">
-    <details style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <summary style="font-weight:700;cursor:pointer;color:#1e293b;">האם החתימה הדיגיטלית חוקית בישראל?</summary>
-      <p style="margin:12px 0 0;color:#4a5568;">כן! על פי חוק חתימה אלקטרונית תשס"א-2001, חתימה אלקטרונית מאובטחת שקולה לחתימה ידנית.</p>
-    </details>
-    <details style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <summary style="font-weight:700;cursor:pointer;color:#1e293b;">מה קורה אם הלקוח טוען שלא חתם?</summary>
-      <p style="margin:12px 0 0;color:#4a5568;">גמבוט שומרת audit trail מלא: IP, timestamp, OTP שנשלח לטלפון, צילום המסך בזמן החתימה.</p>
-    </details>
-    <details style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;">
-      <summary style="font-weight:700;cursor:pointer;color:#1e293b;">האם זה עובד גם ללקוחות שאינם טכנולוגיים?</summary>
-      <p style="margin:12px 0 0;color:#4a5568;">ממש! הממשק מותאם לכל גיל — פשוט ומהיר. אם הלקוח יודע להשתמש בוואטסאפ, הוא יכול לחתום.</p>
-    </details>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן לסגור עסקאות מהצ'אט?</h3>
-    <p style="margin:0 0 20px;opacity:0.9;">גמבוט מאפשרת לך לשלוח חוזים ולקבל חתימות ישירות בוואטסאפ</p>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">✍️ התחל עכשיו</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">✍️ Digital Signature in WhatsApp</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">Close Deals Without Leaving the Chat</p>
-  </div>
-  <p>Send contracts via WhatsApp. Customers sign in 4 minutes with OTP verification. Both parties get a signed PDF immediately. 80% faster than physical signatures, 93% completion rate.</p>
-  <h2>4-Step Process</h2>
-  <ol><li>Send document to customer's WhatsApp</li><li>Customer reads the contract on screen</li><li>Signs with OTP + finger signature</li><li>Both receive signed PDF with timestamp</li></ol>
-  <h2>Legal Basis</h2>
-  <p>Israel's Electronic Signature Law (2001) recognizes secure electronic signatures as legally equivalent to handwritten signatures.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Close Deals from Chat?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">✍️ Start Now</a>
-  </div>
-</div>`
-  },
-  category: "Sales & CRM",
-  author: "ניר סגס",
-  tags: ["Digital Signature", "WhatsApp", "Contract", "E-Signature", "Gambot", "Sales"],
-  image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 9,
-  seoUrl: getSeoUrl("חתימה דיגיטלית בוואטסאפ לסגור עסקאות בלי לצאת מהצאט")
-},
-
-{
-  id: 23,
-  featured: true,
-  seoTitle: {
-    he: "CRM בוואטסאפ: למה כל עסק צריך לנהל לקוחות מהצ'אט",
-    en: "WhatsApp CRM: Why Every Business Needs to Manage Customers from Chat"
-  },
-  metaDescription: {
-    he: "CRM בוואטסאפ עם גמבוט: 6 בעיות של אקסל, תכונות CRM, פייפליין, תגיות, שדות מותאמים, אינטגרציות ומדריך התחלה מהיר.",
-    en: "WhatsApp CRM with Gambot: 6 Excel problems, CRM features, pipeline, tags, custom fields, integrations and quick start guide."
-  },
-  keywords: {
-    he: ["CRM וואטסאפ", "ניהול לקוחות", "גמבוט CRM", "פייפליין", "אקסל", "2026"],
-    en: ["WhatsApp CRM", "customer management", "Gambot CRM", "pipeline", "Excel", "2026"]
-  },
-  title: {
-    he: "📊 CRM בוואטסאפ: למה כל עסק צריך לנהל לקוחות מהצ'אט",
-    en: "📊 WhatsApp CRM: Why Every Business Needs to Manage Customers from Chat"
-  },
-  description: {
-    he: "למה CRM משולב בוואטסאפ עדיף על אקסל ומערכות CRM נפרדות — תכונות, אינטגרציות ומדריך התחלה מהיר.",
-    en: "Why a WhatsApp-integrated CRM is better than Excel and separate CRM systems — features, integrations and quick start guide."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">📊 CRM בוואטסאפ</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">למה כל עסק צריך לנהל לקוחות מהצ'אט</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">❌ 6 בעיות של ניהול לקוחות באקסל</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;">
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:14px;"><strong>1. אין היסטוריית שיחה</strong><p style="margin:6px 0 0;font-size:0.9rem;color:#4a5568;">לא יודעים מה סוכם עם הלקוח בשיחה האחרונה</p></div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:14px;"><strong>2. כפילויות ושגיאות</strong><p style="margin:6px 0 0;font-size:0.9rem;color:#4a5568;">אותו לקוח ב-3 שורות שונות עם מידע סותר</p></div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:14px;"><strong>3. אין שיתוף צוות</strong><p style="margin:6px 0 0;font-size:0.9rem;color:#4a5568;">כל נציג שומר בקובץ שלו — כאוס בעזיבת עובד</p></div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:14px;"><strong>4. אין אוטומציות</strong><p style="margin:6px 0 0;font-size:0.9rem;color:#4a5568;">כל תזכורת, מעקב ושליחת הצעה — ידנית לגמרי</p></div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:14px;"><strong>5. אין ניתוח נתונים</strong><p style="margin:6px 0 0;font-size:0.9rem;color:#4a5568;">לא יודע כמה לידים נסגרו החודש ומאיפה הגיעו</p></div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:14px;"><strong>6. נפילה בין הכסאות</strong><p style="margin:6px 0 0;font-size:0.9rem;color:#4a5568;">לידים חמים שנשכחים כי "אמרתי שאחזור אליו"</p></div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🔄 מה קורה כשהודעה מגיעה לגמבוט</h2>
-  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:24px;margin:20px 0;">
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;align-items:flex-start;gap:12px;"><span style="background:#25d366;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">1</span><div><strong>זיהוי אוטומטי:</strong> מספר חדש? נוצר contact אוטומטי. מספר ידוע? פותח את הפרופיל הקיים</div></div>
-      <div style="display:flex;align-items:flex-start;gap:12px;"><span style="background:#25d366;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">2</span><div><strong>ניתוב חכם:</strong> על פי תגיות, שלב פייפליין, שעה — השיחה מגיעה לנציג הנכון</div></div>
-      <div style="display:flex;align-items:flex-start;gap:12px;"><span style="background:#25d366;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">3</span><div><strong>היסטוריה מלאה:</strong> הנציג רואה את כל ההתכתבויות, פגישות, הצעות מחיר ורכישות קודמות</div></div>
-      <div style="display:flex;align-items:flex-start;gap:12px;"><span style="background:#25d366;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">4</span><div><strong>אוטומציה:</strong> לפי מה שהלקוח כתב — הבוט מגיב, מעדכן CRM, שולח הצעה או קובע פגישה</div></div>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">⚖️ השוואה: Excel vs Pipedrive vs גמבוט</h2>
-  <div style="overflow-x:auto;margin:20px 0;">
-    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
-      <thead>
-        <tr style="background:#1e293b;color:white;">
-          <th style="padding:12px;text-align:right;border:1px solid #334155;">תכונה</th>
-          <th style="padding:12px;text-align:center;border:1px solid #334155;">📊 Excel</th>
-          <th style="padding:12px;text-align:center;border:1px solid #334155;">🔷 Pipedrive</th>
-          <th style="padding:12px;text-align:center;border:1px solid #334155;">💚 גמבוט</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">ניהול לקוחות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">✅</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">✅</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">✅</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">WhatsApp מובנה</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">✅</td></tr>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">בוט אוטומטי</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">✅</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">שליחת קמפיינים</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">⚠️ (מייל בלבד)</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">✅</td></tr>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">חתימה דיגיטלית</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">✅</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">מחיר לחודש</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">₪0</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">₪400+</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">הכל כלול</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן לנהל לקוחות מהצ'אט?</h3>
-    <p style="margin:0 0 20px;opacity:0.9;">גמבוט — CRM + WhatsApp + בוט + קמפיינים. הכל במקום אחד.</p>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">📊 התחל ניסיון חינם</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">📊 WhatsApp CRM</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">Why Every Business Needs to Manage Customers from Chat</p>
-  </div>
-  <p>Excel has 6 critical failures for customer management. Gambot combines CRM, WhatsApp, bot automation, campaign sending, and digital signatures in one platform.</p>
-  <h2>When a Message Arrives in Gambot</h2>
-  <ol><li>Auto-identify: new number creates a contact; known number opens existing profile</li><li>Smart routing to the right agent</li><li>Full history visible to agent</li><li>Automation responds, updates CRM, sends quote, or books appointment</li></ol>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Manage Customers from Chat?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">📊 Start Free Trial</a>
-  </div>
-</div>`
-  },
-  category: "CRM",
-  author: "ניר סגס",
-  tags: ["CRM", "WhatsApp CRM", "Customer Management", "Pipeline", "Gambot", "2026"],
-  image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 10,
-  seoUrl: getSeoUrl("crm בוואטסאפ למה כל עסק צריך לנהל לקוחות מהצאט")
-},
-
-{
-  id: 24,
-  featured: true,
-  seoTitle: {
-    he: "הצעות מחיר דיגיטליות — מהמחשב ישירות לוואטסאפ של הלקוח",
-    en: "Digital Quotes — From Your System Directly to the Customer's WhatsApp"
-  },
-  metaDescription: {
-    he: "שלח הצעות מחיר דיגיטליות ישירות לוואטסאפ של הלקוח. מעקב זמן אמת, אוטומציית פייפליין, 98% שיעור פתיחה. השוואה ושאלות נפוצות.",
-    en: "Send digital quotes directly to customer's WhatsApp. Real-time tracking, pipeline automation, 98% open rate. Comparison and FAQ."
-  },
-  keywords: {
-    he: ["הצעת מחיר דיגיטלית", "וואטסאפ", "גמבוט", "מכירות", "CRM", "2026"],
-    en: ["digital quote", "WhatsApp", "Gambot", "sales", "CRM", "2026"]
-  },
-  title: {
-    he: "💰 הצעות מחיר דיגיטליות — מהמחשב ישירות לוואטסאפ של הלקוח",
-    en: "💰 Digital Quotes — From Your System Directly to the Customer's WhatsApp"
-  },
-  description: {
-    he: "שלח הצעות מחיר מקצועיות ישירות לוואטסאפ — עם מעקב פתיחה, אישור לקוח ואוטומציית פייפליין.",
-    en: "Send professional quotes directly to WhatsApp — with open tracking, customer approval and pipeline automation."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">💰 הצעות מחיר דיגיטליות</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">מהמחשב ישירות לוואטסאפ של הלקוח</p>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;">
-    <div style="background:#fef2f2;border-radius:12px;padding:24px;text-align:center;">
-      <div style="font-size:2.5rem;font-weight:800;color:#ef4444;">23%</div>
-      <div style="font-size:1rem;color:#4a5568;margin-top:4px;">שיעור פתיחת הצעת מחיר במייל</div>
-    </div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:24px;text-align:center;">
-      <div style="font-size:2.5rem;font-weight:800;color:#25d366;">98%</div>
-      <div style="font-size:1rem;color:#4a5568;margin-top:4px;">שיעור פתיחת הצעת מחיר בוואטסאפ</div>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">📋 תכונות הצעת המחיר הדיגיטלית</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;">
-      <div style="font-size:1.3rem;">🎨</div><strong>עיצוב מותאם אישית</strong>
-      <p style="margin:6px 0 0;font-size:0.9rem;color:#4a5568;">לוגו, צבעי מותג, תבניות מוכנות</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;">
-      <div style="font-size:1.3rem;">📦</div><strong>פריטים ומחירים</strong>
-      <p style="margin:6px 0 0;font-size:0.9rem;color:#4a5568;">רשימת שירותים, כמויות, הנחות, מע"מ</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;">
-      <div style="font-size:1.3rem;">👁️</div><strong>מעקב פתיחה</strong>
-      <p style="margin:6px 0 0;font-size:0.9rem;color:#4a5568;">קבל התראה ברגע שהלקוח פתח את ההצעה</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;">
-      <div style="font-size:1.3rem;">✅</div><strong>אישור בלחיצה</strong>
-      <p style="margin:6px 0 0;font-size:0.9rem;color:#4a5568;">הלקוח לוחץ "אני מאשר" → מתחיל תהליך חתימה</p>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🔄 זרימת מעקב בזמן אמת</h2>
-  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:24px;margin:20px 0;">
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#25d366;color:white;padding:4px 14px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">09:15</span><span>הצעת מחיר נשלחה לוואטסאפ</span></div>
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#3b82f6;color:white;padding:4px 14px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">09:22</span><span>הלקוח פתח את ההצעה — התראה לנציג</span></div>
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#f97316;color:white;padding:4px 14px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">09:35</span><span>הלקוח שאל שאלה בוואטסאפ — תשובה מהנציג</span></div>
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#a855f7;color:white;padding:4px 14px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">09:48</span><span>הלקוח לחץ "אני מאשר" → נפתח תהליך חתימה</span></div>
-      <div style="display:flex;align-items:center;gap:12px;"><span style="background:#1e293b;color:white;padding:4px 14px;border-radius:20px;font-size:0.85rem;white-space:nowrap;">09:52</span><span>🎉 חתימה התקבלה! עסקה סגורה. CRM עודכן אוטומטית.</span></div>
-    </div>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן לשלוח הצעות מחיר שנסגרות?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">💰 התחל עכשיו</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">💰 Digital Quotes via WhatsApp</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">From Your System Directly to the Customer's WhatsApp</p>
-  </div>
-  <p>Email quote open rate: 23%. WhatsApp: <strong>98%</strong>. Send professional quotes with real-time open tracking, one-click approval, and automated pipeline updates.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Send Quotes That Close?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">💰 Start Now</a>
-  </div>
-</div>`
-  },
-  category: "Sales & CRM",
-  author: "ניר סגס",
-  tags: ["Digital Quote", "WhatsApp", "Sales", "CRM", "Gambot", "2026"],
-  image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 8,
-  seoUrl: getSeoUrl("הצעות מחיר דיגיטליות מהמחשב ישירות לוואטסאפ של הלקוח")
-},
-
-{
-  id: 25,
-  featured: true,
-  seoTitle: {
-    he: "ניהול כמה נציגים על מספר וואטסאפ אחד — Shared Inbox מלא",
-    en: "Managing Multiple Agents on One WhatsApp Number — Full Shared Inbox"
-  },
-  metaDescription: {
-    he: "שירות שיתופי על מספר וואטסאפ אחד: 3 שיטות ניתוב, בעלות שיחה, SLA, דשבורד מנהל, הרשאות וניהול כמה נציגים בו-זמנית.",
-    en: "Shared inbox on one WhatsApp number: 3 routing methods, chat ownership, SLA, manager dashboard, permissions and managing multiple agents."
-  },
-  keywords: {
-    he: ["shared inbox", "וואטסאפ עסקי", "כמה נציגים", "גמבוט", "ניהול צוות", "2026"],
-    en: ["shared inbox", "WhatsApp business", "multiple agents", "Gambot", "team management", "2026"]
-  },
-  title: {
-    he: "👥 ניהול כמה נציגים על מספר וואטסאפ אחד — Shared Inbox מלא",
-    en: "👥 Managing Multiple Agents on One WhatsApp Number — Full Shared Inbox"
-  },
-  description: {
-    he: "כיצד לנהל צוות שלם על מספר וואטסאפ אחד: ניתוב חכם, SLA, דשבורד ובקרה מלאה.",
-    en: "How to manage a full team on one WhatsApp number: smart routing, SLA, dashboard and full control."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">👥 Shared Inbox לוואטסאפ</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">ניהול כמה נציגים על מספר אחד — בלי כאוס</p>
-  </div>
-
-  <div style="background:#fef2f2;border-right:4px solid #ef4444;padding:20px 24px;border-radius:8px;margin-bottom:32px;">
-    <p style="margin:0;font-size:1.05rem;"><strong>הבעיה:</strong> 3 נציגים, מספר וואטסאפ אחד, טלפון אחד שעובר מיד ליד. לקוח כותב — מי עונה? מי ראה? מי הבטיח מה? 😱</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">🔀 3 שיטות ניתוב</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:20px 0;">
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;">
-      <div style="font-size:1.5rem;margin-bottom:8px;">🔄</div>
-      <strong>Round Robin</strong>
-      <p style="margin:8px 0 0;font-size:0.85rem;color:#4a5568;">חלוקה שווה — שיחה 1 לנציג א, שיחה 2 לנציג ב, שיחה 3 לנציג ג</p>
-    </div>
-    <div style="background:#eff6ff;border:2px solid #3b82f6;border-radius:12px;padding:20px;text-align:center;">
-      <div style="font-size:1.5rem;margin-bottom:8px;">🏢</div>
-      <strong>מחלקה</strong>
-      <p style="margin:8px 0 0;font-size:0.85rem;color:#4a5568;">לפי סוג פניה — "תמיכה" → צוות תמיכה; "מכירות" → צוות מכירות</p>
-    </div>
-    <div style="background:#fdf4ff;border:2px solid #a855f7;border-radius:12px;padding:20px;text-align:center;">
-      <div style="font-size:1.5rem;margin-bottom:8px;">🎯</div>
-      <strong>כישורים</strong>
-      <p style="margin:8px 0 0;font-size:0.85rem;color:#4a5568;">לפי שפה, מומחיות, אזור גיאוגרפי</p>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">⏱️ SLA — הגדרת יעדי מענה</h2>
-  <div style="overflow-x:auto;margin:20px 0;">
-    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
-      <thead>
-        <tr style="background:#25d366;color:white;">
-          <th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">רמת דחיפות</th>
-          <th style="padding:12px;text-align:center;border:1px solid #e2e8f0;">יעד מענה ראשון</th>
-          <th style="padding:12px;text-align:center;border:1px solid #e2e8f0;">יעד סגירה</th>
-          <th style="padding:12px;text-align:center;border:1px solid #e2e8f0;">אזהרה למנהל</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">🔴 קריטי</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">2 דקות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">30 דקות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">אחרי 5 דקות</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">🟠 גבוה</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">5 דקות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">2 שעות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">אחרי 15 דקות</td></tr>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">🟡 בינוני</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">15 דקות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">24 שעות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">אחרי שעה</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">🟢 נמוך</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">שעה</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">72 שעות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">אחרי 4 שעות</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">📊 דשבורד מנהל</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0;">
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#25d366;">47</div><div style="font-size:0.85rem;color:#4a5568;">שיחות פעילות</div></div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#25d366;">3.2 דק'</div><div style="font-size:0.85rem;color:#4a5568;">זמן מענה ממוצע</div></div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#25d366;">94%</div><div style="font-size:0.85rem;color:#4a5568;">שביעות רצון</div></div>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן לנהל צוות שלם מוואטסאפ אחד?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">👥 התחל עכשיו</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">👥 WhatsApp Shared Inbox</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">Managing Multiple Agents on One WhatsApp Number</p>
-  </div>
-  <p>Gambot's shared inbox lets your entire team work from one WhatsApp number with smart routing (round-robin, department, skills), SLA monitoring, and full manager dashboard.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Manage Your Team from One WhatsApp?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">👥 Start Now</a>
-  </div>
-</div>`
-  },
-  category: "Team Management",
-  author: "ניר סגס",
-  tags: ["Shared Inbox", "WhatsApp", "Team Management", "Multiple Agents", "Gambot", "SLA"],
-  image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 9,
-  seoUrl: getSeoUrl("ניהול כמה נציגים על מספר וואטסאפ אחד shared inbox")
-},
-
-{
-  id: 26,
-  featured: true,
-  seoTitle: {
-    he: "תבניות הודעה בוואטסאפ — איך לכתוב תבנית שמאושרת ומוכרת",
-    en: "WhatsApp Message Templates — How to Write a Template That Gets Approved and Converts"
-  },
-  metaDescription: {
-    he: "מדריך תבניות הודעה בוואטסאפ: 4 סוגים, מבנה, דוס ודונטס, 4 דוגמאות, משתנים, יצירה בגמבוט וטיפים לאישור.",
-    en: "WhatsApp message template guide: 4 types, structure, dos and don'ts, 4 examples, variables, creation in Gambot and approval tips."
-  },
-  keywords: {
-    he: ["תבנית הודעה וואטסאפ", "WhatsApp template", "גמבוט", "אישור מטא", "שיווק", "2026"],
-    en: ["WhatsApp message template", "WhatsApp template", "Gambot", "Meta approval", "marketing", "2026"]
-  },
-  title: {
-    he: "📝 תבניות הודעה בוואטסאפ — איך לכתוב תבנית שמאושרת ומוכרת",
-    en: "📝 WhatsApp Message Templates — How to Write a Template That Gets Approved and Converts"
-  },
-  description: {
-    he: "כל מה שצריך לדעת על תבניות הודעה בוואטסאפ — מהמבנה ועד האישור, עם 4 דוגמאות מוכנות.",
-    en: "Everything you need to know about WhatsApp message templates — from structure to approval, with 4 ready examples."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">📝 תבניות הודעה בוואטסאפ</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">איך לכתוב תבנית שמאושרת ומוכרת</p>
-  </div>
-
-  <div style="background:#f0fdf4;border-right:4px solid #25d366;padding:20px 24px;border-radius:8px;margin-bottom:32px;">
-    <p style="margin:0;font-size:1.05rem;"><strong>מה זו תבנית הודעה?</strong> כשרוצים ליצור שיחה עם לקוח שלא כתב לכם 24 שעות, וואטסאפ מחייב שימוש ב<strong>תבנית מאושרת מראש</strong> על ידי מטא. תבנית שלא אושרה — לא תישלח.</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">🗂️ 4 סוגי תבניות</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
-    <div style="background:#fdf4ff;border:2px solid #a855f7;border-radius:12px;padding:20px;">
-      <strong style="color:#a855f7;">📣 שיווקית (Marketing)</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">מבצעים, קמפיינים, הזמנות לאירוע. הכי גמישה, דורשת opt-in.</p>
-    </div>
-    <div style="background:#eff6ff;border:2px solid #3b82f6;border-radius:12px;padding:20px;">
-      <strong style="color:#3b82f6;">🔔 שירותית (Utility)</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">עדכון הזמנה, תזכורת תור, אישור תשלום. מאושרת בקלות.</p>
-    </div>
-    <div style="background:#fff7ed;border:2px solid #f97316;border-radius:12px;padding:20px;">
-      <strong style="color:#f97316;">🔑 OTP (Authentication)</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">קוד אימות, כניסה לחשבון, אישור פעולה.</p>
-    </div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;">
-      <strong style="color:#25d366;">💬 שיחה (Conversation)</strong>
-      <p style="margin:8px 0 0;font-size:0.9rem;">פתיחת שיחה שירות לקוחות. חינמית בחלון שירות.</p>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🏗️ מבנה תבנית</h2>
-  <div style="overflow-x:auto;margin:20px 0;">
-    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
-      <thead><tr style="background:#25d366;color:white;"><th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">חלק</th><th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">תיאור</th><th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">אופציונלי?</th></tr></thead>
-      <tbody>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;"><strong>Header</strong></td><td style="padding:10px;border:1px solid #e2e8f0;">כותרת: טקסט, תמונה, וידאו, מסמך</td><td style="padding:10px;border:1px solid #e2e8f0;">כן</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;"><strong>Body</strong></td><td style="padding:10px;border:1px solid #e2e8f0;">גוף ההודעה — עד 1,024 תווים</td><td style="padding:10px;border:1px solid #e2e8f0;">חובה</td></tr>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;"><strong>Footer</strong></td><td style="padding:10px;border:1px solid #e2e8f0;">הערת שוליים קטנה (לדוגמה: "להסרה שלח STOP")</td><td style="padding:10px;border:1px solid #e2e8f0;">כן</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;"><strong>Buttons</strong></td><td style="padding:10px;border:1px solid #e2e8f0;">עד 3 כפתורים: CTA (קישור/טלפון) או Quick Reply</td><td style="padding:10px;border:1px solid #e2e8f0;">כן</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">✅ דוגמאות תבניות מאושרות</h2>
-  <div style="display:flex;flex-direction:column;gap:16px;margin:20px 0;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <strong style="color:#25d366;">תזכורת תור</strong>
-      <div style="background:white;border-radius:8px;padding:14px;margin-top:10px;font-size:0.9rem;border-right:3px solid #25d366;">
-        שלום {{1}}, תזכורת לתור שלך אצלנו ב-{{2}} בשעה {{3}}.<br/>
-        לאישור לחצ/י ✅ | לביטול לחצ/י ❌
-      </div>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <strong style="color:#3b82f6;">הצעת מחיר</strong>
-      <div style="background:white;border-radius:8px;padding:14px;margin-top:10px;font-size:0.9rem;border-right:3px solid #3b82f6;">
-        שלום {{1}}, הצעת המחיר שלך עבור {{2}} מוכנה! 🎉<br/>
-        סכום: {{3}} ₪ | תוקף: {{4}} ימים<br/>
-        [לצפייה בהצעה] [אני מאשר]
-      </div>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <strong style="color:#a855f7;">מבצע לחגים</strong>
-      <div style="background:white;border-radius:8px;padding:14px;margin-top:10px;font-size:0.9rem;border-right:3px solid #a855f7;">
-        🎉 {{1}} היקר/ה, לכבוד החגים אנחנו מעניקים לך {{2}}% הנחה על כל הקנייה!<br/>
-        קוד קופון: {{3}} | תקף עד: {{4}}<br/>
-        [למימוש ההנחה]
-      </div>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">💡 טיפים לאישור מהיר</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;">
-    <div style="background:#f0fdf4;border:1px solid #a7f3d0;border-radius:8px;padding:14px;"><strong>✅ עשה:</strong><ul style="margin:8px 0 0;padding-right:16px;font-size:0.9rem;"><li>שפה ברורה וישירה</li><li>ערך ברור למקבל</li><li>משתנים {{1}} לאישיות</li><li>אפשרות הסרה</li></ul></div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:14px;"><strong>❌ אל תעשה:</strong><ul style="margin:8px 0 0;padding-right:16px;font-size:0.9rem;"><li>הבטחות מוגזמות</li><li>שפה שיווקית אגרסיבית</li><li>בקשת כרטיס אשראי</li><li>תבנית ריקה ממשתנים</li></ul></div>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן ליצור תבניות שמאושרות?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">📝 התחל עכשיו</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">📝 WhatsApp Message Templates</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">How to Write a Template That Gets Approved and Converts</p>
-  </div>
-  <p>WhatsApp requires pre-approved templates to initiate conversations. Learn the 4 types (marketing/utility/OTP/conversation), structure, variables {{1}} {{2}}, and tips for fast Meta approval.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Create Approved Templates?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">📝 Start Now</a>
-  </div>
-</div>`
-  },
-  category: "Templates & Marketing",
-  author: "ניר סגס",
-  tags: ["WhatsApp Templates", "Message Templates", "Meta Approval", "Marketing", "Gambot"],
-  image: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 10,
-  seoUrl: getSeoUrl("תבניות הודעה בוואטסאפ איך לכתוב תבנית שמאושרת ומוכרת")
-},
-
-{
-  id: 27,
-  featured: true,
-  seoTitle: {
-    he: "שירות לקוחות בוואטסאפ: איך להפחית 70% מהשיחות לנציג",
-    en: "WhatsApp Customer Service: How to Reduce 70% of Agent Calls"
-  },
-  metaDescription: {
-    he: "שירות לקוחות בוואטסאפ עם גמבוט: מודל 3 שכבות, בוט + נציג + הסלמה, SLA, KPI, חסכון ₪47K/חודש ושאלות נפוצות.",
-    en: "WhatsApp customer service with Gambot: 3-layer model, bot + agent + escalation, SLA, KPI, ₪47K/month savings and FAQ."
-  },
-  keywords: {
-    he: ["שירות לקוחות וואטסאפ", "בוט שירות", "גמבוט", "SLA", "חיסכון עלויות", "2026"],
-    en: ["WhatsApp customer service", "service bot", "Gambot", "SLA", "cost savings", "2026"]
-  },
-  title: {
-    he: "🎧 שירות לקוחות בוואטסאפ: איך להפחית 70% מהשיחות לנציג",
-    en: "🎧 WhatsApp Customer Service: How to Reduce 70% of Agent Calls"
-  },
-  description: {
-    he: "כיצד להפחית 70% מהשיחות לנציג עם בוט שירות לקוחות בוואטסאפ — מודל 3 שכבות, SLA ותוצאות מהשטח.",
-    en: "How to reduce 70% of agent calls with a WhatsApp customer service bot — 3-layer model, SLA and real results."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🎧 שירות לקוחות בוואטסאפ</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">איך להפחית 70% מהשיחות לנציג</p>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;">
-    <div style="background:#fef2f2;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#ef4444;">67%</div><div style="font-size:0.9rem;color:#4a5568;">מהשאלות חוזרות</div></div>
-    <div style="background:#fff7ed;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#f97316;">₪85</div><div style="font-size:0.9rem;color:#4a5568;">עלות שיחה לנציג</div></div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#25d366;">₪3</div><div style="font-size:0.9rem;color:#4a5568;">עלות תגובת בוט</div></div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">🏗️ מודל 3 שכבות</h2>
-  <div style="display:flex;flex-direction:column;gap:16px;margin:20px 0;">
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#25d366;color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">1</span><strong style="font-size:1.1rem;">שכבת הבוט (70% מהפניות)</strong></div>
-      <p style="margin:0;font-size:0.9rem;color:#374151;">עונה על: שעות פעילות, כתובת, מחירים, סטטוס הזמנה, מדיניות החזרה, שאלות נפוצות. מענה מיידי 24/7.</p>
-    </div>
-    <div style="background:#eff6ff;border:2px solid #3b82f6;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#3b82f6;color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">2</span><strong style="font-size:1.1rem;">שכבת הנציג (25% מהפניות)</strong></div>
-      <p style="margin:0;font-size:0.9rem;color:#374151;">פניות מורכבות שהבוט לא יכול לטפל בהן — הנציג רואה את כל ההיסטוריה ומגיב מהר.</p>
-    </div>
-    <div style="background:#fdf4ff;border:2px solid #a855f7;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#a855f7;color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">3</span><strong style="font-size:1.1rem;">הסלמה (5% מהפניות)</strong></div>
-      <p style="margin:0;font-size:0.9rem;color:#374151;">פניות קריטיות שמועברות למנהל — אוטומטי לפי מילות מפתח ("תביעה", "עורך דין", "פיקוח").</p>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">💰 מקרה בוחן: חיסכון ₪47,000/חודש</h2>
-  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:24px;margin:20px 0;">
-    <p><strong>רשת חנויות אופנה (5 סניפים):</strong></p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
-      <div><strong>לפני גמבוט:</strong><ul style="padding-right:16px;font-size:0.9rem;margin-top:8px;"><li>650 שיחות לנציג ביום</li><li>5 נציגי שירות במשרה מלאה</li><li>עלות: ₪85,000/חודש</li><li>זמן מענה: 18 דקות</li></ul></div>
-      <div><strong>אחרי גמבוט:</strong><ul style="padding-right:16px;font-size:0.9rem;margin-top:8px;"><li>195 שיחות לנציג ביום (↓70%)</li><li>2 נציגים (3 עברו לתפקידים אחרים)</li><li>עלות: ₪38,000/חודש</li><li>זמן מענה: 2.5 דקות</li></ul></div>
-    </div>
-    <div style="background:#f0fdf4;border-radius:8px;padding:14px;margin-top:16px;text-align:center;">
-      <strong style="color:#25d366;font-size:1.2rem;">חיסכון: ₪47,000/חודש | שביעות רצון עלתה מ-71% ל-94%</strong>
-    </div>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן להפחית את עומס שירות הלקוחות?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🎧 התחל עכשיו</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🎧 WhatsApp Customer Service</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">How to Reduce 70% of Agent Calls</p>
-  </div>
-  <p>67% of customer inquiries are repetitive. Each agent call costs ₪85; a bot response costs ₪3. Gambot's 3-layer model (bot/agent/escalation) reduces agent load by 70% and saves ₪47K/month.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Reduce Your Customer Service Load?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🎧 Start Now</a>
-  </div>
-</div>`
-  },
-  category: "Customer Service",
-  author: "ניר סגס",
-  tags: ["Customer Service", "WhatsApp", "Bot", "SLA", "Cost Savings", "Gambot"],
-  image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 10,
-  seoUrl: getSeoUrl("שירות לקוחות בוואטסאפ איך להפחית 70 אחוז מהשיחות לנציג")
-},
-
-{
-  id: 28,
-  featured: true,
-  seoTitle: {
-    he: "וואטסאפ לנדל\"ן: מהליד הראשון ועד חתימת החוזה",
-    en: "WhatsApp for Real Estate: From First Lead to Contract Signing"
-  },
-  metaDescription: {
-    he: "וואטסאפ לנדל\"ן עם גמבוט: 5 שלבים מליד לחוזה, סטטיסטיקות (35% יותר פגישות, 4 שעות חסכון ביום), תמיכה רב-לשונית ושאלות נפוצות.",
-    en: "WhatsApp for real estate with Gambot: 5 stages from lead to contract, stats (35% more meetings, 4hrs/day saved), multilingual support and FAQ."
-  },
-  keywords: {
-    he: ["וואטסאפ נדלן", "CRM נדלן", "גמבוט", "לידים נדלן", "חתימה דיגיטלית נדלן", "2026"],
-    en: ["WhatsApp real estate", "real estate CRM", "Gambot", "real estate leads", "digital signature real estate", "2026"]
-  },
-  title: {
-    he: "🏠 וואטסאפ לנדל\"ן: מהליד הראשון ועד חתימת החוזה",
-    en: "🏠 WhatsApp for Real Estate: From First Lead to Contract Signing"
-  },
-  description: {
-    he: "כיצד סוכני ומשרדי נדל\"ן בישראל מגדילים פגישות ב-35% עם גמבוט — מהליד ועד חוזה חתום.",
-    en: "How Israeli real estate agents and offices increase meetings by 35% with Gambot — from lead to signed contract."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🏠 וואטסאפ לנדל"ן</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">מהליד הראשון ועד חתימת החוזה</p>
-  </div>
-
-  <div style="background:#f0fdf4;border-right:4px solid #25d366;padding:20px 24px;border-radius:8px;margin-bottom:32px;">
-    <p style="margin:0;font-size:1.05rem;">בשוק הנדל"ן הישראלי — תגובה מהירה שווה עסקה. ליד שמצלצל ל-3 סוכנים קונה מהראשון שחוזר אליו. גמבוט מבטיחה שאתה תמיד הראשון.</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">🗺️ 5 שלבים: מליד לחוזה</h2>
-  <div style="display:flex;flex-direction:column;gap:16px;margin:20px 0;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#25d366;color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">1</span><strong>סינון הליד</strong></div>
-      <p style="margin:0;font-size:0.9rem;">הבוט שואל: תקציב? אזור מועדף? כמה חדרים? לרכישה עצמית או השקעה? → מסנן ומסווג אוטומטית</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#25d366;color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">2</span><strong>הצגת נכסים</strong></div>
-      <p style="margin:0;font-size:0.9rem;">גמבוט שולחת קרוסלה של נכסים מתאימים — תמונות, מחיר, מיקום, שטח. הלקוח מדרג</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#25d366;color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">3</span><strong>קביעת ביקור</strong></div>
-      <p style="margin:0;font-size:0.9rem;">הבוט מציע 3 מועדים בלוח השנה של הסוכן → הלקוח בוחר → פגישה נקבעת עם תזכורות אוטומטיות</p>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#25d366;color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">4</span><strong>הצעת מחיר ומשא ומתן</strong></div>
-      <p style="margin:0;font-size:0.9rem;">הסוכן שולח הצעת מחיר דיגיטלית לוואטסאפ → הלקוח מגיב, מו"מ מתנהל בצ'אט → אישור בלחיצה</p>
-    </div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><span style="background:#25d366;color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">5</span><strong>חתימה על החוזה</strong></div>
-      <p style="margin:0;font-size:0.9rem;">חוזה נשלח לוואטסאפ → חתימה דיגיטלית → שניכם מקבלים עותק חתום → עסקה סגורה! 🎉</p>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">📊 לפני ואחרי גמבוט</h2>
-  <div style="overflow-x:auto;margin:20px 0;">
-    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
-      <thead><tr style="background:#1e293b;color:white;"><th style="padding:12px;text-align:right;border:1px solid #334155;">מדד</th><th style="padding:12px;text-align:center;border:1px solid #334155;">לפני</th><th style="padding:12px;text-align:center;border:1px solid #334155;">אחרי גמבוט</th></tr></thead>
-      <tbody>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">זמן מענה ללידים</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">47 דקות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">30 שניות</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">פגישות ביקור</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">100/חודש</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">135/חודש (+35%)</td></tr>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">זמן אדמין ביום</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">6 שעות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">2 שעות (↓4 שעות)</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">שיעור סגירה</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">12%</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">19%</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🌍 תמיכה רב-לשונית</h2>
-  <p>השוק הישראלי מגוון. גמבוט תומכת בעברית, ערבית, רוסית, אמהרית, צרפתית ואנגלית — הבוט מזהה שפת הלקוח ועונה בהתאם.</p>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן להגדיל את הפגישות שלך ב-35%?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🏠 התחל עכשיו</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🏠 WhatsApp for Real Estate</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">From First Lead to Contract Signing</p>
-  </div>
-  <p>Gambot helps Israeli real estate agents respond in 30 seconds, increase meetings by 35%, save 4 hours/day on admin, and close contracts digitally — all through WhatsApp.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Increase Your Meetings by 35%?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🏠 Start Now</a>
-  </div>
-</div>`
-  },
-  category: "Real Estate",
-  author: "ניר סגס",
-  tags: ["Real Estate", "WhatsApp", "CRM", "Leads", "Digital Signature", "Gambot"],
-  image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 10,
-  seoUrl: getSeoUrl("וואטסאפ לנדלן מהליד הראשון ועד חתימת החוזה")
-},
-
-{
-  id: 29,
-  featured: true,
-  seoTitle: {
-    he: "WhatsApp לרופאים ומרפאות — קביעת תורים, תזכורות ואוטומציה",
-    en: "WhatsApp for Doctors and Clinics — Appointments, Reminders and Automation"
-  },
-  metaDescription: {
-    he: "WhatsApp לרופאים ומרפאות: הפחתת no-shows, קביעת תורים, תזכורות אוטומטיות, פרטיות ואבטחה, חיסכון ₪17,500/חודש.",
-    en: "WhatsApp for doctors and clinics: reduce no-shows, online booking, automated reminders, privacy and security, save ₪17,500/month."
-  },
-  keywords: {
-    he: ["WhatsApp רפואה", "תורים מרפאה", "תזכורות תור", "גמבוט בריאות", "no-show", "2026"],
-    en: ["WhatsApp healthcare", "clinic appointments", "appointment reminders", "Gambot health", "no-show", "2026"]
-  },
-  title: {
-    he: "🏥 WhatsApp לרופאים ומרפאות — קביעת תורים, תזכורות ואוטומציה",
-    en: "🏥 WhatsApp for Doctors and Clinics — Appointments, Reminders and Automation"
-  },
-  description: {
-    he: "כיצד מרפאות מפחיתות no-shows ב-60% וחוסכות ₪17,500/חודש עם WhatsApp ואוטומציה של גמבוט.",
-    en: "How clinics reduce no-shows by 60% and save ₪17,500/month with WhatsApp and Gambot automation."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🏥 WhatsApp לרופאים ומרפאות</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">קביעת תורים, תזכורות ואוטומציה</p>
-  </div>
-
-  <div style="background:#fef2f2;border-right:4px solid #ef4444;padding:20px 24px;border-radius:8px;margin-bottom:32px;">
-    <p style="margin:0;font-size:1.05rem;"><strong>בעיית ה-No-Show:</strong> מרפאה ממוצעת עם 70 תורים ביום חווה 25% no-shows — כ-17-18 תורים ריקים. עלות: <strong>₪17,500/חודש</strong> (ממוצע ₪350 לתור שלא הגיע).</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">⏰ ציר תזכורות אוטומטיות</h2>
-  <div style="display:flex;flex-direction:column;gap:12px;margin:20px 0;position:relative;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;display:flex;gap:16px;align-items:center;">
-      <span style="background:#25d366;color:white;padding:6px 14px;border-radius:20px;font-size:0.85rem;white-space:nowrap;font-weight:700;">T-7 ימים</span>
-      <div><strong>אישור תור:</strong> "שלום {{שם}}, תור לד"ר {{רופא}} ב-{{תאריך}} בשעה {{שעה}}. לאישור לחצ/י ✅ | לביטול ❌"</div>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;display:flex;gap:16px;align-items:center;">
-      <span style="background:#3b82f6;color:white;padding:6px 14px;border-radius:20px;font-size:0.85rem;white-space:nowrap;font-weight:700;">T-24 שעות</span>
-      <div><strong>תזכורת:</strong> "מחר בשעה {{שעה}} תורך אצל ד"ר {{רופא}}. כתובת: {{כתובת}}. לניווט: [קישור]"</div>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;display:flex;gap:16px;align-items:center;">
-      <span style="background:#f97316;color:white;padding:6px 14px;border-radius:20px;font-size:0.85rem;white-space:nowrap;font-weight:700;">T-2 שעות</span>
-      <div><strong>עדכון סופי:</strong> "היום בשעה {{שעה}} — אנחנו מחכים לך! 😊 יש שאלות? כתוב לנו כאן."</div>
-    </div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;display:flex;gap:16px;align-items:center;">
-      <span style="background:#1e293b;color:white;padding:6px 14px;border-radius:20px;font-size:0.85rem;white-space:nowrap;font-weight:700;">אחרי הביקור</span>
-      <div><strong>מעקב:</strong> "תודה שביקרת! איך הרגשת? [דירוג 1-5] | לקביעת תור חוזר: [קישור]"</div>
-    </div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">📊 תוצאות</h2>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0;">
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#25d366;">60%</div><div style="font-size:0.85rem;color:#4a5568;">פחות no-shows</div></div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#25d366;">₪17.5K</div><div style="font-size:0.85rem;color:#4a5568;">חיסכון חודשי</div></div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#25d366;">92%</div><div style="font-size:0.85rem;color:#4a5568;">מעדיפים WhatsApp על טלפון</div></div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🔒 פרטיות ואבטחה</h2>
-  <div style="background:#eff6ff;border:1px solid #3b82f6;border-radius:10px;padding:20px;margin:20px 0;">
-    <p style="margin:0;">גמבוט עומדת בתקן GDPR ובחוק הגנת הפרטיות הישראלי. ההצפנה end-to-end של וואטסאפ שומרת על פרטיות המטופל. אחסון בשרתים ישראלים. אין שיתוף נתונים עם צד שלישי.</p>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן להפחית no-shows ולחסוך ₪17,500/חודש?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🏥 התחל עכשיו</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🏥 WhatsApp for Doctors and Clinics</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">Appointments, Reminders and Automation</p>
-  </div>
-  <p>The average clinic loses ₪17,500/month to no-shows (25% rate). Gambot's automated reminder timeline (T-7/T-24/T-2/post-visit) reduces no-shows by 60% with full GDPR compliance.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Reduce No-Shows by 60%?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🏥 Start Now</a>
-  </div>
-</div>`
-  },
-  category: "Healthcare",
-  author: "ניר סגס",
-  tags: ["Healthcare", "WhatsApp", "Appointments", "No-Show", "Reminders", "Gambot"],
-  image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 9,
-  seoUrl: getSeoUrl("whatsapp לרופאים ומרפאות קביעת תורים תזכורות ואוטומציה")
-},
-
-{
-  id: 30,
-  featured: true,
-  seoTitle: {
-    he: "קמפיין וואטסאפ לחגים: Black Friday, פסח, ראש השנה — המדריך המלא",
-    en: "WhatsApp Holiday Campaigns: Black Friday, Passover, Rosh Hashana — Complete Guide"
-  },
-  metaDescription: {
-    he: "מדריך קמפיין וואטסאפ לחגים: לוח שנה ל-8 חגים, תכנון 4 שבועות, Black Friday צעד אחר צעד, ניהול גלים ל-10K אנשי קשר.",
-    en: "WhatsApp holiday campaign guide: 8-holiday calendar, 4-week planning, Black Friday step-by-step, wave management for 10K contacts."
-  },
-  keywords: {
-    he: ["קמפיין וואטסאפ", "Black Friday וואטסאפ", "פסח שיווק", "ראש השנה שיווק", "גמבוט", "2026"],
-    en: ["WhatsApp campaign", "Black Friday WhatsApp", "Passover marketing", "Rosh Hashana marketing", "Gambot", "2026"]
-  },
-  title: {
-    he: "🎉 קמפיין וואטסאפ לחגים: Black Friday, פסח, ראש השנה — המדריך המלא",
-    en: "🎉 WhatsApp Holiday Campaigns: Black Friday, Passover, Rosh Hashana — Complete Guide"
-  },
-  description: {
-    he: "המדריך המלא לקמפיינים עונתיים בוואטסאפ — תכנון, ביצוע, ניהול גלים ומדידה.",
-    en: "Complete guide to seasonal WhatsApp campaigns — planning, execution, wave management and measurement."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🎉 קמפיין וואטסאפ לחגים</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">Black Friday, פסח, ראש השנה — המדריך המלא</p>
-  </div>
-
-  <div style="background:#f0fdf4;border-right:4px solid #25d366;padding:20px 24px;border-radius:8px;margin-bottom:32px;">
-    <p style="margin:0;font-size:1.05rem;">קמפיין מכירות לחג שנשלח ב-Email נפתח ב-21%. אותו קמפיין ב-WhatsApp נפתח ב-<strong>98%</strong>. אם עדיין לא משתמשים בוואטסאפ לחגים — זה הזמן.</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">📅 לוח שנה של 8 חגים</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.5rem;">🎃</span><div><strong>Halloween</strong><br/><span style="font-size:0.85rem;color:#4a5568;">31 אוקטובר — מסחר</span></div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.5rem;">🛍️</span><div><strong>Black Friday</strong><br/><span style="font-size:0.85rem;color:#4a5568;">נובמבר — כל עסק</span></div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.5rem;">🎄</span><div><strong>כריסמס / שנה אזרחית</strong><br/><span style="font-size:0.85rem;color:#4a5568;">דצמבר-ינואר</span></div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.5rem;">💘</span><div><strong>ולנטיינס</strong><br/><span style="font-size:0.85rem;color:#4a5568;">14 פברואר — מסעדות, מתנות</span></div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.5rem;">🌸</span><div><strong>פסח</strong><br/><span style="font-size:0.85rem;color:#4a5568;">אפריל — מזון, נסיעות, אופנה</span></div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.5rem;">🎂</span><div><strong>יום הולדת לקוח</strong><br/><span style="font-size:0.85rem;color:#4a5568;">אוטומטי — לאורך השנה</span></div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.5rem;">🍎</span><div><strong>ראש השנה</strong><br/><span style="font-size:0.85rem;color:#4a5568;">ספטמבר-אוקטובר — כל עסק</span></div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.5rem;">🕎</span><div><strong>חנוכה</strong><br/><span style="font-size:0.85rem;color:#4a5568;">דצמבר — מתנות, ילדים</span></div></div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🛍️ Black Friday — צעד אחר צעד</h2>
-  <div style="display:flex;flex-direction:column;gap:12px;margin:20px 0;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;display:flex;gap:12px;"><span style="font-weight:700;color:#25d366;white-space:nowrap;">4 שבועות לפני</span><div>הכן תבניות הודעה, בקש אישורי opt-in, בנה רשימות מפולחות</div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;display:flex;gap:12px;"><span style="font-weight:700;color:#25d366;white-space:nowrap;">שבוע לפני</span><div>שלח "טיזר" ללקוחות VIP — "משהו גדול מגיע ב-Black Friday..."</div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;display:flex;gap:12px;"><span style="font-weight:700;color:#25d366;white-space:nowrap;">יום לפני</span><div>גל ראשון: לקוחות VIP מקבלים גישה מוקדמת + קוד קופון</div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;display:flex;gap:12px;"><span style="font-weight:700;color:#25d366;white-space:nowrap;">Black Friday 08:00</span><div>גל שני: כל הרשימה מקבלת את ההצעה</div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;display:flex;gap:12px;"><span style="font-weight:700;color:#25d366;white-space:nowrap;">Black Friday 20:00</span><div>גל שלישי: "שעות אחרונות! נגמר ב-חצות" — urgency</div></div>
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;display:flex;gap:12px;"><span style="font-weight:700;color:#25d366;white-space:nowrap;">Cyber Monday</span><div>גל ענות: "לא הצלחת ב-Black Friday? הארכנו עד שני!"</div></div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🌊 ניהול גלים — 10,000 אנשי קשר</h2>
-  <div style="overflow-x:auto;margin:20px 0;">
-    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
-      <thead><tr style="background:#25d366;color:white;"><th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">גל</th><th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">קהל</th><th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">גודל</th><th style="padding:12px;text-align:right;border:1px solid #e2e8f0;">תוכן</th></tr></thead>
-      <tbody>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">גל 1</td><td style="padding:10px;border:1px solid #e2e8f0;">VIP (קנו 3+ פעמים)</td><td style="padding:10px;border:1px solid #e2e8f0;">500</td><td style="padding:10px;border:1px solid #e2e8f0;">גישה מוקדמת + 20% הנחה</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">גל 2</td><td style="padding:10px;border:1px solid #e2e8f0;">לקוחות פעילים</td><td style="padding:10px;border:1px solid #e2e8f0;">4,000</td><td style="padding:10px;border:1px solid #e2e8f0;">15% הנחה + קישור חנות</td></tr>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">גל 3</td><td style="padding:10px;border:1px solid #e2e8f0;">לידים שלא סגרו</td><td style="padding:10px;border:1px solid #e2e8f0;">3,000</td><td style="padding:10px;border:1px solid #e2e8f0;">הזדמנות אחרונה + urgency</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">גל 4</td><td style="padding:10px;border:1px solid #e2e8f0;">כל השאר</td><td style="padding:10px;border:1px solid #e2e8f0;">2,500</td><td style="padding:10px;border:1px solid #e2e8f0;">מבצע כללי + סיפור הצלחה</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן לקמפיין החגים הבא?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🎉 התחל לתכנן עכשיו</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🎉 WhatsApp Holiday Campaigns</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">Black Friday, Passover, Rosh Hashana — Complete Guide</p>
-  </div>
-  <p>Holiday campaigns via WhatsApp achieve 98% open rates vs 21% for email. Plan 4 weeks ahead, send in waves (VIP first), and use urgency messaging for maximum conversion.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Plan Your Next Holiday Campaign?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🎉 Start Planning Now</a>
-  </div>
-</div>`
-  },
-  category: "Marketing",
-  author: "ניר סגס",
-  tags: ["Holiday Campaign", "Black Friday", "WhatsApp Marketing", "Seasonal", "Gambot"],
-  image: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 11,
-  seoUrl: getSeoUrl("קמפיין וואטסאפ לחגים black friday פסח ראש השנה")
-},
-
-{
-  id: 31,
-  featured: true,
-  seoTitle: {
-    he: "WhatsApp לעסקי קמעונאות — 5 תרחישים שמכפילים מכירות",
-    en: "WhatsApp for Retail Businesses — 5 Scenarios That Double Sales"
-  },
-  metaDescription: {
-    he: "WhatsApp לקמעונאות: 45% המרה, 30% פחות עגלות נטושות, 98% פתיחה. 5 תרחישים מנצחים ואינטגרציות.",
-    en: "WhatsApp for retail: 45% conversion, 30% fewer abandoned carts, 98% open rate. 5 winning scenarios and integrations."
-  },
-  keywords: {
-    he: ["WhatsApp קמעונאות", "עגלה נטושה", "הודעות הזמנה", "גמבוט", "מכירות", "2026"],
-    en: ["WhatsApp retail", "abandoned cart", "order messages", "Gambot", "sales", "2026"]
-  },
-  title: {
-    he: "🛍️ WhatsApp לעסקי קמעונאות — 5 תרחישים שמכפילים מכירות",
-    en: "🛍️ WhatsApp for Retail Businesses — 5 Scenarios That Double Sales"
-  },
-  description: {
-    he: "כיצד עסקי קמעונאות מכפילים מכירות עם 5 תרחישי WhatsApp — עגלות נטושות, הזמנות, loyalty ועוד.",
-    en: "How retail businesses double sales with 5 WhatsApp scenarios — abandoned carts, orders, loyalty and more."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🛍️ WhatsApp לעסקי קמעונאות</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">5 תרחישים שמכפילים מכירות</p>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;">
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#25d366;">45%</div><div style="font-size:0.9rem;color:#4a5568;">המרה מהודעת WhatsApp</div></div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#25d366;">30%</div><div style="font-size:0.9rem;color:#4a5568;">פחות עגלות נטושות</div></div>
-    <div style="background:#f0fdf4;border:2px solid #25d366;border-radius:12px;padding:20px;text-align:center;"><div style="font-size:2rem;font-weight:800;color:#25d366;">98%</div><div style="font-size:0.9rem;color:#4a5568;">שיעור פתיחה</div></div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">🎬 5 תרחישים מנצחים</h2>
-
-  <div style="display:flex;flex-direction:column;gap:20px;margin:20px 0;">
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;"><span style="background:#25d366;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;font-weight:700;">תרחיש 1</span><strong>אישור הזמנה + מעקב משלוח</strong></div>
-      <p style="margin:0;font-size:0.9rem;color:#374151;">"היי דנה! ✅ ההזמנה #12345 התקבלה. צפי משלוח: מחר עד 18:00. [לינק מעקב]" → כשנשלח: "הזמנתך בדרך! 🚚" → כשנמסר: "נמסר! 🎉 איך היה? [1-5 כוכבים]"</p>
-    </div>
-
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;"><span style="background:#3b82f6;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;font-weight:700;">תרחיש 2</span><strong>עגלה נטושה (Abandoned Cart)</strong></div>
-      <p style="margin:0;font-size:0.9rem;color:#374151;">לקוח הוסיף לעגלה ולא קנה → אחרי שעה: "שכחת משהו? 🛒 {{מוצר}} עדיין מחכה לך. 10% הנחה: קוד BACK10" → אחרי יום: "המוצר עומד להיגמר ⚠️ [השלם רכישה]"</p>
-    </div>
-
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;"><span style="background:#a855f7;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;font-weight:700;">תרחיש 3</span><strong>חזרה למלאי (Back in Stock)</strong></div>
-      <p style="margin:0;font-size:0.9rem;color:#374151;">לקוח לחץ "עדכן אותי" על מוצר שאזל → כשחוזר למלאי: "{{מוצר}} חזר! 🎉 בא מהר לפני שנגמר שוב. [קנה עכשיו]"</p>
-    </div>
-
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;"><span style="background:#f97316;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;font-weight:700;">תרחיש 4</span><strong>תוכנית נאמנות (Loyalty)</strong></div>
-      <p style="margin:0;font-size:0.9rem;color:#374151;">"🌟 צברת 450 נקודות! עוד 50 ותקבל ₪50 הנחה. הנה מוצרים שתאהב בהתבסס על הרכישות שלך: [קרוסלה]"</p>
-    </div>
-
-    <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;"><span style="background:#1e293b;color:white;padding:4px 12px;border-radius:20px;font-size:0.85rem;font-weight:700;">תרחיש 5</span><strong>Black Friday VIP Early Access</strong></div>
-      <p style="margin:0;font-size:0.9rem;color:#374151;">"כלקוח VIP שלנו, אתה מקבל גישה ל-Black Friday 24 שעות לפני כולם! 🔒 הסיסמה: VIPBF2026. זמין מחר 00:01 [לינק]"</p>
-    </div>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן להפעיל את 5 התרחישים?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🛍️ התחל עכשיו</a>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">🛍️ WhatsApp for Retail Businesses</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">5 Scenarios That Double Sales</p>
-  </div>
-  <p>45% WhatsApp conversion rate, 30% fewer abandoned carts, 98% open rate. Implement 5 key scenarios: order confirmation, abandoned cart recovery, back-in-stock alerts, loyalty program, and VIP early access.</p>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Activate the 5 Scenarios?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">🛍️ Start Now</a>
-  </div>
-</div>`
-  },
-  category: "Retail",
-  author: "ניר סגס",
-  tags: ["Retail", "WhatsApp", "Abandoned Cart", "E-commerce", "Loyalty", "Gambot"],
-  image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 10,
-  seoUrl: getSeoUrl("whatsapp לעסקי קמעונאות 5 תרחישים שמכפילים מכירות")
-},
-
-{
-  id: 32,
-  featured: true,
-  seoTitle: {
-    he: "WhatsApp Business API לעומת WhatsApp Business — ההבדל שעולה כסף",
-    en: "WhatsApp Business API vs WhatsApp Business App — The Difference That Costs Money"
-  },
-  metaDescription: {
-    he: "WhatsApp Business API vs WhatsApp Business: 10 פרמטרים, מחירים, הגבלות, יתרונות, 5 סיגנלים לשדרוג ושאלות נפוצות.",
-    en: "WhatsApp Business API vs WhatsApp Business: 10 parameters, pricing, limitations, benefits, 5 upgrade signals and FAQ."
-  },
-  keywords: {
-    he: ["WhatsApp Business API", "WhatsApp Business", "הבדל", "גמבוט", "API", "2026"],
-    en: ["WhatsApp Business API", "WhatsApp Business", "difference", "Gambot", "API", "2026"]
-  },
-  title: {
-    he: "⚖️ WhatsApp Business API לעומת WhatsApp Business — ההבדל שעולה כסף",
-    en: "⚖️ WhatsApp Business API vs WhatsApp Business App — The Difference That Costs Money"
-  },
-  description: {
-    he: "ההבדל המלא בין WhatsApp Business App ל-WhatsApp Business API — מה מתאים לעסק שלך ומתי לשדרג.",
-    en: "The complete difference between WhatsApp Business App and WhatsApp Business API — what fits your business and when to upgrade."
-  },
-  content: {
-    he: `<div dir="rtl" style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">⚖️ WhatsApp Business API vs WhatsApp Business</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">ההבדל שעולה — או חוסך — כסף</p>
-  </div>
-
-  <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:10px;padding:20px;margin-bottom:32px;">
-    <p style="margin:0;font-size:1.05rem;"><strong>⚠️ בעיה נפוצה:</strong> עסק שמתנהל עם WhatsApp Business App ומנסה לשלוח קמפיין ל-5,000 לקוחות — נחסם. כי האפליקציה הרגילה לא מיועדת לכך. API היא הפתרון.</p>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;">📱 WhatsApp Business App — 6 מגבלות</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;">
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:14px;font-size:0.9rem;">❌ מכשיר אחד (עד 4 עם Multi-Device)</div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:14px;font-size:0.9rem;">❌ שליחת קמפיין — ידנית ומוגבלת</div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:14px;font-size:0.9rem;">❌ אין API — לא ניתן לחבר CRM</div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:14px;font-size:0.9rem;">❌ אין בוט מתקדם — רק תגובות אוטומטיות פשוטות</div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:14px;font-size:0.9rem;">❌ אין תמיכה ב-Webhooks ואינטגרציות</div>
-    <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:14px;font-size:0.9rem;">❌ ניהול קשה — אין dashboard מרכזי</div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🚀 WhatsApp Business API — 6 יכולות</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;">
-    <div style="background:#f0fdf4;border:1px solid #a7f3d0;border-radius:8px;padding:14px;font-size:0.9rem;">✅ משתמשים בלתי מוגבלים</div>
-    <div style="background:#f0fdf4;border:1px solid #a7f3d0;border-radius:8px;padding:14px;font-size:0.9rem;">✅ קמפיינים לאלפי אנשי קשר</div>
-    <div style="background:#f0fdf4;border:1px solid #a7f3d0;border-radius:8px;padding:14px;font-size:0.9rem;">✅ אינטגרציה מלאה עם CRM, ERP, אתר</div>
-    <div style="background:#f0fdf4;border:1px solid #a7f3d0;border-radius:8px;padding:14px;font-size:0.9rem;">✅ בוט מתקדם עם AI ולוגיקה מורכבת</div>
-    <div style="background:#f0fdf4;border:1px solid #a7f3d0;border-radius:8px;padding:14px;font-size:0.9rem;">✅ Webhooks, תבניות מאושרות, Analytics</div>
-    <div style="background:#f0fdf4;border:1px solid #a7f3d0;border-radius:8px;padding:14px;font-size:0.9rem;">✅ תמיכת WhatsApp הרשמית לעסקים</div>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">📊 טבלת השוואה מלאה</h2>
-  <div style="overflow-x:auto;margin:20px 0;">
-    <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
-      <thead><tr style="background:#1e293b;color:white;"><th style="padding:10px;text-align:right;border:1px solid #334155;">פרמטר</th><th style="padding:10px;text-align:center;border:1px solid #334155;">📱 Business App</th><th style="padding:10px;text-align:center;border:1px solid #334155;">🔌 Business API</th></tr></thead>
-      <tbody>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">מספר משתמשים</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">עד 4</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">ללא הגבלה</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">שליחת קמפיינים</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">מוגבל מאוד</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">אלפים</td></tr>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">חיבור CRM</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">✅</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">בוט מתקדם</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">✅</td></tr>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">תבניות מאושרות</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">מוגבל</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">ללא הגבלה</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">מחיר</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">חינם</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">לפי שיחות + גמבוט</td></tr>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">אנליטיקה</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">בסיסי</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">מתקדם</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">Shared Inbox</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">✅</td></tr>
-        <tr style="background:white;"><td style="padding:10px;border:1px solid #e2e8f0;">חתימה דיגיטלית</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">❌</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">✅</td></tr>
-        <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e2e8f0;">תמיכה רשמית</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;">קהילה</td><td style="padding:10px;text-align:center;border:1px solid #e2e8f0;color:#25d366;font-weight:700;">WhatsApp + גמבוט</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 style="font-size:1.6rem;color:#1e293b;border-bottom:3px solid #25d366;padding-bottom:8px;margin-top:40px;">🚨 5 סיגנלים שהגיע הזמן לשדרג ל-API</h2>
-  <div style="display:flex;flex-direction:column;gap:10px;margin:20px 0;">
-    <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.3rem;">1️⃣</span><span>יש לך יותר מ-2 נציגי מכירות/שירות</span></div>
-    <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.3rem;">2️⃣</span><span>אתה רוצה לשלוח קמפיין ל-500+ אנשי קשר</span></div>
-    <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.3rem;">3️⃣</span><span>אתה מנהל לידים ב-Excel ומרגיש שהדברים נופלים בין הכסאות</span></div>
-    <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.3rem;">4️⃣</span><span>אתה רוצה בוט שמסנן לידים בלי שאתה נוגע בטלפון</span></div>
-    <div style="background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:14px;display:flex;gap:12px;align-items:center;"><span style="font-size:1.3rem;">5️⃣</span><span>אתה מחפש לחבר את הוואטסאפ לאתר, לגוגל, לפייסבוק ולמערכות אחרות</span></div>
-  </div>
-
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">מוכן לשדרג ל-WhatsApp Business API?</h3>
-    <p style="margin:0 0 20px;opacity:0.9;">גמבוט מנהלת את כל תהליך ה-Onboarding של ה-API בשבילך</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;">⚖️ התחל עכשיו</a>
-      <a href="https://gambot.co.il/ContactUs/" style="background:rgba(255,255,255,0.2);color:white;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;border:2px solid white;">💬 שאל שאלה</a>
-    </div>
-  </div>
-</div>`,
-    en: `<div style="font-family:'Segoe UI',Arial,sans-serif;max-width:860px;margin:0 auto;color:#1e293b;line-height:1.8;">
-  <div style="background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:40px;margin-bottom:40px;color:white;text-align:center;">
-    <h1 style="font-size:2.2rem;margin:0 0 16px;font-weight:800;">⚖️ WhatsApp Business API vs WhatsApp Business App</h1>
-    <p style="font-size:1.2rem;margin:0;opacity:0.95;">The Difference That Costs Money</p>
-  </div>
-  <p>WhatsApp Business App is free but limited to 4 users, basic automation, and no CRM integration. WhatsApp Business API (via Gambot) unlocks unlimited agents, bulk campaigns, bots, CRM/Webhook integrations, shared inbox and digital signatures.</p>
-  <h2>5 Upgrade Signals</h2>
-  <ol><li>You have more than 2 sales/service agents</li><li>You want to send campaigns to 500+ contacts</li><li>You're managing leads in Excel and things fall through the cracks</li><li>You want a bot to qualify leads without touching your phone</li><li>You want to connect WhatsApp to your website, Google, Facebook and other systems</li></ol>
-  <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:32px;text-align:center;margin-top:48px;color:white;">
-    <h3 style="font-size:1.5rem;margin:0 0 12px;">Ready to Upgrade to WhatsApp Business API?</h3>
-    <a href="https://gambot.co.il/OnboardingProcess/" style="background:white;color:#25d366;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1.05rem;display:inline-block;">⚖️ Start Now</a>
-  </div>
-</div>`
-  },
-  category: "WhatsApp API",
-  author: "ניר סגס",
-  tags: ["WhatsApp Business API", "WhatsApp Business", "API", "Comparison", "Gambot", "2026"],
-  image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&auto=format&fit=crop&q=80",
-  publishedDate: "2026-03-14",
-  readTime: 11,
-  seoUrl: getSeoUrl("whatsapp-business-api לעומת whatsapp-business ההבדל שעולה כסף")
-},
-
 // ─── POST 34: בוט לידים AI — קביעת פגישות + סיכום AI ───
 {
   id: 34,
@@ -10479,11 +9149,11 @@ const posts = [
 <div style="background:#f8fafc;border-radius:16px;padding:28px;margin:24px 0;border:1px solid #e2e8f0;">
   <div style="background:linear-gradient(135deg,#0f766e,#0369a1);color:white;padding:12px 20px;border-radius:10px 10px 0 0;margin:-28px -28px 20px;font-weight:700;font-size:1.05rem;">📅 פגישה חדשה נקבעה! — Gambot AI</div>
   <div style="display:grid;grid-template-columns:auto 1fr;gap:10px 20px;">
-    <span style="color:#64748b;">📌 כותרת:</span><span><strong>שיחת טלפון והדגמה — אורית שבח</strong></span>
+    <span style="color:#64748b;">📌 כותרת:</span><span><strong>שיחת טלפון והדגמה — אורית אורית</strong></span>
     <span style="color:#64748b;">📅 תאריך:</span><span><strong>Tuesday, 17/03/2026</strong></span>
     <span style="color:#64748b;">⏰ שעה:</span><span><strong>10:00</strong></span>
     <span style="color:#64748b;">⏱️ משך:</span><span><strong>30 דקות</strong></span>
-    <span style="color:#64748b;">👤 שם:</span><span><strong>אורית שבח</strong></span>
+    <span style="color:#64748b;">👤 שם:</span><span><strong>אורית אורית</strong></span>
     <span style="color:#64748b;">📞 טלפון:</span><span><strong>052-XXX-XXXX</strong></span>
     <span style="color:#64748b;">📧 מייל:</span><span><strong>email@gmail.com</strong></span>
   </div>
@@ -10681,11 +9351,11 @@ const posts = [
   <div style="background:white;border-radius:12px;padding:20px;border:1px solid #e2e8f0;">
     <div style="background:linear-gradient(135deg,#7c3aed,#4f46e5);color:white;padding:12px 16px;border-radius:10px 10px 0 0;margin:-20px -20px 16px;font-weight:700;">📅 פגישה חדשה נקבעה! — Gambot AI</div>
     <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:0.95rem;">
-      <span>📌 כותרת:</span><span><strong>שיחת טלפון והדגמה — אורית שבח</strong></span>
+      <span>📌 כותרת:</span><span><strong>שיחת טלפון והדגמה — אורית אורית</strong></span>
       <span>📅 תאריך:</span><span><strong>Tuesday, 17/03/2026</strong></span>
       <span>⏰ שעה:</span><span><strong>10:00</strong></span>
       <span>⏱️ משך:</span><span><strong>30 דקות</strong></span>
-      <span>👤 לקוח:</span><span><strong>אורית שבח | 052-XXX-XXXX | email@gmail.com</strong></span>
+      <span>👤 לקוח:</span><span><strong>אורית אורית | 052-XXX-XXXX | email@gmail.com</strong></span>
     </div>
     <div style="margin-top:16px;padding:12px;background:#f0fdf4;border-radius:8px;font-size:0.9rem;">
       <strong>💬 סיכום AI:</strong> הלקוחה מחפשת פתרון וואטסאפ לעסק. רוצה: קבלה אוטומטית של ליד, שאלות סינון, שליחת סרטון והצעת תיאום. עיקרי שצריך לדעת: יש לה CRM — צריך סנכרון; זמנים מוצעים: 16/3 ב-14:00 או 16:00, או 17/3 ב-10:00. נראה מבטיח!
@@ -10824,6 +9494,869 @@ const posts = [
   publishedDate: "2026-03-16",
   readTime: 8,
   seoUrl: getSeoUrl("בוט AI לוואטסאפ מה שעסקים לא ידעו שהם צריכים")
+}
+
+,
+{
+  id: 35,
+
+  seoTitle: {
+    he: "הסכמה לדיוור בוואטסאפ | מדריך מלא לעסקים | Gambot 2026",
+    en: "WhatsApp Marketing Consent Guide for Businesses | Gambot 2026"
+  },
+  metaDescription: {
+    he: "מדריך מקצועי להסכמה לדיוור בוואטסאפ — איך לנהל consent נכון לפי מקור הלקוח, CTWA, Facebook Leads, Google Ads ו-Webhook. כולל הגדרות Gambot.",
+    en: "Professional guide to WhatsApp marketing consent — how to manage consent by customer source: CTWA, Facebook Leads, Google Ads, and Webhooks, with Gambot configuration tips."
+  },
+  keywords: [
+    "הסכמה לדיוור", "consent וואטסאפ", "חוק הספאם", "CTWA וואטסאפ", "Facebook Lead Ads הסכמה",
+    "ניהול הסכמות", "WhatsApp marketing consent", "GDPR וואטסאפ", "Gambot consent", "קמפיין וואטסאפ חוקי"
+  ],
+
+  title: {
+    he: "הסכמה לדיוור בוואטסאפ — מדריך מלא לעסקים",
+    en: "WhatsApp Marketing Consent — Complete Business Guide"
+  },
+  description: {
+    he: "איך לנהל הסכמות דיוור נכון בוואטסאפ לפי מקור הלקוח — CTWA, Facebook Leads, Google Ads, Webhook ועוד. כולל הגדרות מעשיות ב-Gambot.",
+    en: "How to properly manage WhatsApp marketing consent by customer source — CTWA, Facebook Leads, Google Ads, Webhooks, and more. Includes practical Gambot configuration."
+  },
+
+  content: {
+    he: `<div dir="rtl">
+
+<p style="font-size:1.15rem;line-height:1.9;color:#374151;margin-bottom:24px;">ניהול הסכמות דיוור הוא אחד הנושאים החשובים ביותר לכל עסק שמשתמש בוואטסאפ לשיווק. המדריך הזה יעזור לכם להבין בדיוק איך זה עובד ב-Gambot, מה הכללים, ואיך לעבוד נכון — גם לטובת העסק וגם לטובת הלקוחות.</p>
+
+<div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:16px;padding:24px;margin:28px 0;border:1px solid #bbf7d0;">
+  <h2 style="margin:0 0 8px;color:#166534;font-size:1.3rem;">🔒 למה הסכמה לדיוור חשובה?</h2>
+  <p style="margin:0;color:#166534;line-height:1.7;">בישראל, חוק הספאם (תיקון לחוק התקשורת) מחייב הסכמה לפני שליחת הודעות שיווקיות. ב-WhatsApp Business Platform של Meta הדרישה אף מחמירה יותר — שליחה ללא הסכמה עלולה לגרום לחסימת מספר ה-WhatsApp Business שלכם.</p>
+</div>
+
+<h2>📋 מקורות יצירת לקוחות ומצב ההסכמה</h2>
+<p>Gambot מנהלת הסכמות אוטומטית לפי המקור שממנו הגיע הלקוח:</p>
+
+<h3>✅ הסכמה אוטומטית — לא צריך לעשות כלום</h3>
+
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead>
+      <tr style="background:#f0fdf4;">
+        <th style="padding:12px;border:1px solid #bbf7d0;text-align:right;font-weight:700;">מקור</th>
+        <th style="padding:12px;border:1px solid #bbf7d0;text-align:right;font-weight:700;">מה קורה</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>CTWA — Click to WhatsApp Ad</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הלקוח לחץ על מודעה ממומנת ויזם שיחה ← הסכמה מוגדרת אוטומטית</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>Facebook Lead Ads</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הלקוח מילא טופס ליד בפייסבוק ← הסכמה מוגדרת אוטומטית</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>⚙️ הסכמה לפי הגדרה — צריך להגדיר בבוטומיישן</h3>
+
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead>
+      <tr style="background:#eff6ff;">
+        <th style="padding:12px;border:1px solid #bfdbfe;text-align:right;font-weight:700;">מקור</th>
+        <th style="padding:12px;border:1px solid #bfdbfe;text-align:right;font-weight:700;">מה לעשות</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>Google Ads → Landing Page</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הוסיפו checkbox בטופס + הגדירו בבוטומיישן (ראו למטה)</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>WordPress / WooCommerce</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הוסיפו checkbox + הגדירו <code>consentSource</code> בבוטומיישן</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>Webhook חיצוני / CRM</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">שלחו <code>consent: true</code> מהמערכת + הגדירו בבוטומיישן</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>טופס Typeform / JotForm</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הוסיפו שדה הסכמה + מפו את הערך בבוטומיישן</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>⬜ ללא הסכמה אוטומטית</h3>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead>
+      <tr style="background:#f9fafb;">
+        <th style="padding:12px;border:1px solid #e5e7eb;text-align:right;font-weight:700;">מקור</th>
+        <th style="padding:12px;border:1px solid #e5e7eb;text-align:right;font-weight:700;">מצב</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הודעה נכנסת רגילה</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">ניתן לשלוח, מומלץ לאסוף הסכמה בשיחה</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">יצירה ידנית על ידי נציג</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הנציג יכול לסמן ידנית</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">פוסט אורגני בפייסבוק/אינסטגרם</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">לא נחשב הסכמה שיווקית אוטומטית</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>🛠️ איך מגדירים הסכמה בבוטומיישן</h2>
+
+<h3>🔵 Google Ads + Landing Page עם טופס</h3>
+<div style="background:#eff6ff;border-radius:12px;padding:20px;margin:16px 0;border:1px solid #bfdbfe;">
+  <ol style="margin:0;padding-right:20px;line-height:2;">
+    <li>ודאו שבטופס יש <strong>checkbox הסכמה</strong> — למשל: <em>"אני מסכים/ה לקבל עדכונים ומידע שיווקי בוואטסאפ"</em></li>
+    <li>בבוטומיישן שמקבל את ה-Webhook ויוצר את איש הקשר — פתחו את שלב <strong>"Create Contact"</strong></li>
+    <li>בסקשן <strong>🔒 Consent Settings</strong> — לחצו על <code>website_form</code> או הכניסו <code>google_lead_gen</code></li>
+    <li>אם הטופס שולח את ערך ה-checkbox — מפו דינמית: <code>{"{{Step_1_consent}}"}</code></li>
+  </ol>
+</div>
+
+<h3>🟣 WordPress / WooCommerce / Elementor</h3>
+<div style="background:#fdf4ff;border-radius:12px;padding:20px;margin:16px 0;border:1px solid #e9d5ff;">
+  <ol style="margin:0;padding-right:20px;line-height:2;">
+    <li>הוסיפו לטופס <strong>checkbox הסכמה</strong></li>
+    <li>ודאו שה-Webhook שולח את ערך ה-checkbox</li>
+    <li>בבוטומיישן: <strong>Create Contact → 🔒 Consent Settings → <code>website_form</code></strong></li>
+    <li>אם כל מי שממלא את הטופס כבר אישר — פשוט לחצו <code>website_form</code> ישירות</li>
+  </ol>
+</div>
+
+<h3>🟡 Webhook כללי / CRM חיצוני</h3>
+<div style="background:#fefce8;border-radius:12px;padding:20px;margin:16px 0;border:1px solid #fde68a;">
+  <p style="margin:0 0 8px;">אם ה-CRM שלכם שולח ערך הסכמה — מפו אותו דינמית:</p>
+  <code style="display:block;background:#fff;padding:10px;border-radius:6px;font-size:0.9rem;">consentSource: {"{{Step_1_consent_source}}"}</code>
+</div>
+
+<h2>🚀 שליחת קמפיין — תהליך נכון</h2>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0;">
+  <div style="background:#f0fdf4;border-radius:14px;padding:20px;text-align:center;">
+    <div style="font-size:2rem;margin-bottom:8px;">1️⃣</div>
+    <h3 style="margin:0 0 8px;font-size:1rem;color:#166534;">בנו את הקמפיין</h3>
+    <p style="margin:0;font-size:0.85rem;color:#374151;">בחרו נמענים ותבנית הודעה</p>
+  </div>
+  <div style="background:#eff6ff;border-radius:14px;padding:20px;text-align:center;">
+    <div style="font-size:2rem;margin-bottom:8px;">2️⃣</div>
+    <h3 style="margin:0 0 8px;font-size:1rem;color:#1d4ed8;">אשרו</h3>
+    <p style="margin:0;font-size:0.85rem;color:#374151;">"יש בידי הסכמה חוקית" — checkpoint משפטי</p>
+  </div>
+  <div style="background:#fdf4ff;border-radius:14px;padding:20px;text-align:center;">
+    <div style="font-size:2rem;margin-bottom:8px;">3️⃣</div>
+    <h3 style="margin:0 0 8px;font-size:1rem;color:#7e22ce;">שלחו</h3>
+    <p style="margin:0;font-size:0.85rem;color:#374151;">Gambot שולחת לכולם</p>
+  </div>
+</div>
+
+<div style="background:#fff7ed;border-radius:12px;padding:20px;margin:20px 0;border:1px solid #fed7aa;">
+  <h3 style="margin:0 0 8px;color:#c2410c;">💡 טיפ: עדכון הסכמה בזמן אישור קמפיין</h3>
+  <p style="margin:0;">אם אתם שולחים לרשימה שאספתם (למשל מאירוע) — ניתן <strong>בזמן אישור הקמפיין</strong> לסמן "עדכן הסכמה לכל אנשי הקשר" ולבחור מקור. זה יעדכן את ה-DB ויתעד את ההסכמה.</p>
+</div>
+
+<h2>⚖️ מה ההבדל בין isSpam להסכמה?</h2>
+
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead>
+      <tr style="background:#f3f4f6;">
+        <th style="padding:12px;border:1px solid #e5e7eb;text-align:right;"></th>
+        <th style="padding:12px;border:1px solid #e5e7eb;text-align:right;font-weight:700;">isSpam</th>
+        <th style="padding:12px;border:1px solid #e5e7eb;text-align:right;font-weight:700;">consent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;font-weight:600;">מה זה</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">חסימה פנימית מצד העסק</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הסכמה שיווקית של הלקוח</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;font-weight:600;">השפעה</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">לא מגיב, לא מופיע בצ'אט</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">מידע לניהול רשימות דיוור</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;font-weight:600;">הקשר</td>
+        <td colspan="2" style="padding:12px;border:1px solid #e5e7eb;">isSpam = true → מבטל אוטומטית את ההסכמה</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>🚫 ביטול הסכמה נכון: Set Consent לעומת Set as Spam</h2>
+
+<p>שאלה נפוצה: <strong>לקוח אומר "תסיר אותי מהרשימה" — מה עושים?</strong></p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
+  <div style="background:#fef2f2;border-radius:14px;padding:20px;border:2px solid #fecaca;">
+    <h3 style="margin:0 0 10px;color:#dc2626;font-size:1rem;">❌ Set as Spam — לא מתאים להסרה</h3>
+    <p style="margin:0 0 8px;font-size:0.9rem;color:#374151;">כשמסמנים לקוח כ-Spam:</p>
+    <ul style="margin:0;padding-right:20px;line-height:1.8;font-size:0.9rem;color:#374151;">
+      <li>הבוט <strong>לא יענה</strong> לו יותר בכלל</li>
+      <li>הוא לא יופיע בצ'אט</li>
+      <li>ההסכמה מתבטלת אוטומטית</li>
+    </ul>
+    <div style="margin-top:10px;padding:8px;background:#fff0f0;border-radius:6px;font-size:0.85rem;color:#dc2626;">
+      ⚠️ מתאים רק למי שהוא באמת ספאמר / לא רלוונטי לעסק
+    </div>
+  </div>
+  <div style="background:#f0fdf4;border-radius:14px;padding:20px;border:2px solid #bbf7d0;">
+    <h3 style="margin:0 0 10px;color:#15803d;font-size:1rem;">✅ Set Consent (false) — ההסרה הנכונה</h3>
+    <p style="margin:0 0 8px;font-size:0.9rem;color:#374151;">כשמסמנים <code>consent: false</code>:</p>
+    <ul style="margin:0;padding-right:20px;line-height:1.8;font-size:0.9rem;color:#374151;">
+      <li>הבוט <strong>ממשיך לענות</strong> אם הלקוח פונה</li>
+      <li>הוא <strong>לא יקבל קמפיינים שיווקיים</strong></li>
+      <li>ניתן לאפס בעתיד אם הלקוח ירצה לחזור</li>
+    </ul>
+    <div style="margin-top:10px;padding:8px;background:#f0fdf4;border-radius:6px;font-size:0.85rem;color:#15803d;">
+      ✅ מתאים לניהול הסרה מרשימת תפוצה — חוקי, נכון, ברוח GDPR
+    </div>
+  </div>
+</div>
+
+<div style="background:#eff6ff;border-radius:12px;padding:20px;margin:16px 0;border:1px solid #bfdbfe;">
+  <h3 style="margin:0 0 10px;color:#1d4ed8;font-size:1rem;">🤖 איך מגדירים ביטול הסכמה בבוטומיישן?</h3>
+  <ol style="margin:0;padding-right:20px;line-height:2;font-size:0.9rem;">
+    <li>צרו בוטומיישן עם טריגר של מילת מפתח — למשל: <strong>"הסר"</strong>, <strong>"STOP"</strong>, <strong>"לא מעוניין"</strong></li>
+    <li>הוסיפו שלב <strong>Gambot Action → Contact → Set Consent</strong></li>
+    <li>בחרו <strong>Revoke Consent ❌</strong></li>
+    <li>אפשר להוסיף הודעת אישור: <em>"הוסרת בהצלחה מרשימת השיווק שלנו. תמיד ניתן לחזור ולפנות אלינו!"</em></li>
+  </ol>
+  <div style="margin-top:12px;padding:10px;background:#fff;border-radius:8px;font-size:0.85rem;color:#374151;border:1px solid #e0e7ff;">
+    💡 כך אתם עומדים בחובת ביטול הסכמה לפי חוק, <strong>בלי לחסום את הלקוח לגמרי</strong> — הוא עדיין יכול לפנות אליכם בעתיד אם ישנה את דעתו.
+  </div>
+</div>
+
+<h2>✅ המלצות עבודה</h2>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
+  <div style="background:#f0fdf4;border-radius:14px;padding:20px;">
+    <h3 style="margin:0 0 12px;color:#166534;font-size:1rem;">✅ עשו</h3>
+    <ul style="margin:0;padding-right:20px;line-height:1.9;font-size:0.9rem;">
+      <li>הוסיפו checkbox הסכמה לכל טופס לידים</li>
+      <li>הגדירו <code>consentSource</code> בכל בוטומיישן שיוצר אנשי קשר</li>
+      <li>בייבוא רשימה — ציינו את מקור ההסכמה</li>
+      <li>הגדירו בוטומיישן לביטול הסכמה עם מילת מפתח (Set Consent false)</li>
+      <li>שמרו על עקביות — אם אספתם הסכמה, תעדו אותה</li>
+    </ul>
+  </div>
+  <div style="background:#fef2f2;border-radius:14px;padding:20px;">
+    <h3 style="margin:0 0 12px;color:#dc2626;font-size:1rem;">❌ אל תעשו</h3>
+    <ul style="margin:0;padding-right:20px;line-height:1.9;font-size:0.9rem;">
+      <li>אל תשלחו לרשימות שנקנו ללא הסכמה</li>
+      <li>אל תסמנו spam על מי שביקש הסרה — השתמשו ב-Set Consent במקום</li>
+      <li>אל תשלחו שיווק לאנשים שסירבו</li>
+    </ul>
+  </div>
+</div>
+
+<h2>❓ שאלות נפוצות</h2>
+
+<div style="margin:16px 0;">
+  <div style="background:#f9fafb;border-radius:12px;padding:18px;margin-bottom:12px;border-right:4px solid #4f46e5;">
+    <p style="margin:0 0 6px;font-weight:700;">האם לחיצה על מודעת CTWA = הסכמה לדיוור?</p>
+    <p style="margin:0;font-size:0.95rem;color:#374151;">Gambot מגדירה זאת כהסכמה אוטומטית — הלקוח <strong>בחר</strong> לפנות אליכם דרך מודעה ממומנת, מה שמהווה בסיס סביר להסכמה.</p>
+  </div>
+  <div style="background:#f9fafb;border-radius:12px;padding:18px;margin-bottom:12px;border-right:4px solid #4f46e5;">
+    <p style="margin:0 0 6px;font-weight:700;">מה קורה אם שלחתי לאנשים שאין להם שדה consent?</p>
+    <p style="margin:0;font-size:0.95rem;color:#374151;">Gambot לא חוסמת שליחה — אחרי שאישרתם את ה-checkpoint המשפטי ("יש בידי הסכמה"), המערכת שולחת. <strong>האחריות היא שלכם</strong> — הכלים לניהול הסכמה קיימים ועומדים לרשותכם.</p>
+  </div>
+  <div style="background:#f9fafb;border-radius:12px;padding:18px;border-right:4px solid #4f46e5;">
+    <p style="margin:0 0 6px;font-weight:700;">איך לקוח יכול לבטל הסכמה?</p>
+    <p style="margin:0;font-size:0.95rem;color:#374151;">ידנית על ידי נציג, או באמצעות הגדרת מילת מפתח בבוט (למשל "הסר" / "STOP") שמסמנת את הלקוח כ-spam.</p>
+  </div>
+</div>
+
+<div style="background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:18px;padding:36px;text-align:center;margin-top:40px;color:white;">
+  <h3 style="font-size:1.5rem;margin:0 0 14px;">רוצים לדעת איך מגדירים זאת ב-Gambot?</h3>
+  <p style="margin:0 0 24px;opacity:0.9;font-size:1.05rem;">נשמח לעזור לכם להגדיר את הבוטומיישן הנכון לפי מקור הלידים שלכם</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="https://gambot.co.il/ContactUs/" style="background:white;color:#4f46e5;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;">💬 דברו איתנו</a>
+    <a href="https://app.gambot.co.il" style="background:rgba(255,255,255,0.2);color:white;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;border:2px solid white;">🚀 כניסה למערכת</a>
+  </div>
+</div>
+
+</div>`,
+    en: `<div dir="ltr">
+<p style="font-size:1.15rem;line-height:1.9;color:#374151;margin-bottom:24px;">Managing marketing consent is one of the most important topics for any business using WhatsApp for marketing. This guide will help you understand exactly how it works in Gambot, what the rules are, and how to work correctly — for both your business and your customers.</p>
+
+<div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:16px;padding:24px;margin:28px 0;border:1px solid #bbf7d0;">
+  <h2 style="margin:0 0 8px;color:#166534;font-size:1.3rem;">🔒 Why Does Marketing Consent Matter?</h2>
+  <p style="margin:0;color:#166534;line-height:1.7;">WhatsApp Business Platform by Meta requires opt-in before sending marketing messages. Sending without consent can result in your WhatsApp Business number being blocked — and significant legal exposure under GDPR and local anti-spam laws.</p>
+</div>
+
+<h2>📋 Contact Sources & Consent Status</h2>
+<p>Gambot automatically manages consent based on where the customer came from:</p>
+
+<h3>✅ Automatic Consent — No Action Required</h3>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead><tr style="background:#f0fdf4;"><th style="padding:12px;border:1px solid #bbf7d0;font-weight:700;">Source</th><th style="padding:12px;border:1px solid #bbf7d0;font-weight:700;">What Happens</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>CTWA — Click to WhatsApp Ad</strong></td><td style="padding:12px;border:1px solid #e5e7eb;">Customer clicked a paid ad and initiated a chat → consent set automatically</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:12px;border:1px solid #e5e7eb;"><strong>Facebook Lead Ads</strong></td><td style="padding:12px;border:1px solid #e5e7eb;">Customer filled a Facebook lead form → consent set automatically</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>⚙️ Configurable Consent — Set Up in Botomation</h3>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead><tr style="background:#eff6ff;"><th style="padding:12px;border:1px solid #bfdbfe;font-weight:700;">Source</th><th style="padding:12px;border:1px solid #bfdbfe;font-weight:700;">What to Do</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>Google Ads → Landing Page</strong></td><td style="padding:12px;border:1px solid #e5e7eb;">Add consent checkbox + configure in Botomation (see below)</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:12px;border:1px solid #e5e7eb;"><strong>WordPress / WooCommerce</strong></td><td style="padding:12px;border:1px solid #e5e7eb;">Add checkbox + set <code>consentSource</code> in Botomation</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>External Webhook / CRM</strong></td><td style="padding:12px;border:1px solid #e5e7eb;">Send <code>consent: true</code> from your system + configure in Botomation</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>🛠️ Configuring Consent in Botomation</h2>
+<div style="background:#eff6ff;border-radius:12px;padding:20px;margin:16px 0;border:1px solid #bfdbfe;">
+  <h3 style="margin:0 0 10px;color:#1d4ed8;">Google Ads / WordPress / Any Form</h3>
+  <ol style="margin:0;padding-left:20px;line-height:2;">
+    <li>Add a <strong>consent checkbox</strong> to your form: <em>"I agree to receive WhatsApp marketing messages from [Business Name]"</em></li>
+    <li>In the Botomation that creates the contact → open the <strong>"Create Contact"</strong> step</li>
+    <li>In the <strong>🔒 Consent Settings</strong> section → click <code>website_form</code> or enter <code>google_lead_gen</code></li>
+    <li>If the form sends the checkbox value dynamically: <code>{"{{Step_1_consent}}"}</code></li>
+  </ol>
+</div>
+
+<h2>⚖️ Spam vs. Consent — What's the Difference?</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead><tr style="background:#f3f4f6;"><th style="padding:12px;border:1px solid #e5e7eb;"></th><th style="padding:12px;border:1px solid #e5e7eb;font-weight:700;">isSpam</th><th style="padding:12px;border:1px solid #e5e7eb;font-weight:700;">consent</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;font-weight:600;">What it is</td><td style="padding:12px;border:1px solid #e5e7eb;">Internal block by the business</td><td style="padding:12px;border:1px solid #e5e7eb;">Customer's marketing opt-in status</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:12px;border:1px solid #e5e7eb;font-weight:600;">Note</td><td colspan="2" style="padding:12px;border:1px solid #e5e7eb;">isSpam = true → automatically revokes consent</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>🚫 Handling Opt-Outs the Right Way: Set Consent vs. Set as Spam</h2>
+
+<p>A common question: <strong>A customer says "remove me from your list" — what do you do?</strong></p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
+  <div style="background:#fef2f2;border-radius:14px;padding:20px;border:2px solid #fecaca;">
+    <h3 style="margin:0 0 10px;color:#dc2626;font-size:1rem;">❌ Set as Spam — Wrong for opt-outs</h3>
+    <p style="margin:0 0 8px;font-size:0.9rem;color:#374151;">When you mark a contact as Spam:</p>
+    <ul style="margin:0;padding-left:20px;line-height:1.8;font-size:0.9rem;color:#374151;">
+      <li>The bot <strong>stops responding</strong> entirely</li>
+      <li>The contact disappears from chat</li>
+      <li>Consent is automatically revoked</li>
+    </ul>
+    <div style="margin-top:10px;padding:8px;background:#fff0f0;border-radius:6px;font-size:0.85rem;color:#dc2626;">
+      ⚠️ Only appropriate for actual spammers or irrelevant contacts
+    </div>
+  </div>
+  <div style="background:#f0fdf4;border-radius:14px;padding:20px;border:2px solid #bbf7d0;">
+    <h3 style="margin:0 0 10px;color:#15803d;font-size:1rem;">✅ Set Consent (false) — The correct opt-out</h3>
+    <p style="margin:0 0 8px;font-size:0.9rem;color:#374151;">When you set <code>consent: false</code>:</p>
+    <ul style="margin:0;padding-left:20px;line-height:1.8;font-size:0.9rem;color:#374151;">
+      <li>The bot <strong>still responds</strong> if the customer reaches out</li>
+      <li>They <strong>won't receive marketing campaigns</strong></li>
+      <li>Can be re-enabled if the customer opts back in</li>
+    </ul>
+    <div style="margin-top:10px;padding:8px;background:#f0fdf4;border-radius:6px;font-size:0.85rem;color:#15803d;">
+      ✅ The right way to handle unsubscribes — legal, clean, GDPR-compliant
+    </div>
+  </div>
+</div>
+
+<div style="background:#eff6ff;border-radius:12px;padding:20px;margin:16px 0;border:1px solid #bfdbfe;">
+  <h3 style="margin:0 0 10px;color:#1d4ed8;font-size:1rem;">🤖 How to Set Up an Opt-Out Botomation</h3>
+  <ol style="margin:0;padding-left:20px;line-height:2;font-size:0.9rem;">
+    <li>Create a Botomation with a keyword trigger — e.g. <strong>"STOP"</strong>, <strong>"unsubscribe"</strong>, <strong>"remove me"</strong></li>
+    <li>Add a step: <strong>Gambot Action → Contact → Set Consent</strong></li>
+    <li>Select <strong>Revoke Consent ❌</strong></li>
+    <li>Optionally send a confirmation: <em>"You've been removed from our marketing list. You can always reach out to us directly!"</em></li>
+  </ol>
+  <div style="margin-top:12px;padding:10px;background:#fff;border-radius:8px;font-size:0.85rem;color:#374151;border:1px solid #e0e7ff;">
+    💡 This keeps you compliant with unsubscribe laws <strong>without blocking the contact entirely</strong> — they can still reach you if they change their mind.
+  </div>
+</div>
+
+<div style="background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:18px;padding:36px;text-align:center;margin-top:40px;color:white;">
+  <h3 style="font-size:1.5rem;margin:0 0 14px;">Need Help Setting This Up in Gambot?</h3>
+  <p style="margin:0 0 24px;opacity:0.9;">We'll help you configure the right Botomation for your lead sources</p>
+  <a href="https://gambot.co.il/ContactUs/" style="background:white;color:#4f46e5;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;">💬 Contact Us</a>
+</div>
+</div>`
+  },
+
+  category: "מדריכים",
+  author: "ניר סגס",
+  tags: ["הסכמה לדיוור", "consent", "חוק הספאם", "CTWA", "Facebook Lead Ads", "Google Ads", "בוטומיישן", "קמפיין וואטסאפ"],
+  image: "/blog/post34.jpg",
+  publishedDate: "2026-03-27",
+  readTime: 9,
+  seoUrl: getSeoUrl("הסכמה לדיוור בוואטסאפ מדריך מלא לעסקים")
+},
+
+{
+  id: 36,
+  seoTitle: {
+    he: "מערכת CRM עם Meta CAPI ו-Google Ads | מדידת המרות אמיתית | גמבוט 2026",
+    en: "CRM with Meta CAPI & Google Ads Conversion Tracking | Gambot 2026"
+  },
+  metaDescription: {
+    he: "מה זה Meta CAPI ולמה כל מערכת CRM חייבת לשלב אותו? איך מחברים Google Ads ל-CRM למדידת ROI אמיתית? גמבוט שולח המרות אוטומטית כשליד נסגר — ללא מגע אנושי.",
+    en: "What is Meta CAPI and why every CRM must integrate it? How to connect Google Ads to CRM for real ROI measurement? Gambot sends conversions automatically when a lead is won — no human touch."
+  },
+  keywords: {
+    he: [
+      "מערכת CRM עם Meta CAPI", "CRM עם גוגל אדס", "מדידת המרות CRM", "CRM שמדווח על המרות",
+      "שיוך לידים למודעה", "מדידת ROI מודעות", "CRM עם מעקב המרות פייסבוק",
+      "Meta CAPI ישראל", "Google Ads offline conversion", "CRM לעסקים עם פרסום ממומן",
+      "CRM שיווק דיגיטלי", "מעקב המרות ברמת ה-CRM", "gambot meta capi", "gambot google ads"
+    ],
+    en: [
+      "CRM with Meta CAPI", "CRM Google Ads conversion tracking", "WhatsApp CRM CAPI integration",
+      "CRM that tracks ad conversions", "offline conversion tracking CRM", "meta conversions api crm",
+      "google ads crm integration", "crm roi measurement", "whatsapp crm with facebook pixel",
+      "crm for digital marketing agencies"
+    ]
+  },
+  publishedDate: "2026-03-29T10:00:00+03:00",
+  modifiedDate: "2026-03-29T10:00:00+03:00",
+  author: "ניר סגס",
+  category: "שיווק דיגיטלי",
+  tags: ["Meta CAPI", "Google Ads", "CRM", "מדידת המרות", "ROI", "Facebook Pixel", "offline conversion", "פרסום ממומן", "גמבוט"],
+  image: "/blog/post35.jpg",
+  readTime: 10,
+  faq: [
+    {
+      question: "מה זה Meta CAPI ולמה זה חשוב לעסקים שמפרסמים בפייסבוק?",
+      answer: "Meta CAPI (Conversions API) הוא ממשק שמאפשר לשלוח מידע על המרות ישירות משרת ה-CRM שלכם אל Meta — בלי להסתמך על Pixel בדפדפן. כך גם אם המשתמש חסם עוקבים, פרסם ב-iOS, או עבר בין מכשירים — ההמרה נרשמת ומשפרת את האופטימיזציה של הקמפיין."
+    },
+    {
+      question: "האם Gambot CRM שולח המרות ל-Meta CAPI אוטומטית?",
+      answer: "כן. כאשר ליד מועבר לשלב WON בגמבוט, המערכת שולחת אירוע Purchase אוטומטי ל-Meta CAPI — כולל נתוני ה-Pixel, פרטי הליד ושווי העסקה. לא צריך לעשות כלום ידנית."
+    },
+    {
+      question: "איך מחברים Google Ads ל-Gambot CRM למדידת המרות?",
+      answer: "מחברים חשבון Google Ads בהגדרות → חיבורים. גמבוט מקבל את ה-GCLID (מזהה הקליק) מהדף נחיתה, שומר אותו על הליד, ושולח המרה אופליין ל-Google Ads אוטומטית כשהליד נסגר."
+    },
+    {
+      question: "מה זה GCLID ולמה הוא חשוב?",
+      answer: "GCLID הוא מזהה ייחודי שגוגל מייצר לכל לחיצה על מודעה. כשמשתמש מגיע מגוגל אדס לדף הנחיתה, ה-GCLID נשמר. כשהוא נהיה לקוח, שולחים לגוגל את ה-GCLID עם ההמרה — וגוגל יודע בדיוק איזו מודעה, מילת מפתח וקמפיין ייצרו את הלקוח."
+    },
+    {
+      question: "האם CRM עם Meta CAPI וגוגל אדס מוריד את עלות הליד?",
+      answer: "כן — זה אחד היתרונות המרכזיים. כששולחים לפייסבוק ולגוגל נתוני המרה אמיתיים (מי נסגר לעסקה, לא רק מי מילא טופס), האלגוריתם לומד טוב יותר ומפנה תקציב פרסום לקהלים שממירים. עסקים דיווחו על ירידה של 20–40% ב-CPL."
+    }
+  ],
+  title: {
+    he: "Meta CAPI ו-Google Ads בתוך ה-CRM — כל ליד שנסגר שולח המרה אוטומטית",
+    en: "Meta CAPI & Google Ads Inside Your CRM — Every Won Lead Fires a Conversion Automatically"
+  },
+  description: {
+    he: "למה כל עסק שמפרסם בפייסבוק ובגוגל צריך CRM עם Meta CAPI ו-Google Ads Conversion Tracking מובנה — ואיך גמבוט עושה את זה אוטומטית.",
+    en: "Why every business advertising on Facebook and Google needs a CRM with built-in Meta CAPI and Google Ads Conversion Tracking — and how Gambot does it automatically."
+  },
+  content: {
+    he: `<div style="font-family:'Varela Round',sans-serif;direction:rtl;line-height:1.9;color:#1e293b;max-width:860px;margin:0 auto;">
+
+<div style="background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:white;padding:36px 32px;border-radius:20px;margin-bottom:40px;text-align:center;">
+  <h1 style="margin:0 0 16px;font-size:2rem;font-weight:800;">📊 Meta CAPI + Google Ads בתוך ה-CRM</h1>
+  <p style="margin:0;font-size:1.15rem;opacity:0.95;">כל ליד שנסגר — שולח המרה אוטומטית לפייסבוק ולגוגל. ללא מגע אנושי.</p>
+</div>
+
+<h2>הבעיה: אתם מפרסמים אבל לא יודעים מה באמת עובד</h2>
+<p>רוב העסקים שמפרסמים בפייסבוק ובגוגל מודדים <strong>מי מילא טופס</strong> — לא מי נהיה לקוח משלם. התוצאה? האלגוריתמים מקבלים מידע חלקי ומבזבזים תקציב על לידים שלעולם לא יסגרו.</p>
+
+<p>הפתרון נקרא <strong>Conversion Tracking ברמת ה-CRM</strong> — שולחים לפייסבוק ולגוגל רק מי שבאמת נסגר לעסקה. Gambot עושה את זה אוטומטית.</p>
+
+<div style="background:#fef3c7;border-radius:14px;padding:20px;margin:24px 0;border-right:4px solid #f59e0b;">
+  <strong style="color:#92400e;">💡 דוגמה ממשית:</strong>
+  <p style="margin:8px 0 0;color:#78350f;">עסק שמפרסם בפייסבוק מקבל 100 לידים בחודש. 20 נסגרים לעסקאות. אם מדווחים לפייסבוק רק על 100 הלידים — הוא מייעל לייצר עוד לידים. אם מדווחים על 20 ה<em>לקוחות</em> — הוא מייעל לייצר עוד לקוחות. ההבדל בעלות הרכישה הוא עצום.</p>
+</div>
+
+<h2>🔵 מה זה Meta CAPI ולמה זה קריטי ב-2026</h2>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
+  <div style="background:#eff6ff;border-radius:14px;padding:20px;">
+    <h3 style="margin:0 0 10px;color:#1d4ed8;font-size:1rem;">⚠️ בלי Meta CAPI</h3>
+    <ul style="margin:0;padding-right:20px;line-height:1.9;font-size:0.9rem;color:#374151;">
+      <li>Pixel תלוי בדפדפן ובעוגיות</li>
+      <li>iOS 14+ חוסם ~40% מהנתונים</li>
+      <li>Ad Blockers מחסלים עוד נתונים</li>
+      <li>מדידה חלקית → אופטימיזציה גרועה</li>
+      <li>עלות הליד עולה לאורך זמן</li>
+    </ul>
+  </div>
+  <div style="background:#f0fdf4;border-radius:14px;padding:20px;">
+    <h3 style="margin:0 0 10px;color:#166534;font-size:1rem;">✅ עם Meta CAPI + Gambot CRM</h3>
+    <ul style="margin:0;padding-right:20px;line-height:1.9;font-size:0.9rem;color:#374151;">
+      <li>שרת-לשרת — עוגיות לא רלוונטיות</li>
+      <li>100% מהמרות נרשמות בצד שלכם</li>
+      <li>פייסבוק מקבל נתוני עסקאות אמיתיות</li>
+      <li>האלגוריתם מוצא קהלים שממירים</li>
+      <li>CPL יורד ו-ROAS עולה</li>
+    </ul>
+  </div>
+</div>
+
+<h3>⚙️ איך Meta CAPI עובד בתוך Gambot</h3>
+
+<div style="display:flex;flex-direction:column;gap:12px;margin:20px 0;">
+  <div style="display:flex;gap:16px;align-items:flex-start;padding:18px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;">
+    <div style="background:#1877f2;color:white;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">1</div>
+    <div>
+      <strong>חיבור חשבון פייסבוק</strong><br/>
+      <span style="color:#64748b;font-size:0.9rem;">מחברים את חשבון הפייסבוק העסקי בהגדרות גמבוט. המערכת מאחזרת אוטומטית את ה-Pixel ID וה-Access Token — לא צריך לחפש ידנית.</span>
+    </div>
+  </div>
+  <div style="display:flex;gap:16px;align-items:flex-start;padding:18px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;">
+    <div style="background:#1877f2;color:white;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">2</div>
+    <div>
+      <strong>ליד מגיע ונשמר ב-CRM</strong><br/>
+      <span style="color:#64748b;font-size:0.9rem;">כל ליד שמגיע מ-CTWA או Facebook Lead Ads נשמר עם מקור הפרסום שלו — קמפיין, מודעה, פלטפורמה.</span>
+    </div>
+  </div>
+  <div style="display:flex;gap:16px;align-items:flex-start;padding:18px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;">
+    <div style="background:#1877f2;color:white;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">3</div>
+    <div>
+      <strong>ליד עובר לשלב WON</strong><br/>
+      <span style="color:#64748b;font-size:0.9rem;">ברגע שמסמנים ליד כ-"נסגר" ב-CRM — גמבוט שולח אירוע <code>Purchase</code> ל-Meta CAPI אוטומטית, כולל שווי העסקה ונתוני הזיהוי (פלאפון, אימייל — מוצפנים).</span>
+    </div>
+  </div>
+  <div style="display:flex;gap:16px;align-items:flex-start;padding:18px;background:#f0fdf4;border-radius:12px;border:1px solid #86efac;">
+    <div style="background:#16a34a;color:white;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">✓</div>
+    <div>
+      <strong>פייסבוק מקבל נתוני עסקה אמיתיים</strong><br/>
+      <span style="color:#15803d;font-size:0.9rem;">האלגוריתם של פייסבוק עכשיו יודע: "האנשים שנסגרו לעסקאות הגיעו ממודעה X, קהל Y" — ומייעל את הקמפיין אליהם.</span>
+    </div>
+  </div>
+</div>
+
+<h2>🟢 Google Ads Offline Conversion Tracking — CRM שמדווח לגוגל</h2>
+
+<p>גוגל אדס מאפשר מדידה דומה — <strong>Offline Conversion Import</strong>. כלומר: אתם שולחים לגוגל מידע על עסקאות שנסגרו <em>בעולם האמיתי</em> (פגישה, שיחה, וואטסאפ) — וגוגל מייחס אותן למילות המפתח והמודעות הנכונות.</p>
+
+<div style="background:#f0fdf4;border-radius:14px;padding:20px;margin:20px 0;border-right:4px solid #16a34a;">
+  <h3 style="margin:0 0 12px;color:#166534;font-size:1rem;">🔑 הרכיב הקריטי: GCLID</h3>
+  <p style="margin:0 0 8px;font-size:0.9rem;color:#374151;">כשמישהו לוחץ על מודעת גוגל ומגיע לדף הנחיתה שלכם, גוגל מוסיף פרמטר <code>gclid</code> לכתובת הURL. זה מזהה ייחודי שמקשר את הליד הספציפי למודעה שהביאה אותו.</p>
+  <p style="margin:0;font-size:0.9rem;color:#374151;"><strong>Gambot לוכד את ה-GCLID אוטומטית</strong> ושומר אותו על הליד. כשהליד נסגר — שולח לגוגל את ה-GCLID + פרטי ההמרה → גוגל יודע בדיוק אילו מילות מפתח ייצרו לקוחות.</p>
+</div>
+
+<h3>📋 כיצד Gambot מיישם Google Ads Conversion Tracking</h3>
+
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+    <thead>
+      <tr style="background:#f0fdf4;">
+        <th style="padding:12px;border:1px solid #86efac;text-align:right;">שלב</th>
+        <th style="padding:12px;border:1px solid #86efac;text-align:right;">מה קורה</th>
+        <th style="padding:12px;border:1px solid #86efac;text-align:right;">מי עושה</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>1. לחיצה על מודעה</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">גוגל מוסיף <code>?gclid=xxx</code> לדף הנחיתה</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Google Ads</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>2. שמירת ה-GCLID</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">סניפט JS של גמבוט לוכד ושומר את ה-GCLID בדפדפן</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Gambot Snippet</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>3. מילוי טופס</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הליד ממלא טופס → ה-GCLID נשלח יחד עם הפרטים</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הלקוח + Gambot</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>4. ניהול בגמבוט CRM</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הליד נשמר ב-CRM עם ה-GCLID מוצמד אליו</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Gambot CRM</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;"><strong>5. סגירת עסקה</strong></td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">ליד מועבר ל-WON → גמבוט שולח המרה עם ה-GCLID לגוגל</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Gambot (אוטומטי)</td>
+      </tr>
+      <tr style="background:#f0fdf4;">
+        <td style="padding:12px;border:1px solid #86efac;"><strong>6. אופטימיזציה</strong></td>
+        <td style="padding:12px;border:1px solid #86efac;">גוגל יודע איזו מילת מפתח הביאה לקוחות → מייעל תקציב</td>
+        <td style="padding:12px;border:1px solid #86efac;">Google Ads AI</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>📈 מה מרוויחים בפועל? נתונים אמיתיים</h2>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0;">
+  <div style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:white;border-radius:16px;padding:20px;text-align:center;">
+    <div style="font-size:2.2rem;font-weight:800;margin-bottom:6px;">-30%</div>
+    <div style="opacity:0.9;font-size:0.9rem;">ירידה ממוצעת בעלות הרכישה</div>
+  </div>
+  <div style="background:linear-gradient(135deg,#16a34a,#22c55e);color:white;border-radius:16px;padding:20px;text-align:center;">
+    <div style="font-size:2.2rem;font-weight:800;margin-bottom:6px;">+25%</div>
+    <div style="opacity:0.9;font-size:0.9rem;">שיפור ב-ROAS (Return on Ad Spend)</div>
+  </div>
+  <div style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:white;border-radius:16px;padding:20px;text-align:center;">
+    <div style="font-size:2.2rem;font-weight:800;margin-bottom:6px;">100%</div>
+    <div style="opacity:0.9;font-size:0.9rem;">מדידה גם כשאין עוגיות</div>
+  </div>
+</div>
+
+<div style="background:#fef3c7;border-radius:14px;padding:20px;margin:20px 0;border-right:4px solid #f59e0b;">
+  <strong style="color:#92400e;">🎓 למה זה קורה?</strong>
+  <p style="margin:8px 0 0;color:#78350f;font-size:0.9rem;">כששולחים לפייסבוק ולגוגל נתוני <em>סגירת עסקה</em> ולא רק נתוני <em>מילוי טופס</em> — האלגוריתמים מבינים מי באמת שווה. הם מפסיקים לדחוף תקציב על לידים "קלים" שלא ממירים, ומרכזים מאמץ על הקהלים שבאמת קונים. זה ה"קסם" של Conversion API.</p>
+</div>
+
+<h2>🆚 השוואה: CRM רגיל לעומת Gambot CRM עם CAPI</h2>
+
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+    <thead>
+      <tr style="background:#f1f5f9;">
+        <th style="padding:12px;border:1px solid #e2e8f0;text-align:right;">יכולת</th>
+        <th style="padding:12px;border:1px solid #e2e8f0;text-align:center;">CRM רגיל</th>
+        <th style="padding:12px;border:1px solid #e2e8f0;text-align:center;color:#1d4ed8;">Gambot CRM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">שמירת מקור הליד (קמפיין, Ad ID)</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">✅ חלקית</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#16a34a;font-weight:700;">✅ מלאה</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">שליחת המרה ל-Meta CAPI אוטומטית</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#dc2626;">❌</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#16a34a;font-weight:700;">✅</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Google Ads Offline Conversion</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#dc2626;">❌</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#16a34a;font-weight:700;">✅</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">GCLID מוצמד לליד ספציפי</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#dc2626;">❌</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#16a34a;font-weight:700;">✅</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">מדידה ללא עוגיות / iOS</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#dc2626;">❌</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#16a34a;font-weight:700;">✅ שרת-לשרת</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">דוח ROI לפי קמפיין / מודעה</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">✅ חלקי</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#16a34a;font-weight:700;">✅ מלא + עלות לליד</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">אוטומציה ב-WON ← שולח המרה</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#dc2626;">❌</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;text-align:center;color:#16a34a;font-weight:700;">✅ אוטומטי</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>🛠️ איך מתחילים ב-5 דקות</h2>
+
+<div style="display:flex;flex-direction:column;gap:12px;margin:20px 0;">
+  <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:#eff6ff;border-radius:12px;">
+    <span style="background:#1d4ed8;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:0.9rem;">1</span>
+    <div>
+      <strong>הגדרות → חיבורים → Facebook</strong><br/>
+      <span style="color:#64748b;font-size:0.9rem;">מחברים את חשבון הפייסבוק. גמבוט מאחזר את ה-Pixel וה-Token אוטומטית.</span>
+    </div>
+  </div>
+  <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:#f0fdf4;border-radius:12px;">
+    <span style="background:#16a34a;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:0.9rem;">2</span>
+    <div>
+      <strong>הגדרות → חיבורים → Google Ads</strong><br/>
+      <span style="color:#64748b;font-size:0.9rem;">מחברים את חשבון גוגל אדס. גמבוט מקבל הרשאות אוטומטית.</span>
+    </div>
+  </div>
+  <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:#fdf4ff;border-radius:12px;">
+    <span style="background:#7c3aed;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:0.9rem;">3</span>
+    <div>
+      <strong>הטמעת סניפט JS בדף הנחיתה</strong><br/>
+      <span style="color:#64748b;font-size:0.9rem;">מעתיקים את קוד ה-JavaScript מגמבוט (מותאם אישית עם ה-Organization ID שלכם) ומדביקים בדף הנחיתה.</span>
+    </div>
+  </div>
+  <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:#f0fdf4;border-radius:12px;border:2px solid #86efac;">
+    <span style="background:#16a34a;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:0.9rem;">✓</span>
+    <div>
+      <strong>זה הכל — מעכשיו זה אוטומטי</strong><br/>
+      <span style="color:#15803d;font-size:0.9rem;">כל ליד שנסגר → גמבוט שולח המרה לפייסבוק ולגוגל. ללא מגע אנושי, ללא עוד כלים.</span>
+    </div>
+  </div>
+</div>
+
+<h2>🎯 לסיכום: למה זה הדבר הכי חשוב שתעשו ב-2026</h2>
+
+<p>בעידן שבו עלויות הפרסום עולות כל שנה, העסקים שישרדו הם אלו שמייעלים את הפרסום שלהם ברמה הכי גבוהה. <strong>Meta CAPI ו-Google Ads Conversion Tracking ברמת ה-CRM</strong> הם לא feature כיפי — הם כלי הכרחי לכל מי שמשלם על פרסום ממומן.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0;">
+  <div style="background:#f0fdf4;border-radius:12px;padding:16px;text-align:center;">
+    <div style="font-size:1.5rem;margin-bottom:6px;">📊</div>
+    <strong style="color:#166534;font-size:0.9rem;">מדידה אמיתית</strong>
+    <p style="margin:4px 0 0;font-size:0.8rem;color:#374151;">יודעים בדיוק אילו מודעות מייצרות לקוחות משלמים</p>
+  </div>
+  <div style="background:#eff6ff;border-radius:12px;padding:16px;text-align:center;">
+    <div style="font-size:1.5rem;margin-bottom:6px;">💰</div>
+    <strong style="color:#1d4ed8;font-size:0.9rem;">תקציב יעיל</strong>
+    <p style="margin:4px 0 0;font-size:0.8rem;color:#374151;">גוגל ופייסבוק מפנים תקציב לקהלים שממירים</p>
+  </div>
+  <div style="background:#fdf4ff;border-radius:12px;padding:16px;text-align:center;">
+    <div style="font-size:1.5rem;margin-bottom:6px;">🤖</div>
+    <strong style="color:#7c3aed;font-size:0.9rem;">100% אוטומטי</strong>
+    <p style="margin:4px 0 0;font-size:0.8rem;color:#374151;">ללא עבודה ידנית — גמבוט מדווח לפי CRM</p>
+  </div>
+</div>
+
+<div style="background:linear-gradient(135deg,#1d4ed8,#7c3aed);border-radius:18px;padding:36px;text-align:center;margin-top:40px;color:white;">
+  <h3 style="font-size:1.5rem;margin:0 0 14px;">רוצים לחבר את הפרסום ל-CRM שלכם?</h3>
+  <p style="margin:0 0 24px;opacity:0.9;">נגדיר יחד את Meta CAPI ו-Google Ads Conversion Tracking בגמבוט</p>
+  <a href="https://gambot.co.il/ContactUs/" style="background:white;color:#1d4ed8;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;">💬 דברו איתנו</a>
+</div>
+
+</div>`,
+    en: `<div style="font-family:'Inter',sans-serif;direction:ltr;line-height:1.9;color:#1e293b;max-width:860px;margin:0 auto;">
+
+<div style="background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:white;padding:36px 32px;border-radius:20px;margin-bottom:40px;text-align:center;">
+  <h1 style="margin:0 0 16px;font-size:2rem;font-weight:800;">📊 Meta CAPI + Google Ads Inside Your CRM</h1>
+  <p style="margin:0;font-size:1.15rem;opacity:0.95;">Every won deal automatically fires a conversion to Facebook and Google. Zero manual work.</p>
+</div>
+
+<h2>The Problem: You're Advertising But Not Measuring What Actually Works</h2>
+<p>Most businesses advertising on Facebook and Google measure <strong>who filled out a form</strong> — not who became a paying customer. The result? The algorithms get incomplete data and waste budget on leads that will never close.</p>
+
+<p>The solution is called <strong>CRM-level Conversion Tracking</strong> — sending only the people who actually closed a deal to Facebook and Google. Gambot does this automatically.</p>
+
+<div style="background:#fef3c7;border-radius:14px;padding:20px;margin:24px 0;border-left:4px solid #f59e0b;">
+  <strong style="color:#92400e;">💡 Real Example:</strong>
+  <p style="margin:8px 0 0;color:#78350f;">A business advertising on Facebook gets 100 leads per month. 20 become customers. If you report all 100 leads to Facebook, it optimizes for more leads. If you report the 20 <em>customers</em> — it optimizes for more customers. The difference in acquisition cost is massive.</p>
+</div>
+
+<h2>🔵 What is Meta CAPI and Why It's Critical in 2026</h2>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
+  <div style="background:#fef2f2;border-radius:14px;padding:20px;">
+    <h3 style="margin:0 0 10px;color:#dc2626;font-size:1rem;">⚠️ Without Meta CAPI</h3>
+    <ul style="margin:0;padding-left:20px;line-height:1.9;font-size:0.9rem;color:#374151;">
+      <li>Pixel depends on browser cookies</li>
+      <li>iOS 14+ blocks ~40% of data</li>
+      <li>Ad blockers kill even more data</li>
+      <li>Partial measurement → poor optimization</li>
+      <li>CPL increases over time</li>
+    </ul>
+  </div>
+  <div style="background:#f0fdf4;border-radius:14px;padding:20px;">
+    <h3 style="margin:0 0 10px;color:#166534;font-size:1rem;">✅ With Meta CAPI + Gambot CRM</h3>
+    <ul style="margin:0;padding-left:20px;line-height:1.9;font-size:0.9rem;color:#374151;">
+      <li>Server-to-server — cookies irrelevant</li>
+      <li>100% of conversions recorded server-side</li>
+      <li>Facebook gets real deal data</li>
+      <li>Algorithm finds audiences that convert</li>
+      <li>CPL drops, ROAS climbs</li>
+    </ul>
+  </div>
+</div>
+
+<h3>⚙️ How Meta CAPI Works Inside Gambot</h3>
+
+<div style="display:flex;flex-direction:column;gap:12px;margin:20px 0;">
+  <div style="display:flex;gap:16px;align-items:flex-start;padding:18px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;">
+    <div style="background:#1877f2;color:white;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">1</div>
+    <div><strong>Connect your Facebook Business Account</strong><br/><span style="color:#64748b;font-size:0.9rem;">Connect in Gambot Settings → Connections. The system automatically retrieves your Pixel ID and Access Token — no manual lookup needed.</span></div>
+  </div>
+  <div style="display:flex;gap:16px;align-items:flex-start;padding:18px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;">
+    <div style="background:#1877f2;color:white;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">2</div>
+    <div><strong>Leads arrive and are saved in CRM</strong><br/><span style="color:#64748b;font-size:0.9rem;">Every lead from CTWA or Facebook Lead Ads is saved with its ad source — campaign, Ad ID, platform.</span></div>
+  </div>
+  <div style="display:flex;gap:16px;align-items:flex-start;padding:18px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0;">
+    <div style="background:#1877f2;color:white;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">3</div>
+    <div><strong>Lead moves to WON stage</strong><br/><span style="color:#64748b;font-size:0.9rem;">The moment a lead is marked as "closed" in the CRM, Gambot automatically fires a <code>Purchase</code> event to Meta CAPI — including deal value and hashed identity data (phone, email).</span></div>
+  </div>
+  <div style="display:flex;gap:16px;align-items:flex-start;padding:18px;background:#f0fdf4;border-radius:12px;border:1px solid #86efac;">
+    <div style="background:#16a34a;color:white;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">✓</div>
+    <div><strong>Facebook receives real deal data</strong><br/><span style="color:#15803d;font-size:0.9rem;">The Facebook algorithm now knows: "people who closed came from Ad X, audience Y" — and optimizes the campaign toward them.</span></div>
+  </div>
+</div>
+
+<h2>🟢 Google Ads Offline Conversion Tracking — CRM That Reports to Google</h2>
+
+<p>Google Ads offers similar measurement — <strong>Offline Conversion Import</strong>. You send Google data about deals closed in the real world (meeting, call, WhatsApp) — and Google attributes them to the right keywords and ads.</p>
+
+<div style="background:#f0fdf4;border-radius:14px;padding:20px;margin:20px 0;border-left:4px solid #16a34a;">
+  <h3 style="margin:0 0 12px;color:#166534;font-size:1rem;">🔑 The Critical Component: GCLID</h3>
+  <p style="margin:0 0 8px;font-size:0.9rem;color:#374151;">When someone clicks a Google ad and arrives on your landing page, Google appends a <code>gclid</code> parameter to the URL. This unique identifier links that specific lead to the ad that brought them.</p>
+  <p style="margin:0;font-size:0.9rem;color:#374151;"><strong>Gambot captures the GCLID automatically</strong> and stores it on the lead. When the lead closes — it sends Google the GCLID + conversion details → Google knows exactly which keywords and ads produced paying customers.</p>
+</div>
+
+<h2>📈 Real Business Impact</h2>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0;">
+  <div style="background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:white;border-radius:16px;padding:20px;text-align:center;">
+    <div style="font-size:2.2rem;font-weight:800;margin-bottom:6px;">-30%</div>
+    <div style="opacity:0.9;font-size:0.9rem;">Average reduction in cost per acquisition</div>
+  </div>
+  <div style="background:linear-gradient(135deg,#16a34a,#22c55e);color:white;border-radius:16px;padding:20px;text-align:center;">
+    <div style="font-size:2.2rem;font-weight:800;margin-bottom:6px;">+25%</div>
+    <div style="opacity:0.9;font-size:0.9rem;">Improvement in ROAS</div>
+  </div>
+  <div style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:white;border-radius:16px;padding:20px;text-align:center;">
+    <div style="font-size:2.2rem;font-weight:800;margin-bottom:6px;">100%</div>
+    <div style="opacity:0.9;font-size:0.9rem;">Measurement even without cookies</div>
+  </div>
+</div>
+
+<h2>🛠️ Getting Started in 5 Minutes</h2>
+
+<div style="display:flex;flex-direction:column;gap:12px;margin:20px 0;">
+  <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:#eff6ff;border-radius:12px;">
+    <span style="background:#1d4ed8;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:0.9rem;">1</span>
+    <div><strong>Settings → Connections → Facebook</strong><br/><span style="color:#64748b;font-size:0.9rem;">Connect your Facebook account. Gambot retrieves your Pixel and Token automatically.</span></div>
+  </div>
+  <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:#f0fdf4;border-radius:12px;">
+    <span style="background:#16a34a;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:0.9rem;">2</span>
+    <div><strong>Settings → Connections → Google Ads</strong><br/><span style="color:#64748b;font-size:0.9rem;">Connect your Google Ads account. Gambot gets authorized automatically.</span></div>
+  </div>
+  <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:#fdf4ff;border-radius:12px;">
+    <span style="background:#7c3aed;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:0.9rem;">3</span>
+    <div><strong>Embed the attribution JS snippet on your landing page</strong><br/><span style="color:#64748b;font-size:0.9rem;">Copy the JavaScript snippet from Gambot (pre-filled with your Organization ID) and paste it into your landing page.</span></div>
+  </div>
+  <div style="display:flex;gap:14px;align-items:flex-start;padding:16px;background:#f0fdf4;border-radius:12px;border:2px solid #86efac;">
+    <span style="background:#16a34a;color:white;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:0.9rem;">✓</span>
+    <div><strong>That's it — fully automated from here</strong><br/><span style="color:#15803d;font-size:0.9rem;">Every won lead → Gambot fires a conversion to Facebook and Google. No manual work, no extra tools.</span></div>
+  </div>
+</div>
+
+<div style="background:linear-gradient(135deg,#1d4ed8,#7c3aed);border-radius:18px;padding:36px;text-align:center;margin-top:40px;color:white;">
+  <h3 style="font-size:1.5rem;margin:0 0 14px;">Ready to Connect Your Ads to Your CRM?</h3>
+  <p style="margin:0 0 24px;opacity:0.9;">We'll set up Meta CAPI and Google Ads Conversion Tracking in Gambot together</p>
+  <a href="https://gambot.co.il/ContactUs/" style="background:white;color:#1d4ed8;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1rem;display:inline-block;">💬 Contact Us</a>
+</div>
+
+</div>`
+  },
+  seoUrl: getSeoUrl("מערכת CRM עם Meta CAPI ו Google Ads מדידת המרות אמיתית")
 }
 
 ];
