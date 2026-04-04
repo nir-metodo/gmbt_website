@@ -1481,6 +1481,74 @@
   }
 }
 
+/* ─── Support Plus Card ─── */
+.support-plus-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 220px;
+}
+
+.support-plus-price-col {
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  border-left: 1px solid rgba(37, 211, 102, 0.3);
+}
+
+.support-plus-features-col {
+  padding: 32px 28px;
+}
+
+.support-plus-features-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Support Explanation 3-col ─── */
+.support-explain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Responsive — tablet & mobile */
+@media (max-width: 700px) {
+  .addon-section {
+    margin: 32px auto;
+    padding: 0 12px;
+  }
+
+  .support-plus-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .support-plus-price-col {
+    border-left: none;
+    border-bottom: 1px solid rgba(37, 211, 102, 0.3);
+    padding: 24px 20px;
+  }
+
+  .support-plus-features-col {
+    padding: 20px 16px;
+  }
+
+  .support-plus-features-list {
+    grid-template-columns: 1fr;
+  }
+
+  .support-explain-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .plan-card,

@@ -56,15 +56,15 @@ const PLANS = [
     price: 143,
     yearlyPrice: 115,
     description: 'למשתמשים טכנולוגיים בלבד — ללא סיוע אנושי',
+    supportBadge: { label: '❌ ללא תמיכה', color: '#e53e3e', bg: '#fff5f5' },
     features: [
       '1 בוט / תהליך אוטומציה',
       '500 שיחות חדשות בחודש',
       '120 תגובות AI',
       '25 הודעות Pro Active',
       '3 משתמשים',
-      '❌ ללא תמיכה בוואטסאפ / זום / הסמעה',
-      '❌ ללא עזרה בהגדרת בוטים',
-      '📚 מרכז ידע בלבד (סרטונים והדרכות)',
+      '📚 מרכז ידע בלבד (סרטונים + מדריכים)',
+      '❌ ללא מענה אנושי',
     ],
   },
   {
@@ -73,13 +73,15 @@ const PLANS = [
     yearlyPrice: 230,
     recommended: true,
     description: 'הפתרון המושלם לעסקים צומחים',
+    supportBadge: { label: '✅ תמיכה בסיסית', color: '#276749', bg: '#f0fff4' },
     features: [
       '2 בוטים / תהליכי אוטומציה',
       '1,000 שיחות חדשות בחודש',
       '300 תגובות AI',
       '50 הודעות Pro Active',
       '5 משתמשים',
-      'תמיכה בסיסית בוואטסאפ בלבד',
+      '✅ תמיכה בוואטסאפ — מענה עד 48 שעות',
+      '❌ ללא הדרכות / בניית אוטומציות',
     ],
   },
   {
@@ -87,13 +89,15 @@ const PLANS = [
     price: 865,
     yearlyPrice: 692,
     description: 'פתרון ארגוני גמיש ומותאם',
+    supportBadge: { label: '⭐ תמיכה מועדפת', color: '#744210', bg: '#fffbeb' },
     features: [
       '3 בוטים / תהליכי אוטומציה',
       '2,000 שיחות חדשות בחודש',
       '600 תגובות AI',
       '100 הודעות Pro Active',
       '10 משתמשים',
-      'תמיכה עודפת + מנהל חשבון ייעודי',
+      '⭐ תמיכה מועדפת — מענה עד 24 שעות',
+      '🗓️ שיחת ייעוץ חודשית',
     ],
   },
 ];
@@ -125,7 +129,9 @@ export default function PricingContent() {
     { q: 'מה כוללות שיחות חדשות?', a: 'שיחה חדשה היא שיחה עם איש קשר שלא הייתה בשבועיים האחרונים.' },
     { q: 'מה עלות הודעות Meta?', a: 'מחיר Meta לישראל: ≈₪0.044 להודעה שיווקית, ₪0.0067 לשירות/אימות. בנוסף לדמי המנוי.' },
     { q: 'האם ניתן לשדרג/לשנמך?', a: 'כן, ניתן לשנות תוכנית בכל עת. השינוי נכנס לתוקף בחידוש הבא.' },
-    { q: 'מה הגדרת תמיכה?', a: 'Growth — מרכז ידע בלבד (סרטונים והדרכות), ללא תמיכה אנושית. Pro — תמיכה בסיסית בוואטסאפ בלבד. Business — תמיכה עודפת + מנהל חשבון ייעודי.' },
+    { q: 'מה הגדרת תמיכה?', a: 'Growth — מרכז ידע בלבד, ללא מענה אנושי. Pro — תמיכה בסיסית בוואטסאפ, מענה עד 48 שעות. Business — מענה עד 24 שעות + שיחה חודשית. Support Plus (₪650 לכל חבילה) — מענה עד 4 שעות + נציג ייעודי.' },
+    { q: 'מה לא כלול בתמיכה?', a: 'בניית בוטים ואוטומציות, הקמת קמפיינים, הדרכות עובדים, ייעוץ עסקי וחיבור מערכות חיצוניות — כל אלה מתומחרים בנפרד החל מ-₪400/שעה + מע״מ.' },
+    { q: 'כמה עולים שירותי פיתוח והדרכה?', a: 'פיתוח והתאמות: ₪400/שעה + מע״מ. הדרכת עובדים: החל מ-₪600. בניית בוטים ואוטומציות: לפי היקף הפרויקט.' },
   ];
 
   return (
@@ -135,7 +141,7 @@ export default function PricingContent() {
         <div className={styles.container}>
           <div className={styles.badge}>💰 מחירי גמבוט 2026</div>
           <h1>תוכניות ומחירים שקופים</h1>
-          <p>החל מ-₪143/חודש | ניסיון חינם 14 יום | ללא כרטיס אשראי</p>
+          <p>החל מ-₪179/חודש | ניסיון חינם 30 יום | ללא כרטיס אשראי</p>
 
           {/* Billing Toggle */}
           <div className={styles.toggle}>
@@ -270,6 +276,11 @@ export default function PricingContent() {
                 {billing === 'yearly' && (
                   <p className={styles.yearNote}>₪{plan.yearlyPrice * 12}/שנה (חיסכון ₪{(plan.price - plan.yearlyPrice) * 12})</p>
                 )}
+                {plan.supportBadge && (
+                  <div className={styles.supportBadge} style={{ color: plan.supportBadge.color, background: plan.supportBadge.bg, borderColor: plan.supportBadge.color + '40' }}>
+                    {plan.supportBadge.label}
+                  </div>
+                )}
                 <ul className={styles.features}>
                   {plan.features.map((f, j) => (
                     <li key={j}><span className={styles.check}>✓</span>{f}</li>
@@ -285,6 +296,96 @@ export default function PricingContent() {
                 </a>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Support Plus Add-on */}
+      <section className={`${styles.section} ${styles.bgLight}`}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>🛡️ תמיכה מתקדמת — Support Plus</h2>
+          <p className={styles.sectionDesc}>תוספת לכל חבילה | ₪650/חודש</p>
+          <div className={styles.supportPlusCard}>
+            <div className={styles.supportPlusLeft}>
+              <div className={styles.supportPlusPrice}>
+                <span className={styles.currency}>₪</span>
+                <span className={styles.supportPlusAmount}>650</span>
+                <span className={styles.period}>/חודש</span>
+              </div>
+              <p className={styles.supportPlusSub}>תוספת לכל חבילה קיימת</p>
+              <a
+                href="https://wa.me/97233768997?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%95%D7%A1%D7%99%D7%A3%20Support%20Plus"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.supportPlusBtn}
+              >
+                💬 הוסיפו Support Plus
+              </a>
+            </div>
+            <div className={styles.supportPlusRight}>
+              <ul className={styles.supportPlusList}>
+                <li>⚡ מענה עד 4 שעות בימי עסקים</li>
+                <li>📱 וואטסאפ ישיר לנציג ייעודי</li>
+                <li>🎯 עדיפות בתור הטיפול</li>
+                <li>🗓️ שיחת ייעוץ חודשית (30 דק׳)</li>
+                <li>🔧 ליווי בהגדרות ושאלות שימוש</li>
+                <li>📊 מענה בשאלות שימוש מתקדמות</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Support Explanation */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>📋 מה כלול בתמיכה?</h2>
+          <p className={styles.sectionDesc}>הגדרנו בשקיפות מלאה מה התמיכה כוללת — ומה לא</p>
+          <div className={styles.supportGrid}>
+            {/* Included */}
+            <div className={styles.supportBox}>
+              <div className={styles.supportBoxHeader} style={{ background: '#f0fff4', borderColor: '#9ae6b4' }}>
+                <span style={{ fontSize: '1.5rem' }}>✅</span>
+                <h3>כלול בתמיכה</h3>
+              </div>
+              <ul className={styles.supportList}>
+                <li>מענה לשאלות על שימוש במערכת</li>
+                <li>עזרה בהגדרות קיימות</li>
+                <li>הסבר על פיצ׳רים</li>
+                <li>פתרון תקלות טכניות במערכת</li>
+                <li>הכוונה כללית לשימוש נכון</li>
+              </ul>
+            </div>
+            {/* Not included */}
+            <div className={styles.supportBox}>
+              <div className={styles.supportBoxHeader} style={{ background: '#fff5f5', borderColor: '#fc8181' }}>
+                <span style={{ fontSize: '1.5rem' }}>❌</span>
+                <h3>לא כלול בתמיכה</h3>
+              </div>
+              <ul className={styles.supportList}>
+                <li>בניית בוטים ואוטומציות חדשות</li>
+                <li>שינויים ועיצוב תהליכים עסקיים</li>
+                <li>הקמת קמפיינים</li>
+                <li>חיבור מערכות חיצוניות</li>
+                <li>הדרכת עובדים / onboarding</li>
+                <li>ייעוץ שיווקי או עסקי</li>
+              </ul>
+            </div>
+            {/* Extra services */}
+            <div className={styles.supportBox}>
+              <div className={styles.supportBoxHeader} style={{ background: '#fffbeb', borderColor: '#f6e05e' }}>
+                <span style={{ fontSize: '1.5rem' }}>🔧</span>
+                <h3>שירותים נוספים</h3>
+              </div>
+              <ul className={styles.supportList}>
+                <li>פיתוח והתאמות — <strong>₪400/שעה + מע״מ</strong></li>
+                <li>הדרכת עובדים — החל מ-₪600</li>
+                <li>onboarding מקיף — הצעת מחיר</li>
+                <li>שיחת ייעוץ חד-פעמית — ₪400 + מע״מ</li>
+                <li>בניית בוטים / אוטומציות — לפי היקף</li>
+              </ul>
+              <p className={styles.supportNote}>* המנוי הוא על המערכת. שירותים נוספים מתומחרים תמיד בנפרד — ללא קשר לחבילה.</p>
+            </div>
           </div>
         </div>
       </section>

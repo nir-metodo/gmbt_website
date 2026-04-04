@@ -549,9 +549,165 @@
 
 .quizCta:hover { transform: translateY(-2px); filter: brightness(1.05); }
 
+/* Support Badge on plan card */
+.supportBadge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 1px solid;
+  margin-bottom: 16px;
+}
+
+/* Support Plus Card */
+.supportPlusCard {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 0;
+  background: white;
+  border: 2px solid #f6d365;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(246, 211, 101, 0.2);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.supportPlusLeft {
+  background: linear-gradient(135deg, #1a1a2e, #2d3748);
+  color: white;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.supportPlusAmount {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #f6d365;
+  line-height: 1;
+}
+
+.supportPlusSub {
+  font-size: 0.82rem;
+  opacity: 0.7;
+  margin: 0;
+}
+
+.supportPlusBtn {
+  display: inline-block;
+  background: linear-gradient(135deg, #f6d365, #f59e0b);
+  color: #1a1a2e;
+  padding: 11px 22px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+  margin-top: 4px;
+}
+
+.supportPlusBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
+}
+
+.supportPlusRight {
+  padding: 32px 36px;
+}
+
+.supportPlusList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+}
+
+.supportPlusList li {
+  font-size: 0.97rem;
+  color: #2d3748;
+  font-weight: 500;
+}
+
+/* Support Explanation Grid */
+.supportGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.supportBox {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.supportBoxHeader {
+  padding: 16px 20px;
+  border-bottom: 1px solid;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.supportBoxHeader h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.supportList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  margin: 0;
+}
+
+.supportList li {
+  font-size: 0.88rem;
+  color: #4a5568;
+  padding-right: 14px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.supportList li::before {
+  content: '•';
+  position: absolute;
+  right: 0;
+  color: #a0aec0;
+}
+
+.supportNote {
+  font-size: 0.78rem;
+  color: #718096;
+  padding: 0 20px 16px;
+  margin: 0;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .supportGrid { grid-template-columns: 1fr; }
+  .supportPlusCard { grid-template-columns: 1fr; }
+  .supportPlusLeft { padding: 28px 24px; }
+}
+
 @media (max-width: 768px) {
   .plansGrid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 1.8rem; }
   .quizCard { padding: 32px 20px; }
   .quizQuestion { font-size: 1.1rem; }
+  .supportPlusRight { padding: 24px 20px; }
 }

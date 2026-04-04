@@ -64,14 +64,14 @@ const AddPaymentInner = () => {
       // ILS base prices (monthly vs yearly per month)
       return {
         monthly: {
-          Basic: 143,
-          Premium: 287,
-          Enterprise: 865
+          Basic: 179,
+          Premium: 359,
+          Enterprise: 645
         },
         yearly: {
-          Basic: 143 * 0.8,      // 114.4 (20% yearly discount - exact value)
-          Premium: 287 * 0.8,    // 229.6
-          Enterprise: 865 * 0.8  // 692
+          Basic: 179 * 0.8,      // 143.2 (20% yearly discount)
+          Premium: 359 * 0.8,    // 287.2
+          Enterprise: 645 * 0.8  // 516
         },
         sim: 35
       };
@@ -79,14 +79,14 @@ const AddPaymentInner = () => {
       // USD base prices (ILS / 3.5)
       return {
         monthly: {
-          Basic: Math.round(143 / 3.5),      // 41
-          Premium: Math.round(287 / 3.5),    // 82
-          Enterprise: Math.round(865 / 3.5)  // 247
+          Basic: Math.round(179 / 3.5),      // 51
+          Premium: Math.round(359 / 3.5),    // 103
+          Enterprise: Math.round(645 / 3.5)  // 184
         },
         yearly: {
-          Basic: (143 * 0.8) / 3.5,              // 32.686... (exact calculation)
-          Premium: (287 * 0.8) / 3.5,            // 65.6
-          Enterprise: (865 * 0.8) / 3.5          // 197.714...
+          Basic: (179 * 0.8) / 3.5,              // 40.9
+          Premium: (359 * 0.8) / 3.5,            // 82.1
+          Enterprise: (645 * 0.8) / 3.5          // 147.4
         },
         sim: 10
       };

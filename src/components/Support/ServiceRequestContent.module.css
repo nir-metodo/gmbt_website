@@ -1,0 +1,208 @@
+.page {
+  padding-top: 68px;
+  min-height: 100vh;
+  background: #f7f8fa;
+  font-family: 'Varela Round', sans-serif;
+  direction: rtl;
+}
+
+/* ─── Hero ─── */
+.hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2e6155 100%);
+  color: white;
+  padding: 60px 24px 50px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1rem;
+  opacity: 0.8;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ─── Main section ─── */
+.section {
+  padding: 48px 24px 80px;
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ─── Notice banner ─── */
+.notice {
+  background: #fff8e1;
+  border: 1px solid #f59e0b;
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  color: #7c5c00;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* ─── Card ─── */
+.card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 36px 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 24px;
+}
+
+/* ─── Form ─── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.field label span {
+  color: #e53e3e;
+  margin-right: 2px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 10px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #1a1a2e;
+  background: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  direction: rtl;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: #2e6155;
+  box-shadow: 0 0 0 3px rgba(46, 97, 85, 0.1);
+  background: white;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* ─── Submit button ─── */
+.submitBtn {
+  background: linear-gradient(135deg, #2e6155 0%, #34d399 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 13px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  width: 100%;
+  font-family: inherit;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(46, 97, 85, 0.3);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ─── States ─── */
+.success {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.successIcon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.success h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2e6155;
+  margin-bottom: 10px;
+}
+
+.success p {
+  color: #718096;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.errorMsg {
+  background: #fff5f5;
+  border: 1px solid #fc8181;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #c53030;
+  font-size: 0.88rem;
+}
+
+/* ─── Disclaimer ─── */
+.disclaimer {
+  margin-top: 20px;
+  font-size: 0.82rem;
+  color: #a0aec0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .card {
+    padding: 24px 18px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+}

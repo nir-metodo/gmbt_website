@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./PlanSelection.css";
 import TutorialVideoButton from './TutorialVideoButton';
 import { FaCheck, FaCrown, FaStar, FaRocket, FaLightbulb, FaCheckCircle, FaArrowRight, FaArrowLeft, FaChevronDown, FaChevronUp } from "react-icons/fa";
@@ -43,8 +43,8 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
     monthly: [
       {
         name: t('planSelection.plans.basic.name'),
-        price: 143,
-        yearlyPrice: 115 * 12, 
+        price: 179,
+        yearlyPrice: 143 * 12, 
         description: t('planSelection.plans.basic.description'),
         icon: FaLightbulb,
         color: "#3b82f6",
@@ -57,8 +57,8 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
       },
       {
         name: t('planSelection.plans.premium.name'),
-        price: 287,
-        yearlyPrice: 230 * 12, 
+        price: 359,
+        yearlyPrice: 287 * 12, 
         recommended: true,
         description: t('planSelection.plans.premium.description'),
         icon: FaStar,
@@ -72,8 +72,8 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
       },
       {
         name: t('planSelection.plans.enterprise.name'),
-        price: 865,
-        yearlyPrice: 692 * 12, 
+        price: 645,
+        yearlyPrice: 516 * 12, 
         description: t('planSelection.plans.enterprise.description'),
         icon: FaRocket,
         color: "#8b5cf6",

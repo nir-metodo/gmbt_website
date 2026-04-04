@@ -44,45 +44,65 @@ const plans = {
   monthly: [
      {
       name: "Growth",
-      price: 143,
-      yearlyPrice: 115 * 12, 
-      description: "חבילת הבסיס לעסק שלכם",
+      price: 179,
+      yearlyPrice: 143 * 12,
+      description: "למשתמשים טכנולוגיים בלבד — ללא סיוע אנושי",
+      supportInfo: {
+        color: '#718096', bg: '#f7fafc', border: '#e2e8f0',
+        lines: ['❌ ללא תמיכה אישית', '📚 מרכז ידע / מדריכים בלבד'],
+      },
       features: [
         "1 בוט / תהליך אוטומציה",
-        "500 שיחות חדשות בחודש",
-        "120 תגובות / פעולות AI (כל 500 נוספות 50 ש\"ח)",
-        "⚡ 25 הודעות Pro Active כלולות (כל 25 נוספות 15 ש\"ח)",
-        "3 משתמשים (כל משתמש נוסף 30 ש\"ח)",
-        "תמיכה בסיסית"
+        "300 שיחות חדשות בחודש",
+        "1,500 ריצות אוטומציה בחודש",
+        "עד 3,000 אנשי קשר",
+        "50 תגובות / פעולות AI (כל 500 נוספות 50 ש\"ח)",
+        "⚡ 25 הודעות Pro Active (כל 25 נוספות 15 ש\"ח)",
+        "2 משתמשים (כל משתמש נוסף 30 ש\"ח)",
+        "❌ ללא תמיכה אנושית",
+        "📚 מרכז ידע בלבד (סרטונים והדרכות)"
       ]
     },
       {
       name: "Pro",
-      price: 287,
-      yearlyPrice: 230 * 12, 
+      price: 359,
+      yearlyPrice: 287 * 12,
       recommended: true,
-      description: "חבילת הפרימיום לעסק שלכם",
+      description: "הפתרון המושלם לעסקים צומחים",
+      supportInfo: {
+        color: '#128C7E', bg: '#f0fdf9', border: '#25D366',
+        lines: ['✅ תמיכה בסיסית', '⏱️ מענה עד 48–72 שעות'],
+      },
       features: [
-        "2 בוטים / תהליכי אוטומציה",
-        "1000 שיחות חדשות בחודש",
+        "3 בוטים / תהליכי אוטומציה",
+        "1,000 שיחות חדשות בחודש",
+        "5,000 ריצות אוטומציה בחודש",
+        "עד 10,000 אנשי קשר",
         "300 תגובות / פעולות AI (כל 500 נוספות 50 ש\"ח)",
-        "⚡ 50 הודעות Pro Active כלולות (כל 25 נוספות 15 ש\"ח)",
+        "⚡ 75 הודעות Pro Active כלולות (כל 25 נוספות 15 ש\"ח)",
         "5 משתמשים (כל משתמש נוסף 30 ש\"ח)",
-        "תמיכה משופרת"
+        "✅ תמיכה בסיסית בוואטסאפ — מענה עד 48 שעות"
       ]
     },
        {
       name: "Business",
-      price: 587,
-      yearlyPrice: 470 * 12, 
-      description: "חבילה מותאמת לארגון גדול",
+      price: 645,
+      yearlyPrice: 516 * 12,
+      description: "פתרון ארגוני גמיש ומותאם",
+      supportInfo: {
+        color: '#128C7E', bg: '#f0fdf9', border: '#25D366',
+        lines: ['⭐ תמיכה מועדפת', '⚡ מענה מהיר', '🎯 עדיפות בתור'],
+      },
       features: [
-        "3 בוטים / תהליכי אוטומציה",
-        "2000 שיחות חדשות בחודש",
-        "1250 תגובות / פעולות AI (כל 500 נוספות 50 ש\"ח)",
-        "⚡ 150 הודעות Pro Active כלולות (כל 25 נוספות 15 ש\"ח)",
-        "8 משתמשים (כל משתמש נוסף 30 ש\"ח)",
-        "תמיכה עדיפה"
+        "6 בוטים / תהליכי אוטומציה",
+        "3,000 שיחות חדשות בחודש",
+        "15,000 ריצות אוטומציה בחודש",
+        "עד 35,000 אנשי קשר",
+        "1,000 תגובות / פעולות AI (כל 500 נוספות 50 ש\"ח)",
+        "⚡ 200 הודעות Pro Active כלולות (כל 25 נוספות 15 ש\"ח)",
+        "12 משתמשים (כל משתמש נוסף 30 ש\"ח)",
+        "⭐ תמיכה מועדפת — מענה עד 24 שעות",
+        "🗓️ שיחת ייעוץ חודשית"
       ]
     },
   ]
@@ -165,8 +185,8 @@ const [showModal, setShowModal] = useState(false);
     leads:        { label: 'ניהול לידים', avg: 4, desc: 'הסמכת לידים, שאלות ממוקדות לפני העברה לנציג' },
     appointments: { label: 'תיאום פגישות', avg: 3, desc: 'שיחות קצרות וממוקדות — AI מנחה לבחירת זמן' },
   };
-  const calcPlanIncluded = { growth: 120, pro: 300, business: 1250 };
-  const calcPlanPrice    = { growth: 143, pro: 287, business: 587 };
+  const calcPlanIncluded = { growth: 50, pro: 300, business: 1000 };
+  const calcPlanPrice    = { growth: 179, pro: 359, business: 645 };
   const calcPlanLabel    = { growth: 'Growth', pro: 'Pro', business: 'Business' };
   const totalAiMonthly   = calcConversations * calcAvgResponses;
   const includedAi       = calcPlanIncluded[calcPlan] || 0;
@@ -325,6 +345,24 @@ const [showModal, setShowModal] = useState(false);
               {t('pricing.ui.selectPlan')}
             </button>
 
+            {/* Support row */}
+            {plan.supportInfo && (
+              <div style={{
+                margin: '16px 0 4px',
+                padding: '12px 14px',
+                background: plan.supportInfo.bg,
+                border: `1px solid ${plan.supportInfo.border}`,
+                borderRadius: '10px',
+              }}>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: plan.supportInfo.color, marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  🛡️ תמיכה
+                </div>
+                {plan.supportInfo.lines.map((line, i) => (
+                  <div key={i} style={{ fontSize: '0.85rem', color: '#2d3748', fontWeight: 500, lineHeight: 1.6 }}>{line}</div>
+                ))}
+              </div>
+            )}
+
             <div className="plan-features">
               <h4>{t('pricing.ui.includes')}</h4>
               <ul>
@@ -361,6 +399,47 @@ const [showModal, setShowModal] = useState(false);
             </div>
           </div>
         ))}
+      </div>
+
+      {/* ─── Enterprise Row ─── */}
+      <div style={{ maxWidth: '960px', margin: '0 auto 12px', padding: '0 24px' }}>
+        <a
+          href="https://wa.me/97233768997?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%97%D7%91%D7%99%D7%9C%D7%AA%20Enterprise"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            background: 'linear-gradient(135deg, #1a1a2e 0%, #2d3748 100%)',
+            borderRadius: '12px',
+            padding: '14px 24px',
+            textDecoration: 'none',
+            gap: '12px',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontSize: '1.2rem' }}>🏢</span>
+            <div>
+              <span style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem' }}>Enterprise</span>
+              <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', marginRight: '10px' }}>
+                — מעל 35,000 אנשי קשר? מעל 12 משתמשים? נבנה חבילה מותאמת אישית
+              </span>
+            </div>
+          </div>
+          <span style={{
+            background: 'linear-gradient(135deg, #25D366, #128C7E)',
+            color: 'white',
+            padding: '7px 18px',
+            borderRadius: '50px',
+            fontSize: '0.85rem',
+            fontWeight: 700,
+            whiteSpace: 'nowrap',
+            flexShrink: 0,
+          }}>
+            💬 צרו איתנו קשר
+          </span>
+        </a>
       </div>
 
       {/* Enhanced Features Section */}
@@ -611,13 +690,85 @@ const [showModal, setShowModal] = useState(false);
             borderRadius: '8px', textAlign: 'center', fontSize: '12px', color: '#6d28d9' 
           }}>
             {currentLanguage === 'en' 
-              ? '👑 Included in all plans • Growth = 25, Pro = 50, Business = 150 messages'
-              : '👑 כלול בכל התוכניות • Growth = 25, Pro = 50, Business = 150 הודעות'}
+              ? '👑 Included in all plans • Growth = 25, Pro = 75, Business = 200 messages'
+              : '👑 כלול בכל התוכניות • Growth = 25, Pro = 75, Business = 200 הודעות'}
           </div>
         </div>
       </div>
 
+      {/* ─── Support Plus Add-on ─── */}
+      <div className="addon-section">
+        <div className="addon-container" style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #2d3748 100%)', borderColor: '#25D366', padding: 0, overflow: 'hidden' }}>
+          <div className="support-plus-grid">
+            {/* Left — price */}
+            <div className="support-plus-price-col">
+              <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>Support Plus</div>
+              <div style={{ display: 'flex', alignItems: 'flex-end', gap: '4px' }}>
+                <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#25D366', marginBottom: '6px' }}>₪</span>
+                <span style={{ fontSize: '3rem', fontWeight: 900, color: '#25D366', lineHeight: 1 }}>650</span>
+                <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginBottom: '6px' }}>/חודש</span>
+              </div>
+              <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.5)' }}>תוספת לכל חבילה קיימת</div>
+              <a
+                href="https://wa.me/97233768997?text=%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%94%D7%95%D7%A1%D7%99%D7%A3%20Support%20Plus"
+                target="_blank" rel="noopener noreferrer"
+                style={{ marginTop: '8px', background: 'linear-gradient(135deg, #25D366, #128C7E)', color: '#fff', padding: '9px 18px', borderRadius: '50px', fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}
+              >
+                💬 הוסיפו עכשיו
+              </a>
+            </div>
+            {/* Right — features */}
+            <div className="support-plus-features-col">
+              <div style={{ fontSize: '1rem', fontWeight: 700, color: 'white', marginBottom: '16px' }}>🛡️ מה כלול ב-Support Plus</div>
+              <ul className="support-plus-features-list">
+                {['⚡ מענה עד 4 שעות בימי עסקים', '📱 וואטסאפ ישיר לנציג ייעודי', '🎯 עדיפות בתור הטיפול', '🗓️ שיחת ייעוץ חודשית (30 דק׳)', '🔧 ליווי בהגדרות ושאלות שימוש'].map((f, i) => (
+                  <li key={i} style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)', fontWeight: 500 }}>{f}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      {/* ─── Support Explanation ─── */}
+      <div style={{ padding: '48px 16px', background: '#f8fafc', boxSizing: 'border-box' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          <h2 style={{ textAlign: 'center', fontSize: '1.6rem', fontWeight: 700, color: '#1a1a2e', marginBottom: '8px' }}>📋 מה כלול בתמיכה?</h2>
+          <p style={{ textAlign: 'center', color: '#718096', marginBottom: '32px', fontSize: '0.95rem' }}>הגדרנו בשקיפות מלאה מה התמיכה כוללת — ומה לא</p>
+          <div className="support-explain-grid">
+            {[
+              {
+                icon: '✅', title: 'כלול בתמיכה', bg: '#f0fdf9', border: '#25D366', color: '#128C7E',
+                items: ['מענה לשאלות על שימוש במערכת', 'עזרה בהגדרות קיימות', 'הסבר על פיצ׳רים', 'פתרון תקלות טכניות', 'הכוונה כללית לשימוש נכון']
+              },
+              {
+                icon: '❌', title: 'לא כלול בתמיכה', bg: '#fafafa', border: '#e2e8f0', color: '#4a5568',
+                items: ['בניית בוטים ואוטומציות חדשות', 'עיצוב תהליכים עסקיים', 'הקמת קמפיינים', 'חיבור מערכות חיצוניות', 'הדרכת עובדים / onboarding', 'ייעוץ שיווקי או עסקי']
+              },
+              {
+                icon: '🔧', title: 'שירותים נוספים', bg: '#f8fafc', border: '#cbd5e0', color: '#2d3748',
+                items: ['פיתוח והתאמות — ₪400/שעה + מע״מ', 'הדרכת עובדים — החל מ-₪600', 'שיחת ייעוץ חד-פעמית — ₪400 + מע״מ', 'בניית בוטים / אוטומציות — לפי היקף'],
+                note: '* המנוי הוא על המערכת. שירותים נוספים תמיד בתשלום נפרד.'
+              }
+            ].map((box, i) => (
+              <div key={i} style={{ background: 'white', borderRadius: '14px', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+                <div style={{ padding: '14px 18px', background: box.bg, borderBottom: `1px solid ${box.border}`, display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ fontSize: '1.3rem' }}>{box.icon}</span>
+                  <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 700, color: '#1a1a2e' }}>{box.title}</h3>
+                </div>
+                <ul style={{ listStyle: 'none', padding: '16px 18px', margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {box.items.map((item, j) => (
+                    <li key={j} style={{ fontSize: '0.85rem', color: '#4a5568', paddingRight: '12px', position: 'relative', lineHeight: 1.5 }}>
+                      <span style={{ position: 'absolute', right: 0, color: '#a0aec0' }}>•</span>{item}
+                    </li>
+                  ))}
+                </ul>
+                {box.note && <p style={{ padding: '0 18px 14px', margin: 0, fontSize: '0.75rem', color: '#718096', fontStyle: 'italic' }}>{box.note}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* ✨ DIY vs Professional Services Section - Enhanced */}
       <div className="service-options-section">

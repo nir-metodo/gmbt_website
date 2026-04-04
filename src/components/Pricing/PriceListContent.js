@@ -25,41 +25,43 @@ const proActiveOptions = [
 const plans = [
   {
     name: "Growth",
-    price: 143,
-    yearlyPrice: 115 * 12,
+    price: 179,
+    yearlyPrice: 143 * 12,
     description: "למשתמשים טכנולוגיים בלבד — ללא סיוע אנושי",
     features: [
       "1 בוט / תהליך אוטומציה",
-      "200 שיחות בחודש",
-      "500 ריצות אוטומציה בחודש",
-      "עד 1,000 אנשי קשר",
+      "300 שיחות בחודש",
+      "1,500 ריצות אוטומציה בחודש",
+      "עד 3,000 אנשי קשר",
       "50 פעולות AI בחודש (כל 500 נוספות 50 ₪)",
-      "1 משתמש (משתמש נוסף 30 ₪)",
-      "❌ ללא תמיכה בוואטסאפ / זום / הסמעה",
-      "❌ ללא עזרה בהגדרת בוטים",
+      "25 הודעות Pro Active",
+      "2 משתמשים (משתמש נוסף 30 ₪)",
+      "❌ ללא תמיכה אנושית",
       "📚 מרכז ידע בלבד (סרטונים והדרכות)",
     ],
     moreFeatures: [
       "ניהול לידים בסיסי",
       "ניהול פניות בסיסי",
-      "100 נמענים בקמפיינים לחודש",
+      "300 נמענים בקמפיינים לחודש",
+      "יצוא CSV",
+      "דוחות בסיסיים",
     ]
   },
   {
     name: "Pro",
-    price: 287,
-    yearlyPrice: 230 * 12,
+    price: 359,
+    yearlyPrice: 287 * 12,
     recommended: true,
-    description: "חבילת הפרימיום לעסק שלכם",
+    description: "הפתרון המושלם לעסקים צומחים",
     features: [
-      "2 בוטים / תהליכי אוטומציה",
+      "3 בוטים / תהליכי אוטומציה",
       "1,000 שיחות חדשות בחודש",
-      "3,000 ריצות אוטומציה בחודש",
-      "עד 12,000 אנשי קשר",
+      "5,000 ריצות אוטומציה בחודש",
+      "עד 10,000 אנשי קשר",
       "300 תגובות / פעולות AI (כל 500 נוספות 50 ₪)",
-      "⚡ 50 הודעות Pro Active כלולות (כל 25 נוספות 15 ₪)",
+      "⚡ 75 הודעות Pro Active כלולות (כל 25 נוספות 15 ₪)",
       "5 משתמשים (כל משתמש נוסף 30 ₪)",
-      "תמיכה בסיסית בוואטסאפ בלבד",
+      "✅ תמיכה בסיסית בוואטסאפ — מענה עד 48 שעות",
     ],
     moreFeatures: [
       "ניהול לידים ו-CRM מלא",
@@ -67,29 +69,32 @@ const plans = [
       "ניהול פניות",
       "דוחות וניתוח נתונים",
       "אינטגרציות Google Sheets",
+      "יצוא Excel / PDF",
     ]
   },
   {
     name: "Business",
-    price: 587,
-    yearlyPrice: 470 * 12,
-    description: "חבילה מותאמת לארגון גדול",
+    price: 645,
+    yearlyPrice: 516 * 12,
+    description: "פתרון ארגוני גמיש ומותאם",
     features: [
-      "4 בוטים / תהליכי אוטומציה",
+      "6 בוטים / תהליכי אוטומציה",
       "3,000 שיחות חדשות בחודש",
-      "10,000 ריצות אוטומציה בחודש",
-      "עד 50,000 אנשי קשר",
-      "1,500 פעולות AI",
-      "200 הודעות Pro Active",
-      "10 משתמשים",
-      "תמיכה עודפת",
+      "15,000 ריצות אוטומציה בחודש",
+      "עד 35,000 אנשי קשר",
+      "1,000 פעולות AI",
+      "⚡ 200 הודעות Pro Active",
+      "12 משתמשים",
+      "⭐ תמיכה מועדפת — מענה עד 24 שעות",
+      "🗓️ שיחת ייעוץ חודשית",
     ],
     moreFeatures: [
       "ניהול לידים ו-CRM מלא",
       "ניהול משימות מתקדם",
       "ניהול פניות",
-      "דוחות מלאים",
+      "דוחות מלאים + יומי אוטומטי",
       "API מותאם אישית",
+      "יצוא Excel / PDF",
       "מנהל חשבון ייעודי",
     ]
   },
@@ -130,8 +135,8 @@ export default function PriceListContent() {
     custom:       { label: 'מותאם אישית',      avg: calcAvgResponses, desc: '' },
   };
 
-  const planIncluded = { growth: 50, pro: 300, business: 1500 };
-  const planPrice    = { growth: 143, pro: 287, business: 430 };
+  const planIncluded = { growth: 50, pro: 300, business: 1000 };
+  const planPrice    = { growth: 179, pro: 359, business: 645 };
   const planLabel    = { growth: 'Growth', pro: 'Pro', business: 'Business' };
 
   const totalAiMonthly  = calcConversations * calcAvgResponses;
@@ -486,7 +491,7 @@ export default function PriceListContent() {
             <span className="addon-period">לחודש</span>
           </div>
           <div style={{ marginTop: '12px', padding: '10px 14px', background: 'rgba(139,92,246,0.1)', borderRadius: '8px', textAlign: 'center', fontSize: '12px', color: '#6d28d9' }}>
-            👑 כלול בכל התוכניות • Growth = 25, Pro = 50, Business = 150 הודעות
+            👑 כלול בכל התוכניות • Growth = 25, Pro = 75, Business = 200 הודעות
           </div>
         </div>
       </div>

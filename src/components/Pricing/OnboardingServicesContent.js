@@ -123,6 +123,47 @@ export default function OnboardingServicesContent() {
         </div>
       </div>
 
+      {/* Enterprise Row */}
+      <div style={{ maxWidth: '900px', margin: '0 auto 40px', padding: '0 24px' }}>
+        <a
+          href="https://wa.me/97233768997?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%94%D7%98%D7%9E%D7%A2%D7%94%20Enterprise"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            background: 'linear-gradient(135deg, #1a1a2e 0%, #2d3748 100%)',
+            borderRadius: '12px',
+            padding: '16px 28px',
+            textDecoration: 'none',
+            gap: '12px',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ fontSize: '1.3rem' }}>🏢</span>
+            <div>
+              <span style={{ color: 'white', fontWeight: 700, fontSize: '1rem' }}>Enterprise</span>
+              <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.88rem', marginRight: '10px' }}>
+                — צרכים מורכבים? אינטגרציות? מספר סניפים? נבנה תהליך הטמעה מותאם אישית
+              </span>
+            </div>
+          </div>
+          <span style={{
+            background: 'linear-gradient(135deg, #25D366, #128C7E)',
+            color: 'white',
+            padding: '8px 20px',
+            borderRadius: '50px',
+            fontSize: '0.88rem',
+            fontWeight: 700,
+            whiteSpace: 'nowrap',
+            flexShrink: 0,
+          }}>
+            💬 צרו איתנו קשר
+          </span>
+        </a>
+      </div>
+
       {/* Retro Recovery */}
       <div className="retro-recovery-section">
         <div className="retro-header">

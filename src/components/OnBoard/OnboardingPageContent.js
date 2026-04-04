@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from './OnboardingPageContent.module.css';
@@ -7,8 +7,8 @@ const PLANS = [
   {
     id: 'growth',
     name: 'Growth',
-    price: 143,
-    yearlyPrice: 115,
+    price: 179,
+    yearlyPrice: 143,
     icon: '💡',
     description: 'לעסק שמתחיל',
     features: [
@@ -22,8 +22,8 @@ const PLANS = [
   {
     id: 'pro',
     name: 'Pro',
-    price: 287,
-    yearlyPrice: 230,
+    price: 359,
+    yearlyPrice: 287,
     icon: '⭐',
     recommended: true,
     description: 'לעסק שצומח',
@@ -38,8 +38,8 @@ const PLANS = [
   {
     id: 'business',
     name: 'Business',
-    price: 865,
-    yearlyPrice: 692,
+    price: 645,
+    yearlyPrice: 516,
     icon: '🚀',
     description: 'לארגון גדול',
     features: [

@@ -39,9 +39,9 @@ export function LanguageProvider({ children, defaultLanguage = 'he' }) {
   const getExchangeRate = () => 3.5;
   const getPlanPrices = () => {
     if (currentLanguage === 'he') {
-      return { Basic: 143, Premium: 287, Enterprise: 865, sim: 35 };
+      return { Basic: 179, Premium: 359, Enterprise: 645, sim: 35 };
     }
-    return { Basic: 41, Premium: 82, Enterprise: 247, sim: 10 };
+    return { Basic: 51, Premium: 103, Enterprise: 184, sim: 10 };
   };
 
   const value = {
@@ -82,7 +82,7 @@ export function useLanguage() {
       getCurrency: () => 'ILS',
       getCurrencySymbol: () => '₪',
       getExchangeRate: () => 3.5,
-      getPlanPrices: () => ({ Basic: 143, Premium: 287, Enterprise: 865, sim: 35 }),
+      getPlanPrices: () => ({ Basic: 179, Premium: 359, Enterprise: 645, sim: 35 }),
     };
   }
   return ctx;

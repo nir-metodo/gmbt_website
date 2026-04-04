@@ -99,7 +99,7 @@ const SCHEMA = {
       applicationCategory: 'BusinessApplication',
       description: 'מערכת CRM לניהול לידים, הצעות מחיר, משימות ופניות דרך WhatsApp',
       url: 'https://gambot.co.il/וואטסאפ-crm/',
-      offers: { '@type': 'Offer', price: '143', priceCurrency: 'ILS' },
+      offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
     },
     {
       '@type': 'FAQPage',
