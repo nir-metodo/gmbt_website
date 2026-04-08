@@ -2078,3 +2078,7 @@
   .ai-calc-plan-row { flex-direction: column; }
   .ai-calc-modal { padding: 24px 16px 20px; }
 }
+
+@media (max-width: 600px) {
+  .enterprise-desc { display: none !important; }
+}

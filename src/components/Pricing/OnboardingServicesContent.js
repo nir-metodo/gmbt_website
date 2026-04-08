@@ -133,6 +133,7 @@ export default function OnboardingServicesContent() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            flexWrap: 'wrap',
             background: 'linear-gradient(135deg, #1a1a2e 0%, #2d3748 100%)',
             borderRadius: '12px',
             padding: '16px 28px',
@@ -140,12 +141,12 @@ export default function OnboardingServicesContent() {
             gap: '12px',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <span style={{ fontSize: '1.3rem' }}>🏢</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: '1', minWidth: '0' }}>
+            <span style={{ fontSize: '1.3rem', flexShrink: 0 }}>🏢</span>
             <div>
-              <span style={{ color: 'white', fontWeight: 700, fontSize: '1rem' }}>Enterprise</span>
-              <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.88rem', marginRight: '10px' }}>
-                — צרכים מורכבים? אינטגרציות? מספר סניפים? נבנה תהליך הטמעה מותאם אישית
+              <span style={{ color: 'white', fontWeight: 700, fontSize: '1rem', display: 'block' }}>Enterprise</span>
+              <span className="enterprise-desc" style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.88rem', display: 'block', marginTop: '2px' }}>
+                צרכים מורכבים? אינטגרציות? מספר סניפים? נבנה תהליך הטמעה מותאם אישית
               </span>
             </div>
           </div>

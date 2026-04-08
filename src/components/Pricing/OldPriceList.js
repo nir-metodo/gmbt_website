@@ -411,6 +411,7 @@ const [showModal, setShowModal] = useState(false);
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            flexWrap: 'wrap',
             background: 'linear-gradient(135deg, #1a1a2e 0%, #2d3748 100%)',
             borderRadius: '12px',
             padding: '14px 24px',
@@ -418,12 +419,12 @@ const [showModal, setShowModal] = useState(false);
             gap: '12px',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span style={{ fontSize: '1.2rem' }}>🏢</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: '1', minWidth: '0' }}>
+            <span style={{ fontSize: '1.2rem', flexShrink: 0 }}>🏢</span>
             <div>
-              <span style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem' }}>Enterprise</span>
-              <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', marginRight: '10px' }}>
-                — מעל 35,000 אנשי קשר? מעל 12 משתמשים? נבנה חבילה מותאמת אישית
+              <span style={{ color: 'white', fontWeight: 700, fontSize: '0.95rem', display: 'block' }}>Enterprise</span>
+              <span className="enterprise-desc" style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.85rem', display: 'block', marginTop: '2px' }}>
+                מעל 35,000 אנשי קשר? מעל 12 משתמשים? נבנה חבילה מותאמת אישית
               </span>
             </div>
           </div>
@@ -440,6 +441,13 @@ const [showModal, setShowModal] = useState(false);
             💬 צרו איתנו קשר
           </span>
         </a>
+      </div>
+
+      {/* Invoice note */}
+      <div style={{ maxWidth: '960px', margin: '-8px auto 24px', padding: '0 24px' }}>
+        <p style={{ fontSize: '0.78rem', color: '#718096', textAlign: 'center' }}>
+          * חשבוניות: המערכת תומכת כרגע בחשבוניות עד ₪10,000 לחשבונית בודדת
+        </p>
       </div>
 
       {/* Enhanced Features Section */}

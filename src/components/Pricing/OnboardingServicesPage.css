@@ -657,3 +657,7 @@
   }
 }
 
+@media (max-width: 600px) {
+  .enterprise-desc { display: none !important; }
+}
+
