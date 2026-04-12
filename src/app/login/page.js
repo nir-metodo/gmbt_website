@@ -1,11 +1,21 @@
-import LoginPage from '@/components/Login/LoginPage';
+'use client';
+import { useEffect } from 'react';
 
-export const metadata = {
-  title: 'כניסה לגמבוט | Gambot Login',
-  description: 'התחברו לאיזור האישי של גמבוט - מערכת וואטסאפ עסקי מתקדמת',
-  robots: { index: false, follow: false },
-};
+export default function LoginRedirect() {
+  useEffect(() => {
+    window.location.replace('/login');
+  }, []);
 
-export default function LoginRoute() {
-  return <LoginPage />;
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '100vh',
+      fontFamily: 'sans-serif',
+      direction: 'rtl'
+    }}>
+      <p style={{ color: '#2e6155', fontSize: 18 }}>מעביר לדף הכניסה...</p>
+    </div>
+  );
 }

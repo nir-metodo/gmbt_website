@@ -273,6 +273,7 @@ export default function PricingContent() {
                   <span className={styles.amount}>{billing === 'monthly' ? plan.price : plan.yearlyPrice}</span>
                   <span className={styles.period}>/חודש</span>
                 </div>
+                <p className={styles.vatNote}>(לא כולל מע״מ)</p>
                 {billing === 'yearly' && (
                   <p className={styles.yearNote}>₪{plan.yearlyPrice * 12}/שנה (חיסכון ₪{(plan.price - plan.yearlyPrice) * 12})</p>
                 )}

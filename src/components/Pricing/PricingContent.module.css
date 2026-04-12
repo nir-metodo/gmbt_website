@@ -158,6 +158,13 @@
   margin-bottom: 6px;
 }
 
+.vatNote {
+  font-size: 0.78rem;
+  color: #a0aec0;
+  margin: -8px 0 12px;
+  text-align: center;
+}
+
 .yearNote {
   font-size: 0.82rem;
   color: #25D366;
