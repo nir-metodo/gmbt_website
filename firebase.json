@@ -30,6 +30,8 @@
     ],
     "cleanUrls": true,
     "redirects": [
+      { "source": "/Login", "destination": "/login/", "type": 301 },
+      { "source": "/Login/", "destination": "/login/", "type": 301 },
       { "source": "/Contacts", "destination": "https://app.gambot.co.il/Contacts", "type": 301 },
       { "source": "/Contacts/**", "destination": "https://app.gambot.co.il/Contacts", "type": 301 },
       { "source": "/leads", "destination": "https://app.gambot.co.il/leads", "type": 301 },

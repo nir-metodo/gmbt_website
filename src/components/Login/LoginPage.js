@@ -95,6 +95,8 @@ export default function LoginPage() {
         refreshToken: refreshToken || null,
         SecurityRole: user?.SecurityRole || user?.securityRole || 'Admin',
         Permissions: user?.Permissions || user?.permissions || null,
+        DataVisibility: user?.DataVisibility || user?.dataVisibility || null,
+        FullName: user?.FullName || user?.fullName || user?.UserName || user?.userName || email,
         hasItsOwnSim: user?.hasItsOwnSim || false,
         planName: user?.PlanName || user?.planName || null,
         language: userLanguage,
