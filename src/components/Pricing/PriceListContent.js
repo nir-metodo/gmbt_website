@@ -15,11 +15,11 @@ const sessionOptionsAI = [
   { value: 2000, price: 200 }
 ];
 
-const proActiveOptions = [
-  { value: 25, price: 15 },
-  { value: 50, price: 25 },
-  { value: 100, price: 50 },
-  { value: 200, price: 90 }
+const tokenOptions = [
+  { value: 100, price: 25 },
+  { value: 250, price: 55 },
+  { value: 500, price: 99 },
+  { value: 1000, price: 179 }
 ];
 
 const plans = [
@@ -34,7 +34,7 @@ const plans = [
       "1,500 ריצות אוטומציה בחודש",
       "עד 3,000 אנשי קשר",
       "50 פעולות AI בחודש (כל 500 נוספות 50 ₪)",
-      "25 הודעות Pro Active",
+      "🪙 100 Gambot Tokens (Pro Active, דוחות AI, Gambot Agent)",
       "2 משתמשים (משתמש נוסף 30 ₪)",
       "❌ ללא תמיכה אנושית",
       "📚 מרכז ידע בלבד (סרטונים והדרכות)",
@@ -61,7 +61,7 @@ const plans = [
       "5,000 ריצות אוטומציה בחודש",
       "עד 10,000 אנשי קשר",
       "300 תגובות / פעולות AI (כל 500 נוספות 50 ₪)",
-      "⚡ 75 הודעות Pro Active כלולות (כל 25 נוספות 15 ₪)",
+      "🪙 300 Gambot Tokens כלולים (כל 100 נוספים 25 ₪)",
       "5 משתמשים (כל משתמש נוסף 30 ₪)",
       "✅ תמיכה בסיסית בוואטסאפ — מענה עד 48 שעות",
     ],
@@ -89,7 +89,7 @@ const plans = [
       "15,000 ריצות אוטומציה בחודש",
       "עד 35,000 אנשי קשר",
       "1,000 פעולות AI",
-      "⚡ 200 הודעות Pro Active",
+      "🪙 800 Gambot Tokens כלולים",
       "12 משתמשים",
       "⭐ תמיכה מועדפת — מענה עד 24 שעות",
       "🗓️ שיחת ייעוץ חודשית",
@@ -130,7 +130,7 @@ export default function PriceListContent() {
   const [billingCycle, setBillingCycle] = useState("monthly");
   const [expandedCards, setExpandedCards] = useState({});
   const [selectedSessionsAI, setSelectedSessionsAI] = useState(sessionOptionsAI[0]);
-  const [selectedProActive, setSelectedProActive] = useState(proActiveOptions[0]);
+  const [selectedTokens, setSelectedTokens] = useState(tokenOptions[0]);
   const [showModal, setShowModal] = useState(false);
   const [showAiCalc, setShowAiCalc] = useState(false);
   const [calcServiceType, setCalcServiceType] = useState('support');
@@ -479,36 +479,50 @@ export default function PriceListContent() {
         </div>
       )}
 
-      {/* Pro Active Add-on */}
+      {/* Gambot Tokens Add-on */}
       <div className="addon-section">
-        <div className="addon-container" style={{ background: 'linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)', borderColor: '#8b5cf6' }}>
+        <div className="addon-container" style={{ background: 'linear-gradient(135deg, #fefce8 0%, #fef9c3 100%)', borderColor: '#eab308' }}>
           <div className="addon-header">
-            <div className="addon-icon" style={{ background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)' }}><FaBolt /></div>
-            <h2 className="addon-title">⚡ הודעות Pro Active נוספות</h2>
-            <p className="addon-subtitle">פולואפ חכם מבוסס AI שנשלח אוטומטית לאנשי הקשר שלך</p>
+            <div className="addon-icon" style={{ background: 'linear-gradient(135deg, #eab308, #ca8a04)' }}><FaBolt /></div>
+            <h2 className="addon-title">🪙 Gambot Tokens נוספים</h2>
+            <p className="addon-subtitle">טוקנים לשימוש ב-Pro Active, דוחות AI, Gambot Agent ועוד</p>
           </div>
           <div className="addon-selector">
-            <label htmlFor="proactive-select">בחר הודעות Pro Active נוספות:</label>
+            <label htmlFor="tokens-select">בחר כמות Gambot Tokens נוספים:</label>
             <div className="select-wrapper">
               <select
-                id="proactive-select"
-                value={selectedProActive.value}
-                onChange={e => setSelectedProActive(proActiveOptions.find(o => o.value === parseInt(e.target.value)))}
+                id="tokens-select"
+                value={selectedTokens.value}
+                onChange={e => setSelectedTokens(tokenOptions.find(o => o.value === parseInt(e.target.value)))}
                 className="addon-select"
-                style={{ borderColor: '#8b5cf6' }}
+                style={{ borderColor: '#eab308' }}
               >
-                {proActiveOptions.map(o => (
-                  <option key={o.value} value={o.value}>{o.value.toLocaleString()} הודעות Pro Active</option>
+                {tokenOptions.map(o => (
+                  <option key={o.value} value={o.value}>{o.value.toLocaleString()} Gambot Tokens</option>
                 ))}
               </select>
             </div>
           </div>
           <div className="addon-pricing">
-            <span className="addon-price" style={{ color: '#7c3aed' }}>₪{selectedProActive.price}</span>
+            <span className="addon-price" style={{ color: '#ca8a04' }}>₪{selectedTokens.price}</span>
             <span className="addon-period">לחודש</span>
           </div>
-          <div style={{ marginTop: '12px', padding: '10px 14px', background: 'rgba(139,92,246,0.1)', borderRadius: '8px', textAlign: 'center', fontSize: '12px', color: '#6d28d9' }}>
-            👑 כלול בכל התוכניות • Growth = 25, Pro = 75, Business = 200 הודעות
+          <div style={{ marginTop: '16px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+            <div style={{ padding: '10px 12px', background: 'rgba(234,179,8,0.1)', borderRadius: '8px', fontSize: '12px', color: '#854d0e', textAlign: 'center' }}>
+              <strong>⚡ Pro Active</strong><br />1 token להודעה
+            </div>
+            <div style={{ padding: '10px 12px', background: 'rgba(234,179,8,0.1)', borderRadius: '8px', fontSize: '12px', color: '#854d0e', textAlign: 'center' }}>
+              <strong>📊 דוח AI</strong><br />3 tokens לדוח
+            </div>
+            <div style={{ padding: '10px 12px', background: 'rgba(234,179,8,0.1)', borderRadius: '8px', fontSize: '12px', color: '#854d0e', textAlign: 'center' }}>
+              <strong>🤖 Gambot Agent</strong><br />1 token לשאילתה
+            </div>
+            <div style={{ padding: '10px 12px', background: 'rgba(234,179,8,0.1)', borderRadius: '8px', fontSize: '12px', color: '#854d0e', textAlign: 'center' }}>
+              <strong>💡 AI Insights</strong><br />2 tokens לתובנה
+            </div>
+          </div>
+          <div style={{ marginTop: '12px', padding: '10px 14px', background: 'rgba(234,179,8,0.12)', borderRadius: '8px', textAlign: 'center', fontSize: '12px', color: '#854d0e' }}>
+            🪙 כלול בכל התוכניות • Growth = 100, Pro = 300, Business = 800 tokens
           </div>
         </div>
       </div>
