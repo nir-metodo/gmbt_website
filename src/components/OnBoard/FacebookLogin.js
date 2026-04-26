@@ -4,7 +4,7 @@
   import { useRouter } from 'next/navigation';
   import { FaFacebookF } from 'react-icons/fa';
 
-  const FacebookLogin = ({organization , buisnessEmail , organizationName, isCoexisting = false, coexistingPhoneNumber}) => {
+  const FacebookLogin = ({organization , buisnessEmail , organizationName, isCoexisting = false, coexistingPhoneNumber, onCodeReceived}) => {
       const router = useRouter();
       const [isLoading, setIsLoading] = useState(false);
       const [isSDKLoaded, setIsSDKLoaded] = useState(false);
@@ -98,9 +98,11 @@
             }
             console.log('🎯 [isCoexisting Prop]:', isCoexisting);
             
-            exchangeTokenForBusinessToken(response.authResponse.code, organization, response);
-
-            // Use this token to call the debug_token API and get the shared WABA's ID
+            if (onCodeReceived) {
+              onCodeReceived(response.authResponse.code, response).finally(() => setIsLoading(false));
+            } else {
+              exchangeTokenForBusinessToken(response.authResponse.code, organization, response);
+            }
           } else {
             console.log('User cancelled login or did not fully authorize.');
             setIsLoading(false);
