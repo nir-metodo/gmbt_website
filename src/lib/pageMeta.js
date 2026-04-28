@@ -275,6 +275,24 @@ export const PAGE_META = {
     keywords: 'מדריך גמבוט, how to WhatsApp API, מדריך וואטסאפ עסקי, tutorials',
     canonical: 'https://gambot.co.il/guide/',
   },
+  multiNumber: {
+    title: 'ניהול כמה מספרי וואטסאפ | גמבוט - שליטה בכל המספרים ממקום אחד',
+    description: 'חברו מספר מספרי וואטסאפ לחשבון אחד. נהלו צ\'אטים, קמפיינים, בוטים, לידים ודוחות ממקום אחד — עם פילטור לפי מספר ושליטה מלאה.',
+    keywords: 'ניהול כמה מספרי וואטסאפ, מספרים מרובים וואטסאפ, WhatsApp multi number, ניהול מספרים במקביל, Gambot',
+    canonical: 'https://gambot.co.il/multi-number-whatsapp/',
+    og: { title: 'ניהול כמה מספרי וואטסאפ | גמבוט', description: 'כל המספרים. מקום אחד. שליטה מלאה — צ\'אטים, קמפיינים, בוטים ודוחות.' },
+  },
+  about: {
+    title: 'ניר סגס — מייסד גמבוט | Nir Segas — Founder of Gambot',
+    description: 'ניר סגס הוא מייסד ומנכ"ל גמבוט (Gambot), פלטפורמת WhatsApp Business API המובילה בישראל. מומחה לאוטומציה עסקית, בינה מלאכותית ו-WhatsApp API.',
+    keywords: 'ניר סגס, Nir Segas, גמבוט, Gambot, מייסד גמבוט, WhatsApp API ישראל, אודות גמבוט, Gambot founder, Gambot CEO',
+    canonical: 'https://gambot.co.il/about/',
+    hreflang: { he: 'https://gambot.co.il/about/', en: 'https://gambot.co.il/about/' },
+    og: {
+      title: 'ניר סגס — מייסד גמבוט | Nir Segas',
+      description: 'מייסד ומנכ"ל גמבוט, פלטפורמת WhatsApp Business API המובילה בישראל. שותף מטא רשמי.',
+    },
+  },
 };
 
 /**

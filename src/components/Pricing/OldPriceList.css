@@ -565,6 +565,13 @@
   font-weight: 600;
 }
 
+.plan-pricing .vat-note {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
 /* Plan Button */
 .plan-button {
   width: 100%;
@@ -2081,4 +2088,59 @@
 
 @media (max-width: 600px) {
   .enterprise-desc { display: none !important; }
+}
+
+/* ─── Telephony Plans ─── */
+.telephony-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.telephony-plan-card {
+  position: relative;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 28px 22px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.telephony-plan-card:hover {
+  border-color: #2e6155;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(46, 97, 85, 0.12);
+}
+
+.telephony-plan-card.selected {
+  border-color: #2e6155;
+  box-shadow: 0 0 0 3px rgba(46, 97, 85, 0.15), 0 8px 24px rgba(46, 97, 85, 0.12);
+}
+
+.telephony-plan-card.popular {
+  border-color: #25D366;
+}
+
+.telephony-popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+  padding: 4px 18px;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .telephony-plans-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
 }

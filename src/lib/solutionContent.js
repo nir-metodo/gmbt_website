@@ -1322,4 +1322,89 @@ export const SOLUTIONS = {
     },
   },
 
+  multiNumber: {
+    he: {
+      hero: {
+        badge: '📱 חדש בגמבוט',
+        titleText: 'ניהול כמה מספרי וואטסאפ ממקום אחד',
+        desc: 'חברו את כל מספרי הוואטסאפ העסקיים לחשבון אחד. צ\'אטים, קמפיינים, בוטים, לידים ודוחות — הכל ממסך אחד, עם שליטה מלאה על כל מספר.',
+        stats: [
+          { value: '∞', label: 'מספרים ללא הגבלה' },
+          { value: '1', label: 'ממשק ניהול אחד' },
+          { value: '📊', label: 'דוחות פר מספר' },
+          { value: '✅', label: 'שותף Meta רשמי' },
+        ],
+      },
+      features: [
+        { icon: '💬', title: 'צ\'אטים ממקום אחד', desc: 'כל השיחות מכל המספרים מופיעות בממשק אחד. פילטרו לפי מספר, סננו לפי נציג, ועברו בין שיחות בקלות.' },
+        { icon: '📢', title: 'קמפיינים ודיוור ממוקד', desc: 'בנו קמפיינים ושלחו דיוור המוני מכל מספר — בחרו את המספר השולח לכל קמפיין בנפרד.' },
+        { icon: '🤖', title: 'בוטים ואוטומציות', desc: 'הגדירו בוטים שונים לכל מספר או בוט אחד שעובד על כולם — הכל מאותו ממשק.' },
+        { icon: '📊', title: 'דוחות ואנליטיקה', desc: 'ראו ביצועים של כל המספרים ביחד או בנפרד — הודעות, שיחות, המרות וזמני תגובה.' },
+        { icon: '🎯', title: 'ניהול לידים מאוחד', desc: 'לידים מכל המספרים נכנסים לאותו CRM. סננו לפי מקור, מספר, נציג או שלב — הכל ברור.' },
+        { icon: '👥', title: 'הקצאת נציגים', desc: 'שייכו נציגים למספרים ספציפיים או לכולם. כל נציג רואה רק את השיחות הרלוונטיות אליו.' },
+      ],
+      useCases: [
+        { icon: '🏢', title: 'מחלקות בארגון', desc: 'מספר למכירות, מספר לשירות, מספר לתמיכה — הכל תחת חשבון אחד' },
+        { icon: '🏪', title: 'רשתות וסניפים', desc: 'מספר לכל סניף עם שיוך אוטומטי ודוחות ביצועים פר סניף' },
+        { icon: '🌍', title: 'שפות ואזורים', desc: 'מספר ישראלי + מספר בינלאומי — כל לקוח מקבל מענה בשפה שלו' },
+        { icon: '🔀', title: 'מותגים מקבילים', desc: 'כמה מותגים תחת אותו עסק — כל מותג עם מספר וזהות משלו' },
+      ],
+      steps: [
+        { step: '01', title: 'פותחים חשבון', desc: 'יוצרים חשבון גמבוט ומחברים את המספר הראשי' },
+        { step: '02', title: 'מוסיפים מספרים', desc: 'מחברים מספרים נוספים דרך הממשק — כל אחד עם שם ותווית' },
+        { step: '03', title: 'מגדירים בוטים', desc: 'בונים בוטים ואוטומציות — משותפים או ייעודיים לכל מספר' },
+        { step: '04', title: 'מתחילים לעבוד', desc: 'כל הצוות עובד מממשק אחד עם שליטה מלאה' },
+      ],
+      faq: [
+        { q: 'כמה מספרים אפשר לחבר?', a: 'אין מגבלה! ניתן לחבר כמה מספרי וואטסאפ שרוצים לאותו חשבון גמבוט. כל מספר נוסף בעלות 119 ₪ לחודש.' },
+        { q: 'האם כל מספר צריך אישור Meta נפרד?', a: 'כן, כל מספר צריך להיות מחובר ל-WhatsApp Business API דרך Meta. גמבוט מלווה אתכם בתהליך ומחברת את כל המספרים בקלות.' },
+        { q: 'האם אפשר לראות את כל השיחות מכל המספרים?', a: 'כן! במצב "כל המספרים" תראו את כל השיחות. תוכלו לפלטר לפי מספר ספציפי בכל רגע.' },
+        { q: 'האם בוטים עובדים על כל המספרים?', a: 'בהחלט. ניתן להגדיר בוט אחד שעובד על כל המספרים, או בוטים שונים לכל מספר.' },
+        { q: 'מה קורה כשלקוח כותב למספרים שונים?', a: 'כל ההודעות מרוכזות תחת אותו איש קשר. תוכלו לראות מאיזה מספר הגיעה כל הודעה ולפלטר בתוך השיחה.' },
+      ],
+      pageTitle: 'ניהול מספרים במקביל',
+    },
+    en: {
+      hero: {
+        badge: '📱 New in Gambot',
+        titleText: 'Manage Multiple WhatsApp Numbers from One Place',
+        desc: 'Connect all your WhatsApp business numbers to one account. Chats, campaigns, bots, leads and reports — all from one screen, with full control over every number.',
+        stats: [
+          { value: '∞', label: 'Unlimited Numbers' },
+          { value: '1', label: 'Single Dashboard' },
+          { value: '📊', label: 'Per-Number Reports' },
+          { value: '✅', label: 'Official Meta Partner' },
+        ],
+      },
+      features: [
+        { icon: '💬', title: 'Unified Chat Inbox', desc: 'All conversations from all numbers in one interface. Filter by number, agent, or switch between chats easily.' },
+        { icon: '📢', title: 'Targeted Campaigns', desc: 'Build campaigns and send broadcasts from any number — choose the sending number for each campaign separately.' },
+        { icon: '🤖', title: 'Bots & Automations', desc: 'Set up different bots for each number or one bot for all — everything from the same interface.' },
+        { icon: '📊', title: 'Reports & Analytics', desc: 'View performance for all numbers together or separately — messages, conversations, conversions and response times.' },
+        { icon: '🎯', title: 'Unified Lead Management', desc: 'Leads from all numbers enter the same CRM. Filter by source, number, agent or stage.' },
+        { icon: '👥', title: 'Agent Assignment', desc: 'Assign agents to specific numbers or all of them. Each agent sees only their relevant conversations.' },
+      ],
+      useCases: [
+        { icon: '🏢', title: 'Departments', desc: 'Sales number, service number, support number — all under one account' },
+        { icon: '🏪', title: 'Chains & Branches', desc: 'A number per branch with automatic assignment and per-branch reporting' },
+        { icon: '🌍', title: 'Languages & Regions', desc: 'Local + international numbers — each customer gets support in their language' },
+        { icon: '🔀', title: 'Multiple Brands', desc: 'Several brands under one business — each with its own number and identity' },
+      ],
+      steps: [
+        { step: '01', title: 'Open Account', desc: 'Create a Gambot account and connect your primary number' },
+        { step: '02', title: 'Add Numbers', desc: 'Connect additional numbers through the dashboard — each with a name and label' },
+        { step: '03', title: 'Configure Bots', desc: 'Build bots and automations — shared or dedicated per number' },
+        { step: '04', title: 'Start Working', desc: 'Your entire team works from one interface with full control' },
+      ],
+      faq: [
+        { q: 'How many numbers can I connect?', a: 'No limit! You can connect as many WhatsApp numbers as you want. Each additional number costs 119 ₪/month.' },
+        { q: 'Does each number need separate Meta approval?', a: 'Yes, each number needs to be connected to WhatsApp Business API through Meta. Gambot guides you through the process.' },
+        { q: 'Can I see all chats from all numbers?', a: 'Yes! In "All Numbers" mode you see all conversations. You can filter by specific number at any time.' },
+        { q: 'Do bots work on all numbers?', a: 'Absolutely. Set up one bot for all numbers, or different bots per number — your choice.' },
+        { q: 'What happens when a customer writes to different numbers?', a: 'All messages are consolidated under the same contact. You can see which number each message came from and filter within the chat.' },
+      ],
+      pageTitle: 'Multi-Number Management',
+    },
+  },
+
 };

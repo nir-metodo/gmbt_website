@@ -71,7 +71,10 @@ export default function BlogPostContent({ post }) {
     author: {
       '@type': 'Person',
       name: post.author || 'ניר סגס',
-      url: SITE,
+      alternateName: 'Nir Segas',
+      url: `${SITE}/about/`,
+      jobTitle: 'Founder & CEO',
+      worksFor: { '@type': 'Organization', name: 'Gambot', url: SITE },
     },
     publisher: {
       '@type': 'Organization',
@@ -183,6 +186,25 @@ export default function BlogPostContent({ post }) {
               ))}
             </div>
           )}
+
+          {/* Author Bio */}
+          <div className={styles.authorBox}>
+            <Link href="/about/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'linear-gradient(135deg, #25D366, #128C7E)', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: '1.2rem' }}>
+                {(post.author || 'ניר סגס').charAt(0)}
+              </div>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '1rem', color: '#1a1a2e' }}>
+                  {post.author || 'ניר סגס'} <span style={{ color: '#64748b', fontWeight: 400, fontSize: '0.85rem' }}>({lang === 'en' ? 'Nir Segas' : 'Nir Segas'})</span>
+                </div>
+                <div style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.5, marginTop: 4 }}>
+                  {lang === 'en'
+                    ? 'Founder & CEO of Gambot — Israel\'s leading WhatsApp Business API platform.'
+                    : 'מייסד ומנכ"ל גמבוט — פלטפורמת WhatsApp Business API המובילה בישראל.'}
+                </div>
+              </div>
+            </Link>
+          </div>
 
           {/* CTA */}
           <div className={styles.ctaBox}>

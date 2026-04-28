@@ -74,6 +74,7 @@ const DATA = {
       { icon: '📊', title: 'לידים והצעות מחיר', desc: 'ניהול לידים מלא, יצירת הצעות מחיר, מעקב אחר סטטוס וסגירת עסקות דרך וואטסאפ.' },
       { icon: '✍️', title: 'חתימה דיגיטלית', desc: 'שלחו מסמכים לחתימה דיגיטלית ישירות דרך וואטסאפ או אימייל — מאובטח וחוקי.' },
       { icon: '📅', title: 'זימון תורים', desc: 'לוח שנה חכם, אישורים ותזכורות אוטומטיות — ישירות דרך שיחת וואטסאפ.' },
+      { icon: '📱', title: 'ניהול כמה מספרים במקביל', desc: 'חברו מספר מספרי וואטסאפ, נהלו צ\'אטים, קמפיינים ובוטים ממקום אחד — עם דוחות ופילטור לפי מספר.', isNew: true },
     ],
     integrationsTitle: '🔗 חיבורים ואינטגרציות',
     integrationsDesc: 'גמבוט מתחבר לכל הכלים שאתם כבר משתמשים בהם',
@@ -148,6 +149,7 @@ const DATA = {
       { icon: '📊', title: 'Leads & Quotes', desc: 'Full lead management, creating price quotes, tracking status and closing deals via WhatsApp.' },
       { icon: '✍️', title: 'Digital Signature', desc: 'Send documents for digital signature directly via WhatsApp or email — secure and legally valid.' },
       { icon: '📅', title: 'Appointment Booking', desc: 'Smart calendar, automatic confirmations and reminders — directly via WhatsApp conversation.' },
+      { icon: '📱', title: 'Multi-Number Management', desc: 'Connect multiple WhatsApp numbers, manage chats, campaigns and bots from one place — with reports and per-number filtering.', isNew: true },
     ],
     integrationsTitle: '🔗 Connections & Integrations',
     integrationsDesc: 'Gambot connects to all the tools you already use',
@@ -306,9 +308,9 @@ export default function HomeContent() {
           <p className={styles.sectionDesc}>{d.ourFeaturesDesc}</p>
           <div className={styles.featuresGrid}>
             {d.ourFeatures.map((f, i) => (
-              <div key={i} className={styles.featureCard}>
+              <div key={i} className={styles.featureCard} style={f.isNew ? { border: '2px solid #25D366' } : {}}>
                 <div className={styles.featureIcon}>{f.icon}</div>
-                <h3>{f.title}</h3>
+                <h3>{f.title} {f.isNew && <span style={{ fontSize: '12px', background: '#25D366', color: '#fff', padding: '2px 8px', borderRadius: '12px', marginInlineStart: '6px', fontWeight: 700 }}>NEW</span>}</h3>
                 <p>{f.desc}</p>
               </div>
             ))}

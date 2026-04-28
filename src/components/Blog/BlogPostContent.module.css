@@ -125,6 +125,18 @@
   border-bottom: 1px solid #f0f0f0;
 }
 
+.authorBox {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 40px;
+  transition: border-color 0.2s;
+}
+.authorBox:hover {
+  border-color: #25D366;
+}
+
 .ctaBox {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;

@@ -86,6 +86,7 @@ export default function Footer() {
           </ul>
           <h3 style={{ marginTop: '24px' }}>{isEn ? 'Contact Us' : 'צור קשר'}</h3>
           <ul>
+            <li><Link href="/about/">{isEn ? 'About — Nir Segas' : 'אודות — ניר סגס'}</Link></li>
             <li><Link href="/ContactUs/">{isEn ? 'Contact Us' : 'צור קשר'}</Link></li>
             <li><a href="tel:0559859052">055-985-9052</a></li>
             <li><a href="https://wa.me/97233768997" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
@@ -192,8 +193,8 @@ export default function Footer() {
         </div>
         <p className={styles.copy}>
           {isEn
-            ? '2025 | Developed by: Gambot Development Team | © GamBot All Rights Reserved'
-            : '2025 | פותח ע"י: צוות פיתוח גמבוט | © GamBot כל הזכויות שמורות'}
+            ? <>2025 | Founded by: <Link href="/about/" style={{ color: 'inherit', textDecoration: 'underline' }}>Nir Segas</Link> | Developed by: Gambot Development Team | &copy; GamBot All Rights Reserved</>
+            : <>2025 | הוקם על ידי: <Link href="/about/" style={{ color: 'inherit', textDecoration: 'underline' }}>ניר סגס</Link> | פותח ע&quot;י: צוות פיתוח גמבוט | &copy; GamBot כל הזכויות שמורות</>}
         </p>
       </div>
     </footer>

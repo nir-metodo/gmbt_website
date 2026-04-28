@@ -33,11 +33,12 @@ const sessionOptionsAI = [
   { value: 2000, price: 200 }
 ];
 
-const proActiveOptions = [
-  { value: 25, price: 15 },
-  { value: 50, price: 25 },
-  { value: 100, price: 50 },
-  { value: 200, price: 90 }
+const generalTokenOptions = [
+  { value: 100, price: 49 },
+  { value: 250, price: 99 },
+  { value: 500, price: 179 },
+  { value: 1000, price: 349 },
+  { value: 2000, price: 649 }
 ];
 
 const plans = {
@@ -56,8 +57,9 @@ const plans = {
         "300 שיחות חדשות בחודש",
         "1,500 ריצות אוטומציה בחודש",
         "עד 3,000 אנשי קשר",
-        "50 תגובות / פעולות AI (כל 500 נוספות 50 ש\"ח)",
-        "⚡ 25 הודעות Pro Active (כל 25 נוספות 15 ש\"ח)",
+        "50 תגובות AI (כל 500 נוספות 50 ש\"ח)",
+        "🔮 25 טוקנים כלליים AI (כל 100 נוספים 49 ש\"ח)",
+        "📱 1 מספר טלפון וואטסאפ כלול (כל מספר נוסף 119 ש\"ח)",
         "2 משתמשים (כל משתמש נוסף 30 ש\"ח)",
         "❌ ללא תמיכה אנושית",
         "📚 מרכז ידע בלבד (סרטונים והדרכות)"
@@ -78,8 +80,9 @@ const plans = {
         "1,000 שיחות חדשות בחודש",
         "5,000 ריצות אוטומציה בחודש",
         "עד 10,000 אנשי קשר",
-        "300 תגובות / פעולות AI (כל 500 נוספות 50 ש\"ח)",
-        "⚡ 75 הודעות Pro Active כלולות (כל 25 נוספות 15 ש\"ח)",
+        "300 תגובות AI (כל 500 נוספות 50 ש\"ח)",
+        "🔮 100 טוקנים כלליים AI (כל 100 נוספים 49 ש\"ח)",
+        "📱 1 מספר טלפון וואטסאפ כלול (כל מספר נוסף 119 ש\"ח)",
         "5 משתמשים (כל משתמש נוסף 30 ש\"ח)",
         "✅ תמיכה בסיסית בוואטסאפ — מענה עד 48 שעות"
       ]
@@ -98,8 +101,9 @@ const plans = {
         "3,000 שיחות חדשות בחודש",
         "15,000 ריצות אוטומציה בחודש",
         "עד 35,000 אנשי קשר",
-        "1,000 תגובות / פעולות AI (כל 500 נוספות 50 ש\"ח)",
-        "⚡ 200 הודעות Pro Active כלולות (כל 25 נוספות 15 ש\"ח)",
+        "1,000 תגובות AI (כל 500 נוספות 50 ש\"ח)",
+        "🔮 300 טוקנים כלליים AI (כל 100 נוספים 49 ש\"ח)",
+        "📱 1 מספר טלפון וואטסאפ כלול (כל מספר נוסף 119 ש\"ח)",
         "12 משתמשים (כל משתמש נוסף 30 ש\"ח)",
         "⭐ תמיכה מועדפת — מענה עד 24 שעות",
         "🗓️ שיחת ייעוץ חודשית"
@@ -173,7 +177,8 @@ const [showModal, setShowModal] = useState(false);
   }
  
   const [selectedSessionsAI, setSelectedSessionsAI] = useState(sessionOptionsAI[0]);
-  const [selectedProActive, setSelectedProActive] = useState(proActiveOptions[0]);
+  const [selectedGeneralTokens, setSelectedGeneralTokens] = useState(generalTokenOptions[0]);
+  const [selectedTelephonyPlan, setSelectedTelephonyPlan] = useState('starter');
   const [showAiCalc, setShowAiCalc] = useState(false);
   const [calcServiceType, setCalcServiceType] = useState('support');
   const [calcConversations, setCalcConversations] = useState(300);
@@ -194,10 +199,10 @@ const [showModal, setShowModal] = useState(false);
   const extraCost        = Math.ceil(extraAi / 500) * 50;
   const totalMonthlyCost = calcPlanPrice[calcPlan] + extraCost;
 
-  const handleProActiveChange = (event) => {
+  const handleGeneralTokensChange = (event) => {
     const selectedValue = parseInt(event.target.value, 10);
-    const newSelection = proActiveOptions.find((option) => option.value === selectedValue);
-    setSelectedProActive(newSelection);
+    const newSelection = generalTokenOptions.find((option) => option.value === selectedValue);
+    setSelectedGeneralTokens(newSelection);
   };
 
   const handleSessionChangeAI = (event) => {
@@ -336,6 +341,7 @@ const [showModal, setShowModal] = useState(false);
                   <span className="savings">{t('pricing.ui.save')} {formatPrice((plan.price * 12) - plan.yearlyPrice).currency}{formatPrice((plan.price * 12) - plan.yearlyPrice).amount.toLocaleString()}</span>
                 </div>
               )}
+              <div className="vat-note">{currentLanguage === 'en' ? '* Prices do not include VAT' : '* המחירים אינם כוללים מע״מ'}</div>
             </div>
 
             <button 
@@ -650,7 +656,7 @@ const [showModal, setShowModal] = useState(false);
         </div>
       )}
 
-      {/* ⚡ Pro Active Add-on */}
+      {/* 🔮 General AI Tokens Add-on */}
       <div className="addon-section">
         <div className="addon-container" style={{ background: 'linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)', borderColor: '#8b5cf6' }}>
           <div className="addon-header">
@@ -658,30 +664,47 @@ const [showModal, setShowModal] = useState(false);
               <FaBolt />
             </div>
             <h2 className="addon-title">
-              {currentLanguage === 'en' ? '⚡ Pro Active Messages' : '⚡ הודעות Pro Active'}
+              {currentLanguage === 'en' ? '🔮 General AI Tokens' : '🔮 טוקנים כלליים AI'}
             </h2>
             <p className="addon-subtitle">
               {currentLanguage === 'en' 
-                ? 'AI-powered smart follow-ups sent automatically to your contacts'
-                : 'פולואפ חכם מבוסס AI שנשלח אוטומטית לאנשי הקשר שלך'}
+                ? 'Power advanced AI features — pro-active messages, report generation, analytics, and more'
+                : 'טוקנים לפעולות AI מתקדמות — הודעות פרואקטיביות, בניית דוחות, ניתוח נתונים ועוד'}
             </p>
+          </div>
+
+          <div style={{ 
+            display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px',
+            margin: '0 0 20px', padding: '12px', background: 'rgba(139, 92, 246, 0.08)', borderRadius: '10px'
+          }}>
+            {[
+              { icon: '⚡', text: currentLanguage === 'en' ? 'Pro-Active messages' : 'הודעות פרואקטיביות' },
+              { icon: '📊', text: currentLanguage === 'en' ? 'AI report generation' : 'בניית דוחות AI' },
+              { icon: '🔍', text: currentLanguage === 'en' ? 'Smart analytics' : 'ניתוח נתונים חכם' },
+              { icon: '📝', text: currentLanguage === 'en' ? 'AI summaries' : 'סיכומים חכמים' },
+            ].map((item, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', color: '#5b21b6', direction: currentLanguage === 'en' ? 'ltr' : 'rtl' }}>
+                <span>{item.icon}</span>
+                <span>{item.text}</span>
+              </div>
+            ))}
           </div>
           
           <div className="addon-selector">
-            <label htmlFor="proactive-select">
-              {currentLanguage === 'en' ? 'Select Pro Active messages:' : 'בחר הודעות Pro Active נוספות:'}
+            <label htmlFor="general-tokens-select">
+              {currentLanguage === 'en' ? 'Select additional AI tokens:' : 'בחר טוקנים כלליים נוספים:'}
             </label>
             <div className="select-wrapper">
               <select 
-                id="proactive-select"
-                value={selectedProActive.value} 
-                onChange={handleProActiveChange}
+                id="general-tokens-select"
+                value={selectedGeneralTokens.value} 
+                onChange={handleGeneralTokensChange}
                 className="addon-select"
                 style={{ borderColor: '#8b5cf6' }}
               >
-                {proActiveOptions.map((option) => (
+                {generalTokenOptions.map((option) => (
                   <option key={option.value} value={option.value}>
-                    {option.value.toLocaleString()} {currentLanguage === 'en' ? 'Pro Active messages' : 'הודעות Pro Active'}
+                    {option.value.toLocaleString()} {currentLanguage === 'en' ? 'AI tokens' : 'טוקנים כלליים'}
                   </option>
                 ))}
               </select>
@@ -689,7 +712,7 @@ const [showModal, setShowModal] = useState(false);
           </div>
           
           <div className="addon-pricing">
-            <span className="addon-price" style={{ color: '#7c3aed' }}>{formatPrice(selectedProActive.price).currency}{formatPrice(selectedProActive.price).amount}</span>
+            <span className="addon-price" style={{ color: '#7c3aed' }}>{formatPrice(selectedGeneralTokens.price).currency}{formatPrice(selectedGeneralTokens.price).amount}</span>
             <span className="addon-period">{t('pricing.ui.perMonth')}</span>
           </div>
 
@@ -698,8 +721,140 @@ const [showModal, setShowModal] = useState(false);
             borderRadius: '8px', textAlign: 'center', fontSize: '12px', color: '#6d28d9' 
           }}>
             {currentLanguage === 'en' 
-              ? '👑 Included in all plans • Growth = 25, Pro = 75, Business = 200 messages'
-              : '👑 כלול בכל התוכניות • Growth = 25, Pro = 75, Business = 200 הודעות'}
+              ? '👑 Included in all plans • Growth = 25, Pro = 100, Business = 300 tokens'
+              : '👑 כלול בכל התוכניות • Growth = 25, Pro = 100, Business = 300 טוקנים'}
+          </div>
+        </div>
+      </div>
+
+      {/* ─── Telephony Plans ─── */}
+      <div className="addon-section">
+        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#eef2ff', padding: '6px 16px', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 600, color: '#4f46e5', marginBottom: '12px' }}>
+              📞 {currentLanguage === 'en' ? 'NEW' : 'חדש'}
+            </div>
+            <h2 style={{ fontSize: '1.6rem', fontWeight: 700, color: '#1a1a2e', marginBottom: '8px' }}>
+              {currentLanguage === 'en' ? 'Business Telephony' : 'טלפוניה עסקית'}
+            </h2>
+            <p style={{ color: '#718096', fontSize: '0.95rem', maxWidth: '600px', margin: '0 auto' }}>
+              {currentLanguage === 'en'
+                ? 'Add a business phone number to your CRM — record calls, forward to agents, and track every conversation'
+                : 'הוסיפו מספר טלפון עסקי ל-CRM — הקלטת שיחות, העברה לנציגים ומעקב אחרי כל שיחה'}
+            </p>
+          </div>
+
+          <div className="telephony-plans-grid">
+            {[
+              {
+                id: 'starter',
+                name: currentLanguage === 'en' ? 'Starter' : 'סטארטר',
+                price: 179,
+                minutes: 100,
+                extraMinutePrice: '0.59',
+                icon: '📱',
+                description: currentLanguage === 'en' ? 'For small businesses just getting started' : 'לעסקים קטנים שמתחילים',
+                features: [
+                  currentLanguage === 'en' ? '1 phone number included' : '1 מספר טלפון כלול',
+                  currentLanguage === 'en' ? '100 minutes/month' : '100 דקות שיחה בחודש',
+                  currentLanguage === 'en' ? 'Call recording' : 'הקלטת שיחות',
+                  currentLanguage === 'en' ? 'CRM call log + contact linking' : 'תיעוד שיחות + קישור לאיש קשר',
+                  currentLanguage === 'en' ? 'Call forwarding to agent' : 'העברת שיחות לנציג',
+                  currentLanguage === 'en' ? 'Missed call notifications' : 'התראות על שיחות שלא נענו',
+                ],
+              },
+              {
+                id: 'business',
+                name: currentLanguage === 'en' ? 'Business' : 'ביזנס',
+                price: 449,
+                minutes: 300,
+                extraMinutePrice: '0.49',
+                icon: '📞',
+                popular: true,
+                description: currentLanguage === 'en' ? 'For active sales teams' : 'לצוותי מכירות פעילים',
+                features: [
+                  currentLanguage === 'en' ? '2 phone numbers included' : '2 מספרי טלפון כלולים',
+                  currentLanguage === 'en' ? '300 minutes/month' : '300 דקות שיחה בחודש',
+                  currentLanguage === 'en' ? 'Call recording + AI summary' : 'הקלטת שיחות + סיכום AI',
+                  currentLanguage === 'en' ? 'CRM call log + contact linking' : 'תיעוד שיחות + קישור לאיש קשר',
+                  currentLanguage === 'en' ? 'Click-to-call from CRM' : 'חיוג מהדפדפן (Click-to-Call)',
+                  currentLanguage === 'en' ? 'Missed call automation' : 'אוטומציה לשיחה שלא נענתה',
+                  currentLanguage === 'en' ? 'WhatsApp + call unified timeline' : 'ציר זמן משולב וואטסאפ + שיחות',
+                ],
+              },
+              {
+                id: 'call_center',
+                name: currentLanguage === 'en' ? 'Call Center' : 'מוקד שיחות',
+                price: 899,
+                minutes: 750,
+                extraMinutePrice: '0.39',
+                icon: '🏢',
+                description: currentLanguage === 'en' ? 'For call centers and large teams' : 'למוקדים וצוותים גדולים',
+                features: [
+                  currentLanguage === 'en' ? '5 phone numbers included' : '5 מספרי טלפון כלולים',
+                  currentLanguage === 'en' ? '750 minutes/month' : '750 דקות שיחה בחודש',
+                  currentLanguage === 'en' ? 'Call recording + AI summary' : 'הקלטת שיחות + סיכום AI',
+                  currentLanguage === 'en' ? 'Advanced call routing (IVR)' : 'ניתוב שיחות מתקדם (IVR)',
+                  currentLanguage === 'en' ? 'Click-to-call from CRM' : 'חיוג מהדפדפן (Click-to-Call)',
+                  currentLanguage === 'en' ? 'Real-time dashboard' : 'דשבורד שיחות בזמן אמת',
+                  currentLanguage === 'en' ? 'Call queues & agent groups' : 'תורי שיחות וקבוצות נציגים',
+                  currentLanguage === 'en' ? 'WhatsApp + call unified timeline' : 'ציר זמן משולב וואטסאפ + שיחות',
+                ],
+              },
+            ].map((plan) => (
+              <div
+                key={plan.id}
+                className={`telephony-plan-card${selectedTelephonyPlan === plan.id ? ' selected' : ''}${plan.popular ? ' popular' : ''}`}
+                onClick={() => setSelectedTelephonyPlan(plan.id)}
+              >
+                {plan.popular && (
+                  <div className="telephony-popular-badge">
+                    {currentLanguage === 'en' ? 'Most Popular' : 'הכי פופולרי'}
+                  </div>
+                )}
+                <div style={{ fontSize: '2rem', marginBottom: '8px' }}>{plan.icon}</div>
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#1a1a2e', margin: '0 0 4px' }}>{plan.name}</h3>
+                <p style={{ fontSize: '0.8rem', color: '#718096', margin: '0 0 16px' }}>{plan.description}</p>
+
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '3px', marginBottom: '4px' }}>
+                  <span style={{ fontSize: '1rem', color: '#64748b', fontWeight: 600 }}>{formatPrice(plan.price).currency}</span>
+                  <span style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1b4332', lineHeight: 1 }}>{formatPrice(plan.price).amount}</span>
+                  <span style={{ fontSize: '0.85rem', color: '#64748b' }}>/{currentLanguage === 'en' ? 'mo' : 'חודש'}</span>
+                </div>
+                <div style={{ fontSize: '0.72rem', color: '#94a3b8', marginBottom: '16px' }}>
+                  * {currentLanguage === 'en' ? 'Prices do not include VAT' : 'המחירים אינם כוללים מע״מ'}
+                </div>
+
+                <div style={{ background: '#f0fdf9', borderRadius: '8px', padding: '8px 12px', marginBottom: '16px', fontSize: '0.82rem', color: '#128C7E', fontWeight: 600, textAlign: 'center' }}>
+                  {currentLanguage === 'en'
+                    ? `${plan.minutes} min included • Extra: ${formatPrice(parseFloat(plan.extraMinutePrice) * 100).currency}${formatPrice(parseFloat(plan.extraMinutePrice) * 100).amount > 1 ? (parseFloat(plan.extraMinutePrice) * (currentLanguage === 'en' ? 100/3.5 : 100)).toFixed(0) : plan.extraMinutePrice} /min`
+                    : `${plan.minutes.toLocaleString()} דקות כלולות • דקה נוספת: ${plan.extraMinutePrice} ₪`}
+                </div>
+
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, textAlign: 'right' }}>
+                  {plan.features.map((f, i) => (
+                    <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.83rem', color: '#4a5568', padding: '5px 0', direction: currentLanguage === 'en' ? 'ltr' : 'rtl' }}>
+                      <FaCheck style={{ color: '#25D366', flexShrink: 0, fontSize: '0.7rem' }} />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div style={{ marginTop: '16px', fontSize: '0.7rem', color: '#64748b', textAlign: currentLanguage !== 'en' ? 'right' : 'left', lineHeight: 1.7, padding: '8px 10px', background: '#f8fafc', borderRadius: '6px' }}>
+                  <div style={{ fontWeight: 600, marginBottom: '2px', color: '#475569' }}>
+                    {currentLanguage === 'en' ? 'Extra numbers:' : 'מספרים נוספים:'}
+                  </div>
+                  <div>🔀 {currentLanguage === 'en' ? 'Forward number: 79 ₪/mo' : 'מספר Forward: 79 ₪/חודש'}</div>
+                  <div>📞 {currentLanguage === 'en' ? 'Telnyx direct number: 99 ₪/mo' : 'מספר ישיר (Telnyx): 99 ₪/חודש'}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '16px', fontSize: '0.78rem', color: '#718096' }}>
+            {currentLanguage === 'en'
+              ? '* Telephony is an add-on to any existing plan. All prices do not include VAT.'
+              : '* הטלפוניה היא תוספת לכל חבילה קיימת. כל המחירים אינם כוללים מע״מ.'}
           </div>
         </div>
       </div>

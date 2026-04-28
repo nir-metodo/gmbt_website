@@ -19,8 +19,12 @@ export const metadata = {
     'WhatsApp Business API', 'בוט AI', 'מערכת וואטסאפ עסקי', 'Gambot', 'גמבוט',
     'CRM וואטסאפ', 'דיוור בוואטסאפ', 'קמפיינים בוואטסאפ',
   ],
-  authors: [{ name: 'Gambot', url: 'https://gambot.co.il' }],
-  creator: 'Gambot',
+  authors: [
+    { name: 'Gambot', url: 'https://gambot.co.il' },
+    { name: 'Nir Segas', url: 'https://gambot.co.il/about/' },
+    { name: 'ניר סגס', url: 'https://gambot.co.il/about/' },
+  ],
+  creator: 'Nir Segas',
   publisher: 'Gambot',
   robots: {
     index: true,
