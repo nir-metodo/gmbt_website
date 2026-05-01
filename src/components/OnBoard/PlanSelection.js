@@ -8,7 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep }) => {
   const { t, currentLanguage, isRTL } = useLanguage();
   const [isChecked, setIsChecked] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState(t('planSelection.plans.premium.name'));
+  const [selectedPlan, setSelectedPlan] = useState(null);
   const [expandedCards, setExpandedCards] = useState({});
   const termsRef = useRef(null);
   
@@ -232,13 +232,12 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                 </div>
 
                 <button
-                  className={`plan-button ${isSelected ? "selected" : ""} ${planItem.recommended ? "primary" : "secondary"}`}
+                  className={`plan-button ${isSelected ? "selected" : ""} ${planItem.recommended && !isSelected ? "recommended-btn" : ""} ${!isSelected && !planItem.recommended ? "secondary" : ""}`}
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent double-click from card
+                    e.stopPropagation();
                     handlePlanSelection(planItem.name);
                     setSelectedPlan(planItem.name);
 
-                    // Scroll to terms checkbox after short delay
                     setTimeout(() => {
                       if (termsRef.current) {
                         const offsetTop = termsRef.current.getBoundingClientRect().top + window.pageYOffset - 150;
@@ -252,6 +251,11 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                     <>
                       <FaCheckCircle className="button-icon" />
                       <span>{t('planSelection.ui.selectedPlan')}</span>
+                    </>
+                  ) : planItem.recommended ? (
+                    <>
+                      <FaCrown className="button-icon" />
+                      <span>{t('planSelection.ui.selectPlan')} — {t('planSelection.plans.premium.recommended')}</span>
                     </>
                   ) : (
                     <>

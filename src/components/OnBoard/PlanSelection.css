@@ -465,7 +465,7 @@
   letter-spacing: 0.5px;
 }
 
-.plan-button.primary {
+.plan-button.recommended-btn {
   background: linear-gradient(135deg, #2e6155 0%, #3a7966 100%);
   color: white;
   box-shadow: 0 4px 15px rgba(46, 97, 85, 0.3);
@@ -487,7 +487,7 @@
   transform: translateY(-2px);
 }
 
-.plan-button.primary:hover {
+.plan-button.recommended-btn:hover {
   box-shadow: 0 8px 25px rgba(46, 97, 85, 0.4);
 }
 

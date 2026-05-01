@@ -73,6 +73,7 @@ export default function Footer() {
             <li><Link href="/וואטסאפ-crm/">{isEn ? 'WhatsApp CRM' : 'WhatsApp CRM'}</Link></li>
             <li><Link href="/חתימה-דיגיטלית/">{isEn ? 'Digital Signature' : 'חתימה דיגיטלית'}</Link></li>
             <li><Link href="/הצעות-מחיר/">{isEn ? 'Price Quotes' : 'הצעות מחיר'}</Link></li>
+            <li><Link href="/multi-number-whatsapp/">{isEn ? 'Multi-Number Management' : 'ניהול כמה מספרים'}</Link></li>
             <li><Link href="/ניהול-מדיה/">{isEn ? 'Marketing Reports' : 'דוחות שיווק'}</Link></li>
           </ul>
         </div>
@@ -150,6 +151,7 @@ export default function Footer() {
               <Link href="/וואטסאפ-עסקי/">וואטסאפ עסקי</Link>
               <Link href="/הצעות-מחיר/">הצעות מחיר</Link>
               <Link href="/חתימה-דיגיטלית/">חתימה דיגיטלית</Link>
+              <Link href="/multi-number-whatsapp/">ניהול כמה מספרים</Link>
             </div>
           </div>
           <div className={styles.seoLinksGroup}>

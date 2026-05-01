@@ -141,7 +141,7 @@ export default function OnboardingPageContent() {
                 ))}
               </ul>
               <div className={`${styles.selectIndicator} ${selectedPlan === plan.id ? styles.selectIndicatorActive : ''}`}>
-                {selectedPlan === plan.id ? '✓ נבחר' : 'בחר'}
+                {selectedPlan === plan.id ? '✓ נבחר' : (plan.recommended ? '⭐ בחר — מומלץ' : 'בחר תוכנית')}
               </div>
             </div>
           ))}
