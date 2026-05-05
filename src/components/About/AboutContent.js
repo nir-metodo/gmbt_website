@@ -25,7 +25,7 @@ export default function AboutContent() {
     url: `${SITE}/about/`,
     image: `${SITE}/nir-segas.jpg`,
     sameAs: [
-      'https://www.linkedin.com/in/nirsegas',
+      'https://www.linkedin.com/in/nir-segas-57524076/',
       'https://www.linkedin.com/company/gambot-platform',
     ],
     worksFor: {
@@ -117,24 +117,54 @@ export default function AboutContent() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* Hero */}
+      {/* Hero — About Gambot (primary focus) */}
       <section className={styles.hero}>
         <div className={styles.heroContainer}>
           <div className={styles.heroBreadcrumb}>
             <Link href="/">{isHe ? 'דף בית' : 'Home'}</Link> / <span>{isHe ? 'אודות' : 'About'}</span>
           </div>
           <h1 className={styles.heroTitle}>
-            {isHe ? 'ניר סגס — מייסד גמבוט' : 'Nir Segas — Founder of Gambot'}
+            {isHe ? 'אודות גמבוט' : 'About Gambot'}
           </h1>
           <p className={styles.heroSubtitle}>
             {isHe
-              ? 'הסיפור מאחורי הפלטפורמה הישראלית המובילה לניהול WhatsApp Business API'
-              : 'The story behind Israel\'s leading WhatsApp Business API platform'}
+              ? 'הפלטפורמה הישראלית המובילה לניהול WhatsApp Business API — אוטומציה, בוטים, CRM והכל במקום אחד'
+              : 'Israel\'s leading WhatsApp Business API platform — automation, bots, CRM and everything in one place'}
           </p>
         </div>
       </section>
 
-      {/* Founder Section */}
+      {/* About Gambot Section — FIRST */}
+      <section className={styles.aboutSection}>
+        <div className={styles.sectionContainer}>
+          <h2>{isHe ? 'מה זה גמבוט?' : 'What is Gambot?'}</h2>
+          <p className={styles.aboutLead}>
+            {isHe
+              ? 'גמבוט היא פלטפורמת WhatsApp Business API ישראלית, שפותחה על ידי ניר סגס, ומאפשרת לעסקים לנהל את כל התקשורת עם הלקוחות ממקום אחד — בלי קוד, בלי מורכבות. כשותפי מטא רשמיים, אנחנו מציעים כלים מתקדמים לשיווק, שירות ומכירות דרך וואטסאפ.'
+              : 'Gambot is an Israeli WhatsApp Business API platform, developed by Nir Segas, enabling businesses to manage all customer communication from one place — no code, no complexity. As official Meta Partners, we offer advanced tools for marketing, service and sales through WhatsApp.'}
+          </p>
+          <div className={styles.statsGrid}>
+            <div className={styles.statCard}>
+              <div className={styles.statNumber}>24/7</div>
+              <div className={styles.statLabel}>{isHe ? 'זמינות מלאה' : 'Full Availability'}</div>
+            </div>
+            <div className={styles.statCard}>
+              <div className={styles.statNumber}>100%</div>
+              <div className={styles.statLabel}>{isHe ? 'ישראלי' : 'Israeli'}</div>
+            </div>
+            <div className={styles.statCard}>
+              <div className={styles.statNumber}>No-Code</div>
+              <div className={styles.statLabel}>{isHe ? 'ללא קוד' : 'No Coding'}</div>
+            </div>
+            <div className={styles.statCard}>
+              <div className={styles.statNumber}>Meta</div>
+              <div className={styles.statLabel}>{isHe ? 'שותף רשמי' : 'Official Partner'}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Section — Nir Segas (SEO: links "ניר סגס" to Gambot) */}
       <section className={styles.founderSection}>
         <div className={styles.founderContainer}>
           <div className={styles.founderImage}>
@@ -149,16 +179,16 @@ export default function AboutContent() {
               />
             </div>
             <div className={styles.founderSocial}>
-              <a href="https://www.linkedin.com/in/nirsegas" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={styles.socialLink}>
+              <a href="https://www.linkedin.com/in/nir-segas-57524076/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={styles.socialLink}>
                 <FaLinkedinIn />
               </a>
-              <a href="https://wa.me/97233768997" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className={styles.socialLink}>
+              <a href="https://wa.me/972559859052" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className={styles.socialLink}>
                 <FaWhatsapp />
               </a>
             </div>
           </div>
           <div className={styles.founderBio}>
-            <h2>{isHe ? 'מי זה ניר סגס?' : 'Who is Nir Segas?'}</h2>
+            <h2>{isHe ? 'המייסד — ניר סגס' : 'The Founder — Nir Segas'}</h2>
             <p>
               {isHe
                 ? 'ניר סגס הוא מייסד ומנכ"ל גמבוט (Gambot) — הפלטפורמה הישראלית המובילה לניהול WhatsApp Business API. עם רקע עשיר בפיתוח תוכנה, אוטומציה עסקית ובינה מלאכותית, ניר הקים את גמבוט מתוך חזון ברור: לאפשר לכל עסק בישראל לנהל תקשורת לקוחות מתקדמת בוואטסאפ — בלי קוד, בלי מורכבות.'
@@ -182,36 +212,6 @@ export default function AboutContent() {
               <span>{isHe ? 'שיווק דיגיטלי' : 'Digital Marketing'}</span>
               <span>SaaS</span>
               <span>Chatbots</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Gambot Section */}
-      <section className={styles.aboutSection}>
-        <div className={styles.sectionContainer}>
-          <h2>{isHe ? 'על גמבוט' : 'About Gambot'}</h2>
-          <p className={styles.aboutLead}>
-            {isHe
-              ? 'גמבוט היא פלטפורמת WhatsApp Business API ישראלית, שפותחה על ידי ניר סגס, ומאפשרת לעסקים לנהל את כל התקשורת עם הלקוחות ממקום אחד.'
-              : 'Gambot is an Israeli WhatsApp Business API platform, developed by Nir Segas, enabling businesses to manage all customer communication from one place.'}
-          </p>
-          <div className={styles.statsGrid}>
-            <div className={styles.statCard}>
-              <div className={styles.statNumber}>24/7</div>
-              <div className={styles.statLabel}>{isHe ? 'זמינות מלאה' : 'Full Availability'}</div>
-            </div>
-            <div className={styles.statCard}>
-              <div className={styles.statNumber}>100%</div>
-              <div className={styles.statLabel}>{isHe ? 'ישראלי' : 'Israeli'}</div>
-            </div>
-            <div className={styles.statCard}>
-              <div className={styles.statNumber}>No-Code</div>
-              <div className={styles.statLabel}>{isHe ? 'ללא קוד' : 'No Coding'}</div>
-            </div>
-            <div className={styles.statCard}>
-              <div className={styles.statNumber}>Meta</div>
-              <div className={styles.statLabel}>{isHe ? 'שותף רשמי' : 'Official Partner'}</div>
             </div>
           </div>
         </div>

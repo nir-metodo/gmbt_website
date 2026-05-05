@@ -258,6 +258,41 @@ export default function PublicQuotePage() {
           </div>
         )}
 
+        {/* Bank Details */}
+        {quote.showBankDetails && quote.bankDetails && (quote.bankDetails.bankName || quote.bankDetails.accountNumber) && (
+          <div style={{ ...styles.section, background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 8, padding: '16px 20px' }}>
+            <div style={{ ...styles.sectionTitle, color: '#16a34a' }}>🏦 פרטי בנק לתשלום</div>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, marginTop: 6 }}>
+              <tbody>
+                {quote.bankDetails.bankName && (
+                  <tr>
+                    <td style={{ padding: '4px 0', fontWeight: 600, width: 120, color: '#374151' }}>שם הבנק:</td>
+                    <td style={{ padding: '4px 0', color: '#1f2937' }}>{quote.bankDetails.bankName}</td>
+                  </tr>
+                )}
+                {quote.bankDetails.branchNumber && (
+                  <tr>
+                    <td style={{ padding: '4px 0', fontWeight: 600, color: '#374151' }}>מספר סניף:</td>
+                    <td style={{ padding: '4px 0', color: '#1f2937' }}>{quote.bankDetails.branchNumber}</td>
+                  </tr>
+                )}
+                {quote.bankDetails.accountNumber && (
+                  <tr>
+                    <td style={{ padding: '4px 0', fontWeight: 600, color: '#374151' }}>מספר חשבון:</td>
+                    <td style={{ padding: '4px 0', color: '#1f2937', fontWeight: 700 }}>{quote.bankDetails.accountNumber}</td>
+                  </tr>
+                )}
+                {quote.bankDetails.accountName && (
+                  <tr>
+                    <td style={{ padding: '4px 0', fontWeight: 600, color: '#374151' }}>על שם:</td>
+                    <td style={{ padding: '4px 0', color: '#1f2937' }}>{quote.bankDetails.accountName}</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+
         {/* Terms */}
         {quote.terms && (
           <div style={styles.section}>

@@ -283,14 +283,14 @@ export const PAGE_META = {
     og: { title: 'ניהול כמה מספרי וואטסאפ | גמבוט', description: 'כל המספרים. מקום אחד. שליטה מלאה — צ\'אטים, קמפיינים, בוטים ודוחות.' },
   },
   about: {
-    title: 'ניר סגס — מייסד גמבוט | Nir Segas — Founder of Gambot',
-    description: 'ניר סגס הוא מייסד ומנכ"ל גמבוט (Gambot), פלטפורמת WhatsApp Business API המובילה בישראל. מומחה לאוטומציה עסקית, בינה מלאכותית ו-WhatsApp API.',
-    keywords: 'ניר סגס, Nir Segas, גמבוט, Gambot, מייסד גמבוט, WhatsApp API ישראל, אודות גמבוט, Gambot founder, Gambot CEO',
+    title: 'אודות גמבוט | ניר סגס מייסד ומנכ״ל | About Gambot',
+    description: 'גמבוט (Gambot) — פלטפורמת WhatsApp Business API המובילה בישראל. הוקמה על ידי ניר סגס (Nir Segas). שותף מטא רשמי. אוטומציה, בוטים מבוססי AI, CRM ושיווק בוואטסאפ.',
+    keywords: 'גמבוט, Gambot, אודות גמבוט, ניר סגס, Nir Segas, מייסד גמבוט, WhatsApp API ישראל, Gambot founder, Gambot CEO, WhatsApp Business API',
     canonical: 'https://gambot.co.il/about/',
     hreflang: { he: 'https://gambot.co.il/about/', en: 'https://gambot.co.il/about/' },
     og: {
-      title: 'ניר סגס — מייסד גמבוט | Nir Segas',
-      description: 'מייסד ומנכ"ל גמבוט, פלטפורמת WhatsApp Business API המובילה בישראל. שותף מטא רשמי.',
+      title: 'אודות גמבוט | ניר סגס — מייסד ומנכ״ל',
+      description: 'גמבוט — פלטפורמת WhatsApp Business API המובילה בישראל. הוקמה על ידי ניר סגס. שותף מטא רשמי.',
     },
   },
 };
