@@ -31,7 +31,7 @@ function SharedTokenInner() {
           setToken(data.token);
           setOrganization(data.organization);
           setStatus('success');
-          setTimeLeft(120);
+          setTimeLeft(data.hasExpiry !== false ? 120 : null);
         } else {
           setStatus(data.message === 'expired' ? 'expired' : 'error');
         }
@@ -96,12 +96,16 @@ function SharedTokenInner() {
               {copied ? '✅ הועתק!' : '📋 העתק טוקן'}
             </button>
 
-            <div style={styles.timer}>
-              ⏱️ הדף יתרוקן בעוד <strong>{Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</strong>
-            </div>
+            {timeLeft !== null && (
+              <div style={styles.timer}>
+                ⏱️ הדף יתרוקן בעוד <strong>{Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</strong>
+              </div>
+            )}
 
             <div style={styles.warning}>
-              ⚠️ לאחר סגירת הדף או תום הזמן, הטוקן לא יהיה זמין יותר דרך קישור זה.
+              {timeLeft !== null
+                ? '⚠️ לאחר סגירת הדף או תום הזמן, הטוקן לא יהיה זמין יותר דרך קישור זה.'
+                : '⚠️ קישור זה חד-פעמי. לאחר סגירת הדף הטוקן לא יהיה זמין יותר.'}
             </div>
           </>
         )}
@@ -110,7 +114,7 @@ function SharedTokenInner() {
           <div style={styles.center}>
             <div style={styles.expiredIcon}>⏰</div>
             <h2 style={styles.expiredTitle}>הקישור פג תוקף</h2>
-            <p style={styles.text}>הקישור כבר נצפה או שעבר זמן התוקף שלו (5 דקות).</p>
+            <p style={styles.text}>הקישור כבר נצפה או שעבר זמן התוקף שלו.</p>
             <p style={styles.textSmall}>בקש מבעל החשבון ליצור קישור חדש.</p>
           </div>
         )}
