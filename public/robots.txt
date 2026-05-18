@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# Block internal app routes
+# Block internal app routes (served from app.gambot.co.il)
 Disallow: /api/
 Disallow: /chats/
 Disallow: /contacts/
@@ -12,19 +12,6 @@ Disallow: /dashboard/
 Disallow: /settings/
 Disallow: /users/
 Disallow: /leads/
-
-# Block AI training bots
-User-agent: CCBot
-Disallow: /
-
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: GPTBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
 
 Sitemap: https://gambot.co.il/sitemap.xml
 Sitemap: https://gambot.co.il/video-sitemap.xml

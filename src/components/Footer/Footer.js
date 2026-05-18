@@ -66,7 +66,9 @@ export default function Footer() {
           <h3>{isEn ? 'Solutions' : 'פתרונות'}</h3>
           <ul>
             <li><Link href="/בוט-וואטסאפ/">{isEn ? 'WhatsApp Bots' : 'בוטים לוואטסאפ'}</Link></li>
-            <li><Link href="/בוט-לידים-וואטסאפ/">{isEn ? 'AI Bot for WhatsApp' : 'בוט AI לוואטסאפ'}</Link></li>
+            <li><Link href="/בוט-לידים-וואטסאפ/">{isEn ? 'AI Leads Bot' : 'בוט לידים AI'}</Link></li>
+            <li><Link href="/בוט-שירות-לקוחות-וואטסאפ/">{isEn ? 'Customer Service Bot' : 'בוט שירות לקוחות'}</Link></li>
+            <li><Link href="/בוט-מכירות-וואטסאפ/">{isEn ? 'Sales Bot' : 'בוט מכירות'}</Link></li>
             <li><Link href="/אוטומציה-בוואטסאפ/">{isEn ? 'WhatsApp Automations' : 'אוטומציות וואטסאפ'}</Link></li>
             <li><Link href="/שיווק-בוואטסאפ/">{isEn ? 'Marketing & Campaigns' : 'שיווק וקמפיינים'}</Link></li>
             <li><Link href="/מערכת-שיווק-בוואטסאפ/">{isEn ? 'Messaging System' : 'מערכת התכתבות'}</Link></li>

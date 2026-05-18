@@ -33,6 +33,10 @@ const DATA = {
       { href: '/הצעות-מחיר', icon: '💰', title: 'הצעות מחיר', desc: 'יצרו ושלחו הצעות מחיר מקצועיות ישירות בוואטסאפ' },
       { href: '/חתימה-דיגיטלית', icon: '✍️', title: 'חתימה דיגיטלית', desc: 'חתימה על מסמכים ישירות בוואטסאפ — מהירה וחוקית' },
       { href: '/ניהול-מדיה', icon: '🗄️', title: 'ניהול מדיה', desc: 'ארגון ושיתוף קבצים כמו Google Drive — ישירות בוואטסאפ' },
+      { href: '/ניהול-משימות', icon: '📋', title: 'ניהול משימות', desc: 'צרו, שייכו ועקבו אחר משימות — ישירות מהוואטסאפ' },
+      { href: '/חשבוניות-דיגיטליות', icon: '🧾', title: 'חשבוניות דיגיטליות', desc: 'הפקת חשבוניות מס מאושרות רשות המסים — ישירות בוואטסאפ' },
+      { href: '/דיווח-שעות-עובדים', icon: '⏱️', title: 'דיווח שעות', desc: 'עובדים מדווחים כניסה/יציאה בוואטסאפ — מעקב ודוחות חודשיים' },
+      { href: '/טלפוניה-וואטסאפ', icon: '📞', title: 'טלפוניה + וואטסאפ', desc: 'לא ענה? אוטומטית הודעת וואטסאפ. הקלטות ומעקב שיחות' },
     ],
     whyTitle: '💡 למה גמבוט?',
     features: [
@@ -110,6 +114,10 @@ const DATA = {
       { href: '/ניהול-מדיה', icon: '🗄️', title: 'Media Management', desc: 'Organize and share files like Google Drive — directly in WhatsApp' },
       { href: '/זימון-תורים-וואטסאפ', icon: '📅', title: 'Appointment Scheduling', desc: 'Smart calendar, automatic confirmations and reminders' },
       { href: '/בוט-שירות-לקוחות-וואטסאפ', icon: '🎧', title: 'Customer Service', desc: 'Smart routing, high CSAT and 80% automated' },
+      { href: '/ניהול-משימות', icon: '📋', title: 'Task Management', desc: 'Create, assign and track tasks — directly from WhatsApp' },
+      { href: '/חשבוניות-דיגיטליות', icon: '🧾', title: 'Digital Invoices', desc: 'Generate Tax Authority approved invoices — send via WhatsApp' },
+      { href: '/דיווח-שעות-עובדים', icon: '⏱️', title: 'Time Tracking', desc: 'Employees clock in/out on WhatsApp — monthly reports included' },
+      { href: '/טלפוניה-וואטסאפ', icon: '📞', title: 'Telephony + WhatsApp', desc: 'Missed call? Auto WhatsApp message. Call recording & tracking' },
     ],
     whyTitle: '💡 Why Gambot?',
     features: [
