@@ -10,14 +10,15 @@ export const metadata = {
     apple: '/apple-icon.png',
   },
   title: {
-    default: 'Gambot | מערכת WhatsApp API מובילה בישראל',
-    template: '%s | גמבוט',
+    default: 'Gambot | WhatsApp Business API Platform Israel | גמבוט',
+    template: '%s | Gambot',
   },
-  description: 'גמבוט - שותף מטא רשמי. בוט AI לוואטסאפ, אוטומציה, קמפיינים ושירות לקוחות 24/7. התחילו ניסיון חינם.',
+  description: 'Gambot (גמבוט) — Israel\'s #1 WhatsApp Business API platform. Official Meta Partner. AI chatbot, automation, campaigns, CRM & customer service. Free trial.',
   keywords: [
-    'WhatsApp API ישראל', 'בוט וואטסאפ', 'אוטומציה וואטסאפ', 'שיווק בוואטסאפ',
-    'WhatsApp Business API', 'בוט AI', 'מערכת וואטסאפ עסקי', 'Gambot', 'גמבוט',
-    'CRM וואטסאפ', 'דיוור בוואטסאפ', 'קמפיינים בוואטסאפ',
+    'Gambot', 'gambot', 'גמבוט', 'Gambot WhatsApp', 'Gambot Israel',
+    'WhatsApp API Israel', 'WhatsApp Business API', 'WhatsApp bot Israel',
+    'WhatsApp automation', 'WhatsApp CRM', 'בוט וואטסאפ', 'אוטומציה וואטסאפ',
+    'שיווק בוואטסאפ', 'מערכת וואטסאפ עסקי',
   ],
   authors: [
     { name: 'Gambot', url: 'https://gambot.co.il' },
@@ -35,8 +36,8 @@ export const metadata = {
     type: 'website',
     locale: 'he_IL',
     alternateLocale: 'en_US',
-    siteName: 'Gambot - WhatsApp API ישראל',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Gambot WhatsApp API' }],
+    siteName: 'Gambot — WhatsApp Business API Israel',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Gambot - WhatsApp Business API Platform Israel' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -45,10 +46,11 @@ export const metadata = {
   },
   alternates: {
     canonical: 'https://gambot.co.il',
-    languages: { 'he': 'https://gambot.co.il', 'en': 'https://gambot.co.il/en' },
+    languages: { 'he-IL': 'https://gambot.co.il', 'en': 'https://gambot.co.il/about/' },
+    types: { 'application/rss+xml': 'https://gambot.co.il/blog/' },
   },
   verification: {
-    google: 'your-google-verification-code', // Replace with actual
+    google: 'REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE',
   },
   other: {
     'geo.region': 'IL',
@@ -68,6 +70,65 @@ export default function RootLayout({ children }) {
         <link
           href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Rubik:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap"
           rel="stylesheet"
+        />
+        {/* Organization + WebSite Schema for brand recognition */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  '@id': 'https://gambot.co.il/#organization',
+                  name: 'Gambot',
+                  alternateName: ['גמבוט', 'Gambot WhatsApp', 'Gambot Israel'],
+                  url: 'https://gambot.co.il',
+                  logo: {
+                    '@type': 'ImageObject',
+                    url: 'https://gambot.co.il/apple-touch-icon.png',
+                    width: 180,
+                    height: 180,
+                  },
+                  description: 'Gambot is Israel\'s leading WhatsApp Business API platform. Official Meta Partner providing AI chatbots, automation, campaigns, and CRM solutions.',
+                  foundingDate: '2020',
+                  founder: { '@type': 'Person', name: 'Nir Segas', alternateName: 'ניר סגס' },
+                  areaServed: { '@type': 'Country', name: 'Israel' },
+                  sameAs: [
+                    'https://www.linkedin.com/company/gambot-platform',
+                    'https://www.facebook.com/gambotwhatsapp',
+                  ],
+                  contactPoint: {
+                    '@type': 'ContactPoint',
+                    contactType: 'customer service',
+                    availableLanguage: ['Hebrew', 'English'],
+                  },
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': 'https://gambot.co.il/#website',
+                  url: 'https://gambot.co.il',
+                  name: 'Gambot',
+                  alternateName: 'גמבוט',
+                  description: 'Gambot — WhatsApp Business API Platform for Israel',
+                  publisher: { '@id': 'https://gambot.co.il/#organization' },
+                  inLanguage: ['he-IL', 'en'],
+                  potentialAction: {
+                    '@type': 'SearchAction',
+                    target: { '@type': 'EntryPoint', urlTemplate: 'https://gambot.co.il/?s={search_term_string}' },
+                    'query-input': 'required name=search_term_string',
+                  },
+                },
+                {
+                  '@type': 'BreadcrumbList',
+                  '@id': 'https://gambot.co.il/#breadcrumb',
+                  itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Gambot', item: 'https://gambot.co.il/' },
+                  ],
+                },
+              ],
+            }),
+          }}
         />
         {/* Google Analytics + Google Ads */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18018385768" />

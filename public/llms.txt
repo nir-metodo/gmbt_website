@@ -1,0 +1,82 @@
+# Gambot
+
+> Gambot is an all-in-one WhatsApp Business API platform for businesses. It provides AI chatbots, marketing automation, CRM, lead management, and customer service tools — all through WhatsApp.
+
+## Overview
+
+Gambot helps businesses communicate with customers via WhatsApp at scale. The platform combines AI-powered chatbots, workflow automation (Botomation), campaign management, CRM, lead tracking, digital signatures, invoicing, and a shared team inbox — all integrated with WhatsApp Business API.
+
+## Key Features
+
+- **AI WhatsApp Bot**: Intelligent AI assistant that handles customer conversations, qualifies leads, schedules appointments, and provides 24/7 support with natural language understanding.
+- **Botomation (Workflow Automation)**: Visual drag-and-drop automation builder with conditions, loops, HTTP requests, AI actions, and multi-step flows triggered by incoming messages, campaigns, or events.
+- **WhatsApp Marketing Campaigns**: Send broadcast campaigns with templates, track delivery/read/click rates, segment audiences, and run A/B tests.
+- **CRM & Lead Management**: Built-in CRM with sales pipelines, lead scoring, task management, and complete customer profiles — all connected to WhatsApp conversations.
+- **Shared Team Inbox**: Multiple agents managing conversations from one screen with assignment rules, notes, tags, and real-time collaboration.
+- **Digital Signatures**: Send documents for e-signature directly through WhatsApp.
+- **Invoicing & Quotes**: Create and send professional quotes and invoices via WhatsApp with tracking.
+- **Multi-Number Support**: Manage multiple WhatsApp numbers and WABA accounts from a single dashboard.
+- **WhatsApp Coexistence**: Use Gambot alongside WhatsApp Web/Mobile simultaneously without conflicts.
+- **Integrations**: Connect with Google Calendar, Gmail, spreadsheets, custom HTTP APIs, and more.
+- **Bot Builder**: Visual flow-based bot designer for creating complex conversation flows without coding.
+
+## Use Cases
+
+- Customer service automation (24/7 support bots)
+- Lead generation and qualification
+- Appointment scheduling and reminders
+- E-commerce order notifications and support
+- Marketing campaigns and promotions
+- Sales pipeline management
+- Document signing workflows
+- Multi-agent customer support
+
+## Industries
+
+- Real estate
+- Healthcare and clinics
+- Retail and e-commerce
+- Professional services
+- Education
+- Insurance
+- Automotive
+- Hospitality
+
+## Pricing
+
+Gambot offers tiered pricing plans based on number of contacts and features needed. Visit https://gambot.co.il/PriceList/ for current pricing.
+
+## Getting Started
+
+1. Sign up at https://gambot.co.il/
+2. Connect your WhatsApp Business number
+3. Set up your first bot or campaign
+4. Start engaging customers
+
+## Documentation & Guides
+
+- Getting started guide: https://gambot.co.il/guide/create-account
+- Bot builder guide: https://gambot.co.il/guide/bot-builder
+- Botomation guide: https://gambot.co.il/guide/botomation
+- Template creation: https://gambot.co.il/guide/create-template
+- Campaign guide: https://gambot.co.il/guide/create-campaigns
+- AI setup guide: https://gambot.co.il/guide/use-gambot-ai
+- Contact management: https://gambot.co.il/guide/manage-contacts
+- WhatsApp coexistence: https://gambot.co.il/guide/whatsapp-coexistence
+
+## Blog
+
+Latest articles about WhatsApp Business, AI chatbots, marketing automation, and customer engagement: https://gambot.co.il/Blog/
+
+## Contact
+
+- Website: https://gambot.co.il/
+- Contact page: https://gambot.co.il/ContactUs/
+
+## Technical
+
+- Platform: Web-based SaaS (app.gambot.co.il)
+- API: WhatsApp Business API (Cloud API)
+- AI Models: GPT-4o, GPT-4o-mini (customizable per bot)
+- Languages: Hebrew, English, Arabic (UI and bot support)
+- Mobile app: Available for iOS and Android

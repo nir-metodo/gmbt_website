@@ -13,5 +13,24 @@ Disallow: /settings/
 Disallow: /users/
 Disallow: /leads/
 
+# AI/LLM crawlers - explicitly allow
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Cohere-AI
+Allow: /
+
 Sitemap: https://gambot.co.il/sitemap.xml
 Sitemap: https://gambot.co.il/video-sitemap.xml

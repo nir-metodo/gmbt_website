@@ -4,11 +4,11 @@
  */
 export const PAGE_META = {
   home: {
-    title: 'גמבוט | מערכת WhatsApp API מובילה בישראל | אוטומציה, קמפיינים, CRM',
-    description: 'גמבוט - שותף מטא רשמי בישראל. אוטומציה חכמה בוואטסאפ, קמפיינים, CRM ודיוור המוני. הכל ללא קוד. ניסיון חינם עכשיו.',
-    keywords: 'WhatsApp API ישראל, בוט וואטסאפ, אוטומציה וואטסאפ, שיווק בוואטסאפ, מערכת וואטסאפ עסקי, Gambot, גמבוט',
+    title: 'Gambot | גמבוט — WhatsApp Business API Platform Israel | AI Bot, Automation & CRM',
+    description: 'Gambot (גמבוט) — Israel\'s leading WhatsApp Business API platform. Official Meta Partner. AI chatbot, automation, campaigns, CRM & 24/7 customer service. No-code. Free trial.',
+    keywords: 'Gambot, gambot, גמבוט, WhatsApp API Israel, WhatsApp Business API, WhatsApp bot, WhatsApp automation, WhatsApp CRM, WhatsApp marketing Israel, Gambot WhatsApp, Gambot AI',
     canonical: 'https://gambot.co.il/',
-    og: { title: 'גמבוט | מערכת WhatsApp API מובילה בישראל', description: 'שותף מטא רשמי. אוטומציה, קמפיינים, CRM ושירות לקוחות 24/7.' },
+    og: { title: 'Gambot — WhatsApp Business API Platform | Israel #1', description: 'Official Meta Partner. AI chatbot, automation, campaigns, CRM & 24/7 customer service. Free trial.' },
   },
   whatsappBot: {
     title: 'בוט לוואטסאפ | Gambot - בנו בוט ללא קוד | ישראל 2026',
@@ -411,14 +411,14 @@ export const PAGE_META = {
     },
   },
   about: {
-    title: 'אודות גמבוט | ניר סגס מייסד ומנכ״ל | About Gambot',
-    description: 'גמבוט (Gambot) — פלטפורמת WhatsApp Business API המובילה בישראל. הוקמה על ידי ניר סגס (Nir Segas). שותף מטא רשמי. אוטומציה, בוטים מבוססי AI, CRM ושיווק בוואטסאפ.',
-    keywords: 'גמבוט, Gambot, אודות גמבוט, ניר סגס, Nir Segas, מייסד גמבוט, WhatsApp API ישראל, Gambot founder, Gambot CEO, WhatsApp Business API',
+    title: 'About Gambot | WhatsApp Business API Platform Israel | Nir Segas, Founder & CEO',
+    description: 'Gambot (גמבוט) — Israel\'s leading WhatsApp Business API platform. Founded by Nir Segas. Official Meta Business Solution Provider. AI chatbots, automation, campaigns, CRM & WhatsApp marketing.',
+    keywords: 'Gambot, gambot, about Gambot, Gambot WhatsApp, Gambot Israel, Nir Segas, ניר סגס, גמבוט, Gambot founder, Gambot CEO, WhatsApp API Israel, WhatsApp Business API platform',
     canonical: 'https://gambot.co.il/about/',
-    hreflang: { he: 'https://gambot.co.il/about/', en: 'https://gambot.co.il/about/' },
+    hreflang: { he: 'https://gambot.co.il/אודות/', en: 'https://gambot.co.il/about/' },
     og: {
-      title: 'אודות גמבוט | ניר סגס — מייסד ומנכ״ל',
-      description: 'גמבוט — פלטפורמת WhatsApp Business API המובילה בישראל. הוקמה על ידי ניר סגס. שותף מטא רשמי.',
+      title: 'About Gambot — Israel\'s #1 WhatsApp Business API Platform',
+      description: 'Gambot — Founded by Nir Segas. Official Meta Partner. Leading WhatsApp API platform in Israel with AI bots, automation & CRM.',
     },
   },
 };
