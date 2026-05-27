@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
 
@@ -97,12 +97,27 @@ export default function PublicQuotePage() {
     </div>
   );
 
+  const [lightboxImages, setLightboxImages] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const openLightbox = useCallback((images) => {
+    if (!images || images.length === 0) return;
+    setLightboxImages(images);
+    setLightboxIndex(0);
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxImages(null);
+    setLightboxIndex(0);
+  }, []);
+
   if (!quote) return null;
 
   const branding = quote.branding || {};
   const primaryColor = branding.primaryColor || '#2e6155';
   const currency = CURRENCY_SYMBOLS[quote.currency] || '₪';
   const items = quote.items || [];
+  const hasAnyImage = items.some(i => i.image || (i.images && i.images.length > 0));
   const status = STATUS_LABELS[quote.status] || { he: quote.status || '', color: '#6b7280' };
 
   const formatNum = (n) => {
@@ -117,6 +132,13 @@ export default function PublicQuotePage() {
   const taxRate = parseFloat(quote.taxRate) || 0;
   const showTax = taxRate > 0 && taxAmount > 0;
 
+  const [actionsOpen, setActionsOpen] = useState(false);
+
+  const handleDownloadPdf = () => {
+    setActionsOpen(false);
+    window.print();
+  };
+
   return (
     <div style={styles.page}>
         <style>{`
@@ -130,6 +152,35 @@ export default function PublicQuotePage() {
         th { padding: 11px 14px; text-align: right; font-size: 14px; font-weight: 600; letter-spacing: 0.3px; }
         td { padding: 10px 14px; text-align: right; }
       `}</style>
+
+      {/* Floating Actions Button */}
+      <div className="no-print" style={styles.fabContainer}>
+        <button
+          onClick={() => setActionsOpen(!actionsOpen)}
+          style={{ ...styles.fabButton, background: primaryColor }}
+        >
+          {actionsOpen ? '✕' : '⚡'}
+          <span style={{ fontSize: 12, fontWeight: 600 }}>פעולות</span>
+        </button>
+        {actionsOpen && (
+          <div style={styles.fabMenu}>
+            <button onClick={handleDownloadPdf} style={styles.fabMenuItem}>
+              <span>📥</span> הורד PDF
+            </button>
+            <button onClick={() => { setActionsOpen(false); window.print(); }} style={styles.fabMenuItem}>
+              <span>🖨️</span> הדפס
+            </button>
+            {quote.contactPhone && (
+              <button
+                onClick={() => { setActionsOpen(false); window.open(`https://wa.me/${quote.contactPhone.replace(/[^0-9]/g, '')}`, '_blank'); }}
+                style={styles.fabMenuItem}
+              >
+                <span>💬</span> WhatsApp
+              </button>
+            )}
+          </div>
+        )}
+      </div>
 
       <div style={styles.container}>
         {/* Header */}
@@ -172,6 +223,7 @@ export default function PublicQuotePage() {
             <table>
               <thead>
                 <tr style={{ background: primaryColor, color: 'white' }}>
+                  {hasAnyImage && <th style={{ width: 50 }}></th>}
                   <th style={{ textAlign: 'right' }}>תיאור</th>
                   <th style={{ textAlign: 'center', whiteSpace: 'nowrap', width: 70 }}>כמות</th>
                   <th style={{ textAlign: 'center', whiteSpace: 'nowrap', width: 120 }}>מחיר יחידה</th>
@@ -184,7 +236,7 @@ export default function PublicQuotePage() {
                   if (item.type === 'section') {
                     return (
                       <tr key={idx}>
-                        <td colSpan={5} style={{ background: '#f8fafc', fontWeight: 700, color: primaryColor, paddingTop: 16, paddingBottom: 8, borderBottom: `2px solid ${primaryColor}20` }}>
+                        <td colSpan={hasAnyImage ? 6 : 5} style={{ background: '#f8fafc', fontWeight: 700, color: primaryColor, paddingTop: 16, paddingBottom: 8, borderBottom: `2px solid ${primaryColor}20` }}>
                           {item.description}
                         </td>
                       </tr>
@@ -194,8 +246,33 @@ export default function PublicQuotePage() {
                   const price = parseFloat(item.unitPrice) || 0;
                   const disc = parseFloat(item.discount) || 0;
                   const lineTotal = qty * price * (1 - disc / 100);
+                  const itemImages = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : []);
+                  const hasMultiple = itemImages.length > 1;
                   return (
                     <tr key={idx} style={{ borderBottom: '1px solid #e5e7eb', background: idx % 2 === 0 ? '#fff' : '#f9fafb' }}>
+                      {hasAnyImage && (
+                        <td style={{ textAlign: 'center', padding: '4px', width: 50 }}>
+                          {itemImages.length > 0 && (
+                            <div
+                              style={{ position: 'relative', display: 'inline-block', cursor: hasMultiple ? 'pointer' : 'default' }}
+                              onClick={() => hasMultiple && openLightbox(itemImages)}
+                            >
+                              <img src={itemImages[0]} alt="" style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 6, border: '1px solid #e5e7eb' }} />
+                              {hasMultiple && (
+                                <span style={{
+                                  position: 'absolute', bottom: -2, right: -2,
+                                  background: primaryColor, color: '#fff', fontSize: 9, fontWeight: 700,
+                                  width: 16, height: 16, borderRadius: '50%',
+                                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                  border: '1.5px solid white'
+                                }}>
+                                  {itemImages.length}
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </td>
+                      )}
                       <td>{item.description || ''}</td>
                       <td style={{ textAlign: 'center' }}>{qty}</td>
                       <td style={{ textAlign: 'center' }}>{currency}{formatNum(price)}</td>
@@ -316,6 +393,79 @@ export default function PublicQuotePage() {
           </a>
         </div>
       </div>
+
+      {/* Image Lightbox */}
+      {lightboxImages && (
+        <div
+          style={{
+            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)',
+            zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexDirection: 'column', gap: 16
+          }}
+          onClick={closeLightbox}
+        >
+          <div style={{ position: 'relative', maxWidth: '90vw', maxHeight: '75vh' }} onClick={e => e.stopPropagation()}>
+            <img
+              src={lightboxImages[lightboxIndex]}
+              alt=""
+              style={{ maxWidth: '90vw', maxHeight: '75vh', objectFit: 'contain', borderRadius: 8 }}
+            />
+            {lightboxImages.length > 1 && (
+              <>
+                <button
+                  onClick={() => setLightboxIndex(i => (i - 1 + lightboxImages.length) % lightboxImages.length)}
+                  style={{
+                    position: 'absolute', top: '50%', right: -50, transform: 'translateY(-50%)',
+                    background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%',
+                    width: 36, height: 36, fontSize: 20, cursor: 'pointer', display: 'flex',
+                    alignItems: 'center', justifyContent: 'center', fontWeight: 700
+                  }}
+                >›</button>
+                <button
+                  onClick={() => setLightboxIndex(i => (i + 1) % lightboxImages.length)}
+                  style={{
+                    position: 'absolute', top: '50%', left: -50, transform: 'translateY(-50%)',
+                    background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%',
+                    width: 36, height: 36, fontSize: 20, cursor: 'pointer', display: 'flex',
+                    alignItems: 'center', justifyContent: 'center', fontWeight: 700
+                  }}
+                >‹</button>
+              </>
+            )}
+          </div>
+          {/* Thumbnails */}
+          {lightboxImages.length > 1 && (
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }} onClick={e => e.stopPropagation()}>
+              {lightboxImages.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt=""
+                  onClick={() => setLightboxIndex(i)}
+                  style={{
+                    width: 56, height: 56, objectFit: 'cover', borderRadius: 6, cursor: 'pointer',
+                    border: i === lightboxIndex ? `3px solid ${primaryColor}` : '3px solid transparent',
+                    opacity: i === lightboxIndex ? 1 : 0.6, transition: 'all 0.15s'
+                  }}
+                />
+              ))}
+            </div>
+          )}
+          {/* Close button */}
+          <button
+            onClick={closeLightbox}
+            style={{
+              position: 'absolute', top: 20, left: 20,
+              background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%',
+              width: 36, height: 36, fontSize: 20, cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700
+            }}
+          >✕</button>
+          <div style={{ color: '#fff', fontSize: 13, opacity: 0.7 }}>
+            {lightboxIndex + 1} / {lightboxImages.length}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -470,5 +620,60 @@ const styles = {
     borderTop: '4px solid #2d6a4f',
     borderRadius: '50%',
     animation: 'spin 1s linear infinite',
+  },
+  fabContainer: {
+    position: 'fixed',
+    bottom: 24,
+    left: 24,
+    zIndex: 1000,
+    display: 'flex',
+    flexDirection: 'column-reverse',
+    alignItems: 'flex-start',
+    gap: 8,
+  },
+  fabButton: {
+    width: 56,
+    height: 56,
+    borderRadius: '50%',
+    border: 'none',
+    color: 'white',
+    fontSize: 20,
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 2,
+    boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+    transition: 'transform 0.2s',
+  },
+  fabMenu: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 6,
+    padding: '8px 0',
+    background: 'white',
+    borderRadius: 12,
+    boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+    border: '1px solid #e5e7eb',
+    minWidth: 150,
+    overflow: 'hidden',
+  },
+  fabMenuItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    padding: '10px 18px',
+    border: 'none',
+    background: 'transparent',
+    cursor: 'pointer',
+    fontSize: 14,
+    fontWeight: 500,
+    color: '#374151',
+    fontFamily: "'Heebo', Arial, sans-serif",
+    textAlign: 'right',
+    direction: 'rtl',
+    transition: 'background 0.15s',
+    whiteSpace: 'nowrap',
   },
 };
