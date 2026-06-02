@@ -93,8 +93,9 @@ const WabaOnboarding = ({ videoUrl, onPrevStep, organization, email, hasSim, use
                 <p className="waba-subtitle">{getWabaText('wabaOnboarding.header.subtitle')}</p>
             </div>
 
-            {/* ✅ Mode selection was removed - user already selected in Step 2 (SimSelection) */}
-            
+            {/* Tutorial Video Button - prominent placement at top */}
+            <TutorialVideoButton step={5} />
+
             {/* Show content */}
             <div className="waba-content">
                 {/* Video Section */}
@@ -295,8 +296,6 @@ const WabaOnboarding = ({ videoUrl, onPrevStep, organization, email, hasSim, use
                 </button>
             </div>
 
-            {/* Tutorial Video Button - Shows setup video (step 5+) */}
-            <TutorialVideoButton step={5} />
         </div>
     );
 };

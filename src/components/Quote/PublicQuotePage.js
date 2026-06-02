@@ -48,6 +48,20 @@ export default function PublicQuotePage() {
   const [quote, setQuote] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [lightboxImages, setLightboxImages] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [actionsOpen, setActionsOpen] = useState(false);
+
+  const openLightbox = useCallback((images) => {
+    if (!images || images.length === 0) return;
+    setLightboxImages(images);
+    setLightboxIndex(0);
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxImages(null);
+    setLightboxIndex(0);
+  }, []);
 
   useEffect(() => {
     const style = document.createElement('style');
@@ -57,16 +71,12 @@ export default function PublicQuotePage() {
     return () => document.getElementById('quote-page-hide')?.remove();
   }, []);
 
-  useEffect(() => {
+  const fetchQuote = useCallback(async () => {
     if (!org || !quoteId) {
       setError('קישור לא תקין');
       setLoading(false);
       return;
     }
-    fetchQuote();
-  }, [org, quoteId]);
-
-  const fetchQuote = async () => {
     try {
       setLoading(true);
       const res = await axios.get(`${API_BASE}/GetPublicQuoteById?org=${encodeURIComponent(org)}&quoteId=${encodeURIComponent(quoteId)}`);
@@ -81,7 +91,11 @@ export default function PublicQuotePage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [org, quoteId]);
+
+  useEffect(() => {
+    fetchQuote();
+  }, [fetchQuote]);
 
   if (loading) return (
     <div style={styles.centered}>
@@ -96,20 +110,6 @@ export default function PublicQuotePage() {
       <p style={{ color: '#ef4444', fontSize: 18 }}>{error}</p>
     </div>
   );
-
-  const [lightboxImages, setLightboxImages] = useState(null);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
-
-  const openLightbox = useCallback((images) => {
-    if (!images || images.length === 0) return;
-    setLightboxImages(images);
-    setLightboxIndex(0);
-  }, []);
-
-  const closeLightbox = useCallback(() => {
-    setLightboxImages(null);
-    setLightboxIndex(0);
-  }, []);
 
   if (!quote) return null;
 
@@ -131,8 +131,6 @@ export default function PublicQuotePage() {
   const total = parseFloat(quote.total) || 0;
   const taxRate = parseFloat(quote.taxRate) || 0;
   const showTax = taxRate > 0 && taxAmount > 0;
-
-  const [actionsOpen, setActionsOpen] = useState(false);
 
   const handleDownloadPdf = () => {
     setActionsOpen(false);

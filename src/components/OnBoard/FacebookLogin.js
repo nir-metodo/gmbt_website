@@ -57,6 +57,7 @@
           const data = await response.json();
           if (data?.message?.includes('successfully')) {
               console.log('Business token received:', data.businessToken);
+              try { localStorage.removeItem('gambot_onboarding_state'); } catch {}
               router.push('/login');
               // You can now use the business token to interact with the WhatsApp Business API
           } else {

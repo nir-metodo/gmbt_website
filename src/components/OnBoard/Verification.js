@@ -371,6 +371,7 @@ const Verification = ({
             </div>
             <h2 className="verification-title">{getVerificationText('verification.header.title')}</h2>
             <p className="verification-subtitle">{getVerificationText('verification.header.subtitle')}</p>
+            <TutorialVideoButton step={4} />
           </div>
 
           {/* Security Info */}
@@ -491,8 +492,6 @@ const Verification = ({
           </div>
         </div>
 
-        {/* Tutorial Video Button */}
-        <TutorialVideoButton step={4} />
       </>
     );
   };

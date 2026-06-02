@@ -103,6 +103,7 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
           </div>
           <h2 className="selection-title">{t('planSelection.header.title')}</h2>
           <p className="selection-subtitle">{t('planSelection.header.subtitle')}</p>
+          <TutorialVideoButton step={1} />
         </div>
 
         {/* Enhanced Billing Toggle */}
@@ -322,8 +323,6 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
         </div>
       </div>
 
-      {/* Tutorial Video Button */}
-      <TutorialVideoButton step={1} />
     </div>
   );
 };

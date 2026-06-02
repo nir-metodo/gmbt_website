@@ -135,6 +135,7 @@ const SimSelection = ({
                     </div>
                     <h2 className="sim-title">{t('simSelection.header.title')}</h2>
                     <p className="sim-subtitle">{t('simSelection.header.subtitle')}</p>
+                    <TutorialVideoButton step={2} />
                     
                     {/* ✅ איך לבחור סוג חשבון - Button */}
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
@@ -2069,8 +2070,6 @@ const SimSelection = ({
                 </div>
             )}
 
-            {/* Tutorial Video Button */}
-            <TutorialVideoButton step={2} />
         </div>
     );
 };

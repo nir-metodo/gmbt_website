@@ -372,11 +372,9 @@ const BasicInfo = ({ companyInfo, setCompanyInfo, nextStep, prevStep }) => {
         } catch (error) {
             console.error('❌ [BasicInfo] Error generating organization name:', error);
             
-            // Fallback: sanitize locally
-            let fallbackName = companyInfo.companyName
-                .replace(/\s+/g, '_')
-                .replace(/[^\u0590-\u05FFa-zA-Z0-9_-]/g, '');
-            fallbackName = `${fallbackName}_${companyInfo.idNumber}`;
+            // Fallback: use only company ID (digits) - matches backend SanitizeOrganizationName logic
+            const cleanedId = (companyInfo.idNumber || '').replace(/\D/g, '');
+            const fallbackName = cleanedId || `org_${Date.now()}`;
             
             console.log('⚠️ [BasicInfo] Using fallback org name:', fallbackName);
             return fallbackName;
@@ -517,6 +515,7 @@ const BasicInfo = ({ companyInfo, setCompanyInfo, nextStep, prevStep }) => {
                 </div>
                 <h2 className="basic-info-title">{getBasicInfoText('basicInfo.header.title')}</h2>
                 <p className="basic-info-subtitle">{getBasicInfoText('basicInfo.header.subtitle')}</p>
+                <TutorialVideoButton step={3} />
             </div>
 
             <div className="basic-info-form">
@@ -685,8 +684,6 @@ const BasicInfo = ({ companyInfo, setCompanyInfo, nextStep, prevStep }) => {
                 </button>
             </div>
 
-            {/* Tutorial Video Button */}
-            <TutorialVideoButton step={3} />
         </div>
         </>
     );

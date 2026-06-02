@@ -12,20 +12,31 @@ import { HiOutlineSparkles } from 'react-icons/hi2';
 import { MdSecurity, MdSpeed } from 'react-icons/md';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+    const STORAGE_KEY = 'gambot_onboarding_state';
+
     const OnboardingProcess = () => {
         const { t, isRTL } = useLanguage();
-        const [step, setStep] = useState(1);
-        const [plan, setPlan] = useState(null);
-        const [hasSim, setHasSim] = useState(false);
-        const [useFreeNumber, setUseFreeNumber] = useState(false); // NEW: Track if user wants Meta's free number
-        const [useCoexisting, setUseCoexisting] = useState(false); // NEW: Track if user wants co-existing WABA
-        const [organizationPhoneNumber, setOrganizationPhoneNumber] = useState('');
-        const [isPhoneNumberSelected, setIsPhoneNumberSelected] = useState(false);
-        const [forwardingPhoneNumber, setForwardingPhoneNumber] = useState('');
-        const [paymentCycle, setPaymentCycle] = useState('monthly'); // Default to monthly
+        
+        // Restore saved state from localStorage (survives page refresh)
+        const saved = (() => {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                return raw ? JSON.parse(raw) : null;
+            } catch { return null; }
+        })();
+
+        const [step, setStep] = useState(saved?.step || 1);
+        const [plan, setPlan] = useState(saved?.plan || null);
+        const [hasSim, setHasSim] = useState(saved?.hasSim || false);
+        const [useFreeNumber, setUseFreeNumber] = useState(saved?.useFreeNumber || false);
+        const [useCoexisting, setUseCoexisting] = useState(saved?.useCoexisting || false);
+        const [organizationPhoneNumber, setOrganizationPhoneNumber] = useState(saved?.organizationPhoneNumber || '');
+        const [isPhoneNumberSelected, setIsPhoneNumberSelected] = useState(saved?.isPhoneNumberSelected || false);
+        const [forwardingPhoneNumber, setForwardingPhoneNumber] = useState(saved?.forwardingPhoneNumber || '');
+        const [paymentCycle, setPaymentCycle] = useState(saved?.paymentCycle || 'monthly');
         const [verificationCode, setVerificationCode] = useState('');
 
-        const [companyInfo, setCompanyInfo] = useState({
+        const [companyInfo, setCompanyInfo] = useState(saved?.companyInfo || {
             companyName: '',
             organizationName: '',
             companyUrl: '',
@@ -36,6 +47,17 @@ import { useLanguage } from '@/contexts/LanguageContext';
         });
 
         const videoUrl = 'https://storage.googleapis.com/gambot_src/onboarding-vid.mp4';
+
+        // Persist onboarding state to localStorage on every change
+        useEffect(() => {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    step, plan, hasSim, useFreeNumber, useCoexisting,
+                    organizationPhoneNumber, isPhoneNumberSelected,
+                    forwardingPhoneNumber, paymentCycle, companyInfo
+                }));
+            } catch { }
+        }, [step, plan, hasSim, useFreeNumber, useCoexisting, organizationPhoneNumber, isPhoneNumberSelected, forwardingPhoneNumber, paymentCycle, companyInfo]);
 
         // 🔍 DEBUG: Log organizationName whenever companyInfo changes
         useEffect(() => {

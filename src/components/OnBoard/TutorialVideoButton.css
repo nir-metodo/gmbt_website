@@ -1,41 +1,33 @@
 .tutorial-video-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    padding: 14px 24px;
-    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 12px auto 0;
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1.5px solid #fca5a5;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
-    transition: background-color 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), color 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), border-color 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 1000;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .tutorial-video-btn:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.5);
-    background: linear-gradient(135deg, #ff1a1a 0%, #e60000 100%);
+    background: #fee2e2;
+    border-color: #dc2626;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15);
+    transform: translateY(-1px);
 }
 
 .tutorial-video-btn:active {
-    transform: translateY(-1px) scale(1.02);
+    transform: scale(0.97);
 }
 
 .tvb-tutorial-icon {
-    font-size: 20px;
-    animation: tvb-pulse-icon 2s infinite;
-}
-
-@keyframes tvb-pulse-icon {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    font-size: 18px;
+    color: #dc2626;
 }
 
 /* Modal Overlay */
@@ -377,18 +369,9 @@
 /* Responsive */
 @media (max-width: 768px) {
     .tutorial-video-btn {
-        bottom: 16px;
-        right: 16px;
-        padding: 12px 20px;
-        font-size: 14px;
-    }
-
-    .tutorial-video-btn span {
-        display: none;
-    }
-
-    .tutorial-icon {
-        margin: 0;
+        padding: 14px 24px;
+        font-size: 15px;
+        margin: 12px auto 20px;
     }
 
     .tutorial-video-modal-content {
