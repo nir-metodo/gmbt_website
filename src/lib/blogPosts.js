@@ -6,6 +6,84 @@
  */
 export const BLOG_POSTS = [
   {
+    id: 38,
+    slug: 'מדיניות-הספאם-של-מטא-ציון-איכות-חשבון-חסימות-והתאוששות',
+    slugEn: 'meta-whatsapp-spam-policy-quality-ratings-and-blocks',
+    title: { he: 'מדיניות הספאם של מטא — ציון איכות, חסימות, ואיך להישאר ירוק', en: 'Meta WhatsApp Spam Policy — Quality Scores, Blocks & How to Stay Green' },
+    description: { he: 'מדריך מקיף על מדיניות הספאם של מטא בוואטסאפ — ציוני איכות, סיבות לחסימה, כיצד להימנע מחסימה וכיצד להתאושש אם נחסמתם.', en: 'Comprehensive guide to Meta\'s WhatsApp spam policy — quality scores, block reasons, how to avoid being blocked, and how to recover if blocked.' },
+    seoTitle: { he: 'מדיניות הספאם של מטא — ציון איכות וואטסאפ, חסימות והתאוששות 2026 | גמבוט', en: 'Meta WhatsApp Spam Policy — Account Quality Score, Blocks & Recovery 2026 | Gambot' },
+    metaDescription: { he: 'כל מה שצריך לדעת על מדיניות הספאם של מטא בוואטסאפ ✓ ציון איכות חשבון ✓ כיצד נמנעים מחסימה ✓ מה עושים כשנחסמים ✓ שיפור Quality Rating ✓ הנחיות 2026', en: 'Everything about Meta WhatsApp spam policy ✓ Account quality score ✓ How to avoid blocks ✓ What to do when blocked ✓ Improving Quality Rating ✓ 2026 guidelines' },
+    keywords: { he: 'ציון איכות מטא, חסימת חשבון וואטסאפ, quality rating whatsapp, spam whatsapp business, meta whatsapp block', en: 'meta whatsapp spam policy, whatsapp quality rating, whatsapp account blocked, whatsapp business api block, quality score whatsapp' },
+    category: 'Compliance',
+    author: 'ניר סגס',
+    publishedDate: '2026-06-07',
+    image: '/blog/post26.jpg',
+    readTime: 12,
+    faq: [
+      {
+        question: { he: 'מה זה Quality Rating בוואטסאפ עסקי?', en: 'What is WhatsApp Business Quality Rating?' },
+        answer: { he: 'Quality Rating הוא ציון איכות שמטא מייחסת לכל מספר וואטסאפ עסקי — ירוק (HIGH), צהוב (MEDIUM) או אדום (LOW). הציון מחושב בחלון של 7 ימים ומבוסס על שיעורי חסימה, דיווחי ספאם ומעורבות נמענים. ציון גבוה מאפשר שליחת יותר הודעות ואישור תבניות מהיר יותר.', en: 'Quality Rating is a score Meta assigns to each WhatsApp Business number — Green (HIGH), Yellow (MEDIUM), or Red (LOW). It is calculated over a 7-day window based on block rates, spam reports, and recipient engagement. A high score allows sending more messages and faster template approvals.' },
+      },
+      {
+        question: { he: 'מה גורם לחסימת חשבון וואטסאפ עסקי?', en: 'What causes a WhatsApp Business account to be blocked?' },
+        answer: { he: 'הגורמים העיקריים לחסימה הם: שיעור חסימה של מעל 2% על ידי נמענים, דיווחי ספאם חוזרים, שליחה לרשימות לא מסוננות ללא הסכמה, תבניות עם תוכן שיווקי אגרסיבי, ותדירות שליחה גבוהה מדי. מטא מאפשרת התאוששות אך היא לוקחת 7-14 ימים לפחות.', en: 'The main causes of blocking are: a block rate above 2% by recipients, repeated spam reports, sending to unfiltered lists without consent, templates with aggressive marketing content, and overly high sending frequency. Meta allows recovery, but it takes at least 7-14 days.' },
+      },
+      {
+        question: { he: 'כמה הודעות אפשר לשלוח ביום ב-WhatsApp Business API?', en: 'How many messages can I send per day with WhatsApp Business API?' },
+        answer: { he: 'מטא מחלקת חשבונות ל-Tiers: Tier 1 (ברירת מחדל) — 1,000 הודעות ב-24 שעות; Tier 2 — 10,000 הודעות; Tier 3 — 100,000 הודעות. כדי לעלות ב-Tier יש לשמור על ציון ירוק לאורך 7 ימים ולהגדיל את עוצמת השליחה בהדרגה.', en: 'Meta divides accounts into Tiers: Tier 1 (default) — 1,000 messages in 24 hours; Tier 2 — 10,000 messages; Tier 3 — 100,000 messages. To move up a Tier, you must maintain a green Quality Rating for 7 days and gradually increase your sending volume.' },
+      },
+      {
+        question: { he: 'איך מתאוששים מציון אדום (LOW) ב-WhatsApp?', en: 'How do you recover from a Red (LOW) Quality Rating on WhatsApp?' },
+        answer: { he: 'תוכנית ההתאוששות: (1) עצרו מיידית את כל השליחה הפרו-אקטיבית, (2) נתחו איזו תבנית/קמפיין גרמה לירידה, (3) נקו את הרשימות ומחקו כתובות בעייתיות, (4) המתינו 7-14 ימים, (5) חזרו לשליחה בהדרגה עם קמפיינים קטנים למשתמשים מעורבים בלבד.', en: 'Recovery plan: (1) Immediately stop all proactive sending, (2) Analyze which template/campaign caused the drop, (3) Clean your lists and remove problematic contacts, (4) Wait 7-14 days, (5) Resume sending gradually with small campaigns to engaged users only.' },
+      },
+      {
+        question: { he: 'מה קורה כשתבנית וואטסאפ נדחית על ידי מטא?', en: 'What happens when a WhatsApp template is rejected by Meta?' },
+        answer: { he: 'כשתבנית נדחית, לא ניתן להשתמש בה לשליחה. מטא שולחת סיבת דחייה (תוכן אסור, שפה לא תקינה, קישורים חשודים וכו\'). ניתן לערוך את התבנית ולשלוח אותה מחדש לאישור. תבניות שנדחות חוזרות ונשנות פוגעות גם בציון האיכות של החשבון.', en: 'When a template is rejected, it cannot be used for sending. Meta sends a rejection reason (prohibited content, improper language, suspicious links, etc.). You can edit the template and resubmit it for approval. Repeatedly rejected templates also hurt the account\'s Quality Rating.' },
+      },
+      {
+        question: { he: 'האם שימוש בגמבוט מגן על ציון האיכות שלי?', en: 'Does using Gambot protect my WhatsApp Quality Rating?' },
+        answer: { he: 'כן. גמבוט כוללת מנגנוני הגנה מובנים: חסימה אוטומטית של אנשי קשר שסומנו isUnsubscribed, אזהרה לפני שליחה לנמענים ללא הסכמה, מעקב שיעורי קריאה לכל קמפיין, וסגמנטציה לפי תאריך אינטראקציה אחרון. כל אלה מפחיתים משמעותית את שיעורי הדיווח והחסימה.', en: 'Yes. Gambot includes built-in protection mechanisms: automatic blocking of contacts marked isUnsubscribed, warnings before sending to recipients without consent, open-rate tracking per campaign, and segmentation by last engagement date. All of these significantly reduce report and block rates.' },
+      },
+    ],
+  },
+  {
+    id: 37,
+    slug: 'דיוור-חוקי-בוואטסאפ-חוק-הספאם-הסכמות-ואיך-להגן-על-העסק-שלך',
+    slugEn: 'legal-whatsapp-marketing-spam-law-consent-and-how-to-protect-your-business',
+    title: { he: 'דיוור חוקי בוואטסאפ — חוק הספאם, הסכמות ואיך להגן על העסק שלך', en: 'Legal WhatsApp Marketing — Spam Law, Consent & How to Protect Your Business' },
+    description: { he: 'מדריך מקיף על חוקיות הדיוור בוואטסאפ בישראל ובעולם — מה אומר החוק, מה נחשב הסכמה, מהם החריגים, וכיצד גמבוט מיישמת עמידה בדרישות הרגולציה.', en: 'A comprehensive guide on the legality of WhatsApp marketing in Israel and worldwide — what the law says, what counts as consent, exceptions, and how Gambot implements regulatory compliance.' },
+    seoTitle: { he: 'דיוור חוקי בוואטסאפ 2026 — חוק הספאם, הסכמות, ואיך להגן על העסק | גמבוט', en: 'Legal WhatsApp Marketing 2026 — Spam Law, Consent & Business Protection | Gambot' },
+    metaDescription: { he: 'כל מה שצריך לדעת על דיוור חוקי בוואטסאפ בישראל ✓ חוק הספאם סעיף 30א ✓ מה נחשב הסכמה ✓ חריגים לחוק ✓ GDPR ✓ CAN-SPAM ✓ איך גמבוט מגן עליך', en: 'Everything you need to know about legal WhatsApp marketing in Israel ✓ Spam Law Section 30a ✓ What counts as consent ✓ Exceptions ✓ GDPR ✓ CAN-SPAM ✓ How Gambot protects you' },
+    keywords: { he: 'חוק הספאם, דיוור חוקי, הסכמה לדיוור, סעיף 30א, spam law israel, דיוור בוואטסאפ חוקי, GDPR ישראל', en: 'spam law israel, whatsapp marketing compliance, consent marketing, gdpr whatsapp, can-spam, marketing consent israel' },
+    category: 'Compliance',
+    author: 'ניר סגס',
+    publishedDate: '2026-06-07',
+    image: '/blog/post25.jpg',
+    readTime: 14,
+    faq: [
+      {
+        question: { he: 'האם שליחת הודעות שיווקיות בוואטסאפ ללא הסכמה היא עבירה על החוק בישראל?', en: 'Is sending WhatsApp marketing messages without consent illegal in Israel?' },
+        answer: { he: 'כן. חוק התקשורת (בזק ושידורים), סעיף 30א, אוסר על שליחת "דבר פרסומת" ללא הסכמה מפורשת מראש של הנמען. הפרה של החוק עלולה לגרור קנסות אזרחיים של עד 1,000 ₪ לכל הודעה, ובמקרים קיצוניים — אחריות פלילית. גמבוט מסייעת לעסקים לנהל הסכמות בצורה חוקית.', en: 'Yes. The Israeli Communications Law, Section 30a, prohibits sending "advertising material" without explicit prior consent from the recipient. Violation can result in civil fines of up to ILS 1,000 per message and, in extreme cases, criminal liability. Gambot helps businesses manage consents legally.' },
+      },
+      {
+        question: { he: 'מה נחשב "הסכמה" לדיוור לפי חוק הספאם הישראלי?', en: 'What counts as "consent" for marketing under the Israeli Spam Law?' },
+        answer: { he: 'הסכמה חייבת להיות: מפורשת (לא משתמעת), מדעת (הנמען הבין שהוא נותן רשות לקבל פרסומות), ספציפית (לערוץ הספציפי — וואטסאפ, מייל וכו\'). מספיקים: הסכמה בטופס דיגיטלי, הסכמה בעת הרכישה, או הסכמה ב-opt-in מפורש. אין לסמוך על "נמסר לי הטלפון" כהסכמה.', en: 'Consent must be: explicit (not implied), informed (the recipient understood they were giving permission to receive ads), and specific (for the specific channel — WhatsApp, email, etc.). Sufficient forms: consent in a digital form, consent at purchase, or explicit opt-in consent. "They gave me their phone number" does not count as consent.' },
+      },
+      {
+        question: { he: 'מהם החריגים לחוק הספאם — מתי מותר לשלוח ללא הסכמה?', en: 'What are the exceptions to the Spam Law — when is sending without consent allowed?' },
+        answer: { he: 'החוק מאפשר שליחה ללא הסכמה מוקדמת במספר מקרים: (1) לקוח קיים — מי שרכש מוצר/שירות דומה ב-12 החודשים האחרונים, (2) עסק לעסק (B2B) — לאנשי קשר עסקיים שפרטיהם פורסמו ברשות, (3) גוף ציבורי — בתנאים מסוימים. בכל מקרה, חובה להציע אפשרות הסרה.', en: 'The law allows sending without prior consent in several cases: (1) Existing customer — someone who purchased a similar product/service in the last 12 months, (2) Business-to-business (B2B) — to business contacts whose details were publicly published, (3) Public body — under certain conditions. In all cases, an opt-out option must be provided.' },
+      },
+      {
+        question: { he: 'האם GDPR חל גם על עסקים ישראלים?', en: 'Does GDPR apply to Israeli businesses?' },
+        answer: { he: 'GDPR האירופי חל על כל עסק ישראלי שמשתמש בנתאנים או מפנה שירות לתושבי האיחוד האירופי — גם ללא נוכחות פיזית באירופה. זאת אומרת שאם אתם שולחים הודעות שיווקיות לאנשים עם כתובת באירופה, עליכם לעמוד בדרישות ה-GDPR בנוסף לחוק הישראלי.', en: 'European GDPR applies to any Israeli business that processes data or directs services to EU residents — even without physical presence in Europe. This means that if you send marketing messages to people with a European address, you must comply with GDPR requirements in addition to Israeli law.' },
+      },
+      {
+        question: { he: 'איך מוסיפים כפתור "הסרה" נכון בתבנית וואטסאפ?', en: 'How do you properly add an "Unsubscribe" button to a WhatsApp template?' },
+        answer: { he: 'בתבנית וואטסאפ מסוג MARKETING ניתן להוסיף כפתור מסוג "QUICK_REPLY" עם הטקסט "הסר אותי" / "הפסק שליחה" / "Stop". כשנמען לוחץ, המערכת מסמנת אותו כ-isUnsubscribed ומפסיקה לשלוח לו. גמבוט מבצעת זאת אוטומטית — זיהוי מילות "הסרה" ועדכון הסטטוס ב-CRM ללא צורך בהתערבות ידנית.', en: 'In MARKETING-type WhatsApp templates, you can add a QUICK_REPLY button with text like "Unsubscribe" / "Stop sending" / "Stop". When a recipient clicks, the system marks them as isUnsubscribed and stops sending to them. Gambot does this automatically — detecting "unsubscribe" keywords and updating the CRM status without manual intervention.' },
+      },
+    ],
+  },
+  {
     id: 20,
     slug: 'שיווק-בוואטסאפ-מדריך-מלא-לעסקים-2026',
     slugEn: 'whatsapp-marketing-complete-guide-for-businesses-2026',
