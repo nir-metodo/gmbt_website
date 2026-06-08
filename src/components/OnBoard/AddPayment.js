@@ -16,11 +16,18 @@ const AddPaymentInner = () => {
   // Firebase rewrite serves this page for "/addpayment**", so we detect and fix it here
   useEffect(() => {
     if (typeof window === 'undefined') return;
+
+    const href = window.location.href;
+    // Legacy API URLs used addpayment%3F — Firebase treats params as path → 404 without this fix
+    if (/addpayment%3F/i.test(href)) {
+      window.location.replace(href.replace(/addpayment%3F/i, 'addpayment?'));
+      return;
+    }
+
     const pathname = window.location.pathname; // e.g. "/addpaymentorganizationName=..."
     if (pathname.startsWith('/addpayment') && pathname.length > '/addpayment'.length && !pathname.startsWith('/addpayment/')) {
-      // Params are baked into the path — extract and redirect to proper URL
-      const rawParams = pathname.replace('/addpayment', ''); // "organizationName=...&plan=..."
-      const existingSearch = window.location.search.replace(/^[?&]/, '&'); // preserve any real query params
+      const rawParams = pathname.replace(/^\/addpayment/i, '').replace(/^%3F/i, '').replace(/^\?/, '');
+      const existingSearch = window.location.search.replace(/^[?&]/, '&');
       window.location.replace('/addpayment?' + rawParams + existingSearch);
     }
   }, []);

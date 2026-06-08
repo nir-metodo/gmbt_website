@@ -117,6 +117,14 @@
         "destination": "/esig/index.html"
       },
       {
+        "source": "/addpayment",
+        "destination": "/addpayment/index.html"
+      },
+      {
+        "source": "/addpayment/**",
+        "destination": "/addpayment/index.html"
+      },
+      {
         "source": "/addpayment**",
         "destination": "/addpayment/index.html"
       }
