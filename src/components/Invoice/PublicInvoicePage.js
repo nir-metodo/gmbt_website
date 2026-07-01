@@ -99,12 +99,45 @@ export default function PublicInvoicePage() {
     return num.toLocaleString('he-IL', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
   };
 
-  const subtotal = parseFloat(invoice.subtotal) || 0;
+  // Totals are stored inconsistently across creation paths: the editor saves
+  // subtotal/vatAmount(taxAmount)/total/vatRate, while AI/automation-created documents may save
+  // only `total`. Compute everything defensively from the line items so the VAT breakdown always
+  // shows when VAT was actually charged.
+  const itemsSubtotal = items
+    .filter(i => i.type !== 'section')
+    .reduce((s, i) => {
+      const qty = parseFloat(i.quantity) || 1;
+      const price = parseFloat(i.unitPrice) || 0;
+      return s + qty * price;
+    }, 0);
+
+  const subtotal = parseFloat(invoice.subtotal) || itemsSubtotal;
   const discount = parseFloat(invoice.discount) || 0;
-  const vatAmount = parseFloat(invoice.vatAmount) || parseFloat(invoice.taxAmount) || 0;
-  const total = parseFloat(invoice.total) || 0;
-  const vatRate = parseFloat(invoice.vatRate) || parseFloat(invoice.taxRate) || 0;
-  const showVat = vatRate > 0 && vatAmount > 0;
+  const afterDiscount = Math.max(0, subtotal - discount);
+
+  // VAT rate: editor saves it under `vatRate`; some docs use `taxRate`/`tax`.
+  let vatRate = parseFloat(invoice.vatRate ?? invoice.taxRate ?? invoice.tax) || 0;
+
+  // VAT amount: prefer the stored value; otherwise derive it.
+  let vatAmount = parseFloat(invoice.vatAmount ?? invoice.taxAmount);
+  if (isNaN(vatAmount)) vatAmount = vatRate > 0 ? afterDiscount * vatRate / 100 : 0;
+
+  // Total: prefer stored; otherwise items + VAT.
+  let total = parseFloat(invoice.total);
+  if (isNaN(total)) total = afterDiscount + vatAmount;
+
+  // Last-resort inference: if the stored total is bigger than the (discounted) items but no VAT was
+  // recorded (AI/automation path that only saved `total`), treat the gap as VAT so it's shown.
+  if (vatAmount <= 0 && total > afterDiscount + 0.01) {
+    vatAmount = Math.round((total - afterDiscount) * 100) / 100;
+  }
+  // Derive the rate from amounts when we have an amount but no rate (for the "מע״מ (X%)" label).
+  if (!vatRate && vatAmount > 0 && afterDiscount > 0) {
+    vatRate = Math.round((vatAmount / afterDiscount) * 100);
+  }
+
+  // Show the VAT breakdown whenever VAT was actually charged (don't depend on the rate field).
+  const showVat = vatAmount > 0;
 
   return (
     <div style={styles.page}>
