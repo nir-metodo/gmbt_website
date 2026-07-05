@@ -375,12 +375,33 @@ const [showModal, setShowModal] = useState(false);
             <div className="plan-features">
               <h4>{t('pricing.ui.includes')}</h4>
               <ul>
-                {getplanFeatures(plan.name).map((feature, i) => (
-                  <li key={i}>
-                    <FaCheck className="feature-check" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
+                {getplanFeatures(plan.name).map((feature, i) => {
+                  const isConversations = /שיחות[\s\S]*בחודש/.test(feature) || /conversations per month/i.test(feature);
+                  const convTooltip = currentLanguage === 'en'
+                    ? '1 conversation = all messaging with a single person within a 24-hour window. From the moment someone reaches out, the entire exchange with them during those 24 hours counts as a single conversation.'
+                    : 'שיחה 1 נחשבת התקשרות עם אדם אחד למשך 24 שעות. כלומר, מהרגע שמישהו פונה — כל ההתכתבות איתו במסגרת אותן 24 שעות נחשבת שיחה אחת.';
+                  return (
+                    <li key={i}>
+                      <FaCheck className="feature-check" />
+                      <span>{feature}</span>
+                      {isConversations && (
+                        <span
+                          className="feature-info"
+                          tabIndex={0}
+                          role="button"
+                          aria-label={convTooltip}
+                        >
+                          ?
+                          <span
+                            className="feature-tooltip"
+                            role="tooltip"
+                            dir={currentLanguage === 'en' ? 'ltr' : 'rtl'}
+                          >{convTooltip}</span>
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
               {getMoreFeatures(plan.name).length > 0 && (
                 <>
@@ -913,7 +934,7 @@ const [showModal, setShowModal] = useState(false);
               },
               {
                 icon: '🔧', title: 'שירותים נוספים', bg: '#f8fafc', border: '#cbd5e0', color: '#2d3748',
-                items: ['פיתוח והתאמות — ₪400/שעה + מע״מ', 'הדרכת עובדים — החל מ-₪600', 'שיחת ייעוץ חד-פעמית — ₪400 + מע״מ', 'בניית בוטים / אוטומציות — לפי היקף'],
+                items: ['פיתוח והתאמות — ₪555/שעה + מע״מ', 'הדרכת עובדים — החל מ-₪600', 'שיחת ייעוץ חד-פעמית — ₪400 + מע״מ', 'בניית בוטים / אוטומציות — לפי היקף'],
                 note: '* המנוי הוא על המערכת. שירותים נוספים תמיד בתשלום נפרד.'
               }
             ].map((box, i) => (

@@ -214,7 +214,7 @@ export default function OnboardingServicesContent() {
           <p className="additional-description">כל שירות נוסף בתעריף שעתי</p>
           <div className="hourly-rate">
             <span className="currency">₪</span>
-            <span className="amount">400</span>
+            <span className="amount">555</span>
             <span className="period">/שעה</span>
           </div>
           <p className="vat-note">(כל המחירים לא כוללים מע״מ)</p>
