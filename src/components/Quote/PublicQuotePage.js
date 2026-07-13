@@ -125,38 +125,56 @@ export default function PublicQuotePage() {
     return num.toLocaleString('he-IL', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
   };
 
-  // Totals are stored inconsistently across creation paths: the editor (QuoteForm) saves
-  // subtotal/taxAmount/total/tax, while AI/automation-created quotes may save only `total` (or
-  // nothing). Compute everything defensively from the line items so the VAT breakdown always shows
-  // when VAT was actually charged.
-  const itemsSubtotal = items
-    .filter(i => i.type !== 'section')
-    .reduce((s, i) => {
-      const qty = parseFloat(i.quantity) || 1;
-      const price = parseFloat(i.unitPrice) || 0;
-      const disc = parseFloat(i.discount) || 0;
-      return s + qty * price * (1 - disc / 100);
-    }, 0);
+  // ── Totals ── Mirror the internal QuoteForm/PDF model exactly so the public quote reconciles with
+  // it (and the VAT/discount breakdown always shows):
+  //   subtotal      = real line items only (type 'item')
+  //   discounts     = global discount (quote.discount) + discount LINE items (type 'discount')
+  //   afterDiscount = subtotal − discounts                → the "before VAT" amount
+  //   VAT           = afterDiscount × rate
+  //   total         = afterDiscount + VAT                 → the "after VAT" amount
+  // Discount lines (type 'discount') must NOT inflate the subtotal — they are subtracted below.
+  const realItems = items.filter(i => !i.type || i.type === 'item');
+  const discountItems = items.filter(i => i.type === 'discount');
 
-  const subtotal = parseFloat(quote.subtotal) || itemsSubtotal;
-  const discountAmount = parseFloat(quote.discountAmount) || 0;
+  const computedSubtotal = realItems.reduce((s, i) => {
+    const qty = parseFloat(i.quantity) || 0;
+    const price = parseFloat(i.unitPrice) || 0;
+    const disc = parseFloat(i.discount) || 0;
+    return s + qty * price * (1 - disc / 100);
+  }, 0);
+  const lineDiscounts = discountItems.reduce(
+    (s, i) => s + (parseFloat(i.quantity) || 1) * Math.abs(parseFloat(i.unitPrice) || 0),
+    0
+  );
+
+  // Prefer computed-from-items; fall back to the stored subtotal for quotes with no line items.
+  const subtotal = computedSubtotal > 0 ? computedSubtotal : (parseFloat(quote.subtotal) || 0);
+
+  const globalDiscount = quote.discountType === 'percent'
+    ? subtotal * ((parseFloat(quote.discount) || 0) / 100)
+    : (parseFloat(quote.discount) || 0);
+  let discountAmount = globalDiscount + lineDiscounts;
+  // Fallback for AI/automation quotes that only saved discountAmount (no discount line items).
+  if (discountAmount === 0) discountAmount = parseFloat(quote.discountAmount) || 0;
+
   const afterDiscount = Math.max(0, subtotal - discountAmount);
 
   // VAT rate: editor saves it under `tax`; some docs use `taxRate`.
   let taxRate = parseFloat(quote.taxRate ?? quote.tax) || 0;
+  let taxAmount = taxRate > 0 ? afterDiscount * taxRate / 100 : 0;
+  // No rate but a VAT amount was stored → use it.
+  if (taxAmount <= 0) {
+    const storedTax = parseFloat(quote.taxAmount);
+    if (!isNaN(storedTax) && storedTax > 0) taxAmount = storedTax;
+  }
 
-  // VAT amount: prefer the stored value; otherwise derive it.
-  let taxAmount = parseFloat(quote.taxAmount);
-  if (isNaN(taxAmount)) taxAmount = taxRate > 0 ? afterDiscount * taxRate / 100 : 0;
-
-  // Total: prefer stored; otherwise items + VAT.
-  let total = parseFloat(quote.total);
-  if (isNaN(total)) total = afterDiscount + taxAmount;
-
-  // Last-resort inference: if the stored total is bigger than the (discounted) items but no VAT was
-  // recorded (AI/automation path that only saved `total`), treat the gap as VAT so it's shown.
-  if (taxAmount <= 0 && total > afterDiscount + 0.01) {
-    taxAmount = Math.round((total - afterDiscount) * 100) / 100;
+  let total = afterDiscount + taxAmount;
+  const storedTotal = parseFloat(quote.total);
+  // Last-resort: a stored total that's larger than the discounted amount implies VAT we couldn't
+  // derive (AI/automation path that only saved `total`) — back it out so the breakdown shows.
+  if (taxAmount <= 0 && !isNaN(storedTotal) && storedTotal > afterDiscount + 0.01) {
+    taxAmount = Math.round((storedTotal - afterDiscount) * 100) / 100;
+    total = storedTotal;
   }
   // Derive the rate from amounts when we have an amount but no rate (for the "מע״מ (X%)" label).
   if (!taxRate && taxAmount > 0 && afterDiscount > 0) {
@@ -165,6 +183,7 @@ export default function PublicQuotePage() {
 
   // Show the VAT breakdown whenever VAT was actually charged (don't depend on the rate field).
   const showTax = taxAmount > 0;
+  const hasDiscount = discountAmount > 0;
 
   const handleDownloadPdf = () => {
     setActionsOpen(false);
@@ -274,14 +293,18 @@ export default function PublicQuotePage() {
                       </tr>
                     );
                   }
+                  const isDiscountRow = item.type === 'discount';
                   const qty = parseFloat(item.quantity) || 1;
                   const price = parseFloat(item.unitPrice) || 0;
                   const disc = parseFloat(item.discount) || 0;
-                  const lineTotal = qty * price * (1 - disc / 100);
+                  // A discount line is a negative amount (qty × |unitPrice|); a normal item applies its % discount.
+                  const lineTotal = isDiscountRow
+                    ? -(qty * Math.abs(price))
+                    : qty * price * (1 - disc / 100);
                   const itemImages = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : []);
                   const hasMultiple = itemImages.length > 1;
                   return (
-                    <tr key={idx} style={{ borderBottom: '1px solid #e5e7eb', background: idx % 2 === 0 ? '#fff' : '#f9fafb' }}>
+                    <tr key={idx} style={{ borderBottom: '1px solid #e5e7eb', background: isDiscountRow ? '#fef2f2' : (idx % 2 === 0 ? '#fff' : '#f9fafb') }}>
                       {hasAnyImage && (
                         <td style={{ textAlign: 'center', padding: '4px', width: 50 }}>
                           {itemImages.length > 0 && (
@@ -305,11 +328,15 @@ export default function PublicQuotePage() {
                           )}
                         </td>
                       )}
-                      <td>{item.description || ''}</td>
+                      <td style={isDiscountRow ? { color: '#dc2626' } : undefined}>{item.description || ''}</td>
                       <td style={{ textAlign: 'center' }}>{qty}</td>
-                      <td style={{ textAlign: 'center' }}>{currency}{formatNum(price)}</td>
+                      <td style={{ textAlign: 'center', color: isDiscountRow ? '#dc2626' : undefined }}>
+                        {isDiscountRow ? `-${currency}${formatNum(Math.abs(price))}` : `${currency}${formatNum(price)}`}
+                      </td>
                       {items.some(i => i.discount) && <td style={{ textAlign: 'center' }}>{disc ? `${disc}%` : '—'}</td>}
-                      <td style={{ textAlign: 'center', fontWeight: 600 }}>{currency}{formatNum(lineTotal)}</td>
+                      <td style={{ textAlign: 'center', fontWeight: 600, color: isDiscountRow ? '#dc2626' : undefined }}>
+                        {isDiscountRow ? `-${currency}${formatNum(Math.abs(lineTotal))}` : `${currency}${formatNum(lineTotal)}`}
+                      </td>
                     </tr>
                   );
                 })}
@@ -321,13 +348,13 @@ export default function PublicQuotePage() {
         {/* Totals */}
         <div style={styles.totalsWrapper}>
           <div style={styles.totals}>
-            {discountAmount > 0 && (
+            {hasDiscount && (
               <>
                 <div style={styles.totalRow}>
-                  <span>סכום לפני הנחה:</span>
-                  <span>{currency}{formatNum(subtotal + discountAmount)}</span>
+                  <span>סכום ביניים:</span>
+                  <span>{currency}{formatNum(subtotal)}</span>
                 </div>
-                <div style={{ ...styles.totalRow, color: '#10b981' }}>
+                <div style={{ ...styles.totalRow, color: '#dc2626' }}>
                   <span>הנחה:</span>
                   <span>-{currency}{formatNum(discountAmount)}</span>
                 </div>
@@ -337,7 +364,7 @@ export default function PublicQuotePage() {
               <>
                 <div style={styles.totalRow}>
                   <span>סכום לפני מע״מ:</span>
-                  <span>{currency}{formatNum(total - taxAmount)}</span>
+                  <span>{currency}{formatNum(afterDiscount)}</span>
                 </div>
                 <div style={styles.totalRow}>
                   <span>מע״מ ({taxRate}%):</span>
@@ -346,7 +373,7 @@ export default function PublicQuotePage() {
               </>
             )}
             <div style={{ ...styles.totalRow, ...styles.grandTotal, borderTop: `2px solid ${primaryColor}`, color: primaryColor }}>
-              <span>סה״כ לתשלום:</span>
+              <span>{showTax ? 'סה״כ לתשלום (כולל מע״מ):' : 'סה״כ לתשלום:'}</span>
               <span>{currency}{formatNum(total)}</span>
             </div>
           </div>
