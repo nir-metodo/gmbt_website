@@ -12,6 +12,9 @@
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    /* Draw the user's attention with a periodic pop + glow so the tutorial is noticed & used. */
+    animation: tvb-attention 2.6s ease-in-out infinite;
+    transform-origin: center;
 }
 
 .tutorial-video-btn:hover {
@@ -19,10 +22,40 @@
     border-color: #dc2626;
     box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15);
     transform: translateY(-1px);
+    /* Pause the attention loop while the user interacts with it. */
+    animation: none;
 }
 
 .tutorial-video-btn:active {
     transform: scale(0.97);
+    animation: none;
+}
+
+@keyframes tvb-attention {
+    0%, 55%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+    }
+    62% {
+        transform: scale(1.08) translateY(-2px);
+        box-shadow: 0 6px 18px rgba(220, 38, 38, 0.35);
+    }
+    72% {
+        transform: scale(0.96);
+    }
+    82% {
+        transform: scale(1.04);
+    }
+    92% {
+        transform: scale(1);
+    }
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+    .tutorial-video-btn {
+        animation: none;
+    }
 }
 
 .tvb-tutorial-icon {

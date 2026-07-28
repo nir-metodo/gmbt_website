@@ -4975,7 +4975,7 @@
       "enterprise": {
         "name": "Enterprise", "description": "A flexible, tailored enterprise solution",
         "features": ["6 bots / automation flows","3,000 new conversations/month","15,000 automation runs/month","Up to 35,000 contacts","💾 50 GB file storage (each extra GB ₪5)","1,000 AI actions","🪙 800 Gambot Tokens included","12 users","⭐ Priority support — reply within 24 hours","🗓️ Monthly consultation call"],
-        "moreFeatures": ["Up to 4,000 leads/month","Up to 4,000 cases/month","Up to 1,000 quotes/month","Up to 1,200 orders/month (Shopify / WooCommerce)","Up to 1,000 e-signatures/month","📄 Up to 1,000 invoices/month (included)","Advanced task management","Full reports + daily auto report","Custom API","Excel / PDF export","Dedicated account manager"]
+        "moreFeatures": ["Up to 4,000 leads/month","Up to 4,000 cases/month","Up to 1,000 quotes/month","Up to 1,200 orders/month (Shopify / WooCommerce)","Up to 1,000 e-signatures/month","📄 Up to 1,000 invoices/month (included)","Up to 35,000 campaign recipients/month","Advanced task management","Full reports + daily auto report","Custom API","Excel / PDF export","Dedicated account manager"]
       }
     },
     "ui": { "perMonth": "per month", "yearlyBilling": "Annual billing", "save": "Save", "includes": "Includes:", "selectPlan": "Select Plan", "selectedPlan": "Selected", "currency": "₪", "plan": "Plan" },
@@ -5146,7 +5146,7 @@
           "12 users (additional user ₪30)",
           "Priority support"
         ],
-        "moreFeatures": ["Unlimited leads, cases & quotes","Unlimited e-signatures & campaigns","Unlimited form flows & tables","Full reports + daily auto report","Excel / PDF export","API access","Priority + phone support"]
+        "moreFeatures": ["Unlimited leads, cases & quotes","Unlimited e-signatures","Up to 35,000 campaign recipients/month","Unlimited form flows & tables","Full reports + daily auto report","Excel / PDF export","API access","Priority + phone support"]
       },
       "pro": {
         "name": "Pro",
