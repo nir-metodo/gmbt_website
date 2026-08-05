@@ -1,0 +1,477 @@
+'use client';
+
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
+import axios from 'axios';
+import { FaCheckCircle, FaSpinner } from 'react-icons/fa';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+
+// Public, no-auth STANDALONE FORM page for document templates sent as a fill-only link.
+// Decoupled from e-signature: renders the ACTUAL document (PDF) with the recipient input fields
+// positioned ON it (DocuSign-style), validates them, and submits the answers (no signature)
+// via ESignature_SubmitForm.
+
+const API_BASE = 'https://gambot.azurewebsites.net/api/Webhooks';
+const gambotLogo = '/new_logo.png';
+
+// pdfjs v5 uses an ES-module worker served SAME-ORIGIN from /public (copied from react-pdf's bundled
+// pdfjs-dist) so the version can never drift and cross-origin module-worker loading can't fail.
+pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+
+// Stable options reference — react-pdf reloads the document whenever this prop changes identity.
+const PDF_OPTIONS = {
+  cMapUrl: `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
+  cMapPacked: true,
+  standardFontDataUrl: `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
+};
+
+// Field types the recipient actively fills. `name`/`date`/`date_today` are shown too (auto/typed).
+const INPUT_TYPES = ['text', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox', 'name', 'date', 'date_today'];
+
+const isValidIsraeliId = (rawId) => {
+  const digits = String(rawId ?? '').trim();
+  if (!/^\d{1,9}$/.test(digits)) return false;
+  const id = digits.padStart(9, '0');
+  let sum = 0;
+  for (let i = 0; i < 9; i++) {
+    let step = Number(id[i]) * ((i % 2) + 1);
+    if (step > 9) step -= 9;
+    sum += step;
+  }
+  return sum % 10 === 0;
+};
+
+const DocumentFormPublic = () => {
+  // Parse /:organization/form/:documentId/:token from window.location (static Next.js export).
+  const pathParts = typeof window !== 'undefined' ? window.location.pathname.replace(/\/$/, '').split('/') : [];
+  const formIdx = pathParts.indexOf('form');
+  const organization = formIdx > 0 ? pathParts[formIdx - 1] : null;
+  const documentId = formIdx > 0 ? pathParts[formIdx + 1] : null;
+  const token = formIdx > 0 ? pathParts[formIdx + 2] : null;
+  const searchParams = useSearchParams();
+  const urlLang = searchParams?.get('lang');
+  const [lang, setLang] = useState(urlLang === 'en' ? 'en' : 'he');
+  const isRTL = lang === 'he';
+  const L = (he, en) => (lang === 'he' ? he : en);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [doc, setDoc] = useState(null);
+  const [orgInfo, setOrgInfo] = useState(null);
+  const [values, setValues] = useState({}); // keyed by fieldId
+  const [signerName, setSignerName] = useState('');
+  const [signerPhone, setSignerPhone] = useState('');
+  const [signerEmail, setSignerEmail] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [alreadyDone, setAlreadyDone] = useState(false);
+
+  // PDF viewer state
+  const [numPages, setNumPages] = useState(null);
+  const [pdfWidth, setPdfWidth] = useState(800);
+  const [pdfError, setPdfError] = useState(false);
+  const [showFullscreen, setShowFullscreen] = useState(false);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get(`${API_BASE}/ESignature_GetDocumentByToken?token=${token}&organizationName=${organization}&documentId=${documentId}`);
+        const data = res.data;
+        if (data?.success || data?.Success) {
+          const d = data.data || data.Data;
+          setDoc(d);
+          if (data?.organizationInfo) setOrgInfo(data.organizationInfo);
+          if (d?.signerName) setSignerName(d.signerName);
+          if (d?.signerEmail) setSignerEmail(d.signerEmail);
+          if (d?.signerPhone) setSignerPhone(d.signerPhone);
+          if (!urlLang && d?.language) setLang(d.language === 'en' ? 'en' : 'he');
+        } else if (data?.alreadySigned || data?.AlreadySigned) {
+          setAlreadyDone(true);
+        } else {
+          setError(data?.message || data?.Message || L('הטופס לא נמצא או שהקישור אינו תקין', 'Form not found or link is invalid'));
+        }
+      } catch (e) {
+        console.error('Failed to load form:', e);
+        setError(L('טעינת הטופס נכשלה. ייתכן שהקישור אינו תקין או שפג תוקפו.', 'Failed to load form. The link may be invalid or expired.'));
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (organization && documentId && token) load();
+    // eslint-disable-next-line
+  }, [organization, documentId, token]);
+
+  // Input fields the recipient fills (skip signature/initials/variable). Keep read-only auto fields
+  // (date_today) so they still display + submit.
+  const fields = useMemo(() => {
+    const all = doc?.signatureFields || [];
+    return all
+      .filter(f => INPUT_TYPES.includes((f.fieldType || '').toLowerCase()))
+      .filter(f => f.editable !== false || (f.fieldType || '').toLowerCase() === 'date_today');
+  }, [doc]);
+
+  const labelFor = (f) => f.label || f.placeholder || f.fieldName || f.fieldKey || L('שדה', 'Field');
+  const todayStr = () => new Date().toLocaleDateString(lang === 'he' ? 'he-IL' : 'en-US');
+
+  const getEffectiveValidation = (f) => {
+    const v = (f?.validation || '').toLowerCase();
+    if (v && v !== 'none') return v;
+    const ft = (f?.fieldType || '').toLowerCase();
+    if (['id_number', 'email', 'phone', 'number'].includes(ft)) return ft;
+    return 'none';
+  };
+
+  const validate = (f, raw) => {
+    const ft = (f.fieldType || '').toLowerCase();
+    if (ft === 'date_today') return null; // auto-stamped
+    const label = labelFor(f);
+    const isCheckbox = ft === 'checkbox';
+    const boolVal = raw === true || raw === 'true';
+    const value = isCheckbox ? boolVal : String(raw ?? '').trim();
+    const isEmpty = isCheckbox ? boolVal === false : value === '';
+    if (f.required && isEmpty) return L(`נא למלא את השדה: ${label}`, `Please fill in: ${label}`);
+    if (isEmpty) return null;
+    switch (getEffectiveValidation(f)) {
+      case 'id_number':
+        if (!isValidIsraeliId(value)) return L(`תעודת זהות לא תקינה: ${label}`, `Invalid ID number: ${label}`);
+        break;
+      case 'email':
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return L(`כתובת אימייל לא תקינה: ${label}`, `Invalid email: ${label}`);
+        break;
+      case 'phone':
+        if (value.replace(/\D/g, '').length < 9) return L(`מספר טלפון לא תקין: ${label}`, `Invalid phone: ${label}`);
+        break;
+      case 'number':
+        if (!/^-?\d+(\.\d+)?$/.test(value)) return L(`יש להזין מספר בשדה: ${label}`, `Must be a number: ${label}`);
+        break;
+      case 'regex':
+        if (f.validationRegex) { try { if (!new RegExp(f.validationRegex).test(value)) return L(`ערך לא תקין: ${label}`, `Invalid value: ${label}`); } catch (_) {} }
+        break;
+      default: break;
+    }
+    return null;
+  };
+
+  const resolveValue = (f) => {
+    const ft = (f.fieldType || '').toLowerCase();
+    if (ft === 'name') return signerName;
+    if (ft === 'date_today') return todayStr();
+    if (ft === 'checkbox') return (values[f.fieldId] === true || values[f.fieldId] === 'true') ? 'true' : 'false';
+    return values[f.fieldId] ?? (f.value || '');
+  };
+
+  // Position an overlay field on the PDF. Fields saved in canvas pixels at editor scale 1.8 over a
+  // standard 612pt page → scale to the current display width. (Identical to the signing page.)
+  const getFieldStyle = (field) => {
+    if (!pdfWidth) return {};
+    const editorScale = 1.8;
+    const standardPdfWidth = 612 * editorScale;
+    const scale = pdfWidth / standardPdfWidth;
+    return {
+      position: 'absolute',
+      left: `${(field.x || 0) * scale}px`,
+      top: `${(field.y || 0) * scale}px`,
+      width: `${(field.width || 120) * scale}px`,
+      height: `${(field.height || 32) * scale}px`,
+      zIndex: 10,
+    };
+  };
+
+  const setVal = (fieldId, v) => setValues(prev => ({ ...prev, [fieldId]: v }));
+
+  // Render the fillable control positioned ON the document.
+  const renderOverlayControl = (f) => {
+    const ft = (f.fieldType || '').toLowerCase();
+    const id = f.fieldId;
+    const val = values[id];
+    const stop = (e) => e.stopPropagation();
+    const base = {
+      width: '100%', height: '100%', boxSizing: 'border-box',
+      border: '2px solid #2563eb', borderRadius: '4px', background: '#fff',
+      padding: '4px 8px', fontSize: '14px', color: '#111827', outline: 'none',
+    };
+    const readOnlyBox = { ...base, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f1f5f9', color: '#475569', borderStyle: 'dashed' };
+
+    if (ft === 'name') {
+      return <input style={base} value={signerName} onClick={stop} onChange={(e) => setSignerName(e.target.value)} placeholder={f.placeholder || L('שם מלא', 'Full name')} />;
+    }
+    if (ft === 'date_today') {
+      return <div style={readOnlyBox} title={labelFor(f)}>{todayStr()}</div>;
+    }
+    if (ft === 'date') {
+      return <input type="date" style={base} value={val ?? ''} onClick={stop} onChange={(e) => setVal(id, e.target.value)} />;
+    }
+    if (ft === 'dropdown') {
+      const opts = Array.isArray(f.options) ? f.options : [];
+      return (
+        <select style={base} value={val ?? ''} onClick={stop} onChange={(e) => setVal(id, e.target.value)}>
+          <option value="">{f.placeholder || L('בחר...', 'Select...')}</option>
+          {opts.map((o, i) => <option key={i} value={o}>{o}</option>)}
+        </select>
+      );
+    }
+    if (ft === 'radio_group') {
+      const opts = Array.isArray(f.options) ? f.options : [];
+      return (
+        <div style={{ ...base, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2px', overflow: 'auto' }} onClick={stop}>
+          {opts.map((o, i) => (
+            <label key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '13px' }}>
+              <input type="radio" name={id} value={o} checked={val === o} onChange={() => setVal(id, o)} style={{ width: 15, height: 15 }} />
+              <span>{o}</span>
+            </label>
+          ))}
+        </div>
+      );
+    }
+    if (ft === 'checkbox') {
+      const checked = val === true || val === 'true';
+      return (
+        <label style={{ ...base, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={stop} title={labelFor(f)}>
+          <input type="checkbox" checked={checked} onChange={(e) => setVal(id, e.target.checked)} style={{ width: 18, height: 18 }} />
+        </label>
+      );
+    }
+    if (ft === 'number') return <input type="number" inputMode="decimal" dir="ltr" style={base} value={val ?? ''} placeholder={f.placeholder || ''} onClick={stop} onChange={(e) => setVal(id, e.target.value)} />;
+    if (ft === 'email') return <input type="email" inputMode="email" dir="ltr" style={base} value={val ?? ''} placeholder={f.placeholder || ''} onClick={stop} onChange={(e) => setVal(id, e.target.value)} />;
+    if (ft === 'phone') return <input type="tel" inputMode="tel" dir="ltr" style={base} value={val ?? ''} placeholder={f.placeholder || ''} onClick={stop} onChange={(e) => setVal(id, e.target.value)} />;
+    if (ft === 'id_number') return <input inputMode="numeric" dir="ltr" maxLength={9} style={base} value={val ?? ''} placeholder={f.placeholder || L('ת.ז', 'ID number')} onClick={stop} onChange={(e) => setVal(id, e.target.value.replace(/\D/g, ''))} />;
+    return <input type="text" style={base} value={val ?? ''} placeholder={f.placeholder || L('הקלד כאן...', 'Type here...')} onClick={stop} onChange={(e) => setVal(id, e.target.value)} />;
+  };
+
+  const handleSubmit = async (e) => {
+    e?.preventDefault();
+    if (!signerName.trim()) { alert(L('נא להזין שם מלא', 'Please enter your full name')); return; }
+    for (const f of fields) {
+      const ft = (f.fieldType || '').toLowerCase();
+      const raw = ft === 'name' ? signerName : (ft === 'checkbox' ? (values[f.fieldId] === true || values[f.fieldId] === 'true') : values[f.fieldId]);
+      const err = validate(f, raw);
+      if (err) { alert(err); return; }
+    }
+    try {
+      setSubmitting(true);
+      const fieldValues = {}; // keyed by fieldId
+      const fieldData = {};   // keyed by fieldKey
+      fields.forEach(f => {
+        fieldValues[f.fieldId] = resolveValue(f);
+        if (f.fieldKey) fieldData[f.fieldKey] = resolveValue(f);
+      });
+      const res = await axios.post(`${API_BASE}/ESignature_SubmitForm`, {
+        token,
+        signerName,
+        signerEmail,
+        signerPhone,
+        fieldValues: JSON.stringify(fieldValues),
+        fieldData: JSON.stringify(fieldData),
+      });
+      if (res.data?.success || res.data?.Success) {
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert(res.data?.error || res.data?.Error || L('שליחת הטופס נכשלה', 'Failed to submit form'));
+      }
+    } catch (err) {
+      console.error('Submit failed:', err);
+      alert(L('שליחת הטופס נכשלה. נסה שוב.', 'Failed to submit. Please try again.'));
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const shell = (children) => (
+    <div dir={isRTL ? 'rtl' : 'ltr'} style={styles.page}>
+      <div style={styles.headerBar}>
+        <div style={styles.headerInner}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            {orgInfo?.companyLogo
+              ? <img src={orgInfo.companyLogo} alt={orgInfo?.companyName || 'Company'} style={{ height: 34, objectFit: 'contain' }} />
+              : <img src={gambotLogo} alt="Gambot" style={{ height: 30, objectFit: 'contain' }} />}
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span style={{ fontWeight: 800, color: '#0f172a', fontSize: 16 }}>{doc?.sourceTemplateName || doc?.documentName || L('טופס', 'Form')}</span>
+              {orgInfo?.companyName && <span style={{ fontSize: 12, color: '#64748b' }}>{L('נשלח על ידי', 'Sent by')} {orgInfo.companyName}</span>}
+            </div>
+          </div>
+          <span style={styles.secureBadge}>🔒 {L('חיבור מאובטח', 'Secure')}</span>
+        </div>
+      </div>
+      {children}
+      <div style={styles.footer}>{L('מופעל על ידי', 'Powered by')} <strong>Gambot</strong></div>
+    </div>
+  );
+
+  const centered = (node) => shell(<div style={styles.centerWrap}><div style={styles.centerCard}>{node}</div></div>);
+
+  if (loading) return centered(<div style={styles.center}><FaSpinner className="dfp-spin" /> {L('טוען טופס...', 'Loading form...')}</div>);
+  if (alreadyDone) return centered(<div style={styles.center}><FaCheckCircle size={56} color="#28a745" /><h2>{L('הטופס כבר מולא', 'Form already submitted')}</h2><p>{L('תודה!', 'Thank you!')}</p></div>);
+  if (error) return centered(<div style={styles.center}><div style={{ fontSize: 40 }}>⚠️</div><h2>{L('הטופס אינו זמין', 'Form unavailable')}</h2><p>{error}</p></div>);
+  if (submitted) return centered(<div style={styles.center}><FaCheckCircle size={56} color="#28a745" /><h2>{L('תודה!', 'Thank you!')}</h2><p>{L('הטופס נשלח בהצלחה.', 'Your form was submitted successfully.')}</p><p style={{ color: '#64748b' }}>{L('ניתן לסגור את הדף.', 'You can close this page now.')}</p></div>);
+
+  const hasPdf = !!doc?.originalFileUrl;
+
+  return shell(
+    <form onSubmit={handleSubmit} style={styles.content}>
+      <div style={styles.hint}>{L('מלא את השדות המסומנים על המסמך, ולאחר מכן שלח.', 'Fill in the highlighted fields on the document, then submit.')}</div>
+
+      {/* Contact details (needed to record who filled the form) */}
+      <div style={styles.contactCard}>
+        <div style={{ ...styles.field, flex: 2, minWidth: 200 }}>
+          <label style={styles.label}>{L('שם מלא', 'Full name')} <span style={styles.req}>*</span></label>
+          <input className="dfp-input" value={signerName} onChange={(e) => setSignerName(e.target.value)} placeholder={L('שם מלא', 'Full name')} />
+        </div>
+        <div style={{ ...styles.field, flex: 1, minWidth: 140 }}>
+          <label style={styles.label}>{L('טלפון', 'Phone')}</label>
+          <input className="dfp-input" value={signerPhone} onChange={(e) => setSignerPhone(e.target.value)} dir="ltr" placeholder="05..." />
+        </div>
+        <div style={{ ...styles.field, flex: 1.5, minWidth: 180 }}>
+          <label style={styles.label}>{L('אימייל', 'Email')}</label>
+          <input className="dfp-input" type="email" value={signerEmail} onChange={(e) => setSignerEmail(e.target.value)} dir="ltr" placeholder="name@email.com" />
+        </div>
+      </div>
+
+      {/* The document itself, with fillable fields overlaid on it */}
+      {hasPdf && (
+        <>
+          <div style={{ textAlign: 'center', marginBottom: 10 }}>
+            <button type="button" onClick={() => setShowFullscreen(true)} style={styles.fullscreenBtn}>🖵 {L('צפה במסך מלא', 'View fullscreen')}</button>
+          </div>
+          <div style={styles.docViewer}>
+            {pdfError ? (
+              <div style={styles.center}>
+                <div style={{ fontSize: 32 }}>📄</div>
+                <p>{L('לא ניתן להציג את המסמך כאן.', 'Cannot display the document here.')}</p>
+                <a href={doc.originalFileUrl} target="_blank" rel="noopener noreferrer" style={styles.linkBtn}>{L('פתח את המסמך', 'Open document')}</a>
+              </div>
+            ) : (
+              <Document
+                file={doc.originalFileUrl}
+                options={PDF_OPTIONS}
+                onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+                onLoadError={(err) => { console.error('PDF load error:', err); setPdfError(true); }}
+                loading={<div style={styles.center}><FaSpinner className="dfp-spin" /> {L('טוען מסמך...', 'Loading document...')}</div>}
+              >
+                {Array.from(new Array(numPages || 1), (el, index) => {
+                  const pageNum = index + 1;
+                  const pageFields = fields.filter(f => (f.page || 1) === pageNum);
+                  return (
+                    <div key={`page_${pageNum}`} style={{ position: 'relative', marginBottom: 16, boxShadow: '0 2px 12px rgba(2,6,23,.12)' }}>
+                      <Page
+                        pageNumber={pageNum}
+                        width={pdfWidth}
+                        renderTextLayer={false}
+                        renderAnnotationLayer={false}
+                        onLoadSuccess={(page) => { if (pageNum === 1) setPdfWidth(page.width); }}
+                      />
+                      {pageFields.map((f) => (
+                        <div key={f.fieldId} style={getFieldStyle(f)} title={labelFor(f)}>
+                          {renderOverlayControl(f)}
+                          {f.required && (
+                            <span style={styles.reqDot}>*</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })}
+              </Document>
+            )}
+          </div>
+        </>
+      )}
+
+      {/* Fallback: no PDF attached → render fields as a plain list so the form still works */}
+      {!hasPdf && fields.length > 0 && (
+        <div style={styles.contactCard}>
+          {fields.map((f) => (
+            <div key={f.fieldId} style={{ ...styles.field, flex: '1 1 100%' }}>
+              {(f.fieldType || '').toLowerCase() !== 'checkbox' && (
+                <label style={styles.label}>{labelFor(f)} {f.required && <span style={styles.req}>*</span>}</label>
+              )}
+              <div style={{ position: 'relative', minHeight: 44 }}>{renderOverlayControl(f)}</div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <button type="submit" style={styles.submit} disabled={submitting}>
+        {submitting ? <><FaSpinner className="dfp-spin" /> {L('שולח...', 'Submitting...')}</> : L('שלח טופס', 'Submit form')}
+      </button>
+
+      {/* Fullscreen document */}
+      {showFullscreen && hasPdf && (
+        <div style={styles.fsOverlay} onClick={() => setShowFullscreen(false)}>
+          <div style={styles.fsContent} onClick={(e) => e.stopPropagation()}>
+            <div style={styles.fsHeader}>
+              <h3 style={{ margin: 0, fontSize: 16 }}>{doc?.sourceTemplateName || doc?.documentName}</h3>
+              <button type="button" onClick={() => setShowFullscreen(false)} style={styles.fsClose}>✕</button>
+            </div>
+            <div style={styles.fsBody}>
+              <Document file={doc.originalFileUrl} options={PDF_OPTIONS} onLoadSuccess={({ numPages }) => setNumPages(numPages)}>
+                {Array.from(new Array(numPages || 1), (el, index) => {
+                  const pageNum = index + 1;
+                  const w = Math.min((typeof window !== 'undefined' ? window.innerWidth : 900) - 32, 900);
+                  const pageFields = fields.filter(f => (f.page || 1) === pageNum);
+                  const fsScale = w / (612 * 1.8);
+                  return (
+                    <div key={`fs_${pageNum}`} style={{ position: 'relative', marginBottom: 12 }}>
+                      <Page pageNumber={pageNum} width={w} renderTextLayer={false} renderAnnotationLayer={false} />
+                      {pageFields.map((f) => (
+                        <div key={f.fieldId} style={{
+                          position: 'absolute',
+                          left: `${(f.x || 0) * fsScale}px`,
+                          top: `${(f.y || 0) * fsScale}px`,
+                          width: `${(f.width || 120) * fsScale}px`,
+                          height: `${(f.height || 32) * fsScale}px`,
+                          zIndex: 10,
+                        }} title={labelFor(f)}>
+                          {renderOverlayControl(f)}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })}
+              </Document>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        .dfp-input { width: 100%; box-sizing: border-box; padding: 11px 12px; border: 1px solid #d1d5db; border-radius: 10px; font-size: 15px; outline: none; transition: border-color .15s; background: #fff; }
+        .dfp-input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
+        .dfp-spin { animation: dfpspin 1s linear infinite; }
+        @keyframes dfpspin { to { transform: rotate(360deg); } }
+      `}</style>
+    </form>
+  );
+};
+
+const styles = {
+  page: { minHeight: '100vh', background: 'linear-gradient(135deg,#eef2ff,#f8fafc)', display: 'flex', flexDirection: 'column', alignItems: 'stretch' },
+  headerBar: { background: '#fff', borderBottom: '1px solid #e5e7eb', boxShadow: '0 1px 3px rgba(2,6,23,.06)', position: 'sticky', top: 0, zIndex: 50 },
+  headerInner: { maxWidth: 1000, margin: '0 auto', width: '100%', padding: '10px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxSizing: 'border-box' },
+  secureBadge: { fontSize: 12, color: '#0f766e', background: '#ecfdf5', border: '1px solid #a7f3d0', borderRadius: 999, padding: '4px 10px', whiteSpace: 'nowrap' },
+  content: { maxWidth: 1000, width: '100%', margin: '0 auto', padding: '18px 16px 40px', boxSizing: 'border-box' },
+  hint: { textAlign: 'center', color: '#475569', fontSize: 14, marginBottom: 14 },
+  contactCard: { background: '#fff', borderRadius: 14, boxShadow: '0 6px 24px rgba(2,6,23,.08)', padding: '16px', display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 16 },
+  field: { display: 'flex', flexDirection: 'column', gap: 6 },
+  label: { fontSize: 13, fontWeight: 600, color: '#334155' },
+  req: { color: '#dc2626' },
+  reqDot: { position: 'absolute', top: -8, insetInlineEnd: -6, color: '#dc2626', fontWeight: 800, fontSize: 16 },
+  docViewer: { display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#e2e8f0', borderRadius: 14, padding: 16, overflow: 'auto' },
+  fullscreenBtn: { padding: '8px 14px', background: '#0f172a', color: '#fff', border: 'none', borderRadius: 10, fontSize: 13, fontWeight: 600, cursor: 'pointer' },
+  linkBtn: { display: 'inline-block', marginTop: 8, padding: '10px 16px', background: '#2563eb', color: '#fff', borderRadius: 10, textDecoration: 'none', fontWeight: 600 },
+  submit: { width: '100%', marginTop: 20, padding: '14px 16px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  center: { textAlign: 'center', padding: '20px 8px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 },
+  centerWrap: { flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 },
+  centerCard: { width: '100%', maxWidth: 520, background: '#fff', borderRadius: 18, boxShadow: '0 10px 40px rgba(2,6,23,.12)', padding: '28px 24px' },
+  footer: { padding: '16px', textAlign: 'center', fontSize: 12, color: '#94a3b8' },
+  fsOverlay: { position: 'fixed', inset: 0, background: 'rgba(2,6,23,.75)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 12 },
+  fsContent: { background: '#f1f5f9', borderRadius: 12, width: '100%', maxWidth: 960, maxHeight: '92vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
+  fsHeader: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#fff', borderBottom: '1px solid #e5e7eb' },
+  fsClose: { background: 'transparent', border: 'none', fontSize: 20, cursor: 'pointer', color: '#334155' },
+  fsBody: { overflow: 'auto', padding: 16, display: 'flex', flexDirection: 'column', alignItems: 'center' },
+};
+
+export default DocumentFormPublic;

@@ -16,6 +16,13 @@
         "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
       },
       {
+        "source": "**/*.mjs",
+        "headers": [
+          { "key": "Content-Type", "value": "text/javascript; charset=utf-8" },
+          { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        ]
+      },
+      {
         "source": "**/*.css",
         "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
       },
@@ -115,6 +122,10 @@
       {
         "source": "/*/esignature/*/sign/*",
         "destination": "/esig/index.html"
+      },
+      {
+        "source": "/*/form/*/*",
+        "destination": "/form/index.html"
       },
       {
         "source": "/addpayment",

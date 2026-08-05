@@ -12,17 +12,29 @@ import './PublicSigningPage.css';
 
 const gambotLogo = '/new_logo.png';
 
+// pdfjs v5 uses an ES-module worker. Cross-origin CDN module workers can fail to instantiate in some
+// browsers even with CORS headers (→ "Failed to load PDF file"). Serve the worker SAME-ORIGIN from
+// /public instead — it is copied from react-pdf's bundled pdfjs-dist so the version can never drift.
+pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+
+// Stable options reference — react-pdf reloads the document whenever this prop changes identity, so it
+// MUST be a module-level constant (not an inline object literal recreated on every render).
+const PDF_OPTIONS = {
+  cMapUrl: `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
+  cMapPacked: true,
+  standardFontDataUrl: `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
+};
+
 const PublicSigningPage = () => {
-  // Parse /:organization/esignature/:documentId/sign/:token from window.location.pathname
+  // Parse /:organization/esignature/:documentId/sign/:token from window.location (static Next.js export).
   const pathParts = typeof window !== 'undefined' ? window.location.pathname.replace(/\/$/, '').split('/') : [];
-  // Expected: ['', ':org', 'esignature', ':docId', 'sign', ':token']
   const signIdx = pathParts.indexOf('sign');
   const esigIdx = pathParts.indexOf('esignature');
   const organization = esigIdx > 0 ? pathParts[esigIdx - 1] : null;
   const documentId = esigIdx > 0 ? pathParts[esigIdx + 1] : null;
   const token = signIdx > 0 ? pathParts[signIdx + 1] : null;
   const searchParams = useSearchParams();
-  
+
   // Get language from URL query params first
   const urlLang = searchParams?.get('lang');
   const [language, setLanguage] = useState(urlLang || 'en'); // Default to URL lang or English
@@ -61,6 +73,7 @@ const PublicSigningPage = () => {
   const [fieldValues, setFieldValues] = useState({}); // { fieldId: value } for name/date fields
   const [editingNameOnPdf, setEditingNameOnPdf] = useState(false); // Track if editing name on PDF
   const [editingNameFieldId, setEditingNameFieldId] = useState(null); // Track which name field is being edited
+  const [textFieldValues, setTextFieldValues] = useState({}); // { fieldId: value } for free-text fields the signer fills
   const [activeSignatureFieldId, setActiveSignatureFieldId] = useState(null);
   const [showSignatureModal, setShowSignatureModal] = useState(false);
   const modalSigCanvas = useRef(null);
@@ -70,11 +83,6 @@ const PublicSigningPage = () => {
 
   // ✅ PDF Fullscreen modal state
   const [showPdfFullscreen, setShowPdfFullscreen] = useState(false);
-
-  // Set up PDF.js worker using CDN (avoids bundling issues in Next.js static export)
-  useEffect(() => {
-    pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-  }, []);
 
   // PDF loading handlers
   const onDocumentLoadSuccess = ({ numPages }) => {
@@ -329,6 +337,7 @@ const PublicSigningPage = () => {
         pleaseEnterName: 'Please enter your name',
         pleaseProvideSignature: 'Please provide your signature',
         failedToSubmit: 'Failed to submit signature. Please try again.',
+        // ✅ Multi-step wizard
         step: 'Step',
         of: 'of',
         next: 'Next',
@@ -348,12 +357,14 @@ const PublicSigningPage = () => {
         scrollToReview: 'Scroll to review the entire document',
         viewFullscreen: 'View Fullscreen',
         closeFullscreen: 'Close Fullscreen',
+        // ✅ Sequential signing
         waitingForSigner: 'Waiting for Previous Signer',
         pleaseWait: 'Please Wait',
         signingOrder: 'Signing Order',
         mustSignFirst: 'must sign first before you can proceed',
         checkBackLater: 'Please check back later or contact the document sender.',
         refreshPage: 'Refresh Page',
+        // ✅ Fields section
         fieldsToFill: 'Details to be added after signing',
         signature: 'Signature',
         name: 'Name',
@@ -365,10 +376,12 @@ const PublicSigningPage = () => {
         secureConnection: 'Secure Connection',
         documentName: 'Document',
         signerNameLabel: 'Signed by',
+        // ✅ PDF Viewer
         prevPage: 'Previous',
         nextPage: 'Next',
         loadingPdf: 'Loading PDF...',
         fieldsMarked: 'Fields marked on the document show where your details will be placed',
+        // ✅ Multi-signature
         clickFieldsToSign: 'Click on each signature field on the document to sign',
         signaturesCompleted: 'Signatures completed',
         clickToSign: 'Click to sign here',
@@ -379,6 +392,7 @@ const PublicSigningPage = () => {
         signBelowMessage: 'Please sign below to complete'
       },
       he: {
+        // ✅ PDF Viewer (Hebrew)
         prevPage: 'הקודם',
         nextPage: 'הבא',
         loadingPdf: 'טוען PDF...',
@@ -414,6 +428,7 @@ const PublicSigningPage = () => {
         pleaseEnterName: 'אנא הזן את שמך',
         pleaseProvideSignature: 'אנא ספק חתימה',
         failedToSubmit: 'שליחת החתימה נכשלה. אנא נסה שוב.',
+        // ✅ Multi-step wizard (Hebrew)
         step: 'שלב',
         of: 'מתוך',
         next: 'הבא',
@@ -433,12 +448,14 @@ const PublicSigningPage = () => {
         scrollToReview: 'גלול כדי לסקור את המסמך בשלמותו',
         viewFullscreen: 'צפה במסך מלא',
         closeFullscreen: 'סגור מסך מלא',
+        // ✅ Sequential signing (Hebrew)
         waitingForSigner: 'ממתין לחותם הקודם',
         pleaseWait: 'נא להמתין',
         signingOrder: 'סדר חתימה',
         mustSignFirst: 'חייב לחתום קודם לפני שתוכל להמשיך',
         checkBackLater: 'נא לבדוק שוב מאוחר יותר או ליצור קשר עם שולח המסמך.',
         refreshPage: 'רענן דף',
+        // ✅ Fields section (Hebrew)
         fieldsToFill: 'פרטים שיתווספו לאחר החתימה',
         signature: 'חתימה',
         name: 'שם',
@@ -450,6 +467,7 @@ const PublicSigningPage = () => {
         secureConnection: 'חיבור מאובטח',
         documentName: 'מסמך',
         signerNameLabel: 'נחתם על ידי',
+        // ✅ Multi-signature (Hebrew)
         clickFieldsToSign: 'לחץ על כל שדה חתימה במסמך כדי לחתום',
         signaturesCompleted: 'חתימות הושלמו',
         clickToSign: 'לחץ לחתימה כאן',
@@ -475,6 +493,7 @@ const PublicSigningPage = () => {
   const areAllSignatureFieldsSigned = () => {
     const sigFields = getSignatureFields();
     if (sigFields.length === 0) {
+      // No signature fields defined, check the main canvas
       return sigCanvas.current && !sigCanvas.current.isEmpty();
     }
     return sigFields.every(field => fieldSignatures[field.fieldId]);
@@ -504,6 +523,255 @@ const PublicSigningPage = () => {
     modalSigCanvas.current?.clear();
   };
 
+  // ✅ Field types the signer actively fills in (as opposed to signature/date/variable)
+  const INPUT_FIELD_TYPES = ['text', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox', 'name'];
+
+  // ✅ Current signer role (multi-signer). When unknown, treat every field as fillable by this signer.
+  const currentSignerRole =
+    esigDocument?.currentSignerRole ||
+    esigDocument?.signerRole ||
+    esigDocument?.currentSigner?.signerRole ||
+    null;
+
+  const isFieldForCurrentSigner = (field) => {
+    if (!currentSignerRole) return true; // no role context → everyone fills everything
+    if (!field?.signerRole) return true; // field not scoped to a role → shared
+    return field.signerRole === currentSignerRole;
+  };
+
+  // ✅ Store a fillable field value keyed by fieldId (generic map reuses textFieldValues)
+  const setInputValue = (fieldId, value) => {
+    setTextFieldValues(prev => ({ ...prev, [fieldId]: value }));
+  };
+
+  // ✅ Israeli ID (Teudat Zehut) check-digit validation. Accepts 1-9 digits, left-pads to 9.
+  const isValidIsraeliId = (rawId) => {
+    const digits = String(rawId ?? '').trim();
+    if (!/^\d{1,9}$/.test(digits)) return false;
+    const id = digits.padStart(9, '0');
+    let sum = 0;
+    for (let i = 0; i < 9; i++) {
+      let step = Number(id[i]) * ((i % 2) + 1);
+      if (step > 9) step -= 9;
+      sum += step;
+    }
+    return sum % 10 === 0;
+  };
+
+  // ✅ Resolve the effective validation rule: explicit validation wins, else derive from fieldType
+  const getEffectiveValidation = (field) => {
+    const v = (field?.validation || '').toLowerCase();
+    if (v && v !== 'none') return v;
+    const ft = field?.fieldType?.toLowerCase();
+    if (['id_number', 'email', 'phone', 'number'].includes(ft)) return ft;
+    return 'none';
+  };
+
+  // ✅ Validate a single field's value. Returns a localized error string, or null when valid.
+  const validateField = (field, rawValue) => {
+    const ft = field?.fieldType?.toLowerCase();
+    const label = field?.label || field?.placeholder || t(ft, ft) || (language === 'he' ? 'שדה' : 'field');
+    const isCheckbox = ft === 'checkbox';
+    const boolVal = rawValue === true || rawValue === 'true';
+    const value = isCheckbox ? boolVal : String(rawValue ?? '').trim();
+    const isEmpty = isCheckbox ? boolVal === false : value === '';
+
+    if (field?.required && isEmpty) {
+      return language === 'he' ? `נא למלא את השדה: ${label}` : `Please fill in the field: ${label}`;
+    }
+    if (isEmpty) return null; // optional + empty → nothing to validate
+
+    switch (getEffectiveValidation(field)) {
+      case 'id_number':
+        if (!isValidIsraeliId(value)) {
+          return language === 'he' ? `תעודת זהות לא תקינה: ${label}` : `Invalid ID number: ${label}`;
+        }
+        break;
+      case 'email':
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          return language === 'he' ? `כתובת אימייל לא תקינה: ${label}` : `Invalid email address: ${label}`;
+        }
+        break;
+      case 'phone':
+        if (value.replace(/\D/g, '').length < 9) {
+          return language === 'he' ? `מספר טלפון לא תקין: ${label}` : `Invalid phone number: ${label}`;
+        }
+        break;
+      case 'number':
+        if (!/^-?\d+(\.\d+)?$/.test(value)) {
+          return language === 'he' ? `יש להזין מספר בשדה: ${label}` : `Must be a number: ${label}`;
+        }
+        break;
+      case 'regex':
+        if (field?.validationRegex) {
+          try {
+            if (!new RegExp(field.validationRegex).test(value)) {
+              return language === 'he' ? `ערך לא תקין בשדה: ${label}` : `Invalid value: ${label}`;
+            }
+          } catch (e) {
+            console.warn('Invalid validationRegex for field', field?.fieldKey, e);
+          }
+        }
+        break;
+      default:
+        break;
+    }
+    return null;
+  };
+
+  // ✅ Render the appropriate input control for a fillable field, overlaid on the PDF.
+  const renderFillableField = (field) => {
+    const ft = field?.fieldType?.toLowerCase();
+    const readOnly = field?.editable === false || !isFieldForCurrentSigner(field);
+    const val = textFieldValues[field.fieldId];
+    const stop = (e) => e.stopPropagation();
+    const controlStyle = {
+      background: 'white',
+      padding: '6px 10px',
+      borderRadius: '4px',
+      width: '100%',
+      height: '100%',
+      fontSize: '15px',
+      color: '#374151',
+      border: '2px solid #6b7280',
+      outline: 'none',
+      boxSizing: 'border-box'
+    };
+
+    if (readOnly) {
+      return (
+        <div
+          title={field.label || ''}
+          style={{ ...controlStyle, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6b7280' }}
+        >
+          {ft === 'checkbox' ? ((val === true || val === 'true') ? '☑' : '☐') : (val ?? field.value ?? '')}
+        </div>
+      );
+    }
+
+    switch (ft) {
+      case 'dropdown':
+        return (
+          <select
+            title={field.label || ''}
+            value={val ?? ''}
+            onClick={stop}
+            onChange={(e) => setInputValue(field.fieldId, e.target.value)}
+            style={controlStyle}
+          >
+            <option value="">{field.placeholder || (language === 'he' ? 'בחר...' : 'Select...')}</option>
+            {(field.options || []).map((opt, i) => (
+              <option key={`${field.fieldId}_opt_${i}`} value={opt}>{opt}</option>
+            ))}
+          </select>
+        );
+      case 'checkbox':
+        return (
+          <label
+            title={field.label || ''}
+            onClick={stop}
+            style={{ ...controlStyle, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+          >
+            <input
+              type="checkbox"
+              checked={val === true || val === 'true'}
+              onChange={(e) => setInputValue(field.fieldId, e.target.checked)}
+              style={{ width: '18px', height: '18px' }}
+            />
+          </label>
+        );
+      case 'radio_group':
+        return (
+          <div
+            title={field.label || ''}
+            onClick={stop}
+            style={{ ...controlStyle, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2px', overflow: 'auto', padding: '4px 8px' }}
+          >
+            {(field.options || []).map((opt, i) => (
+              <label key={`${field.fieldId}_radio_${i}`} style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '13px' }}>
+                <input
+                  type="radio"
+                  name={field.fieldId}
+                  value={opt}
+                  checked={val === opt}
+                  onChange={() => setInputValue(field.fieldId, opt)}
+                  style={{ width: '15px', height: '15px' }}
+                />
+                <span>{opt}</span>
+              </label>
+            ))}
+          </div>
+        );
+      case 'number':
+        return (
+          <input
+            type="number"
+            dir="ltr"
+            title={field.label || ''}
+            value={val ?? ''}
+            placeholder={field.placeholder || ''}
+            onClick={stop}
+            onChange={(e) => setInputValue(field.fieldId, e.target.value)}
+            style={controlStyle}
+          />
+        );
+      case 'email':
+        return (
+          <input
+            type="email"
+            dir="ltr"
+            title={field.label || ''}
+            value={val ?? ''}
+            placeholder={field.placeholder || ''}
+            onClick={stop}
+            onChange={(e) => setInputValue(field.fieldId, e.target.value)}
+            style={controlStyle}
+          />
+        );
+      case 'phone':
+        return (
+          <input
+            type="tel"
+            inputMode="tel"
+            dir="ltr"
+            title={field.label || ''}
+            value={val ?? ''}
+            placeholder={field.placeholder || ''}
+            onClick={stop}
+            onChange={(e) => setInputValue(field.fieldId, e.target.value)}
+            style={controlStyle}
+          />
+        );
+      case 'id_number':
+        return (
+          <input
+            type="text"
+            inputMode="numeric"
+            dir="ltr"
+            maxLength={9}
+            title={field.label || ''}
+            value={val ?? ''}
+            placeholder={field.placeholder || (language === 'he' ? 'ת.ז' : 'ID number')}
+            onClick={stop}
+            onChange={(e) => setInputValue(field.fieldId, e.target.value.replace(/\D/g, ''))}
+            style={controlStyle}
+          />
+        );
+      default:
+        return (
+          <input
+            type="text"
+            title={field.label || ''}
+            value={val ?? ''}
+            placeholder={field.placeholder || t('typeHere', 'Type here...')}
+            onClick={stop}
+            onChange={(e) => setInputValue(field.fieldId, e.target.value)}
+            style={controlStyle}
+          />
+        );
+    }
+  };
+
   const handleSubmit = async (e) => {
     e?.preventDefault();
 
@@ -512,18 +780,43 @@ const PublicSigningPage = () => {
       return;
     }
 
+    // ✅ Validate all fillable input fields for the current signer (required + format)
+    const allFields = esigDocument?.signatureFields || [];
+    for (const field of allFields) {
+      const ft = field.fieldType?.toLowerCase();
+      if (!INPUT_FIELD_TYPES.includes(ft)) continue;
+      if (field.editable === false) continue;
+      if (!isFieldForCurrentSigner(field)) continue;
+
+      const rawValue = ft === 'name'
+        ? signerName
+        : (ft === 'checkbox'
+          ? (textFieldValues[field.fieldId] === true || textFieldValues[field.fieldId] === 'true')
+          : textFieldValues[field.fieldId]);
+
+      const validationError = validateField(field, rawValue);
+      if (validationError) {
+        alert(validationError);
+        return;
+      }
+    }
+
+    // Check if all signatures are provided
     const sigFields = getSignatureFields();
     let signatureImageBase64;
     let fieldSignaturesData = null;
 
     if (sigFields.length > 0) {
+      // Multiple signature fields defined - check each one
       if (!areAllSignatureFieldsSigned()) {
         alert(t('pleaseSignAllFields', 'Please sign all signature fields'));
         return;
       }
+      // Use first signature as main, send all as fieldSignatures
       signatureImageBase64 = Object.values(fieldSignatures)[0];
-      fieldSignaturesData = fieldSignatures;
+      fieldSignaturesData = fieldSignatures; // { fieldId: base64 }
     } else {
+      // No fields defined, use main canvas
       if (!sigCanvas.current || sigCanvas.current.isEmpty()) {
         alert(t('pleaseProvideSignature', 'Please provide your signature'));
         return;
@@ -534,18 +827,40 @@ const PublicSigningPage = () => {
     try {
       setSubmitting(true);
 
+      // ✅ Resolve the effective value for a field (shared by fieldValues + fieldData builders)
+      const resolveFieldValue = (field) => {
+        const fieldType = field.fieldType?.toLowerCase();
+        if (fieldType === 'name') return signerName;
+        if (fieldType === 'date' || fieldType === 'date_today') return new Date().toLocaleDateString(language === 'he' ? 'he-IL' : 'en-US');
+        if (fieldType === 'variable') return field.value || '';
+        if (fieldType === 'checkbox') {
+          return (textFieldValues[field.fieldId] === true || textFieldValues[field.fieldId] === 'true') ? 'true' : 'false';
+        }
+        // text, id_number, email, phone, number, dropdown, radio_group → typed/selected value
+        return textFieldValues[field.fieldId] ?? (field.value || '');
+      };
+
+      // ✅ Legacy payload: keyed by fieldId so backend PDF stamping keeps working
       const currentFieldValues = {};
+      // ✅ New payload: keyed by the field's unique fieldKey so automations can reference values
+      const fieldDataByKey = {};
       const fields = esigDocument?.signatureFields || [];
       fields.forEach(field => {
         const fieldType = field.fieldType?.toLowerCase();
-        if (fieldType === 'name') {
-          currentFieldValues[field.fieldId] = signerName;
-        } else if (fieldType === 'date') {
-          currentFieldValues[field.fieldId] = new Date().toLocaleDateString(language === 'he' ? 'he-IL' : 'en-US');
+
+        // Stamp-able / display value types keep flowing through fieldValues (legacy behavior + new inputs)
+        if (['name', 'date', 'date_today', 'text', 'variable', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox'].includes(fieldType)) {
+          currentFieldValues[field.fieldId] = resolveFieldValue(field);
+        }
+
+        // Anything with a unique key (except raw signature images) is exposed to automations by fieldKey
+        if (field.fieldKey && fieldType !== 'signature' && fieldType !== 'initials') {
+          fieldDataByKey[field.fieldKey] = resolveFieldValue(field);
         }
       });
 
       console.log('📤 [E-Signature] Submitting with fieldValues:', currentFieldValues);
+      console.log('📤 [E-Signature] Submitting with fieldData (by fieldKey):', fieldDataByKey);
 
       const response = await axios.post('https://gambot.azurewebsites.net/api/Webhooks/ESignature_SubmitSignature', {
         token,
@@ -554,14 +869,16 @@ const PublicSigningPage = () => {
         signerPhone,
         signatureImageBase64,
         fieldSignatures: fieldSignaturesData ? JSON.stringify(fieldSignaturesData) : null,
-        fieldValues: JSON.stringify(currentFieldValues)
+        fieldValues: JSON.stringify(currentFieldValues), // ✅ Stringify to ensure proper transmission
+        fieldData: JSON.stringify(fieldDataByKey) // ✅ Values keyed by unique fieldKey for automations
       });
       const data = response.data;
 
       if (data?.success || data?.Success) {
         setSubmitted(true);
-        setCurrentStep(4);
+        setCurrentStep(4); // ✅ Move to success step
         
+        // ✅ Capture the signed PDF URL (with embedded signature/name/date)
         if (data?.signedFileUrl || data?.SignedFileUrl) {
           const pdfUrl = data.signedFileUrl || data.SignedFileUrl;
           setSignedPdfUrl(pdfUrl);
@@ -580,14 +897,13 @@ const PublicSigningPage = () => {
     }
   };
 
+  // Alias for Step 4 button
   const handleSignatureSubmit = handleSubmit;
 
   // Wait for page to be ready
-  const containerStyle = { position: 'fixed', inset: 0, zIndex: 99999, background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)', overflowY: 'auto', padding: '20px' };
-
   if (!isPageReady) {
     return (
-      <div className="public-signing-container" style={containerStyle}>
+      <div className="public-signing-container">
         <div className="loading-state">
           <div className="spinner"></div>
           <p>Loading...</p>
@@ -598,7 +914,7 @@ const PublicSigningPage = () => {
 
   if (loading) {
     return (
-      <div className="public-signing-container" style={containerStyle}>
+      <div className="public-signing-container">
         <div className="esig-public-loading-branded">
           <img 
             src={gambotLogo} 
@@ -615,7 +931,7 @@ const PublicSigningPage = () => {
   // ✅ Waiting for other signer (sequential signing)
   if (waitingForOtherSigner) {
     return (
-      <div className="public-signing-container" style={containerStyle}>
+      <div className="public-signing-container">
         <div className="error-state esig-public-waiting-state">
           <div className="esig-public-waiting-icon">⏳</div>
           <h2>{t('waitingForSigner', 'Waiting for Previous Signer')}</h2>
@@ -649,6 +965,7 @@ const PublicSigningPage = () => {
   const renderHeader = () => (
     <div className="esig-public-header">
       <div className="esig-public-logo-area">
+        {/* ✅ Show company logo and name if available */}
         {organizationInfo?.companyLogo && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginRight: '20px' }}>
             <img 
@@ -667,6 +984,7 @@ const PublicSigningPage = () => {
           </div>
         )}
         
+        {/* Gambot branding */}
         <img 
           src={gambotLogo} 
           alt="Gambot" 
@@ -685,7 +1003,8 @@ const PublicSigningPage = () => {
 
   if (error || alreadySigned) {
     return (
-      <div className="public-signing-container" style={containerStyle}>
+      <div className="public-signing-container">
+        {/* Header */}
         {renderHeader()}
         
         <div className="error-state">
@@ -695,10 +1014,15 @@ const PublicSigningPage = () => {
           {alreadySigned && <p className="hint">{t('alreadySignedHint', 'If you need to sign again, please contact the document sender.')}</p>}
         </div>
 
+        {/* Footer */}
         <div className="esig-public-footer">
           <div className="esig-public-footer-content">
             <a href="https://gambot.co.il" target="_blank" rel="noopener noreferrer" className="esig-public-footer-brand">
-              <img src={gambotLogo} alt="Gambot" className="esig-public-footer-logo" />
+              <img 
+                src={gambotLogo} 
+                alt="Gambot" 
+                className="esig-public-footer-logo"
+              />
               <span className="esig-public-footer-text">
                 {t('poweredBy', 'Powered by')} <strong>Gambot</strong>
               </span>
@@ -711,7 +1035,7 @@ const PublicSigningPage = () => {
 
   if (submitted) {
     return (
-      <div className="public-signing-container" style={containerStyle}>
+      <div className="public-signing-container">
         <div className="success-state">
           <div className="success-icon">
             <FaCheckCircle size={64} color="#28a745" />
@@ -751,9 +1075,11 @@ const PublicSigningPage = () => {
   };
 
   return (
-    <div className="public-signing-container" dir={language === 'he' ? 'rtl' : 'ltr'} style={{ position: 'fixed', inset: 0, zIndex: 99999, background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)', overflowY: 'auto', padding: '20px' }}>
+    <div className="public-signing-container" dir={language === 'he' ? 'rtl' : 'ltr'}>
+      {/* Header */}
       {renderHeader()}
 
+      {/* Stepper - Hide on success step */}
       {currentStep < 4 && currentStep <= 2 && (
         <div className="esig-public-stepper-container">
           {renderStepper()}
@@ -869,6 +1195,7 @@ const PublicSigningPage = () => {
             <form onSubmit={handleSubmit} className="esig-public-signature-form">
               {/* Editable Name and Date - Clear Cards */}
               <div style={{ marginBottom: '30px', display: 'flex', gap: '15px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                {/* Name Card - Editable */}
                 <div style={{ 
                   padding: '20px', 
                   background: '#f0f9ff', 
@@ -894,8 +1221,9 @@ const PublicSigningPage = () => {
                     }}
                     placeholder={language === 'he' ? 'הזן שם' : 'Enter name'}
                   />
-                </div>
+                  </div>
 
+                {/* Date Card - Display Only */}
                 <div style={{ 
                   padding: '20px', 
                   background: '#fef3c7', 
@@ -924,6 +1252,7 @@ const PublicSigningPage = () => {
               {/* Show PDF with clickable signature fields if fields are defined */}
               {getSignatureFields().length > 0 ? (
                 <>
+                  {/* Signature progress */}
                   <div className="esig-public-signature-progress">
                     <p>
                       ✍️ {t('signaturesCompleted', 'Signatures completed')}: {' '}
@@ -931,6 +1260,10 @@ const PublicSigningPage = () => {
                     </p>
                   </div>
 
+                  {/* PDF Viewer - Use backend proxy to avoid CORS */}
+                  {/* PDF Viewer with Field Overlays */}
+                  
+                  {/* ✅ Fullscreen Button */}
                   <div style={{ marginBottom: '15px', textAlign: 'center' }}>
                     <button
                       onClick={() => setShowPdfFullscreen(true)}
@@ -944,45 +1277,45 @@ const PublicSigningPage = () => {
                   <div className="esig-public-document-viewer" ref={pdfContainerRef}>
                     {esigDocument?.originalFileUrl && (
                       <div className="esig-public-pdf-container" style={{ position: 'relative' }}>
-                        <Document
-                          file={esigDocument.originalFileUrl}
-                          onLoadSuccess={onDocumentLoadSuccess}
-                          onLoadError={onDocumentLoadError}
-                          options={{
-                            cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/',
-                            cMapPacked: true,
-                          }}
+                          <Document
+                            file={esigDocument.originalFileUrl}
+                            onLoadSuccess={onDocumentLoadSuccess}
+                            onLoadError={onDocumentLoadError}
+                          options={PDF_OPTIONS}
                         >
                           {Array.from(new Array(numPages || 1), (el, index) => {
                             const pageNum = index + 1;
+                            // Show ALL fields (signature, name, date) - not just signature fields
                             const pageFields = (esigDocument?.signatureFields || []).filter(f => (f.page || 1) === pageNum);
                             
                             return (
                               <div key={`page_${pageNum}`} style={{ position: 'relative', marginBottom: '20px' }}>
-                                <Page
+                              <Page
                                   pageNumber={pageNum}
-                                  width={pdfWidth}
+                                width={pdfWidth}
                                   onLoadSuccess={(page) => {
                                     if (pageNum === 1) {
                                       setPdfWidth(page.width);
                                     }
                                   }}
-                                />
-                                
+                              />
+                              
+                                {/* Overlay signature fields ON the PDF */}
                                 {pageFields.map((field) => {
-                                  const fieldType = field.fieldType?.toLowerCase() || 'signature';
-                                  const isSigned = fieldType === 'signature' && fieldSignatures[field.fieldId];
-                                  
-                                  return (
-                                    <div
+                                const fieldType = field.fieldType?.toLowerCase() || 'signature';
+                                const isSigned = fieldType === 'signature' && fieldSignatures[field.fieldId];
+                                
+                                return (
+                                  <div
                                       key={field.fieldId}
-                                      style={getFieldStyle(field)}
+                                    style={getFieldStyle(field)}
                                       onClick={() => {
                                         if (fieldType === 'signature' && !isSigned) {
                                           openSignatureModal(field.fieldId);
                                         }
                                       }}
                                     >
+                                      {/* Signature Field */}
                                       {fieldType === 'signature' && !isSigned && (
                                         <span>✍️ {t('clickToSign', 'Sign Here')}</span>
                                       )}
@@ -990,10 +1323,17 @@ const PublicSigningPage = () => {
                                         <img 
                                           src={fieldSignatures[field.fieldId]} 
                                           alt="Signature"
-                                          style={{ width: '100%', height: '100%', objectFit: 'contain', background: 'white', border: 'none' }}
+                                          style={{ 
+                                            width: '100%', 
+                                            height: '100%', 
+                                            objectFit: 'contain',
+                                            background: 'white',
+                                            border: 'none'
+                                          }}
                                         />
                                       )}
                                       
+                                      {/* Name Field - Editable on click */}
                                       {fieldType === 'name' && (
                                         editingNameFieldId === field.fieldId ? (
                                           <input
@@ -1001,37 +1341,166 @@ const PublicSigningPage = () => {
                                             value={signerName}
                                             onChange={(e) => setSignerName(e.target.value)}
                                             onBlur={() => setEditingNameFieldId(null)}
-                                            onKeyDown={(e) => { if (e.key === 'Enter') setEditingNameFieldId(null); }}
+                                            onKeyDown={(e) => {
+                                              if (e.key === 'Enter') {
+                                                setEditingNameFieldId(null);
+                                              }
+                                            }}
                                             autoFocus
-                                            style={{ background: 'white', padding: '8px 12px', borderRadius: '4px', width: '100%', height: '100%', fontSize: '16px', fontWeight: '600', color: '#1e40af', border: '2px solid #3b82f6', outline: 'none' }}
+                                            style={{ 
+                                              background: 'white', 
+                                              padding: '8px 12px', 
+                                              borderRadius: '4px',
+                                              width: '100%',
+                                              height: '100%',
+                                              fontSize: '16px',
+                                              fontWeight: '600',
+                                              color: '#1e40af',
+                                              border: '2px solid #3b82f6',
+                                              outline: 'none',
+                                              boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.2)'
+                                            }}
                                           />
-                                        ) : (
+                                      ) : (
                                           <div 
-                                            style={{ background: 'white', padding: '8px 12px', borderRadius: '4px', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: '600', color: '#1e40af', border: '2px solid #3b82f6', cursor: 'pointer' }}
-                                            onClick={(e) => { e.stopPropagation(); setEditingNameFieldId(field.fieldId); }}
+                                            style={{ 
+                                              background: 'white', 
+                                              padding: '8px 12px', 
+                                              borderRadius: '4px',
+                                              width: '100%',
+                                              height: '100%',
+                                              display: 'flex',
+                                              alignItems: 'center',
+                                              justifyContent: 'center',
+                                              fontSize: '16px',
+                                              fontWeight: '600',
+                                              color: '#1e40af',
+                                              border: '2px solid #3b82f6',
+                                              cursor: 'pointer',
+                                              transition: 'background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, opacity 0.2s, transform 0.2s'
+                                            }}
+                                            onClick={(e) => {
+                                              e.stopPropagation();
+                                              setEditingNameFieldId(field.fieldId);
+                                            }}
+                                            onMouseEnter={(e) => {
+                                              e.currentTarget.style.transform = 'scale(1.02)';
+                                              e.currentTarget.style.boxShadow = '0 2px 8px rgba(59, 130, 246, 0.3)';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                              e.currentTarget.style.transform = 'scale(1)';
+                                              e.currentTarget.style.boxShadow = 'none';
+                                            }}
                                           >
                                             {signerName} ✏️
                                           </div>
                                         )
                                       )}
                                       
-                                      {fieldType === 'date' && (
-                                        <div style={{ background: 'white', padding: '8px 12px', borderRadius: '4px', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: '600', color: '#92400e', border: '2px solid #f59e0b' }}>
+                                      {/* Date Field - Shows today's date */}
+                                      {(fieldType === 'date' || fieldType === 'date_today') && (
+                                        <div style={{ 
+                                          background: 'white', 
+                                          padding: '8px 12px', 
+                                          borderRadius: '4px',
+                                          width: '100%',
+                                          height: '100%',
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                          justifyContent: 'center',
+                                          fontSize: '16px',
+                                          fontWeight: '600',
+                                          color: '#92400e',
+                                          border: '2px solid #f59e0b'
+                                        }}>
                                           {new Date().toLocaleDateString(language === 'he' ? 'he-IL' : 'en-US')}
                                         </div>
                                       )}
-                                    </div>
-                                  );
-                                })}
-                              </div>
+
+                                      {/* Free Text Field - Signer types a value */}
+                                      {fieldType === 'text' && (
+                                        <input
+                                          type="text"
+                                          value={textFieldValues[field.fieldId] ?? (field.value || '')}
+                                          onClick={(e) => e.stopPropagation()}
+                                          onChange={(e) => setTextFieldValues(prev => ({ ...prev, [field.fieldId]: e.target.value }))}
+                                          placeholder={t('typeHere', 'Type here...')}
+                                          style={{
+                                            background: 'white',
+                                            padding: '6px 10px',
+                                            borderRadius: '4px',
+                                            width: '100%',
+                                            height: '100%',
+                                            fontSize: '15px',
+                                            color: '#374151',
+                                            border: '2px solid #6b7280',
+                                            outline: 'none'
+                                          }}
+                                        />
+                                      )}
+
+                                      {/* Variable Field - value pre-filled from CRM at creation (read-only) */}
+                                      {fieldType === 'variable' && (
+                                        <div style={{
+                                          background: 'white',
+                                          padding: '8px 12px',
+                                          borderRadius: '4px',
+                                          width: '100%',
+                                          height: '100%',
+                                          display: 'flex',
+                                          alignItems: 'center',
+                                          justifyContent: 'center',
+                                          fontSize: '15px',
+                                          fontWeight: '600',
+                                          color: '#0e7490',
+                                          border: '2px solid #06b6d4',
+                                          overflow: 'hidden'
+                                        }}>
+                                          {field.value || `{{${field.variableKey || ''}}}`}
+                                        </div>
+                                      )}
+
+                                      {/* Recipient input fields the signer fills (id_number/ת.ז, email, phone, number, dropdown, single-choice, checkbox) */}
+                                      {['id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox'].includes(fieldType) && (
+                                        renderFillableField(field)
+                                      )}
+                                  </div>
+                                );
+                              })}
+                            </div>
                             );
                           })}
-                        </Document>
-                      </div>
+                          </Document>
+                        </div>
                     )}
                   </div>
+
+                  {/* Old signature canvas (not used anymore) */}
+                  {false && (
+                    <div className="esig-public-signature-section">
+                      <label className="esig-public-signature-label">{t('yourSignature', 'Your Signature')} *</label>
+                      <p className="esig-public-signature-hint">{t('signatureHint', 'Sign in the box below using your mouse or touchscreen')}</p>
+                      <div className="esig-public-signature-canvas-wrapper">
+                        <SignatureCanvas
+                          ref={sigCanvas}
+                          backgroundColor="white"
+                          canvasProps={{
+                            className: 'esig-public-signature-canvas'
+                          }}
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleClearSignature}
+                        className="esig-public-btn-clear"
+                      >
+                        🗑️ {t('clearSignature', 'Clear Signature')}
+                      </button>
+                    </div>
+                  )}
                 </>
               ) : (
+                /* No fields defined - use simple signature canvas */
                 <div className="esig-public-signature-section">
                   <label className="esig-public-signature-label">{t('yourSignature', 'Your Signature')} *</label>
                   <p className="esig-public-signature-hint">{t('signatureHint', 'Sign in the box below using your mouse or touchscreen')}</p>
@@ -1039,10 +1508,16 @@ const PublicSigningPage = () => {
                     <SignatureCanvas
                       ref={sigCanvas}
                       backgroundColor="white"
-                      canvasProps={{ className: 'esig-public-signature-canvas' }}
+                      canvasProps={{
+                        className: 'esig-public-signature-canvas'
+                      }}
                     />
                   </div>
-                  <button type="button" onClick={handleClearSignature} className="esig-public-btn-clear">
+                  <button
+                    type="button"
+                    onClick={handleClearSignature}
+                    className="esig-public-btn-clear"
+                  >
                     🗑️ {t('clearSignature', 'Clear Signature')}
                   </button>
                 </div>
@@ -1053,7 +1528,12 @@ const PublicSigningPage = () => {
               </div>
 
               <div className="esig-public-step-actions">
-                <button type="button" onClick={handlePrevStep} className="esig-public-btn-secondary" disabled={submitting}>
+                <button
+                  type="button"
+                  onClick={handlePrevStep}
+                  className="esig-public-btn-secondary"
+                  disabled={submitting}
+                >
                   {t('back', 'Back')}
                 </button>
                 <button
@@ -1090,12 +1570,13 @@ const PublicSigningPage = () => {
         {currentStep === 3 && (
           <div className="esig-public-step-content">
             <div className="esig-public-step-header">
-              <h1>{language === 'he' ? 'סקירה אחרונה ואישור' : 'Final Review & Confirm'}</h1>
+              <h1>{t('step4ReviewTitle', language === 'he' ? 'סקירה אחרונה ואישור' : 'Final Review & Confirm')}</h1>
               <p className="esig-public-step-subtitle">
-                {language === 'he' ? 'נא לאשר שכל הפרטים נכונים לפני השליחה' : 'Please confirm all details are correct before submitting'}
+                {t('step4ReviewSubtitle', language === 'he' ? 'נא לאשר שכל הפרטים נכונים לפני השליחה' : 'Please confirm all details are correct before submitting')}
               </p>
             </div>
 
+            {/* Show PDF with all completed fields */}
             <div className="esig-public-document-viewer" ref={pdfContainerRef}>
               {esigDocument?.originalFileUrl && (
                 <div className="esig-public-pdf-container" style={{ position: 'relative' }}>
@@ -1103,7 +1584,7 @@ const PublicSigningPage = () => {
                     file={esigDocument.originalFileUrl}
                     onLoadSuccess={onDocumentLoadSuccess}
                     onLoadError={onDocumentLoadError}
-                    options={{ cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/', cMapPacked: true }}
+                    options={PDF_OPTIONS}
                   >
                     {Array.from(new Array(numPages || 1), (el, index) => {
                       const pageNum = index + 1;
@@ -1111,22 +1592,76 @@ const PublicSigningPage = () => {
                       
                       return (
                         <div key={`page_${pageNum}`} style={{ position: 'relative', marginBottom: '20px' }}>
-                          <Page pageNumber={pageNum} width={pdfWidth} onLoadSuccess={(page) => { if (pageNum === 1) setPdfWidth(page.width); }} />
+                          <Page
+                            pageNumber={pageNum}
+                            width={pdfWidth}
+                            onLoadSuccess={(page) => {
+                              if (pageNum === 1) {
+                                setPdfWidth(page.width);
+                              }
+                            }}
+                          />
                           
+                          {/* Show completed fields (non-editable) */}
                           {pageFields.map((field) => {
                             const fieldType = field.fieldType?.toLowerCase() || 'signature';
+                            
                             return (
-                              <div key={field.fieldId} style={{ ...getFieldStyle(field), cursor: 'default', pointerEvents: 'none', border: '2px solid #10b981', background: 'rgba(16, 185, 129, 0.1)' }}>
+                              <div
+                                key={field.fieldId}
+                                style={{
+                                  ...getFieldStyle(field),
+                                  cursor: 'default',
+                                  pointerEvents: 'none',
+                                  border: '2px solid #10b981',
+                                  background: 'rgba(16, 185, 129, 0.1)'
+                                }}
+                              >
                                 {fieldType === 'signature' && fieldSignatures[field.fieldId] && (
-                                  <img src={fieldSignatures[field.fieldId]} alt="Signature" style={{ width: '100%', height: '100%', objectFit: 'contain', background: 'white' }} />
+                                  <img 
+                                    src={fieldSignatures[field.fieldId]} 
+                                    alt="Signature"
+                                    style={{ 
+                                      width: '100%', 
+                                      height: '100%', 
+                                      objectFit: 'contain',
+                                      background: 'white'
+                                    }}
+                                  />
                                 )}
                                 {fieldType === 'name' && (
-                                  <div style={{ background: 'white', padding: '8px 12px', borderRadius: '4px', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: '600', color: '#1e40af', border: '2px solid #10b981' }}>
+                                  <div style={{ 
+                                    background: 'white', 
+                                    padding: '8px 12px', 
+                                    borderRadius: '4px',
+                                    width: '100%',
+                                    height: '100%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: '16px',
+                                    fontWeight: '600',
+                                    color: '#1e40af',
+                                    border: '2px solid #10b981'
+                                  }}>
                                     {signerName}
                                   </div>
                                 )}
-                                {fieldType === 'date' && (
-                                  <div style={{ background: 'white', padding: '8px 12px', borderRadius: '4px', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: '600', color: '#92400e', border: '2px solid #10b981' }}>
+                                {(fieldType === 'date' || fieldType === 'date_today') && (
+                                  <div style={{ 
+                                    background: 'white', 
+                                    padding: '8px 12px', 
+                                    borderRadius: '4px',
+                                    width: '100%',
+                                    height: '100%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: '16px',
+                                    fontWeight: '600',
+                                    color: '#92400e',
+                                    border: '2px solid #10b981'
+                                  }}>
                                     {new Date().toLocaleDateString(language === 'he' ? 'he-IL' : 'en-US')}
                                   </div>
                                 )}
@@ -1141,9 +1676,21 @@ const PublicSigningPage = () => {
               )}
             </div>
 
-            <div style={{ padding: '20px', background: '#f0f9ff', borderRadius: '8px', margin: '20px 0', border: '1px solid #3b82f6' }}>
+            {/* Confirmation checkbox */}
+            <div style={{ 
+              padding: '20px', 
+              background: '#f0f9ff', 
+              borderRadius: '8px', 
+              margin: '20px 0',
+              border: '1px solid #3b82f6'
+            }}>
               <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer' }}>
-                <input type="checkbox" checked={confirmationChecked} onChange={(e) => setConfirmationChecked(e.target.checked)} style={{ marginTop: '3px' }} />
+                <input 
+                  type="checkbox" 
+                  checked={confirmationChecked}
+                  onChange={(e) => setConfirmationChecked(e.target.checked)}
+                  style={{ marginTop: '3px' }}
+                />
                 <span style={{ fontSize: '14px' }}>
                   {language === 'he' 
                     ? 'אני מאשר/ת שהפרטים נכונים ומסכים/ה לחתום על מסמך זה באופן אלקטרוני'
@@ -1154,10 +1701,23 @@ const PublicSigningPage = () => {
             </div>
 
             <div className="esig-public-step-actions">
-              <button type="button" onClick={() => { setCurrentStep(2); setConfirmationChecked(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="esig-public-btn-secondary">
+              <button
+                type="button"
+                onClick={() => {
+                  setCurrentStep(2); // Go back to Step 2 (Sign)
+                  setConfirmationChecked(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="esig-public-btn-secondary"
+              >
                 {t('back', 'Back')}
               </button>
-              <button type="button" onClick={handleSignatureSubmit} disabled={submitting || !confirmationChecked} className="esig-public-btn-primary">
+              <button
+                type="button"
+                onClick={handleSignatureSubmit}
+                disabled={submitting || !confirmationChecked}
+                className="esig-public-btn-primary"
+              >
                 {submitting ? t('submitting', 'Submitting...') : (language === 'he' ? 'שלח חתימה' : 'Submit Signature')}
               </button>
             </div>
@@ -1188,16 +1748,48 @@ const PublicSigningPage = () => {
               </div>
             </div>
 
+            {/* Download signed PDF button */}
             {signedPdfUrl && (
-              <a href={signedPdfUrl} download={`${esigDocument?.documentName || 'Signed_Document'}.pdf`} className="esig-public-btn-download" target="_blank" rel="noopener noreferrer">
+              <a
+                href={signedPdfUrl}
+                download={`${esigDocument?.documentName || 'Signed_Document'}.pdf`}
+                className="esig-public-btn-download"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 📄 {t('downloadDocument', 'Download Signed Document')}
               </a>
             )}
 
-            <div style={{ marginTop: '40px', paddingTop: '30px', borderTop: '1px solid #e5e7eb', textAlign: 'center' }}>
-              <a href="https://gambot.co.il" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#64748b', fontSize: '14px' }}>
+            {/* Powered by Gambot */}
+            <div style={{ 
+              marginTop: '40px', 
+              paddingTop: '30px', 
+              borderTop: '1px solid #e5e7eb',
+              textAlign: 'center' 
+            }}>
+              <a 
+                href="https://gambot.co.il" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '10px',
+                  textDecoration: 'none',
+                  color: '#64748b',
+                  fontSize: '14px',
+                  transition: 'color 0.2s'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#1e40af'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}
+              >
                 <span>{language === 'he' ? 'מופעל על ידי' : 'Powered by'}</span>
-                <img src={gambotLogo} alt="Gambot" style={{ height: '24px' }} />
+                <img 
+                  src={gambotLogo} 
+                  alt="Gambot" 
+                  style={{ height: '24px' }}
+                />
                 <span style={{ fontWeight: '600', color: '#1e40af' }}>Gambot</span>
               </a>
             </div>
@@ -1213,7 +1805,12 @@ const PublicSigningPage = () => {
           <div className="esig-public-modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="esig-public-modal-header">
               <h2>✍️ {t('yourSignature', 'Your Signature')}</h2>
-              <button className="esig-public-modal-close" onClick={() => setShowSignatureModal(false)}>×</button>
+              <button 
+                className="esig-public-modal-close"
+                onClick={() => setShowSignatureModal(false)}
+              >
+                ×
+              </button>
             </div>
             <div className="esig-public-modal-body">
               <p className="esig-public-signature-hint">{t('signatureHint', 'Sign in the box below using your mouse or touchscreen')}</p>
@@ -1221,15 +1818,27 @@ const PublicSigningPage = () => {
                 <SignatureCanvas
                   ref={modalSigCanvas}
                   backgroundColor="white"
-                  canvasProps={{ className: 'esig-public-signature-canvas', width: 500, height: 200 }}
+                  canvasProps={{
+                    className: 'esig-public-signature-canvas',
+                    width: 500,
+                    height: 200
+                  }}
                 />
               </div>
             </div>
             <div className="esig-public-modal-footer">
-              <button type="button" onClick={() => modalSigCanvas.current?.clear()} className="esig-public-btn-clear">
+              <button
+                type="button"
+                onClick={() => modalSigCanvas.current?.clear()}
+                className="esig-public-btn-clear"
+              >
                 🗑️ {t('clearSignature', 'Clear')}
               </button>
-              <button type="button" onClick={handleSaveFieldSignature} className="esig-public-btn-primary">
+              <button
+                type="button"
+                onClick={handleSaveFieldSignature}
+                className="esig-public-btn-primary"
+              >
                 ✓ {t('saveSignature', 'Save Signature')}
               </button>
             </div>
@@ -1243,7 +1852,11 @@ const PublicSigningPage = () => {
           <div className="esig-public-fullscreen-content" onClick={(e) => e.stopPropagation()}>
             <div className="esig-public-fullscreen-header">
               <h3>{esigDocument?.documentName || t('documentPreview', 'Document Preview')}</h3>
-              <button onClick={() => setShowPdfFullscreen(false)} className="esig-public-btn-close-fullscreen" type="button">
+              <button
+                onClick={() => setShowPdfFullscreen(false)}
+                className="esig-public-btn-close-fullscreen"
+                type="button"
+              >
                 ✕ {t('closeFullscreen', 'Close')}
               </button>
             </div>
@@ -1252,13 +1865,13 @@ const PublicSigningPage = () => {
                 <Document
                   file={esigDocument.originalFileUrl}
                   onLoadSuccess={onDocumentLoadSuccess}
-                  options={{ cMapUrl: 'https://unpkg.com/pdfjs-dist@3.11.174/cmaps/', cMapPacked: true }}
+                  options={PDF_OPTIONS}
                 >
                   {Array.from(new Array(numPages || 1), (el, index) => (
                     <div key={`fullscreen-page-${index + 1}`} style={{ marginBottom: '8px' }}>
                       <Page
                         pageNumber={index + 1}
-                        width={typeof window !== 'undefined' ? Math.min(window.innerWidth - 32, 900) : 900}
+                        width={Math.min(window.innerWidth - 32, 900)}
                         renderTextLayer={false}
                         renderAnnotationLayer={false}
                       />
@@ -1275,7 +1888,11 @@ const PublicSigningPage = () => {
       <div className="esig-public-footer">
         <div className="esig-public-footer-content">
           <a href="https://gambot.co.il" target="_blank" rel="noopener noreferrer" className="esig-public-footer-brand">
-            <img src={gambotLogo} alt="Gambot" className="esig-public-footer-logo" />
+            <img 
+              src={gambotLogo} 
+              alt="Gambot" 
+              className="esig-public-footer-logo"
+            />
             <span className="esig-public-footer-text">
               {t('poweredBy', 'Powered by')} <strong>Gambot</strong>
             </span>
@@ -1292,3 +1909,4 @@ const PublicSigningPage = () => {
 };
 
 export default PublicSigningPage;
+
