@@ -1,7 +1,6 @@
 import './globals.css';
-import Navbar from '@/components/Navbar/Navbar';
-import Footer from '@/components/Footer/Footer';
 import ClientLayout from '@/components/ClientLayout/ClientLayout';
+import SiteChrome from '@/components/ClientLayout/SiteChrome';
 
 export const metadata = {
   metadataBase: new URL('https://gambot.co.il'),
@@ -146,9 +145,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <ClientLayout>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <SiteChrome>{children}</SiteChrome>
         </ClientLayout>
       </body>
     </html>

@@ -425,7 +425,176 @@
   box-shadow: 0 6px 20px rgba(37,211,102,0.45);
 }
 
+/* Video tutorials */
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.videoCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.videoCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: #25D366;
+}
+
+.videoEmbed {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  background: #000;
+}
+
+.videoEmbed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.videoMeta {
+  padding: 18px 20px 22px;
+}
+
+.videoMeta h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 6px;
+}
+
+.videoMeta p {
+  font-size: 0.9rem;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.videoStepNum {
+  display: inline-block;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+
+/* Choice card — pick a path (e.g. Coexistence vs. dedicated SIM) */
+.videoChoice {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #eef2f7;
+}
+
+.videoChoicePrompt {
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  color: #1a202c !important;
+  margin-bottom: 10px !important;
+}
+
+.videoChoiceOpts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.videoChoiceBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  text-align: start;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.videoChoiceBtn:hover {
+  border-color: #25D366;
+  background: #f0fff7;
+}
+
+.videoChoiceBtnActive {
+  border-color: #128C7E;
+  background: #e7fff2;
+  box-shadow: 0 4px 14px rgba(18, 140, 126, 0.15);
+}
+
+.videoChoiceLabel {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #128C7E;
+}
+
+.videoChoiceSub {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+/* Interactive demo wrapper */
+.demoWrap {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Related solutions — internal linking */
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.relatedCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 20px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #16a34a;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.relatedCard:hover {
+  border-color: #16a34a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.12);
+}
+.relatedPrimary {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  border-color: #15803d;
+  color: #fff;
+}
+.relatedArrow {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
 @media (max-width: 768px) {
+  .relatedGrid { grid-template-columns: 1fr; }
   .hero { padding: 72px 0 56px; }
   .heroTitle { font-size: 1.8rem; }
   .stats { gap: 28px; }
@@ -434,4 +603,5 @@
   .ctaTitle { font-size: 1.7rem; }
   .stepsGrid { grid-template-columns: 1fr 1fr; gap: 16px; }
   .midCtaInner { flex-direction: column; text-align: center; }
+  .videoGrid { grid-template-columns: 1fr; }
 }

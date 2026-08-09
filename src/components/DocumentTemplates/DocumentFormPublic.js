@@ -67,6 +67,7 @@ const DocumentFormPublic = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [alreadyDone, setAlreadyDone] = useState(false);
+  const [errors, setErrors] = useState({}); // keyed by fieldId (or 'signerName'/'signerEmail')
 
   // PDF viewer state
   const [numPages, setNumPages] = useState(null);
@@ -115,6 +116,21 @@ const DocumentFormPublic = () => {
 
   const labelFor = (f) => f.label || f.placeholder || f.fieldName || f.fieldKey || L('שדה', 'Field');
   const todayStr = () => new Date().toLocaleDateString(lang === 'he' ? 'he-IL' : 'en-US');
+
+  // Format hint shown as a placeholder so the user knows exactly what to type (e.g. email format).
+  const phFor = (f) => {
+    if (f.placeholder) return f.placeholder;
+    switch ((f.fieldType || '').toLowerCase()) {
+      case 'email': return 'name@example.com';
+      case 'phone': return L('050-0000000', '050-0000000');
+      case 'id_number': return L('9 ספרות', '9 digits');
+      case 'number': return L('מספר', 'Number');
+      case 'name': return L('שם מלא', 'Full name');
+      case 'dropdown': return L('בחר...', 'Select...');
+      case 'date': return L('בחר תאריך', 'Pick a date');
+      default: return L('הקלד כאן...', 'Type here...');
+    }
+  };
 
   const getEffectiveValidation = (f) => {
     const v = (f?.validation || '').toLowerCase();
@@ -180,35 +196,49 @@ const DocumentFormPublic = () => {
     };
   };
 
-  const setVal = (fieldId, v) => setValues(prev => ({ ...prev, [fieldId]: v }));
+  const setVal = (fieldId, v) => {
+    setValues(prev => ({ ...prev, [fieldId]: v }));
+    setErrors(prev => (prev[fieldId] ? { ...prev, [fieldId]: undefined } : prev));
+  };
+
+  const blurValidate = (f) => {
+    const ft = (f.fieldType || '').toLowerCase();
+    const raw = ft === 'name' ? signerName : (ft === 'checkbox' ? (values[f.fieldId] === true || values[f.fieldId] === 'true') : values[f.fieldId]);
+    const err = validate(f, raw);
+    setErrors(prev => ({ ...prev, [f.fieldId]: err || undefined }));
+  };
 
   // Render the fillable control positioned ON the document.
   const renderOverlayControl = (f) => {
     const ft = (f.fieldType || '').toLowerCase();
     const id = f.fieldId;
     const val = values[id];
+    const hasErr = !!errors[id];
     const stop = (e) => e.stopPropagation();
+    const borderColor = hasErr ? '#dc2626' : '#2e6155';
     const base = {
       width: '100%', height: '100%', boxSizing: 'border-box',
-      border: '2px solid #2563eb', borderRadius: '4px', background: '#fff',
+      border: `2px solid ${borderColor}`, borderRadius: '4px', background: '#fff',
       padding: '4px 8px', fontSize: '14px', color: '#111827', outline: 'none',
+      boxShadow: hasErr ? '0 0 0 3px rgba(220,38,38,.12)' : 'none',
     };
     const readOnlyBox = { ...base, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f1f5f9', color: '#475569', borderStyle: 'dashed' };
+    const onBlur = () => blurValidate(f);
 
     if (ft === 'name') {
-      return <input style={base} value={signerName} onClick={stop} onChange={(e) => setSignerName(e.target.value)} placeholder={f.placeholder || L('שם מלא', 'Full name')} />;
+      return <input style={base} value={signerName} onClick={stop} onBlur={onBlur} onChange={(e) => { setSignerName(e.target.value); setErrors(prev => prev[id] ? { ...prev, [id]: undefined } : prev); }} placeholder={phFor(f)} />;
     }
     if (ft === 'date_today') {
       return <div style={readOnlyBox} title={labelFor(f)}>{todayStr()}</div>;
     }
     if (ft === 'date') {
-      return <input type="date" style={base} value={val ?? ''} onClick={stop} onChange={(e) => setVal(id, e.target.value)} />;
+      return <input type="date" style={base} value={val ?? ''} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
     }
     if (ft === 'dropdown') {
       const opts = Array.isArray(f.options) ? f.options : [];
       return (
-        <select style={base} value={val ?? ''} onClick={stop} onChange={(e) => setVal(id, e.target.value)}>
-          <option value="">{f.placeholder || L('בחר...', 'Select...')}</option>
+        <select style={base} value={val ?? ''} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)}>
+          <option value="">{phFor(f)}</option>
           {opts.map((o, i) => <option key={i} value={o}>{o}</option>)}
         </select>
       );
@@ -234,21 +264,32 @@ const DocumentFormPublic = () => {
         </label>
       );
     }
-    if (ft === 'number') return <input type="number" inputMode="decimal" dir="ltr" style={base} value={val ?? ''} placeholder={f.placeholder || ''} onClick={stop} onChange={(e) => setVal(id, e.target.value)} />;
-    if (ft === 'email') return <input type="email" inputMode="email" dir="ltr" style={base} value={val ?? ''} placeholder={f.placeholder || ''} onClick={stop} onChange={(e) => setVal(id, e.target.value)} />;
-    if (ft === 'phone') return <input type="tel" inputMode="tel" dir="ltr" style={base} value={val ?? ''} placeholder={f.placeholder || ''} onClick={stop} onChange={(e) => setVal(id, e.target.value)} />;
-    if (ft === 'id_number') return <input inputMode="numeric" dir="ltr" maxLength={9} style={base} value={val ?? ''} placeholder={f.placeholder || L('ת.ז', 'ID number')} onClick={stop} onChange={(e) => setVal(id, e.target.value.replace(/\D/g, ''))} />;
-    return <input type="text" style={base} value={val ?? ''} placeholder={f.placeholder || L('הקלד כאן...', 'Type here...')} onClick={stop} onChange={(e) => setVal(id, e.target.value)} />;
+    if (ft === 'number') return <input type="number" inputMode="decimal" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
+    if (ft === 'email') return <input type="email" inputMode="email" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
+    if (ft === 'phone') return <input type="tel" inputMode="tel" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
+    if (ft === 'id_number') return <input inputMode="numeric" dir="ltr" maxLength={9} style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value.replace(/\D/g, ''))} />;
+    return <input type="text" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
   };
 
   const handleSubmit = async (e) => {
     e?.preventDefault();
-    if (!signerName.trim()) { alert(L('נא להזין שם מלא', 'Please enter your full name')); return; }
+    // Collect ALL problems at once (per-field) so the user sees every fix needed, with red
+    // borders on the offending fields — instead of a single blocking alert per error.
+    const nextErrors = {};
+    if (!signerName.trim()) nextErrors.signerName = L('נא להזין שם מלא', 'Please enter your full name');
+    if (signerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signerEmail.trim())) {
+      nextErrors.signerEmail = L('כתובת אימייל לא תקינה', 'Invalid email address');
+    }
     for (const f of fields) {
       const ft = (f.fieldType || '').toLowerCase();
       const raw = ft === 'name' ? signerName : (ft === 'checkbox' ? (values[f.fieldId] === true || values[f.fieldId] === 'true') : values[f.fieldId]);
       const err = validate(f, raw);
-      if (err) { alert(err); return; }
+      if (err) nextErrors[f.fieldId] = err;
+    }
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
     try {
       setSubmitting(true);
@@ -297,7 +338,11 @@ const DocumentFormPublic = () => {
         </div>
       </div>
       {children}
-      <div style={styles.footer}>{L('מופעל על ידי', 'Powered by')} <strong>Gambot</strong></div>
+      <div style={styles.footer}>
+        <a href="https://gambot.co.il" target="_blank" rel="noopener noreferrer" style={styles.footerLink}>
+          {L('מופעל על ידי', 'Powered by')} <strong>Gambot</strong>
+        </a>
+      </div>
     </div>
   );
 
@@ -309,24 +354,42 @@ const DocumentFormPublic = () => {
   if (submitted) return centered(<div style={styles.center}><FaCheckCircle size={56} color="#28a745" /><h2>{L('תודה!', 'Thank you!')}</h2><p>{L('הטופס נשלח בהצלחה.', 'Your form was submitted successfully.')}</p><p style={{ color: '#64748b' }}>{L('ניתן לסגור את הדף.', 'You can close this page now.')}</p></div>);
 
   const hasPdf = !!doc?.originalFileUrl;
+  const errorCount = Object.values(errors).filter(Boolean).length;
 
   return shell(
     <form onSubmit={handleSubmit} style={styles.content}>
       <div style={styles.hint}>{L('מלא את השדות המסומנים על המסמך, ולאחר מכן שלח.', 'Fill in the highlighted fields on the document, then submit.')}</div>
 
+      {errorCount > 0 && (
+        <div style={styles.errorBanner}>
+          <strong>⚠️ {L(`יש לתקן ${errorCount} שדות:`, `Please fix ${errorCount} field(s):`)}</strong>
+          <ul style={styles.errorList}>
+            {Object.values(errors).filter(Boolean).map((msg, i) => <li key={i}>{msg}</li>)}
+          </ul>
+        </div>
+      )}
+
       {/* Contact details (needed to record who filled the form) */}
       <div style={styles.contactCard}>
         <div style={{ ...styles.field, flex: 2, minWidth: 200 }}>
           <label style={styles.label}>{L('שם מלא', 'Full name')} <span style={styles.req}>*</span></label>
-          <input className="dfp-input" value={signerName} onChange={(e) => setSignerName(e.target.value)} placeholder={L('שם מלא', 'Full name')} />
+          <input className={`dfp-input${errors.signerName ? ' dfp-input-err' : ''}`} value={signerName}
+            onChange={(e) => { setSignerName(e.target.value); setErrors(p => p.signerName ? { ...p, signerName: undefined } : p); }}
+            onBlur={() => setErrors(p => ({ ...p, signerName: signerName.trim() ? undefined : L('נא להזין שם מלא', 'Please enter your full name') }))}
+            placeholder={L('שם מלא', 'Full name')} />
+          {errors.signerName && <span style={styles.inlineErr}>{errors.signerName}</span>}
         </div>
         <div style={{ ...styles.field, flex: 1, minWidth: 140 }}>
           <label style={styles.label}>{L('טלפון', 'Phone')}</label>
-          <input className="dfp-input" value={signerPhone} onChange={(e) => setSignerPhone(e.target.value)} dir="ltr" placeholder="05..." />
+          <input className="dfp-input" value={signerPhone} onChange={(e) => setSignerPhone(e.target.value)} dir="ltr" placeholder="050-0000000" />
         </div>
         <div style={{ ...styles.field, flex: 1.5, minWidth: 180 }}>
           <label style={styles.label}>{L('אימייל', 'Email')}</label>
-          <input className="dfp-input" type="email" value={signerEmail} onChange={(e) => setSignerEmail(e.target.value)} dir="ltr" placeholder="name@email.com" />
+          <input className={`dfp-input${errors.signerEmail ? ' dfp-input-err' : ''}`} type="email" value={signerEmail}
+            onChange={(e) => { setSignerEmail(e.target.value); setErrors(p => p.signerEmail ? { ...p, signerEmail: undefined } : p); }}
+            onBlur={() => setErrors(p => ({ ...p, signerEmail: (signerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signerEmail.trim())) ? L('כתובת אימייל לא תקינה', 'Invalid email address') : undefined }))}
+            dir="ltr" placeholder="name@example.com" />
+          {errors.signerEmail && <span style={styles.inlineErr}>{errors.signerEmail}</span>}
         </div>
       </div>
 
@@ -369,6 +432,7 @@ const DocumentFormPublic = () => {
                           {f.required && (
                             <span style={styles.reqDot}>*</span>
                           )}
+                          {errors[f.fieldId] && <span style={styles.fieldErr}>{errors[f.fieldId]}</span>}
                         </div>
                       ))}
                     </div>
@@ -389,6 +453,7 @@ const DocumentFormPublic = () => {
                 <label style={styles.label}>{labelFor(f)} {f.required && <span style={styles.req}>*</span>}</label>
               )}
               <div style={{ position: 'relative', minHeight: 44 }}>{renderOverlayControl(f)}</div>
+              {errors[f.fieldId] && <span style={styles.inlineErr}>{errors[f.fieldId]}</span>}
             </div>
           ))}
         </div>
@@ -439,7 +504,8 @@ const DocumentFormPublic = () => {
 
       <style>{`
         .dfp-input { width: 100%; box-sizing: border-box; padding: 11px 12px; border: 1px solid #d1d5db; border-radius: 10px; font-size: 15px; outline: none; transition: border-color .15s; background: #fff; }
-        .dfp-input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
+        .dfp-input:focus { border-color: #2e6155; box-shadow: 0 0 0 3px rgba(46,97,85,.12); }
+        .dfp-input-err { border-color: #dc2626 !important; box-shadow: 0 0 0 3px rgba(220,38,38,.12) !important; }
         .dfp-spin { animation: dfpspin 1s linear infinite; }
         @keyframes dfpspin { to { transform: rotate(360deg); } }
       `}</style>
@@ -459,14 +525,19 @@ const styles = {
   label: { fontSize: 13, fontWeight: 600, color: '#334155' },
   req: { color: '#dc2626' },
   reqDot: { position: 'absolute', top: -8, insetInlineEnd: -6, color: '#dc2626', fontWeight: 800, fontSize: 16 },
+  errorBanner: { background: '#fef2f2', border: '1px solid #fecaca', color: '#991b1b', borderRadius: 12, padding: '12px 16px', marginBottom: 14, fontSize: 13.5 },
+  errorList: { margin: '6px 0 0', paddingInlineStart: 20 },
+  inlineErr: { color: '#dc2626', fontSize: 12, marginTop: 4, fontWeight: 600 },
+  fieldErr: { position: 'absolute', top: '100%', insetInlineStart: 0, marginTop: 2, background: '#dc2626', color: '#fff', fontSize: 11, fontWeight: 600, padding: '2px 6px', borderRadius: 4, whiteSpace: 'nowrap', zIndex: 20, boxShadow: '0 2px 6px rgba(220,38,38,.35)' },
   docViewer: { display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#e2e8f0', borderRadius: 14, padding: 16, overflow: 'auto' },
   fullscreenBtn: { padding: '8px 14px', background: '#0f172a', color: '#fff', border: 'none', borderRadius: 10, fontSize: 13, fontWeight: 600, cursor: 'pointer' },
-  linkBtn: { display: 'inline-block', marginTop: 8, padding: '10px 16px', background: '#2563eb', color: '#fff', borderRadius: 10, textDecoration: 'none', fontWeight: 600 },
-  submit: { width: '100%', marginTop: 20, padding: '14px 16px', background: '#2563eb', color: '#fff', border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  linkBtn: { display: 'inline-block', marginTop: 8, padding: '10px 16px', background: '#2e6155', color: '#fff', borderRadius: 10, textDecoration: 'none', fontWeight: 600 },
+  submit: { width: '100%', marginTop: 20, padding: '14px 16px', background: 'linear-gradient(135deg,#2e6155,#34d399)', color: '#fff', border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 },
   center: { textAlign: 'center', padding: '20px 8px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 },
   centerWrap: { flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 },
   centerCard: { width: '100%', maxWidth: 520, background: '#fff', borderRadius: 18, boxShadow: '0 10px 40px rgba(2,6,23,.12)', padding: '28px 24px' },
   footer: { padding: '16px', textAlign: 'center', fontSize: 12, color: '#94a3b8' },
+  footerLink: { color: '#64748b', textDecoration: 'none', fontWeight: 500 },
   fsOverlay: { position: 'fixed', inset: 0, background: 'rgba(2,6,23,.75)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 12 },
   fsContent: { background: '#f1f5f9', borderRadius: 12, width: '100%', maxWidth: 960, maxHeight: '92vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   fsHeader: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#fff', borderBottom: '1px solid #e5e7eb' },

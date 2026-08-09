@@ -1,0 +1,353 @@
+.wrap {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  background: #0f2027;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 60%, #2c5364 100%);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+}
+
+/* Palette */
+.palette {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.paletteTitle {
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.paletteHint {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.paletteSection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.sectionTitle {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 2px 2px;
+}
+
+.paletteItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid transparent;
+  border-inline-start: 3px solid var(--accent, #25D366);
+  border-radius: 10px;
+  padding: 9px 10px;
+  cursor: grab;
+  font-family: inherit;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #1a202c;
+  text-align: start;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.paletteItem:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.paletteItem:active { cursor: grabbing; }
+
+.pIcon {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.pLabel { flex: 1; line-height: 1.25; }
+
+.pPlus {
+  color: #94a3b8;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* Canvas */
+.canvas {
+  background: #eae6df; /* WhatsApp chat backdrop feel */
+  background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 18px 18px;
+  border-radius: 14px;
+  padding: 18px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  border: 2px dashed transparent;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.canvasOver {
+  border-color: #25D366;
+  background: #e7fff2;
+}
+
+.canvasHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.canvasTitle {
+  font-weight: 800;
+  font-size: 1rem;
+  color: #1a202c;
+}
+
+.resetBtn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 50px;
+  padding: 5px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.resetBtn:hover { background: #f1f5f9; }
+
+.flowList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+}
+
+.flowNodeWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 460px;
+}
+
+.flowNode {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-inline-start: 4px solid #25D366;
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  cursor: grab;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.flowNode:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.14);
+}
+
+.flowNode:active { cursor: grabbing; }
+
+.nodeHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nodeIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+.nodeLabel {
+  flex: 1;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #1a202c;
+}
+
+.nodeRemove {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: #fee2e2;
+  color: #dc2626;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nodeRemove:hover { background: #fecaca; }
+
+/* WhatsApp-style message bubble */
+.bubble {
+  background: #dcf8c6;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 0.86rem;
+  color: #1f2937;
+  line-height: 1.45;
+}
+
+/* Muted descriptor for trigger/action nodes without a message body */
+.caption {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* Quick-reply buttons */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.qr {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid #25D366;
+  color: #128C7E;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.qrText { line-height: 1.2; }
+
+.qrRemove {
+  position: absolute;
+  inset-inline-start: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.qr:hover .qrRemove { opacity: 1; }
+.qrRemove:hover { background: #fee2e2; color: #dc2626; }
+
+/* Green connection handle — each button starts its own branch */
+.handle {
+  position: absolute;
+  inset-inline-end: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #25D366;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #25D366;
+}
+
+.addBtn {
+  align-self: stretch;
+  background: transparent;
+  border: 1px dashed #cbd5e1;
+  color: #64748b;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.addBtn:hover { border-color: #25D366; color: #128C7E; background: #f0fff7; }
+
+/* Connector line between nodes */
+.connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.connectorLine {
+  width: 2px;
+  height: 22px;
+  background: #25D366;
+}
+
+.connectorArrow {
+  color: #25D366;
+  font-size: 0.9rem;
+  font-weight: 800;
+  margin-top: -4px;
+}
+
+.canvasFooter {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  color: #64748b;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+  .palette { }
+  .paletteSection { }
+  .paletteItem { width: 100%; }
+}

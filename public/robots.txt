@@ -13,11 +13,19 @@ Disallow: /settings/
 Disallow: /users/
 Disallow: /leads/
 
-# AI/LLM crawlers - explicitly allow
+# AI/LLM crawlers - explicitly allow (search + training + answer engines)
+# OpenAI / ChatGPT
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
 Allow: /
 
 User-agent: Claude-Web
@@ -26,10 +34,46 @@ Allow: /
 User-agent: Anthropic-AI
 Allow: /
 
+# Google Gemini (AI training/answers, separate from Googlebot)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# DuckDuckGo AI assist
+User-agent: DuckAssistBot
+Allow: /
+
+# Others
+User-agent: Amazonbot
+Allow: /
+
 User-agent: Cohere-AI
+Allow: /
+
+User-agent: cohere-training-data-crawler
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
 Allow: /
 
 Sitemap: https://gambot.co.il/sitemap.xml

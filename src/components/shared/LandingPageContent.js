@@ -1,9 +1,67 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import styles from './LandingPageContent.module.css';
 import LeadForm from '@/components/LeadForm/LeadForm';
 import { useLanguage } from '@/contexts/LanguageContext';
+
+// Loaded only in the browser — it's an interactive canvas, no SSR value.
+const BotBuilderMiniDemo = dynamic(() => import('@/components/shared/BotBuilderMiniDemo'), { ssr: false });
+
+// Accept a raw YouTube id OR any watch/short/embed URL (with or without &t=…) and return the id.
+const ytId = (v) => {
+  if (!v) return '';
+  const s = String(v);
+  const m = s.match(/[?&]v=([^&]+)/) || s.match(/youtu\.be\/([^?&/]+)/) || s.match(/embed\/([^?&/]+)/);
+  return m ? m[1] : s;
+};
+
+// A single tutorial card. Supports a plain video (v.id) OR a "choice" card
+// (v.choice) that lets the visitor pick a path — e.g. Coexistence vs. dedicated SIM —
+// and swaps the embedded video accordingly, all inside one card.
+function VideoCard({ v }) {
+  const opts = v.choice && Array.isArray(v.choice.options) ? v.choice.options : null;
+  const [sel, setSel] = useState(0);
+  const activeId = opts ? ytId(opts[sel]?.id) : ytId(v.id);
+  return (
+    <div className={styles.videoCard}>
+      <div className={styles.videoEmbed}>
+        <iframe
+          src={`https://www.youtube.com/embed/${activeId}`}
+          title={opts ? opts[sel]?.label || v.title : v.title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+      <div className={styles.videoMeta}>
+        {v.step && <span className={styles.videoStepNum}>{v.step}</span>}
+        <h3>{v.title}</h3>
+        {v.desc && <p>{v.desc}</p>}
+        {opts && (
+          <div className={styles.videoChoice}>
+            {v.choice.prompt && <p className={styles.videoChoicePrompt}>{v.choice.prompt}</p>}
+            <div className={styles.videoChoiceOpts}>
+              {opts.map((o, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  className={`${styles.videoChoiceBtn} ${sel === idx ? styles.videoChoiceBtnActive : ''}`}
+                  onClick={() => setSel(idx)}
+                  aria-pressed={sel === idx}
+                >
+                  <span className={styles.videoChoiceLabel}>{o.label}</span>
+                  {o.sub && <span className={styles.videoChoiceSub}>{o.sub}</span>}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function LandingPageContent({ content }) {
   const [openFaq, setOpenFaq] = useState(null);
@@ -57,6 +115,25 @@ export default function LandingPageContent({ content }) {
         </div>
       </section>
 
+      {/* Interactive drag-and-drop mini demo */}
+      {c.demo === 'botBuilder' && (
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <h2 className={styles.sectionTitle}>
+              {isEn ? '🧩 Try the Drag-and-Drop Bot Builder' : '🧩 נסו את בונה הבוטים — גרור ושחרר'}
+            </h2>
+            <p className={styles.sectionDesc}>
+              {isEn
+                ? 'A live mini demo — drag blocks onto the canvas and connect a flow, exactly like in Gambot.'
+                : 'דמו חי מוקטן — גררו בלוקים אל הקנבס ובנו זרימה, בדיוק כמו בגמבוט.'}
+            </p>
+            <div className={styles.demoWrap}>
+              <BotBuilderMiniDemo isEn={isEn} />
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Features */}
       {c.features && (
         <section className={styles.section}>
@@ -95,6 +172,27 @@ export default function LandingPageContent({ content }) {
                   <p>{s.desc}</p>
                   {i < c.steps.length - 1 && <div className={styles.stepArrow}>←</div>}
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Video tutorials */}
+      {c.videos && (
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <h2 className={styles.sectionTitle}>
+              {isEn ? '🎬 Video Tutorials — Do It Yourself' : '🎬 סרטוני הדרכה — עשו זאת בעצמכם'}
+            </h2>
+            <p className={styles.sectionDesc}>
+              {isEn
+                ? 'Open an account and get going — step by step.'
+                : 'פותחים חשבון ומתחילים לבד — שלב אחר שלב.'}
+            </p>
+            <div className={styles.videoGrid}>
+              {c.videos.map((v, i) => (
+                <VideoCard key={i} v={v} />
               ))}
             </div>
           </div>
@@ -175,6 +273,27 @@ export default function LandingPageContent({ content }) {
                 )
               )}
             </article>
+          </div>
+        </section>
+      )}
+
+      {/* Related solutions — internal linking for SEO & discoverability */}
+      {c.related && c.related.length > 0 && (
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <h2 className={styles.sectionTitle}>{isEn ? '🔗 Related Solutions' : '🔗 פתרונות קשורים'}</h2>
+            <div className={styles.relatedGrid}>
+              {c.related.map((r, i) => (
+                <Link key={i} href={r.href} className={styles.relatedCard}>
+                  <span>{r.label}</span>
+                  <span className={styles.relatedArrow}>{isEn ? '→' : '←'}</span>
+                </Link>
+              ))}
+              <Link href="/OnboardingProcess/" className={`${styles.relatedCard} ${styles.relatedPrimary}`}>
+                <span>{isEn ? '🚀 Create a Free Account' : '🚀 צרו חשבון חינם'}</span>
+                <span className={styles.relatedArrow}>{isEn ? '→' : '←'}</span>
+              </Link>
+            </div>
           </div>
         </section>
       )}

@@ -421,6 +421,104 @@ export const PAGE_META = {
       description: 'Gambot — Founded by Nir Segas. Official Meta Partner. Leading WhatsApp API platform in Israel with AI bots, automation & CRM.',
     },
   },
+  whatsappBroadcast: {
+    title: 'קמפיינים בוואטסאפ | מערכת דיוור ושיווק בוואטסאפ | גמבוט 2026',
+    description: 'קמפיינים ודיוור בוואטסאפ מהמערכת המובילה בישראל — שיווק מאותו מספר עסקי, מאושר מטא. יוצרים תבניות, מדוורים לאקסל או אנשי קשר, מתזמנים קמפיינים וברכות חג עם AI. ניסיון חינם.',
+    keywords: 'קמפיינים בוואטסאפ, מערכת דיוור בוואטסאפ, מערכת דיוור לוואטסאפ, דיוור בוואטסאפ, שיווק בוואטסאפ, שיווק בוואטסאפ לעסקים, דיוור המוני וואטסאפ, מערכת שיווק וואטסאפ, WhatsApp campaigns, WhatsApp broadcast, מורשה מטא, תבניות וואטסאפ, גמבוט',
+    canonical: 'https://gambot.co.il/מערכת-דיוור-וואטסאפ/',
+    hreflang: { he: 'https://gambot.co.il/מערכת-דיוור-וואטסאפ/' },
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'SoftwareApplication',
+          name: 'Gambot — מערכת דיוור בוואטסאפ',
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Web',
+          inLanguage: 'he',
+          url: 'https://gambot.co.il/מערכת-דיוור-וואטסאפ/',
+          offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
+          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '241', bestRating: '5' },
+          description: 'מערכת דיוור ושיווק בוואטסאפ מאותו מספר עסקי, מאושר מטא — יצירת תבניות, דיוור לאקסל/אנשי קשר, תזמון וברכות חג עם AI.',
+          featureList: 'דיוור מאותו מספר, מורשה מטא, יצירת תבניות, דיוור לאקסל, תזמון קמפיינים, ברכות חג AI, דוחות פתיחה',
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'האם דיוור בוואטסאפ חוקי?', acceptedAnswer: { '@type': 'Answer', text: 'כן, כל עוד מדוורים ללקוחות שהסכימו לקבל הודעות (opt-in) ומאפשרים הסרה. גמבוט הוא ערוץ רשמי של Meta.' } },
+            { '@type': 'Question', name: 'מדוורים מאיזה מספר?', acceptedAnswer: { '@type': 'Answer', text: 'מאותו מספר הוואטסאפ העסקי שלכם שהלקוחות כבר מכירים — לא ממספר זר.' } },
+            { '@type': 'Question', name: 'אפשר לתזמן דיוור קבוע?', acceptedAnswer: { '@type': 'Answer', text: 'כן, אפשר להגדיר דיוור חוזר — למשל כל יום רביעי או כל 5 בחודש — והמערכת שולחת אוטומטית.' } },
+          ],
+        },
+      ],
+    },
+  },
+  whatsappAutomationPro: {
+    title: 'איך מייצרים אוטומציה בוואטסאפ | הדרך המהירה ביותר | גמבוט',
+    description: 'מדריך: איך מייצרים אוטומציה בוואטסאפ בדרך המהירה ביותר — אישור הזמנה, תזכורות, פולואפים ובקשות ביקורת. אינטגרציית Webhook ו-HTTP Request ותזמון תהליכים. חודש ניסיון חינם.',
+    keywords: 'איך מייצרים אוטומציה בוואטסאפ, איך ליצור אוטומציה בוואטסאפ, אוטומציה בוואטסאפ, מערכת אוטומציה בוואטסאפ, WhatsApp automation, botomation, אוטומציה עסקית, webhook וואטסאפ, HTTP request וואטסאפ, אישור הזמנה אוטומטי, תזכורות וואטסאפ, גמבוט',
+    canonical: 'https://gambot.co.il/מערכת-אוטומציה-וואטסאפ/',
+    hreflang: { he: 'https://gambot.co.il/מערכת-אוטומציה-וואטסאפ/' },
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'SoftwareApplication',
+          name: 'Gambot — מערכת אוטומציה בוואטסאפ',
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Web',
+          inLanguage: 'he',
+          url: 'https://gambot.co.il/מערכת-אוטומציה-וואטסאפ/',
+          offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
+          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '198', bestRating: '5' },
+          description: 'מערכת אוטומציה בוואטסאפ לתהליכים כמו אישור הזמנה, תזכורות, פולואפים ובקשות ביקורת — עם אינטגרציית Webhook ו-HTTP Request ותזמון.',
+          featureList: 'אישור הזמנה אוטומטי, תזכורות, פולואפים, בקשות ביקורת גוגל, Webhook, HTTP Request, תזמון תהליכים, שליחה ממקור חיצוני',
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'איך מייצרים אוטומציה בוואטסאפ וכמה מהר?', acceptedAnswer: { '@type': 'Answer', text: 'בונים את הזרימה חזותית ומחברים מקור חיצוני בכמה דקות ע"י העתקת כתובת Webhook. אפשר להתחיל עוד היום עם חודש ניסיון חינם.' } },
+            { '@type': 'Question', name: 'מה זה אוטומציה בוואטסאפ?', acceptedAnswer: { '@type': 'Answer', text: 'תהליך שמופעל אוטומטית לפי טריגר — הזמנה, ליד, הודעה או אירוע חיצוני — ומבצע פעולות בוואטסאפ ללא מגע יד.' } },
+            { '@type': 'Question', name: 'איך מתחברים למערכת חיצונית?', acceptedAnswer: { '@type': 'Answer', text: 'דרך Webhook (קבלת מידע פנימה) ו-HTTP Request (שליחת מידע החוצה) למערכות שלכם כמו CRM, חנות או ERP.' } },
+            { '@type': 'Question', name: 'אפשר לתזמן תהליכים?', acceptedAnswer: { '@type': 'Answer', text: 'כן, אפשר לתזמן תהליכים לשעה/תאריך, להגדיר השהיות בין שלבים ולהריץ פולואפים אחרי זמן מוגדר.' } },
+          ],
+        },
+      ],
+    },
+  },
+  whatsappBotBuilder: {
+    title: 'איך ליצור בוט תפריטים בוואטסאפ ברבע שעה | ללא קוד | גמבוט',
+    description: 'מדריך: איך ליצור בוט תפריטים בוואטסאפ ברבע שעה, ללא קוד — בגרירה ושחרור. כולל פתיחת חשבון ואימות מטא (כחצי שעה מקצה לקצה). בוט על הטלפון (Coexistence), תזכורות ודוחות. חודש ניסיון חינם.',
+    keywords: 'איך ליצור בוט בוואטסאפ, איך ליצור בוט תפריטים בוואטסאפ, איך לבנות בוט וואטסאפ, בוט תפריטים בוואטסאפ, יצירת בוטים בוואטסאפ, בניית בוט וואטסאפ, בוט וואטסאפ, כלי יצירת בוטים, תכנון בוטים, drag and drop bot, בוט AI וואטסאפ, coexistence וואטסאפ, WhatsApp bot builder, גמבוט',
+    canonical: 'https://gambot.co.il/יצירת-בוטים-וואטסאפ/',
+    hreflang: { he: 'https://gambot.co.il/יצירת-בוטים-וואטסאפ/' },
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'SoftwareApplication',
+          name: 'Gambot — כלי יצירת בוטים בוואטסאפ',
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Web',
+          inLanguage: 'he',
+          url: 'https://gambot.co.il/יצירת-בוטים-וואטסאפ/',
+          offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
+          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '312', bestRating: '5' },
+          description: 'כלי יצירת בוטים בוואטסאפ בגרירה ושחרור — בוט תפריטים ו-AI, Coexistence, תזכורות, דוחות מתקדמים ועבודה משותפת אדם-בוט.',
+          featureList: 'תכנון גרור ושחרר, Coexistence, בוט תפריטים, בוט AI, תזכורות, דוחות מתקדמים, עבודה משותפת אדם-בוט',
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: 'כמה זמן לוקח ליצור בוט תפריטים בוואטסאפ?', acceptedAnswer: { '@type': 'Answer', text: 'בניית בוט תפריטים בסיסי לוקחת כרבע שעה בבונה החזותי. כולל פתיחת חשבון ואימות מטא — כחצי שעה מקצה לקצה. אפשר להתחיל עם חודש ניסיון חינם.' } },
+            { '@type': 'Question', name: 'צריך ידע בתכנות לבנות בוט?', acceptedAnswer: { '@type': 'Answer', text: 'לא, תכנון הבוטים בגרירה ושחרור — גוררים בלוקים, מחברים זרימות ומגדירים תנאים חזותית, בלי קוד.' } },
+            { '@type': 'Question', name: 'מה זה Coexistence?', acceptedAnswer: { '@type': 'Answer', text: 'מצב שבו הבוט פועל על אותו מספר שבו אתם ממשיכים להשתמש בוואטסאפ ביזנס הרגיל — הבוט והשימוש הידני חיים יחד.' } },
+            { '@type': 'Question', name: 'מה ההבדל בין בוט תפריטים לבוט AI?', acceptedAnswer: { '@type': 'Answer', text: 'בוט תפריטים מנתב לפי כפתורים ובחירות; בוט AI מנהל שיחה טבעית ומבין כוונות. אפשר לשלב את שניהם.' } },
+          ],
+        },
+      ],
+    },
+  },
 };
 
 /**
