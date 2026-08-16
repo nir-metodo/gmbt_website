@@ -131,7 +131,6 @@ const WabaOnboardingWrapperNext = () => {
 
   return (
     <WabaOnboarding
-      videoUrl="https://storage.googleapis.com/gambot_src/onboarding-vid.mp4"
       organization={orgData.organization}
       email={orgData.email}
       hasSim={orgData.hasSim}

@@ -33,6 +33,7 @@ const plans = [
       "300 שיחות בחודש",
       "1,500 ריצות אוטומציה בחודש",
       "עד 3,000 אנשי קשר",
+      "📣 עד 300 הודעות בקמפיינים(דיוור) בחודש",
       "💾 2 GB אחסון קבצים (כל GB נוסף 5 ₪)",
       "50 פעולות AI בחודש (כל 500 נוספות 50 ₪)",
       "🪙 100 Gambot Tokens (Pro Active, דוחות AI, Gambot Agent)",
@@ -45,7 +46,6 @@ const plans = [
       "עד 30 פניות בחודש",
       "עד 30 הזמנות בחודש (Shopify / WooCommerce)",
       "5 חתימות דיגיטליות בחודש",
-      "300 נמענים בקמפיינים לחודש",
       "יצוא CSV",
       "דוחות בסיסיים",
     ]
@@ -61,6 +61,7 @@ const plans = [
       "1,000 שיחות חדשות בחודש",
       "5,000 ריצות אוטומציה בחודש",
       "עד 10,000 אנשי קשר",
+      "📣 עד 5,000 הודעות בקמפיינים(דיוור) בחודש",
       "💾 10 GB אחסון קבצים (כל GB נוסף 5 ₪)",
       "300 תגובות / פעולות AI (כל 500 נוספות 50 ₪)",
       "🪙 300 Gambot Tokens כלולים (כל 100 נוספים 25 ₪)",
@@ -90,6 +91,7 @@ const plans = [
       "3,000 שיחות חדשות בחודש",
       "15,000 ריצות אוטומציה בחודש",
       "עד 35,000 אנשי קשר",
+      "📣 עד 35,000 הודעות בקמפיינים(דיוור) בחודש",
       "💾 50 GB אחסון קבצים (כל GB נוסף 5 ₪)",
       "1,000 פעולות AI",
       "🪙 800 Gambot Tokens כלולים",
@@ -591,6 +593,10 @@ export default function PriceListContent() {
               <Link href="/PriceList/WhatsAppMessagingPricingBlog/" className="whatsapp-pricing-button secondary">
                 <FaMoneyBillWave className="button-icon" />
                 <span>מדריך מחיר הודעות</span>
+              </Link>
+              <Link href="/PriceList/ManagedBroadcast/" className="whatsapp-pricing-button secondary">
+                <FaBolt className="button-icon" />
+                <span>דיוור חד־פעמי — שירות מנוהל</span>
               </Link>
             </div>
           </div>

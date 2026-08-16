@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import FacebookLogin from './FacebookLogin';
 import TutorialVideoButton from './TutorialVideoButton';
 import './WabaOnboarding.css';
@@ -7,7 +7,7 @@ import { HiOutlineSparkles } from "react-icons/hi2";
 import { MdVerified, MdSecurity, MdBusinessCenter } from "react-icons/md";
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const WabaOnboarding = ({ videoUrl, onPrevStep, organization, email, hasSim, useFreeNumber, useCoexisting, simPhoneNumber, contactPhoneNumber, organizationName }) => {
+const WabaOnboarding = ({ onPrevStep, organization, email, hasSim, useFreeNumber, useCoexisting, simPhoneNumber, contactPhoneNumber, organizationName }) => {
     const { t, currentLanguage, isRTL } = useLanguage();
     const [phoneNumberCopied, setPhoneNumberCopied] = useState(false);
     // No need for wabaMode state - we get useCoexisting from props
@@ -108,10 +108,19 @@ const WabaOnboarding = ({ videoUrl, onPrevStep, organization, email, hasSim, use
                         <p>{getWabaText('wabaOnboarding.video.description')}</p>
                     </div>
                     <div className="video-wrapper">
-                        <video className="tutorial-video" controls poster="/video-poster.jpg">
-                            <source src={videoUrl} type="video/mp4" />
-                            {getWabaText('wabaOnboarding.video.notSupported')}
-                        </video>
+                        {/* Show the tutorial that matches the chosen account type:
+                            Co-existing → the Co-existence account-creation video from 5:30 (start=330).
+                            Otherwise  → the WhatsApp API onboarding video from 2:20 (start=140). */}
+                        <iframe
+                            className="tutorial-video"
+                            src={useCoexisting
+                                ? 'https://www.youtube.com/embed/mBBmoxCRRmI?start=330&rel=0'
+                                : 'https://www.youtube.com/embed/6y8A61Z7Zv4?start=140&rel=0'}
+                            title={getWabaText('wabaOnboarding.video.title')}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            style={{ width: '100%', aspectRatio: '16 / 9', border: 0, borderRadius: '12px', display: 'block' }}
+                        />
                     </div>
 
                     {/* Facebook Login Card */}

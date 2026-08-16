@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './SimSelection.css';
 import PhoneNumbersList from './PhoneNumbersList';
 import PhoneInputWithModal from './PhoneInputWithModal';
@@ -29,6 +29,19 @@ const SimSelection = ({
     const [showFeatureComparisonModal, setShowFeatureComparisonModal] = useState(false); // ✅ NEW: Modal for feature comparison table
     const [showContactsInfoModal, setShowContactsInfoModal] = useState(false); // ✅ NEW: Modal for contacts sync explanation
     const forwardingSectionRef = useRef(null);
+
+    // History tooltip open/close with a short grace period. Without it, moving the mouse from the info
+    // icon into the popover crosses an empty gap → onMouseLeave fires and closes it before you arrive.
+    const historyTooltipTimer = useRef(null);
+    const openHistoryTooltip = () => {
+        if (historyTooltipTimer.current) { clearTimeout(historyTooltipTimer.current); historyTooltipTimer.current = null; }
+        setShowHistoryTooltip(true);
+    };
+    const closeHistoryTooltip = () => {
+        if (historyTooltipTimer.current) clearTimeout(historyTooltipTimer.current);
+        historyTooltipTimer.current = setTimeout(() => setShowHistoryTooltip(false), 250);
+    };
+    useEffect(() => () => { if (historyTooltipTimer.current) clearTimeout(historyTooltipTimer.current); }, []);
 
     // ✅ Block body scroll when modal is open
     useEffect(() => {
@@ -223,8 +236,8 @@ const SimSelection = ({
                                     </span>
                                     <FaInfoCircle 
                                         className="info-icon"
-                                        onMouseEnter={() => setShowHistoryTooltip(true)}
-                                        onMouseLeave={() => setShowHistoryTooltip(false)}
+                                        onMouseEnter={openHistoryTooltip}
+                                        onMouseLeave={closeHistoryTooltip}
                                         style={{ 
                                             marginRight: '8px', 
                                             cursor: 'pointer',
@@ -235,8 +248,8 @@ const SimSelection = ({
                                     {showHistoryTooltip && (
                                         <div 
                                             className="history-tooltip"
-                                            onMouseEnter={() => setShowHistoryTooltip(true)}
-                                            onMouseLeave={() => setShowHistoryTooltip(false)}
+                                            onMouseEnter={openHistoryTooltip}
+                                            onMouseLeave={closeHistoryTooltip}
                                             style={{
                                             position: 'absolute',
                                             top: '28px',
@@ -536,8 +549,8 @@ const SimSelection = ({
                                     </span>
                                     <FaInfoCircle 
                                         className="info-icon"
-                                        onMouseEnter={() => setShowHistoryTooltip(true)}
-                                        onMouseLeave={() => setShowHistoryTooltip(false)}
+                                        onMouseEnter={openHistoryTooltip}
+                                        onMouseLeave={closeHistoryTooltip}
                                         style={{ 
                                             marginRight: '8px', 
                                             cursor: 'pointer',
@@ -548,8 +561,8 @@ const SimSelection = ({
                                     {showHistoryTooltip && (
                                         <div 
                                             className="history-tooltip"
-                                            onMouseEnter={() => setShowHistoryTooltip(true)}
-                                            onMouseLeave={() => setShowHistoryTooltip(false)}
+                                            onMouseEnter={openHistoryTooltip}
+                                            onMouseLeave={closeHistoryTooltip}
                                             style={{
                                             position: 'absolute',
                                             top: '28px',

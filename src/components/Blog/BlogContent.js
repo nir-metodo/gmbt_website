@@ -43,6 +43,7 @@ const POST_CARDS = {
   30: { gradient: 'linear-gradient(135deg,#b45309,#92400e)', icon: '🎉', labelHe: 'קמפיינים עונתיים', labelEn: 'Holiday Campaigns' },
   31: { gradient: 'linear-gradient(135deg,#0891b2,#0e7490)', icon: '🛍️', labelHe: 'קמעונאות', labelEn: 'Retail' },
   32: { gradient: 'linear-gradient(135deg,#374151,#111827)', icon: '⚖️', labelHe: 'API vs Business', labelEn: 'API vs Business' },
+  39: { gradient: 'linear-gradient(135deg,#00a884,#0b57d0)', icon: '✅', labelHe: 'תג כחול מאומת', labelEn: 'Verified Badge' },
 };
 const FALLBACK_CARD = { gradient: 'linear-gradient(135deg,#1565C0,#0288D1)', icon: '💬', labelHe: 'WhatsApp', labelEn: 'WhatsApp' };
 

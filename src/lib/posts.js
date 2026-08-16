@@ -11117,6 +11117,236 @@ const posts = [
 `
   },
   seoUrl: getSeoUrl('מדיניות הספאם של מטא ציון איכות חשבון וואטסאפ חסימות והתאוששות')
+},
+{
+  id: 39,
+  seoTitle: {
+    he: 'התג הירוק והכחול בוואטסאפ — מה ההבדל ואיך מקבלים תג כחול 2026 | גמבוט',
+    en: 'WhatsApp Green vs Blue Badge — The Difference & How to Get Verified 2026 | Gambot'
+  },
+  metaDescription: {
+    he: 'התג הירוק והתג הכחול בוואטסאפ אינם שתי דרגות — הכחול החליף את הירוק ✓ Official Business Account ✓ Meta Verified ✓ מה זה Meta Business Partner ✓ איך קונים ואיך מגישים בקשה',
+    en: 'The green and blue badges on WhatsApp are not two tiers — blue replaced green ✓ Official Business Account ✓ Meta Verified ✓ what Meta Business Partner really is ✓ how to buy and how to apply'
+  },
+  keywords: {
+    he: ['וי ירוק וואטסאפ', 'וי כחול וואטסאפ', 'official business account', 'meta verified', 'עסק מאומת וואטסאפ', 'תג כחול וואטסאפ', 'אימות עסק וואטסאפ', 'meta business partner'],
+    en: ['whatsapp green badge', 'whatsapp blue badge', 'official business account', 'meta verified whatsapp', 'verified business whatsapp', 'whatsapp blue tick', 'whatsapp business verification', 'meta business partner']
+  },
+  title: {
+    he: 'התג הירוק והתג הכחול בוואטסאפ — מה באמת ההבדל ואיך מקבלים אותו',
+    en: 'The Green Badge & Blue Badge on WhatsApp — What\'s Really the Difference and How to Get It'
+  },
+  description: {
+    he: 'הירוק והכחול אינם שתי דרגות שונות — הכחול פשוט החליף את הירוק. מדריך מלא על Official Business Account, Meta Verified, מה זה Meta Business Partner, ואיך קונים או מגישים בקשה.',
+    en: 'Green and blue are not two different tiers — blue simply replaced green. A full guide to the Official Business Account, Meta Verified, what Meta Business Partner actually is, and how to buy or apply.'
+  },
+  category: 'Meta Verified',
+  author: 'ניר סגס',
+  publishedDate: '2026-08-16',
+  image: '/blog/blogHeader.jpg',
+  readTime: 9,
+  featured: true,
+  faq: {
+    he: [
+      { q: 'מה ההבדל בין הווי הירוק לווי הכחול בוואטסאפ?', a: 'הירוק היה העיצוב הישן של Official Business Account. מטא החליפה אותו בווי כחול כדי לאחד את שפת האימות בין WhatsApp, Facebook ו‑Instagram. זהו אותו מעמד רשמי — בעיצוב חדש, לא דרגה גבוהה יותר.' },
+      { q: 'האם חייבים לשלם כדי לקבל וי כחול?', a: 'לא בהכרח. במסלול Official Business Account האימות חינמי אך סלקטיבי ומאושר ידנית על ידי מטא. במסלול Meta Verified מדובר במנוי בתשלום שכולל וי מאומת, תמיכה והגנה מסוימת מהתחזות.' },
+      { q: 'האם תג Meta Business Partner נותן וי כחול למספר?', a: 'לא. תג Meta Business Partner מעיד על גמבוט כשותפה/ספקית של מטא ומעניק לוגו להצגה שיווקית בלבד. הוא לא משפיע על הווי הכחול של מספר וואטסאפ כלשהו — לא של גמבוט ולא של הלקוחות.' },
+      { q: 'איך מגישים בקשה ל‑Official Business Account?', a: 'לאחר אימות העסק ב‑Business Manager, חיבור המספר ל‑WhatsApp Business Platform/API ופעילות תקינה — מגישים בקשה דרך מנהל וואטסאפ. מטא בוחנת בין השאר את זהות העסק, הנוכחות הציבורית והמוניטין. כלקוחות גמבוט נוכל להגיש עבורכם.' },
+      { q: 'כמה זמן לוקח לקבל אישור?', a: 'אין זמן מובטח. OBA נבחן ידנית ותלוי במוניטין ובנוכחות הציבורית, ולכן עשוי לקחת זמן ואף להידחות. Meta Verified מהיר יותר אך כפוף לזמינות עבור החשבון והמדינה.' }
+    ],
+    en: [
+      { q: 'What is the difference between the green and blue badge on WhatsApp?', a: 'Green was the old design of the Official Business Account. Meta replaced it with a blue check to unify the verification language across WhatsApp, Facebook and Instagram. It is the same official status — new design, not a higher tier.' },
+      { q: 'Do you have to pay to get a blue check?', a: 'Not necessarily. Via the Official Business Account route, verification is free but selective and manually approved by Meta. Via Meta Verified it is a paid subscription that includes a verified badge, support and some impersonation protection.' },
+      { q: 'Does the Meta Business Partner badge give a number a blue check?', a: 'No. The Meta Business Partner badge identifies Gambot as a Meta partner/provider and grants a logo for marketing use only. It does not affect the blue check of any WhatsApp number — neither Gambot\'s nor customers\'.' },
+      { q: 'How do you apply for an Official Business Account?', a: 'After verifying the business in Business Manager, connecting the number to the WhatsApp Business Platform/API and maintaining healthy activity, you submit a request via the WhatsApp Manager. Meta reviews business identity, public presence and reputation. As Gambot customers, we can apply on your behalf.' },
+      { q: 'How long does approval take?', a: 'There is no guaranteed timeframe. The OBA is reviewed manually and depends on reputation and public presence, so it may take time and can even be declined. Meta Verified is faster but subject to availability for your account and country.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#00a884 0%,#0b57d0 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">✅ אימות עסקי בוואטסאפ</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">התג הירוק והתג הכחול אינם באמת שתי דרגות — הכחול פשוט החליף בהדרגה את הירוק</div>
+  <p style="margin:12px 0 0;opacity:0.9;font-size:0.98rem;">בעבר עסק מאומת בוואטסאפ קיבל וי ירוק. היום מטא איחדה את שפת האימות בין WhatsApp, Facebook ו‑Instagram — והתג הפך לכחול. אותו מעמד, עיצוב חדש.</p>
+</div>
+
+<h2>🟢 התג הירוק — השם הישן</h2>
+<p>בעבר, עסק שקיבל מעמד <strong>Official Business Account (OBA)</strong> בוואטסאפ סומן בווי ירוק ליד שם העסק — גם בשיחה וגם בפרופיל.</p>
+<ul>
+  <li>יועד בעיקר למספרים המחוברים ל‑<strong>WhatsApp Business Platform / API</strong>.</li>
+  <li>לא היה בתשלום.</li>
+  <li>מטא בחנה אם העסק מוכר ובולט ציבורית — לצד אימות העסק, פעילות תקינה ועמידה במדיניות.</li>
+  <li>אימות העסק ב‑Business Manager <strong>לבדו</strong> לא הספיק.</li>
+</ul>
+
+<h2>🔵 התג הכחול — המראה הנוכחי</h2>
+<p>מטא החליפה את הווי הירוק ב‑<strong>ווי כחול</strong> כדי לאחד את שפת האימות של WhatsApp, Facebook ו‑Instagram. כיום עסק מאומת בוואטסאפ מסומן בווי כחול ליד שמו. אפשר להגיע אליו בשני מסלולים שונים:</p>
+
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:22px 0;">
+  <div style="background:#eff6ff;border-radius:14px;padding:20px;border:2px solid #bfdbfe;">
+    <div style="font-size:1.4rem;margin-bottom:6px;">🏛️</div>
+    <div style="font-weight:700;color:#0b57d0;margin-bottom:6px;">Official Business Account</div>
+    <div style="font-size:0.9rem;color:#374151;">מסלול סלקטיבי לעסקים בולטים, בדרך כלל ב‑API. מגישים בקשה ומטא בודקת בין השאר את זהות העסק, הנוכחות הציבורית והמוניטין. עצם היותך Tech Provider או Meta Business Partner אינה מבטיחה אישור.</div>
+  </div>
+  <div style="background:#ecfdf5;border-radius:14px;padding:20px;border:2px solid #a7f3d0;">
+    <div style="font-size:1.4rem;margin-bottom:6px;">💳</div>
+    <div style="font-weight:700;color:#047857;margin-bottom:6px;">Meta Verified לעסקים</div>
+    <div style="font-size:0.9rem;color:#374151;">מנוי חודשי או שנתי בתשלום (אם זמין עבור החשבון והמדינה). כולל וי מאומת, תמיכה והגנה מסוימת מפני התחזות.</div>
+  </div>
+</div>
+
+<h2>📊 ההבדל המעשי</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#0b57d0;color:#fff;">
+        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">סוג</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">תשלום</th>
+        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">מה הוא מאמת</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">וי ירוק ישן</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">לא</td><td style="padding:12px;border:1px solid #e5e7eb;">OBA רשמי של וואטסאפ</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">וי כחול במסלול OBA</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">לא</td><td style="padding:12px;border:1px solid #e5e7eb;">אותו מעמד רשמי, בעיצוב החדש</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">וי כחול דרך Meta Verified</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#047857;">כן</td><td style="padding:12px;border:1px solid #e5e7eb;">עסק שרכש מנוי ועבר אימות</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Meta Business Partner</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">לא</td><td style="padding:12px;border:1px solid #e5e7eb;">את גמבוט כספקית/שותפה של מטא — לא מספר וואטסאפ מסוים</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="background:#fffbeb;border:2px solid #fcd34d;border-radius:14px;padding:18px 20px;margin:24px 0;">
+  <strong style="color:#92400e;">⚠️ שימו לב — התג עליו קיבלתם מייל:</strong>
+  <p style="margin:8px 0 0;color:#374151;font-size:0.92rem;">אם קיבלתם הודעה על תג <strong>Meta Business Partner</strong> — הוא <strong>לא</strong> ייתן וי כחול למספר של גמבוט ולא למספרי הלקוחות. הוא מעניק לכם לוגו של Meta Business Partner להצגה באתר ובחומרים שיווקיים בלבד.</p>
+</div>
+
+<h2>🧭 איך משיגים תג כחול — שלב אחר שלב</h2>
+
+<h3>מסלול א׳ — Official Business Account (חינם, סלקטיבי)</h3>
+<ol>
+  <li>אמתו את העסק ב‑Meta Business Manager (מסמכים, כתובת רשומה, אתר תקין).</li>
+  <li>ודאו שהמספר מחובר ל‑WhatsApp Business Platform/API ופועל בתקינות — כולל ציון איכות ירוק.</li>
+  <li>בנו נוכחות ציבורית מוכרת: אתר, רשתות, אזכורים וכתבות שמצביעים על עסק בולט.</li>
+  <li>הגישו בקשה ל‑Official Business Account דרך מנהל וואטסאפ / Business Manager.</li>
+  <li>המתינו לבדיקה הידנית של מטא. אין זמן מובטח והאישור אינו מובטח.</li>
+</ol>
+<p>💡 <strong>כלקוחות גמבוט</strong> — נשמח להגיש את הבקשה עבורכם ולוודא שהמספר עומד בתנאים לפני ההגשה.</p>
+
+<h3>מסלול ב׳ — Meta Verified (בתשלום, מהיר יותר)</h3>
+<ol>
+  <li>בדקו שזמינות Meta Verified קיימת עבור העסק והמדינה שלכם.</li>
+  <li>היכנסו למרכז החשבונות של מטא / הגדרות העסק ובחרו במנוי Meta Verified.</li>
+  <li>העלו את מסמכי אימות העסק ובצעו את התשלום (חודשי או שנתי).</li>
+  <li>לאחר האימות — הווי הכחול יופיע, לצד תמיכה והגנה מסוימת מהתחזות.</li>
+</ol>
+
+<p style="font-size:0.9rem;color:#64748b;">קישורים רשמיים: <a href="https://business.whatsapp.com/" target="_blank" rel="noopener">WhatsApp Business Platform</a> · <a href="https://www.facebook.com/business/meta-verified" target="_blank" rel="noopener">Meta Verified לעסקים</a> · <a href="https://www.facebook.com/business/help" target="_blank" rel="noopener">מרכז העזרה של מטא לעסקים</a></p>
+
+<h2>💡 טעויות נפוצות</h2>
+<ul>
+  <li>לחשוב ש‑Meta Business Partner = וי כחול. זה לא — זה לוגו שותפות שיווקי.</li>
+  <li>לחשוב שאימות העסק ב‑Business Manager מספיק לקבלת OBA. הוא תנאי הכרחי אך לא מספיק.</li>
+  <li>לצפות שהמסלול החינמי (OBA) יאושר מיידית — הבדיקה ידנית וסלקטיבית.</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,#00a884,#0b57d0);border-radius:16px;padding:28px;text-align:center;margin:32px 0;color:#fff;">
+  <h3 style="margin:0 0 10px;font-size:1.3rem;color:#fff;border:none;">רוצים תג כחול למספר העסקי שלכם?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">גמבוט מחברת אתכם ל‑WhatsApp Business API, מוודאת שהמספר עומד בתנאים, ומגישה עבורכם בקשת אימות — במסלול המתאים לכם.</p>
+  <a href="/demo/" style="display:inline-block;background:#fff;color:#0b57d0;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">דברו איתנו ←</a>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#00a884 0%,#0b57d0 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">✅ WhatsApp Business Verification</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">The green and blue badges are not really two tiers — blue simply replaced green over time</div>
+  <p style="margin:12px 0 0;opacity:0.9;font-size:0.98rem;">Businesses used to get a green check on WhatsApp. Meta then unified the verification language across WhatsApp, Facebook and Instagram — and the badge turned blue. Same status, new design.</p>
+</div>
+
+<h2>🟢 The Green Badge — The Old Name</h2>
+<p>A business that received <strong>Official Business Account (OBA)</strong> status on WhatsApp used to be marked with a green check next to its name — both in chat and on the profile.</p>
+<ul>
+  <li>Mainly intended for numbers connected to the <strong>WhatsApp Business Platform / API</strong>.</li>
+  <li>It was free.</li>
+  <li>Meta assessed whether the business was well-known and publicly notable — alongside business verification, healthy activity and policy compliance.</li>
+  <li>Business verification in Business Manager <strong>alone</strong> was not enough.</li>
+</ul>
+
+<h2>🔵 The Blue Badge — The Current Look</h2>
+<p>Meta replaced the green check with a <strong>blue check</strong> to unify verification across WhatsApp, Facebook and Instagram. Today a verified business is marked with a blue check next to its name. You can reach it via two different routes:</p>
+
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:22px 0;">
+  <div style="background:#eff6ff;border-radius:14px;padding:20px;border:2px solid #bfdbfe;">
+    <div style="font-size:1.4rem;margin-bottom:6px;">🏛️</div>
+    <div style="font-weight:700;color:#0b57d0;margin-bottom:6px;">Official Business Account</div>
+    <div style="font-size:0.9rem;color:#374151;">A selective route for notable businesses, usually on the API. You apply and Meta reviews, among other things, business identity, public presence and reputation. Being a Tech Provider or Meta Business Partner does not guarantee approval.</div>
+  </div>
+  <div style="background:#ecfdf5;border-radius:14px;padding:20px;border:2px solid #a7f3d0;">
+    <div style="font-size:1.4rem;margin-bottom:6px;">💳</div>
+    <div style="font-weight:700;color:#047857;margin-bottom:6px;">Meta Verified for Business</div>
+    <div style="font-size:0.9rem;color:#374151;">A paid monthly or yearly subscription (where available for the account and country). Includes a verified badge, support and some impersonation protection.</div>
+  </div>
+</div>
+
+<h2>📊 The Practical Difference</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#0b57d0;color:#fff;">
+        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Type</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Paid</th>
+        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">What it verifies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">Old green check</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">No</td><td style="padding:12px;border:1px solid #e5e7eb;">Official WhatsApp OBA</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Blue check via OBA</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">No</td><td style="padding:12px;border:1px solid #e5e7eb;">Same official status, new design</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">Blue check via Meta Verified</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#047857;">Yes</td><td style="padding:12px;border:1px solid #e5e7eb;">A business that bought a subscription and passed verification</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Meta Business Partner</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">No</td><td style="padding:12px;border:1px solid #e5e7eb;">Gambot as a Meta provider/partner — not any specific WhatsApp number</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="background:#fffbeb;border:2px solid #fcd34d;border-radius:14px;padding:18px 20px;margin:24px 0;">
+  <strong style="color:#92400e;">⚠️ Note — the badge you got an email about:</strong>
+  <p style="margin:8px 0 0;color:#374151;font-size:0.92rem;">If you received a message about a <strong>Meta Business Partner</strong> badge — it will <strong>not</strong> give a blue check to Gambot's number or to customer numbers. It grants you a Meta Business Partner logo to display on your website and marketing materials only.</p>
+</div>
+
+<h2>🧭 How to Get a Blue Badge — Step by Step</h2>
+
+<h3>Route A — Official Business Account (free, selective)</h3>
+<ol>
+  <li>Verify your business in Meta Business Manager (documents, registered address, working website).</li>
+  <li>Make sure the number is connected to the WhatsApp Business Platform/API and running healthily — including a green quality rating.</li>
+  <li>Build a recognizable public presence: website, social profiles, mentions and press that show a notable business.</li>
+  <li>Submit an Official Business Account request via the WhatsApp Manager / Business Manager.</li>
+  <li>Wait for Meta's manual review. There is no guaranteed timeframe and approval is not guaranteed.</li>
+</ol>
+<p>💡 <strong>As Gambot customers</strong> — we're happy to submit the request for you and make sure the number meets the requirements before applying.</p>
+
+<h3>Route B — Meta Verified (paid, faster)</h3>
+<ol>
+  <li>Check that Meta Verified is available for your business and country.</li>
+  <li>Go to Meta's Accounts Center / business settings and choose the Meta Verified subscription.</li>
+  <li>Upload your business verification documents and complete payment (monthly or yearly).</li>
+  <li>Once verified — the blue check appears, along with support and some impersonation protection.</li>
+</ol>
+
+<p style="font-size:0.9rem;color:#64748b;">Official links: <a href="https://business.whatsapp.com/" target="_blank" rel="noopener">WhatsApp Business Platform</a> · <a href="https://www.facebook.com/business/meta-verified" target="_blank" rel="noopener">Meta Verified for Business</a> · <a href="https://www.facebook.com/business/help" target="_blank" rel="noopener">Meta Business Help Center</a></p>
+
+<h2>💡 Common Mistakes</h2>
+<ul>
+  <li>Thinking Meta Business Partner = blue check. It doesn't — it's a marketing partnership logo.</li>
+  <li>Thinking business verification in Business Manager is enough for an OBA. It's necessary but not sufficient.</li>
+  <li>Expecting the free route (OBA) to be approved instantly — the review is manual and selective.</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,#00a884,#0b57d0);border-radius:16px;padding:28px;text-align:center;margin:32px 0;color:#fff;">
+  <h3 style="margin:0 0 10px;font-size:1.3rem;color:#fff;border:none;">Want a blue badge for your business number?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">Gambot connects you to the WhatsApp Business API, makes sure the number meets the requirements, and submits the verification request for you — on the route that fits you.</p>
+  <a href="/demo/" style="display:inline-block;background:#fff;color:#0b57d0;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">Talk to us ←</a>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('התג הירוק והתג הכחול בוואטסאפ מה באמת ההבדל ואיך מקבלים אותו')
 }
 
 ];

@@ -4963,19 +4963,19 @@
     "plans": {
       "basic": {
         "name": "Basic", "description": "For tech-savvy users only — no human assistance",
-        "features": ["1 bot / automation flow","300 conversations/month","1,500 automation runs/month","Up to 3,000 contacts","💾 2 GB file storage (each extra GB ₪5)","50 AI actions/month (each 500 extra ₪50)","🪙 100 Gambot Tokens (Pro Active, AI reports, Gambot Agent)","2 users (each additional user ₪30)","❌ No human support","📚 Knowledge center only (videos & guides)"],
-        "moreFeatures": ["Up to 30 leads/month","Up to 30 cases/month","Up to 30 orders/month (Shopify / WooCommerce)","5 e-signatures/month","300 campaign recipients/month","CSV export","Basic reports"]
+        "features": ["1 bot / automation flow","300 conversations/month","1,500 automation runs/month","Up to 3,000 contacts","📣 Up to 300 campaign (broadcast) messages/month","💾 2 GB file storage (each extra GB ₪5)","50 AI actions/month (each 500 extra ₪50)","🪙 100 Gambot Tokens (Pro Active, AI reports, Gambot Agent)","2 users (each additional user ₪30)","❌ No human support","📚 Knowledge center only (videos & guides)"],
+        "moreFeatures": ["Up to 30 leads/month","Up to 30 cases/month","Up to 30 orders/month (Shopify / WooCommerce)","5 e-signatures/month","CSV export","Basic reports"]
       },
       "premium": {
         "name": "Premium", "description": "The perfect solution for growing businesses",
-        "features": ["3 bots / automation flows","1,000 new conversations/month","5,000 automation runs/month","Up to 10,000 contacts","💾 10 GB file storage (each extra GB ₪5)","300 AI responses / actions (each 500 extra ₪50)","🪙 300 Gambot Tokens included (each 100 extra ₪25)","5 users (each additional user ₪30)","✅ Basic WhatsApp support — reply within 48 hours"],
+        "features": ["3 bots / automation flows","1,000 new conversations/month","5,000 automation runs/month","Up to 10,000 contacts","📣 Up to 5,000 campaign (broadcast) messages/month","💾 10 GB file storage (each extra GB ₪5)","300 AI responses / actions (each 500 extra ₪50)","🪙 300 Gambot Tokens included (each 100 extra ₪25)","5 users (each additional user ₪30)","✅ Basic WhatsApp support — reply within 48 hours"],
         "moreFeatures": ["Up to 1,000 leads/month","Up to 1,000 cases/month","Up to 300 quotes/month","Up to 400 orders/month (Shopify / WooCommerce)","Up to 300 e-signatures/month","📄 Invoices — add-on ₪89/month (up to 300 invoices)","Advanced task management","Reports & analytics","Google Sheets integrations","Excel / PDF export"],
         "recommended": "Most Recommended"
       },
       "enterprise": {
         "name": "Enterprise", "description": "A flexible, tailored enterprise solution",
-        "features": ["6 bots / automation flows","3,000 new conversations/month","15,000 automation runs/month","Up to 35,000 contacts","💾 50 GB file storage (each extra GB ₪5)","1,000 AI actions","🪙 800 Gambot Tokens included","12 users","⭐ Priority support — reply within 24 hours","🗓️ Monthly consultation call"],
-        "moreFeatures": ["Up to 4,000 leads/month","Up to 4,000 cases/month","Up to 1,000 quotes/month","Up to 1,200 orders/month (Shopify / WooCommerce)","Up to 1,000 e-signatures/month","📄 Up to 1,000 invoices/month (included)","Up to 35,000 campaign recipients/month","Advanced task management","Full reports + daily auto report","Custom API","Excel / PDF export","Dedicated account manager"]
+        "features": ["6 bots / automation flows","3,000 new conversations/month","15,000 automation runs/month","Up to 35,000 contacts","📣 Up to 35,000 campaign (broadcast) messages/month","💾 50 GB file storage (each extra GB ₪5)","1,000 AI actions","🪙 800 Gambot Tokens included","12 users","⭐ Priority support — reply within 24 hours","🗓️ Monthly consultation call"],
+        "moreFeatures": ["Up to 4,000 leads/month","Up to 4,000 cases/month","Up to 1,000 quotes/month","Up to 1,200 orders/month (Shopify / WooCommerce)","Up to 1,000 e-signatures/month","📄 Up to 1,000 invoices/month (included)","Advanced task management","Full reports + daily auto report","Custom API","Excel / PDF export","Dedicated account manager"]
       }
     },
     "ui": { "perMonth": "per month", "yearlyBilling": "Annual billing", "save": "Save", "includes": "Includes:", "selectPlan": "Select Plan", "selectedPlan": "Selected", "currency": "₪", "plan": "Plan" },

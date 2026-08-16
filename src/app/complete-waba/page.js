@@ -2,6 +2,7 @@
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const WabaOnboardingWrapperNext = dynamic(
   () => import('@/components/OnBoard/WabaOnboardingWrapperNext'),
@@ -24,8 +25,11 @@ export default function CompleteWabaPage() {
         zIndex: 1000,
         direction: 'rtl'
       }}>
-        <Image src="/apple-touch-icon.png" alt="Gambot" width={36} height={36} style={{ marginInlineEnd: '10px', borderRadius: '8px' }} />
-        <span style={{ fontFamily: '"Varela Round", sans-serif', fontWeight: 700, fontSize: '20px', color: '#1e293b' }}>Gambot</span>
+        {/* Clicking the logo returns to the home page */}
+        <Link href="/" aria-label="Gambot — חזרה לדף הבית" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', cursor: 'pointer' }}>
+          <Image src="/apple-touch-icon.png" alt="Gambot" width={36} height={36} style={{ marginInlineEnd: '10px', borderRadius: '8px' }} />
+          <span style={{ fontFamily: '"Varela Round", sans-serif', fontWeight: 700, fontSize: '20px', color: '#1e293b' }}>Gambot</span>
+        </Link>
       </div>
       <div style={{ paddingTop: '61px' }}>
         <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>טוען...</div>}>

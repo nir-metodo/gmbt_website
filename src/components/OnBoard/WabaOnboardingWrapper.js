@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import WabaOnboarding from './WabaOnboarding';
@@ -160,7 +160,6 @@ const WabaOnboardingWrapper = () => {
 
   return (
     <WabaOnboarding
-      videoUrl="https://storage.googleapis.com/gambot_src/onboarding-vid.mp4"
       organization={orgData.organization}
       email={orgData.email}
       hasSim={orgData.hasSim}
