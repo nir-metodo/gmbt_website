@@ -10,7 +10,7 @@ const packages = [
   {
     id: 'basic',
     name: 'הטמעה בסיסית',
-    price: 1500,
+    price: 1800,
     icon: <FaCheckCircle />,
     description: 'מיועד לעסקים שרוצים להתחיל בצורה מסודרת, עם ליווי ראשוני',
     features: [
@@ -27,7 +27,7 @@ const packages = [
   {
     id: 'professional',
     name: 'הטמעה מקצועית',
-    price: 2750,
+    price: 3500,
     icon: <FaStar />,
     description: 'כולל כל מה שבמסלול הבסיסי, ובנוסף',
     features: [
@@ -42,7 +42,7 @@ const packages = [
   {
     id: 'advanced',
     name: 'הטמעה מלאה — Bot + CRM',
-    price: 3970,
+    price: 4970,
     icon: <FaRocket />,
     popular: true,
     description: 'כולל כל מה שבשני המסלולים הקודמים, ובנוסף הקמת CRM מלא',

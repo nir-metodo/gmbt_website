@@ -197,12 +197,32 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                 <div className="plan-features">
                   <h4>{t('planSelection.ui.includes')}</h4>
                   <ul>
-                    {planItem.features.map((feature, i) => (
-                      <li key={i}>
-                        <FaCheck className="feature-check" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
+                    {planItem.features.map((feature, i) => {
+                      const isBroadcast = /הודעות דיוור/.test(feature) || /broadcast messages/i.test(feature);
+                      const broadcastTooltip = currentLanguage === 'en'
+                        ? 'Broadcast messages = bulk mailing to many recipients. E.g. you upload an Excel and send one message to 100 people, then two weeks later to another 200 — that counts as 300 broadcast messages.'
+                        : 'הודעות דיוור = שליחה בתפוצה רחבה לנמענים רבים. לדוגמה: העליתם אקסל ושלחתם הודעה אחת ל-100 איש, וכעבור שבועיים עוד 200 — זה נחשב 300 הודעות דיוור.';
+                      return (
+                        <li key={i}>
+                          <FaCheck className="feature-check" />
+                          <span>{feature}</span>
+                          {isBroadcast && (
+                            <span
+                              tabIndex={0}
+                              role="button"
+                              aria-label={broadcastTooltip}
+                              title={broadcastTooltip}
+                              style={{
+                                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                                width: 16, height: 16, marginInlineStart: 6, borderRadius: '50%',
+                                background: '#2e6155', color: '#fff', fontSize: 11, fontWeight: 700,
+                                cursor: 'help', flexShrink: 0,
+                              }}
+                            >?</span>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                   {planItem.moreFeatures.length > 0 && (
                     <>

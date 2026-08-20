@@ -181,7 +181,6 @@ const [showModal, setShowModal] = useState(false);
  
   const [selectedSessionsAI, setSelectedSessionsAI] = useState(sessionOptionsAI[0]);
   const [selectedGeneralTokens, setSelectedGeneralTokens] = useState(generalTokenOptions[0]);
-  const [selectedTelephonyPlan, setSelectedTelephonyPlan] = useState('starter');
   const [showAiCalc, setShowAiCalc] = useState(false);
   const [calcServiceType, setCalcServiceType] = useState('support');
   const [calcConversations, setCalcConversations] = useState(300);
@@ -377,26 +376,31 @@ const [showModal, setShowModal] = useState(false);
               <ul>
                 {getplanFeatures(plan.name).map((feature, i) => {
                   const isConversations = /שיחות[\s\S]*בחודש/.test(feature) || /conversations per month/i.test(feature);
+                  const isBroadcast = /הודעות דיוור/.test(feature) || /broadcast messages/i.test(feature);
                   const convTooltip = currentLanguage === 'en'
                     ? '1 conversation = all messaging with a single person within a 24-hour window. From the moment someone reaches out, the entire exchange with them during those 24 hours counts as a single conversation.'
                     : 'שיחה 1 נחשבת התקשרות עם אדם אחד למשך 24 שעות. כלומר, מהרגע שמישהו פונה — כל ההתכתבות איתו במסגרת אותן 24 שעות נחשבת שיחה אחת.';
+                  const broadcastTooltip = currentLanguage === 'en'
+                    ? 'Broadcast messages = bulk mailing to many recipients. E.g. you upload an Excel and send one message to 100 people, then two weeks later to another 200 — that counts as 300 broadcast messages.'
+                    : 'הודעות דיוור = שליחה בתפוצה רחבה לנמענים רבים. לדוגמה: העליתם אקסל ושלחתם הודעה אחת ל-100 איש, וכעבור שבועיים עוד 200 — זה נחשב 300 הודעות דיוור.';
+                  const tooltip = isConversations ? convTooltip : (isBroadcast ? broadcastTooltip : null);
                   return (
                     <li key={i}>
                       <FaCheck className="feature-check" />
                       <span>{feature}</span>
-                      {isConversations && (
+                      {tooltip && (
                         <span
                           className="feature-info"
                           tabIndex={0}
                           role="button"
-                          aria-label={convTooltip}
+                          aria-label={tooltip}
                         >
                           ?
                           <span
                             className="feature-tooltip"
                             role="tooltip"
                             dir={currentLanguage === 'en' ? 'ltr' : 'rtl'}
-                          >{convTooltip}</span>
+                          >{tooltip}</span>
                         </span>
                       )}
                     </li>
@@ -747,138 +751,6 @@ const [showModal, setShowModal] = useState(false);
             {currentLanguage === 'en' 
               ? '👑 Included in all plans • Growth = 25, Pro = 100, Business = 300 tokens'
               : '👑 כלול בכל התוכניות • Growth = 25, Pro = 100, Business = 300 טוקנים'}
-          </div>
-        </div>
-      </div>
-
-      {/* ─── Telephony Plans ─── */}
-      <div className="addon-section">
-        <div style={{ maxWidth: '960px', margin: '0 auto', padding: '0 24px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#eef2ff', padding: '6px 16px', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 600, color: '#4f46e5', marginBottom: '12px' }}>
-              📞 {currentLanguage === 'en' ? 'NEW' : 'חדש'}
-            </div>
-            <h2 style={{ fontSize: '1.6rem', fontWeight: 700, color: '#1a1a2e', marginBottom: '8px' }}>
-              {currentLanguage === 'en' ? 'Business Telephony' : 'טלפוניה עסקית'}
-            </h2>
-            <p style={{ color: '#718096', fontSize: '0.95rem', maxWidth: '600px', margin: '0 auto' }}>
-              {currentLanguage === 'en'
-                ? 'Add a business phone number to your CRM — record calls, forward to agents, and track every conversation'
-                : 'הוסיפו מספר טלפון עסקי ל-CRM — הקלטת שיחות, העברה לנציגים ומעקב אחרי כל שיחה'}
-            </p>
-          </div>
-
-          <div className="telephony-plans-grid">
-            {[
-              {
-                id: 'starter',
-                name: currentLanguage === 'en' ? 'Starter' : 'סטארטר',
-                price: 179,
-                minutes: 100,
-                extraMinutePrice: '0.59',
-                icon: '📱',
-                description: currentLanguage === 'en' ? 'For small businesses just getting started' : 'לעסקים קטנים שמתחילים',
-                features: [
-                  currentLanguage === 'en' ? '1 phone number included' : '1 מספר טלפון כלול',
-                  currentLanguage === 'en' ? '100 minutes/month' : '100 דקות שיחה בחודש',
-                  currentLanguage === 'en' ? 'Call recording' : 'הקלטת שיחות',
-                  currentLanguage === 'en' ? 'CRM call log + contact linking' : 'תיעוד שיחות + קישור לאיש קשר',
-                  currentLanguage === 'en' ? 'Call forwarding to agent' : 'העברת שיחות לנציג',
-                  currentLanguage === 'en' ? 'Missed call notifications' : 'התראות על שיחות שלא נענו',
-                ],
-              },
-              {
-                id: 'business',
-                name: currentLanguage === 'en' ? 'Business' : 'ביזנס',
-                price: 449,
-                minutes: 300,
-                extraMinutePrice: '0.49',
-                icon: '📞',
-                popular: true,
-                description: currentLanguage === 'en' ? 'For active sales teams' : 'לצוותי מכירות פעילים',
-                features: [
-                  currentLanguage === 'en' ? '2 phone numbers included' : '2 מספרי טלפון כלולים',
-                  currentLanguage === 'en' ? '300 minutes/month' : '300 דקות שיחה בחודש',
-                  currentLanguage === 'en' ? 'Call recording + AI summary' : 'הקלטת שיחות + סיכום AI',
-                  currentLanguage === 'en' ? 'CRM call log + contact linking' : 'תיעוד שיחות + קישור לאיש קשר',
-                  currentLanguage === 'en' ? 'Click-to-call from CRM' : 'חיוג מהדפדפן (Click-to-Call)',
-                  currentLanguage === 'en' ? 'Missed call automation' : 'אוטומציה לשיחה שלא נענתה',
-                  currentLanguage === 'en' ? 'WhatsApp + call unified timeline' : 'ציר זמן משולב וואטסאפ + שיחות',
-                ],
-              },
-              {
-                id: 'call_center',
-                name: currentLanguage === 'en' ? 'Call Center' : 'מוקד שיחות',
-                price: 899,
-                minutes: 750,
-                extraMinutePrice: '0.39',
-                icon: '🏢',
-                description: currentLanguage === 'en' ? 'For call centers and large teams' : 'למוקדים וצוותים גדולים',
-                features: [
-                  currentLanguage === 'en' ? '5 phone numbers included' : '5 מספרי טלפון כלולים',
-                  currentLanguage === 'en' ? '750 minutes/month' : '750 דקות שיחה בחודש',
-                  currentLanguage === 'en' ? 'Call recording + AI summary' : 'הקלטת שיחות + סיכום AI',
-                  currentLanguage === 'en' ? 'Advanced call routing (IVR)' : 'ניתוב שיחות מתקדם (IVR)',
-                  currentLanguage === 'en' ? 'Click-to-call from CRM' : 'חיוג מהדפדפן (Click-to-Call)',
-                  currentLanguage === 'en' ? 'Real-time dashboard' : 'דשבורד שיחות בזמן אמת',
-                  currentLanguage === 'en' ? 'Call queues & agent groups' : 'תורי שיחות וקבוצות נציגים',
-                  currentLanguage === 'en' ? 'WhatsApp + call unified timeline' : 'ציר זמן משולב וואטסאפ + שיחות',
-                ],
-              },
-            ].map((plan) => (
-              <div
-                key={plan.id}
-                className={`telephony-plan-card${selectedTelephonyPlan === plan.id ? ' selected' : ''}${plan.popular ? ' popular' : ''}`}
-                onClick={() => setSelectedTelephonyPlan(plan.id)}
-              >
-                {plan.popular && (
-                  <div className="telephony-popular-badge">
-                    {currentLanguage === 'en' ? 'Most Popular' : 'הכי פופולרי'}
-                  </div>
-                )}
-                <div style={{ fontSize: '2rem', marginBottom: '8px' }}>{plan.icon}</div>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#1a1a2e', margin: '0 0 4px' }}>{plan.name}</h3>
-                <p style={{ fontSize: '0.8rem', color: '#718096', margin: '0 0 16px' }}>{plan.description}</p>
-
-                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '3px', marginBottom: '4px' }}>
-                  <span style={{ fontSize: '1rem', color: '#64748b', fontWeight: 600 }}>{formatPrice(plan.price).currency}</span>
-                  <span style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1b4332', lineHeight: 1 }}>{formatPrice(plan.price).amount}</span>
-                  <span style={{ fontSize: '0.85rem', color: '#64748b' }}>/{currentLanguage === 'en' ? 'mo' : 'חודש'}</span>
-                </div>
-                <div style={{ fontSize: '0.72rem', color: '#94a3b8', marginBottom: '16px' }}>
-                  * {currentLanguage === 'en' ? 'Prices do not include VAT' : 'המחירים אינם כוללים מע״מ'}
-                </div>
-
-                <div style={{ background: '#f0fdf9', borderRadius: '8px', padding: '8px 12px', marginBottom: '16px', fontSize: '0.82rem', color: '#128C7E', fontWeight: 600, textAlign: 'center' }}>
-                  {currentLanguage === 'en'
-                    ? `${plan.minutes} min included • Extra: ${formatPrice(parseFloat(plan.extraMinutePrice) * 100).currency}${formatPrice(parseFloat(plan.extraMinutePrice) * 100).amount > 1 ? (parseFloat(plan.extraMinutePrice) * (currentLanguage === 'en' ? 100/3.5 : 100)).toFixed(0) : plan.extraMinutePrice} /min`
-                    : `${plan.minutes.toLocaleString()} דקות כלולות • דקה נוספת: ${plan.extraMinutePrice} ₪`}
-                </div>
-
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, textAlign: 'right' }}>
-                  {plan.features.map((f, i) => (
-                    <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.83rem', color: '#4a5568', padding: '5px 0', direction: currentLanguage === 'en' ? 'ltr' : 'rtl' }}>
-                      <FaCheck style={{ color: '#25D366', flexShrink: 0, fontSize: '0.7rem' }} />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div style={{ marginTop: '16px', fontSize: '0.7rem', color: '#64748b', textAlign: currentLanguage !== 'en' ? 'right' : 'left', lineHeight: 1.7, padding: '8px 10px', background: '#f8fafc', borderRadius: '6px' }}>
-                  <div style={{ fontWeight: 600, marginBottom: '2px', color: '#475569' }}>
-                    {currentLanguage === 'en' ? 'Extra numbers:' : 'מספרים נוספים:'}
-                  </div>
-                  <div>🔀 {currentLanguage === 'en' ? 'Forward number: 79 ₪/mo' : 'מספר Forward: 79 ₪/חודש'}</div>
-                  <div>📞 {currentLanguage === 'en' ? 'Telnyx direct number: 99 ₪/mo' : 'מספר ישיר (Telnyx): 99 ₪/חודש'}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ textAlign: 'center', marginTop: '16px', fontSize: '0.78rem', color: '#718096' }}>
-            {currentLanguage === 'en'
-              ? '* Telephony is an add-on to any existing plan. All prices do not include VAT.'
-              : '* הטלפוניה היא תוספת לכל חבילה קיימת. כל המחירים אינם כוללים מע״מ.'}
           </div>
         </div>
       </div>

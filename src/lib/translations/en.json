@@ -4963,18 +4963,18 @@
     "plans": {
       "basic": {
         "name": "Basic", "description": "For tech-savvy users only — no human assistance",
-        "features": ["1 bot / automation flow","300 conversations/month","1,500 automation runs/month","Up to 3,000 contacts","📣 Up to 300 campaign (broadcast) messages/month","💾 2 GB file storage (each extra GB ₪5)","50 AI actions/month (each 500 extra ₪50)","🪙 100 Gambot Tokens (Pro Active, AI reports, Gambot Agent)","2 users (each additional user ₪30)","❌ No human support","📚 Knowledge center only (videos & guides)"],
+        "features": ["1 bot / automation flow","300 conversations/month","📣 Up to 1,000 broadcast messages/month (each extra 1,000 $14)","Up to 3,000 contacts","1,500 automation runs/month","💾 2 GB file storage (each extra GB ₪5)","50 AI actions/month (each 500 extra ₪50)","🪙 100 Gambot Tokens (Pro Active, AI reports, Gambot Agent)","2 users (each additional user ₪30)","❌ No human support","📚 Knowledge center only (videos & guides)"],
         "moreFeatures": ["Up to 30 leads/month","Up to 30 cases/month","Up to 30 orders/month (Shopify / WooCommerce)","5 e-signatures/month","CSV export","Basic reports"]
       },
       "premium": {
         "name": "Premium", "description": "The perfect solution for growing businesses",
-        "features": ["3 bots / automation flows","1,000 new conversations/month","5,000 automation runs/month","Up to 10,000 contacts","📣 Up to 5,000 campaign (broadcast) messages/month","💾 10 GB file storage (each extra GB ₪5)","300 AI responses / actions (each 500 extra ₪50)","🪙 300 Gambot Tokens included (each 100 extra ₪25)","5 users (each additional user ₪30)","✅ Basic WhatsApp support — reply within 48 hours"],
+        "features": ["3 bots / automation flows","1,000 new conversations/month","📣 Up to 5,000 broadcast messages/month (each extra 1,000 $7)","Up to 10,000 contacts","5,000 automation runs/month","💾 10 GB file storage (each extra GB ₪5)","300 AI responses / actions (each 500 extra ₪50)","🪙 300 Gambot Tokens included (each 100 extra ₪25)","5 users (each additional user ₪30)","✅ Basic WhatsApp support — reply within 48 hours"],
         "moreFeatures": ["Up to 1,000 leads/month","Up to 1,000 cases/month","Up to 300 quotes/month","Up to 400 orders/month (Shopify / WooCommerce)","Up to 300 e-signatures/month","📄 Invoices — add-on ₪89/month (up to 300 invoices)","Advanced task management","Reports & analytics","Google Sheets integrations","Excel / PDF export"],
         "recommended": "Most Recommended"
       },
       "enterprise": {
         "name": "Enterprise", "description": "A flexible, tailored enterprise solution",
-        "features": ["6 bots / automation flows","3,000 new conversations/month","15,000 automation runs/month","Up to 35,000 contacts","📣 Up to 35,000 campaign (broadcast) messages/month","💾 50 GB file storage (each extra GB ₪5)","1,000 AI actions","🪙 800 Gambot Tokens included","12 users","⭐ Priority support — reply within 24 hours","🗓️ Monthly consultation call"],
+        "features": ["6 bots / automation flows","3,000 new conversations/month","📣 Up to 20,000 broadcast messages/month (each extra 1,000 $6)","Up to 35,000 contacts","15,000 automation runs/month","💾 50 GB file storage (each extra GB ₪5)","1,000 AI actions","🪙 800 Gambot Tokens included","12 users","⭐ Priority support — reply within 24 hours","🗓️ Monthly consultation call"],
         "moreFeatures": ["Up to 4,000 leads/month","Up to 4,000 cases/month","Up to 1,000 quotes/month","Up to 1,200 orders/month (Shopify / WooCommerce)","Up to 1,000 e-signatures/month","📄 Up to 1,000 invoices/month (included)","Advanced task management","Full reports + daily auto report","Custom API","Excel / PDF export","Dedicated account manager"]
       }
     },
@@ -5139,6 +5139,7 @@
         "features": [
           "3 bots / automation workflows",
           "2,000 new conversations per month",
+          "📣 Up to 20,000 broadcast messages/month (each extra 1,000 $6)",
           "💾 50 GB file storage (additional GB $1.5)",
           "1,000 AI responses (additional 500 for ₪50)",
           "🔮 300 General AI Tokens (additional 100 for ₪49)",
@@ -5146,7 +5147,7 @@
           "12 users (additional user ₪30)",
           "Priority support"
         ],
-        "moreFeatures": ["Unlimited leads, cases & quotes","Unlimited e-signatures","Up to 35,000 campaign recipients/month","Unlimited form flows & tables","Full reports + daily auto report","Excel / PDF export","API access","Priority + phone support"]
+        "moreFeatures": ["Unlimited leads, cases & quotes","Unlimited e-signatures","15,000 automation runs/month","Unlimited form flows & tables","Full reports + daily auto report","Excel / PDF export","API access","Priority + phone support"]
       },
       "pro": {
         "name": "Pro",
@@ -5154,6 +5155,7 @@
         "features": [
           "2 bots / automation workflows",
           "1,000 new conversations per month",
+          "📣 Up to 5,000 broadcast messages/month (each extra 1,000 $7)",
           "💾 10 GB file storage (additional GB $1.5)",
           "300 AI responses (additional 500 for ₪50)",
           "🔮 100 General AI Tokens (additional 100 for ₪49)",
@@ -5161,7 +5163,7 @@
           "5 users (additional user ₪30)",
           "Enhanced support"
         ],
-        "moreFeatures": ["Unlimited leads","Unlimited support cases","Unlimited quotes & e-signatures","5,000 campaign recipients/month","10 form flows","Excel / PDF export","Weekly lead + monthly marketing report"]
+        "moreFeatures": ["Unlimited leads","Unlimited support cases","Unlimited quotes & e-signatures","5,000 automation runs/month","10 form flows","Excel / PDF export","Weekly lead + monthly marketing report"]
       },
       "growth": {
         "name": "Growth",
@@ -5169,6 +5171,7 @@
         "features": [
           "1 bot / automation workflow",
           "500 new conversations per month",
+          "📣 Up to 1,000 broadcast messages/month (each extra 1,000 $14)",
           "💾 2 GB file storage (additional GB $1.5)",
           "50 AI responses (additional 500 for ₪50)",
           "🔮 25 General AI Tokens (additional 100 for ₪49)",
@@ -5176,7 +5179,7 @@
           "2 users (additional user ₪30)",
           "Basic support"
         ],
-        "moreFeatures": ["30 active leads","30 support cases","5 quotes/month","5 e-signatures/month","1,000 campaign recipients/month","1,000 campaign messages/month","CSV export","Basic reports"]
+        "moreFeatures": ["30 active leads","30 support cases","5 quotes/month","5 e-signatures/month","1,500 automation runs/month","CSV export","Basic reports"]
       }
     },
     "modal": {
