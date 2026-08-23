@@ -200,26 +200,28 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                     {planItem.features.map((feature, i) => {
                       const isBroadcast = /הודעות דיוור/.test(feature) || /broadcast messages/i.test(feature);
                       const broadcastTooltip = currentLanguage === 'en'
-                        ? 'Broadcast messages = bulk mailing to many recipients. E.g. you upload an Excel and send one message to 100 people, then two weeks later to another 200 — that counts as 300 broadcast messages.'
-                        : 'הודעות דיוור = שליחה בתפוצה רחבה לנמענים רבים. לדוגמה: העליתם אקסל ושלחתם הודעה אחת ל-100 איש, וכעבור שבועיים עוד 200 — זה נחשב 300 הודעות דיוור.';
+                        ? 'Broadcast messages = bulk mailing to many recipients. E.g. you upload an Excel and send one message to 100 people, then two weeks later to another 200 — that counts as 300 broadcast messages. The quota applies to each channel separately (WhatsApp and/or Email) — e.g. up to 5,000 on each channel.'
+                        : 'הודעות דיוור = שליחה בתפוצה רחבה לנמענים רבים. לדוגמה: העליתם אקסל ושלחתם הודעה אחת ל-100 איש, וכעבור שבועיים עוד 200 — זה נחשב 300 הודעות דיוור. המכסה חלה על כל ערוץ בנפרד (וואטסאפ ו/או מייל) — למשל עד 5,000 בכל ערוץ.';
                       return (
                         <li key={i}>
                           <FaCheck className="feature-check" />
-                          <span>{feature}</span>
-                          {isBroadcast && (
-                            <span
-                              tabIndex={0}
-                              role="button"
-                              aria-label={broadcastTooltip}
-                              title={broadcastTooltip}
-                              style={{
-                                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                                width: 16, height: 16, marginInlineStart: 6, borderRadius: '50%',
-                                background: '#2e6155', color: '#fff', fontSize: 11, fontWeight: 700,
-                                cursor: 'help', flexShrink: 0,
-                              }}
-                            >?</span>
-                          )}
+                          <span className="feature-text-inline">
+                            {feature}
+                            {isBroadcast && (
+                              <span
+                                tabIndex={0}
+                                role="button"
+                                aria-label={broadcastTooltip}
+                                title={broadcastTooltip}
+                                style={{
+                                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                                  width: 16, height: 16, marginInlineStart: 6, borderRadius: '50%',
+                                  background: '#2e6155', color: '#fff', fontSize: 11, fontWeight: 700,
+                                  cursor: 'help', flexShrink: 0, verticalAlign: 'middle',
+                                }}
+                              >?</span>
+                            )}
+                          </span>
                         </li>
                       );
                     })}

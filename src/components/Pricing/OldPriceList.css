@@ -654,6 +654,12 @@
   flex-shrink: 0;
 }
 
+/* Feature text wrapper — keeps the "?" glued right after the text (inline) */
+.feature-text {
+  flex: 1;
+  min-width: 0;
+}
+
 /* Info "?" badge + tooltip (e.g. for conversation definition) */
 .feature-info {
   position: relative;
@@ -662,7 +668,8 @@
   justify-content: center;
   width: 18px;
   height: 18px;
-  margin-top: 2px;
+  margin-inline-start: 6px;
+  vertical-align: middle;
   flex-shrink: 0;
   border-radius: 50%;
   background: #2e6155;
@@ -679,11 +686,14 @@
   transform: scale(1.1);
 }
 
+/* Tooltip is anchored to the "?" icon and opens INWARD (leftwards in RTL,
+   rightwards in LTR) so it is never clipped by the viewport / card edge. */
 .feature-tooltip {
   position: absolute;
   bottom: calc(100% + 10px);
-  right: 50%;
-  transform: translateX(50%) translateY(6px);
+  right: 0;
+  left: auto;
+  transform: translateY(6px);
   width: 250px;
   max-width: 78vw;
   background: #1b2d27;
@@ -702,22 +712,28 @@
   z-index: 50;
 }
 .feature-tooltip[dir="ltr"] {
+  right: auto;
+  left: 0;
   text-align: left;
 }
 .feature-tooltip::after {
   content: "";
   position: absolute;
   top: 100%;
-  right: 50%;
-  transform: translateX(50%);
+  right: 6px;
+  left: auto;
   border: 6px solid transparent;
   border-top-color: #1b2d27;
+}
+.feature-tooltip[dir="ltr"]::after {
+  right: auto;
+  left: 6px;
 }
 .feature-info:hover .feature-tooltip,
 .feature-info:focus .feature-tooltip {
   opacity: 1;
   visibility: visible;
-  transform: translateX(50%) translateY(0);
+  transform: translateY(0);
 }
 
 .plan-expand-toggle {

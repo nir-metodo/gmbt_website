@@ -381,28 +381,30 @@ const [showModal, setShowModal] = useState(false);
                     ? '1 conversation = all messaging with a single person within a 24-hour window. From the moment someone reaches out, the entire exchange with them during those 24 hours counts as a single conversation.'
                     : 'שיחה 1 נחשבת התקשרות עם אדם אחד למשך 24 שעות. כלומר, מהרגע שמישהו פונה — כל ההתכתבות איתו במסגרת אותן 24 שעות נחשבת שיחה אחת.';
                   const broadcastTooltip = currentLanguage === 'en'
-                    ? 'Broadcast messages = bulk mailing to many recipients. E.g. you upload an Excel and send one message to 100 people, then two weeks later to another 200 — that counts as 300 broadcast messages.'
-                    : 'הודעות דיוור = שליחה בתפוצה רחבה לנמענים רבים. לדוגמה: העליתם אקסל ושלחתם הודעה אחת ל-100 איש, וכעבור שבועיים עוד 200 — זה נחשב 300 הודעות דיוור.';
+                    ? 'Broadcast messages = bulk mailing to many recipients. E.g. you upload an Excel and send one message to 100 people, then two weeks later to another 200 — that counts as 300 broadcast messages. The quota applies to each channel separately (WhatsApp and/or Email) — e.g. up to 5,000 on each channel.'
+                    : 'הודעות דיוור = שליחה בתפוצה רחבה לנמענים רבים. לדוגמה: העליתם אקסל ושלחתם הודעה אחת ל-100 איש, וכעבור שבועיים עוד 200 — זה נחשב 300 הודעות דיוור. המכסה חלה על כל ערוץ בנפרד (וואטסאפ ו/או מייל) — למשל עד 5,000 בכל ערוץ.';
                   const tooltip = isConversations ? convTooltip : (isBroadcast ? broadcastTooltip : null);
                   return (
                     <li key={i}>
                       <FaCheck className="feature-check" />
-                      <span>{feature}</span>
-                      {tooltip && (
-                        <span
-                          className="feature-info"
-                          tabIndex={0}
-                          role="button"
-                          aria-label={tooltip}
-                        >
-                          ?
+                      <span className="feature-text">
+                        {feature}
+                        {tooltip && (
                           <span
-                            className="feature-tooltip"
-                            role="tooltip"
-                            dir={currentLanguage === 'en' ? 'ltr' : 'rtl'}
-                          >{tooltip}</span>
-                        </span>
-                      )}
+                            className="feature-info"
+                            tabIndex={0}
+                            role="button"
+                            aria-label={tooltip}
+                          >
+                            ?
+                            <span
+                              className="feature-tooltip"
+                              role="tooltip"
+                              dir={currentLanguage === 'en' ? 'ltr' : 'rtl'}
+                            >{tooltip}</span>
+                          </span>
+                        )}
+                      </span>
                     </li>
                   );
                 })}

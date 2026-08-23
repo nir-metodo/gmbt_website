@@ -1086,39 +1086,12 @@
   }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .plan-selection-wrapper {
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  }
-
-  .plan-selection-container {
-    background: rgba(30, 41, 59, 0.95);
-    border-color: rgba(148, 163, 184, 0.3);
-  }
-
-  .plan-card-selection {
-    background: rgba(30, 41, 59, 0.98);
-    border-color: rgba(148, 163, 184, 0.2);
-  }
-
-  .selection-title,
-  .plan-name-selection,
-  .plan-features h4 {
-    color: #f1f5f9;
-  }
-
-  .selection-subtitle,
-  .plan-description-selection,
-  .plan-features li {
-    color: #cbd5e1;
-  }
-
-  .terms-container {
-    background: rgba(15, 23, 42, 0.8);
-    border-color: rgba(148, 163, 184, 0.2);
-  }
-}
+/* The onboarding / plan-selection UI is intentionally a fixed LIGHT theme. A previous
+   `@media (prefers-color-scheme: dark)` block re-colored the wrapper, cards and text to dark
+   whenever the visitor's device/OS was set to dark mode — which made the page render with a dark
+   gray background on some computers and phones instead of the clean white design. We deliberately
+   do NOT adapt to the OS dark theme here, so the plan cards always look identical (white) for
+   every visitor regardless of their system setting. */
 
 .plan-expand-toggle {
   display: flex;

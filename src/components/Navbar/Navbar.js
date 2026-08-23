@@ -9,28 +9,43 @@ const NAV_LINKS_HE = [
   { href: '/', label: 'דף בית' },
   {
     label: 'פתרונות',
-    children: [
-      { href: '/יצירת-בוטים-וואטסאפ/', label: '🧩 יצירת בוטים (Drag&Drop)' },
-      { href: '/בוט-וואטסאפ/', label: '🤖 בוטים לוואטסאפ' },
-      { href: '/בוט-ai-וואטסאפ/', label: '🧠 בוט AI לוואטסאפ' },
-      { href: '/בוט-לידים-וואטסאפ/', label: '🎯 בוט לידים וואטסאפ' },
-      { href: '/בוט-שירות-לקוחות-וואטסאפ/', label: '🎧 בוט שירות לקוחות' },
-      { href: '/בוט-מכירות-וואטסאפ/', label: '💰 בוט מכירות' },
-      { href: '/צאטבוט-וואטסאפ/', label: '💬 צ׳אטבוט AI' },
-      { href: '/מערכת-אוטומציה-וואטסאפ/', label: '⚙️ מערכת אוטומציה' },
-      { href: '/אוטומציה-בוואטסאפ/', label: '⚡ אוטומציות וואטסאפ' },
-      { href: '/מערכת-דיוור-וואטסאפ/', label: '📣 מערכת דיוור' },
-      { href: '/PriceList/ManagedBroadcast/', label: '📤 דיוור חד־פעמי (שירות מנוהל)' },
-      { href: '/שיווק-בוואטסאפ/', label: '📢 שיווק וקמפיינים' },
-      { href: '/מערכת-שיווק-בוואטסאפ/', label: '💬 מערכת התכתבות' },
-      { href: '/וואטסאפ-crm/', label: '📋 WhatsApp CRM' },
-      { href: '/חתימה-דיגיטלית/', label: '✍️ חתימה דיגיטלית' },
-      { href: '/הצעות-מחיר/', label: '📄 הצעות מחיר' },
-      { href: '/ניהול-מדיה/', label: '📊 דוחות שיווק' },
-      { href: '/ניהול-משימות/', label: '📋 ניהול משימות' },
-      { href: '/חשבוניות-דיגיטליות/', label: '🧾 חשבוניות דיגיטליות' },
-      { href: '/דיווח-שעות-עובדים/', label: '⏱️ דיווח שעות' },
-      { href: '/טלפוניה-וואטסאפ/', label: '📞 טלפוניה + וואטסאפ' },
+    groups: [
+      {
+        title: '🤖 בוטים ו-AI',
+        items: [
+          { href: '/יצירת-בוטים-וואטסאפ/', label: '🧩 יצירת בוטים (Drag&Drop)' },
+          { href: '/בוט-וואטסאפ/', label: '🤖 בוטים לוואטסאפ' },
+          { href: '/בוט-ai-וואטסאפ/', label: '🧠 בוט AI לוואטסאפ' },
+          { href: '/צאטבוט-וואטסאפ/', label: '💬 צ׳אטבוט AI' },
+          { href: '/בוט-לידים-וואטסאפ/', label: '🎯 בוט לידים וואטסאפ' },
+          { href: '/בוט-שירות-לקוחות-וואטסאפ/', label: '🎧 בוט שירות לקוחות' },
+          { href: '/בוט-מכירות-וואטסאפ/', label: '💰 בוט מכירות' },
+        ],
+      },
+      {
+        title: '📣 אוטומציה ודיוור',
+        items: [
+          { href: '/מערכת-אוטומציה-וואטסאפ/', label: '⚙️ מערכת אוטומציה' },
+          { href: '/אוטומציה-בוואטסאפ/', label: '⚡ אוטומציות וואטסאפ' },
+          { href: '/מערכת-דיוור-וואטסאפ/', label: '📣 מערכת דיוור' },
+          { href: '/PriceList/ManagedBroadcast/', label: '📤 דיוור חד־פעמי (שירות מנוהל)' },
+          { href: '/שיווק-בוואטסאפ/', label: '📢 שיווק וקמפיינים' },
+        ],
+      },
+      {
+        title: '📋 CRM וניהול עסק',
+        items: [
+          { href: '/מערכת-שיווק-בוואטסאפ/', label: '💬 מערכת התכתבות' },
+          { href: '/וואטסאפ-crm/', label: '📋 WhatsApp CRM' },
+          { href: '/חתימה-דיגיטלית/', label: '✍️ חתימה דיגיטלית' },
+          { href: '/הצעות-מחיר/', label: '📄 הצעות מחיר' },
+          { href: '/ניהול-מדיה/', label: '📊 דוחות שיווק' },
+          { href: '/ניהול-משימות/', label: '📋 ניהול משימות' },
+          { href: '/חשבוניות-דיגיטליות/', label: '🧾 חשבוניות דיגיטליות' },
+          { href: '/דיווח-שעות-עובדים/', label: '⏱️ דיווח שעות' },
+          { href: '/טלפוניה-וואטסאפ/', label: '📞 טלפוניה + וואטסאפ' },
+        ],
+      },
     ],
   },
   { href: '/PriceList/', label: 'מחירים' },
@@ -44,28 +59,43 @@ const NAV_LINKS_EN = [
   { href: '/', label: 'Home' },
   {
     label: 'Solutions',
-    children: [
-      { href: '/יצירת-בוטים-וואטסאפ/', label: '🧩 Bot Builder (Drag&Drop)' },
-      { href: '/בוט-וואטסאפ/', label: '🤖 WhatsApp Bots' },
-      { href: '/בוט-ai-וואטסאפ/', label: '🧠 WhatsApp AI Bot' },
-      { href: '/בוט-לידים-וואטסאפ/', label: '🎯 WhatsApp Leads Bot' },
-      { href: '/בוט-שירות-לקוחות-וואטסאפ/', label: '🎧 Customer Service Bot' },
-      { href: '/בוט-מכירות-וואטסאפ/', label: '💰 Sales Bot' },
-      { href: '/צאטבוט-וואטסאפ/', label: '💬 AI Chatbot' },
-      { href: '/מערכת-אוטומציה-וואטסאפ/', label: '⚙️ Automation System' },
-      { href: '/אוטומציה-בוואטסאפ/', label: '⚡ WhatsApp Automations' },
-      { href: '/מערכת-דיוור-וואטסאפ/', label: '📣 Broadcasting System' },
-      { href: '/PriceList/ManagedBroadcast/', label: '📤 One-time Broadcast (Managed)' },
-      { href: '/שיווק-בוואטסאפ/', label: '📢 Marketing & Campaigns' },
-      { href: '/מערכת-שיווק-בוואטסאפ/', label: '💬 Messaging System' },
-      { href: '/וואטסאפ-crm/', label: '📋 WhatsApp CRM' },
-      { href: '/חתימה-דיגיטלית/', label: '✍️ Digital Signature' },
-      { href: '/הצעות-מחיר/', label: '📄 Price Quotes' },
-      { href: '/ניהול-מדיה/', label: '📊 Marketing Reports' },
-      { href: '/ניהול-משימות/', label: '📋 Task Management' },
-      { href: '/חשבוניות-דיגיטליות/', label: '🧾 Digital Invoices' },
-      { href: '/דיווח-שעות-עובדים/', label: '⏱️ Time Tracking' },
-      { href: '/טלפוניה-וואטסאפ/', label: '📞 Telephony + WhatsApp' },
+    groups: [
+      {
+        title: '🤖 Bots & AI',
+        items: [
+          { href: '/יצירת-בוטים-וואטסאפ/', label: '🧩 Bot Builder (Drag&Drop)' },
+          { href: '/בוט-וואטסאפ/', label: '🤖 WhatsApp Bots' },
+          { href: '/בוט-ai-וואטסאפ/', label: '🧠 WhatsApp AI Bot' },
+          { href: '/צאטבוט-וואטסאפ/', label: '💬 AI Chatbot' },
+          { href: '/בוט-לידים-וואטסאפ/', label: '🎯 WhatsApp Leads Bot' },
+          { href: '/בוט-שירות-לקוחות-וואטסאפ/', label: '🎧 Customer Service Bot' },
+          { href: '/בוט-מכירות-וואטסאפ/', label: '💰 Sales Bot' },
+        ],
+      },
+      {
+        title: '📣 Automation & Broadcast',
+        items: [
+          { href: '/מערכת-אוטומציה-וואטסאפ/', label: '⚙️ Automation System' },
+          { href: '/אוטומציה-בוואטסאפ/', label: '⚡ WhatsApp Automations' },
+          { href: '/מערכת-דיוור-וואטסאפ/', label: '📣 Broadcasting System' },
+          { href: '/PriceList/ManagedBroadcast/', label: '📤 One-time Broadcast (Managed)' },
+          { href: '/שיווק-בוואטסאפ/', label: '📢 Marketing & Campaigns' },
+        ],
+      },
+      {
+        title: '📋 CRM & Business',
+        items: [
+          { href: '/מערכת-שיווק-בוואטסאפ/', label: '💬 Messaging System' },
+          { href: '/וואטסאפ-crm/', label: '📋 WhatsApp CRM' },
+          { href: '/חתימה-דיגיטלית/', label: '✍️ Digital Signature' },
+          { href: '/הצעות-מחיר/', label: '📄 Price Quotes' },
+          { href: '/ניהול-מדיה/', label: '📊 Marketing Reports' },
+          { href: '/ניהול-משימות/', label: '📋 Task Management' },
+          { href: '/חשבוניות-דיגיטליות/', label: '🧾 Digital Invoices' },
+          { href: '/דיווח-שעות-עובדים/', label: '⏱️ Time Tracking' },
+          { href: '/טלפוניה-וואטסאפ/', label: '📞 Telephony + WhatsApp' },
+        ],
+      },
     ],
   },
   { href: '/PriceList/', label: 'Pricing' },
@@ -84,6 +114,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const [mobileOpenCat, setMobileOpenCat] = useState(null);
   const [langDropOpen, setLangDropOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -104,6 +135,7 @@ export default function Navbar() {
     setIsOpen(false);
     setOpenDropdown(null);
     setMobileSolutionsOpen(false);
+    setMobileOpenCat(null);
     setLangDropOpen(false);
   }, [pathname]);
 
@@ -137,7 +169,7 @@ export default function Navbar() {
         {/* Desktop links */}
         <ul className={styles.links}>
           {NAV_LINKS.map((link, i) =>
-            link.children ? (
+            link.groups ? (
               <li
                 key={i}
                 className={styles.dropdown}
@@ -147,13 +179,20 @@ export default function Navbar() {
                 <button className={styles.dropBtn}>
                   {link.label} <span>▾</span>
                 </button>
-                <ul className={`${styles.dropMenu} ${openDropdown === i ? styles.dropOpen : ''}`}>
-                  {link.children.map((child, j) => (
-                    <li key={j}>
-                      <Link href={child.href} className={styles.dropItem}>{child.label}</Link>
-                    </li>
+                <div className={`${styles.megaMenu} ${openDropdown === i ? styles.dropOpen : ''}`}>
+                  {link.groups.map((group, gi) => (
+                    <div key={gi} className={styles.megaCol}>
+                      <div className={styles.megaTitle}>{group.title}</div>
+                      <ul className={styles.megaList}>
+                        {group.items.map((child, j) => (
+                          <li key={j}>
+                            <Link href={child.href} className={styles.dropItem}>{child.label}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </li>
             ) : (
               <li key={i}>
@@ -216,7 +255,7 @@ export default function Navbar() {
       {isOpen && (
         <div className={styles.mobileMenu} dir={isRTL ? 'rtl' : 'ltr'}>
           {NAV_LINKS.map((link, i) =>
-            link.children ? (
+            link.groups ? (
               <div key={i} className={styles.mobileAccordion}>
                 <button
                   className={styles.mobileAccordionBtn}
@@ -229,10 +268,28 @@ export default function Navbar() {
                 </button>
                 {mobileSolutionsOpen && (
                   <div className={styles.mobileAccordionBody}>
-                    {link.children.map((child, j) => (
-                      <Link key={j} href={child.href} className={styles.mobileSolutionLink} onClick={() => setIsOpen(false)}>
-                        {child.label}
-                      </Link>
+                    {link.groups.map((group, gi) => (
+                      <div key={gi} className={styles.mobileCategory}>
+                        <button
+                          type="button"
+                          className={styles.mobileCategoryBtn}
+                          onClick={() => setMobileOpenCat(prev => (prev === group.title ? null : group.title))}
+                        >
+                          <span>{group.title}</span>
+                          <span className={`${styles.mobileAccordionArrow} ${mobileOpenCat === group.title ? styles.mobileAccordionArrowOpen : ''}`}>
+                            ▾
+                          </span>
+                        </button>
+                        {mobileOpenCat === group.title && (
+                          <div className={styles.mobileCategoryBody}>
+                            {group.items.map((child, j) => (
+                              <Link key={j} href={child.href} className={styles.mobileSolutionLink} onClick={() => setIsOpen(false)}>
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 )}

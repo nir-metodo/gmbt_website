@@ -57,9 +57,6 @@
           const data = await response.json();
           if (data?.message?.includes('successfully')) {
               console.log('Business token received:', data.businessToken);
-              try { localStorage.removeItem('gambot_onboarding_state'); } catch {}
-              router.push('/login');
-              // You can now use the business token to interact with the WhatsApp Business API
           } else {
               console.log('Error exchanging token');
           }
@@ -67,6 +64,15 @@
           console.error('Error:', error);
       } finally {
           setIsLoading(false);
+          // Always take the user off this (post-Meta) page once the exchange attempt is done.
+          // Use a HARD redirect to the marketing login so a stuck/crashed onboarding page can't
+          // trap them — this runs after both success and failure of the token exchange.
+          try { localStorage.removeItem('gambot_onboarding_state'); } catch {}
+          try {
+              window.location.href = 'https://gambot.co.il/login';
+          } catch (e) {
+              router.push('/login');
+          }
       }
   };
 

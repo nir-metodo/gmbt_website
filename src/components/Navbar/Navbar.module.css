@@ -126,6 +126,81 @@
   color: #128C7E;
 }
 
+/* Mega menu (categorized Solutions dropdown) — columns side by side so the long
+   list is short vertically instead of a single tall column. */
+.megaMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-start: 0;
+  display: flex;
+  gap: 8px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.megaCol {
+  min-width: 205px;
+}
+
+.megaCol:not(:last-child) {
+  border-inline-end: 1px solid #edf2f7;
+  padding-inline-end: 8px;
+}
+
+.megaTitle {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #128C7E;
+  padding: 2px 12px 8px;
+  white-space: nowrap;
+}
+
+.megaList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile collapsible sub-categories inside the Solutions accordion */
+.mobileCategory {
+  border-radius: 8px;
+}
+
+.mobileCategoryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px 14px;
+  background: #f7fafc;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2d3748;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.mobileCategoryBtn:hover {
+  background: #edf2f7;
+}
+
+.mobileCategoryBody {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 8px 6px;
+}
+
 /* CTA group */
 .cta {
   display: flex;
