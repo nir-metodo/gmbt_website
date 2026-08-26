@@ -2,9 +2,12 @@
 import { useState } from 'react';
 import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
 import { sendThankYouEmail } from '@/utils/sendThankYouEmail';
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './LeadForm.module.css';
 
 export default function LeadForm({ source = 'website' }) {
+  const { currentLanguage } = useLanguage();
+  const isEn = currentLanguage === 'en';
   const [form, setForm] = useState({ name: '', phone: '', email: '', businessName: '' });
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
 
@@ -33,26 +36,28 @@ export default function LeadForm({ source = 'website' }) {
           currency: 'ILS',
         });
       }
-      window.location.href = '/תודה';
+      window.location.href = isEn ? '/תודה?lang=en' : '/תודה';
     } catch {
       setStatus('error');
     }
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} dir="rtl">
-      <h3 className={styles.title}>השאירו פרטים — נחזור אליכם בהקדם</h3>
+    <form className={styles.form} onSubmit={handleSubmit} dir={isEn ? 'ltr' : 'rtl'}>
+      <h3 className={styles.title}>
+        {isEn ? "Leave your details — we'll get back to you shortly" : 'השאירו פרטים — נחזור אליכם בהקדם'}
+      </h3>
       <div className={styles.grid}>
         <input
           type="text"
-          placeholder="שם מלא *"
+          placeholder={isEn ? 'Full name *' : 'שם מלא *'}
           value={form.name}
           onChange={e => setForm({ ...form, name: e.target.value })}
           className={styles.input}
         />
         <input
           type="tel"
-          placeholder="מספר טלפון *"
+          placeholder={isEn ? 'Phone number *' : 'מספר טלפון *'}
           value={form.phone}
           onChange={e => setForm({ ...form, phone: e.target.value })}
           required
@@ -61,7 +66,7 @@ export default function LeadForm({ source = 'website' }) {
         />
         <input
           type="email"
-          placeholder="אימייל"
+          placeholder={isEn ? 'Email' : 'אימייל'}
           value={form.email}
           onChange={e => setForm({ ...form, email: e.target.value })}
           className={styles.input}
@@ -69,7 +74,7 @@ export default function LeadForm({ source = 'website' }) {
         />
         <input
           type="text"
-          placeholder="שם העסק"
+          placeholder={isEn ? 'Business name' : 'שם העסק'}
           value={form.businessName}
           onChange={e => setForm({ ...form, businessName: e.target.value })}
           className={styles.input}
@@ -80,10 +85,18 @@ export default function LeadForm({ source = 'website' }) {
         className={styles.submit}
         disabled={status === 'loading'}
       >
-        {status === 'loading' ? '⏳ שולח...' : '🚀 קבלו הדגמה חינמית'}
+        {status === 'loading'
+          ? (isEn ? '⏳ Sending...' : '⏳ שולח...')
+          : (isEn ? '🚀 Get a free demo' : '🚀 קבלו הדגמה חינמית')}
       </button>
       {status === 'error' && (
-        <p className={styles.error}>שגיאה בשליחה, נסו שוב או <a href="https://wa.me/97233768997">צרו קשר בוואטסאפ</a></p>
+        <p className={styles.error}>
+          {isEn ? (
+            <>Something went wrong, please try again or <a href="https://wa.me/97233768997">contact us on WhatsApp</a></>
+          ) : (
+            <>שגיאה בשליחה, נסו שוב או <a href="https://wa.me/97233768997">צרו קשר בוואטסאפ</a></>
+          )}
+        </p>
       )}
     </form>
   );

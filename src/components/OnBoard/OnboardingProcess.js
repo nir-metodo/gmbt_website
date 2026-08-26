@@ -11,6 +11,7 @@ import { FaUserPlus, FaRocket, FaCheckCircle } from 'react-icons/fa';
 import { HiOutlineSparkles } from 'react-icons/hi2';
 import { MdSecurity, MdSpeed } from 'react-icons/md';
 import { useLanguage } from '@/contexts/LanguageContext';
+import axiosInstance from './axiosInstance';
 
     const STORAGE_KEY = 'gambot_onboarding_state';
 
@@ -72,6 +73,33 @@ import { useLanguage } from '@/contexts/LanguageContext';
         useEffect(() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }, [step]);
+
+        // Track EVERY visitor who lands on the onboarding page (especially paid traffic carrying UTM
+        // params) into the root "CampaignLeads" collection — attribution even before they sign up.
+        // Fire-and-forget, once per browser session so a refresh / step change doesn't duplicate it.
+        useEffect(() => {
+            try {
+                if (sessionStorage.getItem('gambot_landing_tracked')) return;
+                const params = new URLSearchParams(window.location.search);
+                const get = (k) => params.get(k) || '';
+                const payload = {
+                    utm_source: get('utm_source'),
+                    utm_medium: get('utm_medium'),
+                    utm_campaign: get('utm_campaign'),
+                    utm_content: get('utm_content'),
+                    utm_term: get('utm_term'),
+                    fbclid: get('fbclid'),
+                    gclid: get('gclid'),
+                    landingPage: window.location.pathname,
+                    fullUrl: window.location.href,
+                    referrer: (typeof document !== 'undefined' && document.referrer) || '',
+                    userAgent: (typeof navigator !== 'undefined' && navigator.userAgent) || '',
+                    language: (typeof navigator !== 'undefined' && navigator.language) || '',
+                };
+                sessionStorage.setItem('gambot_landing_tracked', '1');
+                axiosInstance.post('/api/Webhooks/TrackLandingLead', payload).catch(() => { });
+            } catch { }
+        }, []);
 
         const nextStep = () => {
             setStep(step + 1);

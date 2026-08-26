@@ -127,10 +127,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const EN_CAMPAIGN_PATHS = ['/whatsapp-bot-campaign', '/crm-for-business', '/whatsapp-business-system', '/whatsapp-marketing', '/whatsapp-bot-types'];
-  const isEnCampaign = EN_CAMPAIGN_PATHS.some(p => pathname?.startsWith(p));
-  if (pathname?.startsWith('/complete-waba') || pathname?.startsWith('/קמפיין-') || isEnCampaign) return null;
-
   useEffect(() => {
     setIsOpen(false);
     setOpenDropdown(null);
@@ -138,6 +134,13 @@ export default function Navbar() {
     setMobileOpenCat(null);
     setLangDropOpen(false);
   }, [pathname]);
+
+  // NOTE: all hooks must run before any conditional return — hiding the navbar on
+  // campaign/standalone routes is decided AFTER the hooks so the hook order stays stable
+  // (a `useEffect` used to sit after this early return, violating the Rules of Hooks).
+  const EN_CAMPAIGN_PATHS = ['/whatsapp-bot-campaign', '/crm-for-business', '/whatsapp-business-system', '/whatsapp-marketing', '/whatsapp-bot-types'];
+  const isEnCampaign = EN_CAMPAIGN_PATHS.some(p => pathname?.startsWith(p));
+  if (pathname?.startsWith('/complete-waba') || pathname?.startsWith('/קמפיין-') || isEnCampaign) return null;
 
   const changeLang = (code) => {
     setCurrentLanguage(code);

@@ -595,8 +595,10 @@
 
 @media (max-width: 768px) {
   .relatedGrid { grid-template-columns: 1fr; }
-  .hero { padding: 72px 0 56px; }
-  .heroTitle { font-size: 1.8rem; }
+  .hero { padding: 40px 0 48px; }
+  .badge { margin-bottom: 16px; }
+  .heroTitle { font-size: 1.8rem; margin-bottom: 14px; }
+  .heroDesc { font-size: 1.05rem; margin-bottom: 24px; }
   .stats { gap: 28px; }
   .section { padding: 56px 0; }
   .sectionTitle { font-size: 1.6rem; }

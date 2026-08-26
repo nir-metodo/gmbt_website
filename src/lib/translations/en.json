@@ -4963,12 +4963,12 @@
     "plans": {
       "basic": {
         "name": "Basic", "description": "For tech-savvy users only — no human assistance",
-        "features": ["1 bot / automation flow","300 conversations/month","📣 Up to 1,000 broadcast messages/month (each extra 1,000 $14)","Up to 3,000 contacts","1,500 automation runs/month","💾 2 GB file storage (each extra GB ₪5)","50 AI actions/month (each 500 extra ₪50)","🪙 100 Gambot Tokens (Pro Active, AI reports, Gambot Agent)","2 users (each additional user ₪30)","❌ No human support","📚 Knowledge center only (videos & guides)"],
+        "features": ["1 bot / automation flow","300 conversations/month","📣 Up to 1,000 broadcast messages/month (each extra 1,000 $23)","Up to 3,000 contacts","1,500 automation runs/month","💾 2 GB file storage (each extra GB ₪5)","50 AI actions/month (each 500 extra ₪50)","🪙 100 Gambot Tokens (Pro Active, AI reports, Gambot Agent)","2 users (each additional user ₪30)","❌ No human support","📚 Knowledge center only (videos & guides)"],
         "moreFeatures": ["Up to 30 leads/month","Up to 30 cases/month","Up to 30 orders/month (Shopify / WooCommerce)","5 e-signatures/month","CSV export","Basic reports"]
       },
       "premium": {
         "name": "Premium", "description": "The perfect solution for growing businesses",
-        "features": ["3 bots / automation flows","1,000 new conversations/month","📣 Up to 5,000 broadcast messages/month (each extra 1,000 $7)","Up to 10,000 contacts","5,000 automation runs/month","💾 10 GB file storage (each extra GB ₪5)","300 AI responses / actions (each 500 extra ₪50)","🪙 300 Gambot Tokens included (each 100 extra ₪25)","5 users (each additional user ₪30)","✅ Basic WhatsApp support — reply within 48 hours"],
+        "features": ["3 bots / automation flows","1,000 new conversations/month","📣 Up to 5,000 broadcast messages/month (each extra 1,000 $10)","Up to 10,000 contacts","5,000 automation runs/month","💾 10 GB file storage (each extra GB ₪5)","300 AI responses / actions (each 500 extra ₪50)","🪙 300 Gambot Tokens included (each 100 extra ₪25)","5 users (each additional user ₪30)","✅ Basic WhatsApp support — reply within 48 hours"],
         "moreFeatures": ["Up to 1,000 leads/month","Up to 1,000 cases/month","Up to 300 quotes/month","Up to 400 orders/month (Shopify / WooCommerce)","Up to 300 e-signatures/month","📄 Invoices — add-on ₪89/month (up to 300 invoices)","Advanced task management","Reports & analytics","Google Sheets integrations","Excel / PDF export"],
         "recommended": "Most Recommended"
       },
@@ -5054,9 +5054,9 @@
       "requirements": {
         "title": "WhatsApp Business Connection Requirements",
         "description": "Make sure you meet the following requirements before connecting",
-        "businessAccount": { "title": "Verified Business Account", "description": "You must connect to a verified Facebook business account." },
+        "businessAccount": { "title": "Personal Facebook Account", "description": "Connect with a personal Facebook account — ideally one that has access to your business assets. If you don't have a Business Portfolio on Meta yet, one will be created automatically, so nothing is stopping you from connecting." },
         "paymentMethod": { "title": "Active Payment Method", "description": "The Facebook business account must include an active and verified payment method." },
-        "phoneNumber": { "title": "Dedicated Phone Number", "yourNumber": "The phone number purchased for you:", "contactNumber": "Your number:", "verificationSent": "Verification code will be sent to {phone} and {email}", "warning": "Make sure you have access to the phone number you selected." },
+        "phoneNumber": { "title": "Dedicated Phone Number", "yourNumber": "The phone number purchased for you:", "contactNumber": "Your number:", "verificationSent": "Verification code will be sent to {phone} and {email}", "warning": "Make sure you have access to the phone number you selected.", "coexistNumber": "The number you selected (Coexistence):", "coexistWarning": "Make sure you have access to the phone number you selected so you can receive a verification code from Meta." },
         "secureConnection": { "title": "Secure Connection", "description": "Connect your account securely." },
         "readySection": { "title": "Ready to Continue?", "description": "If you meet all the requirements above, click 'Connect with Facebook' to complete the process." }
       }
@@ -5155,7 +5155,7 @@
         "features": [
           "2 bots / automation workflows",
           "1,000 new conversations per month",
-          "📣 Up to 5,000 broadcast messages/month (each extra 1,000 $7)",
+          "📣 Up to 5,000 broadcast messages/month (each extra 1,000 $10)",
           "💾 10 GB file storage (additional GB $1.5)",
           "300 AI responses (additional 500 for ₪50)",
           "🔮 100 General AI Tokens (additional 100 for ₪49)",
@@ -5171,7 +5171,7 @@
         "features": [
           "1 bot / automation workflow",
           "500 new conversations per month",
-          "📣 Up to 1,000 broadcast messages/month (each extra 1,000 $14)",
+          "📣 Up to 1,000 broadcast messages/month (each extra 1,000 $23)",
           "💾 2 GB file storage (additional GB $1.5)",
           "50 AI responses (additional 500 for ₪50)",
           "🔮 25 General AI Tokens (additional 100 for ₪49)",

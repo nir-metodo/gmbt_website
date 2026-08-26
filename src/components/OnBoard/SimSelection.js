@@ -1681,9 +1681,9 @@ const SimSelection = ({
                         backgroundColor: 'rgba(0, 0, 0, 0.75)',
                         display: 'flex',
                         justifyContent: 'center',
-                        alignItems: 'center',
+                        alignItems: 'flex-start',
                         zIndex: 10001,
-                        padding: '20px',
+                        padding: '100px 20px 20px',
                         overflow: 'auto'
                     }}
                     onClick={() => setShowContactsInfoModal(false)}
@@ -1694,7 +1694,7 @@ const SimSelection = ({
                             borderRadius: '16px',
                             maxWidth: '800px',
                             width: '100%',
-                            maxHeight: '90vh',
+                            maxHeight: 'calc(100vh - 120px)',
                             overflow: 'auto',
                             padding: '32px',
                             position: 'relative',

@@ -340,6 +340,16 @@ const Verification = ({
         );
   
         if (response.status === 200) {
+          // ✅ Account created — fire the Meta Pixel "CompleteRegistration" conversion here (right
+          // after the verification code succeeds and the trial subscription is created), NOT at the
+          // later WABA token exchange in step 5. Guarded so a retry/refresh can't double-count it.
+          try {
+            if (typeof window !== 'undefined' && typeof window.fbq === 'function'
+                && !sessionStorage.getItem('gambot_reg_tracked')) {
+              window.fbq('track', 'CompleteRegistration');
+              sessionStorage.setItem('gambot_reg_tracked', '1');
+            }
+          } catch { }
           nextStep();
         } else {
           showAlert(

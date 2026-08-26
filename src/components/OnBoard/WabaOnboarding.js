@@ -4,7 +4,7 @@ import TutorialVideoButton from './TutorialVideoButton';
 import './WabaOnboarding.css';
 import { FaWhatsapp, FaFacebookF, FaPlay, FaCopy, FaCheckCircle, FaExclamationTriangle, FaArrowLeft, FaArrowRight, FaShieldAlt, FaCreditCard, FaPhoneAlt } from "react-icons/fa";
 import { HiOutlineSparkles } from "react-icons/hi2";
-import { MdVerified, MdSecurity, MdBusinessCenter } from "react-icons/md";
+import { MdVerified, MdBusinessCenter } from "react-icons/md";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const WabaOnboarding = ({ onPrevStep, organization, email, hasSim, useFreeNumber, useCoexisting, simPhoneNumber, contactPhoneNumber, organizationName }) => {
@@ -55,8 +55,8 @@ const WabaOnboarding = ({ onPrevStep, organization, email, hasSim, useFreeNumber
                 'wabaOnboarding.navigation.back': currentLanguage === 'he' ? 'חזרה' : 'Back',
                 'wabaOnboarding.requirements.title': currentLanguage === 'he' ? 'דרישות לחיבור WhatsApp Business' : 'WhatsApp Business Connection Requirements',
                 'wabaOnboarding.requirements.description': currentLanguage === 'he' ? 'וודא שאתה עומד בדרישות הבאות לפני החיבור' : 'Make sure you meet the following requirements before connecting',
-                'wabaOnboarding.requirements.businessAccount.title': currentLanguage === 'he' ? 'חשבון עסקי מאומת' : 'Verified Business Account',
-                'wabaOnboarding.requirements.businessAccount.description': currentLanguage === 'he' ? 'עליך להתחבר לחשבון פייסבוק עסקי מאומת. רק חשבונות עסקיים יכולים להתחבר ל-WhatsApp Business API.' : 'You must connect to a verified Facebook business account. Only business accounts can connect to WhatsApp Business API.',
+                'wabaOnboarding.requirements.businessAccount.title': currentLanguage === 'he' ? 'חשבון פייסבוק פרטי' : 'Personal Facebook Account',
+                'wabaOnboarding.requirements.businessAccount.description': currentLanguage === 'he' ? 'צריך להתחבר עם חשבון פייסבוק פרטי. מומלץ שיהיה לו גישה לנכסים העסקיים שלך. אם אין תיק עסקי (Business Portfolio) במטא — הוא ייווצר אוטומטית, כך שאין שום מניעה להתחבר.' : 'Connect with a personal Facebook account — ideally one that has access to your business assets. If you don\'t have a Business Portfolio on Meta yet, one will be created automatically, so nothing is stopping you from connecting.',
                 'wabaOnboarding.requirements.paymentMethod.title': currentLanguage === 'he' ? 'אמצעי תשלום פעיל' : 'Active Payment Method',
                 'wabaOnboarding.requirements.paymentMethod.description': currentLanguage === 'he' ? 'חשבון הפייסבוק העסקי חייב לכלול אמצעי תשלום פעיל ומאומת.' : 'The Facebook business account must include an active and verified payment method.',
                 'wabaOnboarding.requirements.phoneNumber.title': currentLanguage === 'he' ? 'מספר טלפון ייעודי' : 'Dedicated Phone Number',
@@ -65,6 +65,8 @@ const WabaOnboarding = ({ onPrevStep, organization, email, hasSim, useFreeNumber
                 'wabaOnboarding.requirements.phoneNumber.note': currentLanguage === 'he' ? 'קוד אימות ייקח בדרך כלל -ל 97254801010 יישלח אמצעותנו. com' : 'Verification code will usually be sent to 97254801010 through our service. com',
                 'wabaOnboarding.requirements.phoneNumber.verificationSent': currentLanguage === 'he' ? 'קוד אימות יישלח ל-{phone} ול-{email}' : 'Verification code will be sent to {phone} and {email}',
                 'wabaOnboarding.requirements.phoneNumber.warning': currentLanguage === 'he' ? 'ודא שיש לך גישה למספר הטלפון שבחרת. לא מומלץ להשתמש במספר אישי פעיל כדי למנוע אובדן מידע.' : 'Make sure you have access to the phone number you selected. It is not recommended to use an active personal number to prevent data loss.',
+                'wabaOnboarding.requirements.phoneNumber.coexistNumber': currentLanguage === 'he' ? 'המספר שבחרת (Coexistence):' : 'The number you selected (Coexistence):',
+                'wabaOnboarding.requirements.phoneNumber.coexistWarning': currentLanguage === 'he' ? 'ודא שיש לך גישה למספר הטלפון שבחרת לקבל קוד אימות ממטא.' : 'Make sure you have access to the phone number you selected so you can receive a verification code from Meta.',
                 'wabaOnboarding.requirements.secureConnection.title': currentLanguage === 'he' ? 'חיבור מאובטח' : 'Secure Connection',
                 'wabaOnboarding.requirements.secureConnection.description': currentLanguage === 'he' ? 'תחבור את החשבון באופן מאובטח, כדי שנוכל לקבל בקרות WhatsApp API את עבור את הצוות.' : 'Connect your account securely so we can get WhatsApp API controls for your team.',
                 'wabaOnboarding.requirements.readySection.title': currentLanguage === 'he' ? 'מוכן להמשיך?' : 'Ready to Continue?',
@@ -235,7 +237,18 @@ const WabaOnboarding = ({ onPrevStep, organization, email, hasSim, useFreeNumber
                             </div>
                             <div className="requirement-content">
                                 <h3>{getWabaText('wabaOnboarding.requirements.phoneNumber.title')}</h3>
-                                {!hasSim ? (
+                                {useCoexisting ? (
+                                    <div className="phone-details">
+                                        <p>{getWabaText('wabaOnboarding.requirements.phoneNumber.coexistNumber')}</p>
+                                        <div className="phone-number-display">
+                                            <span className="phone-number">{simPhoneNumber}</span>
+                                        </div>
+                                        <div className="verification-info">
+                                            <FaShieldAlt className="verification-icon" />
+                                            <p>{getWabaText('wabaOnboarding.requirements.phoneNumber.coexistWarning')}</p>
+                                        </div>
+                                    </div>
+                                ) : !hasSim ? (
                                     <div className="phone-details">
                                         <p>{getWabaText('wabaOnboarding.requirements.phoneNumber.yourNumber')}</p>
                                         <div className="phone-number-display">
@@ -268,18 +281,6 @@ const WabaOnboarding = ({ onPrevStep, organization, email, hasSim, useFreeNumber
                                         <p>{getWabaText('wabaOnboarding.requirements.phoneNumber.warning')}</p>
                                     </div>
                                 )}
-                            </div>
-                            <MdVerified className="requirement-status" />
-                        </div>
-
-                        {/* Security Requirement */}
-                        <div className="requirement-card security">
-                            <div className="requirement-icon">
-                                <MdSecurity />
-                            </div>
-                            <div className="requirement-content">
-                                <h3>{getWabaText('wabaOnboarding.requirements.secureConnection.title')}</h3>
-                                <p>{getWabaText('wabaOnboarding.requirements.secureConnection.description')}</p>
                             </div>
                             <MdVerified className="requirement-status" />
                         </div>

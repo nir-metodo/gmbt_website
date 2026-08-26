@@ -146,6 +146,28 @@
   z-index: 10;
 }
 
+/* The open state MUST win regardless of source order. `.megaMenu` is declared AFTER the
+   shared `.dropOpen` rule, so as equal-specificity single-class selectors the hidden
+   `.megaMenu` base was overriding `.dropOpen` — the desktop mega menu never became visible
+   once the categorized (folders) menu was introduced. A two-class selector raises the
+   specificity so the open state always wins no matter the declaration order. */
+.megaMenu.dropOpen,
+.dropMenu.dropOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Invisible hover bridge across the 8px gap between the button and the (now wide) menu,
+   so moving the cursor down to the menu doesn't cross "dead space" and close it. */
+.megaMenu::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  inset-inline: 0;
+  height: 12px;
+}
+
 .megaCol {
   min-width: 205px;
 }

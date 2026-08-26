@@ -1,10 +1,11 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import styles from './LandingPageContent.module.css';
 import LeadForm from '@/components/LeadForm/LeadForm';
 import { useLanguage } from '@/contexts/LanguageContext';
+import axiosInstance from '@/components/OnBoard/axiosInstance';
 
 // Loaded only in the browser — it's an interactive canvas, no SSR value.
 const BotBuilderMiniDemo = dynamic(() => import('@/components/shared/BotBuilderMiniDemo'), { ssr: false });
@@ -67,6 +68,37 @@ export default function LandingPageContent({ content }) {
   const [openFaq, setOpenFaq] = useState(null);
   const { currentLanguage } = useLanguage();
   const isEn = currentLanguage === 'en';
+
+  // Track paid/campaign visitors who land on any campaign landing page into the root "CampaignLeads"
+  // collection — attribution even before they fill a form. Fire-and-forget, once per browser session,
+  // and ONLY when campaign markers are present (utm_* / fbclid / gclid) so organic traffic across the
+  // many landing pages doesn't flood the collection.
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem('gambot_landing_tracked')) return;
+      const params = new URLSearchParams(window.location.search);
+      const get = (k) => params.get(k) || '';
+      const hasCampaign = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid', 'gclid']
+        .some((k) => get(k));
+      if (!hasCampaign) return;
+      const payload = {
+        utm_source: get('utm_source'),
+        utm_medium: get('utm_medium'),
+        utm_campaign: get('utm_campaign'),
+        utm_content: get('utm_content'),
+        utm_term: get('utm_term'),
+        fbclid: get('fbclid'),
+        gclid: get('gclid'),
+        landingPage: decodeURIComponent(window.location.pathname),
+        fullUrl: window.location.href,
+        referrer: (typeof document !== 'undefined' && document.referrer) || '',
+        userAgent: (typeof navigator !== 'undefined' && navigator.userAgent) || '',
+        language: (typeof navigator !== 'undefined' && navigator.language) || '',
+      };
+      sessionStorage.setItem('gambot_landing_tracked', '1');
+      axiosInstance.post('/api/Webhooks/TrackLandingLead', payload).catch(() => { });
+    } catch { }
+  }, []);
 
   // Support bilingual content: { he: {...}, en: {...} } or legacy flat object
   const c = (content.he && content.en)
