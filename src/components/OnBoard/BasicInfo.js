@@ -14,6 +14,39 @@ import axios from 'axios';
 import { cleanIsraeliPhoneNumber } from '@/utils/phoneUtils';
 import LoadingOverlay from './LoadingOverlay'; // ✅ Add loading overlay
 
+// Collapsible "why add a website" hint shown under the company-URL field. Closed by default;
+// clicking the header expands it to reveal the AI-bot explanation + scannable alternatives.
+const WebsiteAiHint = ({ he }) => {
+    const [expanded, setExpanded] = useState(false);
+    return (
+        <div style={{ marginTop: 10, background: 'linear-gradient(135deg,#ecfdf5,#eff6ff)', border: '1px solid #bbf7d0', borderRadius: 12, padding: '10px 14px' }}>
+            <button
+                type="button"
+                onClick={() => setExpanded(e => !e)}
+                style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: he ? 'right' : 'left' }}
+            >
+                <span style={{ fontSize: 18, lineHeight: 1, flexShrink: 0 }}>🤖</span>
+                <span style={{ fontWeight: 700, color: '#065f46', fontSize: 13, flex: 1 }}>
+                    {he ? 'חשוב להוסיף אתר אינטרנט' : 'Adding a website matters'}
+                </span>
+                <span style={{ color: '#059669', flexShrink: 0, transform: expanded ? 'rotate(180deg)' : 'none', transition: 'transform .15s' }}>▾</span>
+            </button>
+            {expanded && (
+                <div style={{ fontSize: 12.5, color: '#334155', lineHeight: 1.6, marginTop: 8, paddingInlineStart: 28 }}>
+                    {he
+                        ? 'לאחר ההרשמה אנחנו סורקים את האתר ובונים לכם אוטומטית בוט בינה מלאכותית עם שאלות ותשובות מותאמות לעסק שלכם.'
+                        : 'After signup we scan your website and automatically build an AI bot with Q&A tailored to your business.'}
+                    <div style={{ marginTop: 6, color: '#475569' }}>
+                        {he
+                            ? 'אין אתר? אפשר להזין כל דף ציבורי שניתן לסריקה — דף נחיתה, Linktree, Google Sites/Wix או פרופיל Google Business. (דפי פייסבוק/אינסטגרם לרוב אינם ניתנים לסריקה כי הם דורשים התחברות.)'
+                            : "No website? Enter any public, scannable page — a landing page, Linktree, Google Sites/Wix, or a Google Business profile. (Facebook/Instagram pages usually can't be scanned because they require login.)"}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
 const BasicInfo = ({ companyInfo, setCompanyInfo, nextStep, prevStep }) => {
     const { t, currentLanguage, isRTL } = useLanguage();
     const [errors, setErrors] = useState({});
@@ -575,6 +608,7 @@ const BasicInfo = ({ companyInfo, setCompanyInfo, nextStep, prevStep }) => {
                                     <span>{errors[name]}</span>
                                 </div>
                             )}
+                            {name === 'companyUrl' && <WebsiteAiHint he={currentLanguage === 'he'} />}
                         </div>
                     );
                 })}

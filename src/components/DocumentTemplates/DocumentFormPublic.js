@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import { FaCheckCircle, FaSpinner } from 'react-icons/fa';
 import { Document, Page, pdfjs } from 'react-pdf';
+import SignatureCanvas from 'react-signature-canvas';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
@@ -28,7 +29,9 @@ const PDF_OPTIONS = {
 };
 
 // Field types the recipient actively fills. `name`/`date`/`date_today` are shown too (auto/typed).
-const INPUT_TYPES = ['text', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox', 'name', 'date', 'date_today'];
+// Keep in sync with the editor's INPUT_FIELD_TYPES + the gmbt_frontend copy of this form, otherwise
+// placed fields (e.g. multiline_text / address) silently vanish from the public link.
+const INPUT_TYPES = ['text', 'multiline_text', 'address', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox', 'name', 'date', 'date_today', 'signature', 'initials'];
 
 const isValidIsraeliId = (rawId) => {
   const digits = String(rawId ?? '').trim();
@@ -59,6 +62,9 @@ const DocumentFormPublic = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [doc, setDoc] = useState(null);
+  // Live form settings from the SOURCE TEMPLATE (contact header visibility/required + submit label
+  // are authored only there). Preferred over the document's cached copy so template edits apply.
+  const [tplFormConfig, setTplFormConfig] = useState(null);
   const [orgInfo, setOrgInfo] = useState(null);
   const [values, setValues] = useState({}); // keyed by fieldId
   const [signerName, setSignerName] = useState('');
@@ -75,6 +81,12 @@ const DocumentFormPublic = () => {
   const [pdfError, setPdfError] = useState(false);
   const [showFullscreen, setShowFullscreen] = useState(false);
 
+  // Signature capture (tap-to-sign) — the drawn signature is stored as a data-URL in values[fieldId]
+  // and embedded into the filled PDF on submit.
+  const [showSignatureModal, setShowSignatureModal] = useState(false);
+  const [activeSignatureFieldId, setActiveSignatureFieldId] = useState(null);
+  const modalSigCanvas = useRef(null);
+
   useEffect(() => {
     const load = async () => {
       try {
@@ -89,6 +101,19 @@ const DocumentFormPublic = () => {
           if (d?.signerEmail) setSignerEmail(d.signerEmail);
           if (d?.signerPhone) setSignerPhone(d.signerPhone);
           if (!urlLang && d?.language) setLang(d.language === 'en' ? 'en' : 'he');
+
+          // Form settings (e.g. "show contact details on top") live on the source template. Fetch the
+          // template's CURRENT formConfig so changes apply immediately, even for previously-sent links.
+          const tplId = d?.sourceTemplateId || d?.SourceTemplateId;
+          if (tplId && organization) {
+            try {
+              const tplRes = await axios.post(`${API_BASE}/DocTemplates_GetById`, { organization, templateId: tplId });
+              const tplData = tplRes.data?.Data || tplRes.data?.data;
+              if (tplData?.formConfig) setTplFormConfig(tplData.formConfig);
+            } catch (tplErr) {
+              console.warn('Could not load template formConfig (using document copy):', tplErr);
+            }
+          }
         } else if (data?.alreadySigned || data?.AlreadySigned) {
           setAlreadyDone(true);
         } else {
@@ -107,12 +132,31 @@ const DocumentFormPublic = () => {
 
   // Input fields the recipient fills (skip signature/initials/variable). Keep read-only auto fields
   // (date_today) so they still display + submit.
+  // Field types that must ALWAYS render on the public link. Their backend `editable` flag defaults
+  // to false (C# bool default — the editor never sets it for these), so gating on `editable !== false`
+  // used to silently drop the name / signature / date fields. Only genuine text inputs explicitly
+  // marked read-only should be hidden.
+  const ALWAYS_SHOWN_TYPES = ['name', 'date', 'date_today', 'signature', 'initials'];
   const fields = useMemo(() => {
     const all = doc?.signatureFields || [];
     return all
       .filter(f => INPUT_TYPES.includes((f.fieldType || '').toLowerCase()))
-      .filter(f => f.editable !== false || (f.fieldType || '').toLowerCase() === 'date_today');
+      .filter(f => ALWAYS_SHOWN_TYPES.includes((f.fieldType || '').toLowerCase()) || f.editable !== false);
   }, [doc]);
+
+  // Per-template form settings. Prefer the live template config; fall back to the doc's cached copy.
+  // Defaults keep the previous behavior (contact header shown, full name required).
+  const cfg = useMemo(() => {
+    const c = tplFormConfig || doc?.formConfig || {};
+    return {
+      collectContact: c.collectContact !== false,
+      requireName: c.requireName !== false,
+      requirePhone: c.requirePhone === true,
+      requireEmail: c.requireEmail === true,
+      submitLabel: c.submitLabel || '',
+      submitLabelEn: c.submitLabelEn || '',
+    };
+  }, [doc, tplFormConfig]);
 
   const labelFor = (f) => f.label || f.placeholder || f.fieldName || f.fieldKey || L('שדה', 'Field');
   const todayStr = () => new Date().toLocaleDateString(lang === 'he' ? 'he-IL' : 'en-US');
@@ -201,6 +245,22 @@ const DocumentFormPublic = () => {
     setErrors(prev => (prev[fieldId] ? { ...prev, [fieldId]: undefined } : prev));
   };
 
+  const closeSignatureModal = () => { setShowSignatureModal(false); setActiveSignatureFieldId(null); };
+  const clearSignaturePad = () => { modalSigCanvas.current?.clear(); };
+  const saveSignature = () => {
+    if (!modalSigCanvas.current || modalSigCanvas.current.isEmpty()) {
+      alert(L('נא לחתום בתיבה', 'Please sign in the box'));
+      return;
+    }
+    // trimmed canvas keeps the stored image tight around the actual strokes
+    const canvas = modalSigCanvas.current.getTrimmedCanvas
+      ? modalSigCanvas.current.getTrimmedCanvas()
+      : modalSigCanvas.current.getCanvas();
+    const dataUrl = canvas.toDataURL('image/png');
+    if (activeSignatureFieldId) setVal(activeSignatureFieldId, dataUrl);
+    closeSignatureModal();
+  };
+
   const blurValidate = (f) => {
     const ft = (f.fieldType || '').toLowerCase();
     const raw = ft === 'name' ? signerName : (ft === 'checkbox' ? (values[f.fieldId] === true || values[f.fieldId] === 'true') : values[f.fieldId]);
@@ -230,6 +290,24 @@ const DocumentFormPublic = () => {
     }
     if (ft === 'date_today') {
       return <div style={readOnlyBox} title={labelFor(f)}>{todayStr()}</div>;
+    }
+    if (ft === 'signature' || ft === 'initials') {
+      const openSig = (e) => { stop(e); setActiveSignatureFieldId(id); setShowSignatureModal(true); };
+      if (val) {
+        // Signed → show the captured signature; tap to re-sign.
+        return (
+          <div onClick={openSig} title={L('לחיצה לחתימה מחדש', 'Tap to re-sign')}
+            style={{ ...base, padding: 2, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff' }}>
+            <img src={val} alt="signature" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+          </div>
+        );
+      }
+      return (
+        <div onClick={openSig} title={labelFor(f)}
+          style={{ ...base, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, background: '#f8fafc', borderStyle: 'dashed', color: '#2e6155', fontWeight: 600 }}>
+          ✍️ {ft === 'initials' ? L('ראשי תיבות', 'Initials') : L('לחתום כאן', 'Sign here')}
+        </div>
+      );
     }
     if (ft === 'date') {
       return <input type="date" style={base} value={val ?? ''} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
@@ -268,6 +346,10 @@ const DocumentFormPublic = () => {
     if (ft === 'email') return <input type="email" inputMode="email" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
     if (ft === 'phone') return <input type="tel" inputMode="tel" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
     if (ft === 'id_number') return <input inputMode="numeric" dir="ltr" maxLength={9} style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value.replace(/\D/g, ''))} />;
+    if (ft === 'multiline_text') {
+      // Multi-line text: Enter inserts a newline (don't advance to the next field like single-line inputs do).
+      return <textarea onKeyDown={stop} style={{ ...base, resize: 'none', lineHeight: 1.3, textAlign: 'start', whiteSpace: 'pre-wrap', overflow: 'auto' }} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
+    }
     return <input type="text" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
   };
 
@@ -276,9 +358,13 @@ const DocumentFormPublic = () => {
     // Collect ALL problems at once (per-field) so the user sees every fix needed, with red
     // borders on the offending fields — instead of a single blocking alert per error.
     const nextErrors = {};
-    if (!signerName.trim()) nextErrors.signerName = L('נא להזין שם מלא', 'Please enter your full name');
-    if (signerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signerEmail.trim())) {
-      nextErrors.signerEmail = L('כתובת אימייל לא תקינה', 'Invalid email address');
+    if (cfg.collectContact) {
+      if (cfg.requireName && !signerName.trim()) nextErrors.signerName = L('נא להזין שם מלא', 'Please enter your full name');
+      if (cfg.requirePhone && !signerPhone.trim()) nextErrors.signerPhone = L('נא להזין טלפון', 'Please enter your phone');
+      if (cfg.requireEmail && !signerEmail.trim()) nextErrors.signerEmail = L('נא להזין אימייל', 'Please enter your email');
+      if (signerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signerEmail.trim())) {
+        nextErrors.signerEmail = L('כתובת אימייל לא תקינה', 'Invalid email address');
+      }
     }
     for (const f of fields) {
       const ft = (f.fieldType || '').toLowerCase();
@@ -369,29 +455,35 @@ const DocumentFormPublic = () => {
         </div>
       )}
 
-      {/* Contact details (needed to record who filled the form) */}
+      {/* Contact details (needed to record who filled the form) — shown only when the template asks for it */}
+      {cfg.collectContact && (
       <div style={styles.contactCard}>
         <div style={{ ...styles.field, flex: 2, minWidth: 200 }}>
-          <label style={styles.label}>{L('שם מלא', 'Full name')} <span style={styles.req}>*</span></label>
+          <label style={styles.label}>{L('שם מלא', 'Full name')} {cfg.requireName && <span style={styles.req}>*</span>}</label>
           <input className={`dfp-input${errors.signerName ? ' dfp-input-err' : ''}`} value={signerName}
             onChange={(e) => { setSignerName(e.target.value); setErrors(p => p.signerName ? { ...p, signerName: undefined } : p); }}
-            onBlur={() => setErrors(p => ({ ...p, signerName: signerName.trim() ? undefined : L('נא להזין שם מלא', 'Please enter your full name') }))}
+            onBlur={() => setErrors(p => ({ ...p, signerName: (cfg.requireName && !signerName.trim()) ? L('נא להזין שם מלא', 'Please enter your full name') : undefined }))}
             placeholder={L('שם מלא', 'Full name')} />
           {errors.signerName && <span style={styles.inlineErr}>{errors.signerName}</span>}
         </div>
         <div style={{ ...styles.field, flex: 1, minWidth: 140 }}>
-          <label style={styles.label}>{L('טלפון', 'Phone')}</label>
-          <input className="dfp-input" value={signerPhone} onChange={(e) => setSignerPhone(e.target.value)} dir="ltr" placeholder="050-0000000" />
+          <label style={styles.label}>{L('טלפון', 'Phone')} {cfg.requirePhone && <span style={styles.req}>*</span>}</label>
+          <input className={`dfp-input${errors.signerPhone ? ' dfp-input-err' : ''}`} value={signerPhone}
+            onChange={(e) => { setSignerPhone(e.target.value); setErrors(p => p.signerPhone ? { ...p, signerPhone: undefined } : p); }}
+            onBlur={() => setErrors(p => ({ ...p, signerPhone: (cfg.requirePhone && !signerPhone.trim()) ? L('נא להזין טלפון', 'Please enter your phone') : undefined }))}
+            dir="ltr" placeholder="050-0000000" />
+          {errors.signerPhone && <span style={styles.inlineErr}>{errors.signerPhone}</span>}
         </div>
         <div style={{ ...styles.field, flex: 1.5, minWidth: 180 }}>
-          <label style={styles.label}>{L('אימייל', 'Email')}</label>
+          <label style={styles.label}>{L('אימייל', 'Email')} {cfg.requireEmail && <span style={styles.req}>*</span>}</label>
           <input className={`dfp-input${errors.signerEmail ? ' dfp-input-err' : ''}`} type="email" value={signerEmail}
             onChange={(e) => { setSignerEmail(e.target.value); setErrors(p => p.signerEmail ? { ...p, signerEmail: undefined } : p); }}
-            onBlur={() => setErrors(p => ({ ...p, signerEmail: (signerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signerEmail.trim())) ? L('כתובת אימייל לא תקינה', 'Invalid email address') : undefined }))}
+            onBlur={() => setErrors(p => ({ ...p, signerEmail: ((cfg.requireEmail && !signerEmail.trim()) ? L('נא להזין אימייל', 'Please enter your email') : (signerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signerEmail.trim())) ? L('כתובת אימייל לא תקינה', 'Invalid email address') : undefined) }))}
             dir="ltr" placeholder="name@example.com" />
           {errors.signerEmail && <span style={styles.inlineErr}>{errors.signerEmail}</span>}
         </div>
       </div>
+      )}
 
       {/* The document itself, with fillable fields overlaid on it */}
       {hasPdf && (
@@ -460,7 +552,7 @@ const DocumentFormPublic = () => {
       )}
 
       <button type="submit" style={styles.submit} disabled={submitting}>
-        {submitting ? <><FaSpinner className="dfp-spin" /> {L('שולח...', 'Submitting...')}</> : L('שלח טופס', 'Submit form')}
+        {submitting ? <><FaSpinner className="dfp-spin" /> {L('שולח...', 'Submitting...')}</> : ((isRTL ? cfg.submitLabel : cfg.submitLabelEn) || L('שלח טופס', 'Submit form'))}
       </button>
 
       {/* Fullscreen document */}
@@ -497,6 +589,33 @@ const DocumentFormPublic = () => {
                   );
                 })}
               </Document>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Signature capture modal */}
+      {showSignatureModal && (
+        <div style={styles.sigOverlay} onClick={closeSignatureModal}>
+          <div style={styles.sigModal} onClick={(e) => e.stopPropagation()}>
+            <div style={styles.sigHeader}>
+              <h3 style={{ margin: 0, fontSize: 16 }}>{L('חתימה', 'Signature')}</h3>
+              <button type="button" onClick={closeSignatureModal} style={styles.fsClose}>✕</button>
+            </div>
+            <p style={{ margin: '0 0 10px', fontSize: 13, color: '#64748b' }}>
+              {L('חתמו בתיבה למטה באמצעות העכבר או מסך המגע', 'Sign in the box below using your mouse or touchscreen')}
+            </p>
+            <div style={styles.sigCanvasWrap}>
+              <SignatureCanvas
+                ref={modalSigCanvas}
+                penColor="#111827"
+                backgroundColor="rgba(255,255,255,1)"
+                canvasProps={{ style: { width: '100%', height: '220px', borderRadius: 10, touchAction: 'none' } }}
+              />
+            </div>
+            <div style={styles.sigFooter}>
+              <button type="button" onClick={clearSignaturePad} style={styles.sigClearBtn}>🗑️ {L('נקה', 'Clear')}</button>
+              <button type="button" onClick={saveSignature} style={styles.sigSaveBtn}>✓ {L('שמור חתימה', 'Save signature')}</button>
             </div>
           </div>
         </div>
@@ -543,6 +662,13 @@ const styles = {
   fsHeader: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#fff', borderBottom: '1px solid #e5e7eb' },
   fsClose: { background: 'transparent', border: 'none', fontSize: 20, cursor: 'pointer', color: '#334155' },
   fsBody: { overflow: 'auto', padding: 16, display: 'flex', flexDirection: 'column', alignItems: 'center' },
+  sigOverlay: { position: 'fixed', inset: 0, background: 'rgba(2,6,23,.75)', zIndex: 1100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 },
+  sigModal: { background: '#fff', borderRadius: 14, width: '100%', maxWidth: 520, padding: 18, boxShadow: '0 20px 60px rgba(2,6,23,.35)' },
+  sigHeader: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 },
+  sigCanvasWrap: { border: '2px dashed #cbd5e1', borderRadius: 10, background: '#fff', overflow: 'hidden' },
+  sigFooter: { display: 'flex', justifyContent: 'space-between', gap: 10, marginTop: 14 },
+  sigClearBtn: { padding: '10px 16px', background: '#f1f5f9', color: '#334155', border: '1px solid #e2e8f0', borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: 'pointer' },
+  sigSaveBtn: { padding: '10px 18px', background: 'linear-gradient(135deg,#2e6155,#34d399)', color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer' },
 };
 
 export default DocumentFormPublic;

@@ -524,7 +524,9 @@ const PublicSigningPage = () => {
   };
 
   // ✅ Field types the signer actively fills in (as opposed to signature/date/variable)
-  const INPUT_FIELD_TYPES = ['text', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox', 'name'];
+  // Keep in sync with the app signing page + SignatureFieldEditor. Includes multiline_text/address so
+  // fields authored in the shared editor never silently vanish on the signing link.
+  const INPUT_FIELD_TYPES = ['text', 'multiline_text', 'address', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox', 'name'];
 
   // ✅ Current signer role (multi-signer). When unknown, treat every field as fillable by this signer.
   const currentSignerRole =
@@ -849,7 +851,7 @@ const PublicSigningPage = () => {
         const fieldType = field.fieldType?.toLowerCase();
 
         // Stamp-able / display value types keep flowing through fieldValues (legacy behavior + new inputs)
-        if (['name', 'date', 'date_today', 'text', 'variable', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox'].includes(fieldType)) {
+        if (['name', 'date', 'date_today', 'text', 'multiline_text', 'address', 'variable', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox'].includes(fieldType)) {
           currentFieldValues[field.fieldId] = resolveFieldValue(field);
         }
 
@@ -1309,6 +1311,7 @@ const PublicSigningPage = () => {
                                   <div
                                       key={field.fieldId}
                                     style={getFieldStyle(field)}
+                                      title={field.label || ''}
                                       onClick={() => {
                                         if (fieldType === 'signature' && !isSigned) {
                                           openSignatureModal(field.fieldId);
@@ -1417,8 +1420,8 @@ const PublicSigningPage = () => {
                                         </div>
                                       )}
 
-                                      {/* Free Text Field - Signer types a value */}
-                                      {fieldType === 'text' && (
+                                      {/* Free Text / Address Field - Signer types a value */}
+                                      {(fieldType === 'text' || fieldType === 'address') && (
                                         <input
                                           type="text"
                                           value={textFieldValues[field.fieldId] ?? (field.value || '')}
@@ -1435,6 +1438,31 @@ const PublicSigningPage = () => {
                                             color: '#374151',
                                             border: '2px solid #6b7280',
                                             outline: 'none'
+                                          }}
+                                        />
+                                      )}
+
+                                      {/* Multi-line Text Field - Enter inserts a newline */}
+                                      {fieldType === 'multiline_text' && (
+                                        <textarea
+                                          value={textFieldValues[field.fieldId] ?? (field.value || '')}
+                                          onClick={(e) => e.stopPropagation()}
+                                          onKeyDown={(e) => e.stopPropagation()}
+                                          onChange={(e) => setTextFieldValues(prev => ({ ...prev, [field.fieldId]: e.target.value }))}
+                                          placeholder={t('typeHere', 'Type here...')}
+                                          style={{
+                                            background: 'white',
+                                            padding: '6px 10px',
+                                            borderRadius: '4px',
+                                            width: '100%',
+                                            height: '100%',
+                                            fontSize: '15px',
+                                            lineHeight: 1.3,
+                                            color: '#374151',
+                                            border: '2px solid #6b7280',
+                                            outline: 'none',
+                                            resize: 'none',
+                                            whiteSpace: 'pre-wrap'
                                           }}
                                         />
                                       )}
