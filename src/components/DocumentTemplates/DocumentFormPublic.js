@@ -70,6 +70,12 @@ const DocumentFormPublic = () => {
   const [signerName, setSignerName] = useState('');
   const [signerPhone, setSignerPhone] = useState('');
   const [signerEmail, setSignerEmail] = useState('');
+  // Values for the admin-defined custom questions shown at the top of the form (keyed by field id).
+  const [customValues, setCustomValues] = useState({});
+  const setCustomVal = (cid, v) => {
+    setCustomValues(prev => ({ ...prev, [cid]: v }));
+    setErrors(prev => (prev[`custom_${cid}`] ? { ...prev, [`custom_${cid}`]: undefined } : prev));
+  };
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [alreadyDone, setAlreadyDone] = useState(false);
@@ -77,7 +83,16 @@ const DocumentFormPublic = () => {
 
   // PDF viewer state
   const [numPages, setNumPages] = useState(null);
-  const [pdfWidth, setPdfWidth] = useState(800);
+  // baseWidth = fit-to-container width (computed below). zoom = user zoom multiplier. The ACTUAL
+  // render width is baseWidth × zoom — this lets the reader enlarge the page to read comfortably and
+  // pan freely, while overlay fields (which scale off pdfWidth) stay perfectly aligned.
+  const [baseWidth, setBaseWidth] = useState(800);
+  const [zoom, setZoom] = useState(1);
+  const pdfWidth = Math.max(220, Math.round(baseWidth * zoom));
+  // The PDF page's intrinsic (scale-1) width. Field coordinates were authored in the editor's
+  // pixel space = intrinsicWidth × EDITOR_SCALE, so we must scale against THIS width — not a
+  // hardcoded 612 (that assumption drifted fields on non-Letter pages like A4).
+  const [pdfIntrinsicWidth, setPdfIntrinsicWidth] = useState(612);
   const [pdfError, setPdfError] = useState(false);
   const [showFullscreen, setShowFullscreen] = useState(false);
 
@@ -86,6 +101,16 @@ const DocumentFormPublic = () => {
   const [showSignatureModal, setShowSignatureModal] = useState(false);
   const [activeSignatureFieldId, setActiveSignatureFieldId] = useState(null);
   const modalSigCanvas = useRef(null);
+
+  // Render the page at its NATURAL (authored) width so the overlay fields keep the exact proportions
+  // they were designed with. Fitting the whole page to a narrow phone shrank the field boxes while
+  // their input text/padding stayed a fixed 14px/8px — so the fields looked oversized and cramped.
+  // On screens narrower than the page the reader simply scrolls sideways (docViewer overflow-x:auto),
+  // which is what's wanted here. Use the zoom buttons to enlarge/shrink for comfort.
+  const docViewerRef = useRef(null);
+  useEffect(() => {
+    setBaseWidth(pdfIntrinsicWidth || 612);
+  }, [pdfIntrinsicWidth]);
 
   useEffect(() => {
     const load = async () => {
@@ -153,8 +178,20 @@ const DocumentFormPublic = () => {
       requireName: c.requireName !== false,
       requirePhone: c.requirePhone === true,
       requireEmail: c.requireEmail === true,
+      showName: c.showName !== false,
+      showPhone: c.showPhone !== false,
+      showEmail: c.showEmail !== false,
+      // Keep ONLY well-formed question objects with a stable id. A null/undefined entry (or a stray
+      // primitive left by a bad save) would blow up renderCustomField (`cf.id` on null) and take the
+      // whole public form down with a client-side exception — so we defensively drop anything invalid.
+      customFields: (Array.isArray(c.customFields) ? c.customFields : [])
+        .filter(cf => cf && typeof cf === 'object' && (cf.id != null || cf.label != null || cf.labelEn != null)),
       submitLabel: c.submitLabel || '',
       submitLabelEn: c.submitLabelEn || '',
+      successMessage: c.successMessage || '',
+      successMessageEn: c.successMessageEn || '',
+      successSubtitle: c.successSubtitle || '',
+      successSubtitleEn: c.successSubtitleEn || '',
     };
   }, [doc, tplFormConfig]);
 
@@ -223,13 +260,13 @@ const DocumentFormPublic = () => {
     return values[f.fieldId] ?? (f.value || '');
   };
 
-  // Position an overlay field on the PDF. Fields saved in canvas pixels at editor scale 1.8 over a
-  // standard 612pt page → scale to the current display width. (Identical to the signing page.)
+  // Position an overlay field on the PDF. Fields saved in canvas pixels at editor scale 1.8 over the
+  // page's INTRINSIC width → scale to the current display width. (Identical to the signing page.)
   const getFieldStyle = (field) => {
     if (!pdfWidth) return {};
     const editorScale = 1.8;
-    const standardPdfWidth = 612 * editorScale;
-    const scale = pdfWidth / standardPdfWidth;
+    // Displayed width ÷ editor authoring width (intrinsic × editorScale).
+    const scale = pdfWidth / (pdfIntrinsicWidth * editorScale);
     return {
       position: 'absolute',
       left: `${(field.x || 0) * scale}px`,
@@ -248,15 +285,26 @@ const DocumentFormPublic = () => {
   const closeSignatureModal = () => { setShowSignatureModal(false); setActiveSignatureFieldId(null); };
   const clearSignaturePad = () => { modalSigCanvas.current?.clear(); };
   const saveSignature = () => {
-    if (!modalSigCanvas.current || modalSigCanvas.current.isEmpty()) {
+    const pad = modalSigCanvas.current;
+    if (!pad || pad.isEmpty()) {
       alert(L('נא לחתום בתיבה', 'Please sign in the box'));
       return;
     }
-    // trimmed canvas keeps the stored image tight around the actual strokes
-    const canvas = modalSigCanvas.current.getTrimmedCanvas
-      ? modalSigCanvas.current.getTrimmedCanvas()
-      : modalSigCanvas.current.getCanvas();
-    const dataUrl = canvas.toDataURL('image/png');
+    // `getTrimmedCanvas()` throws in current react-signature-canvas builds (its trim-canvas dep can
+    // raise on the backing store) — which made "save" silently do nothing. Try trimmed → raw canvas
+    // → the pad's own toDataURL, so a signature is ALWAYS captured.
+    let dataUrl = '';
+    try {
+      const canvas = typeof pad.getTrimmedCanvas === 'function' ? pad.getTrimmedCanvas() : pad.getCanvas();
+      dataUrl = canvas.toDataURL('image/png');
+    } catch (_) {
+      try { dataUrl = pad.getCanvas().toDataURL('image/png'); }
+      catch (_) { try { dataUrl = pad.toDataURL('image/png'); } catch (_) { dataUrl = ''; } }
+    }
+    if (!dataUrl) {
+      alert(L('שמירת החתימה נכשלה. נסו שוב.', 'Failed to save signature. Please try again.'));
+      return;
+    }
     if (activeSignatureFieldId) setVal(activeSignatureFieldId, dataUrl);
     closeSignatureModal();
   };
@@ -323,14 +371,55 @@ const DocumentFormPublic = () => {
     }
     if (ft === 'radio_group') {
       const opts = Array.isArray(f.options) ? f.options : [];
+      // Two author-selectable display styles (field.displayStyle):
+      //  • 'toggle'   → a compact segmented כן/לא bar that fills the field box.
+      //  • 'checkbox' → (default) each option on its own row with a square check box.
+      // Both are mutually-exclusive (single choice); the stored value is the chosen option text.
+      // Default = 'checkbox' because the old inline-chip layout overflowed narrow fields into a
+      // horizontal scrollbar (the "◄|►" the field looked broken as).
+      const dstyle = f.displayStyle === 'toggle' ? 'toggle' : 'checkbox';
+      if (dstyle === 'toggle') {
+        // Compact segmented pill, centered in the field box (no full-box border/fill). The old version
+        // stretched a heavy 14px green bar across the whole box, which looked oversized next to the
+        // tiny pre-printed "כן / לא" text. Small font + tight padding keeps it unobtrusive.
+        return (
+          <div style={{ ...base, padding: 0, border: 'none', background: 'transparent', boxShadow: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }} onClick={stop}>
+            <div style={{ display: 'inline-flex', border: `1.5px solid ${borderColor}`, borderRadius: 999, overflow: 'hidden', background: '#fff', maxWidth: '100%' }}>
+              {opts.slice(0, 3).map((o, i) => {
+                const selected = val === o;
+                return (
+                  <button type="button" key={i} title={o} onClick={() => setVal(id, o)} style={{
+                    border: 'none', cursor: 'pointer', padding: '1px 8px', minWidth: 0,
+                    background: selected ? '#2e6155' : 'transparent',
+                    color: selected ? '#fff' : '#374151', fontWeight: selected ? 700 : 500,
+                    fontSize: 11, lineHeight: 1.5, whiteSpace: 'nowrap',
+                    borderInlineStart: i > 0 ? `1px solid ${borderColor}` : 'none',
+                    transition: 'all .12s ease',
+                  }}>{o}</button>
+                );
+              })}
+            </div>
+          </div>
+        );
+      }
+      // 'checkbox' (stacked): square box + label per row, mutually exclusive. Hidden native radio
+      // preserved for accessibility + keyboard navigation.
       return (
-        <div style={{ ...base, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2px', overflow: 'auto' }} onClick={stop}>
-          {opts.map((o, i) => (
-            <label key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '13px' }}>
-              <input type="radio" name={id} value={o} checked={val === o} onChange={() => setVal(id, o)} style={{ width: 15, height: 15 }} />
-              <span>{o}</span>
-            </label>
-          ))}
+        <div style={{ ...base, padding: '4px 8px', display: 'flex', flexDirection: 'column', alignItems: 'stretch', justifyContent: 'center', gap: 4, overflow: 'auto' }} onClick={stop}>
+          {opts.map((o, i) => {
+            const selected = val === o;
+            return (
+              <label key={i} title={o} style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                <input type="radio" name={id} value={o} checked={selected} onChange={() => setVal(id, o)} style={{ position: 'absolute', opacity: 0, width: 1, height: 1, margin: 0, pointerEvents: 'none' }} />
+                <span style={{
+                  width: 18, height: 18, minWidth: 18, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  border: `2px solid ${selected ? '#2e6155' : '#94a3b8'}`, borderRadius: 4,
+                  background: selected ? '#2e6155' : '#fff', color: '#fff', fontSize: 13, fontWeight: 700, transition: 'all .12s ease',
+                }}>{selected ? '✓' : ''}</span>
+                <span style={{ fontSize: 14, fontWeight: selected ? 700 : 500, color: selected ? '#1d4ed8' : '#111827', overflow: 'hidden', textOverflow: 'ellipsis' }}>{o}</span>
+              </label>
+            );
+          })}
         </div>
       );
     }
@@ -353,19 +442,64 @@ const DocumentFormPublic = () => {
     return <input type="text" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
   };
 
+  // Admin-defined custom question shown at the very top of the form (see template "Fill-form settings").
+  const renderCustomField = (cf) => {
+    const cid = cf.id;
+    const label = (isRTL ? cf.label : cf.labelEn) || cf.label || cf.labelEn || '';
+    const v = customValues[cid] ?? '';
+    const errKey = `custom_${cid}`;
+    const cls = `dfp-input${errors[errKey] ? ' dfp-input-err' : ''}`;
+    // Corrupted legacy configs stored cf.type as [] (empty array) instead of a string. [] is truthy,
+    // so `(cf.type || 'text')` yields [] and `.toLowerCase()` throws, crashing the whole public form.
+    // Coerce anything non-string to a safe 'text' default.
+    const type = (typeof cf.type === 'string' ? cf.type : 'text').toLowerCase();
+    let control;
+    if (type === 'textarea') {
+      control = <textarea className={cls} rows={3} value={v} onChange={(e) => setCustomVal(cid, e.target.value)} placeholder={label} style={{ resize: 'vertical' }} />;
+    } else if (type === 'dropdown') {
+      const opts = Array.isArray(cf.options) ? cf.options : [];
+      control = (
+        <select className={cls} value={v} onChange={(e) => setCustomVal(cid, e.target.value)}>
+          <option value="">{L('בחר...', 'Select...')}</option>
+          {opts.map((o, i) => <option key={i} value={o}>{o}</option>)}
+        </select>
+      );
+    } else {
+      const inputType = type === 'number' ? 'number' : type === 'email' ? 'email' : type === 'phone' ? 'tel' : 'text';
+      const dir = (type === 'email' || type === 'phone' || type === 'number') ? 'ltr' : undefined;
+      control = <input className={cls} type={inputType} dir={dir} value={v} onChange={(e) => setCustomVal(cid, e.target.value)} placeholder={label} />;
+    }
+    return (
+      <div key={cid} style={{ ...styles.field, flex: '1 1 100%' }}>
+        <label style={styles.label}>{label} {cf.required && <span style={styles.req}>*</span>}</label>
+        {control}
+        {errors[errKey] && <span style={styles.inlineErr}>{errors[errKey]}</span>}
+      </div>
+    );
+  };
+
   const handleSubmit = async (e) => {
     e?.preventDefault();
     // Collect ALL problems at once (per-field) so the user sees every fix needed, with red
     // borders on the offending fields — instead of a single blocking alert per error.
     const nextErrors = {};
     if (cfg.collectContact) {
-      if (cfg.requireName && !signerName.trim()) nextErrors.signerName = L('נא להזין שם מלא', 'Please enter your full name');
-      if (cfg.requirePhone && !signerPhone.trim()) nextErrors.signerPhone = L('נא להזין טלפון', 'Please enter your phone');
-      if (cfg.requireEmail && !signerEmail.trim()) nextErrors.signerEmail = L('נא להזין אימייל', 'Please enter your email');
-      if (signerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signerEmail.trim())) {
+      if (cfg.showName && cfg.requireName && !signerName.trim()) nextErrors.signerName = L('נא להזין שם מלא', 'Please enter your full name');
+      if (cfg.showPhone && cfg.requirePhone && !signerPhone.trim()) nextErrors.signerPhone = L('נא להזין טלפון', 'Please enter your phone');
+      if (cfg.showEmail && cfg.requireEmail && !signerEmail.trim()) nextErrors.signerEmail = L('נא להזין אימייל', 'Please enter your email');
+      if (cfg.showEmail && signerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signerEmail.trim())) {
         nextErrors.signerEmail = L('כתובת אימייל לא תקינה', 'Invalid email address');
       }
     }
+    // Validate the custom questions (required + email format).
+    (cfg.customFields || []).forEach(cf => {
+      const raw = customValues[cf.id];
+      const empty = raw === undefined || raw === null || String(raw).trim() === '';
+      if (cf.required && empty) nextErrors[`custom_${cf.id}`] = L('שדה חובה', 'Required field');
+      else if ((typeof cf.type === 'string' ? cf.type : '').toLowerCase() === 'email' && !empty && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(raw).trim())) {
+        nextErrors[`custom_${cf.id}`] = L('כתובת אימייל לא תקינה', 'Invalid email address');
+      }
+    });
     for (const f of fields) {
       const ft = (f.fieldType || '').toLowerCase();
       const raw = ft === 'name' ? signerName : (ft === 'checkbox' ? (values[f.fieldId] === true || values[f.fieldId] === 'true') : values[f.fieldId]);
@@ -384,6 +518,12 @@ const DocumentFormPublic = () => {
       fields.forEach(f => {
         fieldValues[f.fieldId] = resolveValue(f);
         if (f.fieldKey) fieldData[f.fieldKey] = resolveValue(f);
+      });
+      // Include the custom questions so they persist + appear in submissions / dynamic content.
+      // Keyed by the field's label (readable) with the id as a fallback.
+      (cfg.customFields || []).forEach(cf => {
+        const key = (cf.label || cf.labelEn || cf.id || '').toString().trim() || cf.id;
+        fieldData[key] = customValues[cf.id] ?? '';
       });
       const res = await axios.post(`${API_BASE}/ESignature_SubmitForm`, {
         token,
@@ -437,7 +577,11 @@ const DocumentFormPublic = () => {
   if (loading) return centered(<div style={styles.center}><FaSpinner className="dfp-spin" /> {L('טוען טופס...', 'Loading form...')}</div>);
   if (alreadyDone) return centered(<div style={styles.center}><FaCheckCircle size={56} color="#28a745" /><h2>{L('הטופס כבר מולא', 'Form already submitted')}</h2><p>{L('תודה!', 'Thank you!')}</p></div>);
   if (error) return centered(<div style={styles.center}><div style={{ fontSize: 40 }}>⚠️</div><h2>{L('הטופס אינו זמין', 'Form unavailable')}</h2><p>{error}</p></div>);
-  if (submitted) return centered(<div style={styles.center}><FaCheckCircle size={56} color="#28a745" /><h2>{L('תודה!', 'Thank you!')}</h2><p>{L('הטופס נשלח בהצלחה.', 'Your form was submitted successfully.')}</p><p style={{ color: '#64748b' }}>{L('ניתן לסגור את הדף.', 'You can close this page now.')}</p></div>);
+  if (submitted) {
+    const successTitle = (isRTL ? cfg.successMessage : cfg.successMessageEn) || L('תודה!', 'Thank you!');
+    const successSubtitle = (isRTL ? cfg.successSubtitle : cfg.successSubtitleEn) || L('הטופס נשלח בהצלחה.', 'Your form was submitted successfully.');
+    return centered(<div style={styles.center}><FaCheckCircle size={56} color="#28a745" /><h2>{successTitle}</h2><p>{successSubtitle}</p><p style={{ color: '#64748b' }}>{L('ניתן לסגור את הדף.', 'You can close this page now.')}</p></div>);
+  }
 
   const hasPdf = !!doc?.originalFileUrl;
   const errorCount = Object.values(errors).filter(Boolean).length;
@@ -456,8 +600,9 @@ const DocumentFormPublic = () => {
       )}
 
       {/* Contact details (needed to record who filled the form) — shown only when the template asks for it */}
-      {cfg.collectContact && (
+      {cfg.collectContact && (cfg.showName || cfg.showPhone || cfg.showEmail) && (
       <div style={styles.contactCard}>
+        {cfg.showName && (
         <div style={{ ...styles.field, flex: 2, minWidth: 200 }}>
           <label style={styles.label}>{L('שם מלא', 'Full name')} {cfg.requireName && <span style={styles.req}>*</span>}</label>
           <input className={`dfp-input${errors.signerName ? ' dfp-input-err' : ''}`} value={signerName}
@@ -466,6 +611,8 @@ const DocumentFormPublic = () => {
             placeholder={L('שם מלא', 'Full name')} />
           {errors.signerName && <span style={styles.inlineErr}>{errors.signerName}</span>}
         </div>
+        )}
+        {cfg.showPhone && (
         <div style={{ ...styles.field, flex: 1, minWidth: 140 }}>
           <label style={styles.label}>{L('טלפון', 'Phone')} {cfg.requirePhone && <span style={styles.req}>*</span>}</label>
           <input className={`dfp-input${errors.signerPhone ? ' dfp-input-err' : ''}`} value={signerPhone}
@@ -474,6 +621,8 @@ const DocumentFormPublic = () => {
             dir="ltr" placeholder="050-0000000" />
           {errors.signerPhone && <span style={styles.inlineErr}>{errors.signerPhone}</span>}
         </div>
+        )}
+        {cfg.showEmail && (
         <div style={{ ...styles.field, flex: 1.5, minWidth: 180 }}>
           <label style={styles.label}>{L('אימייל', 'Email')} {cfg.requireEmail && <span style={styles.req}>*</span>}</label>
           <input className={`dfp-input${errors.signerEmail ? ' dfp-input-err' : ''}`} type="email" value={signerEmail}
@@ -482,16 +631,29 @@ const DocumentFormPublic = () => {
             dir="ltr" placeholder="name@example.com" />
           {errors.signerEmail && <span style={styles.inlineErr}>{errors.signerEmail}</span>}
         </div>
+        )}
       </div>
+      )}
+
+      {cfg.customFields.length > 0 && (
+        <div style={styles.contactCard}>
+          {cfg.customFields.map(cf => renderCustomField(cf))}
+        </div>
       )}
 
       {/* The document itself, with fillable fields overlaid on it */}
       {hasPdf && (
         <>
-          <div style={{ textAlign: 'center', marginBottom: 10 }}>
+          <div style={styles.viewerToolbar}>
             <button type="button" onClick={() => setShowFullscreen(true)} style={styles.fullscreenBtn}>🖵 {L('צפה במסך מלא', 'View fullscreen')}</button>
+            <div style={styles.zoomControls}>
+              <button type="button" onClick={() => setZoom(z => Math.max(0.5, +(z - 0.25).toFixed(2)))} disabled={zoom <= 0.5} style={{ ...styles.zoomBtn, opacity: zoom <= 0.5 ? 0.4 : 1 }} title={L('הקטן', 'Zoom out')}>−</button>
+              <span style={styles.zoomLabel}>{Math.round(zoom * 100)}%</span>
+              <button type="button" onClick={() => setZoom(z => Math.min(3, +(z + 0.25).toFixed(2)))} disabled={zoom >= 3} style={{ ...styles.zoomBtn, opacity: zoom >= 3 ? 0.4 : 1 }} title={L('הגדל', 'Zoom in')}>+</button>
+              {zoom !== 1 && <button type="button" onClick={() => setZoom(1)} style={styles.zoomReset} title={L('התאם לרוחב', 'Fit width')}>⤢ {L('התאם', 'Fit')}</button>}
+            </div>
           </div>
-          <div style={styles.docViewer}>
+          <div ref={docViewerRef} style={styles.docViewer}>
             {pdfError ? (
               <div style={styles.center}>
                 <div style={{ fontSize: 32 }}>📄</div>
@@ -499,6 +661,10 @@ const DocumentFormPublic = () => {
                 <a href={doc.originalFileUrl} target="_blank" rel="noopener noreferrer" style={styles.linkBtn}>{L('פתח את המסמך', 'Open document')}</a>
               </div>
             ) : (
+              // width:max-content + margin:0 auto centers the page when it fits, but when zoomed WIDER
+              // than the box the auto-margins collapse to 0 so BOTH edges stay reachable by scrolling.
+              // (The old flex `alignItems:center` kept re-centering the page, making the sides unreachable.)
+              <div style={styles.docScrollInner}>
               <Document
                 file={doc.originalFileUrl}
                 options={PDF_OPTIONS}
@@ -516,7 +682,7 @@ const DocumentFormPublic = () => {
                         width={pdfWidth}
                         renderTextLayer={false}
                         renderAnnotationLayer={false}
-                        onLoadSuccess={(page) => { if (pageNum === 1) setPdfWidth(page.width); }}
+                        onLoadSuccess={(page) => { if (pageNum === 1) setPdfIntrinsicWidth(page.originalWidth || page.width); }}
                       />
                       {pageFields.map((f) => (
                         <div key={f.fieldId} style={getFieldStyle(f)} title={labelFor(f)}>
@@ -531,6 +697,7 @@ const DocumentFormPublic = () => {
                   );
                 })}
               </Document>
+              </div>
             )}
           </div>
         </>
@@ -569,10 +736,11 @@ const DocumentFormPublic = () => {
                   const pageNum = index + 1;
                   const w = Math.min((typeof window !== 'undefined' ? window.innerWidth : 900) - 32, 900);
                   const pageFields = fields.filter(f => (f.page || 1) === pageNum);
-                  const fsScale = w / (612 * 1.8);
+                  const fsScale = w / (pdfIntrinsicWidth * 1.8);
                   return (
                     <div key={`fs_${pageNum}`} style={{ position: 'relative', marginBottom: 12 }}>
-                      <Page pageNumber={pageNum} width={w} renderTextLayer={false} renderAnnotationLayer={false} />
+                      <Page pageNumber={pageNum} width={w} renderTextLayer={false} renderAnnotationLayer={false}
+                        onLoadSuccess={(page) => { if (pageNum === 1) setPdfIntrinsicWidth(page.originalWidth || page.width); }} />
                       {pageFields.map((f) => (
                         <div key={f.fieldId} style={{
                           position: 'absolute',
@@ -648,7 +816,14 @@ const styles = {
   errorList: { margin: '6px 0 0', paddingInlineStart: 20 },
   inlineErr: { color: '#dc2626', fontSize: 12, marginTop: 4, fontWeight: 600 },
   fieldErr: { position: 'absolute', top: '100%', insetInlineStart: 0, marginTop: 2, background: '#dc2626', color: '#fff', fontSize: 11, fontWeight: 600, padding: '2px 6px', borderRadius: 4, whiteSpace: 'nowrap', zIndex: 20, boxShadow: '0 2px 6px rgba(220,38,38,.35)' },
-  docViewer: { display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#e2e8f0', borderRadius: 14, padding: 16, overflow: 'auto' },
+  // Block (not flex-center) + horizontal scroll so a zoomed-in page can be panned to both edges.
+  docViewer: { display: 'block', background: '#e2e8f0', borderRadius: 14, padding: 16, overflowX: 'auto', overflowY: 'hidden', WebkitOverflowScrolling: 'touch' },
+  docScrollInner: { width: 'max-content', margin: '0 auto' },
+  viewerToolbar: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 10 },
+  zoomControls: { display: 'flex', alignItems: 'center', gap: 6 },
+  zoomBtn: { width: 36, height: 36, borderRadius: 8, border: '1px solid #cbd5e1', background: '#fff', fontSize: 20, lineHeight: 1, cursor: 'pointer', color: '#0f172a', display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  zoomLabel: { minWidth: 48, textAlign: 'center', fontSize: 13, fontWeight: 700, color: '#334155' },
+  zoomReset: { height: 36, padding: '0 10px', borderRadius: 8, border: '1px solid #cbd5e1', background: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#0f172a' },
   fullscreenBtn: { padding: '8px 14px', background: '#0f172a', color: '#fff', border: 'none', borderRadius: 10, fontSize: 13, fontWeight: 600, cursor: 'pointer' },
   linkBtn: { display: 'inline-block', marginTop: 8, padding: '10px 16px', background: '#2e6155', color: '#fff', borderRadius: 10, textDecoration: 'none', fontWeight: 600 },
   submit: { width: '100%', marginTop: 20, padding: '14px 16px', background: 'linear-gradient(135deg,#2e6155,#34d399)', color: '#fff', border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 },
