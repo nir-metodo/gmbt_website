@@ -26,6 +26,9 @@ export default function BlogPostContent({ post }) {
   }, []);
 
   const loc = (val) => (val && typeof val === 'object' ? val[lang] || val.he || val.en || '' : val || '');
+  // FAQ items may use either { question, answer } or { q, a } keys
+  const faqQ = (f) => loc(f.question ?? f.q);
+  const faqA = (f) => loc(f.answer ?? f.a);
 
   const title = loc(post.title);
   const description = loc(post.description);
@@ -98,8 +101,8 @@ export default function BlogPostContent({ post }) {
         '@type': 'FAQPage',
         mainEntity: faq.map(f => ({
           '@type': 'Question',
-          name: loc(f.question),
-          acceptedAnswer: { '@type': 'Answer', text: loc(f.answer) },
+          name: faqQ(f),
+          acceptedAnswer: { '@type': 'Answer', text: faqA(f) },
         })),
       },
     } : {}),
@@ -180,8 +183,8 @@ export default function BlogPostContent({ post }) {
               <h2>{lang === 'en' ? 'Frequently Asked Questions' : 'שאלות נפוצות'}</h2>
               {faq.map((f, i) => (
                 <div key={i} className={styles.faqItem}>
-                  <h3>{loc(f.question)}</h3>
-                  <p>{loc(f.answer)}</p>
+                  <h3>{faqQ(f)}</h3>
+                  <p>{faqA(f)}</p>
                 </div>
               ))}
             </div>

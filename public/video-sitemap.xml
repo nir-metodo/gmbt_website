@@ -194,5 +194,40 @@
   </url>
   
   <!-- use-gambot-ai, advanced-templates: הוסרו - אין עדיין סרטונים אמיתיים -->
-  
+
+  <!-- ========== BLOG VIDEOS ========== -->
+
+  <!-- Blog #38: Why businesses get blocked on WhatsApp -->
+  <url>
+    <loc>https://gambot.co.il/blog/38/מדיניות-הספאם-של-מטא-ציון-איכות-חשבון-חסימות-והתאוששות/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/X5Q2Q8SbVHM/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>למה חוסמים עסקים ב-WhatsApp Business?</video:title>
+      <video:description>הסבר קצר וברור למה עסקים נחסמים ב-WhatsApp Business, איך נמנעים מחסימה, וכיצד לשמור על ציון איכות ירוק במטא.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=X5Q2Q8SbVHM</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/X5Q2Q8SbVHM</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>חסימת וואטסאפ</video:tag>
+      <video:tag>WhatsApp Business</video:tag>
+      <video:tag>ציון איכות</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/v-m4LuL8Z5U/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>איך מאמתים עסק מול מטא ומקבלים תג כחול בוואטסאפ</video:title>
+      <video:description>מדריך וידאו שלב אחר שלב לאימות העסק מול מטא והגשת בקשה לתג הכחול בוואטסאפ — Official Business Account ו-Meta Verified.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=v-m4LuL8Z5U</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/v-m4LuL8Z5U</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:tag>תג כחול וואטסאפ</video:tag>
+      <video:tag>Meta Verified</video:tag>
+      <video:tag>אימות עסק וואטסאפ</video:tag>
+      <video:tag>גמבוט</video:tag>
+      <video:category>Technology</video:category>
+      <video:uploader info="https://www.youtube.com/@gambot">Gambot</video:uploader>
+    </video:video>
+  </url>
+
 </urlset>

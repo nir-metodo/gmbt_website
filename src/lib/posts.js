@@ -11149,17 +11149,31 @@ const posts = [
   faq: {
     he: [
       { q: 'מה ההבדל בין הווי הירוק לווי הכחול בוואטסאפ?', a: 'הירוק היה העיצוב הישן של Official Business Account. מטא החליפה אותו בווי כחול כדי לאחד את שפת האימות בין WhatsApp, Facebook ו‑Instagram. זהו אותו מעמד רשמי — בעיצוב חדש, לא דרגה גבוהה יותר.' },
+      { q: 'איך מקבלים וי כחול (תג מאומת) בוואטסאפ ביזנס?', a: 'יש שני מסלולים: (1) Official Business Account — מסלול חינמי אך סלקטיבי שמאושר ידנית על ידי מטא לעסקים בולטים, לרוב מספרים המחוברים ל‑WhatsApp Business API; (2) Meta Verified — מנוי בתשלום שמעניק וי מאומת מהר יותר, בכפוף לזמינות עבור החשבון והמדינה. בשני המקרים חובה קודם לאמת את העסק ב‑Meta Business Manager.' },
+      { q: 'כמה עולה וי כחול (Meta Verified) בוואטסאפ?', a: 'המסלול של Official Business Account הוא חינמי אך סלקטיבי ומאושר ידנית. Meta Verified הוא מנוי בתשלום (חודשי או שנתי) שמחירו משתנה לפי המדינה, סוג החשבון וזמינות השירות. הוא כולל וי מאומת, תמיכה והגנה מסוימת מפני התחזות.' },
       { q: 'האם חייבים לשלם כדי לקבל וי כחול?', a: 'לא בהכרח. במסלול Official Business Account האימות חינמי אך סלקטיבי ומאושר ידנית על ידי מטא. במסלול Meta Verified מדובר במנוי בתשלום שכולל וי מאומת, תמיכה והגנה מסוימת מהתחזות.' },
+      { q: 'האם אפשר לקבל וי כחול בלי WhatsApp Business API?', a: 'קשה מאוד. מסלול Official Business Account מיועד בעיקר למספרים המחוברים ל‑WhatsApp Business Platform/API ובעלי פעילות תקינה. עסק שעובד רק עם אפליקציית WhatsApp Business הרגילה כמעט ולא יזכה לווי כחול במסלול OBA, ולעיתים יידרש לעבור ל‑API כדי לעמוד בתנאים.' },
+      { q: 'מה התנאים לקבלת וי כחול לעסק בוואטסאפ?', a: 'התנאים המרכזיים: עסק מאומת ב‑Meta Business Manager (מסמכים, כתובת רשומה, אתר תקין), מספר מחובר ל‑WhatsApp Business API עם ציון איכות ירוק ופעילות תקינה, ונוכחות ציבורית מוכרת (אתר, רשתות חברתיות, אזכורים וכתבות). אימות העסק לבדו הוא תנאי הכרחי אך לא מספיק.' },
+      { q: 'למה ביטלו את הווי הירוק בוואטסאפ?', a: 'מטא לא ביטלה את המעמד — היא רק החליפה את העיצוב. הווי הירוק הפך לווי כחול כדי לאחד את שפת האימות בין WhatsApp, Facebook ו‑Instagram. עסקים שהיה להם וי ירוק ממשיכים להיות מאומתים, רק עם סימון בצבע כחול.' },
       { q: 'האם תג Meta Business Partner נותן וי כחול למספר?', a: 'לא. תג Meta Business Partner מעיד על גמבוט כשותפה/ספקית של מטא ומעניק לוגו להצגה שיווקית בלבד. הוא לא משפיע על הווי הכחול של מספר וואטסאפ כלשהו — לא של גמבוט ולא של הלקוחות.' },
       { q: 'איך מגישים בקשה ל‑Official Business Account?', a: 'לאחר אימות העסק ב‑Business Manager, חיבור המספר ל‑WhatsApp Business Platform/API ופעילות תקינה — מגישים בקשה דרך מנהל וואטסאפ. מטא בוחנת בין השאר את זהות העסק, הנוכחות הציבורית והמוניטין. כלקוחות גמבוט נוכל להגיש עבורכם.' },
-      { q: 'כמה זמן לוקח לקבל אישור?', a: 'אין זמן מובטח. OBA נבחן ידנית ותלוי במוניטין ובנוכחות הציבורית, ולכן עשוי לקחת זמן ואף להידחות. Meta Verified מהיר יותר אך כפוף לזמינות עבור החשבון והמדינה.' }
+      { q: 'כמה זמן לוקח לקבל אישור לווי כחול?', a: 'אין זמן מובטח. OBA נבחן ידנית ותלוי במוניטין ובנוכחות הציבורית, ולכן עשוי לקחת זמן ואף להידחות. Meta Verified מהיר יותר אך כפוף לזמינות עבור החשבון והמדינה.' },
+      { q: 'האם וי כחול מגדיל אמון ומשפר ביצועים בוואטסאפ?', a: 'כן. וי כחול ליד שם העסק מגביר את אמון הלקוחות, מפחית חשש מהתחזות ועשוי לשפר שיעורי פתיחה ומענה. הוא אינו מחליף עמידה במדיניות מטא ושמירה על ציון איכות ירוק, אך הוא נכס אמינות משמעותי.' },
+      { q: 'איך גמבוט עוזרת לקבל וי כחול בוואטסאפ?', a: 'גמבוט מחברת את העסק ל‑WhatsApp Business API, מוודאת שהמספר עומד בתנאים (אימות עסק, ציון איכות ירוק, פעילות תקינה), ומגישה עבורכם את בקשת האימות במסלול המתאים — OBA או Meta Verified.' }
     ],
     en: [
       { q: 'What is the difference between the green and blue badge on WhatsApp?', a: 'Green was the old design of the Official Business Account. Meta replaced it with a blue check to unify the verification language across WhatsApp, Facebook and Instagram. It is the same official status — new design, not a higher tier.' },
+      { q: 'How do you get a blue check (verified badge) on WhatsApp Business?', a: 'There are two routes: (1) Official Business Account — a free but selective route manually approved by Meta for prominent businesses, usually numbers connected to the WhatsApp Business API; (2) Meta Verified — a paid subscription that grants a verified badge faster, subject to availability for your account and country. In both cases you must first verify your business in Meta Business Manager.' },
+      { q: 'How much does the WhatsApp blue check (Meta Verified) cost?', a: 'The Official Business Account route is free but selective and manually approved. Meta Verified is a paid subscription (monthly or annual) whose price varies by country, account type and service availability. It includes a verified badge, support and some impersonation protection.' },
       { q: 'Do you have to pay to get a blue check?', a: 'Not necessarily. Via the Official Business Account route, verification is free but selective and manually approved by Meta. Via Meta Verified it is a paid subscription that includes a verified badge, support and some impersonation protection.' },
+      { q: 'Can you get a blue check without the WhatsApp Business API?', a: 'It is very difficult. The Official Business Account route is intended mainly for numbers connected to the WhatsApp Business Platform/API with healthy activity. A business using only the regular WhatsApp Business app is very unlikely to receive a blue check via OBA and often needs to move to the API to meet the requirements.' },
+      { q: 'What are the requirements to get a blue check for a business on WhatsApp?', a: 'The main requirements: a verified business in Meta Business Manager (documents, registered address, working website), a number connected to the WhatsApp Business API with a green quality rating and healthy activity, and a recognized public presence (website, social media, mentions and press). Business verification alone is necessary but not sufficient.' },
+      { q: 'Why was the green badge removed on WhatsApp?', a: 'Meta did not remove the status — it only changed the design. The green badge became a blue check to unify the verification language across WhatsApp, Facebook and Instagram. Businesses that had a green badge remain verified, now marked in blue.' },
       { q: 'Does the Meta Business Partner badge give a number a blue check?', a: 'No. The Meta Business Partner badge identifies Gambot as a Meta partner/provider and grants a logo for marketing use only. It does not affect the blue check of any WhatsApp number — neither Gambot\'s nor customers\'.' },
       { q: 'How do you apply for an Official Business Account?', a: 'After verifying the business in Business Manager, connecting the number to the WhatsApp Business Platform/API and maintaining healthy activity, you submit a request via the WhatsApp Manager. Meta reviews business identity, public presence and reputation. As Gambot customers, we can apply on your behalf.' },
-      { q: 'How long does approval take?', a: 'There is no guaranteed timeframe. The OBA is reviewed manually and depends on reputation and public presence, so it may take time and can even be declined. Meta Verified is faster but subject to availability for your account and country.' }
+      { q: 'How long does blue check approval take?', a: 'There is no guaranteed timeframe. The OBA is reviewed manually and depends on reputation and public presence, so it may take time and can even be declined. Meta Verified is faster but subject to availability for your account and country.' },
+      { q: 'Does a blue check increase trust and improve WhatsApp performance?', a: 'Yes. A blue check next to your business name increases customer trust, reduces impersonation concerns and can improve open and reply rates. It does not replace complying with Meta policy and keeping a green quality rating, but it is a significant credibility asset.' },
+      { q: 'How does Gambot help you get a blue check on WhatsApp?', a: 'Gambot connects your business to the WhatsApp Business API, verifies that your number meets the requirements (business verification, green quality rating, healthy activity), and submits the verification request on your behalf via the appropriate route — OBA or Meta Verified.' }
     ]
   },
   content: {
@@ -11220,6 +11234,11 @@ const posts = [
 </div>
 
 <h2>🧭 איך משיגים תג כחול — שלב אחר שלב</h2>
+<p>הכנו סרטון קצר שמסביר איך מאמתים את העסק מול מטא ומגישים בקשה לתג הכחול, שלב אחר שלב:</p>
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:20px 0 8px;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,0.12);">
+  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/v-m4LuL8Z5U?start=61" title="איך מאמתים עסק מול מטא ומקבלים תג כחול בוואטסאפ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<p style="font-size:0.85rem;color:#64748b;margin-top:0;">אם הסרטון לא מופיע, ודאו שחסימת פרסומות אינה חוסמת את הנגן.</p>
 
 <h3>מסלול א׳ — Official Business Account (חינם, סלקטיבי)</h3>
 <ol>
@@ -11311,6 +11330,10 @@ const posts = [
 </div>
 
 <h2>🧭 How to Get a Blue Badge — Step by Step</h2>
+<p>We made a short video explaining how to verify your business with Meta and apply for the blue badge, step by step:</p>
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:20px 0 8px;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,0.12);">
+  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/v-m4LuL8Z5U?start=61" title="How to verify a business with Meta and get a blue badge on WhatsApp" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
 <h3>Route A — Official Business Account (free, selective)</h3>
 <ol>
@@ -11428,7 +11451,7 @@ const posts = [
 <p>לפני שנצלול לפרטים — הנה סרטון קצר שמסביר את הנושא בצורה פשוטה:</p>
 
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:20px 0 8px;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,0.12);">
-  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID" title="למה חוסמים עסקים ב-WhatsApp Business?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/X5Q2Q8SbVHM" title="למה חוסמים עסקים ב-WhatsApp Business?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 <p style="font-size:0.85rem;color:#64748b;margin-top:0;">אם הסרטון לא מופיע, ודאו שחסימת פרסומות אינה חוסמת את הנגן.</p>
 
@@ -11569,6 +11592,12 @@ const posts = [
   <p style="margin:8px 0 0;color:#374151;font-size:0.93rem;">אימות עסקי <strong>אינו מבטיח</strong> שהחשבון לא ייחסם, והוא אינו "פתרון קסם" לחסימות. הוא צעד מומלץ — לא ערובה.</p>
 </div>
 
+<p>הכנו סרטון קצר שמסביר איך מאמתים את העסק מול מטא, שלב אחר שלב:</p>
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:20px 0 8px;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,0.12);">
+  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/v-m4LuL8Z5U?start=61" title="איך מאמתים עסק מול מטא בוואטסאפ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<p style="font-size:0.85rem;color:#64748b;margin-top:0;">אם הסרטון לא מופיע, ודאו שחסימת פרסומות אינה חוסמת את הנגן.</p>
+
 <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
   <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.7;margin-bottom:8px;">WhatsApp הפך לכלי מרכזי בעסק שלכם?</div>
   <h3 style="margin:0 0 12px;font-size:1.4rem;color:#fff;border:none;">עברו לתשתית שמתאימה לעסק שגדל</h3>
@@ -11590,7 +11619,7 @@ const posts = [
 <h2 id="video">🎬 Why Do Businesses Get Blocked on WhatsApp Business?</h2>
 <p>Before the details — here is a short video explaining the topic:</p>
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:20px 0 8px;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,0.12);">
-  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID" title="Why do businesses get blocked on WhatsApp Business?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/X5Q2Q8SbVHM" title="Why do businesses get blocked on WhatsApp Business?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 
 <h2 id="types">📱 The Three Types of WhatsApp — and Why It Matters</h2>
@@ -11655,6 +11684,11 @@ const posts = [
 <h2 id="verification">🛡️ Business Verification with Meta</h2>
 <p>Every business should build an orderly presence in Meta's systems and check the relevant Business Verification process. An orderly, credible presence is a healthy basis for working with the platform.</p>
 <div style="background:#fffbeb;border:2px solid #fcd34d;border-radius:12px;padding:16px 18px;margin:16px 0;"><strong style="color:#92400e;">But no illusions:</strong><p style="margin:8px 0 0;color:#374151;font-size:0.93rem;">Business verification <strong>does not guarantee</strong> the account won't be blocked, and it's not a "magic solution" to blocks. It's a recommended step — not a guarantee.</p></div>
+
+<p>We made a short video explaining how to verify your business with Meta, step by step:</p>
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:20px 0 8px;border-radius:14px;box-shadow:0 10px 40px rgba(0,0,0,0.12);">
+  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/v-m4LuL8Z5U?start=61" title="How to verify a business with Meta on WhatsApp" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 
 <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
   <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.7;margin-bottom:8px;">Has WhatsApp become core to your business?</div>
