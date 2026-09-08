@@ -425,7 +425,8 @@ const SimSelection = ({
                             </button>
                         </div>
 
-                        {/* Free Number - Fourth Option */}
+                        {/* Free Number (free test SIM from Meta) — hidden per request. Do not offer the
+                            free +1 555 Meta test number during account creation. Kept commented for future use.
                         <div 
                             className="option-card free-number" 
                             onClick={() => {
@@ -450,6 +451,7 @@ const SimSelection = ({
                                 <span>{t('simSelection.options.freeNumber.button')}</span>
                             </button>
                         </div>
+                        */}
                     </div>
                 </div>
             )}
