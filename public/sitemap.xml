@@ -80,6 +80,15 @@
   <url><loc>https://gambot.co.il/guide/manage-tasks</loc><lastmod>2026-05-16</lastmod><changefreq>monthly</changefreq><priority>0.68</priority></url>
   <url><loc>https://gambot.co.il/guide/digital-signature</loc><lastmod>2026-05-16</lastmod><changefreq>monthly</changefreq><priority>0.70</priority></url>
 
+  <!-- Developer API Documentation -->
+  <url><loc>https://gambot.co.il/developers/</loc><lastmod>2026-09-12</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-mcp/</loc><lastmod>2026-09-14</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+
+  <!-- Blog Posts: Developers / MCP track (English) -->
+  <url><loc>https://gambot.co.il/blog/19/how-to-send-whatsapp-messages-from-claude-using-mcp/</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://gambot.co.il/blog/20/whatsapp-api-for-ai-agents-the-model-context-protocol-explained/</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://gambot.co.il/blog/21/how-to-set-up-a-whatsapp-mcp-server-in-5-minutes/</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+
   <!-- Blog Posts -->
   <url><loc>https://gambot.co.il/blog/1/%D7%9E%D7%94-%D7%96%D7%94-whatsapp-api-%D7%95%D7%90%D7%99%D7%9A-%D7%94%D7%95%D7%90-%D7%9E%D7%A9%D7%93%D7%A8%D7%92-%D7%90%D7%AA-%D7%94%D7%A2%D7%A1%D7%A7-%D7%A9%D7%9C%D7%9A/</loc><lastmod>2025-04-22</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://gambot.co.il/blog/1/what-is-whatsapp-api-and-how-does-it-upgrade-your-business/</loc><lastmod>2025-04-22</lastmod><changefreq>monthly</changefreq><priority>0.70</priority></url>

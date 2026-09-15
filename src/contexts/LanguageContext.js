@@ -26,9 +26,9 @@ export function LanguageProvider({ children, defaultLanguage = 'he' }) {
   const t = (key, params) => {
     const value = getNestedValue(translations, key);
     if (value !== undefined && (typeof value === 'string' || Array.isArray(value))) return interpolate(value, params);
-    // fallback to Hebrew
-    const heFallback = getNestedValue(heTranslations, key);
-    if (heFallback !== undefined && (typeof heFallback === 'string' || Array.isArray(heFallback))) return interpolate(heFallback, params);
+    // fallback to English (global default)
+    const enFallback = getNestedValue(enTranslations, key);
+    if (enFallback !== undefined && (typeof enFallback === 'string' || Array.isArray(enFallback))) return interpolate(enFallback, params);
     return key;
   };
 
@@ -66,7 +66,7 @@ export function LanguageProvider({ children, defaultLanguage = 'he' }) {
 export function useLanguage() {
   const ctx = useContext(LanguageContext);
   if (!ctx) {
-    // Fallback for components used outside provider — return Hebrew defaults
+    // Fallback for components used outside provider — Hebrew defaults (Israel is the primary audience).
     const t = (key, params) => {
       const value = getNestedValue(heTranslations, key);
       const resolved = (value && (typeof value === 'string' || Array.isArray(value))) ? value : key;

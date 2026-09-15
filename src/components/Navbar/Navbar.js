@@ -51,6 +51,7 @@ const NAV_LINKS_HE = [
   { href: '/PriceList/', label: 'מחירים' },
   { href: '/blog/', label: 'בלוג' },
   { href: '/guide/', label: 'מדריך' },
+  { href: '/developers/', label: 'מפתחים' },
   { href: '/about/', label: 'אודות' },
   { href: '/ContactUs/', label: 'צור קשר' },
 ];
@@ -101,6 +102,7 @@ const NAV_LINKS_EN = [
   { href: '/PriceList/', label: 'Pricing' },
   { href: '/blog/', label: 'Blog' },
   { href: '/guide/', label: 'Guide' },
+  { href: '/developers/', label: 'Developers' },
   { href: '/about/', label: 'About' },
   { href: '/ContactUs/', label: 'Contact' },
 ];

@@ -11703,7 +11703,374 @@ const posts = [
 `
   },
   seoUrl: getSeoUrl('חסמו לכם את WhatsApp Business למה זה קורה ומה עושים')
-}
+},
+
+  // ===================================================================
+  // Developers / MCP track (English-first). Target: AI-agent & API intent.
+  // ===================================================================
+  {
+    id: 19,
+    seoTitle: {
+      en: "How to Send WhatsApp Messages from Claude Using MCP | Gambot",
+      he: "איך לשלוח הודעות WhatsApp מ-Claude עם MCP | Gambot"
+    },
+    metaDescription: {
+      en: "Connect Claude to WhatsApp in minutes. This guide shows how to use the Gambot WhatsApp MCP server so Claude can send WhatsApp messages, templates and campaigns via the official WhatsApp Business API.",
+      he: "חברו את Claude ל-WhatsApp בדקות. מדריך לשימוש ב-Gambot WhatsApp MCP server כדי ש-Claude ישלח הודעות, תבניות וקמפיינים דרך ה-WhatsApp Business API הרשמי."
+    },
+    keywords: {
+      en: ["send whatsapp from claude", "claude whatsapp", "whatsapp mcp", "whatsapp mcp server", "mcp whatsapp", "claude mcp whatsapp", "whatsapp api for ai", "model context protocol whatsapp", "gambot mcp"],
+      he: ["שליחת whatsapp מ-claude", "claude whatsapp", "whatsapp mcp", "mcp whatsapp", "whatsapp api ל-ai", "gambot mcp"]
+    },
+    publishedDate: "2026-09-14T10:00:00+03:00",
+    modifiedDate: "2026-09-14T10:00:00+03:00",
+    author: "Gambot",
+    category: "Developers",
+    readTime: 6,
+    image: "/blog/blogHeader.jpg",
+    faq: [
+      {
+        question: { en: "Can Claude send WhatsApp messages?", he: "האם Claude יכול לשלוח הודעות WhatsApp?" },
+        answer: { en: "Yes. By adding the Gambot WhatsApp MCP server to Claude Desktop, Claude gets tools to send WhatsApp text, templates and campaigns through the official WhatsApp Business API — just ask it in natural language.", he: "כן. בהוספת Gambot WhatsApp MCP server ל-Claude Desktop, Claude מקבל כלים לשליחת טקסט, תבניות וקמפיינים דרך ה-WhatsApp Business API הרשמי — פשוט מבקשים בשפה חופשית." }
+      },
+      {
+        question: { en: "What is MCP?", he: "מה זה MCP?" },
+        answer: { en: "MCP (Model Context Protocol) is an open standard that lets AI assistants call external tools. The Gambot MCP server exposes WhatsApp actions as MCP tools.", he: "MCP (Model Context Protocol) הוא סטנדרט פתוח שמאפשר לעוזרי AI לקרוא לכלים חיצוניים. שרת ה-MCP של Gambot חושף פעולות WhatsApp ככלי MCP." }
+      },
+      {
+        question: { en: "Do I need to write code?", he: "צריך לכתוב קוד?" },
+        answer: { en: "No. You add one JSON block to your Claude config with 'npx -y gambot-mcp' and your Gambot token. No build, no server to host.", he: "לא. מוסיפים בלוק JSON אחד לקונפיג של Claude עם 'npx -y gambot-mcp' והטוקן שלכם. בלי build ובלי שרת לתחזק." }
+      }
+    ],
+    title: {
+      en: "How to Send WhatsApp Messages from Claude Using MCP",
+      he: "איך לשלוח הודעות WhatsApp מ-Claude באמצעות MCP"
+    },
+    description: {
+      en: "A step-by-step guide to connecting Claude to WhatsApp with the Gambot MCP server — so your AI assistant can message customers, send templates and run campaigns.",
+      he: "מדריך שלב-אחר-שלב לחיבור Claude ל-WhatsApp עם שרת ה-MCP של Gambot — כדי שעוזר ה-AI שלכם ישלח הודעות, תבניות ויריץ קמפיינים."
+    },
+    content: {
+      en: `
+      <h2>Send WhatsApp messages straight from Claude</h2>
+      <p><strong>Model Context Protocol (MCP)</strong> lets AI assistants like Claude call real tools. With the <a href="/whatsapp-mcp/">Gambot WhatsApp MCP server</a>, Claude can send WhatsApp messages, approved templates and even full marketing campaigns — through the <strong>official, Meta-approved WhatsApp Business API</strong>. No unofficial hacks, no ban risk.</p>
+
+      <div style="background:#e8f5e8;border-left:5px solid #25D366;padding:18px 22px;border-radius:10px;margin:22px 0;">
+        <strong>What you'll need:</strong>
+        <ul style="margin:10px 0 0;">
+          <li>A Gambot account and a Gambot token (<code>gmbt_…</code>) from <strong>Settings → General</strong></li>
+          <li>Node.js 18+ installed</li>
+          <li>Claude Desktop (or any MCP client, e.g. Cursor)</li>
+        </ul>
+      </div>
+
+      <h3>Step 1 — Add the MCP server to Claude</h3>
+      <p>Open Claude Desktop's <code>claude_desktop_config.json</code> and add:</p>
+      <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
+  "mcpServers": {
+    "gambot": {
+      "command": "npx",
+      "args": ["-y", "gambot-mcp"],
+      "env": {
+        "GAMBOT_TOKEN": "gmbt_your_token_here"
+      }
+    }
+  }
+}</code></pre>
+      <p>Restart Claude. That's it — no clone, no build. The server runs on demand via <code>npx</code>.</p>
+
+      <h3>Step 2 — Ask Claude to send a message</h3>
+      <p>Now just talk to Claude:</p>
+      <blockquote style="border-left:4px solid #25D366;margin:18px 0;padding:8px 18px;color:#374151;background:#f8f9fa;border-radius:8px;">"Send a WhatsApp to +1 202 555 0134 saying their order shipped."</blockquote>
+      <p>Claude calls the <code>gambot_send_text</code> tool and Gambot delivers the message. For business-initiated messages outside the 24-hour window, ask Claude to use an approved <strong>template</strong> instead (<code>gambot_send_template</code>).</p>
+
+      <h3>Step 3 — Go further: templates, CRM and campaigns</h3>
+      <p>The same connection unlocks 60+ tools. You can ask Claude to:</p>
+      <ul>
+        <li>Create and send WhatsApp <strong>templates</strong> (with variables and buttons)</li>
+        <li>Add <strong>contacts and leads</strong>, update your CRM, create tasks and quotes</li>
+        <li>Run a <strong>mail-merge campaign</strong> from a spreadsheet you paste in — with built-in opt-out and consent</li>
+      </ul>
+
+      <div style="background:#fff3cd;border-left:5px solid #ffc107;padding:16px 20px;border-radius:10px;margin:22px 0;">
+        <strong>Compliance is built in.</strong> Gambot is an official Meta Business Solution Provider, so every send runs on the approved WhatsApp Business (Cloud) API, with templates and automatic opt-out handling.
+      </div>
+
+      <h3>Works with more than Claude</h3>
+      <p>The exact same config works in <strong>Cursor</strong>, and any other MCP-compatible client. Learn more on the <a href="/whatsapp-mcp/">WhatsApp MCP page</a> or dive into the full <a href="/developers/">Gambot API docs</a>.</p>
+
+      <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+        <h3 style="margin:0 0 12px;color:#fff;border:none;">Give your AI assistant a WhatsApp number</h3>
+        <p style="margin:0 auto 22px;opacity:0.9;max-width:620px;">Start free, connect your number, and let Claude run WhatsApp for you.</p>
+        <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">Create a Gambot account →</a>
+      </div>
+      `,
+      he: `
+      <h2>לשלוח הודעות WhatsApp ישירות מ-Claude</h2>
+      <p><strong>Model Context Protocol (MCP)</strong> מאפשר לעוזרי AI כמו Claude לקרוא לכלים אמיתיים. עם <a href="/whatsapp-mcp/">שרת ה-WhatsApp MCP של Gambot</a>, Claude יכול לשלוח הודעות, תבניות מאושרות ואפילו קמפיינים — דרך ה-<strong>WhatsApp Business API הרשמי והמאושר של מטא</strong>. בלי פתרונות עוקפים ובלי סיכון חסימה.</p>
+
+      <div style="background:#e8f5e8;border-left:5px solid #25D366;padding:18px 22px;border-radius:10px;margin:22px 0;">
+        <strong>מה צריך:</strong>
+        <ul style="margin:10px 0 0;">
+          <li>חשבון Gambot וטוקן (<code>gmbt_…</code>) מ-<strong>הגדרות → כללי</strong></li>
+          <li>Node.js 18+</li>
+          <li>Claude Desktop (או כל לקוח MCP, למשל Cursor)</li>
+        </ul>
+      </div>
+
+      <h3>שלב 1 — הוספת השרת ל-Claude</h3>
+      <p>פותחים את <code>claude_desktop_config.json</code> ומוסיפים:</p>
+      <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
+  "mcpServers": {
+    "gambot": {
+      "command": "npx",
+      "args": ["-y", "gambot-mcp"],
+      "env": {
+        "GAMBOT_TOKEN": "gmbt_your_token_here"
+      }
+    }
+  }
+}</code></pre>
+      <p>מפעילים מחדש את Claude. זהו — בלי clone ובלי build. השרת רץ לפי דרישה דרך <code>npx</code>.</p>
+
+      <h3>שלב 2 — מבקשים מ-Claude לשלוח</h3>
+      <p>פשוט מדברים עם Claude: "שלח WhatsApp ל-+972501234567 שההזמנה נשלחה". Claude קורא לכלי <code>gambot_send_text</code> ו-Gambot שולח. מחוץ לחלון 24 השעות — מבקשים להשתמש ב<strong>תבנית</strong> מאושרת (<code>gambot_send_template</code>).</p>
+
+      <h3>שלב 3 — רחוק יותר: תבניות, CRM וקמפיינים</h3>
+      <p>אותו חיבור פותח 60+ כלים: יצירת תבניות, ניהול אנשי קשר ולידים, משימות והצעות מחיר, ואפילו קמפיין מתוך גיליון שאתם מדביקים — עם הסרה והסכמה מובנים.</p>
+
+      <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+        <h3 style="margin:0 0 12px;color:#fff;border:none;">תנו לעוזר ה-AI מספר WhatsApp</h3>
+        <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">פתחו חשבון Gambot →</a>
+      </div>
+      `
+    }
+  },
+
+  {
+    id: 20,
+    seoTitle: {
+      en: "WhatsApp API for AI Agents: The Model Context Protocol (MCP) Explained | Gambot",
+      he: "WhatsApp API לסוכני AI: הסבר על Model Context Protocol (MCP) | Gambot"
+    },
+    metaDescription: {
+      en: "What is a WhatsApp MCP server and why does it matter for AI agents? Learn how the Model Context Protocol lets Claude, ChatGPT, Gemini and Cursor act on WhatsApp through the official API.",
+      he: "מה זה WhatsApp MCP server ולמה זה חשוב לסוכני AI? הסבר איך Model Context Protocol מאפשר ל-Claude, ChatGPT, Gemini ו-Cursor לפעול ב-WhatsApp דרך ה-API הרשמי."
+    },
+    keywords: {
+      en: ["whatsapp api for ai agents", "whatsapp mcp server", "model context protocol", "whatsapp ai agent", "ai whatsapp api", "mcp server whatsapp", "chatgpt whatsapp", "gemini whatsapp", "cursor whatsapp mcp"],
+      he: ["whatsapp api לסוכני ai", "whatsapp mcp server", "model context protocol", "סוכן ai whatsapp", "mcp whatsapp"]
+    },
+    publishedDate: "2026-09-14T11:00:00+03:00",
+    modifiedDate: "2026-09-14T11:00:00+03:00",
+    author: "Gambot",
+    category: "Developers",
+    readTime: 7,
+    image: "/blog/blogHeader.jpg",
+    faq: [
+      {
+        question: { en: "What is a WhatsApp MCP server?", he: "מה זה WhatsApp MCP server?" },
+        answer: { en: "It is a server that implements the Model Context Protocol and exposes WhatsApp actions (send message, template, campaign, CRM) as tools an AI agent can call. Gambot provides one on top of the official WhatsApp Business API.", he: "שרת שמממש את Model Context Protocol וחושף פעולות WhatsApp (הודעה, תבנית, קמפיין, CRM) ככלים שסוכן AI יכול לקרוא להם. Gambot מספקת כזה מעל ה-WhatsApp Business API הרשמי." }
+      },
+      {
+        question: { en: "Which AI tools can use it?", he: "אילו כלי AI יכולים להשתמש בו?" },
+        answer: { en: "Any MCP-compatible client — Claude Desktop, Cursor, and other assistants that support the Model Context Protocol.", he: "כל לקוח שתומך ב-MCP — Claude Desktop, Cursor ועוד עוזרים שתומכים ב-Model Context Protocol." }
+      },
+      {
+        question: { en: "Is this the official WhatsApp API?", he: "האם זה ה-API הרשמי של WhatsApp?" },
+        answer: { en: "Yes. Gambot is a Meta Business Solution Provider, so the MCP server runs on the approved WhatsApp Business (Cloud) API.", he: "כן. Gambot היא Meta Business Solution Provider, ולכן שרת ה-MCP רץ מעל ה-WhatsApp Business (Cloud) API המאושר." }
+      }
+    ],
+    title: {
+      en: "WhatsApp API for AI Agents: The Model Context Protocol, Explained",
+      he: "WhatsApp API לסוכני AI: הסבר על Model Context Protocol"
+    },
+    description: {
+      en: "Why AI agents need a WhatsApp MCP server, how the Model Context Protocol works, and what your assistant can do on WhatsApp through the official API.",
+      he: "למה סוכני AI צריכים WhatsApp MCP server, איך Model Context Protocol עובד, ומה העוזר שלכם יכול לעשות ב-WhatsApp דרך ה-API הרשמי."
+    },
+    content: {
+      en: `
+      <h2>Why AI agents need a WhatsApp MCP server</h2>
+      <p>AI assistants are great at deciding <em>what</em> to do — but to actually <em>do</em> it, they need tools. The <strong>Model Context Protocol (MCP)</strong> is the open standard that connects assistants like <strong>Claude, ChatGPT, Gemini and Cursor</strong> to real-world actions. A <a href="/whatsapp-mcp/">WhatsApp MCP server</a> is what turns "message these customers" from a suggestion into a sent message.</p>
+
+      <h3>What is the Model Context Protocol?</h3>
+      <p>MCP is a standard way for an AI client to discover and call tools exposed by a server. The server describes each tool (name, inputs) and the agent calls it when needed. It's like giving your assistant a set of buttons it can press — safely and predictably.</p>
+
+      <div style="background:#f0f7ff;border-left:5px solid #2196f3;padding:16px 20px;border-radius:10px;margin:22px 0;">
+        <strong>In one line:</strong> MCP = a universal adapter between AI agents and your business systems. Gambot's adapter is for WhatsApp.
+      </div>
+
+      <h3>What the Gambot WhatsApp MCP server exposes</h3>
+      <p>Over 60 tools across the whole WhatsApp Business platform:</p>
+      <ul>
+        <li><strong>Messaging</strong> — send text and approved templates, read conversations</li>
+        <li><strong>Campaigns</strong> — manual, scheduled or recurring; mail-merge from a spreadsheet; built-in opt-out &amp; consent</li>
+        <li><strong>CRM</strong> — contacts, leads, cases, tasks with custom fields</li>
+        <li><strong>Sales &amp; docs</strong> — quotes, invoices, orders, web forms, e-signatures</li>
+        <li><strong>Onboarding</strong> — create accounts, buy a number by country, add a payment method</li>
+      </ul>
+
+      <h3>Official API, not a workaround</h3>
+      <p>Unofficial "WhatsApp automation" libraries that drive WhatsApp Web can get your number banned. Because Gambot is an official <strong>Meta Business Solution Provider</strong>, the MCP server runs on the authorized WhatsApp Business (Cloud) API — with message templates, quality ratings and opt-out handling done properly.</p>
+
+      <h3>Getting started</h3>
+      <p>Add one config block with <code>npx -y gambot-mcp</code> and your Gambot token, and your agent is connected. See the <a href="/whatsapp-mcp/">WhatsApp MCP page</a> for client-by-client setup, or the <a href="/developers/">REST API docs</a> if you'd rather call it directly.</p>
+
+      <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+        <h3 style="margin:0 0 12px;color:#fff;border:none;">Build an AI agent that runs WhatsApp</h3>
+        <p style="margin:0 auto 22px;opacity:0.9;max-width:620px;">Official WhatsApp Business API, 60+ tools, one npx command.</p>
+        <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">Get your Gambot token →</a>
+      </div>
+      `,
+      he: `
+      <h2>למה סוכני AI צריכים WhatsApp MCP server</h2>
+      <p>עוזרי AI מצוינים בלהחליט <em>מה</em> לעשות — אבל כדי <em>לבצע</em> הם צריכים כלים. <strong>Model Context Protocol (MCP)</strong> הוא הסטנדרט הפתוח שמחבר עוזרים כמו <strong>Claude, ChatGPT, Gemini ו-Cursor</strong> לפעולות אמיתיות. <a href="/whatsapp-mcp/">WhatsApp MCP server</a> הופך "שלח ללקוחות האלה" מהצעה — להודעה שנשלחה.</p>
+
+      <h3>מה זה Model Context Protocol?</h3>
+      <p>דרך סטנדרטית שבה לקוח AI מגלה וקורא לכלים שהשרת חושף. השרת מתאר כל כלי (שם, קלט) והסוכן קורא לו לפי הצורך — בבטחה וצפוי.</p>
+
+      <h3>מה שרת ה-MCP של Gambot חושף</h3>
+      <ul>
+        <li><strong>הודעות</strong> — טקסט ותבניות מאושרות, קריאת שיחות</li>
+        <li><strong>קמפיינים</strong> — ידני/מתוזמן/חוזר, מיזוג מגיליון, הסרה והסכמה מובנים</li>
+        <li><strong>CRM</strong> — אנשי קשר, לידים, פניות, משימות עם שדות מותאמים</li>
+        <li><strong>מכירות ומסמכים</strong> — הצעות מחיר, חשבוניות, טפסים, חתימות</li>
+      </ul>
+
+      <h3>API רשמי, לא עוקף</h3>
+      <p>ספריות "אוטומציה" לא רשמיות שמפעילות את WhatsApp Web עלולות לגרום לחסימת המספר. מכיוון ש-Gambot היא <strong>Meta Business Solution Provider</strong> רשמית, שרת ה-MCP רץ מעל ה-API המאושר — עם תבניות, דירוגי איכות והסרה כמו שצריך.</p>
+
+      <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+        <h3 style="margin:0 0 12px;color:#fff;border:none;">בנו סוכן AI שמפעיל WhatsApp</h3>
+        <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">קבלו טוקן Gambot →</a>
+      </div>
+      `
+    }
+  },
+
+  {
+    id: 21,
+    seoTitle: {
+      en: "Set Up a WhatsApp MCP Server in 5 Minutes (Cursor & Claude) | Gambot",
+      he: "התקנת WhatsApp MCP Server ב-5 דקות (Cursor ו-Claude) | Gambot"
+    },
+    metaDescription: {
+      en: "A 5-minute setup guide for the Gambot WhatsApp MCP server. Install with npx, add your Gambot token, and connect WhatsApp to Cursor, Claude and other AI clients.",
+      he: "מדריך התקנה של 5 דקות ל-Gambot WhatsApp MCP server. התקנה עם npx, הוספת טוקן, וחיבור WhatsApp ל-Cursor, Claude ולקוחות AI נוספים."
+    },
+    keywords: {
+      en: ["set up whatsapp mcp server", "install whatsapp mcp", "gambot mcp setup", "cursor whatsapp mcp", "claude whatsapp setup", "npx gambot-mcp", "whatsapp mcp tutorial"],
+      he: ["התקנת whatsapp mcp", "gambot mcp", "cursor whatsapp mcp", "npx gambot-mcp"]
+    },
+    publishedDate: "2026-09-14T12:00:00+03:00",
+    modifiedDate: "2026-09-14T12:00:00+03:00",
+    author: "Gambot",
+    category: "Developers",
+    readTime: 5,
+    image: "/blog/blogHeader.jpg",
+    faq: [
+      {
+        question: { en: "How do I install the Gambot WhatsApp MCP server?", he: "איך מתקינים את Gambot WhatsApp MCP server?" },
+        answer: { en: "Add a config block using 'npx -y gambot-mcp' with your GAMBOT_TOKEN to your MCP client (Cursor or Claude) and restart. No clone or build required.", he: "מוסיפים בלוק קונפיג עם 'npx -y gambot-mcp' וה-GAMBOT_TOKEN שלכם ללקוח ה-MCP (Cursor או Claude) ומפעילים מחדש. בלי clone או build." }
+      },
+      {
+        question: { en: "Where do I get a Gambot token?", he: "מאיפה מקבלים טוקן Gambot?" },
+        answer: { en: "From the Gambot admin panel under Settings → General. It looks like gmbt_… and authorizes the server against your organization.", he: "מפאנל הניהול של Gambot תחת הגדרות → כללי. הוא נראה כמו gmbt_… ומאמת את השרת מול הארגון שלכם." }
+      },
+      {
+        question: { en: "Is it free?", he: "האם זה בחינם?" },
+        answer: { en: "The MCP server is open-source (MIT). You need a Gambot account; plans start from ₪179/month with a free trial.", he: "שרת ה-MCP הוא קוד פתוח (MIT). צריך חשבון Gambot; החבילות מתחילות מ-₪179 לחודש עם ניסיון חינם." }
+      }
+    ],
+    title: {
+      en: "How to Set Up a WhatsApp MCP Server in 5 Minutes",
+      he: "איך להתקין WhatsApp MCP Server ב-5 דקות"
+    },
+    description: {
+      en: "Install the Gambot WhatsApp MCP server with npx and connect WhatsApp to Cursor, Claude and other AI clients — step by step.",
+      he: "התקינו את Gambot WhatsApp MCP server עם npx וחברו WhatsApp ל-Cursor, Claude ולקוחות AI נוספים — שלב אחר שלב."
+    },
+    content: {
+      en: `
+      <h2>Connect WhatsApp to your AI client in 5 minutes</h2>
+      <p>This is the fast path to running the <a href="/whatsapp-mcp/">Gambot WhatsApp MCP server</a>. You'll be sending WhatsApp from your AI client by the end.</p>
+
+      <h3>1. Get your Gambot token</h3>
+      <p>In Gambot, go to <strong>Settings → General</strong> and copy your token (<code>gmbt_…</code>). Don't have an account? <a href="/OnboardingProcess/">Create one free</a>.</p>
+
+      <h3>2. Add the server to Cursor</h3>
+      <p>Create or edit <code>.cursor/mcp.json</code>:</p>
+      <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
+  "mcpServers": {
+    "gambot": {
+      "command": "npx",
+      "args": ["-y", "gambot-mcp"],
+      "env": {
+        "GAMBOT_TOKEN": "gmbt_your_token_here"
+      }
+    }
+  }
+}</code></pre>
+
+      <h3>3. Or add it to Claude Desktop</h3>
+      <p>The same block goes into <code>claude_desktop_config.json</code>. Restart the app and the "gambot" tools appear.</p>
+
+      <h3>4. Test it</h3>
+      <p>Ask your AI client: <em>"List my WhatsApp templates"</em> or <em>"Send a WhatsApp to +1 202 555 0134 saying hello"</em>. If you see a result, you're live.</p>
+
+      <div style="background:#fff3cd;border-left:5px solid #ffc107;padding:16px 20px;border-radius:10px;margin:22px 0;">
+        <strong>Tip:</strong> Set the optional <code>GAMBOT_API_BASE</code> env var only if you need to point at a non-default API URL. Otherwise leave it out.
+      </div>
+
+      <h3>Troubleshooting</h3>
+      <ul>
+        <li><strong>"Missing GAMBOT_TOKEN"</strong> — the env var isn't set in your config's <code>env</code> block.</li>
+        <li><strong>Node not found</strong> — install Node.js 18+ and restart your client.</li>
+        <li><strong>Tool calls rejected</strong> — check the token is valid and active in Settings → General.</li>
+      </ul>
+
+      <p>Full tool list and per-client examples are on the <a href="/whatsapp-mcp/">WhatsApp MCP page</a> and the <a href="/developers/">API docs</a>.</p>
+
+      <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+        <h3 style="margin:0 0 12px;color:#fff;border:none;">Ready in 5 minutes</h3>
+        <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">Create a Gambot account →</a>
+      </div>
+      `,
+      he: `
+      <h2>לחבר WhatsApp ללקוח ה-AI ב-5 דקות</h2>
+      <p>המסלול המהיר להרצת <a href="/whatsapp-mcp/">Gambot WhatsApp MCP server</a>. בסוף כבר תשלחו WhatsApp מלקוח ה-AI.</p>
+
+      <h3>1. קבלת טוקן</h3>
+      <p>ב-Gambot: <strong>הגדרות → כללי</strong>, מעתיקים את הטוקן (<code>gmbt_…</code>). אין חשבון? <a href="/OnboardingProcess/">פותחים בחינם</a>.</p>
+
+      <h3>2. הוספה ל-Cursor</h3>
+      <p>יוצרים/עורכים את <code>.cursor/mcp.json</code>:</p>
+      <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
+  "mcpServers": {
+    "gambot": {
+      "command": "npx",
+      "args": ["-y", "gambot-mcp"],
+      "env": {
+        "GAMBOT_TOKEN": "gmbt_your_token_here"
+      }
+    }
+  }
+}</code></pre>
+
+      <h3>3. או ל-Claude Desktop</h3>
+      <p>אותו בלוק נכנס ל-<code>claude_desktop_config.json</code>. מפעילים מחדש והכלים של "gambot" מופיעים.</p>
+
+      <h3>4. בדיקה</h3>
+      <p>מבקשים: <em>"תראה לי את תבניות ה-WhatsApp"</em> או <em>"שלח WhatsApp ל-+972501234567 עם שלום"</em>. אם קיבלתם תוצאה — אתם באוויר.</p>
+
+      <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+        <h3 style="margin:0 0 12px;color:#fff;border:none;">מוכן ב-5 דקות</h3>
+        <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">פתחו חשבון Gambot →</a>
+      </div>
+      `
+    }
+  }
 
 ];
 

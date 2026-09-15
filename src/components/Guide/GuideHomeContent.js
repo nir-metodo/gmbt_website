@@ -41,6 +41,9 @@ export default function GuideHomeContent() {
     readMore: 'Read More →',
     noResults: '🔍 No matching guides found',
     clearSearch: 'Clear search',
+    devTitle: 'Are you a developer?',
+    devSub: 'Full REST API reference — send messages & templates, manage contacts, leads, cases and campaigns.',
+    devBtn: '⚙️ Developer Guide (API)',
   } : {
     badge: '✨ מרכז העזרה',
     title: 'המדריך למשתמש של גמבוט',
@@ -50,6 +53,9 @@ export default function GuideHomeContent() {
     readMore: 'קרא עוד ←',
     noResults: '🔍 לא נמצאו מדריכים תואמים',
     clearSearch: 'נקה חיפוש',
+    devTitle: 'אתם מפתחים?',
+    devSub: 'תיעוד API מלא — שליחת הודעות ותבניות, ניהול אנשי קשר, לידים, פניות וקמפיינים.',
+    devBtn: '⚙️ מדריך למפתח (API)',
   };
 
   return (
@@ -73,6 +79,27 @@ export default function GuideHomeContent() {
 
       <section className={styles.section}>
         <div className={styles.container}>
+          <Link
+            href="/developers/"
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              gap: '16px', flexWrap: 'wrap',
+              background: 'linear-gradient(135deg, #0a2540 0%, #1a1a5e 100%)',
+              color: '#fff', borderRadius: '16px', padding: '22px 26px',
+              marginBottom: '28px', textDecoration: 'none',
+              boxShadow: '0 6px 24px rgba(10,37,64,0.18)',
+            }}
+          >
+            <div>
+              <div style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '4px' }}>{tx.devTitle}</div>
+              <div style={{ opacity: 0.9, fontSize: '0.95rem', maxWidth: '620px' }}>{tx.devSub}</div>
+            </div>
+            <span style={{
+              background: '#059669', color: '#fff', padding: '12px 22px',
+              borderRadius: '10px', fontWeight: 700, whiteSpace: 'nowrap',
+            }}>{tx.devBtn}</span>
+          </Link>
+
           <div className={styles.categories}>
             {categories.map(cat => (
               <button
