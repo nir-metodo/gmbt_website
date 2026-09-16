@@ -49,7 +49,14 @@ const LoginErrorModal = ({ isOpen, onClose, errorType, organizationName, email }
           label: t('loginError.waitingOnboarding.completeOnboardingButton'),
           icon: <FaRocket />,
           color: 'primary',
-          link: `/complete-waba?organization=${organizationName}&email=${email}`
+          // Build the clean PATH form /complete-waba/{org} using the REAL org id the backend
+          // returned on the login error — NEVER the email prefix. Passing the email prefix as
+          // ?organization= is exactly what created "ghost" orgs during the Meta token exchange.
+          // Fall back to the query form with email only (no organization) when the backend
+          // didn't return an org; the onboarding wrapper then resolves the real org from email.
+          link: organizationName
+            ? `/complete-waba/${encodeURIComponent(organizationName)}${email ? `?email=${encodeURIComponent(email)}` : ''}`
+            : `/complete-waba${email ? `?email=${encodeURIComponent(email)}` : ''}`
         }
       ]
     },

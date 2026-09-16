@@ -183,7 +183,10 @@ export default function DeveloperGuideContent() {
           {API_SECTIONS.map((s) => (
             <section id={s.id} key={s.id} className={styles.block}>
               <h2>{s.title[lang]}</h2>
-              <p>{s.description[lang]}</p>
+              {/* Section descriptions are authored with inline HTML (<code>, <strong>, <br/>) — render as
+                  HTML like every other rich field, otherwise the tags show up as literal text. Trusted
+                  static content from apiDocsData.js. */}
+              <p dangerouslySetInnerHTML={{ __html: s.description[lang] }} />
               {s.endpoints.map((ep) => (
                 <EndpointCard key={`${ep.method}-${ep.path}`} endpoint={ep} lang={lang} tx={tx} />
               ))}

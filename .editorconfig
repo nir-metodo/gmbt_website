@@ -1,0 +1,12 @@
+# EditorConfig — https://editorconfig.org
+# Enforces UTF-8 so Hebrew (and punctuation like — → • …) can never again be
+# saved in a legacy code-page and collapsed into "?" characters.
+root = true
+
+[*]
+charset = utf-8
+insert_final_newline = true
+
+# Source files that routinely contain Hebrew string literals — be explicit.
+[*.{js,jsx,ts,tsx,json,md,css,html}]
+charset = utf-8

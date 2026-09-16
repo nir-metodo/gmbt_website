@@ -27,6 +27,10 @@ export default function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [modalErrorType, setModalErrorType] = useState('general_error');
+  // Real org id (ת.ז / ח.פ) returned by the backend on a blocked login. Used to build the
+  // /complete-waba link with the CORRECT org instead of guessing from the email prefix — that
+  // guess (email.split('@')[0]) was creating "ghost" organizations during the Meta token exchange.
+  const [resolvedOrg, setResolvedOrg] = useState('');
 
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -113,6 +117,10 @@ export default function LoginPage() {
     } catch (error) {
       console.error('Login Error:', error);
       let errorType = 'general_error';
+
+      // Capture the REAL organization id returned by the backend so we never fall back to the
+      // email prefix when building the onboarding/payment links (the ghost-org root cause).
+      setResolvedOrg(error.response?.data?.Organization || '');
 
       if (error.response?.data?.ErrorCode) {
         errorType = error.response.data.ErrorCode;
@@ -307,7 +315,7 @@ export default function LoginPage() {
         isOpen={showErrorModal}
         onClose={() => setShowErrorModal(false)}
         errorType={modalErrorType}
-        organizationName={organization || email.split('@')[0]}
+        organizationName={organization || resolvedOrg}
         email={email}
       />
     </div>
