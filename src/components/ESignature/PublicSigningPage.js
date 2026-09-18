@@ -1026,7 +1026,7 @@ const PublicSigningPage = () => {
                 className="esig-public-footer-logo"
               />
               <span className="esig-public-footer-text">
-                {t('poweredBy', 'Powered by')} <strong>Gambot</strong>
+                {t('poweredBy', 'Powered by')} <strong style={{ color: '#2e6155' }}>Gambot</strong>
               </span>
             </a>
           </div>
@@ -1809,7 +1809,7 @@ const PublicSigningPage = () => {
                   fontSize: '14px',
                   transition: 'color 0.2s'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#1e40af'}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#2e6155'}
                 onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}
               >
                 <span>{language === 'he' ? 'מופעל על ידי' : 'Powered by'}</span>
@@ -1818,7 +1818,7 @@ const PublicSigningPage = () => {
                   alt="Gambot" 
                   style={{ height: '24px' }}
                 />
-                <span style={{ fontWeight: '600', color: '#1e40af' }}>Gambot</span>
+                <span style={{ fontWeight: '600', color: '#2e6155' }}>Gambot</span>
               </a>
             </div>
 

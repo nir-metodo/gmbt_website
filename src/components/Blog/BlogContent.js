@@ -62,6 +62,9 @@ const TEXT = {
     showing: 'מציג',
     posts: 'פוסטים',
     outOf: 'מתוך',
+    sortLabel: 'מיון',
+    sortNewest: 'מהחדש לישן',
+    sortOldest: 'מהישן לחדש',
   },
   en: {
     badge: '📚 Gambot Blog',
@@ -76,6 +79,9 @@ const TEXT = {
     showing: 'Showing',
     posts: 'posts',
     outOf: 'out of',
+    sortLabel: 'Sort',
+    sortNewest: 'Newest first',
+    sortOldest: 'Oldest first',
   },
 };
 
@@ -85,6 +91,8 @@ export default function BlogContent() {
   const tx = TEXT[lang] || TEXT.he;
   const dir = lang === 'he' ? 'rtl' : 'ltr';
   const [currentPage, setCurrentPage] = useState(1);
+  // Sort order for the blog list: 'newest' (default) or 'oldest'.
+  const [sortOrder, setSortOrder] = useState('newest');
 
   const allPosts = getLocalizedPosts(lang)
     .map(p => {
@@ -94,7 +102,27 @@ export default function BlogContent() {
         card: { ...card, label: lang === 'en' ? card.labelEn : card.labelHe },
       };
     })
-    .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+    .sort((a, b) => {
+      const da = new Date(a.publishedDate || 0).getTime();
+      const db = new Date(b.publishedDate || 0).getTime();
+      return sortOrder === 'oldest' ? da - db : db - da;
+    });
+
+  const changeSort = (order) => {
+    setSortOrder(order);
+    setCurrentPage(1);
+  };
+  const sortBtnStyle = (active) => ({
+    padding: '7px 14px',
+    borderRadius: '999px',
+    border: `1px solid ${active ? '#128C7E' : '#d1d5db'}`,
+    background: active ? 'linear-gradient(135deg,#25D366,#128C7E)' : '#fff',
+    color: active ? '#fff' : '#475569',
+    fontWeight: 600,
+    fontSize: '0.85rem',
+    cursor: 'pointer',
+    transition: 'all 0.15s',
+  });
 
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
   const startIdx = (currentPage - 1) * POSTS_PER_PAGE;
@@ -117,6 +145,11 @@ export default function BlogContent() {
 
       <section className={styles.section}>
         <div className={styles.container}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: dir === 'rtl' ? 'flex-start' : 'flex-end', gap: '8px', flexWrap: 'wrap', marginBottom: '24px' }}>
+            <span style={{ color: '#64748b', fontSize: '0.9rem', fontWeight: 600 }}>{tx.sortLabel}:</span>
+            <button type="button" onClick={() => changeSort('newest')} style={sortBtnStyle(sortOrder === 'newest')}>{tx.sortNewest}</button>
+            <button type="button" onClick={() => changeSort('oldest')} style={sortBtnStyle(sortOrder === 'oldest')}>{tx.sortOldest}</button>
+          </div>
           <div className={styles.grid}>
             {localizedPosts.map(post => (
               <article key={post.id} className={styles.card}>

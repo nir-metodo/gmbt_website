@@ -136,6 +136,37 @@ export const API_SECTIONS = [
   "data": { "messageId": "wamid.HBg?" }
 }`,
       },
+      {
+        method: 'GET',
+        path: '/messages/{messageId}/status',
+        scope: 'conversations:read',
+        summary: {
+          he: 'סטטוס שליחה של הודעה לפי מזהה ההודעה (ה-messageId שחוזר מ-send-text / send-template, או לכל נמען מ-campaigns/send). שימושי כשמשתמש אומר "לא רואה שההודעה הגיעה". אם הכשל הוא 131042 מתווסף בלוק paymentIssue שמסביר שאמצעי התשלום ל-API נפרד מזה של המודעות (Ads) — טעות נפוצה.',
+          en: 'Delivery status of a message by its messageId (the id returned from send-text / send-template, or per-recipient from campaigns/send). Use it when a user says "I don\'t see the message arrived". If the failure is Meta 131042, a paymentIssue block is added explaining that the WhatsApp-API payment method is SEPARATE from the Meta Ads payment method — a common mistake.',
+        },
+        params: [
+          { name: 'messageId', in: 'path', type: 'string', required: true, desc: { he: 'מזהה ההודעה (wamid...) שהתקבל בשליחה.', en: 'The message id (wamid...) returned on send.' } },
+          { name: 'phone', in: 'query', type: 'string', required: false, desc: { he: 'מספר הנמען לחיפוש מדויק ומהיר (מומלץ). ללא — נסרוק את הודעות הארגון.', en: 'Recipient phone for a fast, exact lookup (recommended). Without it we scan the org\'s messages.' } },
+        ],
+        curl: `curl "${API_BASE}/messages/wamid.HBgLOTcyNTA.../status?phone=972501234567" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{
+  "success": true,
+  "data": {
+    "messageId": "wamid.HBg...",
+    "phone": "972501234567",
+    "status": "failed",
+    "time": "2026-09-17T14:05:00Z",
+    "errorMessage": "(131042) ...",
+    "paymentIssue": {
+      "code": 131042,
+      "reason": "no_api_payment_method",
+      "message": "אין אמצעי תשלום פעיל לחשבון ה-WhatsApp Business API ב-Meta.",
+      "commonMistake": "טעות נפוצה: לחשוב שאמצעי התשלום של המודעות (Ads) מכסה גם הודעות API — אלו אמצעים נפרדים לגמרי.",
+      "fix": "Meta Business Settings ▸ Billing & Payments של חשבון ה-WhatsApp — הוסיפו אמצעי תשלום."
+    }
+  }
+}`,
+      },
     ],
   },
   {
@@ -298,7 +329,7 @@ export const API_SECTIONS = [
     title: { he: 'תבניות', en: 'Templates' },
     description: {
       he: 'ניהול תבניות WhatsApp — רשימה, פרטים, משתנים ויצירה. יצירת תבנית תומכת ב-Header של טקסט או מדיה (תמונה/וידאו/מסמך), Body עם משתני {{1}}, Footer וכפתורים (Quick Reply / URL / טלפון). ראו דוגמאות מלאות למטה.',
-      en: 'Manage WhatsApp templates — list, details, variables and creation. Template creation supports a text or media (image/video/document) Header, a Body with {{1}} variables, a Footer and Buttons (Quick Reply / URL / Phone). See full examples below.',
+      en: 'Manage WhatsApp templates — list, details, variables and creation. Template creation supports a text or media (image/video/document) Header, a Body with {{1}} variables, a Footer and Buttons (Quick Reply / URL / Phone). Build them smart: add a URL button so recipients act in one tap, use a media Header for promos, and for MARKETING templates include an unsubscribe Footer — if you omit one, Gambot auto-adds a localized opt-out ("להסרה השב הסר" / "Reply STOP to unsubscribe"). See full examples below.',
     },
     endpoints: [
       {
@@ -356,7 +387,7 @@ export const API_SECTIONS = [
           { name: 'name', in: 'body', type: 'string', required: true, desc: { he: 'שם התבנית (אנגלית, קווים תחתונים).', en: 'Template name (English, underscores).' } },
           { name: 'language', in: 'body', type: 'string', required: true, desc: { he: 'קוד שפה, למשל he / en.', en: 'Language code, e.g. he / en.' } },
           { name: 'category', in: 'body', type: 'string', required: true, desc: { he: 'MARKETING / UTILITY / AUTHENTICATION.', en: 'MARKETING / UTILITY / AUTHENTICATION.' } },
-          { name: 'components', in: 'body', type: 'object[]', required: true, desc: { he: 'רכיבי התבנית: HEADER (TEXT או IMAGE/VIDEO/DOCUMENT), BODY, FOOTER, BUTTONS. ראו דוגמאות למטה.', en: 'Template components: HEADER (TEXT or IMAGE/VIDEO/DOCUMENT), BODY, FOOTER, BUTTONS. See examples below.' } },
+          { name: 'components', in: 'body', type: 'object[]', required: true, desc: { he: 'רכיבי התבנית: HEADER (TEXT או IMAGE/VIDEO/DOCUMENT), BODY, FOOTER, BUTTONS (QUICK_REPLY / URL / PHONE_NUMBER). לדיוור (MARKETING) יש לכלול Footer להסרה — אם לא נכלל, Gambot יוסיף אוטומטית "להסרה השב הסר". ראו דוגמאות למטה.', en: 'Template components: HEADER (TEXT or IMAGE/VIDEO/DOCUMENT), BODY, FOOTER, BUTTONS (QUICK_REPLY / URL / PHONE_NUMBER). For MARKETING (broadcast), include an unsubscribe Footer — if omitted, Gambot auto-adds "Reply STOP to unsubscribe". See examples below.' } },
           { name: 'headerMediaUrl', in: 'body', type: 'string', required: false, desc: { he: 'קיצור: כתובת URL ציבורית של מדיה. Gambot מעלה אותה ל-Meta ומזריק את ה-header_handle לרכיב ה-HEADER אוטומטית.', en: 'Shortcut: a public media URL. Gambot uploads it to Meta and injects the header_handle into the HEADER component automatically.' } },
           { name: 'headerFormat', in: 'body', type: 'string', required: false, desc: { he: 'פורמט ל-headerMediaUrl: IMAGE / VIDEO / DOCUMENT (ברירת מחדל IMAGE).', en: 'Format for headerMediaUrl: IMAGE / VIDEO / DOCUMENT (default IMAGE).' } },
           { name: 'gmbtMediaId', in: 'body', type: 'string', required: false, desc: { he: 'מזהה מדיה של Gambot (לתצוגה מקדימה). לרוב מיותר בעת שימוש ב-headerMediaUrl.', en: 'Gambot media id (for preview). Usually unnecessary when using headerMediaUrl.' } },
@@ -478,6 +509,22 @@ export const API_SECTIONS = [
     { "type": "BUTTONS", "buttons": [ { "type": "QUICK_REPLY", "text": "אני רוצה!" } ] }
   ]
 }`,
+          },
+          {
+            label: { he: '8) דיוור חכם — כפתור קישור + Footer הסרה (מתווסף אוטומטית)', en: '8) Smart broadcast — link button + opt-out Footer (auto-added)' },
+            code: curl('POST', '/templates', `{
+  "name": "newsletter_promo_0626",
+  "language": "he",
+  "category": "MARKETING",
+  "headerMediaUrl": "https://cdn.example.com/newsletter.jpg",
+  "headerFormat": "IMAGE",
+  "components": [
+    { "type": "BODY", "text": "היי {{1}}, יש לנו חדשות! גלו את הקולקציה החדשה שלנו.", "example": { "body_text": [["דנה"]] } },
+    { "type": "BUTTONS", "buttons": [ { "type": "URL", "text": "לצפייה בקולקציה", "url": "https://shop.co.il/new" } ] }
+  ]
+}
+// category=MARKETING ואין FOOTER → Gambot יוסיף אוטומטית:
+//   { "type": "FOOTER", "text": "להסרה השב הסר" }`),
           },
         ],
       },
@@ -1161,7 +1208,20 @@ export const API_SECTIONS = [
   }
 }`,
         curl: curl('POST', '/campaigns', `{ "campaignName": "promo_0626", "messageType": "Template", "wabaTemplateId": "promo_summer_sale_0626", "recipientSource": "Excel", "ExcelData": { "recipients": [ { "phone": "972501234567", "variables": { "var1": "דנה" } } ] } }`),
-        response: `{ "success": true, "message": "Create Campaign successfully", "data": { "campaignId": "?" } }`,
+        response: `{
+  "success": true,
+  "message": "Create Campaign successfully",
+  "data": {
+    "campaignId": "?",
+    "scheduling": {
+      "isScheduled": true,
+      "isRecurring": true,
+      "holidayHandling": "skip",
+      "holidayHandlingOptions": ["skip", "before", "after", "send"],
+      "note": "For a scheduled/recurring campaign, occurrences on Shabbat/Israeli holiday are handled by holidayHandling. Ask the user (skip / before / after / send) and PATCH the campaign accordingly."
+    }
+  }
+}`,
         examples: [
           {
             label: { he: '1) ידני + קהל מסינון CRM', en: '1) Manual + audience from a CRM filter' },
@@ -1272,6 +1332,7 @@ export const API_SECTIONS = [
           { name: 'consentConfirmed', in: 'body', type: 'bool', required: false, desc: { he: 'אישור הסכמה לדיוור לקהל זה. ברירת מחדל true. נמענים תמיד יכולים להסיר עצמם (ראו optOut בתגובה).', en: 'Assert consent to mail this audience. Defaults to true. Recipients can always opt out (see optOut in the response).' } },
           { name: 'dryRun', in: 'body', type: 'bool', required: false, desc: { he: 'תצוגה מקדימה בלבד — לא שולח. מחזיר את גודל הקהל, ולדיוור regular כמה נמענים עם חלון 24 שעות סגור (לא יקבלו אותו) בתוספת המלצה.', en: 'Preview only — does not send. Returns the audience size, and for a regular broadcast how many recipients have a CLOSED 24h window (won\'t receive it) plus a recommendation.' } },
           { name: 'confirmRegular', in: 'body', type: 'bool', required: false, desc: { he: 'נדרש כדי לשלוח בפועל דיוור "regular" (טקסט חופשי) דרך ה-MCP. בלעדיו השליחה נחסמת ומחזירה regular_window_confirmation_required עם מספר החלונות הסגורים — הציגו זאת למשתמש והמליצו על תבנית, ואז שלחו שוב עם confirmRegular=true. מתעלמים ממנו כאשר messageType=Template.', en: 'Required to actually SEND a "regular" free-text broadcast via MCP. Without it the send is blocked and returns regular_window_confirmation_required with the closed-window count — surface it to the user and recommend a template, then re-send with confirmRegular=true. Ignored for messageType=Template.' } },
+          { name: 'confirmOverLimit', in: 'body', type: 'bool', required: false, desc: { he: 'נדרש כדי לשלוח בפועל דרך ה-MCP כשהקהל חורג ממגבלת הדיוור היומית של המספר. בלעדיו השליחה נחסמת ומחזירה messaging_limit_exceeded עם data.messagingLimit (tier, dailyLimit, guidance, suggestedBlocks) — הציגו למשתמש את המגבלה ואת שתי האפשרויות: בלוקים ידניים (חזרה עם confirmOverLimit=true בכל יום) או בלוקים מתוזמנים אוטומטית (קמפיין Scheduled לכל תאריך ב-suggestedBlocks).', en: 'Required to actually SEND via MCP when the audience exceeds the number\'s daily messaging limit. Without it the send is blocked and returns messaging_limit_exceeded with data.messagingLimit (tier, dailyLimit, guidance, suggestedBlocks) — surface the limit and the two options to the user: manual blocks (re-call with confirmOverLimit=true each day) or automatically scheduled blocks (a Scheduled campaign per date in suggestedBlocks).' } },
           { name: 'fromNumberId', in: 'body', type: 'string', required: false, desc: { he: 'שולח — phoneNumberId או מספר תצוגה (ראו GET /numbers). ברירת מחדל: המספר הראשי.', en: 'Sender — a phoneNumberId or display number (see GET /numbers). Defaults to the primary number.' } },
         ],
         request: `{
@@ -1288,8 +1349,28 @@ export const API_SECTIONS = [
   "success": true,
   "message": "Campaign send started.",
   "data": {
-    "result": { "campaignResultsId": "?", "status": "In Process" },
+    "result": { "campaignResultsId": "?", "status": "In Process", "source": "mcp" },
     "consent": { "confirmed": true, "source": "api" },
+    "messagingLimit": {
+      "tier": "TIER_2K",
+      "dailyLimit": 2000,
+      "dailyLimitLabel": "2,000 business-initiated conversations / 24h",
+      "qualityRating": "GREEN",
+      "audienceCount": 2,
+      "withinLimit": true
+    },
+    "broadcastAllowance": {
+      "enforced": true,
+      "isTrial": true,
+      "planName": "trial",
+      "limit": 300,
+      "used": 40,
+      "remainingIncluded": 260,
+      "bankBalance": 0,
+      "available": 260,
+      "audienceCount": 2,
+      "withinAllowance": true
+    },
     "optOut": {
       "enabled": true,
       "keywords": ["הסר", "הסרה", "stop", "unsubscribe"],

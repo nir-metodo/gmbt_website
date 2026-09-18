@@ -566,7 +566,7 @@ const DocumentFormPublic = () => {
       {children}
       <div style={styles.footer}>
         <a href="https://gambot.co.il" target="_blank" rel="noopener noreferrer" style={styles.footerLink}>
-          {L('מופעל על ידי', 'Powered by')} <strong>Gambot</strong>
+          {L('מופעל על ידי', 'Powered by')} <strong style={{ color: '#2e6155' }}>Gambot</strong>
         </a>
       </div>
     </div>

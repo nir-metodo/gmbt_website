@@ -6,15 +6,41 @@ import { useSearchParams } from 'next/navigation';
 
 const CURRENCY_SYMBOLS = { ILS: '₪', USD: '$', EUR: '€', GBP: '£' };
 
+// Display-only: show just the running number (drop the cosmetic "INV-"/"REC-" prefix).
+const stripDocPrefix = (n) => (n == null ? '' : String(n).replace(/^[A-Za-z]+[-\s/]?/, ''));
+
+const GAMBOT_URL = 'https://www.gambot.co.il';
+
 const API_BASE = 'https://gambot.azurewebsites.net/api/Webhooks';
 
+// Keep in sync with the editor's DOCUMENT_TYPES so the public view shows the exact same title as the PDF.
 const DOC_TYPE_LABELS = {
-  invoice: 'חשבונית מס',
+  tax_invoice: 'חשבונית מס',
   receipt: 'קבלה',
-  invoice_receipt: 'חשבונית מס / קבלה',
-  credit_note: 'חשבונית זיכוי',
+  combined: 'חשבונית מס קבלה',
+  credit_invoice: 'חשבונית זיכוי',
+  credit_receipt: 'קבלת זיכוי',
   delivery_note: 'תעודת משלוח',
+  return_note: 'תעודת החזרה',
+  order: 'הזמנה',
+  work_order: 'הזמנת עבודה',
   proforma: 'חשבון עסקה',
+  // legacy aliases
+  invoice: 'חשבונית מס',
+  invoice_receipt: 'חשבונית מס קבלה',
+  credit_note: 'חשבונית זיכוי',
+};
+
+const PAYMENT_METHODS = {
+  bank_transfer: 'העברה בנקאית',
+  credit_card: 'כרטיס אשראי',
+  cash: 'מזומן',
+  check: "צ'ק",
+  bit: 'ביט',
+  paybox: 'פייבוקס',
+  paypal: 'פייפאל',
+  app_payment: 'תשלום באפליקציה',
+  other: 'אחר',
 };
 
 const STATUS_LABELS = {
@@ -61,7 +87,7 @@ export default function PublicInvoicePage() {
       if (!data) { setError('המסמך לא נמצא'); return; }
       setInvoice(data);
       const customerName = data.contactName || '';
-      const docNum = data.documentNumber || '';
+      const docNum = stripDocPrefix(data.documentNumber);
       const docLabel = DOC_TYPE_LABELS[data.type] || 'חשבונית';
       document.title = `${docLabel}${customerName ? ` - ${customerName}` : ''}${docNum ? ` | ${docNum}` : ''}`;
     } catch (err) {
@@ -139,6 +165,12 @@ export default function PublicInvoicePage() {
   // Show the VAT breakdown whenever VAT was actually charged (don't depend on the rate field).
   const showVat = vatAmount > 0;
 
+  // Receipt-type documents carry payment rows; show a "Payments Received" section like the PDF.
+  const isReceipt = ['receipt', 'combined', 'credit_receipt'].includes(invoice.type);
+  const paymentRows = (invoice.payments || []).filter(p => (parseFloat(p.amount) || 0) > 0 || p.method);
+  const totalReceived = paymentRows.reduce((s, p) => s + (parseFloat(p.amount) || 0), 0);
+  const showSignatureImg = branding.showSignature !== false && !!branding.signature;
+
   return (
     <div style={styles.page}>
       <style>{`
@@ -150,26 +182,30 @@ export default function PublicInvoicePage() {
         table { border-collapse: collapse; width: 100%; border-radius: 8px; overflow: hidden; }
         th { padding: 11px 14px; text-align: right; font-size: 14px; font-weight: 600; letter-spacing: 0.3px; }
         td { padding: 10px 14px; text-align: right; }
+        @media (max-width: 640px) {
+          th { padding: 8px 8px; font-size: 12.5px; }
+          td { padding: 8px 8px; font-size: 13px; }
+        }
       `}</style>
 
       <div style={styles.container}>
         {/* Header */}
-        <div style={{ ...styles.header, borderBottom: `4px solid ${primaryColor}` }}>
+        <div style={{ ...styles.header, borderBottom: `1px solid ${primaryColor}33` }}>
           <div style={styles.headerLeft}>
             {branding.logo && (
               <img src={branding.logo} alt="לוגו" style={styles.logo} />
             )}
-            <div>
+            <div style={{ background: `${primaryColor}14`, padding: '12px 16px', borderRadius: 10 }}>
               {branding.companyName && <div style={{ ...styles.companyName, color: primaryColor }}>{branding.companyName}</div>}
               {branding.companyAddress && <div style={styles.companyDetail}>{branding.companyAddress}</div>}
               {branding.companyPhone && <div style={styles.companyDetail}>{branding.companyPhone}</div>}
               {branding.companyEmail && <div style={styles.companyDetail}>{branding.companyEmail}</div>}
-              {branding.companyId && <div style={styles.companyDetail}>ח.פ / ע.מ: {branding.companyId}</div>}
+              {(branding.taxId || branding.companyId) && <div style={styles.companyDetail}>ח.פ / ע.מ: {branding.taxId || branding.companyId}</div>}
             </div>
           </div>
           <div style={styles.headerRight}>
             <div style={styles.docTitle}>{docLabel}</div>
-            {invoice.documentNumber && <div style={styles.docNumber}>מס׳ {invoice.documentNumber}</div>}
+            {invoice.documentNumber && <div style={styles.docNumber}>מס׳ {stripDocPrefix(invoice.documentNumber)}</div>}
             {invoice.date && <div style={styles.docDate}>תאריך: {invoice.date}</div>}
             {invoice.dueDate && <div style={styles.docDate}>תאריך פירעון: {invoice.dueDate}</div>}
             <div style={{ ...styles.statusBadge, background: status.color }}>
@@ -179,13 +215,14 @@ export default function PublicInvoicePage() {
         </div>
 
         {/* Customer info */}
-        {(invoice.contactName || invoice.contactPhone || invoice.contactEmail) && (
+        {(invoice.contactName || invoice.contactPhone || invoice.contactEmail || invoice.contactCompany || invoice.contactTaxId) && (
           <div style={styles.section}>
             <div style={{ ...styles.sectionTitle, color: primaryColor }}>פרטי לקוח</div>
             {invoice.contactName && <div style={styles.infoRow}><span style={styles.infoLabel}>שם:</span> {invoice.contactName}</div>}
             {invoice.contactPhone && <div style={styles.infoRow}><span style={styles.infoLabel}>טלפון:</span> {invoice.contactPhone}</div>}
             {invoice.contactEmail && <div style={styles.infoRow}><span style={styles.infoLabel}>מייל:</span> {invoice.contactEmail}</div>}
             {invoice.contactCompany && <div style={styles.infoRow}><span style={styles.infoLabel}>חברה:</span> {invoice.contactCompany}</div>}
+            {invoice.contactTaxId && <div style={styles.infoRow}><span style={styles.infoLabel}>ח.פ / ת.ז:</span> {invoice.contactTaxId}</div>}
           </div>
         )}
 
@@ -197,6 +234,7 @@ export default function PublicInvoicePage() {
               <table>
                 <thead>
                   <tr style={{ background: primaryColor, color: 'white', position: items.length > 15 ? 'sticky' : 'static', top: 0, zIndex: 1 }}>
+                    <th style={{ textAlign: 'right', whiteSpace: 'nowrap', width: 90 }}>מק"ט</th>
                     <th style={{ textAlign: 'right' }}>תיאור</th>
                     <th style={{ textAlign: 'center', whiteSpace: 'nowrap', width: 70 }}>כמות</th>
                     <th style={{ textAlign: 'center', whiteSpace: 'nowrap', width: 120 }}>מחיר יחידה</th>
@@ -210,6 +248,7 @@ export default function PublicInvoicePage() {
                     const lineTotal = qty * price;
                     return (
                       <tr key={idx} style={{ borderBottom: '1px solid #e5e7eb', background: idx % 2 === 0 ? '#fff' : '#f9fafb' }}>
+                        <td style={{ whiteSpace: 'nowrap', color: '#6b7280' }}>{item.sku || '—'}</td>
                         <td>{item.description || item.name || ''}</td>
                         <td style={{ textAlign: 'center' }}>{qty}</td>
                         <td style={{ textAlign: 'center' }}>{currency}{formatNum(price)}</td>
@@ -257,11 +296,57 @@ export default function PublicInvoicePage() {
           </div>
         </div>
 
-        {/* Payment method */}
-        {invoice.paymentMethod && (
+        {/* Payments received (structured) — mirrors the PDF's "פירוט תקבולים" table */}
+        {isReceipt && paymentRows.length > 0 && (
+          <div style={styles.section}>
+            <div style={{ ...styles.sectionTitle, color: primaryColor }}>💳 פירוט תקבולים</div>
+            <div style={{ overflowX: 'auto' }}>
+              <table>
+                <thead>
+                  <tr style={{ background: primaryColor, color: 'white' }}>
+                    <th style={{ textAlign: 'right' }}>אמצעי תשלום</th>
+                    <th style={{ textAlign: 'right' }}>פירוט</th>
+                    <th style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>תאריך</th>
+                    <th style={{ textAlign: 'center', whiteSpace: 'nowrap', width: 110 }}>סכום</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {paymentRows.map((pmt, i) => (
+                    <tr key={i} style={{ borderBottom: '1px solid #e5e7eb', background: i % 2 === 0 ? '#fff' : '#f9fafb' }}>
+                      <td>{PAYMENT_METHODS[pmt.method] || pmt.method || '—'}</td>
+                      <td>{[pmt.reference, pmt.bank, pmt.account].filter(Boolean).join(' · ') || '—'}</td>
+                      <td style={{ whiteSpace: 'nowrap' }}>{pmt.date || '—'}</td>
+                      <td style={{ textAlign: 'center', fontWeight: 600 }}>{(CURRENCY_SYMBOLS[pmt.currency] || currency)}{formatNum(pmt.amount)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div style={{ ...styles.totalsWrapper, padding: '12px 0 0' }}>
+              <div style={styles.totals}>
+                <div style={{ ...styles.totalRow, ...styles.grandTotal, borderTop: `2px solid ${primaryColor}`, color: primaryColor }}>
+                  <span>סה״כ שולם:</span>
+                  <span>{currency}{formatNum(totalReceived)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Legacy single payment-method fallback */}
+        {(!isReceipt || paymentRows.length === 0) && invoice.paymentMethod && (
           <div style={styles.section}>
             <div style={{ ...styles.sectionTitle, color: primaryColor }}>אמצעי תשלום</div>
-            <div style={styles.infoRow}>{invoice.paymentMethod}</div>
+            <div style={styles.infoRow}>{PAYMENT_METHODS[invoice.paymentMethod] || invoice.paymentMethod}</div>
+          </div>
+        )}
+
+        {/* Bank details */}
+        {(branding.bankAccount || branding.bankName) && (
+          <div style={styles.section}>
+            <div style={{ ...styles.sectionTitle, color: primaryColor }}>🏦 פרטי בנק לתשלום</div>
+            {branding.bankName && <div style={styles.infoRow}>בנק: {branding.bankName}{branding.bankBranch ? ` · סניף: ${branding.bankBranch}` : ''}</div>}
+            {branding.bankAccount && <div style={styles.infoRow}>חשבון: {branding.bankAccount}</div>}
           </div>
         )}
 
@@ -280,6 +365,27 @@ export default function PublicInvoicePage() {
           </div>
         )}
 
+        {/* Digital Signature — minimal & elegant (Green-Invoice style), matches the editor/PDF */}
+        {invoice.isLocked && (
+          <div style={{ margin: '22px 0 4px', paddingTop: 10, borderTop: '1px solid #eef0f2', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 13, color: primaryColor, lineHeight: 1 }}>🔒</span>
+            <div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: primaryColor }}>חתום דיגיטלית</div>
+              <div style={{ fontSize: 9, color: '#9ca3af', marginTop: 1 }}>
+                מסמך ממוחשב חתום דיגיטלית ומאובטח מפני שינויים · הופק על ידי <a href={GAMBOT_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#2e6155', fontWeight: 700, textDecoration: 'none' }}>Gambot</a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Handwritten/graphic signature from the document design settings */}
+        {showSignatureImg && (
+          <div style={{ ...styles.section, textAlign: 'left' }}>
+            <img src={branding.signature} alt="חתימה" style={{ height: 60, maxWidth: 220, objectFit: 'contain' }} />
+            <div style={{ fontSize: 12, color: '#6b7280', marginTop: 4 }}>{branding.signatureName || branding.companyName || ''}</div>
+          </div>
+        )}
+
         {/* Footer */}
         <div style={styles.footer}>
           <button
@@ -289,10 +395,6 @@ export default function PublicInvoicePage() {
           >
             🖨️ הדפס / שמור PDF
           </button>
-          <a href="https://www.gambot.co.il" target="_blank" rel="noopener noreferrer" style={styles.poweredLink}>
-            <img src="/new_logo.png" alt="Gambot" style={{ height: 26, opacity: 0.55 }} />
-            <span style={{ color: '#9ca3af', fontSize: 12, marginRight: 6 }}>Powered by Gambot · WhatsApp CRM</span>
-          </a>
         </div>
       </div>
     </div>
@@ -303,7 +405,7 @@ const styles = {
   page: {
     minHeight: '100vh',
     background: '#f3f4f6',
-    padding: '24px 16px',
+    padding: '24px clamp(8px, 3vw, 16px)',
     fontFamily: "'Heebo', Arial, sans-serif",
     direction: 'rtl',
   },
@@ -319,7 +421,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    padding: '28px 32px',
+    padding: '28px clamp(16px, 4vw, 32px)',
     gap: 16,
     flexWrap: 'wrap',
   },
@@ -374,7 +476,7 @@ const styles = {
     marginTop: 6,
   },
   section: {
-    padding: '20px 32px',
+    padding: '20px clamp(16px, 4vw, 32px)',
     borderBottom: '1px solid #f1f5f9',
   },
   sectionTitle: {
@@ -396,10 +498,10 @@ const styles = {
   totalsWrapper: {
     display: 'flex',
     justifyContent: 'flex-start',
-    padding: '20px 32px',
+    padding: '20px clamp(16px, 4vw, 32px)',
   },
   totals: {
-    minWidth: 280,
+    width: '100%',
     maxWidth: 380,
   },
   totalRow: {
@@ -424,7 +526,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '20px 32px',
+    padding: '20px clamp(16px, 4vw, 32px)',
     borderTop: '1px solid #f1f5f9',
     gap: 16,
     flexWrap: 'wrap',

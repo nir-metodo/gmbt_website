@@ -448,7 +448,7 @@ export default function PublicQuotePage() {
         <div style={styles.footer}>
           <a href="https://www.gambot.co.il" target="_blank" rel="noopener noreferrer" style={styles.poweredLink}>
             <img src="/new_logo.png" alt="Gambot" style={{ height: 26, opacity: 0.55 }} />
-            <span style={{ color: '#9ca3af', fontSize: 12, marginRight: 6 }}>Powered by Gambot · WhatsApp CRM</span>
+            <span style={{ color: '#9ca3af', fontSize: 12, marginRight: 6 }}>Powered by <span style={{ color: '#2e6155', fontWeight: 700 }}>Gambot</span> · WhatsApp CRM</span>
           </a>
         </div>
       </div>

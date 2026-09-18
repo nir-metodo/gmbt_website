@@ -11709,7 +11709,7 @@ const posts = [
   // Developers / MCP track (English-first). Target: AI-agent & API intent.
   // ===================================================================
   {
-    id: 19,
+    id: 41,
     seoTitle: {
       en: "How to Send WhatsApp Messages from Claude Using MCP | Gambot",
       he: "איך לשלוח הודעות WhatsApp מ-Claude עם MCP | Gambot"
@@ -11740,6 +11740,18 @@ const posts = [
       {
         question: { en: "Do I need to write code?", he: "צריך לכתוב קוד?" },
         answer: { en: "No. You add one JSON block to your Claude config with 'npx -y gambot-mcp' and your Gambot token. No build, no server to host.", he: "לא. מוסיפים בלוק JSON אחד לקונפיג של Claude עם 'npx -y gambot-mcp' והטוקן שלכם. בלי build ובלי שרת לתחזק." }
+      },
+      {
+        question: { en: "Can I connect an online (remote) MCP server instead of running it locally?", he: "אפשר לחבר שרת MCP מקוון במקום להריץ מקומית?" },
+        answer: { en: "Yes. Point your client at the hosted HTTPS endpoint (https://gambot-mcp.azurewebsites.net/mcp) with an Authorization header, or bridge to it using 'npx mcp-remote' if your client only supports stdio. Either way your gmbt_ token authorizes the connection.", he: "כן. מכוונים את הלקוח לכתובת המקוונת (https://gambot-mcp.azurewebsites.net/mcp) עם כותרת Authorization, או מגשרים אליה עם 'npx mcp-remote' אם הלקוח תומך רק ב-stdio. בכל מקרה הטוקן (gmbt_) מאמת את החיבור." }
+      },
+      {
+        question: { en: "Can Claude send bulk WhatsApp campaigns?", he: "האם Claude יכול לשלוח קמפיינים המוניים בוואטסאפ?" },
+        answer: { en: "Yes. Ask Claude to run a mail-merge campaign from a list you paste; it sends approved templates, can schedule or repeat, and handles opt-out and consent automatically on the official WhatsApp Business API.", he: "כן. מבקשים מ-Claude להריץ קמפיין מיזוג מרשימה שאתם מדביקים; הוא שולח תבניות מאושרות, יכול לתזמן או לחזור, ומטפל בהסרה והסכמה אוטומטית על ה-WhatsApp Business API הרשמי." }
+      },
+      {
+        question: { en: "Can I monitor my team's WhatsApp activity from Claude?", he: "אפשר לנטר את פעילות הוואטסאפ של הצוות מ-Claude?" },
+        answer: { en: "Yes. Because the MCP server can read conversations and CRM data, you can ask things like 'how many messages did we send today?', 'which customers complained?' or 'what's our average response time?' and get an answer in chat.", he: "כן. מכיוון שהשרת יכול לקרוא שיחות ונתוני CRM, אפשר לשאול 'כמה הודעות שלחנו היום?', 'אילו לקוחות התלוננו?' או 'מה זמן התגובה הממוצע?' ולקבל תשובה ישירות בצ׳אט." }
       }
     ],
     title: {
@@ -11799,6 +11811,41 @@ const posts = [
       <h3>Works with more than Claude</h3>
       <p>The exact same config works in <strong>Cursor</strong>, and any other MCP-compatible client. Learn more on the <a href="/whatsapp-mcp/">WhatsApp MCP page</a> or dive into the full <a href="/developers/">Gambot API docs</a>.</p>
 
+      <h3>Connect a hosted (online) MCP server by URL</h3>
+      <p>Prefer not to run anything locally? Point your AI client at a <strong>remote, hosted MCP server over HTTPS</strong> instead of the local <code>npx</code> process. This is the easiest option for cloud IDEs, shared teams and always-on agents — there is nothing to install or update.</p>
+      <p>Clients that support remote MCP servers natively (streamable HTTP / SSE) accept a <code>url</code> and an auth header:</p>
+      <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
+  "mcpServers": {
+    "gambot": {
+      "url": "https://gambot-mcp.azurewebsites.net/mcp",
+      "headers": { "Authorization": "Bearer gmbt_your_token_here" }
+    }
+  }
+}</code></pre>
+      <p>For clients that only speak stdio, bridge to the online URL with <code>mcp-remote</code>:</p>
+      <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
+  "mcpServers": {
+    "gambot": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://gambot-mcp.azurewebsites.net/mcp",
+               "--header", "Authorization: Bearer gmbt_your_token_here"]
+    }
+  }
+}</code></pre>
+      <p>The hosted endpoint exposes the exact same tools as the local server — you simply skip installation. Your <code>gmbt_…</code> token authorizes the connection to your organization, so treat it like a password.</p>
+
+      <h3>When should you use this?</h3>
+      <p>The WhatsApp MCP server is most valuable for people who already live inside an AI assistant and want it to <em>act</em>, not just advise:</p>
+      <ul>
+        <li><strong>Daily operators</strong> — you work with Claude all day and want to message customers without switching tabs: "reply to the last message from Dana", "follow up with everyone who didn't answer yesterday".</li>
+        <li><strong>Mailings &amp; campaigns</strong> — paste a list and ask Claude to send an <strong>approved template</strong> to everyone, schedule it, or set up a recurring campaign — with opt-out and consent handled automatically on the official API.</li>
+        <li><strong>Oversight &amp; control of your organization's WhatsApp</strong> — ask questions like "how many messages did we send today?", "which customers sound unhappy?", "what's our average first-response time?", "who on the team has open conversations?" and let the agent read it straight from your conversations and CRM.</li>
+      </ul>
+
+      <div style="background:#f0f7ff;border-left:5px solid #2196f3;padding:16px 20px;border-radius:10px;margin:22px 0;">
+        <strong>Example monitoring prompts:</strong> "Summarize today's WhatsApp activity", "List contacts who complained this week", "Show conversations waiting more than 2 hours for a reply", "How is customer service performing today?"
+      </div>
+
       <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
         <h3 style="margin:0 0 12px;color:#fff;border:none;">Give your AI assistant a WhatsApp number</h3>
         <p style="margin:0 auto 22px;opacity:0.9;max-width:620px;">Start free, connect your number, and let Claude run WhatsApp for you.</p>
@@ -11839,6 +11886,41 @@ const posts = [
       <h3>שלב 3 — רחוק יותר: תבניות, CRM וקמפיינים</h3>
       <p>אותו חיבור פותח 60+ כלים: יצירת תבניות, ניהול אנשי קשר ולידים, משימות והצעות מחיר, ואפילו קמפיין מתוך גיליון שאתם מדביקים — עם הסרה והסכמה מובנים.</p>
 
+      <h3>חיבור שרת MCP מקוון (Hosted) לפי כתובת URL</h3>
+      <p>לא רוצים להריץ כלום מקומית? אפשר לכוון את לקוח ה-AI לשרת <strong>MCP מקוון (Hosted) מעל HTTPS</strong> במקום תהליך ה-<code>npx</code> המקומי. זו האפשרות הנוחה ביותר ל-IDE בענן, לצוותים משותפים ולסוכנים שרצים 24/7 — אין מה להתקין ואין מה לעדכן.</p>
+      <p>לקוחות שתומכים בשרתי MCP מרוחקים (streamable HTTP / SSE) מקבלים <code>url</code> וכותרת הרשאה:</p>
+      <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
+  "mcpServers": {
+    "gambot": {
+      "url": "https://gambot-mcp.azurewebsites.net/mcp",
+      "headers": { "Authorization": "Bearer gmbt_your_token_here" }
+    }
+  }
+}</code></pre>
+      <p>ללקוחות שתומכים רק ב-stdio — מגשרים לכתובת המקוונת עם <code>mcp-remote</code>:</p>
+      <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
+  "mcpServers": {
+    "gambot": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://gambot-mcp.azurewebsites.net/mcp",
+               "--header", "Authorization: Bearer gmbt_your_token_here"]
+    }
+  }
+}</code></pre>
+      <p>הכתובת המקוונת חושפת בדיוק את אותם כלים כמו השרת המקומי — פשוט מדלגים על ההתקנה. הטוקן שלכם (<code>gmbt_…</code>) מאמת את החיבור מול הארגון, אז שמרו עליו כמו על סיסמה.</p>
+
+      <h3>מתי כדאי להשתמש בזה?</h3>
+      <p>שרת ה-WhatsApp MCP הכי שווה למי שכבר עובד בתוך עוזר AI ורוצה שהוא <em>יבצע</em>, לא רק ייעץ:</p>
+      <ul>
+        <li><strong>עבודה שוטפת</strong> — אתם עובדים עם Claude כל היום ורוצים לכתוב ללקוחות בלי לעבור טאבים: "תענה להודעה האחרונה של דנה", "עשה פולואפ לכל מי שלא ענה אתמול".</li>
+        <li><strong>דיוור וקמפיינים</strong> — מדביקים רשימה ומבקשים מ-Claude לשלוח <strong>תבנית מאושרת</strong> לכולם, לתזמן, או להקים קמפיין חוזר — עם הסרה והסכמה מטופלים אוטומטית על ה-API הרשמי.</li>
+        <li><strong>בקרה ושליטה על הפעילות הארגונית בוואטסאפ</strong> — לשאול "כמה הודעות שלחנו היום?", "אילו לקוחות נשמעים לא מרוצים?", "מה זמן התגובה הראשון הממוצע שלנו?", "למי בצוות יש שיחות פתוחות?" — והסוכן קורא את זה ישירות מהשיחות ומה-CRM.</li>
+      </ul>
+
+      <div style="background:#f0f7ff;border-left:5px solid #2196f3;padding:16px 20px;border-radius:10px;margin:22px 0;">
+        <strong>דוגמאות לפרומפטים לבקרה:</strong> "סכם לי את פעילות הוואטסאפ של היום", "תן רשימה של לקוחות שהתלוננו השבוע", "הצג שיחות שממתינות מעל שעתיים לתגובה", "איך השירות לקוחות מתפקד היום?"
+      </div>
+
       <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
         <h3 style="margin:0 0 12px;color:#fff;border:none;">תנו לעוזר ה-AI מספר WhatsApp</h3>
         <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">פתחו חשבון Gambot →</a>
@@ -11848,7 +11930,7 @@ const posts = [
   },
 
   {
-    id: 20,
+    id: 42,
     seoTitle: {
       en: "WhatsApp API for AI Agents: The Model Context Protocol (MCP) Explained | Gambot",
       he: "WhatsApp API לסוכני AI: הסבר על Model Context Protocol (MCP) | Gambot"
@@ -11879,6 +11961,18 @@ const posts = [
       {
         question: { en: "Is this the official WhatsApp API?", he: "האם זה ה-API הרשמי של WhatsApp?" },
         answer: { en: "Yes. Gambot is a Meta Business Solution Provider, so the MCP server runs on the approved WhatsApp Business (Cloud) API.", he: "כן. Gambot היא Meta Business Solution Provider, ולכן שרת ה-MCP רץ מעל ה-WhatsApp Business (Cloud) API המאושר." }
+      },
+      {
+        question: { en: "What is the difference between a local and a hosted (online) MCP server?", he: "מה ההבדל בין שרת MCP מקומי לשרת מקוון (Hosted)?" },
+        answer: { en: "A local server runs on your machine via 'npx -y gambot-mcp'. A hosted server runs online and you connect to a URL (https://gambot-mcp.azurewebsites.net/mcp) with an Authorization header — nothing to install, ideal for teams and always-on agents.", he: "שרת מקומי רץ על המחשב שלכם דרך 'npx -y gambot-mcp'. שרת מקוון רץ אונליין ומתחברים אליו בכתובת URL (https://gambot-mcp.azurewebsites.net/mcp) עם כותרת Authorization — בלי התקנה, אידיאלי לצוותים ולסוכנים 24/7." }
+      },
+      {
+        question: { en: "Can ChatGPT or Gemini use the WhatsApp MCP server?", he: "האם ChatGPT או Gemini יכולים להשתמש בשרת ה-MCP?" },
+        answer: { en: "Any MCP-compatible client can connect. Claude Desktop and Cursor support it today, and MCP support is expanding across the ChatGPT and Gemini ecosystems. The same Gambot connection works for all of them.", he: "כל לקוח שתומך ב-MCP יכול להתחבר. Claude Desktop ו-Cursor תומכים כבר היום, ותמיכת MCP מתרחבת גם במערכות של ChatGPT ו-Gemini. אותו חיבור ל-Gambot עובד לכולם." }
+      },
+      {
+        question: { en: "Can I use MCP to monitor my WhatsApp customer service?", he: "אפשר להשתמש ב-MCP כדי לנטר את שירות הלקוחות בוואטסאפ?" },
+        answer: { en: "Yes. The read tools expose conversations and CRM data, so your agent can report how many messages were sent today, who complained, average response times and which chats are still waiting — a lightweight oversight layer on top of WhatsApp.", he: "כן. כלי הקריאה חושפים שיחות ונתוני CRM, כך שהסוכן יכול לדווח כמה הודעות נשלחו היום, מי התלונן, זמני תגובה ממוצעים ואילו שיחות עדיין ממתינות — שכבת בקרה קלה מעל הוואטסאפ." }
       }
     ],
     title: {
@@ -11914,8 +12008,29 @@ const posts = [
       <h3>Official API, not a workaround</h3>
       <p>Unofficial "WhatsApp automation" libraries that drive WhatsApp Web can get your number banned. Because Gambot is an official <strong>Meta Business Solution Provider</strong>, the MCP server runs on the authorized WhatsApp Business (Cloud) API — with message templates, quality ratings and opt-out handling done properly.</p>
 
+      <h3>Local vs hosted (online) MCP servers</h3>
+      <p>There are two ways to connect the same server, and you can switch anytime:</p>
+      <ul>
+        <li><strong>Local (stdio)</strong> — your client launches the server on demand with <code>npx -y gambot-mcp</code>. Great for a single developer machine.</li>
+        <li><strong>Hosted (online) over HTTPS</strong> — your client connects to a remote URL such as <code>https://gambot-mcp.azurewebsites.net/mcp</code> with an <code>Authorization: Bearer gmbt_…</code> header. Nothing to install, ideal for cloud IDEs, shared teams and always-on agents. Clients that only speak stdio can bridge to the URL with <code>npx mcp-remote</code>.</li>
+      </ul>
+      <div style="background:#f0f7ff;border-left:5px solid #2196f3;padding:16px 20px;border-radius:10px;margin:22px 0;">
+        <strong>Rule of thumb:</strong> a single developer → local; a team, a server, or a 24/7 agent → hosted URL.
+      </div>
+
+      <h3>Which AI assistants can connect?</h3>
+      <p>Any MCP-capable client. In practice that means <strong>Claude Desktop</strong>, <strong>Cursor</strong>, and a growing list of assistants adding MCP support (including tooling around <strong>ChatGPT</strong> and <strong>Gemini</strong>). The protocol is the same, so one Gambot connection serves them all.</p>
+
+      <h3>When a WhatsApp MCP server pays off</h3>
+      <p>It's not only for developers. The biggest wins are operational:</p>
+      <ul>
+        <li><strong>You use an AI assistant daily</strong> and want it to send and reply on WhatsApp directly, instead of copy-pasting.</li>
+        <li><strong>You run mailings and campaigns</strong> — hand the agent a list and an approved template and let it send, schedule, or repeat, with opt-out built in.</li>
+        <li><strong>You need oversight of organizational WhatsApp</strong> — ask "how many messages went out today?", "which customers are complaining?", "how is customer service performing?", "which chats are still waiting for a reply?" and get answers pulled from live conversations and the CRM.</li>
+      </ul>
+
       <h3>Getting started</h3>
-      <p>Add one config block with <code>npx -y gambot-mcp</code> and your Gambot token, and your agent is connected. See the <a href="/whatsapp-mcp/">WhatsApp MCP page</a> for client-by-client setup, or the <a href="/developers/">REST API docs</a> if you'd rather call it directly.</p>
+      <p>Add one config block with <code>npx -y gambot-mcp</code> (or a hosted <code>url</code>) and your Gambot token, and your agent is connected. See the <a href="/whatsapp-mcp/">WhatsApp MCP page</a> for client-by-client setup, or the <a href="/developers/">REST API docs</a> if you'd rather call it directly.</p>
 
       <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
         <h3 style="margin:0 0 12px;color:#fff;border:none;">Build an AI agent that runs WhatsApp</h3>
@@ -11941,6 +12056,27 @@ const posts = [
       <h3>API רשמי, לא עוקף</h3>
       <p>ספריות "אוטומציה" לא רשמיות שמפעילות את WhatsApp Web עלולות לגרום לחסימת המספר. מכיוון ש-Gambot היא <strong>Meta Business Solution Provider</strong> רשמית, שרת ה-MCP רץ מעל ה-API המאושר — עם תבניות, דירוגי איכות והסרה כמו שצריך.</p>
 
+      <h3>שרת MCP מקומי מול מקוון (Hosted)</h3>
+      <p>יש שתי דרכים לחבר את אותו שרת, ואפשר להחליף בכל רגע:</p>
+      <ul>
+        <li><strong>מקומי (stdio)</strong> — הלקוח מריץ את השרת לפי דרישה עם <code>npx -y gambot-mcp</code>. מצוין למחשב מפתח יחיד.</li>
+        <li><strong>מקוון (Hosted) מעל HTTPS</strong> — הלקוח מתחבר לכתובת מרוחקת כמו <code>https://gambot-mcp.azurewebsites.net/mcp</code> עם כותרת <code>Authorization: Bearer gmbt_…</code>. אין מה להתקין — אידיאלי ל-IDE בענן, לצוותים ולסוכנים 24/7. לקוחות שתומכים רק ב-stdio מגשרים לכתובת עם <code>npx mcp-remote</code>.</li>
+      </ul>
+      <div style="background:#f0f7ff;border-left:5px solid #2196f3;padding:16px 20px;border-radius:10px;margin:22px 0;">
+        <strong>כלל אצבע:</strong> מפתח יחיד → מקומי; צוות, שרת או סוכן 24/7 → כתובת מקוונת.
+      </div>
+
+      <h3>אילו עוזרי AI יכולים להתחבר?</h3>
+      <p>כל לקוח שתומך ב-MCP. בפועל: <strong>Claude Desktop</strong>, <strong>Cursor</strong>, ורשימה גדלה של עוזרים שמוסיפים תמיכת MCP (כולל כלים סביב <strong>ChatGPT</strong> ו-<strong>Gemini</strong>). הפרוטוקול זהה, כך שחיבור אחד ל-Gambot משרת את כולם.</p>
+
+      <h3>מתי זה משתלם</h3>
+      <p>זה לא רק למפתחים — הערך הגדול הוא תפעולי:</p>
+      <ul>
+        <li><strong>עבודה שוטפת עם עוזר AI</strong> — רוצים שהוא ישלח ויענה בוואטסאפ ישירות, במקום להעתיק-להדביק.</li>
+        <li><strong>דיוור וקמפיינים</strong> — נותנים לסוכן רשימה ותבנית מאושרת והוא שולח, מתזמן או חוזר, עם הסרה מובנית.</li>
+        <li><strong>בקרה על הוואטסאפ הארגוני</strong> — לשאול "כמה הודעות יצאו היום?", "אילו לקוחות מתלוננים?", "איך השירות לקוחות מתפקד?", "אילו שיחות עדיין ממתינות לתגובה?" ולקבל תשובות מתוך השיחות החיות וה-CRM.</li>
+      </ul>
+
       <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
         <h3 style="margin:0 0 12px;color:#fff;border:none;">בנו סוכן AI שמפעיל WhatsApp</h3>
         <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">קבלו טוקן Gambot →</a>
@@ -11950,7 +12086,7 @@ const posts = [
   },
 
   {
-    id: 21,
+    id: 43,
     seoTitle: {
       en: "Set Up a WhatsApp MCP Server in 5 Minutes (Cursor & Claude) | Gambot",
       he: "התקנת WhatsApp MCP Server ב-5 דקות (Cursor ו-Claude) | Gambot"
@@ -11981,6 +12117,18 @@ const posts = [
       {
         question: { en: "Is it free?", he: "האם זה בחינם?" },
         answer: { en: "The MCP server is open-source (MIT). You need a Gambot account; plans start from ₪179/month with a free trial.", he: "שרת ה-MCP הוא קוד פתוח (MIT). צריך חשבון Gambot; החבילות מתחילות מ-₪179 לחודש עם ניסיון חינם." }
+      },
+      {
+        question: { en: "How do I connect the hosted MCP server by URL?", he: "איך מתחברים לשרת ה-MCP המקוון לפי URL?" },
+        answer: { en: "Use a 'url' entry pointing to https://gambot-mcp.azurewebsites.net/mcp with an 'Authorization: Bearer gmbt_…' header. If your client is stdio-only, bridge to it with 'npx -y mcp-remote <url> --header'. No local install needed.", he: "מגדירים 'url' לכתובת https://gambot-mcp.azurewebsites.net/mcp עם כותרת 'Authorization: Bearer gmbt_…'. אם הלקוח תומך רק ב-stdio, מגשרים עם 'npx -y mcp-remote <url> --header'. בלי התקנה מקומית." }
+      },
+      {
+        question: { en: "Should I use the local or the hosted server?", he: "עדיף שרת מקומי או מקוון?" },
+        answer: { en: "Use local (npx) for a single developer machine, and the hosted URL for teams, cloud IDEs and always-on agents. Both expose the same tools, so you can switch anytime.", he: "מקומי (npx) למחשב מפתח יחיד, וכתובת מקוונת לצוותים, IDE בענן וסוכנים 24/7. שניהם חושפים את אותם כלים, אז אפשר להחליף בכל רגע." }
+      },
+      {
+        question: { en: "Can I run mailings and monitor activity after setup?", he: "אפשר לדוור ולנטר פעילות אחרי ההתקנה?" },
+        answer: { en: "Yes. After connecting, ask your AI client to send an approved-template campaign to a pasted list, or to report today's message count, complaints and response times — mailing and oversight in plain language.", he: "כן. אחרי החיבור אפשר לבקש מלקוח ה-AI לשלוח קמפיין תבנית מאושרת לרשימה שהדבקתם, או לדווח על כמות ההודעות היום, תלונות וזמני תגובה — דיוור ובקרה בשפה חופשית." }
       }
     ],
     title: {
@@ -12016,8 +12164,29 @@ const posts = [
       <h3>3. Or add it to Claude Desktop</h3>
       <p>The same block goes into <code>claude_desktop_config.json</code>. Restart the app and the "gambot" tools appear.</p>
 
+      <h3>Option B — connect the hosted server by URL (no install)</h3>
+      <p>Don't want to run <code>npx</code> at all? Connect to the <strong>online (hosted) MCP server</strong> over HTTPS. Clients with native remote support accept a <code>url</code> plus an auth header:</p>
+      <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
+  "mcpServers": {
+    "gambot": {
+      "url": "https://gambot-mcp.azurewebsites.net/mcp",
+      "headers": { "Authorization": "Bearer gmbt_your_token_here" }
+    }
+  }
+}</code></pre>
+      <p>Stdio-only client? Bridge to the same URL with <code>npx -y mcp-remote https://gambot-mcp.azurewebsites.net/mcp --header "Authorization: Bearer gmbt_your_token_here"</code>. Use <strong>local</strong> for a single machine and the <strong>hosted URL</strong> for teams, cloud IDEs and 24/7 agents.</p>
+
       <h3>4. Test it</h3>
       <p>Ask your AI client: <em>"List my WhatsApp templates"</em> or <em>"Send a WhatsApp to +1 202 555 0134 saying hello"</em>. If you see a result, you're live.</p>
+
+      <h3>First things worth asking</h3>
+      <p>Once connected, the server is useful for daily operations, mailings and oversight — not just one-off messages:</p>
+      <ul>
+        <li><em>"Send this approved template to the list I'm pasting"</em> — a full campaign with opt-out handled.</li>
+        <li><em>"Summarize today's WhatsApp activity"</em> / <em>"How many messages did we send today?"</em></li>
+        <li><em>"Which customers complained this week?"</em> / <em>"How is customer service performing?"</em></li>
+        <li><em>"Show conversations still waiting for a reply"</em> — a quick service-quality check.</li>
+      </ul>
 
       <div style="background:#fff3cd;border-left:5px solid #ffc107;padding:16px 20px;border-radius:10px;margin:22px 0;">
         <strong>Tip:</strong> Set the optional <code>GAMBOT_API_BASE</code> env var only if you need to point at a non-default API URL. Otherwise leave it out.
@@ -12061,8 +12230,29 @@ const posts = [
       <h3>3. או ל-Claude Desktop</h3>
       <p>אותו בלוק נכנס ל-<code>claude_desktop_config.json</code>. מפעילים מחדש והכלים של "gambot" מופיעים.</p>
 
+      <h3>אפשרות ב' — חיבור לשרת המקוון לפי URL (בלי התקנה)</h3>
+      <p>לא רוצים להריץ <code>npx</code> בכלל? מתחברים לשרת ה-<strong>MCP המקוון (Hosted)</strong> מעל HTTPS. לקוחות עם תמיכה מרוחקת מובנית מקבלים <code>url</code> וכותרת הרשאה:</p>
+      <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
+  "mcpServers": {
+    "gambot": {
+      "url": "https://gambot-mcp.azurewebsites.net/mcp",
+      "headers": { "Authorization": "Bearer gmbt_your_token_here" }
+    }
+  }
+}</code></pre>
+      <p>לקוח שתומך רק ב-stdio? מגשרים לאותה כתובת עם <code>npx -y mcp-remote https://gambot-mcp.azurewebsites.net/mcp --header "Authorization: Bearer gmbt_your_token_here"</code>. משתמשים ב<strong>מקומי</strong> למחשב יחיד וב<strong>כתובת המקוונת</strong> לצוותים, IDE בענן וסוכנים 24/7.</p>
+
       <h3>4. בדיקה</h3>
       <p>מבקשים: <em>"תראה לי את תבניות ה-WhatsApp"</em> או <em>"שלח WhatsApp ל-+972501234567 עם שלום"</em>. אם קיבלתם תוצאה — אתם באוויר.</p>
+
+      <h3>דברים ששווה לבקש קודם</h3>
+      <p>אחרי החיבור, השרת שימושי לעבודה שוטפת, דיוור ובקרה — לא רק להודעה בודדת:</p>
+      <ul>
+        <li><em>"שלח את התבנית המאושרת לרשימה שאני מדביק"</em> — קמפיין מלא עם הסרה מטופלת.</li>
+        <li><em>"סכם לי את פעילות הוואטסאפ של היום"</em> / <em>"כמה הודעות שלחנו היום?"</em></li>
+        <li><em>"אילו לקוחות התלוננו השבוע?"</em> / <em>"איך השירות לקוחות מתפקד?"</em></li>
+        <li><em>"הצג שיחות שעדיין ממתינות לתגובה"</em> — בדיקת איכות שירות מהירה.</li>
+      </ul>
 
       <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
         <h3 style="margin:0 0 12px;color:#fff;border:none;">מוכן ב-5 דקות</h3>
