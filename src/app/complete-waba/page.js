@@ -3,9 +3,14 @@ import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
+// Loading text follows the language LangSync resolved onto <html lang> (Hebrew for Israeli
+// visitors, English otherwise). Falls back to English when the document isn't ready yet.
+const loadingText = () =>
+  (typeof document !== 'undefined' && document.documentElement.lang !== 'en') ? 'טוען...' : 'Loading…';
+
 const WabaOnboardingWrapperNext = dynamic(
   () => import('@/components/OnBoard/WabaOnboardingWrapperNext'),
-  { ssr: false, loading: () => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '18px' }}>טוען...</div> }
+  { ssr: false, loading: () => <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '18px' }}>{loadingText()}</div> }
 );
 
 export default function CompleteWabaPage() {
@@ -31,7 +36,7 @@ export default function CompleteWabaPage() {
         </a>
       </div>
       <div style={{ paddingTop: '61px' }}>
-        <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>טוען...</div>}>
+        <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>{loadingText()}</div>}>
           <WabaOnboardingWrapperNext />
         </Suspense>
       </div>

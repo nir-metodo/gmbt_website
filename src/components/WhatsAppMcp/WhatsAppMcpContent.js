@@ -129,7 +129,7 @@ export default function WhatsAppMcpContent() {
       <section style={{ padding: '40px 0' }}>
         <div className="wm-wrap">
           <h2 className="wm-h2">Everything your agent can do</h2>
-          <p style={{ color: MUTED, marginBottom: 18, fontSize: 16 }}>60+ tools across the full Gambot WhatsApp Business API.</p>
+          <p style={{ color: MUTED, marginBottom: 18, fontSize: 16 }}>114 tools across the full Gambot WhatsApp Business API.</p>
           <div className="wm-grid">
             {TOOL_GROUPS.map((g) => (
               <div key={g.title} className="wm-card">
@@ -153,6 +153,31 @@ export default function WhatsAppMcpContent() {
               approved WhatsApp Business (Cloud) API, so your number stays compliant — with message templates, opt-out handling and
               consent built in. No QR-code hacks, no ban risk from unofficial libraries.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Client setup guides + related (internal linking) */}
+      <section style={{ padding: '40px 0' }}>
+        <div className="wm-wrap">
+          <h2 className="wm-h2">Set up your AI client</h2>
+          <p style={{ color: MUTED, marginBottom: 18, fontSize: 16 }}>Step-by-step guides for each MCP client, plus developer resources.</p>
+          <div className="wm-grid">
+            {[
+              { t: 'WhatsApp MCP for ChatGPT', d: 'Hosted connector (Streamable HTTP + OAuth).', href: 'https://gambot.co.il/whatsapp-mcp/chatgpt/' },
+              { t: 'WhatsApp MCP for Claude', d: 'Claude Desktop (npx) or remote connector.', href: 'https://gambot.co.il/whatsapp-mcp/claude/' },
+              { t: 'WhatsApp MCP for Cursor', d: 'One-click install or .cursor/mcp.json.', href: 'https://gambot.co.il/whatsapp-mcp/cursor/' },
+              { t: 'WhatsApp MCP for Gemini', d: 'Register in the Gemini CLI settings.', href: 'https://gambot.co.il/whatsapp-mcp/gemini/' },
+              { t: 'WhatsApp API for AI Agents', d: 'Send, receive, schedule, automate & analyze.', href: 'https://gambot.co.il/whatsapp-api-for-ai-agents/' },
+              { t: 'WhatsApp API for Developers', d: 'REST API on the official WhatsApp Business API.', href: 'https://gambot.co.il/whatsapp-api-for-developers/' },
+              { t: 'MCP vs WhatsApp Web', d: 'Business API vs Web automation, compared.', href: 'https://gambot.co.il/whatsapp-mcp-vs-whatsapp-web/' },
+              { t: 'API documentation', d: 'Auth, scopes, endpoints & error codes.', href: 'https://gambot.co.il/developers/' },
+            ].map((c) => (
+              <a key={c.href} className="wm-card" href={c.href} style={{ textDecoration: 'none', color: TEXT, display: 'block' }}>
+                <h3 style={{ margin: '0 0 8px', fontSize: 17, color: GREEN }}>{c.t}</h3>
+                <p style={{ color: MUTED, margin: 0, lineHeight: 1.6, fontSize: 15 }}>{c.d}</p>
+              </a>
+            ))}
           </div>
         </div>
       </section>

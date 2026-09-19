@@ -64,10 +64,12 @@ function VideoCard({ v }) {
   );
 }
 
-export default function LandingPageContent({ content }) {
+export default function LandingPageContent({ content, forceLang }) {
   const [openFaq, setOpenFaq] = useState(null);
   const { currentLanguage } = useLanguage();
-  const isEn = currentLanguage === 'en';
+  // English-alias routes pass forceLang="en" so the STATIC HTML renders English (for non-JS crawlers),
+  // not just after client hydration. Hebrew routes omit it and follow the language context as before.
+  const isEn = forceLang ? forceLang === 'en' : currentLanguage === 'en';
 
   // Track paid/campaign visitors who land on any campaign landing page into the root "CampaignLeads"
   // collection — attribution even before they fill a form. Fire-and-forget, once per browser session,

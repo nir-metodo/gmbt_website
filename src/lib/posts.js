@@ -11797,7 +11797,7 @@ const posts = [
       <p>Claude calls the <code>gambot_send_text</code> tool and Gambot delivers the message. For business-initiated messages outside the 24-hour window, ask Claude to use an approved <strong>template</strong> instead (<code>gambot_send_template</code>).</p>
 
       <h3>Step 3 — Go further: templates, CRM and campaigns</h3>
-      <p>The same connection unlocks 60+ tools. You can ask Claude to:</p>
+      <p>The same connection unlocks 114 tools. You can ask Claude to:</p>
       <ul>
         <li>Create and send WhatsApp <strong>templates</strong> (with variables and buttons)</li>
         <li>Add <strong>contacts and leads</strong>, update your CRM, create tasks and quotes</li>
@@ -11996,7 +11996,7 @@ const posts = [
       </div>
 
       <h3>What the Gambot WhatsApp MCP server exposes</h3>
-      <p>Over 60 tools across the whole WhatsApp Business platform:</p>
+      <p>114 tools across the whole WhatsApp Business platform:</p>
       <ul>
         <li><strong>Messaging</strong> — send text and approved templates, read conversations</li>
         <li><strong>Campaigns</strong> — manual, scheduled or recurring; mail-merge from a spreadsheet; built-in opt-out &amp; consent</li>
@@ -12034,7 +12034,7 @@ const posts = [
 
       <div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
         <h3 style="margin:0 0 12px;color:#fff;border:none;">Build an AI agent that runs WhatsApp</h3>
-        <p style="margin:0 auto 22px;opacity:0.9;max-width:620px;">Official WhatsApp Business API, 60+ tools, one npx command.</p>
+        <p style="margin:0 auto 22px;opacity:0.9;max-width:620px;">Official WhatsApp Business API, 114 tools, one npx command.</p>
         <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">Get your Gambot token →</a>
       </div>
       `,

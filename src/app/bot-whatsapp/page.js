@@ -1,9 +1,8 @@
-﻿import { buildMetadata } from '@/lib/pageMeta';
-import LandingPageContent from '@/components/shared/LandingPageContent';
-import { SOLUTIONS } from '@/lib/solutionContent';
+﻿import { buildEnMetadata } from '@/lib/enPages';
+import EnSolutionPage from '@/components/shared/EnSolutionPage';
 
-export const metadata = buildMetadata('whatsappBot');
+export const metadata = buildEnMetadata('bot-whatsapp');
 
 export default function BotWhatsAppPage() {
-  return <LandingPageContent content={SOLUTIONS.whatsappBot} />;
+  return <EnSolutionPage slug="bot-whatsapp" />;
 }

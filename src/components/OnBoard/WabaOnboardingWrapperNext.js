@@ -1,11 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useLanguage } from '@/contexts/LanguageContext';
 import WabaOnboarding from './WabaOnboarding';
 
 const WabaOnboardingWrapperNext = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { currentLanguage, isRTL } = useLanguage();
+  const he = currentLanguage !== 'en';
 
   // Extract org name from path: /complete-waba/312832835 → "312832835"
   const getOrgNameFromPath = () => {
@@ -140,10 +143,12 @@ const WabaOnboardingWrapperNext = () => {
         // 'organization' (email prefix) — that is precisely what created ghost orgs during the
         // token exchange. Send the user back to login with a clear message instead.
         console.error(`[WabaOnboardingWrapperNext] Could not resolve a real org (queryOrg='${queryOrg}', email='${email}', realOrgs=${JSON.stringify(realOrgs)})`);
-        setError('לא הצלחנו לאתר את הארגון שלך להשלמת החיבור. אנא התחבר/י מחדש למערכת (או פנה/י לתמיכה) והשלם/י את החיבור משם.');
+        setError(he
+          ? 'לא הצלחנו לאתר את הארגון שלך להשלמת החיבור. אנא התחבר/י מחדש למערכת (או פנה/י לתמיכה) והשלם/י את החיבור משם.'
+          : "We couldn't locate your organization to complete the connection. Please sign in again (or contact support) and finish the connection from there.");
         setLoading(false);
       } catch (err) {
-        setError('Error loading organization data');
+        setError(he ? 'שגיאה בטעינת נתוני הארגון' : 'Error loading organization data');
         setLoading(false);
       }
     };
@@ -153,18 +158,18 @@ const WabaOnboardingWrapperNext = () => {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '18px', color: '#6b7280' }}>
-        טוען נתוני ארגון...
+      <div dir={isRTL ? 'rtl' : 'ltr'} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '18px', color: '#6b7280' }}>
+        {he ? 'טוען נתוני ארגון...' : 'Loading organization data…'}
       </div>
     );
   }
 
   if (error) {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '18px', color: '#ef4444', gap: '16px' }}>
+      <div dir={isRTL ? 'rtl' : 'ltr'} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '18px', color: '#ef4444', gap: '16px' }}>
         <div>❌ {error}</div>
         <button onClick={() => router.push('/login')} style={{ padding: '10px 20px', backgroundColor: '#3b82f6', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>
-          חזור להתחברות
+          {he ? 'חזור להתחברות' : 'Back to sign in'}
         </button>
       </div>
     );

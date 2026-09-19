@@ -343,7 +343,10 @@ const [showModal, setShowModal] = useState(false);
                   <span className="savings">{t('pricing.ui.save')} {formatPrice((plan.price * 12) - plan.yearlyPrice).currency}{formatPrice((plan.price * 12) - plan.yearlyPrice).amount.toLocaleString()}</span>
                 </div>
               )}
-              <div className="vat-note">{currentLanguage === 'en' ? '* Prices do not include VAT' : '* המחירים אינם כוללים מע״מ'}</div>
+              {/* VAT is Israel-specific — only shown on the Hebrew (ILS) view, not the international USD view. */}
+              {currentLanguage !== 'en' && (
+                <div className="vat-note">* המחירים אינם כוללים מע״מ</div>
+              )}
             </div>
 
             <button 

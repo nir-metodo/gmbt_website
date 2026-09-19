@@ -4,8 +4,20 @@
 
   <!-- Main Pages -->
   <url><loc>https://gambot.co.il/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://gambot.co.il/about/</loc><lastmod>2026-05-16</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://gambot.co.il/%D7%90%D7%95%D7%93%D7%95%D7%AA/</loc><lastmod>2026-05-16</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url>
+    <loc>https://gambot.co.il/about/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%90%D7%95%D7%93%D7%95%D7%AA/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/about/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/%D7%90%D7%95%D7%93%D7%95%D7%AA/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%90%D7%95%D7%93%D7%95%D7%AA/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/about/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>monthly</changefreq><priority>0.80</priority>
+  </url>
   <url><loc>https://gambot.co.il/PriceList/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
   <url><loc>https://gambot.co.il/PriceList/WhatsAppMessagingPricingBlog/</loc><lastmod>2026-05-16</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
   <url><loc>https://gambot.co.il/PriceList/ManagedBroadcast/</loc><lastmod>2026-08-16</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
@@ -13,13 +25,43 @@
   <url><loc>https://gambot.co.il/ContactUs/</loc><lastmod>2026-05-16</lastmod><changefreq>monthly</changefreq><priority>0.70</priority></url>
 
   <!-- Core Product Pages (Hebrew) - SEO Target Keywords -->
-  <url><loc>https://gambot.co.il/%D7%91%D7%95%D7%98-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.97</priority></url>
+  <url>
+    <loc>https://gambot.co.il/%D7%91%D7%95%D7%98-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%91%D7%95%D7%98-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/bot-whatsapp/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/bot-whatsapp/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.97</priority>
+  </url>
   <url><loc>https://gambot.co.il/%D7%91%D7%95%D7%98-ai-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.98</priority></url>
-  <url><loc>https://gambot.co.il/%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4-%D7%A2%D7%A1%D7%A7%D7%99/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.97</priority></url>
-  <url><loc>https://gambot.co.il/%D7%A9%D7%99%D7%95%D7%95%D7%A7-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.97</priority></url>
+  <url>
+    <loc>https://gambot.co.il/%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4-%D7%A2%D7%A1%D7%A7%D7%99/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4-%D7%A2%D7%A1%D7%A7%D7%99/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-business/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.97</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/%D7%A9%D7%99%D7%95%D7%95%D7%A7-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%A9%D7%99%D7%95%D7%95%D7%A7-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-marketing/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.97</priority>
+  </url>
   <url><loc>https://gambot.co.il/%D7%93%D7%99%D7%95%D7%95%D7%A8-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.96</priority></url>
-  <url><loc>https://gambot.co.il/%D7%90%D7%95%D7%98%D7%95%D7%9E%D7%A6%D7%99%D7%94-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.96</priority></url>
-  <url><loc>https://gambot.co.il/%D7%A6%D7%90%D7%98%D7%91%D7%95%D7%98-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url>
+    <loc>https://gambot.co.il/%D7%90%D7%95%D7%98%D7%95%D7%9E%D7%A6%D7%99%D7%94-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%90%D7%95%D7%98%D7%95%D7%9E%D7%A6%D7%99%D7%94-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-automation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-automation/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/%D7%A6%D7%90%D7%98%D7%91%D7%95%D7%98-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%A6%D7%90%D7%98%D7%91%D7%95%D7%98-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-chatbot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-chatbot/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.95</priority>
+  </url>
   <url><loc>https://gambot.co.il/%D7%A7%D7%9E%D7%A4%D7%99%D7%99%D7%A0%D7%99%D7%9D-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
   <url><loc>https://gambot.co.il/%D7%91%D7%95%D7%98-%D7%9C%D7%99%D7%93%D7%99%D7%9D-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.96</priority></url>
   <url><loc>https://gambot.co.il/%D7%91%D7%95%D7%98-%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%9C%D7%A7%D7%95%D7%97%D7%95%D7%AA-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.93</priority></url>
@@ -36,21 +78,63 @@
   <url><loc>https://gambot.co.il/%D7%A7%D7%9E%D7%A4%D7%99%D7%99%D7%9F-%D7%91%D7%95%D7%98-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.93</priority></url>
   <url><loc>https://gambot.co.il/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4-%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
   <url><loc>https://gambot.co.il/%D7%A9%D7%99%D7%95%D7%95%D7%A7-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4-%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.94</priority></url>
-  <url><loc>https://gambot.co.il/crm-%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url>
+    <loc>https://gambot.co.il/crm-%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/crm-%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/crm-for-business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/crm-for-business/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.95</priority>
+  </url>
   <url><loc>https://gambot.co.il/%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9C%D7%99%D7%93%D7%99%D7%9D/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.93</priority></url>
   <url><loc>https://gambot.co.il/%D7%93%D7%A4%D7%99-%D7%A0%D7%97%D7%99%D7%AA%D7%94-%D7%9C%D7%99%D7%93%D7%99%D7%9D/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
   <url><loc>https://gambot.co.il/%D7%A7%D7%9E%D7%A4%D7%99%D7%99%D7%9F-%D7%91%D7%95%D7%98-ai-%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.93</priority></url>
 
   <!-- Core Product Pages (English) -->
-  <url><loc>https://gambot.co.il/bot-whatsapp/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://gambot.co.il/whatsapp-chatbot/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://gambot.co.il/whatsapp-business/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://gambot.co.il/whatsapp-marketing/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://gambot.co.il/whatsapp-automation/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url>
+    <loc>https://gambot.co.il/bot-whatsapp/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%91%D7%95%D7%98-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/bot-whatsapp/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/bot-whatsapp/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-chatbot/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%A6%D7%90%D7%98%D7%91%D7%95%D7%98-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-chatbot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-chatbot/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-business/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4-%D7%A2%D7%A1%D7%A7%D7%99/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-business/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-marketing/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%A9%D7%99%D7%95%D7%95%D7%A7-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-marketing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-marketing/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-automation/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%90%D7%95%D7%98%D7%95%D7%9E%D7%A6%D7%99%D7%94-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-automation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-automation/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
   <url><loc>https://gambot.co.il/whatsapp-bot-campaign/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.88</priority></url>
   <url><loc>https://gambot.co.il/whatsapp-bot-types/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.88</priority></url>
   <url><loc>https://gambot.co.il/whatsapp-business-system/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://gambot.co.il/crm-for-business/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url>
+    <loc>https://gambot.co.il/crm-for-business/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/crm-%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/crm-for-business/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/crm-for-business/"/>
+    <lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
   <url><loc>https://gambot.co.il/multi-number-whatsapp/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
   <url><loc>https://gambot.co.il/integrations/</loc><lastmod>2026-05-16</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
   <url><loc>https://gambot.co.il/bot-builder/</loc><lastmod>2026-05-16</lastmod><changefreq>weekly</changefreq><priority>0.88</priority></url>
@@ -81,8 +165,29 @@
   <url><loc>https://gambot.co.il/guide/digital-signature</loc><lastmod>2026-05-16</lastmod><changefreq>monthly</changefreq><priority>0.70</priority></url>
 
   <!-- Developer API Documentation -->
-  <url><loc>https://gambot.co.il/developers/</loc><lastmod>2026-09-12</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
-  <url><loc>https://gambot.co.il/whatsapp-mcp/</loc><lastmod>2026-09-14</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url>
+    <loc>https://gambot.co.il/developers/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/developers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/developers/"/>
+    <lastmod>2026-09-12</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url><loc>https://gambot.co.il/whatsapp-mcp/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+
+  <!-- Global developer / MCP / AI-agent landing pages -->
+  <url><loc>https://gambot.co.il/whatsapp-api-for-ai-agents/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-api-for-developers/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-mcp/chatgpt/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-mcp/claude/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-mcp/cursor/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-mcp/gemini/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-mcp-vs-whatsapp-web/</loc><lastmod>2026-09-19</lastmod><changefreq>monthly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-api-vs-meta-cloud-api/</loc><lastmod>2026-09-19</lastmod><changefreq>monthly</changefreq><priority>0.84</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-api/campaigns/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-api/scheduled-messages/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-api/automation/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-api/analytics/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-api/webhooks/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://gambot.co.il/whatsapp-api/bulk-messaging/</loc><lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.83</priority></url>
 
   <!-- Blog Posts: Developers / MCP track (English) -->
   <url><loc>https://gambot.co.il/blog/41/how-to-send-whatsapp-messages-from-claude-using-mcp/</loc><lastmod>2026-09-14</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
@@ -133,5 +238,133 @@
   <url><loc>https://gambot.co.il/blog/34/whatsapp-ai-leads-bot-from-first-message-to-booked-meeting-automatically/</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://gambot.co.il/blog/39/%D7%94%D7%AA%D7%92-%D7%94%D7%99%D7%A8%D7%95%D7%A7-%D7%95%D7%94%D7%AA%D7%92-%D7%94%D7%9B%D7%97%D7%95%D7%9C-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4-%D7%9E%D7%94-%D7%91%D7%90%D7%9E%D7%AA-%D7%94%D7%94%D7%91%D7%93%D7%9C-%D7%95%D7%90%D7%99%D7%9A-%D7%9E%D7%A7%D7%91%D7%9C%D7%99%D7%9D-%D7%90%D7%95%D7%AA%D7%95/</loc><lastmod>2026-08-16</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
   <url><loc>https://gambot.co.il/blog/39/the-green-badge-blue-badge-on-whatsapp-whats-really-the-difference-and-how-to-get-it/</loc><lastmod>2026-08-16</lastmod><changefreq>monthly</changefreq><priority>0.78</priority></url>
+
+  <!-- Solution Pages (English aliases) — global reach, reciprocal hreflang to the Hebrew URLs -->
+  <url>
+    <loc>https://gambot.co.il/whatsapp-ai-bot/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%91%D7%95%D7%98-ai-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-ai-bot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-ai-bot/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-ai-lead-bot/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%91%D7%95%D7%98-%D7%9C%D7%99%D7%93%D7%99%D7%9D-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-ai-lead-bot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-ai-lead-bot/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.94</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-marketing-reports/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%93%D7%99%D7%94/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-marketing-reports/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-marketing-reports/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.84</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-shared-inbox/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%A9%D7%99%D7%95%D7%95%D7%A7-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-shared-inbox/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-shared-inbox/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-task-management/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%A9%D7%99%D7%9E%D7%95%D7%AA/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-task-management/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-task-management/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-invoices/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%97%D7%A9%D7%91%D7%95%D7%A0%D7%99%D7%95%D7%AA-%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%D7%95%D7%AA/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-invoices/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-invoices/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-time-tracking/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%93%D7%99%D7%95%D7%95%D7%97-%D7%A9%D7%A2%D7%95%D7%AA-%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-time-tracking/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-time-tracking/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-telephony/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%98%D7%9C%D7%A4%D7%95%D7%A0%D7%99%D7%94-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-telephony/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-telephony/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-broadcast/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%93%D7%99%D7%95%D7%95%D7%A8-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-broadcast/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-broadcast/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-automation-guide/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%90%D7%95%D7%98%D7%95%D7%9E%D7%A6%D7%99%D7%94-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-automation-guide/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-automation-guide/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-bot-builder/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%99%D7%A6%D7%99%D7%A8%D7%AA-%D7%91%D7%95%D7%98%D7%99%D7%9D-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-bot-builder/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-bot-builder/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.93</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-campaigns/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%A7%D7%9E%D7%A4%D7%99%D7%99%D7%A0%D7%99%D7%9D-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-campaigns/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-campaigns/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-appointment-booking/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%96%D7%99%D7%9E%D7%95%D7%9F-%D7%AA%D7%95%D7%A8%D7%99%D7%9D-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-appointment-booking/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-appointment-booking/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-customer-service-bot/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%91%D7%95%D7%98-%D7%A9%D7%99%D7%A8%D7%95%D7%AA-%D7%9C%D7%A7%D7%95%D7%97%D7%95%D7%AA-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-customer-service-bot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-customer-service-bot/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-sales-bot/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%91%D7%95%D7%98-%D7%9E%D7%9B%D7%99%D7%A8%D7%95%D7%AA-%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-sales-bot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-sales-bot/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-newsletter/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%93%D7%99%D7%95%D7%95%D7%A8-%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-newsletter/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-newsletter/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-lead-management/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9C%D7%99%D7%93%D7%99%D7%9D/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-lead-management/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-lead-management/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.93</priority>
+  </url>
+  <url>
+    <loc>https://gambot.co.il/whatsapp-landing-page-leads/</loc>
+    <xhtml:link rel="alternate" hreflang="he" href="https://gambot.co.il/%D7%93%D7%A4%D7%99-%D7%A0%D7%97%D7%99%D7%AA%D7%94-%D7%9C%D7%99%D7%93%D7%99%D7%9D/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gambot.co.il/whatsapp-landing-page-leads/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gambot.co.il/whatsapp-landing-page-leads/"/>
+    <lastmod>2026-09-19</lastmod><changefreq>weekly</changefreq><priority>0.90</priority>
+  </url>
 
 </urlset>

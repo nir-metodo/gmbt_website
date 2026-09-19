@@ -51,13 +51,11 @@ export const metadata = {
   verification: {
     google: 'REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE',
   },
-  other: {
-    'geo.region': 'IL',
-    'geo.country': 'Israel',
-    'geo.placename': 'Tel Aviv, Israel',
-    'ICBM': '32.0853, 34.7818',
-    'content-language': 'he',
-  },
+  // NOTE: Site-wide geo.region=IL / content-language=he were intentionally removed.
+  // Gambot now targets a global developer/business audience; those tags pinned the whole
+  // site to Israel and conflicted with the English + hreflang global pages. Israel targeting
+  // is still carried by the .co.il ccTLD and per-page hreflang="he", so Hebrew rankings are
+  // unaffected while English/international pages are no longer geo-locked to Israel.
 };
 
 export default function RootLayout({ children }) {
@@ -92,7 +90,11 @@ export default function RootLayout({ children }) {
                   description: 'Gambot is Israel\'s leading WhatsApp Business API platform. Official Meta Partner providing AI chatbots, automation, campaigns, and CRM solutions.',
                   foundingDate: '2020',
                   founder: { '@type': 'Person', name: 'Nir Segas', alternateName: 'ניר סגס' },
-                  areaServed: { '@type': 'Country', name: 'Israel' },
+                  // Serves Israel plus a global developer/business audience (WhatsApp API, MCP, AI agents).
+                  areaServed: [
+                    { '@type': 'Country', name: 'Israel' },
+                    { '@type': 'Place', name: 'Worldwide' },
+                  ],
                   sameAs: [
                     'https://www.linkedin.com/company/gambot-platform',
                     'https://www.facebook.com/gambotwhatsapp',

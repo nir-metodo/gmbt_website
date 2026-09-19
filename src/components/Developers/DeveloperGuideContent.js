@@ -161,15 +161,20 @@ export default function DeveloperGuideContent() {
             <CodeBlock code={intro.envelope.example} copyLabel={tx.copy} copiedLabel={tx.copied} />
 
             <h3>{intro.errors.title[lang]}</h3>
+            {intro.errors.body && <p dangerouslySetInnerHTML={{ __html: intro.errors.body[lang] }} />}
+            {intro.errors.example && (
+              <CodeBlock code={intro.errors.example} copyLabel={tx.copy} copiedLabel={tx.copied} />
+            )}
             <div className={styles.tableScroll}>
               <table className={styles.paramsTable}>
                 <thead>
-                  <tr><th>HTTP</th><th>error</th><th>{tx.description}</th></tr>
+                  <tr><th>HTTP</th><th>code</th><th>error</th><th>{tx.description}</th></tr>
                 </thead>
                 <tbody>
                   {intro.errors.rows.map((r, i) => (
                     <tr key={i}>
                       <td className={styles.mono}>{r.code}</td>
+                      <td><code>{r.machineCode || '—'}</code></td>
                       <td><code>{r.key}</code></td>
                       <td>{r[lang]}</td>
                     </tr>
@@ -177,6 +182,28 @@ export default function DeveloperGuideContent() {
                 </tbody>
               </table>
             </div>
+
+            {intro.agents && (
+              <>
+                <h3>{intro.agents.title[lang]}</h3>
+                <p dangerouslySetInnerHTML={{ __html: intro.agents.body[lang] }} />
+                <div className={styles.tableScroll}>
+                  <table className={styles.paramsTable}>
+                    <thead>
+                      <tr><th>code</th><th>{tx.description}</th></tr>
+                    </thead>
+                    <tbody>
+                      {intro.agents.rows.map((r, i) => (
+                        <tr key={i}>
+                          <td className={styles.mono}><code>{r.code}</code></td>
+                          <td>{r[lang]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
           </section>
 
           {/* Endpoint sections */}

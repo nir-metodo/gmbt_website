@@ -2369,4 +2369,98 @@ export const SOLUTIONS = {
     },
   },
 
+  // English-only content for pages whose Hebrew route renders a dedicated custom component
+  // (LeadsPage / LandingPagesPage). These flat English objects power the English URLs
+  // (/whatsapp-lead-management/, /whatsapp-landing-page-leads/) via EnSolutionPage, so global
+  // visitors get an indexable English page while the Hebrew rich components stay untouched.
+  leadManagementEn: {
+    hero: {
+      badge: '🎯 Lead Management',
+      titleText: 'WhatsApp Lead Management — Every Lead Gets a Reply in Seconds',
+      desc: 'Capture leads from Facebook, landing pages, Click-to-WhatsApp and your API into one place — each lead gets an instant WhatsApp reply and flows through a visual pipeline to a closed deal.',
+      stats: [
+        { value: '<30s', label: 'To First Reply' }, { value: '5+', label: 'Lead Sources' },
+        { value: '95%', label: 'WhatsApp Open Rate' }, { value: 'CRM', label: 'Built-in Pipeline' },
+      ],
+    },
+    features: [
+      { icon: '⚡', title: 'Instant WhatsApp Reply', desc: 'Every new lead gets a personal WhatsApp message within seconds, automatically.' },
+      { icon: '🧲', title: 'Leads From Every Source', desc: 'Facebook CTWA, lead forms, landing pages, WhatsApp and API/Zapier — all in one inbox.' },
+      { icon: '📊', title: 'Visual Kanban Pipeline', desc: 'Drag leads across stages from new to won, with owners, values and tags.' },
+      { icon: '✅', title: 'Tasks & Follow-ups', desc: 'Assign tasks, set reminders and never let a lead go cold.' },
+      { icon: '🤖', title: 'AI Lead Bot', desc: 'An AI agent qualifies leads, books meetings and hands hot leads to your team.' },
+      { icon: '📈', title: 'Conversion Reports', desc: 'See source ROI, response times and close rates in real time.' },
+    ],
+    steps: [
+      { step: '01', title: 'Connect Sources', desc: 'Link Facebook, landing pages, CTWA and API in minutes.' },
+      { step: '02', title: 'Auto WhatsApp Reply', desc: 'Each lead instantly receives a personal WhatsApp message.' },
+      { step: '03', title: 'Work the Pipeline', desc: 'Qualify, assign and move leads across your kanban.' },
+      { step: '04', title: 'Close & Measure', desc: 'Convert to customers and track ROI per source.' },
+    ],
+    useCases: [
+      { icon: '🏢', title: 'Agencies', desc: 'Route inbound leads to the right rep instantly.' },
+      { icon: '🏠', title: 'Real Estate', desc: 'Reply to property inquiries before the competition.' },
+      { icon: '🛒', title: 'E-commerce', desc: 'Recover and nurture leads across channels.' },
+      { icon: '🎓', title: 'Education', desc: 'Qualify and enroll applicants over WhatsApp.' },
+    ],
+    faq: [
+      { q: 'Where do leads come from?', a: 'Facebook CTWA & lead forms, landing pages (Wix, Webflow, WordPress), direct WhatsApp messages, and any system via API/Zapier.' },
+      { q: 'How fast does a lead get a reply?', a: 'Within seconds — Gambot sends a personal WhatsApp message the moment a lead arrives, 24/7.' },
+      { q: 'Is there a CRM pipeline?', a: 'Yes — a visual kanban with stages, owners, values, tasks and conversion reports, all connected to WhatsApp.' },
+      { q: 'Can AI handle leads automatically?', a: 'Yes — the AI lead bot can qualify, answer questions and book meetings before a human steps in.' },
+    ],
+    pageTitle: 'Lead Management',
+    article: [
+      { type: 'h2', text: 'What is WhatsApp lead management?' },
+      { type: 'p', text: 'WhatsApp lead management centralizes every lead — from Facebook ads, landing pages, Click-to-WhatsApp and your own API — into one system that replies instantly on WhatsApp and moves each lead through a pipeline to a closed deal. Because WhatsApp messages are opened within minutes (95%+ open rate), replying in seconds dramatically increases conversion versus email or a delayed callback.' },
+      { type: 'h2', text: 'Why speed-to-lead matters' },
+      { type: 'p', text: 'Responding within the first minutes multiplies the odds of qualifying a lead. Gambot automates that first touch on WhatsApp — the channel customers actually read — then keeps the conversation, tasks and pipeline in one place so nothing slips through the cracks.' },
+    ],
+  },
+
+  landingPageLeadsEn: {
+    hero: {
+      badge: '🌐 Landing Page Leads',
+      titleText: 'Connect Any Landing Page to WhatsApp',
+      desc: 'Add one webhook to your landing page form and every submission sends a personal WhatsApp message in seconds and lands in your CRM. Works with Wix, Webflow, WordPress and more.',
+      stats: [
+        { value: '1', label: 'Webhook to Connect' }, { value: '<30s', label: 'To WhatsApp Reply' },
+        { value: '∞', label: 'Landing Pages' }, { value: 'CRM', label: 'Auto-Logged' },
+      ],
+    },
+    features: [
+      { icon: '🔗', title: 'One Webhook Setup', desc: 'Paste a single webhook URL into your form settings — done in 5 minutes.' },
+      { icon: '⚡', title: 'Instant WhatsApp Reply', desc: 'Every form submission triggers a personal WhatsApp message automatically.' },
+      { icon: '🧩', title: 'Works Everywhere', desc: 'Wix, Webflow, WordPress, Elementor, custom HTML — anything that can send a webhook.' },
+      { icon: '📊', title: 'Straight to CRM', desc: 'Each lead is created in your pipeline with its source and full details.' },
+      { icon: '🤖', title: 'Automated Follow-up', desc: 'Trigger bots and message sequences the moment a lead comes in.' },
+      { icon: '🎯', title: 'Per-Page Tracking', desc: 'Use a dedicated webhook per landing page to track source performance.' },
+    ],
+    steps: [
+      { step: '01', title: 'Copy Webhook URL', desc: 'Grab your unique Gambot webhook URL.' },
+      { step: '02', title: 'Paste Into Form', desc: 'Add it to your landing page form settings.' },
+      { step: '03', title: 'Lead → WhatsApp', desc: 'Every submission sends a WhatsApp message instantly.' },
+      { step: '04', title: 'Manage in CRM', desc: 'Work the lead through your pipeline to a close.' },
+    ],
+    useCases: [
+      { icon: '📣', title: 'Paid Campaigns', desc: 'Turn ad clicks into instant WhatsApp conversations.' },
+      { icon: '🏗️', title: 'Service Businesses', desc: 'Respond to quote requests before competitors do.' },
+      { icon: '🎟️', title: 'Events & Webinars', desc: 'Confirm registrations over WhatsApp automatically.' },
+      { icon: '🏠', title: 'Real Estate', desc: 'Reply to property inquiries the second they arrive.' },
+    ],
+    faq: [
+      { q: 'How do I connect a landing page to WhatsApp?', a: 'Add one webhook URL to your form settings (Wix, Webflow, WordPress, etc.). Every submission flows into Gambot and sends an automatic WhatsApp message within seconds.' },
+      { q: 'Does it work with Wix?', a: 'Yes — connect via Wix Automations → Webhook using your Gambot URL. Setup takes about 5 minutes.' },
+      { q: 'How long does setup take?', a: 'A basic connection takes 5–10 minutes. You can connect unlimited landing pages, each with its own webhook.' },
+      { q: 'Are leads saved to a CRM?', a: 'Yes — every lead is created in your Gambot pipeline with its source, so you can qualify, assign and close.' },
+    ],
+    pageTitle: 'Landing Page Leads',
+    article: [
+      { type: 'h2', text: 'Turn landing page forms into WhatsApp conversations' },
+      { type: 'p', text: 'A landing page that only emails you a lead loses precious minutes. By connecting the form to Gambot with a single webhook, every submission instantly triggers a personal WhatsApp message and creates a lead in your CRM. Since WhatsApp is opened within minutes, you reach prospects while their interest is highest.' },
+      { type: 'h2', text: 'Works with any landing page builder' },
+      { type: 'p', text: 'If your builder can send a webhook — Wix, Webflow, WordPress, Elementor or custom HTML — it works with Gambot. Use a dedicated webhook per page to track which landing pages produce the best leads, and trigger automated follow-up sequences the moment a lead arrives.' },
+    ],
+  },
+
 };

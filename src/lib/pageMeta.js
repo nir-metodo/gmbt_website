@@ -15,7 +15,7 @@ export const PAGE_META = {
     description: 'בוט לוואטסאפ מתקדם ללא קוד - Workflow Designer חזותי, AI Trigger, אינטגרציות ושירות לקוחות 24/7. מובילים בישראל. התחילו בחינם.',
     keywords: 'בוט לוואטסאפ, בוט וואטסאפ ישראל, WhatsApp bot, אוטומציה וואטסאפ, workflow designer, בוט ללא קוד, Gambot',
     canonical: 'https://gambot.co.il/בוט-וואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/בוט-וואטסאפ/', en: 'https://gambot.co.il/bot-whatsapp/' },
+    hreflang: { he: 'https://gambot.co.il/בוט-וואטסאפ/', en: 'https://gambot.co.il/bot-whatsapp/', 'x-default': 'https://gambot.co.il/bot-whatsapp/' },
     schema: {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
@@ -32,47 +32,49 @@ export const PAGE_META = {
     description: 'וואטסאפ עסקי לעסק שלך - WhatsApp Business API רשמי. ניהול לקוחות, קמפיינים, בוטים ואוטומציה. שותף מטא רשמי בישראל.',
     keywords: 'וואטסאפ עסקי, WhatsApp Business, WhatsApp Business API ישראל, מערכת וואטסאפ עסקי, WhatsApp CRM',
     canonical: 'https://gambot.co.il/וואטסאפ-עסקי/',
-    hreflang: { he: 'https://gambot.co.il/וואטסאפ-עסקי/', en: 'https://gambot.co.il/whatsapp-business/' },
+    hreflang: { he: 'https://gambot.co.il/וואטסאפ-עסקי/', en: 'https://gambot.co.il/whatsapp-business/', 'x-default': 'https://gambot.co.il/whatsapp-business/' },
   },
   whatsappMarketing: {
     title: 'שיווק בוואטסאפ | קמפיינים שיווקיים | גמבוט ישראל 2026',
     description: 'שיווק בוואטסאפ עם אחוזי פתיחה של 95%! שלחו קמפיינים ממוקדים, דיוור המוני וסגמנטציה חכמה. ניסיון חינם.',
     keywords: 'שיווק בוואטסאפ, קמפיינים וואטסאפ, דיוור בוואטסאפ, WhatsApp marketing ישראל, שיווק דיגיטלי',
     canonical: 'https://gambot.co.il/שיווק-בוואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/שיווק-בוואטסאפ/', en: 'https://gambot.co.il/whatsapp-marketing/' },
+    hreflang: { he: 'https://gambot.co.il/שיווק-בוואטסאפ/', en: 'https://gambot.co.il/whatsapp-marketing/', 'x-default': 'https://gambot.co.il/whatsapp-marketing/' },
   },
   whatsappAutomation: {
     title: 'אוטומציה בוואטסאפ | Botomation - מערכת אוטומציה חכמה | גמבוט',
     description: 'אוטומציה בוואטסאפ מתקדמת ללא קוד. בנו תהליכים עסקיים אוטומטיים, אינטגרציות עם CRM, API ו-Google Sheets. 24/7.',
     keywords: 'אוטומציה בוואטסאפ, WhatsApp automation, botomation, אוטומציה עסקית, workflow וואטסאפ, ישראל',
     canonical: 'https://gambot.co.il/אוטומציה-בוואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/אוטומציה-בוואטסאפ/', en: 'https://gambot.co.il/whatsapp-automation/' },
+    hreflang: { he: 'https://gambot.co.il/אוטומציה-בוואטסאפ/', en: 'https://gambot.co.il/whatsapp-automation/', 'x-default': 'https://gambot.co.il/whatsapp-automation/' },
   },
   whatsappChatbot: {
     title: 'צ׳אטבוט וואטסאפ | AI Chatbot לעסקים | גמבוט ישראל 2026',
     description: 'צ׳אטבוט לוואטסאפ מבוסס AI - מענה אוטומטי 24/7, ניהול לידים, שירות לקוחות חכם ואינטגרציות. ללא קוד. ניסיון חינם.',
     keywords: 'צאטבוט וואטסאפ, chatbot WhatsApp, בוט שיחה, AI chatbot ישראל, מענה אוטומטי וואטסאפ',
     canonical: 'https://gambot.co.il/צאטבוט-וואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/צאטבוט-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-chatbot/' },
+    hreflang: { he: 'https://gambot.co.il/צאטבוט-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-chatbot/', 'x-default': 'https://gambot.co.il/whatsapp-chatbot/' },
   },
   whatsappNewsletter: {
     title: 'דיוור בוואטסאפ | ניוזלטר וואטסאפ לעסקים | גמבוט 2026',
     description: 'דיוור בוואטסאפ עם אחוזי פתיחה של 95%! שלחו ניוזלטר, עדכונים ומבצעים ישירות לוואטסאפ של הלקוחות. פשוט ויעיל.',
     keywords: 'דיוור בוואטסאפ, ניוזלטר וואטסאפ, WhatsApp newsletter, שליחה המונית וואטסאפ, bulk messaging',
     canonical: 'https://gambot.co.il/דיוור-בוואטסאפ/',
+    hreflang: { he: 'https://gambot.co.il/דיוור-בוואטסאפ/', en: 'https://gambot.co.il/whatsapp-newsletter/', 'x-default': 'https://gambot.co.il/whatsapp-newsletter/' },
   },
   whatsappCampaigns: {
     title: 'קמפיינים בוואטסאפ | ניהול קמפיינים שיווקיים | גמבוט 2026',
     description: 'קמפיינים בוואטסאפ עם סגמנטציה חכמה, תזמון אוטומטי ודוחות ביצועים. הגדילו מכירות עם אחוזי המרה גבוהים.',
     keywords: 'קמפיינים בוואטסאפ, WhatsApp campaigns, שיווק וואטסאפ, קמפיין SMS וואטסאפ, שליחת הודעות המוניות',
     canonical: 'https://gambot.co.il/קמפיינים-בוואטסאפ/',
+    hreflang: { he: 'https://gambot.co.il/קמפיינים-בוואטסאפ/', en: 'https://gambot.co.il/whatsapp-campaigns/', 'x-default': 'https://gambot.co.il/whatsapp-campaigns/' },
   },
   whatsappAiBot: {
     title: 'בוט AI לוואטסאפ | Gambot AI Agent | שיחות חכמות 24/7 | ישראל 2026',
     description: 'בוט AI לוואטסאפ מבוסס GPT-4 — מנהל שיחות טבעיות, שולח תמונות, סורק את האתר שלכם, מתאם פגישות ביומן ומשיג מטרות. הגדרה תוך 5 דקות, ללא קוד.',
     keywords: 'בוט AI לוואטסאפ, בוט AI וואטסאפ, chatbot AI וואטסאפ, gambot AI, סוכן AI וואטסאפ, GPT וואטסאפ, בוט חכם לעסקים',
     canonical: 'https://gambot.co.il/בוט-ai-וואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/בוט-ai-וואטסאפ/' },
+    hreflang: { he: 'https://gambot.co.il/בוט-ai-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-ai-bot/', 'x-default': 'https://gambot.co.il/whatsapp-ai-bot/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -105,46 +107,49 @@ export const PAGE_META = {
     description: 'בוט לידים AI לוואטסאפ — מנהל שיחת מכירה, קובע פגישה ביומן ושולח סיכום AI עם פרטי הלקוח. אוטומטי לחלוטין, 24/7.',
     keywords: 'בוט לידים וואטסאפ, AI lead bot, ניהול לידים, קביעת פגישות אוטומטית, סיכום AI, WhatsApp CRM',
     canonical: 'https://gambot.co.il/בוט-לידים-וואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/בוט-לידים-וואטסאפ/' },
+    hreflang: { he: 'https://gambot.co.il/בוט-לידים-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-ai-lead-bot/', 'x-default': 'https://gambot.co.il/whatsapp-ai-lead-bot/' },
   },
   whatsappAppointment: {
     title: 'זימון תורים וואטסאפ | הזמנות אוטומטיות | גמבוט ישראל 2026',
     description: 'זימון תורים אוטומטי בוואטסאפ - לוח שנה חכם, אישורים ותזכורות אוטומטיות. מושלם לקליניקות, ספרים ועסקי שירות.',
     keywords: 'זימון תורים וואטסאפ, הזמנות אוטומטיות, WhatsApp appointment, לוח שנה חכם, תזכורות אוטומטיות',
     canonical: 'https://gambot.co.il/זימון-תורים-וואטסאפ/',
+    hreflang: { he: 'https://gambot.co.il/זימון-תורים-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-appointment-booking/', 'x-default': 'https://gambot.co.il/whatsapp-appointment-booking/' },
   },
   customerServiceBot: {
     title: 'בוט שירות לקוחות וואטסאפ | שירות 24/7 אוטומטי | גמבוט 2026',
     description: 'בוט שירות לקוחות לוואטסאפ - מענה מיידי 24/7, ניתוב שיחות חכם והעברה לנציג אנושי בעת הצורך. שפרו CSAT.',
     keywords: 'בוט שירות לקוחות וואטסאפ, customer service bot, WhatsApp support, שירות לקוחות אוטומטי',
     canonical: 'https://gambot.co.il/בוט-שירות-לקוחות-וואטסאפ/',
+    hreflang: { he: 'https://gambot.co.il/בוט-שירות-לקוחות-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-customer-service-bot/', 'x-default': 'https://gambot.co.il/whatsapp-customer-service-bot/' },
   },
   salesBot: {
     title: 'בוט מכירות וואטסאפ | AI Sales Bot | גמבוט ישראל 2026',
     description: 'בוט מכירות AI לוואטסאפ - ניהול תהליך מכירה מלא, הצגת מוצרים, קבלת הזמנות ועיבוד תשלומים אוטומטית.',
     keywords: 'בוט מכירות וואטסאפ, sales bot WhatsApp, AI מכירות, e-commerce וואטסאפ, הזמנות אוטומטיות',
     canonical: 'https://gambot.co.il/בוט-מכירות-וואטסאפ/',
+    hreflang: { he: 'https://gambot.co.il/בוט-מכירות-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-sales-bot/', 'x-default': 'https://gambot.co.il/whatsapp-sales-bot/' },
   },
   mediaManagement: {
     title: 'דוחות שיווק וואטסאפ | ניתוח לידים וקמפיינים אוטומטי | גמבוט 2026',
     description: 'דוחות שיווק שבועיים/חודשיים אוטומטיים לוואטסאפ. ניתוח לידים, ביצועי קמפיינים, ROI ונציגים — הכל בדוח אחד. ניסיון חינם.',
     keywords: 'דוחות שיווק וואטסאפ, WhatsApp marketing reports, ניתוח לידים, דוח לידים, ROI וואטסאפ, marketing analytics WhatsApp',
     canonical: 'https://gambot.co.il/ניהול-מדיה/',
-    hreflang: { he: 'https://gambot.co.il/ניהול-מדיה/' },
+    hreflang: { he: 'https://gambot.co.il/ניהול-מדיה/', en: 'https://gambot.co.il/whatsapp-marketing-reports/', 'x-default': 'https://gambot.co.il/whatsapp-marketing-reports/' },
   },
   marketingSystem: {
     title: 'מערכת התכתבות וואטסאפ | ניהול שיחות ונציגים | גמבוט 2026',
     description: 'מערכת התכתבות מרכזית לוואטסאפ — תיבת דואר משותפת, הקצאה לנציגים, תיוגים ומעקב. כל השיחות במקום אחד. ניסיון חינם.',
     keywords: 'מערכת התכתבות וואטסאפ, WhatsApp inbox, ניהול שיחות וואטסאפ, shared inbox, WhatsApp helpdesk, תיבת דואר נכנס וואטסאפ',
     canonical: 'https://gambot.co.il/מערכת-שיווק-בוואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/מערכת-שיווק-בוואטסאפ/' },
+    hreflang: { he: 'https://gambot.co.il/מערכת-שיווק-בוואטסאפ/', en: 'https://gambot.co.il/whatsapp-shared-inbox/', 'x-default': 'https://gambot.co.il/whatsapp-shared-inbox/' },
   },
   leadsManagement: {
     title: 'מערכת ניהול לידים | וואטסאפ אוטומטי לכל ליד | גמבוט 2026',
     description: 'מערכת ניהול לידים עם וואטסאפ אוטומטי — כל ליד מקבל תגובה תוך שניות. חיבור מפייסבוק, דפי נחיתה, CTWA ו-API. קנבן פייפליין, משימות, הצעות מחיר ודוחות. ניסיון חינם 30 יום.',
     keywords: 'מערכת ניהול לידים, ניהול לידים, ניהול לידים ישראל, lead management, לידים וואטסאפ, CRM לידים, ניהול לידים אוטומטי, פייפליין לידים, ניהול לידים מדף נחיתה, ניהול לידים פייסבוק',
     canonical: 'https://gambot.co.il/ניהול-לידים/',
-    hreflang: { he: 'https://gambot.co.il/ניהול-לידים/' },
+    hreflang: { he: 'https://gambot.co.il/ניהול-לידים/', en: 'https://gambot.co.il/whatsapp-lead-management/', 'x-default': 'https://gambot.co.il/whatsapp-lead-management/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -179,7 +184,7 @@ export const PAGE_META = {
     description: 'חברו כל דף נחיתה לגמבוט — כל שליחת טופס שולחת הודעת וואטסאפ אישית תוך שניות ונכנסת ל-CRM. עובד עם Wix, Webflow, WordPress ועוד. ניסיון חינם 30 יום.',
     keywords: 'דפי נחיתה לידים, דף נחיתה וואטסאפ, ניהול לידים מדפי נחיתה, landing page webhook, לידים מדף נחיתה, Wix לידים וואטסאפ, Webflow לידים, וואטסאפ אוטומטי מדף נחיתה',
     canonical: 'https://gambot.co.il/דפי-נחיתה-לידים/',
-    hreflang: { he: 'https://gambot.co.il/דפי-נחיתה-לידים/' },
+    hreflang: { he: 'https://gambot.co.il/דפי-נחיתה-לידים/', en: 'https://gambot.co.il/whatsapp-landing-page-leads/', 'x-default': 'https://gambot.co.il/whatsapp-landing-page-leads/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -211,7 +216,7 @@ export const PAGE_META = {
     description: 'מערכת CRM חכמה לעסקים — לידים מפייסבוק CTWA ודפי נחיתה, קנבן ויזואלי, ניהול לקוחות, התכתבות בוואטסאפ, משימות, הצעות מחיר עם חתימה דיגיטלית ודוחות. ניסיון חינם 30 יום.',
     keywords: 'CRM לעסקים, מערכת CRM ישראל, ניהול לידים, ניהול לקוחות, WhatsApp CRM, CRM וואטסאפ, גמבוט CRM, CRM קטן ובינוני, מערכת ניהול לקוחות, CRM עברית',
     canonical: 'https://gambot.co.il/crm-לעסקים/',
-    hreflang: { he: 'https://gambot.co.il/crm-לעסקים/', en: 'https://gambot.co.il/crm-for-business/' },
+    hreflang: { he: 'https://gambot.co.il/crm-לעסקים/', en: 'https://gambot.co.il/crm-for-business/', 'x-default': 'https://gambot.co.il/crm-for-business/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -249,7 +254,7 @@ export const PAGE_META = {
     description: 'Smart CRM for businesses — leads from Facebook CTWA & landing pages, visual kanban, WhatsApp messaging, task management, digital-signature quotes, and advanced reports. 30-day free trial.',
     keywords: 'CRM for business, WhatsApp CRM, CRM Israel, lead management, customer management, Gambot CRM, small business CRM, CRM software',
     canonical: 'https://gambot.co.il/crm-for-business/',
-    hreflang: { he: 'https://gambot.co.il/crm-לעסקים/', en: 'https://gambot.co.il/crm-for-business/' },
+    hreflang: { he: 'https://gambot.co.il/crm-לעסקים/', en: 'https://gambot.co.il/crm-for-business/', 'x-default': 'https://gambot.co.il/crm-for-business/' },
   },
   pricing: {
     title: 'מחירי WhatsApp API | תוכניות ומחירים | גמבוט ישראל 2026',
@@ -280,7 +285,7 @@ export const PAGE_META = {
     description: 'Official Gambot WhatsApp Business API (REST) — send WhatsApp messages & templates, manage contacts, leads, cases, tasks, campaigns, forms, documents & e-signatures. Simple bearer-token auth, curl examples, and an MCP server for AI assistants (Claude, ChatGPT, Gemini). תיעוד ה-API הרשמי של גמבוט.',
     keywords: 'WhatsApp API, WhatsApp Business API, WhatsApp REST API, send WhatsApp message API, WhatsApp API Israel, WhatsApp API documentation, WhatsApp template API, WhatsApp API developer, Gambot API, גמבוט API, מדריך למפתח, REST API WhatsApp, שליחת הודעות API, WhatsApp MCP server, WhatsApp API for AI, WhatsApp API integration',
     canonical: 'https://gambot.co.il/developers/',
-    hreflang: { he: 'https://gambot.co.il/developers/', en: 'https://gambot.co.il/developers/' },
+    hreflang: { he: 'https://gambot.co.il/developers/', en: 'https://gambot.co.il/developers/', 'x-default': 'https://gambot.co.il/developers/' },
     og: {
       locale: 'en_US',
       title: 'Gambot WhatsApp API — REST Developer Docs & MCP Server',
@@ -340,7 +345,7 @@ export const PAGE_META = {
     description: 'ניהול משימות בוואטסאפ — צרו משימות מתוך שיחות, שייכו לנציגים, הגדירו דדליינים ותזכורות. משולב עם CRM, לידים ופניות. ניסיון חינם.',
     keywords: 'ניהול משימות בוואטסאפ, משימות וואטסאפ, task management WhatsApp, ניהול משימות לעסקים, משימות CRM, ניהול צוות וואטסאפ',
     canonical: 'https://gambot.co.il/ניהול-משימות/',
-    hreflang: { he: 'https://gambot.co.il/ניהול-משימות/' },
+    hreflang: { he: 'https://gambot.co.il/ניהול-משימות/', en: 'https://gambot.co.il/whatsapp-task-management/', 'x-default': 'https://gambot.co.il/whatsapp-task-management/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -372,7 +377,7 @@ export const PAGE_META = {
     description: 'חשבוניות דיגיטליות מאושרות רשות המסים — הפקת חשבוניות מס, קבלות וחשבוניות עסקה ישירות מגמבוט. שליחה בוואטסאפ, חיבור ל-CRM והצעות מחיר.',
     keywords: 'חשבוניות דיגיטליות, חשבוניות בוואטסאפ, מאושר רשות המסים, חשבונית מס דיגיטלית, חשבונית אונליין, הפקת חשבוניות, חשבוניות לעסקים',
     canonical: 'https://gambot.co.il/חשבוניות-דיגיטליות/',
-    hreflang: { he: 'https://gambot.co.il/חשבוניות-דיגיטליות/' },
+    hreflang: { he: 'https://gambot.co.il/חשבוניות-דיגיטליות/', en: 'https://gambot.co.il/whatsapp-invoices/', 'x-default': 'https://gambot.co.il/whatsapp-invoices/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -404,7 +409,7 @@ export const PAGE_META = {
     description: 'דיווח שעות עובדים בוואטסאפ — כניסה/יציאה בהודעה, הפסקות, שעות נוספות, דוחות חודשיים וחיבור למערכת שכר. ללא אפליקציה נוספת.',
     keywords: 'דיווח שעות עובדים, דיווח שעות בוואטסאפ, שעון נוכחות וואטסאפ, מעקב שעות עובדים, דיווח נוכחות, שעות נוספות, דיווח שעות לעסקים',
     canonical: 'https://gambot.co.il/דיווח-שעות-עובדים/',
-    hreflang: { he: 'https://gambot.co.il/דיווח-שעות-עובדים/' },
+    hreflang: { he: 'https://gambot.co.il/דיווח-שעות-עובדים/', en: 'https://gambot.co.il/whatsapp-time-tracking/', 'x-default': 'https://gambot.co.il/whatsapp-time-tracking/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -436,7 +441,7 @@ export const PAGE_META = {
     description: 'טלפוניה משולבת וואטסאפ — שיחות מהדפדפן, הקלטות, סיכום AI. שיחה לא נענתה? הודעת וואטסאפ אוטומטית. הכל מחובר ל-CRM.',
     keywords: 'טלפוניה וואטסאפ, טלפוניה + וואטסאפ, מערכת טלפון וואטסאפ, שיחות מהדפדפן, הקלטת שיחות, סיכום AI שיחה, VoIP וואטסאפ, טלפוניה לעסקים',
     canonical: 'https://gambot.co.il/טלפוניה-וואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/טלפוניה-וואטסאפ/' },
+    hreflang: { he: 'https://gambot.co.il/טלפוניה-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-telephony/', 'x-default': 'https://gambot.co.il/whatsapp-telephony/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -468,7 +473,7 @@ export const PAGE_META = {
     description: 'Gambot (גמבוט) — Israel\'s leading WhatsApp Business API platform. Founded by Nir Segas. Official Meta Business Solution Provider. AI chatbots, automation, campaigns, CRM & WhatsApp marketing.',
     keywords: 'Gambot, gambot, about Gambot, Gambot WhatsApp, Gambot Israel, Nir Segas, ניר סגס, גמבוט, Gambot founder, Gambot CEO, WhatsApp API Israel, WhatsApp Business API platform',
     canonical: 'https://gambot.co.il/about/',
-    hreflang: { he: 'https://gambot.co.il/אודות/', en: 'https://gambot.co.il/about/' },
+    hreflang: { he: 'https://gambot.co.il/אודות/', en: 'https://gambot.co.il/about/', 'x-default': 'https://gambot.co.il/about/' },
     og: {
       title: 'About Gambot — Israel\'s #1 WhatsApp Business API Platform',
       description: 'Gambot — Founded by Nir Segas. Official Meta Partner. Leading WhatsApp API platform in Israel with AI bots, automation & CRM.',
@@ -479,7 +484,7 @@ export const PAGE_META = {
     description: 'קמפיינים ודיוור בוואטסאפ מהמערכת המובילה בישראל — שיווק מאותו מספר עסקי, מאושר מטא. יוצרים תבניות, מדוורים לאקסל או אנשי קשר, מתזמנים קמפיינים וברכות חג עם AI. ניסיון חינם.',
     keywords: 'קמפיינים בוואטסאפ, מערכת דיוור בוואטסאפ, מערכת דיוור לוואטסאפ, דיוור בוואטסאפ, שיווק בוואטסאפ, שיווק בוואטסאפ לעסקים, דיוור המוני וואטסאפ, מערכת שיווק וואטסאפ, WhatsApp campaigns, WhatsApp broadcast, מורשה מטא, תבניות וואטסאפ, גמבוט',
     canonical: 'https://gambot.co.il/מערכת-דיוור-וואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/מערכת-דיוור-וואטסאפ/' },
+    hreflang: { he: 'https://gambot.co.il/מערכת-דיוור-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-broadcast/', 'x-default': 'https://gambot.co.il/whatsapp-broadcast/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -511,7 +516,7 @@ export const PAGE_META = {
     description: 'מדריך: איך מייצרים אוטומציה בוואטסאפ בדרך המהירה ביותר — אישור הזמנה, תזכורות, פולואפים ובקשות ביקורת. אינטגרציית Webhook ו-HTTP Request ותזמון תהליכים. חודש ניסיון חינם.',
     keywords: 'איך מייצרים אוטומציה בוואטסאפ, איך ליצור אוטומציה בוואטסאפ, אוטומציה בוואטסאפ, מערכת אוטומציה בוואטסאפ, WhatsApp automation, botomation, אוטומציה עסקית, webhook וואטסאפ, HTTP request וואטסאפ, אישור הזמנה אוטומטי, תזכורות וואטסאפ, גמבוט',
     canonical: 'https://gambot.co.il/מערכת-אוטומציה-וואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/מערכת-אוטומציה-וואטסאפ/' },
+    hreflang: { he: 'https://gambot.co.il/מערכת-אוטומציה-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-automation-guide/', 'x-default': 'https://gambot.co.il/whatsapp-automation-guide/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -544,7 +549,7 @@ export const PAGE_META = {
     description: 'מדריך: איך ליצור בוט תפריטים בוואטסאפ ברבע שעה, ללא קוד — בגרירה ושחרור. כולל פתיחת חשבון ואימות מטא (כחצי שעה מקצה לקצה). בוט על הטלפון (Coexistence), תזכורות ודוחות. חודש ניסיון חינם.',
     keywords: 'איך ליצור בוט בוואטסאפ, איך ליצור בוט תפריטים בוואטסאפ, איך לבנות בוט וואטסאפ, בוט תפריטים בוואטסאפ, יצירת בוטים בוואטסאפ, בניית בוט וואטסאפ, בוט וואטסאפ, כלי יצירת בוטים, תכנון בוטים, drag and drop bot, בוט AI וואטסאפ, coexistence וואטסאפ, WhatsApp bot builder, גמבוט',
     canonical: 'https://gambot.co.il/יצירת-בוטים-וואטסאפ/',
-    hreflang: { he: 'https://gambot.co.il/יצירת-בוטים-וואטסאפ/' },
+    hreflang: { he: 'https://gambot.co.il/יצירת-בוטים-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-bot-builder/', 'x-default': 'https://gambot.co.il/whatsapp-bot-builder/' },
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -577,7 +582,7 @@ export const PAGE_META = {
     description: 'The Gambot WhatsApp MCP server lets AI agents (Claude, ChatGPT, Cursor, Gemini) send WhatsApp messages & templates, run campaigns and manage CRM through the Model Context Protocol. Official Meta-approved WhatsApp Business API. Install with one npx command.',
     keywords: 'WhatsApp MCP, WhatsApp MCP server, MCP WhatsApp, WhatsApp Model Context Protocol, connect WhatsApp to Claude, WhatsApp for ChatGPT, WhatsApp Gemini, WhatsApp API for AI agents, AI WhatsApp API, send WhatsApp from Claude, MCP server WhatsApp Business API, Gambot MCP, WhatsApp API MCP, Cursor WhatsApp MCP',
     canonical: 'https://gambot.co.il/whatsapp-mcp/',
-    hreflang: { en: 'https://gambot.co.il/whatsapp-mcp/' },
+    hreflang: { en: 'https://gambot.co.il/whatsapp-mcp/', 'x-default': 'https://gambot.co.il/whatsapp-mcp/' },
     og: {
       locale: 'en_US',
       title: 'WhatsApp MCP Server — Send WhatsApp from Claude, ChatGPT & Gemini',

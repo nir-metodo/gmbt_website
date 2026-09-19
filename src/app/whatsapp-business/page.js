@@ -1,6 +1,8 @@
-'use client';
-import { useEffect } from 'react';
-export default function Page() {
-  useEffect(() => { window.location.replace('/וואטסאפ-עסקי/'); }, []);
-  return null;
+import { buildEnMetadata } from '@/lib/enPages';
+import EnSolutionPage from '@/components/shared/EnSolutionPage';
+
+export const metadata = buildEnMetadata('whatsapp-business');
+
+export default function WhatsAppBusinessEnPage() {
+  return <EnSolutionPage slug="whatsapp-business" />;
 }

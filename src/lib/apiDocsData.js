@@ -6,7 +6,7 @@ export const API_BASE_FALLBACK = 'https://gambot.azurewebsites.net/api/v1';
 // Hosted (online) MCP endpoint — Streamable HTTP. Used by web-based AI tools that can't run a local process
 // (ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make, …). Verified live: Azure Web App "gambot-mcp"
 // (Gambot_Resource_Group), Node 22, `node dist/http.js`. Auth: OAuth 2.0 (PKCE + DCR) or Bearer gmbt_ token.
-// Discovery: /.well-known/oauth-protected-resource/mcp and /.well-known/oauth-authorization-server. 112 tools.
+// Discovery: /.well-known/oauth-protected-resource/mcp and /.well-known/oauth-authorization-server. 114 tools.
 export const MCP_REMOTE_URL = 'https://gambot-mcp.azurewebsites.net/mcp';
 
 // -- Intro / auth / conventions ----------------------------------------------------------
@@ -55,14 +55,48 @@ export const API_INTRO = {
 }`,
   },
   errors: {
-    title: { he: 'שגיאות', en: 'Errors' },
+    title: { he: 'טיפול בשגיאות', en: 'Error Handling' },
+    body: {
+      he: 'שגיאות מוחזרות במעטפת אחידה. בנוסף ל-<code>error</code> (מחרוזת) וּ-<code>message</code> (טקסט לאדם), כל שגיאה כוללת כעת <code>code</code> קריא-למכונה (UPPER_SNAKE) שיציב לאורך זמן — העדיפו לבדוק אותו על פני ניתוח טקסט. חלק מהשגיאות מוסיפות <code>data</code> עם מצב מובנה (למשל האם ניתן לשלוח טקסט חופשי / תבנית). השדות החדשים נוספים בלבד ואינם שוברים לקוחות קיימים.',
+      en: 'Errors use a consistent envelope. In addition to <code>error</code> (a string slug) and <code>message</code> (human text), every error now includes a stable machine-readable <code>code</code> (UPPER_SNAKE) — branch on it instead of parsing prose. Some errors also add a <code>data</code> object with structured state (e.g. whether free-text / a template can be sent). These fields are purely additive and do not break existing clients.',
+    },
+    example: `{
+  "success": false,
+  "error": "conversation_closed",
+  "code": "CONVERSATION_WINDOW_CLOSED",
+  "message": "A free-form WhatsApp message cannot currently be sent.",
+  "data": { "canSendFreeText": false, "canSendTemplate": true }
+}`,
+    columns: { http: 'HTTP', code: 'code', error: 'error', desc: { he: 'מתי', en: 'When' } },
     rows: [
-      { code: '401', key: 'missing_api_key / invalid_api_key', he: 'טוקן חסר או שגוי', en: 'Token missing or invalid' },
-      { code: '403', key: 'api_disabled', he: 'ה-API מושבת עבור ארגון זה', en: 'API is disabled for this organization' },
-      { code: '403', key: 'insufficient_scope', he: 'לטוקן חסרה ההרשאה הנדרשת', en: 'The token lacks the required scope' },
-      { code: '400', key: 'missing_fields', he: 'חסרים שדות חובה', en: 'Required fields are missing' },
-      { code: '404', key: 'not_found', he: 'המשאב לא נמצא', en: 'Resource not found' },
-      { code: '502', key: 'send_failed', he: 'השליחה נכשלה (בעיה בצד WhatsApp)', en: 'Send failed (WhatsApp-side issue)' },
+      { code: '401', machineCode: 'AUTHENTICATION_REQUIRED', key: 'missing_api_key / invalid_api_key', he: 'טוקן חסר או שגוי', en: 'Token missing or invalid' },
+      { code: '403', machineCode: 'API_DISABLED', key: 'api_disabled', he: 'ה-API מושבת עבור ארגון זה', en: 'API is disabled for this organization' },
+      { code: '403', machineCode: 'INSUFFICIENT_PERMISSION', key: 'insufficient_scope', he: 'לטוקן חסרה ההרשאה הנדרשת', en: 'The token lacks the required scope' },
+      { code: '400', machineCode: 'VALIDATION_ERROR', key: 'missing_fields', he: 'חסרים שדות חובה', en: 'Required fields are missing' },
+      { code: '400', machineCode: 'INVALID_PHONE_NUMBER', key: 'invalid_phone', he: 'מספר טלפון לא תקין (E.164)', en: 'Invalid phone number (E.164)' },
+      { code: '404', machineCode: 'RESOURCE_NOT_FOUND', key: 'not_found', he: 'המשאב לא נמצא', en: 'Resource not found' },
+      { code: '409', machineCode: 'CONVERSATION_WINDOW_CLOSED', key: 'conversation_closed', he: 'חלון 24 השעות סגור — שלחו תבנית מאושרת', en: '24-hour window closed — send an approved template' },
+      { code: '409', machineCode: 'CONFIRMATION_REQUIRED', key: 'regular_window_confirmation_required', he: 'דיוור טקסט חופשי ידלג על נמענים בחלון סגור — נדרש אישור/תבנית', en: 'A regular broadcast would skip closed-window recipients — confirm or use a template' },
+      { code: '502', machineCode: 'TEMPLATE_NOT_FOUND', key: 'send_failed', he: 'התבנית לא נמצאה', en: 'Template not found' },
+      { code: '502', machineCode: 'MISSING_TEMPLATE_VARIABLES', key: 'send_failed', he: 'חסרים משתני תבנית או שאינם תואמים', en: 'Template variables missing or mismatched' },
+      { code: '502', machineCode: 'TEMPLATE_NOT_APPROVED', key: 'send_failed', he: 'התבנית אינה מאושרת ע"י Meta', en: 'Template not approved by Meta' },
+      { code: '502', machineCode: 'SEND_FAILED', key: 'send_failed', he: 'השליחה נכשלה (בעיה בצד WhatsApp)', en: 'Send failed (WhatsApp-side issue)' },
+      { code: '402', machineCode: 'PAYMENT_METHOD_REQUIRED', key: 'no_api_payment_method', he: 'אין אמצעי תשלום לחשבון ה-WhatsApp ב-Meta', en: 'No payment method on the Meta WhatsApp account' },
+    ],
+  },
+  agents: {
+    title: { he: 'בניית סוכני AI עם Gambot', en: 'Building AI Agents with Gambot' },
+    body: {
+      he: 'ה-API מחזיר מצב עסקי קריא-למכונה כדי שסוכני AI יוכלו להתאושש בבטחה. הנה כיצד להגיב למצבים הנפוצים:',
+      en: 'The API returns machine-readable business state so AI agents can recover safely. Here is how to react to the common situations:',
+    },
+    rows: [
+      { code: 'CONVERSATION_WINDOW_CLOSED', he: 'חלון 24 השעות סגור — שלחו תבנית מאושרת (list templates → send-template). data.canSendTemplate=true.', en: 'The 24h window is closed — send an approved template (list templates → send-template). data.canSendTemplate=true.' },
+      { code: 'MISSING_TEMPLATE_VARIABLES', he: 'שלפו את משתני התבנית (GET /templates/{id}/variables), בקשו מהמשתמש ערכים חסרים, ושלחו שוב עם כולם.', en: 'Fetch the template variables (GET /templates/{id}/variables), ask the user for missing values, and resend with all of them.' },
+      { code: 'CONFIRMATION_REQUIRED', he: 'דיוור טקסט חופשי ידלג על נמענים בחלון סגור — הציגו את הכמות (data.closedWindowCount) והעדיפו תבנית, או אשרו במפורש.', en: 'A regular broadcast will skip closed-window recipients — show the count (data.closedWindowCount) and prefer a template, or confirm explicitly.' },
+      { code: 'RESOURCE_NOT_FOUND / contact', he: 'אל תנחשו נמען — חפשו איש קשר (GET /contacts) או צרו אחד לפני שליחה.', en: 'Do not guess a recipient — search contacts (GET /contacts) or create one before sending.' },
+      { code: 'RATE_LIMITED / messaging limits', he: 'אל תנסו שוב בלולאה — פצלו לימים/בלוקים והמתינו. השתמשו בקמפיינים לדיוור המוני.', en: 'Do not loop retries — split into daily blocks and back off. Use campaigns for bulk sends.' },
+      { code: 'scheduled / accepted', he: 'תגובות מציינות אם הפעולה בוצעה, התקבלה או תוזמנה — קִראו את data.status ו-scheduledAt.', en: 'Responses indicate whether the operation completed, was accepted or scheduled — read data.status and scheduledAt.' },
     ],
   },
 };
@@ -2233,8 +2267,8 @@ npx -y gambot-mcp`,
   // -- Online / hosted MCP (Streamable HTTP) — one generic flow for every AI tool --
   remoteTitle: { he: 'MCP מקוון (מתארח) — לכל כלי AI', en: 'Online (hosted) MCP — for any AI tool' },
   remoteIntro: {
-    he: 'כלים מבוססי-ענן שלא יכולים להריץ תהליך מקומי (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> ועוד) מתחברים לאותו שרת MCP דרך <strong>כתובת URL מתארחת</strong> (Streamable HTTP) במקום <code>npx</code> — וחושפים את כל <strong>112 הכלים</strong>. השלבים זהים בכל מקום; רק היכן שמדביקים את ה-URL ואיך מאמתים משתנה.',
-    en: 'Cloud-based tools that can\'t run a local process (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> and more) connect to the same MCP server through a <strong>hosted URL</strong> (Streamable HTTP) instead of <code>npx</code> — exposing all <strong>112 tools</strong>. The steps are identical everywhere; only where you paste the URL and how you authenticate changes.',
+    he: 'כלים מבוססי-ענן שלא יכולים להריץ תהליך מקומי (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> ועוד) מתחברים לאותו שרת MCP דרך <strong>כתובת URL מתארחת</strong> (Streamable HTTP) במקום <code>npx</code> — וחושפים את כל <strong>114 הכלים</strong>. השלבים זהים בכל מקום; רק היכן שמדביקים את ה-URL ואיך מאמתים משתנה.',
+    en: 'Cloud-based tools that can\'t run a local process (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> and more) connect to the same MCP server through a <strong>hosted URL</strong> (Streamable HTTP) instead of <code>npx</code> — exposing all <strong>114 tools</strong>. The steps are identical everywhere; only where you paste the URL and how you authenticate changes.',
   },
   remoteUrlLabel: { he: 'כתובת השרת (Server URL)', en: 'Server URL' },
   remoteUrl: MCP_REMOTE_URL,
@@ -2258,14 +2292,14 @@ npx -y gambot-mcp`,
       'בחרו סוג שרת <strong>Remote / URL / HTTP</strong> (לא Local/Command).',
       'הדביקו את ה-Server URL שלמעלה.',
       'אמתו: אם הכלי מציע <strong>OAuth / Sign in</strong> — פשוט התחברו (ללא טוקן). אחרת הוסיפו כותרת <code>Authorization: Bearer gmbt_...</code> או הדביקו את הטוקן בשדה ה-Token/API Key.',
-      'שמרו והפעילו. הכלי מגלה אוטומטית את כל 112 הכלים והארגון מזוהה מהזהות שלכם.',
+      'שמרו והפעילו. הכלי מגלה אוטומטית את כל 114 הכלים והארגון מזוהה מהזהות שלכם.',
     ],
     en: [
       'In your tool, open where MCP servers/connectors are added (usually: Settings → Connectors / Integrations / MCP Servers).',
       'Choose a <strong>Remote / URL / HTTP</strong> server type (not Local/Command).',
       'Paste the Server URL above.',
       'Authenticate: if the tool offers <strong>OAuth / Sign in</strong> — just sign in (no token). Otherwise add an <code>Authorization: Bearer gmbt_...</code> header or paste the token into the Token/API Key field.',
-      'Save and enable. The tool auto-discovers all 112 tools and the organization is resolved from your identity.',
+      'Save and enable. The tool auto-discovers all 114 tools and the organization is resolved from your identity.',
     ],
   },
   remoteConfigTitle: { he: 'לכלים שמשתמשים בקובץ תצורה (JSON)', en: 'For tools that use a config file (JSON)' },
@@ -2287,8 +2321,8 @@ npx -y gambot-mcp`,
   },
 
   toolsNote: {
-    he: 'לאחר החיבור, הסוכן יכול לקרוא לכלים כמו <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> ועוד (112 כלים). לתבניות עם מדיה, כפתורים ו-Footer: <code>gambot_create_template</code> (העבירו <code>headerMediaUrl</code>) ו-<code>gambot_upload_template_media</code>. <strong>בניית בוטים בשיחה</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, וכן <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — ראו את סעיף <a href="#bots">בוטים ואוטומציות</a>.',
-    en: 'Once connected, the agent can call tools like <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> and more (112 tools). For templates with media, buttons and footer: <code>gambot_create_template</code> (pass <code>headerMediaUrl</code>) and <code>gambot_upload_template_media</code>. <strong>Build bots by chatting</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, plus <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — see the <a href="#bots">Bots &amp; Automations</a> section.',
+    he: 'לאחר החיבור, הסוכן יכול לקרוא לכלים כמו <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> ועוד (114 כלים). לתבניות עם מדיה, כפתורים ו-Footer: <code>gambot_create_template</code> (העבירו <code>headerMediaUrl</code>) ו-<code>gambot_upload_template_media</code>. <strong>בניית בוטים בשיחה</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, וכן <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — ראו את סעיף <a href="#bots">בוטים ואוטומציות</a>.',
+    en: 'Once connected, the agent can call tools like <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> and more (114 tools). For templates with media, buttons and footer: <code>gambot_create_template</code> (pass <code>headerMediaUrl</code>) and <code>gambot_upload_template_media</code>. <strong>Build bots by chatting</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, plus <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — see the <a href="#bots">Bots &amp; Automations</a> section.',
   },
 };
 
