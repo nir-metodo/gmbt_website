@@ -71,4 +71,49 @@ Authorization: Bearer gmbt_your_token
     { q: 'Can I reply automatically to inbound messages?', a: 'Yes \u2014 from your webhook handler, call the messaging endpoints (send-text within the 24h window, or a template) to respond, or trigger an AI agent via MCP.' },
     { q: 'Where is the payload format documented?', a: 'In the Webhooks section of the developer docs at gambot.co.il/developers/.' },
   ],
+  he: {
+    hero: {
+      badge: 'REST API · WhatsApp Business API',
+      h1: 'WhatsApp Webhooks — וובהוקים',
+      subhead:
+        'הגיבו לוואטסאפ בזמן אמת. גמבוט <strong style="color:#e9edef">מעבירה אירועי וואטסאפ נכנסים</strong> לנקודת הקצה שלכם כדי שהאפליקציה או הסוכן שלכם יגיבו — בלי שתחברו webhooks של Meta Graph בעצמכם.',
+      primary: { label: 'צור חשבון חינם →' },
+      secondary: { label: 'קרא את תיעוד ה־API' },
+      chips: ['הודעות נכנסות', 'זמן אמת', 'מטען JSON', 'נקודת הקצה שלכם'],
+    },
+    blocks: [
+      {
+        title: 'איך זה עובד',
+        bullets: [
+          'הגדירו את נקודת קצה ה־webhook שלכם בהגדרות ה־webhook של גמבוט.',
+          'גמבוט מעבירה אירועי וואטסאפ נכנסים (למשל הודעות נכנסות) לכתובת שלכם כ־JSON, בשיטת fire-and-forget.',
+          'השירות שלכם מעבד את האירוע — יוצר ליד, מפעיל סוכן, מעדכן רשומה — ויכול להשיב דרך ה־REST API.',
+          'שלבו webhooks עם <a href="' + DOCS + '" style="color:#25D366">נקודות הקצה של מסרים ושיחות</a> כדי לבנות לולאת נכנס ← פעולה מלאה.',
+        ],
+      },
+      {
+        title: 'הגיבו להודעה נכנסת',
+        intro: 'כשאירוע מגיע לנקודת הקצה שלכם, השיבו דרך ה־API (כתובת בסיס: ' + API_BASE + ').',
+      },
+      {
+        title: 'אמין, מאובטח, בשליטתכם',
+        paragraphs: [
+          'מכיוון שגמבוט מנהלת את מנוי ה־webhook הבסיסי של Meta, אתם מקבלים מטען נקי ויציב בנקודת קצה אחת — בלי לחיצות יד לאימות או ניהול מנוי Graph מצדכם. הגדירו, והתחילו לקבל אירועים.',
+          'ראו את מקטע ה־Webhooks ב<a href="' + DOCS + '" style="color:#25D366">תיעוד למפתחים</a> לפורמט המטען המדויק, הכותרות וסמנטיקת המסירה.',
+        ],
+      },
+      {
+        title: 'התחילו לקבל אירועי וואטסאפ',
+        text: 'צרו חשבון חינם, חברו וואטסאפ, וכוונו webhook לנקודת הקצה שלכם.',
+        primary: { label: 'צור חשבון חינם →' },
+        secondary: { label: 'תיעוד Webhook' },
+      },
+    ],
+    faq: [
+      { q: 'איך מקבלים הודעות וואטסאפ נכנסות?', a: 'הגדירו נקודת קצה webhook בגמבוט; אירועי וואטסאפ נכנסים מועברים לכתובת שלכם כ־JSON בזמן אמת. אז אתם מגיבים ויכולים להשיב דרך ה־REST API.' },
+      { q: 'האם צריך לנהל webhooks של Meta Graph?', a: 'לא. גמבוט מנהלת את המנוי הבסיסי של Meta ומעבירה מטען נקי לנקודת הקצה שלכם — בלי לחיצת יד לאימות מצדכם.' },
+      { q: 'האם אפשר להשיב אוטומטית להודעות נכנסות?', a: 'כן — מתוך מטפל ה־webhook שלכם, קראו לנקודות הקצה של המסרים (send-text בתוך חלון 24 השעות, או תבנית) כדי להגיב, או הפעילו סוכן AI דרך MCP.' },
+      { q: 'איפה מתועד פורמט המטען?', a: 'במקטע ה־Webhooks בתיעוד למפתחים בכתובת gambot.co.il/developers/.' },
+    ],
+  },
 };

@@ -84,4 +84,59 @@ Authorization: Bearer gmbt_your_token
     { q: 'Can I personalize templates per recipient?', a: 'Yes \u2014 map values to the template variables for each recipient (including from a spreadsheet).' },
     { q: 'Should I loop send-text to reach many people?', a: 'No. Use campaigns for bulk sends \u2014 they handle throughput, per-recipient variables, consent and reporting. The API and MCP guide you to campaigns for large audiences.' },
   ],
+  he: {
+    hero: {
+      badge: 'REST API + MCP · WhatsApp Business API',
+      h1: 'WhatsApp Campaign API — קמפיינים',
+      subhead:
+        'השיקו <strong style="color:#e9edef">קמפייני דיוור</strong> בוואטסאפ מהקוד שלכם או מסוכן AI — כוונו לתגיות, רשימות, פלחי CRM או גיליון, התאימו אישית לכל נמען, וקראו תוצאות מסירה.',
+      primary: { label: 'צור חשבון חינם →' },
+      secondary: { label: 'קרא את תיעוד ה־API' },
+      chips: ['תגיות ופלחים', 'משתני תבנית', 'הסרה והסכמה', 'תוצאות מסירה'],
+    },
+    blocks: [
+      {
+        title: 'מה אפשר לעשות',
+        bullets: [
+          '<strong style="color:#e9edef">יצירה והרצה</strong> של קמפיינים דרך <code>POST /campaigns</code> ו־<code>/campaigns/{id}/run</code>, או שליחה חד־פעמית עם <code>/campaigns/send</code>.',
+          '<strong style="color:#e9edef">כיוון</strong> לתגיות, רשימות, פלחי CRM, או רשימת מספרים מפורשת — הקהל נבנה עבורכם.',
+          '<strong style="color:#e9edef">התאמה אישית</strong> של משתני תבנית מאושרת לכל נמען.',
+          '<strong style="color:#e9edef">שמירה על ציות</strong> — אנשי קשר שביקשו הסרה או סומנו כספאם מוחרגים אוטומטית; נמענים יכולים להסיר עצמם בתגובה.',
+          '<strong style="color:#e9edef">קריאת תוצאות</strong> עם <code>/campaigns/{id}/results</code> — מזהה הודעה וסטטוס לכל נמען.',
+        ],
+      },
+      {
+        title: 'דיוור תבנית חד־פעמי',
+        intro: 'כתובת בסיס: ' + API_BASE + '. העדיפו תבניות לקהלים קרים (הן נמסרות מחוץ לחלון 24 השעות).',
+      },
+      {
+        title: 'דיוור רגיל מול דיוור תבנית',
+        paragraphs: [
+          'דיוור <strong style="color:#e9edef">רגיל</strong> (טקסט חופשי) מגיע רק לנמענים שחלון 24 השעות שלהם פתוח ומדלג בשקט על השאר — ולכן שגוי לקהל קר. גמבוט מבהירה זאת: לסוכני AI, דיוור רגיל מחזיר מצב הדורש אישור עם ספירת הנמענים שיוחמצו, וממליץ על תבנית במקום.',
+          'דיוור <strong style="color:#e9edef">תבנית מאושרת</strong> יכול לפתוח שיחות מחוץ לחלון, ולכן הוא הכלי הנכון להכרזות, מבצעים ותזכורות.',
+        ],
+      },
+      {
+        title: 'עם סוכן AI (MCP)',
+        prompts: [
+          { user: 'שלח את תבנית promo_launch לכל מי שמתויג VIP.' },
+          { user: 'הצג לכמה אנשי קשר דיוור רגיל באמת יגיע.' },
+          { user: 'איך הצליח קמפיין ההשקה?' },
+        ],
+        note: 'דרך שרת ה־MCP של גמבוט, קמפיינים רצים דרך אותו API — ראו את דף ה־WhatsApp MCP.',
+      },
+      {
+        title: 'הריצו את הקמפיין הראשון שלכם',
+        text: 'צרו חשבון חינם, חברו וואטסאפ, והשיקו קמפיין מותאם אישית דרך API או MCP.',
+        primary: { label: 'צור חשבון חינם →' },
+        secondary: { label: 'הגדרת WhatsApp MCP' },
+      },
+    ],
+    faq: [
+      { q: 'איך שולחים קמפיין וואטסאפ דרך API?', a: 'צרו קמפיין והריצו אותו (POST /campaigns ואז /campaigns/{id}/run) או שלחו חד־פעמית עם POST /campaigns/send, בכיוון לתגיות, רשימות, פלחי CRM או רשימת מספרים. השתמשו ב־dryRun לתצוגה מקדימה של הקהל.' },
+      { q: 'האם הסרות והסכמה מטופלות?', a: 'כן. דיוורים מחריגים אוטומטית אנשי קשר שביקשו הסרה וסומנו כספאם, ונמענים יכולים להסיר עצמם בתגובה; התגובות מחזירות פרטי הסכמה/הסרה.' },
+      { q: 'האם אפשר להתאים תבניות לכל נמען?', a: 'כן — מפו ערכים למשתני התבנית לכל נמען (כולל מגיליון נתונים).' },
+      { q: 'האם כדאי ללולאה על send-text כדי להגיע לרבים?', a: 'לא. השתמשו בקמפיינים לשליחות המוניות — הם מטפלים בתפוקה, משתנים לכל נמען, הסכמה ודיווח. ה־API וה־MCP מנחים אתכם לקמפיינים לקהלים גדולים.' },
+    ],
+  },
 };

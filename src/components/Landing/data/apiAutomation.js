@@ -83,4 +83,59 @@ Authorization: Bearer gmbt_your_token
     { q: 'Can an AI agent build automations for me?', a: 'Yes. Through the Gambot MCP server, an agent can create keyword auto-replies, menu bots and template-button flows in natural language.' },
     { q: 'Is this the official WhatsApp API?', a: 'Yes \u2014 Gambot runs on the authorized WhatsApp Business (Cloud) API as an official Meta Business Solution Provider.' },
   ],
+  he: {
+    hero: {
+      badge: 'REST API + MCP · WhatsApp Business API',
+      h1: 'WhatsApp Automation API — אוטומציה',
+      subhead:
+        'צרו <strong style="color:#e9edef">מענים אוטומטיים, בוטי תפריט ותהליכי כפתורי תבנית</strong> בוואטסאפ מהקוד שלכם או מסוכן AI — ושלבו אותם עם קמפיינים, תזמון ו־CRM.',
+      primary: { label: 'צור חשבון חינם →' },
+      secondary: { label: 'קרא את תיעוד ה־API' },
+      chips: ['מענה לפי מילת מפתח', 'בוטי תפריט', 'כפתורי תבנית', 'טריגרים מ־CRM'],
+    },
+    blocks: [
+      {
+        title: 'אוטומציות שאפשר ליצור',
+        cards: [
+          { icon: '\uD83D\uDD11', title: 'מענה לפי מילת מפתח', text: 'מענה אוטומטי כשהודעה תואמת מילות מפתח — POST /bots/keyword-reply.' },
+          { icon: '\uD83D\uDD18', title: 'מענה לכפתור תבנית', text: 'תגובה לכפתורי מענה מהיר של תבנית — POST /bots/template-button-reply.' },
+          { icon: '\uD83D\uDCCB', title: 'בוט תפריט', text: 'תבנית פתיחה בתוספת אפשרויות ממוספרות שמנתבות את השיחה — POST /bots/menu.' },
+          { icon: '\u2699\uFE0F', title: 'תהליכי בוט מלאים', text: 'ניהול תהליכים מתקדמים רבי־שלבים — GET/POST /bots, /bots/{id}/status.' },
+        ],
+      },
+      {
+        title: 'יצירת מענה לפי מילת מפתח',
+        intro: 'כתובת בסיס: ' + API_BASE + '.',
+      },
+      {
+        title: 'אוטומציה מקצה לקצה',
+        bullets: [
+          'הפעילו קמפיינים ושליחות מתוזמנות לצד אוטומציות למסרים לאורך כל מחזור החיים.',
+          'עדכנו תגיות, סטטוס וקטגוריה של אנשי קשר מהלוגיקה שלכם כדי לפלח דיוורים עתידיים.',
+          'הסלימו לאדם: סמנו שיחות לפי בעלים, סטטוס או SLA כשנדרש אדם.',
+          'עשו זאת בשפה טבעית דרך <a href="' + MCP + '" style="color:#25D366">שרת ה־WhatsApp MCP</a>, או בקוד דרך REST.',
+        ],
+      },
+      {
+        title: 'עם סוכן AI (MCP)',
+        prompts: [
+          { user: 'צור מענה לפי מילת מפתח שעונה ל"מחיר" עם תבנית התמחור.' },
+          { user: 'הקם בוט תפריט: 1) מכירות, 2) תמיכה, 3) חיובים.' },
+          { user: 'השהה את בוט המענה שמחוץ לשעות הפעילות.' },
+        ],
+      },
+      {
+        title: 'הפכו את וואטסאפ לאוטומטי',
+        text: 'צרו חשבון חינם, חברו וואטסאפ, ובנו את האוטומציה הראשונה שלכם דרך API או MCP.',
+        primary: { label: 'צור חשבון חינם →' },
+        secondary: { label: 'הגדרת WhatsApp MCP' },
+      },
+    ],
+    faq: [
+      { q: 'אילו אוטומציות וואטסאפ אפשר ליצור דרך API?', a: 'מענים לפי מילת מפתח (POST /bots/keyword-reply), מענים לכפתורי תבנית (POST /bots/template-button-reply), בוטי תפריט (POST /bots/menu), ותהליכי בוט מתקדמים רבי־שלבים (GET/POST /bots).' },
+      { q: 'האם אפשר להפעיל/להשבית בוט תכנותית?', a: 'כן — השתמשו ב־POST /bots/{id}/status כדי לשנות את סטטוס הבוט.' },
+      { q: 'האם סוכן AI יכול לבנות עבורי אוטומציות?', a: 'כן. דרך שרת ה־MCP של גמבוט, סוכן יכול ליצור מענים לפי מילת מפתח, בוטי תפריט ותהליכי כפתורי תבנית בשפה טבעית.' },
+      { q: 'האם זה ה־WhatsApp API הרשמי?', a: 'כן — גמבוט פועלת על ה־WhatsApp Business (Cloud) API המורשה כספקית פתרונות עסקיים רשמית של Meta.' },
+    ],
+  },
 };

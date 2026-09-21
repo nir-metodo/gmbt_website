@@ -1,14 +1,52 @@
+'use client';
 /**
  * Data-driven landing shell for the global developer / MCP / AI-agent SEO pages.
- * Server component (great for SSR/SEO); CTAs use the client TrackedLink for conversion attribution.
+ * Client component so it can follow the site-wide language switch (LanguageContext): CTAs use the
+ * client TrackedLink for conversion attribution.
  *
- * Pages pass a `data` object: { pageKey, hero, blocks[], faq[], breadcrumbs[] }. Block types:
- *   prose | cards | bullets | steps | code | prompts | table | cta
- * Content is distinct per page — this shell only provides consistent structure & styling
- * (the established Gambot WhatsApp dark theme, LTR/English).
+ * Pages pass a `data` object: { pageKey, hero, blocks[], faq[], breadcrumbs[] } (English), plus an
+ * OPTIONAL `he` object with the SAME shape holding Hebrew translations of the visible strings. When
+ * the site language is Hebrew we deep-merge `data.he` over `data` (per-field, English fallback) and
+ * flip the layout to RTL — so the same page renders correctly in both languages via the navbar toggle.
+ * Block types: prose | cards | bullets | steps | code | prompts | table | cta.
  */
 import TrackedLink from '@/components/Landing/TrackedLink';
 import PageViewTracker from '@/components/Landing/PageViewTracker';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+// ── Language merge: overlay the Hebrew `data.he` strings on top of the English structure, keeping any
+// field the translation omits (href/event/type and untranslated text) from English. Arrays provided in
+// `he` replace their English counterpart wholesale; blocks are matched by index. ──────────────────────
+function mergeCta(en, he) {
+  if (!en) return he || null;
+  if (!he) return en;
+  return { ...en, ...he };
+}
+function mergeBlock(en, he) {
+  if (!he) return en;
+  const out = { ...en, ...he };
+  if (en.primary || he.primary) out.primary = mergeCta(en.primary, he.primary);
+  if (en.secondary || he.secondary) out.secondary = mergeCta(en.secondary, he.secondary);
+  return out;
+}
+function mergeHero(en, he) {
+  if (!he) return en;
+  const out = { ...en, ...he };
+  out.primary = mergeCta(en.primary, he.primary);
+  out.secondary = mergeCta(en.secondary, he.secondary);
+  out.chips = he.chips || en.chips;
+  return out;
+}
+function resolveData(data, useHe) {
+  if (!useHe || !data.he) return data;
+  const he = data.he;
+  const out = { ...data };
+  if (he.hero) out.hero = mergeHero(data.hero, he.hero);
+  if (he.blocks && Array.isArray(data.blocks)) out.blocks = data.blocks.map((b, i) => mergeBlock(b, he.blocks[i]));
+  if (he.faq) out.faq = he.faq;
+  if (he.breadcrumbs) out.breadcrumbs = he.breadcrumbs;
+  return out;
+}
 
 const GREEN = '#25D366';
 const DARK = '#0b141a';
@@ -37,7 +75,7 @@ function Cta({ cta, page, kind }) {
   );
 }
 
-function Block({ block, page }) {
+function Block({ block, page, ui }) {
   switch (block.type) {
     case 'prose':
       return (
@@ -120,11 +158,11 @@ function Block({ block, page }) {
               {block.prompts.map((pr, i) => (
                 <div key={i} className="ls-card">
                   <p className="ls-user">
-                    <span className="ls-tag">You</span> {pr.user}
+                    <span className="ls-tag">{ui?.you || 'You'}</span> {pr.user}
                   </p>
                   {pr.agent && (
                     <p className="ls-agent">
-                      <span className="ls-tag ls-tag-agent">Agent</span> {pr.agent}
+                      <span className="ls-tag ls-tag-agent">{ui?.agent || 'Agent'}</span> {pr.agent}
                     </p>
                   )}
                 </div>
@@ -182,9 +220,17 @@ function Block({ block, page }) {
 }
 
 export default function LandingShell({ data }) {
-  const { pageKey, hero, blocks = [], faq = [], breadcrumbs = [] } = data;
+  const { currentLanguage } = useLanguage();
+  const isHe = currentLanguage === 'he' && !!data.he;
+  const d = resolveData(data, isHe);
+  const { pageKey, hero, blocks = [], faq = [], breadcrumbs = [] } = d;
+  const ui = {
+    faqHeading: isHe ? 'שאלות נפוצות' : 'Frequently asked questions',
+    you: isHe ? 'אתה' : 'You',
+    agent: isHe ? 'סוכן' : 'Agent',
+  };
   return (
-    <main style={{ background: DARK, color: TEXT, fontFamily: 'Rubik, "Open Sans", system-ui, sans-serif', direction: 'ltr' }}>
+    <main dir={isHe ? 'rtl' : 'ltr'} style={{ background: DARK, color: TEXT, fontFamily: 'Rubik, "Open Sans", system-ui, sans-serif', direction: isHe ? 'rtl' : 'ltr' }}>
       <PageViewTracker page={pageKey} />
       <style>{`
         .ls-wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
@@ -200,19 +246,19 @@ export default function LandingShell({ data }) {
         .ls-cardtext { color:${MUTED}; margin:0; line-height:1.6; font-size:15px; }
         .ls-icon { font-size:26px; margin-bottom:10px; }
         .ls-step { width:38px; height:38px; border-radius:10px; background:${GREEN}; color:#04220f; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px; margin-bottom:12px; }
-        .ls-ul { color:${MUTED}; font-size:16px; line-height:1.8; padding-left:22px; margin:0; }
+        .ls-ul { color:${MUTED}; font-size:16px; line-height:1.8; padding-inline-start:22px; margin:0; }
         .ls-ul li { margin-bottom:8px; }
         .ls-badge { display:inline-block; background:rgba(37,211,102,0.12); color:${GREEN}; border:1px solid ${GREEN}; border-radius:999px; padding:6px 16px; font-size:13px; font-weight:600; margin-bottom:22px; }
         .ls-chip { border:1px solid ${BORDER}; border-radius:999px; padding:8px 16px; color:${TEXT}; font-weight:500; font-size:14px; background:#0f1a21; }
         .ls-prompts { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; margin-top:18px; }
         .ls-user { margin:0 0 10px; color:${TEXT}; font-size:15px; line-height:1.6; }
         .ls-agent { margin:0; color:${MUTED}; font-size:15px; line-height:1.6; }
-        .ls-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:2px 8px; border-radius:6px; margin-right:8px; background:#0f1a21; border:1px solid ${BORDER}; color:${MUTED}; }
+        .ls-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:2px 8px; border-radius:6px; margin-inline-end:8px; background:#0f1a21; border:1px solid ${BORDER}; color:${MUTED}; }
         .ls-tag-agent { color:${GREEN}; border-color:${GREEN}; }
         .ls-note { color:${MUTED}; font-size:13.5px; margin-top:14px; font-style:italic; }
         .ls-tablewrap { overflow:auto; margin-top:18px; }
         .ls-table { width:100%; border-collapse:collapse; font-size:14.5px; }
-        .ls-table th, .ls-table td { text-align:left; padding:12px 14px; border-bottom:1px solid ${BORDER}; color:${TEXT}; vertical-align:top; }
+        .ls-table th, .ls-table td { text-align:start; padding:12px 14px; border-bottom:1px solid ${BORDER}; color:${TEXT}; vertical-align:top; }
         .ls-table th { color:${MUTED}; font-weight:600; }
         .ls-table code { background:#0f1a21; border:1px solid ${BORDER}; border-radius:6px; padding:1px 6px; font-size:13px; color:#cfe9d8; }
         .ls-cta { background:#0f1a21; border-top:1px solid ${BORDER}; border-bottom:1px solid ${BORDER}; }
@@ -265,14 +311,14 @@ export default function LandingShell({ data }) {
       </section>
 
       {blocks.map((block, i) => (
-        <Block key={i} block={block} page={pageKey} />
+        <Block key={i} block={block} page={pageKey} ui={ui} />
       ))}
 
       {/* FAQ */}
       {faq.length > 0 && (
         <section className="ls-sec">
           <div className="ls-wrap">
-            <h2 className="ls-h2">Frequently asked questions</h2>
+            <h2 className="ls-h2">{ui.faqHeading}</h2>
             <div style={{ marginTop: 12 }}>
               {faq.map((f, i) => (
                 <details key={i} className="ls-card" style={{ marginBottom: 12 }}>

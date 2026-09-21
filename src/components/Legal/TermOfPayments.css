@@ -39,6 +39,23 @@
     direction: rtl; /* RTL text direction for Hebrew */
 }
 
+/* English (LTR) overrides — the base styles are RTL/Hebrew by default. */
+.terms-of-payments.ltr {
+    text-align: left;
+    direction: ltr;
+}
+
+.terms-of-payments.ltr p {
+    direction: ltr;
+    text-align: left;
+}
+
+.terms-of-payments.ltr ul.term-of-payment-add-on-rtl-list {
+    padding-right: 0;
+    padding-left: 20px;
+    text-align: left;
+}
+
 .terms-of-payments ul.term-of-payment-add-on-rtl-list {
     list-style-type: disc;
     padding-right: 20px; /* Provide padding for RTL alignment */

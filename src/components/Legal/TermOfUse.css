@@ -7,6 +7,29 @@
     direction: rtl;
     font-family: "Varela Round", sans-serif;
   }
+
+  /* English (LTR): the base styles above are RTL/Hebrew. When the container is rendered
+     with dir="ltr" (English), align everything to the left and flip direction-dependent bits. */
+  .TermOfUse-container[dir="ltr"] {
+    text-align: left;
+    direction: ltr;
+  }
+
+  .TermOfUse-container[dir="ltr"] .TermOfUse-paragraph,
+  .TermOfUse-container[dir="ltr"] .TermOfUse-privacy-paragraph {
+    direction: ltr;
+    text-align: left;
+  }
+
+  .TermOfUse-container[dir="ltr"] .TermOfUse-list {
+    padding-left: 20px;
+    padding-right: 0;
+  }
+
+  .TermOfUse-container[dir="ltr"] .TermOfUse-subsection {
+    border-right: none;
+    border-left: 4px solid #003092;
+  }
   
   .TermOfUse-header, .TermOfUse-privacy-header {
     color: #003092;
