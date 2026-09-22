@@ -66,7 +66,7 @@ const CONTENT = {
       { n: '3', t: 'It acts on WhatsApp', d: 'Ask in natural language — "message these 200 leads with the promo template" — and the agent does it via the official API.' },
     ],
     toolsH2: 'Everything your agent can do',
-    toolsIntro: '123 tools across the full Gambot WhatsApp Business API.',
+    toolsIntro: '133 tools across the full Gambot WhatsApp Business API.',
     toolGroups: [
   { title: 'Messaging', items: ['Send WhatsApp text', 'Send approved templates', 'List conversations & messages'] },
   { title: 'Campaigns', items: ['Create manual / scheduled / recurring', 'Mail-merge blast from a spreadsheet', 'Built-in opt-out & consent'] },
@@ -142,7 +142,7 @@ const CONTENT = {
       { n: '3', t: 'הוא פועל בוואטסאפ', d: 'בקשו בשפה טבעית — "שלח ל־200 הלידים האלה את תבנית המבצע" — והסוכן עושה זאת דרך ה־API הרשמי.' },
     ],
     toolsH2: 'כל מה שהסוכן שלכם יכול לעשות',
-    toolsIntro: '123 כלים על פני כל ה־WhatsApp Business API של גמבוט.',
+    toolsIntro: '133 כלים על פני כל ה־WhatsApp Business API של גמבוט.',
     toolGroups: [
       { title: 'מסרים', items: ['שליחת טקסט בוואטסאפ', 'שליחת תבניות מאושרות', 'הצגת שיחות והודעות'] },
       { title: 'קמפיינים', items: ['יצירה ידנית / מתוזמנת / חוזרת', 'דיוור ממוזג מגיליון נתונים', 'הסרה והסכמה מובנים'] },

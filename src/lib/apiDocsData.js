@@ -6,7 +6,7 @@ export const API_BASE_FALLBACK = 'https://gambot.azurewebsites.net/api/v1';
 // Hosted (online) MCP endpoint — Streamable HTTP. Used by web-based AI tools that can't run a local process
 // (ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make, …). Verified live: Azure Web App "gambot-mcp"
 // (Gambot_Resource_Group), Node 22, `node dist/http.js`. Auth: OAuth 2.0 (PKCE + DCR) or Bearer gmbt_ token.
-// Discovery: /.well-known/oauth-protected-resource/mcp and /.well-known/oauth-authorization-server. 123 tools.
+// Discovery: /.well-known/oauth-protected-resource/mcp and /.well-known/oauth-authorization-server. 133 tools.
 export const MCP_REMOTE_URL = 'https://gambot-mcp.azurewebsites.net/mcp';
 
 // -- Intro / auth / conventions ----------------------------------------------------------
@@ -2245,6 +2245,193 @@ export const API_SECTIONS = [
       },
     ],
   },
+  {
+    id: 'connections',
+    title: { he: 'חיבורים (אינטגרציות)', en: 'Connections (Integrations)' },
+    description: {
+      he: 'רשימת האינטגרציות המחוברות של הארגון — בדיוק כמו הגדרות → חיבורים: חשבונות מייל ויומן (Google/Microsoft OAuth), דפי פייסבוק ל-Lead Ads, חיבורי חנות/CRM, וכן מספרי ה-WhatsApp של הארגון. מוחזר <strong>מידע לא-רגיש בלבד</strong> (מזהים, ספק, סטטוס, אימייל החשבון) — טוקנים וסודות אף פעם לא נחשפים. השתמשו ב-<code>id</code> של חיבור כ-connectionId בקריאות אחרות (למשל טפסי ליד/יומן/שליחת מייל).',
+      en: 'List the organization\'s connected integrations — exactly like Settings → Connections: email & calendar OAuth accounts (Google/Microsoft), Facebook Lead Ads pages, shop/CRM links, and the org\'s WhatsApp numbers. Only <strong>non-secret metadata</strong> is returned (ids, provider, status, account email) — tokens/secrets are never exposed. Use a connection\'s <code>id</code> as connectionId in other calls (e.g. lead forms / calendar / sending email).',
+    },
+    endpoints: [
+      {
+        method: 'GET', path: '/connections', scope: 'connections:read',
+        summary: { he: 'הצגת כל החיבורים של הארגון + מספרי ה-WhatsApp. ?type= מסנן לפי סוג חיבור (למשל FacebookLeadAds).', en: 'List all of the org\'s connections + WhatsApp numbers. ?type= filters by connectionType (e.g. FacebookLeadAds).' },
+        params: [
+          { name: 'type', in: 'query', type: 'string', required: false, desc: { he: 'סינון לפי connectionType, למשל FacebookLeadAds.', en: 'Filter by connectionType, e.g. FacebookLeadAds.' } },
+        ],
+        request: null,
+        curl: `curl "${API_BASE}/connections" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{ "success": true, "data": { "count": 2, "connections": [ { "id": "conn_abc", "kind": "oauth", "provider": "google", "name": "Google Calendar & Gmail", "status": "connected", "email": "me@company.com" } ], "whatsappNumbers": [ { "id": "1029384756", "kind": "whatsapp", "provider": "meta", "displayNumber": "+972 50-000-0000", "isPrimary": true } ] } }`,
+        examples: [
+          { label: { he: 'קריאת כלי MCP', en: 'MCP tool call' }, code: `gambot_list_connections({})` },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'email',
+    title: { he: 'אימייל (שליחה + קמפיינים)', en: 'Email (Send + Campaigns)' },
+    description: {
+      he: 'שליחת מייל בודד וקמפייני דיוור במייל דרך תיבת ה-Google/Microsoft המחוברת (הגדרות → חיבורים). הריצו GET /connections כדי לראות אילו ספקים מחוברים. קמפייני מייל רצים על אותו מנוע שליחה עמיד ומתחדש כמו באפליקציה — בטוח לכמויות גדולות וללא כפילויות.',
+      en: 'Send a single email and run email marketing campaigns over a connected Google/Microsoft mailbox (Settings → Connections). Use GET /connections to see which providers are wired up. Email campaigns run on the same durable, resumable engine as the app — safe for large audiences, no duplicates.',
+    },
+    endpoints: [
+      {
+        method: 'POST', path: '/email/send', scope: 'email:send',
+        summary: { he: 'שליחת מייל בודד. HTML כברירת מחדל (isHtml=false לטקסט). ספק אופציונלי: google/microsoft או connectionId.', en: 'Send a single email. HTML by default (isHtml=false for plain text). Optional provider: google/microsoft or a connectionId.' },
+        params: [
+          { name: 'to', in: 'body', type: 'string', required: true, desc: { he: 'כתובת הנמען.', en: 'Recipient email.' } },
+          { name: 'subject', in: 'body', type: 'string', required: true, desc: { he: 'נושא.', en: 'Subject.' } },
+          { name: 'body', in: 'body', type: 'string', required: true, desc: { he: 'גוף ההודעה (HTML כברירת מחדל).', en: 'Body (HTML by default).' } },
+          { name: 'isHtml', in: 'body', type: 'bool', required: false, desc: { he: 'האם הגוף HTML (ברירת מחדל true).', en: 'Whether body is HTML (default true).' } },
+          { name: 'cc', in: 'body', type: 'string[]', required: false, desc: { he: 'עותק (CC).', en: 'CC recipients.' } },
+          { name: 'bcc', in: 'body', type: 'string[]', required: false, desc: { he: 'עותק מוסתר (BCC).', en: 'BCC recipients.' } },
+          { name: 'provider', in: 'body', type: 'string', required: false, desc: { he: 'תיבה לשליחה: google/microsoft או connectionId. ריק ⇒ הראשונה הזמינה.', en: 'Mailbox to send from: google/microsoft or a connectionId. Blank ⇒ first available.' } },
+        ],
+        request: `{
+  "to": "customer@example.com",
+  "subject": "Your quote",
+  "body": "<p>Hi, your quote is attached.</p>",
+  "isHtml": true
+}`,
+        curl: curl('POST', '/email/send', `{ "to": "customer@example.com", "subject": "Your quote", "body": "<p>Hi!</p>" }`),
+        response: `{ "success": true, "message": "Email sent.", "data": { "messageId": "…", "provider": "microsoft", "sentAt": "2026-07-01T09:00:00Z" } }`,
+        examples: [
+          { label: { he: 'קריאת כלי MCP', en: 'MCP tool call' }, code: `gambot_send_email({\n  to: "customer@example.com",\n  subject: "Your quote",\n  body: "<p>Hi!</p>"\n})` },
+        ],
+      },
+      {
+        method: 'GET', path: '/email/campaigns', scope: 'email:read',
+        summary: { he: 'הצגת כל קמפייני המייל של הארגון.', en: 'List all email campaigns for the organization.' },
+        params: [],
+        request: null,
+        curl: `curl "${API_BASE}/email/campaigns" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{ "success": true, "data": { "count": 1, "items": [ { "CampaignId": "ec_123", "CampaignName": "July newsletter", "Status": "Draft" } ] } }`,
+      },
+      {
+        method: 'GET', path: '/email/campaigns/{campaignId}', scope: 'email:read',
+        summary: { he: 'קמפיין מייל בודד.', en: 'A single email campaign.' },
+        params: [
+          { name: 'campaignId', in: 'path', type: 'string', required: true, desc: { he: 'מזהה הקמפיין.', en: 'Campaign id.' } },
+        ],
+        request: null,
+        curl: `curl "${API_BASE}/email/campaigns/CAMPAIGN_ID" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{ "success": true, "data": { "CampaignId": "ec_123", "CampaignName": "July newsletter", "Status": "Draft" } }`,
+      },
+      {
+        method: 'POST', path: '/email/campaigns', scope: 'email:write',
+        summary: { he: 'יצירת קמפיין מייל. תוכן: templateId או subject+body מוטבעים. קהל: contactFilters (סגמנט CRM) או excelRecipients. run=true יוצר ושולח מיד.', en: 'Create an email campaign. Content: a templateId or inline subject+body. Audience: contactFilters (CRM segment) or excelRecipients. run=true creates AND sends now.' },
+        params: [
+          { name: 'campaignName', in: 'body', type: 'string', required: true, desc: { he: 'שם הקמפיין.', en: 'Campaign name.' } },
+          { name: 'templateId', in: 'body', type: 'string', required: false, desc: { he: 'תבנית מייל שמורה (או subject+body).', en: 'Saved email template (or subject+body).' } },
+          { name: 'subject', in: 'body', type: 'string', required: false, desc: { he: 'נושא מוטבע.', en: 'Inline subject.' } },
+          { name: 'body', in: 'body', type: 'string', required: false, desc: { he: 'גוף HTML מוטבע.', en: 'Inline HTML body.' } },
+          { name: 'provider', in: 'body', type: 'string', required: false, desc: { he: 'תיבה לשליחה: google/microsoft או connectionId.', en: 'Mailbox: google/microsoft or a connectionId.' } },
+          { name: 'contactFilters', in: 'body', type: 'object', required: false, desc: { he: 'סגמנט CRM: { filters:[…], logic:"AND" }.', en: 'CRM segment: { filters:[…], logic:"AND" }.' } },
+          { name: 'excelRecipients', in: 'body', type: 'object[]', required: false, desc: { he: 'נמענים מפורשים: [{ email, name, variables }].', en: 'Explicit recipients: [{ email, name, variables }].' } },
+          { name: 'run', in: 'body', type: 'bool', required: false, desc: { he: 'יצירה ושליחה מיידית בקריאה אחת.', en: 'Create AND send now in one call.' } },
+        ],
+        request: `{
+  "campaignName": "July newsletter",
+  "subject": "What's new in July",
+  "body": "<h1>Hello!</h1>",
+  "contactFilters": { "filters": [ { "filterType": "group", "operator": "equals", "groupValue": ["VIP"] } ], "logic": "OR" },
+  "run": true
+}`,
+        curl: curl('POST', '/email/campaigns', `{ "campaignName": "July newsletter", "subject": "Hi", "body": "<h1>Hello</h1>", "run": true }`),
+        response: `{ "success": true, "message": "Email campaign created and run started.", "data": { "campaignId": "ec_123", "status": "Running" } }`,
+        examples: [
+          { label: { he: 'קריאת כלי MCP', en: 'MCP tool call' }, code: `gambot_create_email_campaign({\n  campaignName: "July newsletter",\n  subject: "Hi",\n  body: "<h1>Hello</h1>",\n  contactFilters: { filters: [{ filterType: "group", operator: "equals", groupValue: ["VIP"] }], logic: "OR" },\n  run: true\n})` },
+        ],
+      },
+      {
+        method: 'POST', path: '/email/campaigns/{campaignId}/run', scope: 'email:run',
+        summary: { he: 'הרצת (שליחת) קמפיין מייל שמור עכשיו. מנוע עמיד ומתחדש — בטוח לכמויות גדולות וללא כפילויות.', en: 'Run (send) a saved email campaign now. Durable, resumable engine — safe for large audiences, no duplicates.' },
+        params: [
+          { name: 'campaignId', in: 'path', type: 'string', required: true, desc: { he: 'מזהה הקמפיין.', en: 'Campaign id.' } },
+        ],
+        request: null,
+        curl: curl('POST', '/email/campaigns/CAMPAIGN_ID/run', ``),
+        response: `{ "success": true, "message": "Email campaign run started.", "data": { "campaignId": "ec_123", "status": "Running" } }`,
+      },
+    ],
+  },
+  {
+    id: 'calendar',
+    title: { he: 'יומן', en: 'Calendar' },
+    description: {
+      he: 'קריאת אירועי יומן מיומן Google/Microsoft מחובר (הגדרות → חיבורים). בחרו יומן דרך provider (google/microsoft או connectionId; ריק ⇒ היומן המחובר הראשון).',
+      en: 'Read calendar events from a connected Google/Microsoft calendar (Settings → Connections). Pick a calendar via provider (google/microsoft or a connectionId; blank ⇒ the first connected calendar).',
+    },
+    endpoints: [
+      {
+        method: 'GET', path: '/calendar/events', scope: 'calendar:read',
+        summary: { he: 'אירועי יומן בטווח תאריכים. ברירת מחדל: החודש הנוכחי.', en: 'Calendar events in a date range. Default: the current month.' },
+        params: [
+          { name: 'provider', in: 'query', type: 'string', required: false, desc: { he: 'איזה יומן: google/microsoft או connectionId. ריק ⇒ הראשון המחובר.', en: 'Which calendar: google/microsoft or a connectionId. Blank ⇒ first connected.' } },
+          { name: 'startDate', in: 'query', type: 'string', required: false, desc: { he: 'תחילת טווח (ISO-8601). ברירת מחדל: תחילת החודש.', en: 'Range start (ISO-8601). Default: first of the month.' } },
+          { name: 'endDate', in: 'query', type: 'string', required: false, desc: { he: 'סוף טווח (ISO-8601). ברירת מחדל: התחלה + חודש.', en: 'Range end (ISO-8601). Default: start + 1 month.' } },
+        ],
+        request: null,
+        curl: `curl "${API_BASE}/calendar/events?startDate=2026-07-01&endDate=2026-07-31" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{ "success": true, "data": { "count": 1, "startDate": "2026-07-01T00:00:00Z", "endDate": "2026-07-31T00:00:00Z", "events": [ { "Id": "evt_1", "Provider": "google", "Title": "Demo call", "StartDateTime": "2026-07-03T10:00:00Z", "EndDateTime": "2026-07-03T10:30:00Z" } ] } }`,
+        examples: [
+          { label: { he: 'קריאת כלי MCP', en: 'MCP tool call' }, code: `gambot_list_calendar_events({ startDate: "2026-07-01", endDate: "2026-07-31" })` },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'leadforms',
+    title: { he: 'טפסי ליד (Facebook Lead Ads)', en: 'Lead Forms (Facebook Lead Ads)' },
+    description: {
+      he: 'גילוי דפי הפייסבוק וטפסי ה-Lead שמחוברים, ויצירת בוט שמגיב אוטומטית ברגע שמגיע ליד חדש מטופס. הזרימה: (1) הציגו חיבורים, (2) הציגו את טפסי הליד של דף, (3) צרו בוט עם טריגר FacebookLeadAds — כאן דרך /bots/facebook-lead-reply. שדות הליד זמינים כ-placeholders (למשל <code>{{Step_1_facebook_lead_data_full_name}}</code>).',
+      en: 'Discover the connected Facebook pages and their lead forms, then create a bot that auto-replies the moment a new lead arrives. Flow: (1) list connections, (2) list a page\'s lead forms, (3) create a bot with a FacebookLeadAds trigger — here via /bots/facebook-lead-reply. Lead fields are available as placeholders (e.g. <code>{{Step_1_facebook_lead_data_full_name}}</code>).',
+    },
+    endpoints: [
+      {
+        method: 'GET', path: '/leadforms/connections', scope: 'leadforms:read',
+        summary: { he: 'הצגת דפי הפייסבוק המחוברים ל-Lead Ads. ה-connectionId מכל פריט משמש בקריאות הבאות.', en: 'List connected Facebook Lead Ads pages. Each item\'s connectionId is used in the next calls.' },
+        params: [],
+        request: null,
+        curl: `curl "${API_BASE}/leadforms/connections" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{ "success": true, "data": { "count": 1, "connections": [ { "connectionId": "conn_fb1", "provider": "facebook", "name": "My Page", "status": "active", "pageId": "123", "pageName": "My Page" } ] } }`,
+      },
+      {
+        method: 'GET', path: '/leadforms', scope: 'leadforms:read',
+        summary: { he: 'הצגת טפסי ה-Lead של דף מחובר. ?connectionId ריק ⇒ החיבור הראשון.', en: 'List the leadgen forms of a connected page. ?connectionId blank ⇒ the first connection.' },
+        params: [
+          { name: 'connectionId', in: 'query', type: 'string', required: false, desc: { he: 'מזהה חיבור Facebook Lead Ads. ריק ⇒ הראשון.', en: 'Facebook Lead Ads connection id. Blank ⇒ the first one.' } },
+        ],
+        request: null,
+        curl: `curl "${API_BASE}/leadforms?connectionId=conn_fb1" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{ "success": true, "data": { "connectionId": "conn_fb1", "pageId": "123", "count": 2, "forms": [ { "id": "form_1", "name": "Summer promo", "status": "ACTIVE" } ] } }`,
+      },
+      {
+        method: 'POST', path: '/bots/facebook-lead-reply', scope: 'bots:write',
+        summary: { he: 'יצירת בוט שמגיב אוטומטית לליד חדש מטופס פייסבוק. ספקו connectionId ומענה (replyTemplateName או replyText); formIds אופציונלי (ריק ⇒ כל טופס בדף).', en: 'Create a bot that auto-replies to a new Facebook lead-form lead. Provide connectionId and a reply (replyTemplateName or replyText); optional formIds (blank ⇒ any form on the page).' },
+        params: [
+          { name: 'name', in: 'body', type: 'string', required: true, desc: { he: 'שם הבוט.', en: 'Bot name.' } },
+          { name: 'connectionId', in: 'body', type: 'string', required: true, desc: { he: 'מזהה חיבור Facebook Lead Ads.', en: 'Facebook Lead Ads connection id.' } },
+          { name: 'formIds', in: 'body', type: 'string[]', required: false, desc: { he: 'מזהי טפסים ספציפיים. ריק ⇒ כל טופס בדף.', en: 'Specific form ids. Blank ⇒ any form on the page.' } },
+          { name: 'replyTemplateName', in: 'body', type: 'string', required: false, desc: { he: 'תבנית WhatsApp מאושרת למענה. או replyText.', en: 'Approved WhatsApp template. Or replyText.' } },
+          { name: 'replyText', in: 'body', type: 'string', required: false, desc: { he: 'מענה טקסט חופשי.', en: 'Free-text reply.' } },
+          { name: 'status', in: 'body', type: 'string', required: false, desc: { he: 'active|inactive (ברירת מחדל active).', en: 'active|inactive (default active).' } },
+        ],
+        request: `{
+  "name": "FB lead welcome",
+  "connectionId": "conn_fb1",
+  "formIds": ["form_1"],
+  "replyTemplateName": "lead_welcome_new_customer_0626"
+}`,
+        curl: curl('POST', '/bots/facebook-lead-reply', `{ "name": "FB lead welcome", "connectionId": "conn_fb1", "replyTemplateName": "lead_welcome_new_customer_0626" }`),
+        response: `{ "success": true, "message": "Bot created.", "data": { "botId": "bot_fb1", "name": "FB lead welcome", "status": "active" } }`,
+        examples: [
+          { label: { he: 'קריאת כלי MCP', en: 'MCP tool call' }, code: `gambot_create_facebook_lead_bot({\n  name: "FB lead welcome",\n  connectionId: "conn_fb1",\n  formIds: ["form_1"],\n  replyTemplateName: "lead_welcome_new_customer_0626"\n})` },
+        ],
+      },
+    ],
+  },
 ];
 
 // Flat scope list for the "permissions" reference.
@@ -2284,6 +2471,13 @@ export const API_SCOPES = [
   { scope: 'waba:write', he: 'חיבור WhatsApp (Meta Embedded Signup)', en: 'Connect WhatsApp (Meta Embedded Signup)' },
   { scope: 'webhooks:read', he: 'קריאת רישום ה-webhook', en: 'Read the webhook registration' },
   { scope: 'webhooks:write', he: 'רישום/עדכון/מחיקה ובדיקה של webhook', en: 'Register/update/delete and test a webhook' },
+  { scope: 'connections:read', he: 'קריאת חיבורים (אינטגרציות מחוברות)', en: 'Read connections (connected integrations)' },
+  { scope: 'email:send', he: 'שליחת מייל בודד', en: 'Send a single email' },
+  { scope: 'email:read', he: 'קריאת קמפייני מייל', en: 'Read email campaigns' },
+  { scope: 'email:write', he: 'יצירת קמפייני מייל', en: 'Create email campaigns' },
+  { scope: 'email:run', he: 'הרצת קמפייני מייל', en: 'Run email campaigns' },
+  { scope: 'calendar:read', he: 'קריאת אירועי יומן', en: 'Read calendar events' },
+  { scope: 'leadforms:read', he: 'קריאת דפים וטפסי ליד של פייסבוק', en: 'Read Facebook pages and lead forms' },
 ];
 
 // Inbound message forwarding (webhook-out) — configurable in the Gambot UI OR via the API/MCP
@@ -2378,8 +2572,8 @@ npx -y gambot-mcp`,
   // -- Online / hosted MCP (Streamable HTTP) — one generic flow for every AI tool --
   remoteTitle: { he: 'MCP מקוון (מתארח) — לכל כלי AI', en: 'Online (hosted) MCP — for any AI tool' },
   remoteIntro: {
-    he: 'כלים מבוססי-ענן שלא יכולים להריץ תהליך מקומי (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> ועוד) מתחברים לאותו שרת MCP דרך <strong>כתובת URL מתארחת</strong> (Streamable HTTP) במקום <code>npx</code> — וחושפים את כל <strong>123 הכלים</strong>. השלבים זהים בכל מקום; רק היכן שמדביקים את ה-URL ואיך מאמתים משתנה.',
-    en: 'Cloud-based tools that can\'t run a local process (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> and more) connect to the same MCP server through a <strong>hosted URL</strong> (Streamable HTTP) instead of <code>npx</code> — exposing all <strong>123 tools</strong>. The steps are identical everywhere; only where you paste the URL and how you authenticate changes.',
+    he: 'כלים מבוססי-ענן שלא יכולים להריץ תהליך מקומי (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> ועוד) מתחברים לאותו שרת MCP דרך <strong>כתובת URL מתארחת</strong> (Streamable HTTP) במקום <code>npx</code> — וחושפים את כל <strong>133 הכלים</strong>. השלבים זהים בכל מקום; רק היכן שמדביקים את ה-URL ואיך מאמתים משתנה.',
+    en: 'Cloud-based tools that can\'t run a local process (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> and more) connect to the same MCP server through a <strong>hosted URL</strong> (Streamable HTTP) instead of <code>npx</code> — exposing all <strong>133 tools</strong>. The steps are identical everywhere; only where you paste the URL and how you authenticate changes.',
   },
   remoteUrlLabel: { he: 'כתובת השרת (Server URL)', en: 'Server URL' },
   remoteUrl: MCP_REMOTE_URL,
@@ -2403,14 +2597,14 @@ npx -y gambot-mcp`,
       'בחרו סוג שרת <strong>Remote / URL / HTTP</strong> (לא Local/Command).',
       'הדביקו את ה-Server URL שלמעלה.',
       'אמתו: אם הכלי מציע <strong>OAuth / Sign in</strong> — פשוט התחברו (ללא טוקן). אחרת הוסיפו כותרת <code>Authorization: Bearer gmbt_...</code> או הדביקו את הטוקן בשדה ה-Token/API Key.',
-      'שמרו והפעילו. הכלי מגלה אוטומטית את כל 123 הכלים והארגון מזוהה מהזהות שלכם.',
+      'שמרו והפעילו. הכלי מגלה אוטומטית את כל 133 הכלים והארגון מזוהה מהזהות שלכם.',
     ],
     en: [
       'In your tool, open where MCP servers/connectors are added (usually: Settings → Connectors / Integrations / MCP Servers).',
       'Choose a <strong>Remote / URL / HTTP</strong> server type (not Local/Command).',
       'Paste the Server URL above.',
       'Authenticate: if the tool offers <strong>OAuth / Sign in</strong> — just sign in (no token). Otherwise add an <code>Authorization: Bearer gmbt_...</code> header or paste the token into the Token/API Key field.',
-      'Save and enable. The tool auto-discovers all 123 tools and the organization is resolved from your identity.',
+      'Save and enable. The tool auto-discovers all 133 tools and the organization is resolved from your identity.',
     ],
   },
   remoteConfigTitle: { he: 'לכלים שמשתמשים בקובץ תצורה (JSON)', en: 'For tools that use a config file (JSON)' },
@@ -2432,8 +2626,8 @@ npx -y gambot-mcp`,
   },
 
   toolsNote: {
-    he: 'לאחר החיבור, הסוכן יכול לקרוא לכלים כמו <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> ועוד (123 כלים). לתבניות עם מדיה, כפתורים ו-Footer: <code>gambot_create_template</code> (העבירו <code>headerMediaUrl</code>) ו-<code>gambot_upload_template_media</code>. <strong>בניית בוטים בשיחה</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, וכן <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — ראו את סעיף <a href="#bots">בוטים ואוטומציות</a>.',
-    en: 'Once connected, the agent can call tools like <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> and more (123 tools). For templates with media, buttons and footer: <code>gambot_create_template</code> (pass <code>headerMediaUrl</code>) and <code>gambot_upload_template_media</code>. <strong>Build bots by chatting</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, plus <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — see the <a href="#bots">Bots &amp; Automations</a> section.',
+    he: 'לאחר החיבור, הסוכן יכול לקרוא לכלים כמו <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> ועוד (133 כלים). לתבניות עם מדיה, כפתורים ו-Footer: <code>gambot_create_template</code> (העבירו <code>headerMediaUrl</code>) ו-<code>gambot_upload_template_media</code>. <strong>בניית בוטים בשיחה</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, וכן <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — ראו את סעיף <a href="#bots">בוטים ואוטומציות</a>.',
+    en: 'Once connected, the agent can call tools like <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> and more (133 tools). For templates with media, buttons and footer: <code>gambot_create_template</code> (pass <code>headerMediaUrl</code>) and <code>gambot_upload_template_media</code>. <strong>Build bots by chatting</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, plus <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — see the <a href="#bots">Bots &amp; Automations</a> section.',
   },
 };
 
