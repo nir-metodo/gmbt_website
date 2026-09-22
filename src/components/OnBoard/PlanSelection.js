@@ -199,27 +199,56 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                   <ul>
                     {planItem.features.map((feature, i) => {
                       const isBroadcast = /הודעות דיוור/.test(feature) || /broadcast messages/i.test(feature);
+                      const isAiResponses = /תגובות\s*AI/i.test(feature) || /AI responses/i.test(feature);
+                      const isGeneralTokens = /טוקנים\s*כלליים/i.test(feature) || /general (ai )?tokens/i.test(feature);
+                      const isCredits = /קרדיט/i.test(feature) || /\bcredits?\b/i.test(feature);
                       const broadcastTooltip = currentLanguage === 'en'
                         ? 'Broadcast messages = bulk mailing to many recipients. E.g. you upload an Excel and send one message to 100 people, then two weeks later to another 200 — that counts as 300 broadcast messages. The quota applies to each channel separately (WhatsApp and/or Email) — e.g. up to 5,000 on each channel.'
                         : 'הודעות דיוור = שליחה בתפוצה רחבה לנמענים רבים. לדוגמה: העליתם אקסל ושלחתם הודעה אחת ל-100 איש, וכעבור שבועיים עוד 200 — זה נחשב 300 הודעות דיוור. המכסה חלה על כל ערוץ בנפרד (וואטסאפ ו/או מייל) — למשל עד 5,000 בכל ערוץ.';
+                      const aiResponsesTooltip = currentLanguage === 'en'
+                        ? 'AI responses = replies your AI bot generates to customers. Each reply consumes credits by the model used and the amount of context/knowledge involved. Click to read the full credits guide.'
+                        : 'תגובות AI = התשובות שהבוט מייצר ללקוחות. כל תשובה צורכת קרדיטים לפי המודל שנבחר וכמות ההקשר/הידע בשימוש. לחצו למדריך הטוקנים המלא.';
+                      const generalTokensTooltip = currentLanguage === 'en'
+                        ? 'General AI tokens power advanced AI actions beyond replies — proactive messages, AI reports, analysis and summaries. Click to read the full credits guide.'
+                        : 'טוקנים כלליים AI מפעילים פעולות AI מתקדמות מעבר לתשובות — הודעות פרואקטיביות, דוחות, ניתוח וסיכומים. לחצו למדריך הטוקנים המלא.';
+                      const creditsTooltip = currentLanguage === 'en'
+                        ? 'AI credits are one unified pool for ALL AI usage — bot replies plus proactive messages, reports, analysis and summaries. Heavier/premium usage costs more. Extra: ₪39 per 500 credits. Click for the full guide.'
+                        : 'קרדיטים AI הם מאגר אחד מאוחד לכל שימושי ה‑AI — תשובות הבוט וגם הודעות פרואקטיביות, דוחות, ניתוח וסיכומים. שימוש כבד/מודל יקר עולה יותר. תוספת: ₪39 לכל 500 קרדיטים. לחצו למדריך המלא.';
+                      const isCreditLine = isCredits || isAiResponses || isGeneralTokens;
+                      const creditsBlogUrl = currentLanguage === 'en'
+                        ? '/blog/44/gambot-tokens-credits-how-to-calculate-and-estimate-your-ai-usage/'
+                        : '/blog/44/טוקני-גמבוט-קרדיטים-איך-מחשבים-ומעריכים-כמה-ai-תצרכו/';
+                      const infoTooltip = isBroadcast ? broadcastTooltip : (isCredits ? creditsTooltip : (isAiResponses ? aiResponsesTooltip : (isGeneralTokens ? generalTokensTooltip : null)));
+                      const infoStyle = {
+                        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                        width: 16, height: 16, marginInlineStart: 6, borderRadius: '50%',
+                        background: '#2e6155', color: '#fff', fontSize: 11, fontWeight: 700,
+                        cursor: isCreditLine ? 'pointer' : 'help', flexShrink: 0, verticalAlign: 'middle',
+                        textDecoration: 'none',
+                      };
                       return (
                         <li key={i}>
                           <FaCheck className="feature-check" />
                           <span className="feature-text-inline">
                             {feature}
-                            {isBroadcast && (
-                              <span
-                                tabIndex={0}
-                                role="button"
-                                aria-label={broadcastTooltip}
-                                title={broadcastTooltip}
-                                style={{
-                                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                                  width: 16, height: 16, marginInlineStart: 6, borderRadius: '50%',
-                                  background: '#2e6155', color: '#fff', fontSize: 11, fontWeight: 700,
-                                  cursor: 'help', flexShrink: 0, verticalAlign: 'middle',
-                                }}
-                              >?</span>
+                            {infoTooltip && (
+                              isCreditLine ? (
+                                <a
+                                  href={creditsBlogUrl}
+                                  aria-label={infoTooltip}
+                                  title={infoTooltip}
+                                  onClick={(e) => e.stopPropagation()}
+                                  style={infoStyle}
+                                >?</a>
+                              ) : (
+                                <span
+                                  tabIndex={0}
+                                  role="button"
+                                  aria-label={infoTooltip}
+                                  title={infoTooltip}
+                                  style={infoStyle}
+                                >?</span>
+                              )
                             )}
                           </span>
                         </li>

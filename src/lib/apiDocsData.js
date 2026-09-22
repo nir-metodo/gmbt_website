@@ -6,7 +6,7 @@ export const API_BASE_FALLBACK = 'https://gambot.azurewebsites.net/api/v1';
 // Hosted (online) MCP endpoint — Streamable HTTP. Used by web-based AI tools that can't run a local process
 // (ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make, …). Verified live: Azure Web App "gambot-mcp"
 // (Gambot_Resource_Group), Node 22, `node dist/http.js`. Auth: OAuth 2.0 (PKCE + DCR) or Bearer gmbt_ token.
-// Discovery: /.well-known/oauth-protected-resource/mcp and /.well-known/oauth-authorization-server. 114 tools.
+// Discovery: /.well-known/oauth-protected-resource/mcp and /.well-known/oauth-authorization-server. 123 tools.
 export const MCP_REMOTE_URL = 'https://gambot-mcp.azurewebsites.net/mcp';
 
 // -- Intro / auth / conventions ----------------------------------------------------------
@@ -2137,6 +2137,114 @@ export const API_SECTIONS = [
       },
     ],
   },
+  {
+    id: 'webhooks',
+    title: { he: 'Webhooks (רישום והעברת אירועים)', en: 'Webhooks (register & event forwarding)' },
+    description: {
+      he: 'מיועד למי שבונה מערכת/אינטגרציה שצריכה <strong>לקבל הודעות ועדכונים בחזרה</strong> מגמבוט בזמן אמת — למשל לסנכרן ל-CRM/DB שלכם, להפעיל סוכן, או לעדכן אפליקציה. רשמו את נקודת הקצה שלכם פעם אחת (<code>POST /webhooks/forward</code>) וגמבוט תשלח לכם (POST) כל אירוע תואם ברגע שהוא קורה — הודעות נכנסות, סטטוסי הודעה ועדכוני תבניות. זהו ה-webhook <em>של המערכת</em>: מטא שולחת אלינו, ואנחנו מעבירים אליכם — אינכם צריכים לנהל מנוי Meta Graph. Best practice: אמתו כל בקשה מול כותרת ה-<code>Authorization</code> שהגדרתם, השיבו 2xx במהירות ועבדו את האירוע אסינכרונית, נתבו לפי <code>X-Gambot-Event</code>, והשתמשו במזהה ההודעה שב-<code>meta_obj</code> ל-idempotency (מניעת כפילויות).',
+      en: 'For developers building a system/integration that needs to <strong>receive messages and updates back</strong> from Gambot in real time — e.g. to sync to your CRM/DB, trigger an agent, or update your app. Register your endpoint once (<code>POST /webhooks/forward</code>) and Gambot POSTs every matching event as it happens — inbound messages, message statuses and template updates. This is the <em>system</em> webhook: Meta sends to us, we forward to you — no Meta Graph subscription to manage on your side. Best practice: verify each request against the <code>Authorization</code> header you configured, return 2xx quickly and process the event asynchronously, route on <code>X-Gambot-Event</code>, and use the message id inside <code>meta_obj</code> for idempotency (de-duplication).',
+    },
+    endpoints: [
+      {
+        method: 'POST',
+        path: '/webhooks/forward',
+        scope: 'webhooks:write',
+        summary: {
+          he: 'רישום (או עדכון) webhook: מגדיר את כתובת היעד שאליה גמבוט תעביר אירועים. שקול-ערך פרוגרמטי למסך הגדרות → העברת אירועים (Webhook). כשמופעל — חובה כתובת http(s) תקינה.',
+          en: 'Register (or update) a webhook: sets the destination URL Gambot forwards events to. Programmatic equivalent of Settings → Event Forwarding (Webhook). When enabled, a valid http(s) URL is required.',
+        },
+        params: [
+          { name: 'url', in: 'body', type: 'string', required: true, desc: { he: 'כתובת היעד שתקבל POST-ים (מומלץ https). לדוגמה https://your-server.com/webhook.', en: 'Destination URL that will receive POSTs (https recommended), e.g. https://your-server.com/webhook.' } },
+          { name: 'authHeader', in: 'body', type: 'string', required: false, desc: { he: 'ערך שיישלח מילולית ככותרת Authorization בכל קריאה (למשל "Bearer my-secret"). אמתו אותו אצלכם.', en: 'Value sent verbatim as the Authorization header on every call (e.g. "Bearer my-secret"). Verify it on your side.' } },
+          { name: 'events', in: 'body', type: 'object', required: false, desc: { he: 'אילו אירועים להעביר: { incomingMessage, messageStatus, templateStatus, other } — כולם boolean, ברירת מחדל true (הכל). אפשר גם לשלוח אותם ברמת השורש.', en: 'Which events to forward: { incomingMessage, messageStatus, templateStatus, other } — all boolean, default true (everything). May also be sent at the top level.' } },
+        ],
+        request: `{
+  "url": "https://your-server.com/webhook",
+  "authHeader": "Bearer my-secret",
+  "events": { "incomingMessage": true, "messageStatus": true, "templateStatus": true, "other": true }
+}`,
+        curl: curl('POST', '/webhooks/forward', `{ "url": "https://your-server.com/webhook", "authHeader": "Bearer my-secret" }`),
+        response: `{
+  "success": true,
+  "message": "Webhook registered. Matching events will be POSTed to this URL as they occur.",
+  "data": {
+    "registered": true,
+    "url": "https://your-server.com/webhook",
+    "hasAuthHeader": true,
+    "events": { "incomingMessage": true, "messageStatus": true, "templateStatus": true, "other": true }
+  }
+}`,
+        notes: {
+          he: 'המטען שתקבלו הוא "מעטפה": { type, event, types[], organization, receivedAt, meta_obj } כאשר meta_obj הוא ה-payload המקורי של מטא. בנוסף ל-Authorization נשלחות הכותרות X-Gambot-Organization ו-X-Gambot-Event.',
+          en: 'The payload you receive is an "envelope": { type, event, types[], organization, receivedAt, meta_obj } where meta_obj is Meta\'s original payload. Alongside Authorization we also send X-Gambot-Organization and X-Gambot-Event headers.',
+        },
+      },
+      {
+        method: 'GET',
+        path: '/webhooks/forward',
+        scope: 'webhooks:read',
+        summary: {
+          he: 'קריאת הרישום הנוכחי: האם מופעל, כתובת היעד, האם מוגדרת כותרת Authorization, ואילו אירועים מועברים.',
+          en: 'Read the current registration: whether enabled, the destination URL, whether an auth header is set, and which events are forwarded.',
+        },
+        params: [],
+        request: null,
+        curl: `curl "${API_BASE}/webhooks/forward" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{
+  "success": true,
+  "data": {
+    "enabled": true,
+    "url": "https://your-server.com/webhook",
+    "hasAuthHeader": true,
+    "events": { "incomingMessage": true, "messageStatus": true, "templateStatus": true, "other": true }
+  }
+}`,
+      },
+      {
+        method: 'DELETE',
+        path: '/webhooks/forward',
+        scope: 'webhooks:write',
+        summary: {
+          he: 'ביטול רישום (השבתת ההעברה). הכתובת וההגדרות נשמרות, כך שהפעלה מחדש היא POST יחיד.',
+          en: 'Unregister (disable forwarding). The URL/settings are kept, so re-enabling is a single POST.',
+        },
+        params: [],
+        request: null,
+        curl: curl('DELETE', '/webhooks/forward'),
+        response: `{ "success": true, "message": "Webhook unregistered (event forwarding disabled).", "data": { "registered": false } }`,
+      },
+      {
+        method: 'POST',
+        path: '/webhooks/test',
+        scope: 'webhooks:write',
+        summary: {
+          he: 'שליחת אירוע-דוגמה (incoming_message מסומן test:true) לכתובת הרשומה — או לכתובת שתעבירו בגוף — והחזרת תוצאת המסירה. מושלם לוודא שנקודת הקצה שלכם מקבלת את הקריאות. המסירה נרשמת בלוג.',
+          en: 'Send a sample event (an incoming_message flagged test:true) to the registered URL — or to a URL you pass in the body — and return the delivery result. Perfect for verifying your endpoint receives the calls. The attempt is recorded in the delivery log.',
+        },
+        params: [
+          { name: 'url', in: 'body', type: 'string', required: false, desc: { he: 'כתובת לבדיקה במקום הרשומה (מאפשר לבדוק לפני רישום).', en: 'Override URL to test instead of the registered one (lets you test before registering).' } },
+          { name: 'authHeader', in: 'body', type: 'string', required: false, desc: { he: 'כותרת Authorization לשליחה בבדיקת ה-URL החלופי.', en: 'Authorization header to send with the override URL test.' } },
+        ],
+        request: `{ "url": "https://your-server.com/webhook" }`,
+        curl: curl('POST', '/webhooks/test', `{ "url": "https://your-server.com/webhook" }`),
+        response: `{
+  "success": true,
+  "message": "Test event delivered successfully.",
+  "data": {
+    "delivered": true,
+    "statusCode": 200,
+    "durationMs": 142,
+    "responsePreview": "ok",
+    "sentEnvelope": { "type": "incoming_message", "event": "incoming_message", "organization": "your-org", "test": true, "meta_obj": { } }
+  }
+}`,
+        notes: {
+          he: 'טיפ: לבדיקה מהירה בלי שרת משלכם — צרו כתובת חד-פעמית ב-webhook.site והעבירו אותה כ-url; תראו את הקריאה מגיעה שם בזמן אמת.',
+          en: 'Tip: for a quick test without your own server — create a throwaway URL at webhook.site and pass it as url; you\'ll see the call arrive there in real time.',
+        },
+      },
+    ],
+  },
 ];
 
 // Flat scope list for the "permissions" reference.
@@ -2174,9 +2282,12 @@ export const API_SCOPES = [
   { scope: 'onboarding:write', he: 'יצירת חשבון (ניסיון או תשלום)', en: 'Create an account (trial or paid)' },
   { scope: 'billing:write', he: 'הוספת אמצעי תשלום (כרטיס שמור)', en: 'Add a payment method (card on file)' },
   { scope: 'waba:write', he: 'חיבור WhatsApp (Meta Embedded Signup)', en: 'Connect WhatsApp (Meta Embedded Signup)' },
+  { scope: 'webhooks:read', he: 'קריאת רישום ה-webhook', en: 'Read the webhook registration' },
+  { scope: 'webhooks:write', he: 'רישום/עדכון/מחיקה ובדיקה של webhook', en: 'Register/update/delete and test a webhook' },
 ];
 
-// Inbound message forwarding (webhook-out) — configured in the Gambot UI, not via the API.
+// Inbound message forwarding (webhook-out) — configurable in the Gambot UI OR via the API/MCP
+// (see the "webhooks" section: POST/GET/DELETE /webhooks/forward + POST /webhooks/test).
 export const API_INBOUND = {
   title: { he: 'העברת אירועים (Webhook)', en: 'Event Forwarding (Webhook)' },
   intro: {
@@ -2185,8 +2296,8 @@ export const API_INBOUND = {
   },
   howTitle: { he: 'איך מפעילים', en: 'Enable it' },
   how: {
-    he: 'בפאנל הניהול: <strong>הגדרות → כללי → העברת אירועים (Webhook)</strong>. סמנו את התיבה, הזינו כתובת URL (חובה), אופציונלית כותרת <code>Authorization</code>, ובחרו אילו אירועים להעביר. <strong>כברירת מחדל כל האירועים פעילים.</strong>',
-    en: 'In the admin panel: <strong>Settings → General → Event Forwarding (Webhook)</strong>. Tick the checkbox, enter a URL (required), optionally an <code>Authorization</code> header, and choose which events to forward. <strong>By default all events are ON.</strong>',
+    he: 'בפאנל הניהול: <strong>הגדרות → כללי → העברת אירועים (Webhook)</strong>. סמנו את התיבה, הזינו כתובת URL (חובה), אופציונלית כותרת <code>Authorization</code>, ובחרו אילו אירועים להעביר. <strong>כברירת מחדל כל האירועים פעילים.</strong> אפשר גם לרשום פרוגרמטית דרך ה-API (<code>POST /webhooks/forward</code>) או דרך כלי ה-MCP (<code>gambot_register_webhook</code>) — ולבדוק עם <code>POST /webhooks/test</code>.',
+    en: 'In the admin panel: <strong>Settings → General → Event Forwarding (Webhook)</strong>. Tick the checkbox, enter a URL (required), optionally an <code>Authorization</code> header, and choose which events to forward. <strong>By default all events are ON.</strong> You can also register programmatically via the API (<code>POST /webhooks/forward</code>) or the MCP tool (<code>gambot_register_webhook</code>) — and verify with <code>POST /webhooks/test</code>.',
   },
   requestTitle: { he: 'מה מקבלים', en: 'What you receive' },
   request: {
@@ -2267,8 +2378,8 @@ npx -y gambot-mcp`,
   // -- Online / hosted MCP (Streamable HTTP) — one generic flow for every AI tool --
   remoteTitle: { he: 'MCP מקוון (מתארח) — לכל כלי AI', en: 'Online (hosted) MCP — for any AI tool' },
   remoteIntro: {
-    he: 'כלים מבוססי-ענן שלא יכולים להריץ תהליך מקומי (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> ועוד) מתחברים לאותו שרת MCP דרך <strong>כתובת URL מתארחת</strong> (Streamable HTTP) במקום <code>npx</code> — וחושפים את כל <strong>114 הכלים</strong>. השלבים זהים בכל מקום; רק היכן שמדביקים את ה-URL ואיך מאמתים משתנה.',
-    en: 'Cloud-based tools that can\'t run a local process (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> and more) connect to the same MCP server through a <strong>hosted URL</strong> (Streamable HTTP) instead of <code>npx</code> — exposing all <strong>114 tools</strong>. The steps are identical everywhere; only where you paste the URL and how you authenticate changes.',
+    he: 'כלים מבוססי-ענן שלא יכולים להריץ תהליך מקומי (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> ועוד) מתחברים לאותו שרת MCP דרך <strong>כתובת URL מתארחת</strong> (Streamable HTTP) במקום <code>npx</code> — וחושפים את כל <strong>123 הכלים</strong>. השלבים זהים בכל מקום; רק היכן שמדביקים את ה-URL ואיך מאמתים משתנה.',
+    en: 'Cloud-based tools that can\'t run a local process (<strong>ChatGPT, Claude, Gemini, Base44, Lovable, n8n, Make</strong> and more) connect to the same MCP server through a <strong>hosted URL</strong> (Streamable HTTP) instead of <code>npx</code> — exposing all <strong>123 tools</strong>. The steps are identical everywhere; only where you paste the URL and how you authenticate changes.',
   },
   remoteUrlLabel: { he: 'כתובת השרת (Server URL)', en: 'Server URL' },
   remoteUrl: MCP_REMOTE_URL,
@@ -2292,14 +2403,14 @@ npx -y gambot-mcp`,
       'בחרו סוג שרת <strong>Remote / URL / HTTP</strong> (לא Local/Command).',
       'הדביקו את ה-Server URL שלמעלה.',
       'אמתו: אם הכלי מציע <strong>OAuth / Sign in</strong> — פשוט התחברו (ללא טוקן). אחרת הוסיפו כותרת <code>Authorization: Bearer gmbt_...</code> או הדביקו את הטוקן בשדה ה-Token/API Key.',
-      'שמרו והפעילו. הכלי מגלה אוטומטית את כל 114 הכלים והארגון מזוהה מהזהות שלכם.',
+      'שמרו והפעילו. הכלי מגלה אוטומטית את כל 123 הכלים והארגון מזוהה מהזהות שלכם.',
     ],
     en: [
       'In your tool, open where MCP servers/connectors are added (usually: Settings → Connectors / Integrations / MCP Servers).',
       'Choose a <strong>Remote / URL / HTTP</strong> server type (not Local/Command).',
       'Paste the Server URL above.',
       'Authenticate: if the tool offers <strong>OAuth / Sign in</strong> — just sign in (no token). Otherwise add an <code>Authorization: Bearer gmbt_...</code> header or paste the token into the Token/API Key field.',
-      'Save and enable. The tool auto-discovers all 114 tools and the organization is resolved from your identity.',
+      'Save and enable. The tool auto-discovers all 123 tools and the organization is resolved from your identity.',
     ],
   },
   remoteConfigTitle: { he: 'לכלים שמשתמשים בקובץ תצורה (JSON)', en: 'For tools that use a config file (JSON)' },
@@ -2321,8 +2432,8 @@ npx -y gambot-mcp`,
   },
 
   toolsNote: {
-    he: 'לאחר החיבור, הסוכן יכול לקרוא לכלים כמו <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> ועוד (114 כלים). לתבניות עם מדיה, כפתורים ו-Footer: <code>gambot_create_template</code> (העבירו <code>headerMediaUrl</code>) ו-<code>gambot_upload_template_media</code>. <strong>בניית בוטים בשיחה</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, וכן <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — ראו את סעיף <a href="#bots">בוטים ואוטומציות</a>.',
-    en: 'Once connected, the agent can call tools like <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> and more (114 tools). For templates with media, buttons and footer: <code>gambot_create_template</code> (pass <code>headerMediaUrl</code>) and <code>gambot_upload_template_media</code>. <strong>Build bots by chatting</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, plus <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — see the <a href="#bots">Bots &amp; Automations</a> section.',
+    he: 'לאחר החיבור, הסוכן יכול לקרוא לכלים כמו <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> ועוד (123 כלים). לתבניות עם מדיה, כפתורים ו-Footer: <code>gambot_create_template</code> (העבירו <code>headerMediaUrl</code>) ו-<code>gambot_upload_template_media</code>. <strong>בניית בוטים בשיחה</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, וכן <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — ראו את סעיף <a href="#bots">בוטים ואוטומציות</a>.',
+    en: 'Once connected, the agent can call tools like <code>gambot_send_text</code>, <code>gambot_create_lead</code>, <code>gambot_issue_invoice</code>, <code>gambot_create_user</code> and more (123 tools). For templates with media, buttons and footer: <code>gambot_create_template</code> (pass <code>headerMediaUrl</code>) and <code>gambot_upload_template_media</code>. <strong>Build bots by chatting</strong>: <code>gambot_create_keyword_autoreply</code>, <code>gambot_create_template_button_autoreply</code>, <code>gambot_create_menu_bot</code>, plus <code>gambot_create_bot</code>/<code>gambot_list_bots</code>/<code>gambot_get_bot</code>/<code>gambot_set_bot_status</code>/<code>gambot_delete_bot</code> — see the <a href="#bots">Bots &amp; Automations</a> section.',
   },
 };
 

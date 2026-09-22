@@ -26,21 +26,6 @@ const sessionOptions = [
 //   { value: 5000, price: 250 },
 // ];
 
-const sessionOptionsAI = [
-  { value: 500, price: 50 },
-  { value: 1000, price: 100 },
-  { value: 1500, price: 150 },
-  { value: 2000, price: 200 }
-];
-
-const generalTokenOptions = [
-  { value: 100, price: 49 },
-  { value: 250, price: 99 },
-  { value: 500, price: 179 },
-  { value: 1000, price: 349 },
-  { value: 2000, price: 649 }
-];
-
 const plans = {
   monthly: [
      {
@@ -179,40 +164,6 @@ const [showModal, setShowModal] = useState(false);
     router.push('/PriceList/WhatsAppMessagingPricingBlog');
   }
  
-  const [selectedSessionsAI, setSelectedSessionsAI] = useState(sessionOptionsAI[0]);
-  const [selectedGeneralTokens, setSelectedGeneralTokens] = useState(generalTokenOptions[0]);
-  const [showAiCalc, setShowAiCalc] = useState(false);
-  const [calcServiceType, setCalcServiceType] = useState('support');
-  const [calcConversations, setCalcConversations] = useState(300);
-  const [calcAvgResponses, setCalcAvgResponses] = useState(3);
-  const [calcPlan, setCalcPlan] = useState('pro');
-
-  const servicePresets = {
-    support:      { label: 'שירות לקוחות', avg: 6, desc: 'שאלות ותמיכה — לרוב שיחות ארוכות יותר' },
-    leads:        { label: 'ניהול לידים', avg: 4, desc: 'הסמכת לידים, שאלות ממוקדות לפני העברה לנציג' },
-    appointments: { label: 'תיאום פגישות', avg: 3, desc: 'שיחות קצרות וממוקדות — AI מנחה לבחירת זמן' },
-  };
-  const calcPlanIncluded = { growth: 50, pro: 300, business: 1000 };
-  const calcPlanPrice    = { growth: 179, pro: 359, business: 645 };
-  const calcPlanLabel    = { growth: 'Growth', pro: 'Pro', business: 'Business' };
-  const totalAiMonthly   = calcConversations * calcAvgResponses;
-  const includedAi       = calcPlanIncluded[calcPlan] || 0;
-  const extraAi          = Math.max(0, totalAiMonthly - includedAi);
-  const extraCost        = Math.ceil(extraAi / 500) * 50;
-  const totalMonthlyCost = calcPlanPrice[calcPlan] + extraCost;
-
-  const handleGeneralTokensChange = (event) => {
-    const selectedValue = parseInt(event.target.value, 10);
-    const newSelection = generalTokenOptions.find((option) => option.value === selectedValue);
-    setSelectedGeneralTokens(newSelection);
-  };
-
-  const handleSessionChangeAI = (event) => {
-    const selectedValueAI = parseInt(event.target.value, 10);
-    const newSelectionAI = sessionOptionsAI.find((option) => option.value === selectedValueAI);
-    setSelectedSessionsAI(newSelectionAI);
-  };
-  
   return (
     <div className="price-list-container">
 
@@ -380,13 +331,30 @@ const [showModal, setShowModal] = useState(false);
                 {getplanFeatures(plan.name).map((feature, i) => {
                   const isConversations = /שיחות[\s\S]*בחודש/.test(feature) || /conversations per month/i.test(feature);
                   const isBroadcast = /הודעות דיוור/.test(feature) || /broadcast messages/i.test(feature);
+                  const isAiResponses = /תגובות\s*AI/i.test(feature) || /AI responses/i.test(feature);
+                  const isGeneralTokens = /טוקנים\s*כלליים/i.test(feature) || /general (ai )?tokens/i.test(feature);
+                  const isCredits = /קרדיט/i.test(feature) || /\bcredits?\b/i.test(feature);
                   const convTooltip = currentLanguage === 'en'
                     ? '1 conversation = all messaging with a single person within a 24-hour window. From the moment someone reaches out, the entire exchange with them during those 24 hours counts as a single conversation.'
                     : 'שיחה 1 נחשבת התקשרות עם אדם אחד למשך 24 שעות. כלומר, מהרגע שמישהו פונה — כל ההתכתבות איתו במסגרת אותן 24 שעות נחשבת שיחה אחת.';
                   const broadcastTooltip = currentLanguage === 'en'
                     ? 'Broadcast messages = bulk mailing to many recipients. E.g. you upload an Excel and send one message to 100 people, then two weeks later to another 200 — that counts as 300 broadcast messages. The quota applies to each channel separately (WhatsApp and/or Email) — e.g. up to 5,000 on each channel.'
                     : 'הודעות דיוור = שליחה בתפוצה רחבה לנמענים רבים. לדוגמה: העליתם אקסל ושלחתם הודעה אחת ל-100 איש, וכעבור שבועיים עוד 200 — זה נחשב 300 הודעות דיוור. המכסה חלה על כל ערוץ בנפרד (וואטסאפ ו/או מייל) — למשל עד 5,000 בכל ערוץ.';
-                  const tooltip = isConversations ? convTooltip : (isBroadcast ? broadcastTooltip : null);
+                  const aiResponsesTooltip = currentLanguage === 'en'
+                    ? 'AI responses = replies your AI bot generates to customers. Each reply consumes credits by the model used and the amount of context/knowledge involved — heavier replies cost more.'
+                    : 'תגובות AI = התשובות שהבוט מייצר ללקוחות. כל תשובה צורכת קרדיטים לפי המודל שנבחר וכמות ההקשר/הידע בשימוש — תשובות "כבדות" עולות יותר.';
+                  const generalTokensTooltip = currentLanguage === 'en'
+                    ? 'General AI tokens power advanced AI actions beyond replies — proactive messages, AI reports, data analysis and smart summaries. Each action consumes tokens by its size.'
+                    : 'טוקנים כלליים AI מפעילים פעולות AI מתקדמות מעבר לתשובות — הודעות פרואקטיביות, בניית דוחות, ניתוח נתונים וסיכומים חכמים. כל פעולה צורכת טוקנים לפי גודלה.';
+                  const creditsTooltip = currentLanguage === 'en'
+                    ? 'AI credits are one unified pool for ALL AI usage — bot replies plus proactive messages, reports, analysis and summaries. Each action draws credits by the model used and its size; heavier/premium usage costs more. Extra: ₪39 per 500 credits.'
+                    : 'קרדיטים AI הם מאגר אחד מאוחד לכל שימושי ה‑AI — תשובות הבוט וגם הודעות פרואקטיביות, דוחות, ניתוח וסיכומים. כל פעולה צורכת קרדיטים לפי המודל והגודל; שימוש כבד/מודל יקר עולה יותר. תוספת: ₪39 לכל 500 קרדיטים.';
+                  const tooltip = isConversations ? convTooltip : (isBroadcast ? broadcastTooltip : (isCredits ? creditsTooltip : (isAiResponses ? aiResponsesTooltip : (isGeneralTokens ? generalTokensTooltip : null))));
+                  // AI/credit lines link to the full "Gambot Tokens (Credits)" guide (posts.js id 44).
+                  const tooltipHasLink = isCredits || isAiResponses || isGeneralTokens;
+                  const creditsBlogUrl = currentLanguage === 'en'
+                    ? '/blog/44/gambot-tokens-credits-how-to-calculate-and-estimate-your-ai-usage/'
+                    : '/blog/44/טוקני-גמבוט-קרדיטים-איך-מחשבים-ומעריכים-כמה-ai-תצרכו/';
                   return (
                     <li key={i}>
                       <FaCheck className="feature-check" />
@@ -401,10 +369,20 @@ const [showModal, setShowModal] = useState(false);
                           >
                             ?
                             <span
-                              className="feature-tooltip"
+                              className={`feature-tooltip${tooltipHasLink ? ' has-link' : ''}`}
                               role="tooltip"
                               dir={currentLanguage === 'en' ? 'ltr' : 'rtl'}
-                            >{tooltip}</span>
+                            >
+                              {tooltip}
+                              {tooltipHasLink && (
+                                <>
+                                  {' '}
+                                  <a className="feature-tooltip-link" href={creditsBlogUrl}>
+                                    {currentLanguage === 'en' ? 'Learn more →' : 'להרחבה — מדריך הטוקנים ←'}
+                                  </a>
+                                </>
+                              )}
+                            </span>
                           </span>
                         )}
                       </span>
@@ -567,198 +545,6 @@ const [showModal, setShowModal] = useState(false);
       </div> */}
 
 
-
-      {/* Enhanced AI Add-on */}
-      <div className="addon-section">
-        <div className="addon-container ai-addon">
-          <div className="addon-header">
-            <div className="addon-icon ai-icon">
-              <FaRocket />
-            </div>
-            <h2 className="addon-title">{t('pricing.addons.aiTitle')}</h2>
-            <p className="addon-subtitle">{t('pricing.addons.aiSubtitle')}</p>
-          </div>
-          
-          <div className="addon-selector">
-            <label htmlFor="ai-sessions-select">{t('pricing.addons.selectAISessions')}</label>
-            <div className="select-wrapper">
-              <select 
-                id="ai-sessions-select"
-                value={selectedSessionsAI.value} 
-                onChange={handleSessionChangeAI}
-                className="addon-select ai-select"
-              >
-                {sessionOptionsAI.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.value.toLocaleString()} {t('pricing.addons.aiSessions')}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          
-          <div className="addon-pricing">
-            <span className="addon-price">{formatPrice(selectedSessionsAI.price).currency}{formatPrice(selectedSessionsAI.price).amount}</span>
-            <span className="addon-period">{t('pricing.ui.perMonth')}</span>
-          </div>
-          <button className="ai-calc-trigger-btn" onClick={() => setShowAiCalc(true)}>
-            🧮 &nbsp;מחשבון תגובות AI — כמה תצטרכו בחודש?
-          </button>
-        </div>
-      </div>
-
-      {/* AI Calculator Modal */}
-      {showAiCalc && (
-        <div className="ai-calc-overlay" onClick={() => setShowAiCalc(false)}>
-          <div className="ai-calc-modal" dir="rtl" onClick={e => e.stopPropagation()}>
-            <button className="ai-calc-close" onClick={() => setShowAiCalc(false)}>✕</button>
-            <div className="ai-calc-header">
-              <span className="ai-calc-header-icon">🧮</span>
-              <h2>מחשבון תגובות AI</h2>
-              <p>הבינו כמה תגובות AI תצטרכו בחודש ומה יהיה העלות הנוספת</p>
-            </div>
-
-            <div className="ai-calc-section">
-              <label className="ai-calc-label">1. סוג השירות שלכם</label>
-              <div className="ai-calc-service-grid">
-                {Object.entries(servicePresets).map(([key, s]) => (
-                  <button key={key}
-                    className={`ai-calc-service-btn${calcServiceType === key ? ' active' : ''}`}
-                    onClick={() => { setCalcServiceType(key); setCalcAvgResponses(s.avg); }}>
-                    <span className="ai-calc-service-icon">{key === 'support' ? '🎧' : key === 'leads' ? '🎯' : '📅'}</span>
-                    <span className="ai-calc-service-label">{s.label}</span>
-                    <span className="ai-calc-service-avg">~{s.avg} תגובות AI לשיחה</span>
-                    <span className="ai-calc-service-desc">{s.desc}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="ai-calc-section">
-              <label className="ai-calc-label">
-                2. כמה שיחות חדשות בחודש?
-                <span className="ai-calc-value-badge">{calcConversations.toLocaleString()}</span>
-              </label>
-              <input type="range" min={50} max={5000} step={50} value={calcConversations}
-                onChange={e => setCalcConversations(Number(e.target.value))} className="ai-calc-slider" />
-              <div className="ai-calc-slider-labels"><span>50</span><span>1,000</span><span>2,500</span><span>5,000</span></div>
-            </div>
-
-            <div className="ai-calc-section">
-              <label className="ai-calc-label">
-                3. ממוצע תגובות AI לשיחה
-                <span className="ai-calc-value-badge">{calcAvgResponses}</span>
-              </label>
-              <input type="range" min={1} max={15} step={1} value={calcAvgResponses}
-                onChange={e => setCalcAvgResponses(Number(e.target.value))} className="ai-calc-slider" />
-              <div className="ai-calc-slider-labels"><span>1</span><span>5</span><span>10</span><span>15</span></div>
-              <div className="ai-calc-tip">
-                💡 <strong>המלצת גמבוט:</strong> 2–3 תשובות AI ראשונות לשיחה — הבוט מכוון את הלקוח מההתחלה ו-AI קורא את ההיסטוריה כך שהתשובות הראשונות הן הכי אפקטיביות.
-              </div>
-              <div className="ai-calc-settings-note">
-                ⚙️ <strong>טיפ:</strong> בהגדרות המערכת ניתן להגביל את מספר תגובות ה-AI המקסימלי לשיחה — כך תשלטו בצריכה ולא תגיעו להפתעות בחיוב.
-              </div>
-            </div>
-
-            <div className="ai-calc-section">
-              <label className="ai-calc-label">4. החבילה שלכם</label>
-              <div className="ai-calc-plan-row">
-                {Object.entries(calcPlanLabel).map(([key, label]) => (
-                  <button key={key}
-                    className={`ai-calc-plan-btn${calcPlan === key ? ' active' : ''}`}
-                    onClick={() => setCalcPlan(key)}>
-                    {label}
-                    <span>{calcPlanIncluded[key].toLocaleString()} AI כלול</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className={`ai-calc-result${extraCost === 0 ? ' result-ok' : extraCost > 200 ? ' result-high' : ''}`}>
-              <div className="ai-calc-result-row"><span>סה&quot;כ תגובות AI חודשיות</span><strong>{totalAiMonthly.toLocaleString()}</strong></div>
-              <div className="ai-calc-result-row"><span>כלול בחבילת {calcPlanLabel[calcPlan]}</span><strong>{includedAi.toLocaleString()}</strong></div>
-              <div className={`ai-calc-result-row${extraAi > 0 ? ' extra' : ''}`}><span>תגובות נוספות נדרשות</span><strong>{extraAi.toLocaleString()}</strong></div>
-              <div className="ai-calc-result-divider" />
-              <div className="ai-calc-result-row total"><span>תוספת חודשית בגין AI</span><strong className="ai-calc-cost">₪{extraCost}</strong></div>
-              <div className="ai-calc-result-row grand-total"><span>סה&quot;כ עלות חודשית משוערת</span><strong className="ai-calc-grand">₪{totalMonthlyCost.toLocaleString()}</strong></div>
-              {extraCost === 0 && <div className="ai-calc-ok-msg">✅ הכמות הזו כלולה בחבילה שלכם — אין תוספת עלות!</div>}
-            </div>
-
-            <a href="/PriceList/OnboardingServices" className="ai-calc-cta">לתחילת ניסיון חינם ←</a>
-          </div>
-        </div>
-      )}
-
-      {/* 🔮 General AI Tokens Add-on */}
-      <div className="addon-section">
-        <div className="addon-container" style={{ background: 'linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)', borderColor: '#8b5cf6' }}>
-          <div className="addon-header">
-            <div className="addon-icon" style={{ background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)' }}>
-              <FaBolt />
-            </div>
-            <h2 className="addon-title">
-              {currentLanguage === 'en' ? '🔮 General AI Tokens' : '🔮 טוקנים כלליים AI'}
-            </h2>
-            <p className="addon-subtitle">
-              {currentLanguage === 'en' 
-                ? 'Power advanced AI features — pro-active messages, report generation, analytics, and more'
-                : 'טוקנים לפעולות AI מתקדמות — הודעות פרואקטיביות, בניית דוחות, ניתוח נתונים ועוד'}
-            </p>
-          </div>
-
-          <div style={{ 
-            display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px',
-            margin: '0 0 20px', padding: '12px', background: 'rgba(139, 92, 246, 0.08)', borderRadius: '10px'
-          }}>
-            {[
-              { icon: '⚡', text: currentLanguage === 'en' ? 'Pro-Active messages' : 'הודעות פרואקטיביות' },
-              { icon: '📊', text: currentLanguage === 'en' ? 'AI report generation' : 'בניית דוחות AI' },
-              { icon: '🔍', text: currentLanguage === 'en' ? 'Smart analytics' : 'ניתוח נתונים חכם' },
-              { icon: '📝', text: currentLanguage === 'en' ? 'AI summaries' : 'סיכומים חכמים' },
-            ].map((item, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', color: '#5b21b6', direction: currentLanguage === 'en' ? 'ltr' : 'rtl' }}>
-                <span>{item.icon}</span>
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </div>
-          
-          <div className="addon-selector">
-            <label htmlFor="general-tokens-select">
-              {currentLanguage === 'en' ? 'Select additional AI tokens:' : 'בחר טוקנים כלליים נוספים:'}
-            </label>
-            <div className="select-wrapper">
-              <select 
-                id="general-tokens-select"
-                value={selectedGeneralTokens.value} 
-                onChange={handleGeneralTokensChange}
-                className="addon-select"
-                style={{ borderColor: '#8b5cf6' }}
-              >
-                {generalTokenOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.value.toLocaleString()} {currentLanguage === 'en' ? 'AI tokens' : 'טוקנים כלליים'}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          
-          <div className="addon-pricing">
-            <span className="addon-price" style={{ color: '#7c3aed' }}>{formatPrice(selectedGeneralTokens.price).currency}{formatPrice(selectedGeneralTokens.price).amount}</span>
-            <span className="addon-period">{t('pricing.ui.perMonth')}</span>
-          </div>
-
-          <div style={{ 
-            marginTop: '12px', padding: '10px 14px', background: 'rgba(139, 92, 246, 0.1)', 
-            borderRadius: '8px', textAlign: 'center', fontSize: '12px', color: '#6d28d9' 
-          }}>
-            {currentLanguage === 'en' 
-              ? '👑 Included in all plans • Growth = 25, Pro = 100, Business = 300 tokens'
-              : '👑 כלול בכל התוכניות • Growth = 25, Pro = 100, Business = 300 טוקנים'}
-          </div>
-        </div>
-      </div>
 
       {/* ─── Support Plus Add-on ─── */}
       <div className="addon-section">

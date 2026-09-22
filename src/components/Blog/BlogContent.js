@@ -45,6 +45,10 @@ const POST_CARDS = {
   32: { gradient: 'linear-gradient(135deg,#374151,#111827)', icon: '⚖️', labelHe: 'API vs Business', labelEn: 'API vs Business' },
   39: { gradient: 'linear-gradient(135deg,#00a884,#0b57d0)', icon: '✅', labelHe: 'תג כחול מאומת', labelEn: 'Verified Badge' },
   40: { gradient: 'linear-gradient(135deg,#b91c1c,#7f1d1d)', icon: '🚫', labelHe: 'חסימת חשבון', labelEn: 'Account Blocked' },
+  41: { gradient: 'linear-gradient(135deg,#7c3aed,#4f46e5)', icon: '🤖', labelHe: 'WhatsApp MCP', labelEn: 'WhatsApp MCP' },
+  42: { gradient: 'linear-gradient(135deg,#4f46e5,#0891b2)', icon: '🔌', labelHe: 'MCP לסוכני AI', labelEn: 'MCP for AI Agents' },
+  43: { gradient: 'linear-gradient(135deg,#0369a1,#0891b2)', icon: '⚙️', labelHe: 'התקנת MCP Server', labelEn: 'MCP Server Setup' },
+  44: { gradient: 'linear-gradient(135deg,#0891b2,#0369a1)', icon: '🪙', labelHe: 'קרדיטים ותמחור', labelEn: 'Credits & Pricing' },
 };
 const FALLBACK_CARD = { gradient: 'linear-gradient(135deg,#1565C0,#0288D1)', icon: '💬', labelHe: 'WhatsApp', labelEn: 'WhatsApp' };
 

@@ -736,6 +736,23 @@
   transform: translateY(0);
 }
 
+/* Tooltips that contain a "Learn more" link must be clickable. The tooltip is a child of
+   .feature-info, so hovering it keeps .feature-info:hover true and the tooltip stays open. */
+.feature-tooltip.has-link {
+  pointer-events: auto;
+}
+.feature-tooltip-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: #4ade80;
+  font-weight: 700;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.feature-tooltip-link:hover {
+  color: #86efac;
+}
+
 .plan-expand-toggle {
   display: flex;
   align-items: center;

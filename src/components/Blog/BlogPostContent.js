@@ -5,6 +5,7 @@ import styles from './BlogPostContent.module.css';
 import LeadForm from '@/components/LeadForm/LeadForm';
 import posts, { getSeoUrl } from '@/lib/posts';
 import { useLanguage } from '@/contexts/LanguageContext';
+import CreditCalculator from '@/components/Blog/CreditCalculator';
 
 
 export default function BlogPostContent({ post }) {
@@ -176,6 +177,9 @@ export default function BlogPostContent({ post }) {
           ) : (
             <p>{lang === 'en' ? 'Post content not available.' : 'תוכן הפוסט אינו זמין.'}</p>
           )}
+
+          {/* Interactive credit calculator — only on the Gambot Tokens/Credits guide (post 44) */}
+          {post.id === 44 && <CreditCalculator lang={lang} />}
 
           {/* FAQ Schema */}
           {faq.length > 0 && (
