@@ -105,6 +105,14 @@ const META_PRICING = [
   { category: 'אימות (Authentication)', price: 0.0067, desc: 'קודי OTP ואימות זהות' },
 ];
 
+// API / MCP metered plans — for developers & AI agents that call Gambot programmatically.
+const API_MCP_PLANS = [
+  { name: 'API Starter', credits: 2500, price: 250 },
+  { name: 'API Growth', credits: 10000, price: 1000, recommended: true },
+  { name: 'API Scale', credits: 40000, price: 4000 },
+  { name: 'API Enterprise', credits: 150000, price: 15000 },
+];
+
 function calcQuizResult(answers) {
   const scores = { Growth: 0, Pro: 0, Business: 0 };
   answers.forEach(p => scores[p]++);
@@ -403,6 +411,27 @@ export default function PricingContent() {
             ))}
           </div>
           <p className={styles.metaNote}>* תעריפי Meta מחושבים לפי שיחה (24 שעות), לא לפי הודעה. שיחת שירות שנפתחת על ידי לקוח היא חינמית.</p>
+        </div>
+      </section>
+
+      {/* API / MCP metered plans */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>🔌 מסלולי API / MCP</h2>
+          <p className={styles.sectionDesc}>
+            למפתחים וסוכני AI שקוראים ל-Gambot בצורה תוכנתית. חיוב לפי תעבורה (קרדיטים): כל קריאה ל-Gambot וחזרה
+            צורכת קרדיטים לפי הסוג — API רגילה ×1, MCP ×2, פעולת AI ×12, Bulk/ייצוא ×4 (₪0.10 לקרדיט).
+          </p>
+          <div className={styles.metaGrid}>
+            {API_MCP_PLANS.map((p, i) => (
+              <div key={i} className={styles.metaCard} style={p.recommended ? { borderColor: '#6366f1', boxShadow: '0 0 0 1px #6366f1 inset' } : undefined}>
+                <h3>{p.name}{p.recommended ? ' ⭐' : ''}</h3>
+                <p className={styles.metaPrice}>₪{p.price.toLocaleString()} <span>/חודש</span></p>
+                <p className={styles.metaDesc}>{p.credits.toLocaleString()} קרדיטים לחודש</p>
+              </div>
+            ))}
+          </div>
+          <p className={styles.metaNote}>* בוחרים חבילת קרדיטים חודשית; חריגה מעבר לחבילה מחויבת לפי מחיר קרדיט + ~30%. המחירים אינם כוללים מע״מ.</p>
         </div>
       </section>
 
