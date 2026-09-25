@@ -5,15 +5,6 @@ import { FaCheck, FaCrown, FaStar, FaRocket, FaLightbulb, FaCheckCircle, FaArrow
 import { HiOutlineSparkles } from "react-icons/hi2";
 import { useLanguage } from '@/contexts/LanguageContext';
 
-// 🔌 API / MCP metered plans — for developers & AI agents that call Gambot programmatically.
-// Billed by traffic (credits): each call to Gambot and back consumes credits by type.
-const apiMcpPlans = [
-  { name: 'API Starter', credits: 2500, price: 250 },
-  { name: 'API Growth', credits: 10000, price: 1000, recommended: true },
-  { name: 'API Scale', credits: 40000, price: 4000 },
-  { name: 'API Enterprise', credits: 150000, price: 15000 },
-];
-
 const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep }) => {
   const { t, currentLanguage, isRTL } = useLanguage();
   const [isChecked, setIsChecked] = useState(false);
@@ -210,6 +201,8 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                       const isBroadcast = /הודעות דיוור/.test(feature) || /broadcast messages/i.test(feature);
                       const isAiResponses = /תגובות\s*AI/i.test(feature) || /AI responses/i.test(feature);
                       const isGeneralTokens = /טוקנים\s*כלליים/i.test(feature) || /general (ai )?tokens/i.test(feature);
+                      // API/MCP credits are a SEPARATE pool from AI credits — detect before isCredits.
+                      const isApiMcp = /API\s*\/\s*MCP/i.test(feature) || /קרדיטים\s*API/.test(feature);
                       const isCredits = /קרדיט/i.test(feature) || /\bcredits?\b/i.test(feature);
                       const broadcastTooltip = currentLanguage === 'en'
                         ? 'Broadcast messages = bulk mailing to many recipients. E.g. you upload an Excel and send one message to 100 people, then two weeks later to another 200 — that counts as 300 broadcast messages. The quota applies to each channel separately (WhatsApp and/or Email) — e.g. up to 5,000 on each channel.'
@@ -223,11 +216,18 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                       const creditsTooltip = currentLanguage === 'en'
                         ? 'AI credits are one unified pool for ALL AI usage — bot replies plus proactive messages, reports, analysis and summaries. Heavier/premium usage costs more. Extra: ₪39 per 500 credits. Click for the full guide.'
                         : 'קרדיטים AI הם מאגר אחד מאוחד לכל שימושי ה‑AI — תשובות הבוט וגם הודעות פרואקטיביות, דוחות, ניתוח וסיכומים. שימוש כבד/מודל יקר עולה יותר. תוספת: ₪39 לכל 500 קרדיטים. לחצו למדריך המלא.';
-                      const isCreditLine = isCredits || isAiResponses || isGeneralTokens;
-                      const creditsBlogUrl = currentLanguage === 'en'
-                        ? '/blog/44/gambot-tokens-credits-how-to-calculate-and-estimate-your-ai-usage/'
-                        : '/blog/44/טוקני-גמבוט-קרדיטים-איך-מחשבים-ומעריכים-כמה-ai-תצרכו/';
-                      const infoTooltip = isBroadcast ? broadcastTooltip : (isCredits ? creditsTooltip : (isAiResponses ? aiResponsesTooltip : (isGeneralTokens ? generalTokensTooltip : null)));
+                      const apiMcpTooltip = currentLanguage === 'en'
+                        ? 'API/MCP credits are a separate pool for external-interface usage: a plain API call = 1 credit, an MCP action = 2, a bulk send/export = 4, an AI action via the interface = 12. Quota is included; overage ₪0.10/credit. Click for the full guide.'
+                        : 'קרדיטים API/MCP הם מאגר נפרד לשימוש בממשק החיצוני: קריאת API רגילה = 1 קרדיט, פעולת MCP = 2, דיוור/ייצוא = 4, ופעולת AI דרך הממשק = 12. המכסה כלולה; חריגה ₪0.10 לקרדיט. לחצו למדריך המלא.';
+                      const isCreditLine = isApiMcp || isCredits || isAiResponses || isGeneralTokens;
+                      const creditsBlogUrl = isApiMcp
+                        ? (currentLanguage === 'en'
+                            ? '/blog/46/api-mcp-credits-how-gambot-counts-interface-usage-and-what-it-costs/'
+                            : '/blog/46/קרדיטים-api-ו-mcp-איך-נספרת-צריכת-הממשק-בגמבוט-וכמה-זה-עולה/')
+                        : (currentLanguage === 'en'
+                            ? '/blog/44/gambot-tokens-credits-how-to-calculate-and-estimate-your-ai-usage/'
+                            : '/blog/44/טוקני-גמבוט-קרדיטים-איך-מחשבים-ומעריכים-כמה-ai-תצרכו/');
+                      const infoTooltip = isBroadcast ? broadcastTooltip : (isApiMcp ? apiMcpTooltip : (isCredits ? creditsTooltip : (isAiResponses ? aiResponsesTooltip : (isGeneralTokens ? generalTokensTooltip : null))));
                       const infoStyle = {
                         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                         width: 16, height: 16, marginInlineStart: 6, borderRadius: '50%',
@@ -327,64 +327,6 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
               </div>
             );
           })}
-        </div>
-
-        {/* 🔌 API / MCP metered plans — quantity (credits) per package */}
-        <div style={{ maxWidth: '960px', margin: '8px auto 28px', padding: '0 8px' }}>
-          <div style={{ background: 'linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%)', border: '1px solid #6366f1', borderRadius: '16px', padding: '24px' }}>
-            <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-              <h3 style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', justifyContent: 'center', fontSize: '1.25rem', fontWeight: 800, color: '#312e81', margin: 0 }}>
-                {currentLanguage === 'en' ? '🔌 API / MCP Plans' : '🔌 מסלולי API / MCP'}
-                <span
-                  title={currentLanguage === 'en'
-                    ? 'API/MCP is billed by traffic (credits): every call to Gambot and back consumes credits by type — a regular API call ×1, an MCP call ×2, an AI action ×12, a bulk/export ×4 (₪0.10 per credit). Pick a monthly credit bundle; usage beyond it is billed per credit +~30%.'
-                    : 'חיוב API/MCP לפי תעבורה (קרדיטים): כל קריאה ל-Gambot וחזרה צורכת קרדיטים לפי הסוג — קריאת API רגילה ×1, קריאת MCP ×2, פעולת AI ×12, פעולת Bulk/ייצוא ×4 (₪0.10 לקרדיט). בוחרים חבילת קרדיטים חודשית; חריגה מעבר לחבילה מחויבת לפי מחיר קרדיט + ~30%.'}
-                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '18px', height: '18px', borderRadius: '50%', background: '#6366f1', color: '#fff', fontSize: '12px', fontWeight: 700, cursor: 'help' }}
-                >?</span>
-              </h3>
-              <p style={{ marginTop: '8px', fontSize: '0.9rem', color: '#4338ca' }}>
-                {currentLanguage === 'en'
-                  ? 'For developers & AI agents that call Gambot programmatically — billed by traffic (credits).'
-                  : 'למפתחים וסוכני AI שקוראים ל-Gambot בצורה תוכנתית — חיוב לפי תעבורה (קרדיטים).'}
-              </p>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '12px' }}>
-              {apiMcpPlans.map((p) => (
-                <div
-                  key={p.name}
-                  style={{
-                    position: 'relative', background: '#fff', borderRadius: '12px', padding: '18px 14px',
-                    textAlign: 'center', border: p.recommended ? '2px solid #6366f1' : '1px solid #e2e8f0',
-                  }}
-                >
-                  {p.recommended && (
-                    <div style={{
-                      position: 'absolute', top: '-10px', left: '50%', transform: 'translateX(-50%)',
-                      background: '#6366f1', color: '#fff', fontSize: '11px', fontWeight: 700,
-                      padding: '3px 10px', borderRadius: '999px', whiteSpace: 'nowrap',
-                    }}>
-                      {currentLanguage === 'en' ? 'Recommended' : 'מומלץ'}
-                    </div>
-                  )}
-                  <div style={{ fontSize: '15px', fontWeight: 800, color: '#0f172a' }}>{p.name}</div>
-                  <div style={{ marginTop: '4px', fontSize: '12px', color: '#64748b' }}>
-                    {p.credits.toLocaleString()} {currentLanguage === 'en' ? 'credits / mo' : 'קרדיטים / חודש'}
-                  </div>
-                  <div style={{ marginTop: '12px', fontWeight: 900, fontSize: '24px', color: '#0f172a' }}>
-                    {formatPrice(p.price).currency}{formatPrice(p.price).amount.toLocaleString()}
-                    <span style={{ fontSize: '12px', fontWeight: 400, color: '#94a3b8' }}>{currentLanguage === 'en' ? '/mo' : '/חודש'}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ marginTop: '14px', fontSize: '12.5px', color: '#475569', textAlign: 'center', lineHeight: 1.6 }}>
-              {currentLanguage === 'en'
-                ? 'Credit weight per call: API ×1 · MCP ×2 · AI action ×12 · Bulk/Export ×4 (₪0.10/credit). Overage beyond your bundle is billed per credit +~30%.'
-                : 'משקל קרדיטים לקריאה: API ×1 · MCP ×2 · פעולת AI ×12 · Bulk/ייצוא ×4 (₪0.10 לקרדיט). חריגה מעבר לחבילה מחויבת לפי מחיר קרדיט + ~30%.'}
-            </div>
-          </div>
         </div>
 
         {/* Enhanced Terms Section */}

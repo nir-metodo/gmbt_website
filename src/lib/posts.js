@@ -12529,6 +12529,589 @@ const posts = [
   },
   seoUrl: getSeoUrl('טוקני גמבוט קרדיטים איך מחשבים ומעריכים כמה AI תצרכו')
 }
+,
+{
+  id: 45,
+  seoTitle: {
+    he: 'תיקון 13 לחוק הגנת הפרטיות 2025 — מה חדש ולמה גמבוט עומדת בו | גמבוט',
+    en: 'Amendment 13 to Israel\'s Privacy Law 2025 — What Changed & Why Gambot Complies | Gambot'
+  },
+  metaDescription: {
+    he: 'כל מה שצריך לדעת על תיקון 13 לחוק הגנת הפרטיות (נכנס לתוקף 14.8.2025) ✓ עיצומים כספיים ✓ ממונה הגנת פרטיות DPO ✓ סמכויות אכיפה ✓ אבטחת מידע ✓ ולמה גמבוט עומדת בדרישות',
+    en: 'Everything about Amendment 13 to Israel\'s Privacy Protection Law (effective 14.8.2025) ✓ Monetary sanctions ✓ DPO ✓ Enforcement powers ✓ Data security ✓ and why Gambot complies'
+  },
+  keywords: {
+    he: ['תיקון 13', 'תקנה 13', 'חוק הגנת הפרטיות', 'תיקון 13 לחוק הגנת הפרטיות', 'עיצומים כספיים פרטיות', 'ממונה הגנת פרטיות', 'DPO ישראל', 'אבטחת מידע', 'הרשות להגנת הפרטיות', 'GDPR ישראל'],
+    en: ['amendment 13', 'israel privacy law', 'privacy protection law israel', 'israeli dpo', 'data protection israel', 'privacy authority israel', 'data security regulations', 'gdpr israel']
+  },
+  title: {
+    he: 'תיקון 13 לחוק הגנת הפרטיות — מה חדש, ולמה גמבוט עומדת בו',
+    en: 'Amendment 13 to Israel\'s Privacy Protection Law — What Changed, and Why Gambot Complies'
+  },
+  description: {
+    he: 'הרפורמה הגדולה בדיני הפרטיות בישראל נכנסה לתוקף. מדריך ברור לתיקון 13 — סמכויות אכיפה חדשות, עיצומים כספיים כבדים, ממונה הגנת פרטיות (DPO) ואבטחת מידע — ואיך גמבוט בנויה כדי לעזור לכם לעמוד בדרישות.',
+    en: 'Israel\'s biggest privacy reform is now in force. A clear guide to Amendment 13 — new enforcement powers, heavy monetary sanctions, a DPO requirement and data security — and how Gambot is built to help you comply.'
+  },
+  category: 'Compliance',
+  author: 'ניר סגס',
+  publishedDate: '2026-09-25',
+  image: '/blog/post25.jpg',
+  readTime: 13,
+  featured: true,
+  faq: {
+    he: [
+      { q: 'מה זה תיקון 13 לחוק הגנת הפרטיות?', a: 'תיקון 13 הוא רפורמה מקיפה בדיני הפרטיות בישראל שנכנסה לתוקף ב-14 באוגוסט 2025. הוא מעדכן הגדרות יסוד, מרחיב משמעותית את סמכויות האכיפה של הרשות להגנת הפרטיות, ומעגן לראשונה מנגנון עיצומים כספיים בסכומים גבוהים. רבים מכנים אותו בטעות "תקנה 13", אך שמו הרשמי הוא תיקון מס\' 13 לחוק הגנת הפרטיות.' },
+      { q: 'על מי חל תיקון 13?', a: 'החוק חל על כל גוף — ציבורי או פרטי — שאוסף, מחזיק או מעבד מידע אישי. זה כולל כמעט כל עסק שמנהל רשימת לקוחות, שולח דיוור, או שומר פרטי יצירת קשר, ובכלל זה עסקים שמנהלים לקוחות בוואטסאפ.' },
+      { q: 'כמה עולה הפרה של החוק?', a: 'העיצומים הכספיים משמעותיים: החל מ-15,000 ₪ על הפרת זכות עיון, דרך 150,000 ₪ על הפרות רישום/הודעה (כפול מעל מיליון נושאי מידע), ועד מדרגות של מאות אלפי ₪ בעיבוד שלא כדין ובהפרות אבטחת מידע. הפרה חוזרת או נמשכת מוכפלת.' },
+      { q: 'האם אני חייב למנות ממונה הגנת פרטיות (DPO)?', a: 'חובת מינוי DPO חלה על גופים ציבוריים, סוחרי מידע, וגופים שעיקר עיסוקם עיבוד מידע רגיש בהיקף גדול. גם עסקים שאינם חייבים בכך ייהנו ממינוי אחראי פרטיות פנימי כדי לנהל הסכמות, בקשות מחיקה ואבטחה.' },
+      { q: 'איך גמבוט עוזרת לי לעמוד בתיקון 13?', a: 'גמבוט בנויה סביב אבטחת מידע (הצפנה, בקרת גישה, הפרדת נתונים בין ארגונים ותיעוד פעולות), ניהול הסכמות והסרה אוטומטית מדיוור, וכלים למימוש זכויות נושא המידע — עיון, תיקון, ייצוא ומחיקה של פרטי לקוח והודעות. כל אלה תומכים ישירות בדרישות התיקון.' }
+    ],
+    en: [
+      { q: 'What is Amendment 13 to the Privacy Protection Law?', a: 'Amendment 13 is a comprehensive reform of Israeli privacy law that entered into force on August 14, 2025. It updates core definitions, significantly expands the Privacy Protection Authority\'s enforcement powers, and establishes — for the first time — a mechanism of high monetary sanctions. Many people call it "Regulation 13", but its formal name is Amendment No. 13 to the Privacy Protection Law.' },
+      { q: 'Who does Amendment 13 apply to?', a: 'The law applies to any body — public or private — that collects, holds or processes personal information. That covers almost every business that keeps a customer list, sends marketing, or stores contact details, including businesses managing customers over WhatsApp.' },
+      { q: 'How much does a violation cost?', a: 'The monetary sanctions are significant: from ₪15,000 for breaching the right of access, ₪150,000 for registration/notice violations (doubled above one million data subjects), up to tiers of hundreds of thousands of shekels for unlawful processing and data-security breaches. Repeated or continuing violations are doubled.' },
+      { q: 'Do I have to appoint a Data Protection Officer (DPO)?', a: 'The DPO requirement applies to public bodies, data brokers, and bodies whose core activity is large-scale processing of sensitive information. Even businesses that are not required to will benefit from an internal privacy owner to manage consents, deletion requests and security.' },
+      { q: 'How does Gambot help me comply with Amendment 13?', a: 'Gambot is built around data security (encryption, access control, per-organization data isolation and action logging), consent management with automatic marketing opt-out, and tools to fulfil data-subject rights — viewing, correcting, exporting and deleting a customer\'s details and messages. All of these directly support the amendment\'s requirements.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.75;margin-bottom:8px;">📚 סדרת מאמרים — רגולציה, פרטיות ודיוור</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;margin-bottom:6px;">תיקון 13 לחוק הגנת הפרטיות — מה חדש, ולמה גמבוט עומדת בו</div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;">
+    <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 18px;font-size:0.9rem;font-weight:700;border:2px solid rgba(255,255,255,0.4);">
+      🛡️ פרטיות ואבטחת מידע (המאמר הזה)
+    </div>
+    <a href="/blog/37/דיוור-חוקי-בוואטסאפ-חוק-הספאם-הסכמות-ואיך-להגן-על-העסק-שלך/" style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px 18px;font-size:0.9rem;font-weight:600;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,0.2);cursor:pointer;">
+      🔗 חוק הספאם והסכמות לדיוור ←
+    </a>
+    <a href="/blog/38/מדיניות-הספאם-של-מטא-ציון-איכות-חשבון-חסימות-והתאוששות/" style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px 18px;font-size:0.9rem;font-weight:600;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,0.2);cursor:pointer;">
+      🔗 מדיניות הספאם של מטא ←
+    </a>
+  </div>
+</div>
+
+<div style="background:#f8fafc;border-radius:12px;padding:16px 20px;margin-bottom:28px;border-right:3px solid #94a3b8;">
+  <p style="margin:0;color:#64748b;font-size:0.88rem;">מאמר זה נכתב למטרות מידע כללי ואינו מהווה ייעוץ משפטי. לעסקים עם מאגרי מידע גדולים או עיבוד מידע רגיש, מומלץ להתייעץ עם עורך דין המתמחה בפרטיות ובהגנת מידע.</p>
+</div>
+
+<h2>🔎 מבוא: הרפורמה הגדולה בפרטיות כבר כאן</h2>
+<p>ב-<strong>14 באוגוסט 2025</strong> נכנס לתוקף <strong>תיקון מס' 13 לחוק הגנת הפרטיות</strong> — הרפורמה המשמעותית ביותר בדיני הפרטיות בישראל מזה עשורים. רבים מכנים אותו בשיחה יומיומית "תקנה 13", אך למען הדיוק מדובר ב<strong>תיקון</strong> לחוק הגנת הפרטיות, התשמ"א-1981.</p>
+<p>עד היום, האכיפה בתחום הפרטיות בישראל הייתה מוגבלת. תיקון 13 משנה זאת מהיסוד: הוא מעניק ל<strong>רשות להגנת הפרטיות</strong> סמכויות אכיפה רחבות, ומעגן לראשונה <strong>עיצומים כספיים</strong> בסכומים משמעותיים על הפרות. עבור כל עסק שמנהל רשימת לקוחות — כולל עסקים שעובדים בוואטסאפ — זה הזמן להתיישר.</p>
+
+<h2>⚡ מה חדש בתיקון 13 — עיקרי השינויים</h2>
+<div style="background:#f8fafc;border-radius:14px;padding:22px;margin:20px 0;border:1px solid #e2e8f0;">
+  <ul style="line-height:2;margin:0;padding-right:20px;color:#374151;">
+    <li><strong>סמכויות אכיפה מורחבות:</strong> הרשות רשאית לבצע פיקוח גם ללא חשד, לפתוח בירור מנהלי, לערוך חיפוש ותפיסה, ולנהל חקירה פלילית.</li>
+    <li><strong>עיצומים כספיים גבוהים:</strong> במקום הקנסות המנהליים הישנים — מנגנון עיצומים חדש בסכומים משמעותיים, המחושבים לעתים לפי מספר נושאי המידע במאגר.</li>
+    <li><strong>ממונה הגנת פרטיות (DPO):</strong> חובת מינוי אחראי פרטיות לגופים ציבוריים, סוחרי מידע, וגופים שעיקר עיסוקם עיבוד מידע רגיש בהיקף גדול.</li>
+    <li><strong>עדכון הגדרות היסוד:</strong> הגדרות "מידע" ו"מידע בעל רגישות מיוחדת" עודכנו והורחבו כך שיתאימו למציאות הטכנולוגית של ימינו.</li>
+    <li><strong>צמצום חובת רישום מאגרים</strong> — לצד <strong>חובת הודעה</strong> לרשות על מאגרים גדולים המכילים מידע רגיש.</li>
+    <li><strong>עבירות פליליות חדשות</strong> וביטול תקופת ההתיישנות המקוצרת בגין פגיעה בפרטיות.</li>
+  </ul>
+</div>
+
+<h2>💰 העיצומים הכספיים — כמה זה עולה?</h2>
+<p>זהו השינוי שהכי כדאי להכיר. להלן מדרגות עיקריות (לפי סוג ההפרה):</p>
+<div style="overflow-x:auto;margin:20px 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+  <thead>
+    <tr style="background:#1e3a5f;color:#fff;">
+      <th style="padding:12px 16px;text-align:right;border-radius:8px 0 0 0;">סוג ההפרה</th>
+      <th style="padding:12px 16px;text-align:center;border-radius:0 8px 0 0;">גובה העיצום</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fef2f2;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">רישום / הודעה לרשות על מאגר</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:center;">עד 150,000 ₪ (כפול מעל מיליון נושאי מידע)</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">הפרת חובת יידוע</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:center;">50–100 ₪ לאדם · מינימום 30,000 ₪</td>
+    </tr>
+    <tr style="background:#fef2f2;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">עיבוד מידע שלא כדין</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:center;">4–8 ₪ לאדם · מינימום 200,000 ₪</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">הפרת זכות עיון / תיקון</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:center;">15,000 ₪</td>
+    </tr>
+    <tr style="background:#fef2f2;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">אי-מינוי ממונה / הפרות דיוור ישיר</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:center;">2–4 ₪ לאדם · מינימום 20,000–40,000 ₪</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;font-weight:600;">הפרת תקנות אבטחת מידע</td>
+      <td style="padding:12px 16px;text-align:center;">מדרגות של 20,000–320,000 ₪ לפי רמת האבטחה</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="background:#fffbeb;border:2px solid #fcd34d;border-radius:14px;padding:16px 20px;margin:20px 0;">
+  <strong style="color:#92400e;">⚠️ שימו לב:</strong>
+  <p style="margin:6px 0 0;color:#374151;">הפרה <strong>חוזרת או נמשכת</strong> עלולה להיות מוכפלת או להיצבר על בסיס יומי. בעל שליטה בגוף שלא פעל להפסקת ההפרה עלול לשאת באחריות אישית.</p>
+</div>
+
+<h2>👤 ממונה הגנת פרטיות (DPO) וחובות חדשות</h2>
+<p>התיקון מחייב מינוי <strong>ממונה הגנת פרטיות</strong> בגופים מסוימים — בעיקר גופים ציבוריים, סוחרי מידע, וגופים שעיקר פעילותם היא עיבוד מידע רגיש בהיקף נרחב. גם עסק שאינו חייב בכך ירוויח מ<strong>אחראי פרטיות פנימי</strong> שמרכז את ניהול ההסכמות, בקשות המחיקה, ואבטחת המידע.</p>
+<p>לצד זאת, התיקון מדגיש את <strong>זכויות נושא המידע</strong> — הזכות לעיין במידע שנשמר עליו, לתקן אותו, ובמקרים מסוימים לדרוש את מחיקתו — ואת החובה לעמוד ב<strong>תקנות אבטחת המידע</strong> (בקרת גישה, הצפנה, תיעוד ועוד).</p>
+
+<h2>🛡️ למה גמבוט עומדת בתיקון 13</h2>
+<p>גמבוט לא נועדה רק לשלוח הודעות — היא בנויה כמערכת לניהול נתוני לקוחות, ולכן אבטחת מידע ופרטיות הן חלק מהיסודות שלה. כך המערכת תומכת ישירות בדרישות התיקון:</p>
+<div style="overflow-x:auto;margin:20px 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+  <thead>
+    <tr style="background:#166534;color:#fff;">
+      <th style="padding:12px 16px;text-align:right;border-radius:8px 0 0 0;">דרישת התיקון</th>
+      <th style="padding:12px 16px;text-align:right;border-radius:0 8px 0 0;">איך גמבוט תומכת</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0fdf4;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">אבטחת מידע (הצפנה, בקרת גישה)</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">אחסון בענן מאובטח, הצפנה בתעבורה ובמנוחה, והרשאות משתמשים לפי תפקיד.</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">הפרדת נתונים בין ארגונים</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">כל ארגון מבודד — נתוני לקוח אחד לעולם אינם נגישים לאחר.</td>
+    </tr>
+    <tr style="background:#f0fdf4;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">זכות עיון, תיקון ומחיקה</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">צפייה, עריכה, ייצוא ומחיקה של פרטי לקוח והיסטוריית שיחה — כולל טיפול במחיקת הודעות.</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">דיוור ישיר והסכמות</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">ניהול הסכמות, זיהוי בקשות הסרה אוטומטי וסימון <code>isUnsubscribed</code> שמפסיק דיוור.</td>
+    </tr>
+    <tr style="background:#f0fdf4;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">תיעוד ומעקב (Accountability)</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">לוג פעולות ושליחות, כך שניתן להוכיח מה נשלח, למי ומתי.</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;font-weight:600;">מזעור וניהול מידע</td>
+      <td style="padding:12px 16px;">שמירת פרטי הקשר הדרושים בלבד, עם תגיות והפרדה בין מידע שירותי לשיווקי.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="background:#eff6ff;border:2px solid #bfdbfe;border-radius:14px;padding:16px 20px;margin:20px 0;">
+  <strong style="color:#1e40af;">💡 בשורה התחתונה:</strong>
+  <p style="margin:6px 0 0;color:#374151;">גמבוט נותנת לכם את התשתית הטכנית — אבטחה, בקרת גישה, ניהול הסכמות ומימוש זכויות. האחריות הרגולטורית נשארת אצל העסק, אך העבודה הופכת פשוטה בהרבה כשהכלים בנויים לכך מראש.</p>
+</div>
+
+<h2>✅ צ'קליסט מהיר לעסק</h2>
+<div style="background:#f0fdf4;border-radius:12px;padding:18px 22px;margin:20px 0;border:1px solid #bbf7d0;">
+  <ul style="line-height:2;margin:0;padding-right:20px;color:#374151;">
+    <li>מפו אילו נתוני לקוח אתם שומרים, ואיפה.</li>
+    <li>ודאו שיש הסכמה מתועדת לדיוור, ואפשרות הסרה בכל הודעה.</li>
+    <li>הגדירו הרשאות גישה — לא כל עובד צריך לראות הכול.</li>
+    <li>הכינו תהליך למענה על בקשות עיון, תיקון ומחיקה.</li>
+    <li>בדקו אם אתם חייבים במינוי ממונה הגנת פרטיות (DPO).</li>
+    <li>עבדו עם ספקים (כמו גמבוט) שאבטחת מידע היא חלק מהמוצר.</li>
+  </ul>
+</div>
+
+<div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">רוצים לנהל לקוחות בוואטסאפ בצורה מאובטחת ותואמת רגולציה?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">גמבוט בנויה עם אבטחת מידע, ניהול הסכמות ומימוש זכויות נושא המידע — כך שתוכלו להתמקד בעסק.</p>
+  <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">פתחו חשבון גמבוט →</a>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.75;margin-bottom:8px;">📚 Series — Regulation, Privacy & Marketing</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;margin-bottom:6px;">Amendment 13 to Israel's Privacy Law — What Changed, and Why Gambot Complies</div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;">
+    <div style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 18px;font-size:0.9rem;font-weight:700;border:2px solid rgba(255,255,255,0.4);">
+      🛡️ Privacy & Data Security (this article)
+    </div>
+    <a href="/blog/37/legal-whatsapp-marketing-spam-law-consent-and-how-to-protect-your-business/" style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px 18px;font-size:0.9rem;font-weight:600;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,0.2);cursor:pointer;">
+      🔗 Spam Law & Marketing Consent ←
+    </a>
+    <a href="/blog/38/meta-whatsapp-spam-policy-quality-ratings-and-blocks/" style="background:rgba(255,255,255,0.08);border-radius:10px;padding:10px 18px;font-size:0.9rem;font-weight:600;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,0.2);cursor:pointer;">
+      🔗 Meta's Spam Policy ←
+    </a>
+  </div>
+</div>
+
+<div style="background:#f8fafc;border-radius:12px;padding:16px 20px;margin-bottom:28px;border-right:3px solid #94a3b8;">
+  <p style="margin:0;color:#64748b;font-size:0.88rem;">This article is for general information and is not legal advice. Businesses with large databases or sensitive data processing should consult a lawyer specializing in privacy and data protection.</p>
+</div>
+
+<h2>🔎 Intro: Israel's Big Privacy Reform Is Here</h2>
+<p>On <strong>August 14, 2025</strong>, <strong>Amendment No. 13 to the Privacy Protection Law</strong> came into force — the most significant privacy reform in Israel in decades. Many people call it "Regulation 13" in everyday conversation, but to be precise it is an <strong>amendment</strong> to the Privacy Protection Law, 1981.</p>
+<p>Until now, privacy enforcement in Israel was limited. Amendment 13 changes that fundamentally: it grants the <strong>Privacy Protection Authority</strong> broad enforcement powers and establishes, for the first time, <strong>monetary sanctions</strong> in significant amounts. For any business that manages a customer list — including businesses operating over WhatsApp — now is the time to get in line.</p>
+
+<h2>⚡ What's New in Amendment 13 — Key Changes</h2>
+<div style="background:#f8fafc;border-radius:14px;padding:22px;margin:20px 0;border:1px solid #e2e8f0;">
+  <ul style="line-height:2;margin:0;padding-right:20px;color:#374151;">
+    <li><strong>Expanded enforcement powers:</strong> the Authority may supervise even without suspicion, open an administrative inquiry, conduct search and seizure, and run a criminal investigation.</li>
+    <li><strong>High monetary sanctions:</strong> instead of the old administrative fines — a new sanctions mechanism in significant amounts, sometimes calculated per number of data subjects in the database.</li>
+    <li><strong>Data Protection Officer (DPO):</strong> a mandatory appointment for public bodies, data brokers, and bodies whose core activity is large-scale processing of sensitive information.</li>
+    <li><strong>Updated core definitions:</strong> "information" and "specially sensitive information" were updated and broadened to fit today's technological reality.</li>
+    <li><strong>Reduced database registration duty</strong> — alongside a <strong>notification duty</strong> to the Authority for large databases containing sensitive information.</li>
+    <li><strong>New criminal offenses</strong> and the removal of the shortened limitation period for privacy violations.</li>
+  </ul>
+</div>
+
+<h2>💰 The Monetary Sanctions — How Much Does It Cost?</h2>
+<p>This is the change most worth knowing. Here are the main tiers (by type of violation):</p>
+<div style="overflow-x:auto;margin:20px 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+  <thead>
+    <tr style="background:#1e3a5f;color:#fff;">
+      <th style="padding:12px 16px;text-align:left;border-radius:8px 0 0 0;">Type of violation</th>
+      <th style="padding:12px 16px;text-align:center;border-radius:0 8px 0 0;">Sanction amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#fef2f2;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">Registration / notice to the Authority</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:center;">up to ₪150,000 (doubled above 1M data subjects)</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">Breach of the duty to inform</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:center;">₪50–100 per person · min ₪30,000</td>
+    </tr>
+    <tr style="background:#fef2f2;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">Unlawful processing of information</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:center;">₪4–8 per person · min ₪200,000</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">Breach of access / correction rights</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:center;">₪15,000</td>
+    </tr>
+    <tr style="background:#fef2f2;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">No DPO / direct-marketing violations</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;text-align:center;">₪2–4 per person · min ₪20,000–40,000</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;font-weight:600;">Data-security regulation breaches</td>
+      <td style="padding:12px 16px;text-align:center;">tiers of ₪20,000–320,000 by security level</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="background:#fffbeb;border:2px solid #fcd34d;border-radius:14px;padding:16px 20px;margin:20px 0;">
+  <strong style="color:#92400e;">⚠️ Note:</strong>
+  <p style="margin:6px 0 0;color:#374151;">A <strong>repeated or continuing</strong> violation can be doubled or accrue daily. A controlling owner who fails to act to stop a violation may bear personal liability.</p>
+</div>
+
+<h2>👤 The DPO and New Obligations</h2>
+<p>The amendment requires appointing a <strong>Data Protection Officer</strong> in certain bodies — mainly public bodies, data brokers, and bodies whose core activity is large-scale processing of sensitive information. Even a business that isn't required to will benefit from an <strong>internal privacy owner</strong> who centralizes consent management, deletion requests, and data security.</p>
+<p>Alongside this, the amendment emphasizes <strong>data-subject rights</strong> — the right to view stored information, correct it, and in certain cases demand its deletion — and the duty to comply with the <strong>data-security regulations</strong> (access control, encryption, logging and more).</p>
+
+<h2>🛡️ Why Gambot Complies with Amendment 13</h2>
+<p>Gambot isn't just for sending messages — it's built as a system for managing customer data, so data security and privacy are part of its foundations. Here's how it directly supports the amendment's requirements:</p>
+<div style="overflow-x:auto;margin:20px 0;">
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
+  <thead>
+    <tr style="background:#166534;color:#fff;">
+      <th style="padding:12px 16px;text-align:left;border-radius:8px 0 0 0;">Amendment requirement</th>
+      <th style="padding:12px 16px;text-align:left;border-radius:0 8px 0 0;">How Gambot supports it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#f0fdf4;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">Data security (encryption, access control)</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">Secure cloud storage, encryption in transit and at rest, and role-based user permissions.</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">Data isolation between organizations</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">Every organization is isolated — one customer's data is never accessible to another.</td>
+    </tr>
+    <tr style="background:#f0fdf4;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">Access, correction and deletion rights</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">View, edit, export and delete customer details and conversation history — including message-deletion handling.</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">Direct marketing and consent</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">Consent management, automatic opt-out detection and an <code>isUnsubscribed</code> flag that stops marketing.</td>
+    </tr>
+    <tr style="background:#f0fdf4;">
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;font-weight:600;">Accountability (logging & audit)</td>
+      <td style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">Action and delivery logs, so you can prove what was sent, to whom and when.</td>
+    </tr>
+    <tr>
+      <td style="padding:12px 16px;font-weight:600;">Data minimization & management</td>
+      <td style="padding:12px 16px;">Keep only the contact details you need, with tags separating service data from marketing data.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div style="background:#eff6ff;border:2px solid #bfdbfe;border-radius:14px;padding:16px 20px;margin:20px 0;">
+  <strong style="color:#1e40af;">💡 Bottom line:</strong>
+  <p style="margin:6px 0 0;color:#374151;">Gambot gives you the technical infrastructure — security, access control, consent management and rights fulfilment. Regulatory responsibility stays with the business, but the work becomes far simpler when the tools are built for it from the start.</p>
+</div>
+
+<h2>✅ Quick Checklist for Your Business</h2>
+<div style="background:#f0fdf4;border-radius:12px;padding:18px 22px;margin:20px 0;border:1px solid #bbf7d0;">
+  <ul style="line-height:2;margin:0;padding-right:20px;color:#374151;">
+    <li>Map which customer data you store, and where.</li>
+    <li>Make sure you have documented consent for marketing, and an opt-out in every message.</li>
+    <li>Define access permissions — not every employee needs to see everything.</li>
+    <li>Prepare a process for handling access, correction and deletion requests.</li>
+    <li>Check whether you're required to appoint a DPO.</li>
+    <li>Work with vendors (like Gambot) where data security is part of the product.</li>
+  </ul>
+</div>
+
+<div style="background:linear-gradient(135deg,#111827,#1f2937);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">Want to manage WhatsApp customers securely and compliantly?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">Gambot is built with data security, consent management and data-subject rights — so you can focus on your business.</p>
+  <a href="/OnboardingProcess/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">Create a Gambot account →</a>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('תיקון 13 לחוק הגנת הפרטיות מה חדש ולמה גמבוט עומדת בו')
+},
+{
+  id: 46,
+  seoTitle: {
+    he: 'קרדיטים API ו-MCP בגמבוט — איך נספרת צריכת הממשק וכמה זה עולה 2026 | גמבוט',
+    en: 'Gambot API & MCP Credits — How Interface Usage Is Counted and What It Costs 2026 | Gambot'
+  },
+  metaDescription: {
+    he: 'מדריך מלא לקרדיטי API/MCP בגמבוט: מה נספר כקרדיט, כמה עולה כל סוג קריאה (API, MCP, פעולת AI, דיוור/ייצוא), אילו מכסות כלולות בכל חבילה (1,000 / 3,000 / 10,000), ומה עלות החריגה — עם דוגמאות חישוב.',
+    en: 'A full guide to Gambot API/MCP credits: what counts as a credit, how much each call type costs (API, MCP, AI action, bulk/export), the monthly quota included in each plan (1,000 / 3,000 / 10,000), and the overage price — with worked examples.'
+  },
+  keywords: {
+    he: ['קרדיטים API', 'קרדיטים MCP', 'תמחור API וואטסאפ', 'WhatsApp API מחיר', 'MCP גמבוט', 'קרדיטים גמבוט', 'עלות API', 'מכסת API'],
+    en: ['api credits', 'mcp credits', 'whatsapp api pricing', 'gambot api cost', 'gambot mcp', 'api quota', 'api usage pricing', 'whatsapp mcp cost']
+  },
+  title: {
+    he: 'קרדיטים API ו-MCP: איך נספרת צריכת הממשק בגמבוט וכמה זה עולה',
+    en: 'API & MCP Credits: How Gambot Counts Interface Usage and What It Costs'
+  },
+  description: {
+    he: 'הסבר ברור על קרדיטי ה‑API/MCP: מה נספר, כמה עולה כל סוג פעולה, אילו מכסות כלולות בכל חבילה ומה קורה בחריגה — כדי שתדעו מראש כמה תצרכו.',
+    en: 'A clear explanation of API/MCP credits: what is counted, how much each action type costs, the quota included in each plan and what happens on overage — so you can estimate your usage in advance.'
+  },
+  category: 'API',
+  author: 'ניר סגס',
+  publishedDate: '2026-09-25',
+  image: '/blog/11/api_vs_buisness.png',
+  readTime: 7,
+  featured: true,
+  faq: {
+    he: [
+      { q: 'מה זה קרדיט API/MCP?', a: 'קרדיט הוא יחידת המדידה של שימוש בממשק החיצוני של גמבוט (REST API ושרת ה‑MCP). כל פעולה שאתם מבצעים דרך הממשק צורכת מספר קרדיטים לפי סוגה: קריאת API רגילה = 1 קרדיט, פעולת MCP = 2 קרדיטים, פעולת AI דרך הממשק = 12 קרדיטים, ושליחת דיוור/ייצוא בכמות = 4 קרדיטים.' },
+      { q: 'כמה קרדיטים כלולים בכל חבילה?', a: 'Growth כוללת 1,000 קרדיטים בחודש, Pro כוללת 3,000, ו‑Business כוללת 10,000 קרדיטים בחודש. המכסה מתאפסת בכל חודש והיא נפרדת ממכסת שיחות ה‑WhatsApp ומקרדיטי ה‑AI של הבוט.' },
+      { q: 'מה קורה אם חורגים מהמכסה?', a: 'אין חסימה — פשוט ממשיכים לעבוד. חריגה מעבר למכסה החודשית מחויבת ₪0.10 לכל קרדיט נוסף. כך שגם חודש עמוס לא עוצר את האינטגרציה שלכם.' },
+      { q: 'למה פעולת MCP עולה יותר מקריאת API?', a: 'קריאת API רגילה היא פעולה בודדת ומוגדרת מראש. פעולת MCP מגיעה דרך סוכן AI (Claude/ChatGPT/Gemini/Cursor) ולרוב כרוכה בשלב פרשנות והכנה נוסף בצד גמבוט, ולכן משקלה 2 קרדיטים. פעולה שמפעילה מנוע AI מלא (כמו יצירת תשובה חכמה) יקרה יותר — 12 קרדיטים.' },
+      { q: 'איפה רואים כמה קרדיטים ניצלתי?', a: 'בהגדרות ← כללי מוצג לוג הפעילות של ה‑API/MCP (כל קריאה, האם הצליחה והזמן שלקחה). המכסה הכלולה והחריגה מוצגות במחירון וגם בתהליך ההצטרפות, ליד שם החבילה.' }
+    ],
+    en: [
+      { q: 'What is an API/MCP credit?', a: 'A credit is the unit that measures usage of Gambot\'s external interface (the REST API and the MCP server). Every action you perform through the interface consumes credits by its type: a plain API call = 1 credit, an MCP action = 2 credits, an AI action via the interface = 12 credits, and a bulk send/export = 4 credits.' },
+      { q: 'How many credits are included in each plan?', a: 'Growth includes 1,000 credits per month, Pro includes 3,000, and Business includes 10,000 per month. The quota resets every month and is separate from your WhatsApp conversation quota and from the bot\'s AI credits.' },
+      { q: 'What happens if I exceed the quota?', a: 'Nothing is blocked — you simply keep working. Usage beyond the monthly quota is billed at ₪0.10 per extra credit, so even a busy month won\'t stop your integration.' },
+      { q: 'Why does an MCP action cost more than an API call?', a: 'A plain API call is a single, predefined operation. An MCP action arrives through an AI agent (Claude/ChatGPT/Gemini/Cursor) and usually involves an extra interpretation/preparation step on Gambot\'s side, so its weight is 2 credits. An action that triggers a full AI engine (like generating a smart reply) costs more — 12 credits.' },
+      { q: 'Where do I see how many credits I used?', a: 'Settings → General shows the API/MCP activity log (every call, whether it succeeded and how long it took). The included quota and overage are shown on the pricing page and during onboarding, next to the plan name.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#0891b2 0%,#0369a1 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🔌 קרדיטים API / MCP</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">כמה "עולה" לתפעל את גמבוט דרך API ו‑MCP — בשקיפות מלאה</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">כל חבילה כוללת מכסת קרדיטים חודשית לשימוש בממשק החיצוני. הכתבה הזו מסבירה בדיוק מה נספר כקרדיט, כמה עולה כל סוג פעולה, ומה קורה כשחורגים — כדי שתוכלו להעריך מראש כמה תצרכו.</p>
+</div>
+
+<div style="background:#f0f9ff;border-inline-start:4px solid #0891b2;border-radius:8px;padding:14px 18px;margin:0 0 26px;font-size:0.95rem;color:#0c4a6e;">
+  💡 <strong>שים לב:</strong> קרדיטי API/MCP הם מאגר <strong>נפרד</strong> ממכסת שיחות ה‑WhatsApp ומקרדיטי ה‑AI של הבוט. הם נספרים רק על פעולות שמגיעות דרך ה‑API או שרת ה‑MCP.
+</div>
+
+<h2>⚖️ מה נספר כקרדיט — טבלת המשקלים</h2>
+<p>לא כל פעולה שווה. פעולה פשוטה עולה קרדיט אחד, ופעולה "כבדה" שמפעילה מנוע AI עולה יותר. אלה המשקלים:</p>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead>
+      <tr style="background:#0369a1;color:#fff;">
+        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">סוג הפעולה</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">עלות (קרדיטים)</th>
+        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">דוגמה</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">קריאת API רגילה</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">שליחת הודעה, עדכון איש קשר, שליפת נתונים</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">פעולת MCP</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">2</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">כל כלי שסוכן AI מפעיל דרך שרת ה‑MCP</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">דיוור / ייצוא בכמות</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">4</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">שליחת קמפיין לרשימה, ייצוא אנשי קשר</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">פעולת AI דרך הממשק</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">12</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">יצירת תשובה חכמה, ניתוח או סיכום ב‑AI</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>📦 מה כלול בכל חבילה</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead>
+      <tr style="background:#0369a1;color:#fff;">
+        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">חבילה</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">קרדיטים כלולים בחודש</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">חריגה</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Growth</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">1,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;" rowspan="3">₪0.10 לכל קרדיט נוסף</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">Pro</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">3,000</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Business</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">10,000</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div style="background:#ecfeff;border:2px solid #a5f3fc;border-radius:14px;padding:18px 20px;margin:20px 0;">
+  <strong style="color:#0e7490;">בלי הפתעות:</strong>
+  <p style="margin:8px 0 0;color:#374151;">המכסה מתאפסת בכל חודש, ואין חסימה בחריגה — אתם ממשיכים לעבוד ומשלמים רק על מה שמעבר למכסה, ₪0.10 לקרדיט.</p>
+</div>
+
+<h2>🧮 דוגמת חישוב</h2>
+<p>נניח שבחודש נתון ביצעתם דרך הממשק:</p>
+<ul>
+  <li>3,000 קריאות API רגילות (שליחת הודעות, עדכוני CRM) → 3,000 קרדיטים</li>
+  <li>500 פעולות MCP מתוך Claude/ChatGPT → 1,000 קרדיטים</li>
+  <li>2 קמפייני דיוור לרשימות → 8 קרדיטים</li>
+  <li>50 יצירות תשובה חכמה ב‑AI → 600 קרדיטים</li>
+</ul>
+<p><strong>סה״כ ≈ 4,608 קרדיטים.</strong> בחבילת Pro (3,000 כלולים) החריגה היא כ‑1,608 קרדיטים × ₪0.10 = <strong>₪161 בערך</strong> באותו חודש. בחבילת Business (10,000 כלולים) — הכל בתוך המכסה, ללא תוספת.</p>
+
+<h2>👀 איפה רואים את הצריכה</h2>
+<p>בתוך המערכת, תחת <strong>הגדרות ← כללי</strong>, מוצג לוג פעילות ה‑API/MCP: כל קריאה, מקורה (API או MCP), האם הצליחה וכמה זמן לקחה. כך אפשר לעקוב בזמן אמת ולזהות מה צורך הכי הרבה. המכסה הכלולה בכל חבילה והחריגה מוצגות במחירון וגם בתהליך ההצטרפות, ליד שם החבילה — עם ה‑<strong>?</strong> שמסביר בקצרה.</p>
+
+<div style="background:linear-gradient(135deg,#0891b2,#0369a1);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">רוצים לחבר את גמבוט ל‑API או ל‑AI שלכם?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">כל חבילה כוללת מכסת קרדיטים לשימוש בממשק — בלי התחייבות ובלי הפתעות.</p>
+  <a href="/PriceList/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">למחירון המלא ←</a>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#0891b2 0%,#0369a1 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🔌 API / MCP CREDITS</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">What it "costs" to drive Gambot via API and MCP — in full transparency</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">Every plan includes a monthly credit quota for using the external interface. This article explains exactly what counts as a credit, how much each action type costs, and what happens on overage — so you can estimate your usage up front.</p>
+</div>
+
+<div style="background:#f0f9ff;border-inline-start:4px solid #0891b2;border-radius:8px;padding:14px 18px;margin:0 0 26px;font-size:0.95rem;color:#0c4a6e;">
+  💡 <strong>Note:</strong> API/MCP credits are a <strong>separate</strong> pool from your WhatsApp conversation quota and from the bot's AI credits. They are only counted for actions that arrive through the API or the MCP server.
+</div>
+
+<h2>⚖️ What counts as a credit — the weight table</h2>
+<p>Not every action is equal. A simple action costs one credit, and a "heavy" action that triggers an AI engine costs more. Here are the weights:</p>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead>
+      <tr style="background:#0369a1;color:#fff;">
+        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Action type</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Cost (credits)</th>
+        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Plain API call</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Send a message, update a contact, fetch data</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">MCP action</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">2</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Any tool an AI agent runs via the MCP server</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Bulk send / export</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">4</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Send a campaign to a list, export contacts</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">AI action via the interface</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">12</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Generate a smart reply, AI analysis or summary</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>📦 What's included in each plan</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead>
+      <tr style="background:#0369a1;color:#fff;">
+        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Plan</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Included credits/month</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Overage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Growth</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">1,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;" rowspan="3">₪0.10 per extra credit</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">Pro</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">3,000</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Business</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">10,000</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div style="background:#ecfeff;border:2px solid #a5f3fc;border-radius:14px;padding:18px 20px;margin:20px 0;">
+  <strong style="color:#0e7490;">No surprises:</strong>
+  <p style="margin:8px 0 0;color:#374151;">The quota resets every month and there's no hard block on overage — you keep working and pay only for what's beyond the quota, ₪0.10 per credit.</p>
+</div>
+
+<h2>🧮 A worked example</h2>
+<p>Say in a given month you performed, through the interface:</p>
+<ul>
+  <li>3,000 plain API calls (sending messages, CRM updates) → 3,000 credits</li>
+  <li>500 MCP actions from Claude/ChatGPT → 1,000 credits</li>
+  <li>2 broadcast campaigns to lists → 8 credits</li>
+  <li>50 smart-reply generations via AI → 600 credits</li>
+</ul>
+<p><strong>Total ≈ 4,608 credits.</strong> On the Pro plan (3,000 included), the overage is about 1,608 credits × ₪0.10 = <strong>≈ ₪161</strong> that month. On the Business plan (10,000 included) — all within quota, no extra charge.</p>
+
+<h2>👀 Where to see your usage</h2>
+<p>Inside the system, under <strong>Settings → General</strong>, you'll find the API/MCP activity log: every call, its source (API or MCP), whether it succeeded and how long it took. That lets you monitor in real time and spot what consumes the most. The included quota and overage are shown on the pricing page and during onboarding, next to the plan name — with the <strong>?</strong> that explains it briefly.</p>
+
+<div style="background:linear-gradient(135deg,#0891b2,#0369a1);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">Want to connect Gambot to your API or your AI?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">Every plan includes a credit quota for interface usage — no commitment, no surprises.</p>
+  <a href="/PriceList/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">See the full pricing →</a>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('קרדיטים API ו-MCP איך נספרת צריכת הממשק בגמבוט וכמה זה עולה')
+}
 ];
 
 export default posts;
