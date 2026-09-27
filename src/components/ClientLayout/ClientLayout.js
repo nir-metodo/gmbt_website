@@ -55,14 +55,21 @@ function LangSync() {
 
   useEffect(() => {
     // Language resolution priority:
-    //   1. The visitor's explicit saved choice (navbar switcher) — always wins.
-    //   2. English-only global pages (MCP / developer / WhatsApp-API) — always English.
-    //   3. Geo default: Israeli visitors get Hebrew (RTL); everyone else gets English.
+    //   1. An explicit ?lang=en|he in the URL — always wins (used by links from the MCP/API
+    //      onboarding flow, which targets a global/English audience). Not persisted, so it only
+    //      forces the language for that link, never hijacks the visitor's saved choice afterwards.
+    //   2. The visitor's explicit saved choice (navbar switcher).
+    //   3. English-only global pages (MCP / developer / WhatsApp-API) — always English.
+    //   4. Geo default: Israeli visitors get Hebrew (RTL); everyone else gets English.
     const saved = localStorage.getItem('gambot_lang');
     const path = (typeof window !== 'undefined' ? window.location.pathname : '') || '';
+    let qLang = '';
+    try { qLang = (new URLSearchParams(window.location.search).get('lang') || '').toLowerCase(); } catch { /* no-op */ }
 
     let lang;
-    if (saved === 'he' || saved === 'en') {
+    if (qLang === 'he' || qLang === 'en') {
+      lang = qLang;
+    } else if (saved === 'he' || saved === 'en') {
       lang = saved;
     } else if (EN_PATHS.has(firstSegment(path))) {
       lang = 'en';

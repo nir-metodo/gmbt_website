@@ -5,6 +5,12 @@
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 20%, #f1f5f9 100%);
   padding: 120px 20px 40px;
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  /* Guard against stray horizontal (RTL: left) scroll from decorative/animated
+     children (hero circles), the scaled "recommended" card, or fixed-column grids.
+     clip (not hidden) avoids creating a scroll container / breaking sticky. */
+  overflow-x: clip;
 }
 
 .price-list-container::before {

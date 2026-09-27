@@ -115,6 +115,63 @@ const plans = [
   },
 ];
 
+// ── API-only tiers (for orgs that use Gambot purely as an API / MCP, BYO WhatsApp billing) ──
+// Quotas count EVERY message relayed or sent (inbound + outbound) as one call.
+// Prices are ILS/month and are intentionally attractive vs the full CRM plans, since API-only
+// usage is essentially servers + database (no human support, no CRM UI, Meta fees billed to the
+// customer's own WABA, and any Gambot-AI usage is metered separately via AI actions / Tokens).
+const apiPlans = [
+  {
+    name: "API Starter",
+    price: 149,
+    calls: "10,000",
+    description: "לאינטגרציות ומפתחים — שימוש ב-API/MCP בלבד",
+    features: [
+      "10,000 קריאות API בחודש",
+      "כל הודעה נכנסת/יוצאת = קריאה אחת",
+      "גישה מלאה ל-REST API + שרת MCP",
+      "Webhooks לאירועים בזמן אמת",
+      "מפתח API + תיעוד מלא",
+      "🔌 ה-WABA שלך — חיוב הודעות Meta נגבה ישירות מולך",
+      "🤖 פעולות Gambot AI מחויבות בנפרד (טוקנים)",
+      "❌ ללא ממשק CRM / תמיכה אנושית",
+    ],
+  },
+  {
+    name: "API Growth",
+    price: 449,
+    calls: "30,000",
+    recommended: true,
+    description: "לעסקים עם נפח אינטגרציה בינוני",
+    features: [
+      "30,000 קריאות API בחודש",
+      "כל הודעה נכנסת/יוצאת = קריאה אחת",
+      "גישה מלאה ל-REST API + שרת MCP",
+      "Webhooks לאירועים בזמן אמת",
+      "Rate limit גבוה יותר",
+      "🔌 ה-WABA שלך — חיוב הודעות Meta נגבה ישירות מולך",
+      "🤖 פעולות Gambot AI מחויבות בנפרד (טוקנים)",
+      "✅ תמיכת מפתחים בסיסית",
+    ],
+  },
+  {
+    name: "API Scale",
+    price: 1190,
+    calls: "100,000",
+    description: "לנפחים גבוהים ואינטגרציות ארגוניות",
+    features: [
+      "100,000 קריאות API בחודש",
+      "כל הודעה נכנסת/יוצאת = קריאה אחת",
+      "גישה מלאה ל-REST API + שרת MCP",
+      "Webhooks לאירועים בזמן אמת",
+      "Rate limit גבוה במיוחד + SLA",
+      "🔌 ה-WABA שלך — חיוב הודעות Meta נגבה ישירות מולך",
+      "🤖 פעולות Gambot AI מחויבות בנפרד (טוקנים)",
+      "⭐ תמיכת מפתחים מועדפת",
+    ],
+  },
+];
+
 const allPlanFeatures = [
   "התכתבות בזמן אמת",
   "ניהול טמפלטים",
@@ -293,6 +350,69 @@ export default function PriceListContent() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* API-only tiers (MCP / REST API) */}
+      <div className="pricing-features-container" style={{ marginTop: '8px' }}>
+        <div className="features-header">
+          <div className="features-badge">
+            <FaBolt className="badge-icon" />
+            <span>למפתחים ואינטגרציות</span>
+          </div>
+          <h2 className="pricing-features-title">שימוש כ-API בלבד (REST + MCP)</h2>
+          <p style={{ maxWidth: '720px', margin: '8px auto 0', color: '#4a5568', fontSize: '0.98rem', textAlign: 'center' }}>
+            מריצים את Gambot ישירות מהקוד / מ-Claude דרך ה-MCP? התוכניות האלה מתומחרות לפי כמות קריאות בלבד.
+            <strong> כל הודעה שאנחנו מעבירים או שולחים (נכנסת או יוצאת) נספרת כקריאה אחת.</strong>
+          </p>
+        </div>
+      </div>
+
+      <div className="plans-container">
+        {apiPlans.map((plan, index) => (
+          <div key={index} className={`plan-card ${plan.recommended ? "recommended" : ""}`}>
+            {plan.recommended && (
+              <div className="recommended-badge">
+                <FaCrown className="crown-icon" />
+                <span>הכי משתלם</span>
+              </div>
+            )}
+            <div className="plan-header">
+              <div className="plan-icon"><FaBolt /></div>
+              <h3 className="plan-name">{plan.name}</h3>
+              <p className="plan-description">{plan.description}</p>
+            </div>
+
+            <div className="plan-pricing">
+              <div className="plan-price">
+                <span className="currency">₪</span>
+                <span className="amount">{plan.price.toLocaleString()}</span>
+                <span className="period">לחודש</span>
+              </div>
+              <div className="plan-yearly">
+                <span>{plan.calls} קריאות API בחודש</span>
+              </div>
+            </div>
+
+            <button onClick={() => setShowModal(true)} className={`plan-button ${plan.recommended ? 'primary' : 'secondary'}`}>
+              דברו איתנו
+            </button>
+
+            <div className="plan-features">
+              <h4>כולל:</h4>
+              <ul>
+                {plan.features.map((f, i) => (
+                  <li key={i}><FaCheck className="feature-check" /><span>{f}</span></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ maxWidth: '960px', margin: '-8px auto 24px', padding: '0 24px' }}>
+        <p style={{ fontSize: '0.78rem', color: '#718096', textAlign: 'center' }}>
+          * מחירי ה-API אינם כוללים את עלות הודעות ה-WhatsApp של Meta (נגבית ישירות מול ה-WABA שלכם) ואת עלות פעולות ה-AI (מחויבות בטוקנים). קריאות מעבר למכסה מחויבות לפי שימוש.
+        </p>
       </div>
 
       {/* Invoice note */}

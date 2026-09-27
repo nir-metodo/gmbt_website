@@ -54,10 +54,15 @@ const AddPaymentInner = () => {
   // Get language context and currency helpers
   const { language, setCurrentLanguage } = useLanguage();
   
-  // Set initial language based on currency (run only once on mount)
-  // Note: User can still manually change language via header toggle after mount
+  // Set initial language: an explicit ?lang=en|he wins (used by MCP/API onboarding links that
+  // target a global/English audience); otherwise fall back to the currency default (ILS→he, else→en).
+  // Currency still drives PRICING regardless of UI language (an ILS account pays in ₪ even in English UI).
+  // Note: User can still manually change language via header toggle after mount.
   useEffect(() => {
-    const targetLanguage = urlCurrency === "ILS" ? "he" : "en";
+    const qLang = (queryParams.get("lang") || "").toLowerCase();
+    const targetLanguage = (qLang === "he" || qLang === "en")
+      ? qLang
+      : (urlCurrency === "ILS" ? "he" : "en");
     if (setCurrentLanguage) setCurrentLanguage(targetLanguage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlCurrency]); // Only re-run if URL currency changes
