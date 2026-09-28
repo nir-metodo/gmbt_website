@@ -22,7 +22,7 @@ Repos in scope:
 The initiative is **already substantially underway**. Key existing facts:
 
 - The public REST API (`api/v1`, ~120 endpoints across 12 `*V1Controller`s) is **explicitly designed for AI consumption**: `ApiV1Base` normalizes Firestore timestamps to ISO-8601, strips empty fields, resolves multi-number senders, and detects the MCP client via the `X-Gambot-Client: mcp` header.
-- The MCP server (`gmbt_mcp`, 114 tools) is a **real, published product** (npm + MCP registry + hosted at `gambot-mcp.azurewebsites.net/mcp`) with strong tool descriptions and a decision-tree `GAMBOT_INSTRUCTIONS` block.
+- The MCP server (`gmbt_mcp`, 118 tools) is a **real, published product** (npm + MCP registry + hosted at `gambot-mcp.azurewebsites.net/mcp`) with strong tool descriptions and a decision-tree `GAMBOT_INSTRUCTIONS` block.
 - The website already has `/whatsapp-mcp/` and `/developers/` pages with mature SEO metadata (`pageMeta.js` + `buildMetadata`), JSON-LD, an AI-crawler-friendly `robots.txt`, and a comprehensive `llms.txt`.
 
 So this project is primarily **hardening + expansion**, not greenfield.
@@ -40,9 +40,13 @@ Botomations (bots), Billing (quotes/invoices/orders), Documents (signatures/form
 Notes, Onboarding, Users. Full endpoint map captured in audit (see chat transcript).
 
 ### 2b. MCP tools
-114 `gambot_*` tools, mostly 1:1 REST mirrors + high-level builders
+118 `gambot_*` tools, mostly 1:1 REST mirrors + high-level builders
 (`gambot_send_campaign_from_excel`, `gambot_create_keyword_autoreply`,
 `gambot_create_menu_bot`, `gambot_create_template_button_autoreply`).
+Recent additions: `gambot_list_transactions` / `gambot_get_transaction` (payment/clearing
+"פירוט עסקאות") and `gambot_bulk_update_contacts` / `gambot_bulk_update_leads` — mass updates
+with a mandatory server-side **preview → confirm** step and a "בוצע על ידי גמבוט באישור המשתמש"
+audit note stamped on every affected record.
 
 ### 2c. Website (Next.js App Router, `output:'export'`, Firebase Hosting)
 79 static routes + `blog/[id]/[slug]` + `guide/[slug]`. Developer/MCP-relevant existing:
@@ -78,7 +82,9 @@ Notes, Onboarding, Users. Full endpoint map captured in audit (see chat transcri
   and **discards the structured `data`/`recommendation` body** — only `message`/`error` survive.
 - `server.ts` turns errors into a plain string `Gambot API error (409 conversation_closed): …`.
   **No `recommendedAction`, no forwarding of `data`/state flags.**
-- **No** tool `annotations` (readOnly / destructive / openWorld) set on any tool.
+- Tool `annotations` are now inferred per tool (`inferAnnotations` in `server.ts`): read tools →
+  readOnly+idempotent; `gambot_delete_*` / `gambot_bulk_*` / `disable_user` / `issue_invoice` →
+  destructiveHint; everything openWorld. (Was previously unset.)
 - No high-level orchestration tools beyond `gambot_send_campaign_from_excel`.
 
 ---
@@ -120,7 +126,7 @@ Notes, Onboarding, Users. Full endpoint map captured in audit (see chat transcri
 
 **MCP (PART 21/22/27/31):**
 - Error passthrough drops structured `data`/`recommendation`; no `recommendedAction`.
-- No side-effect/destructive tool `annotations`.
+- ~~No side-effect/destructive tool `annotations`.~~ ✅ Done — `inferAnnotations` sets readOnly/destructive/openWorld per tool.
 
 **Docs (PART 33/34):** `/developers/` lacks an "Error Handling (codes)" + "Building AI Agents" section reflecting the new codes; MCP README/`/whatsapp-mcp/` lack an "Agent Behavior" section.
 

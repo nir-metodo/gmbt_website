@@ -1511,7 +1511,7 @@ const PublicSigningPage = () => {
                       <div className="esig-public-signature-canvas-wrapper">
                         <SignatureCanvas
                           ref={sigCanvas}
-                          backgroundColor="white"
+                          backgroundColor="rgba(0,0,0,0)"
                           canvasProps={{
                             className: 'esig-public-signature-canvas'
                           }}
@@ -1535,7 +1535,7 @@ const PublicSigningPage = () => {
                   <div className="esig-public-signature-canvas-wrapper">
                     <SignatureCanvas
                       ref={sigCanvas}
-                      backgroundColor="white"
+                      backgroundColor="rgba(0,0,0,0)"
                       canvasProps={{
                         className: 'esig-public-signature-canvas'
                       }}
@@ -1845,7 +1845,7 @@ const PublicSigningPage = () => {
               <div className="esig-public-signature-canvas-wrapper esig-public-modal-canvas">
                 <SignatureCanvas
                   ref={modalSigCanvas}
-                  backgroundColor="white"
+                  backgroundColor="rgba(0,0,0,0)"
                   canvasProps={{
                     className: 'esig-public-signature-canvas',
                     width: 500,
