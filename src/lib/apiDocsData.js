@@ -105,7 +105,7 @@ export const API_INTRO = {
 const curl = (method, path, body) => {
   let s = `curl -X ${method} "${API_BASE}${path}" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`;
   if (body) {
-    s += ` \\\n  -H "Content-Type: application/json" \\\n  -d '${body}'`;
+    s += ` \\\n  -H "Content-Type: application/json" \\\n  -d '${typeof body === 'string' ? body : JSON.stringify(body)}'`;
   }
   return s;
 };
@@ -2001,8 +2001,8 @@ export const API_SECTIONS = [
     id: 'onboarding',
     title: { he: 'הצטרפות (Onboarding)', en: 'Onboarding' },
     description: {
-      he: 'הקמת חשבון חדש (ארגון + משתמש ראשון) — ניסיון חינם או ישירות בתשלום עם כרטיס שמור. השתמשו במספר בדיקה של Meta, מספר WhatsApp Business קיים (coexistence), מספר משלכם (BYO), או קנו מספר/SIM מאיתנו לפי מדינה (Twilio). גלובלי: שלחו companyInfo.timezone (IANA) ו-companyInfo.country (ISO-3166) — הם מניעים את התזמון (קמפיינים, תזכורות, שעות עבודה) ואת הלוקאל. אף אחד מהם לא מכשיל את ההצטרפות: timezone חסר/לא תקין נגזר מ-country, אחרת ברירת המחדל היא Asia/Jerusalem. סוכן AI שמחזיק בכרטיס הלקוח יכול להוסיף אמצעי תשלום ישירות. חלונית ה-Meta היא שלב בדפדפן, ולכן מוחזר קישור מתארח והקוד מוחלף דרך ה-API.',
-      en: 'Provision a new account (organization + first user) — either a free trial or straight-to-paid with a card on file. Use a Meta test number, an existing WhatsApp Business number (coexistence), your own number (BYO), or buy a number/SIM from us by country (Twilio). Global: send companyInfo.timezone (IANA) and companyInfo.country (ISO-3166) — they drive scheduling (campaigns, reminders, business hours) and locale. Neither hard-fails onboarding: a missing/invalid timezone is derived from country, else defaults to Asia/Jerusalem. An AI agent holding the customer\'s card can add a payment method directly. The Meta popup is a browser step, so a hosted link is returned and the code is exchanged via the API.',
+      he: 'הקמת חשבון חדש (ארגון + משתמש ראשון) — ניסיון חינם או ישירות בתשלום עם כרטיס שמור. השתמשו במספר בדיקה של Meta, מספר WhatsApp Business קיים (coexistence), מספר משלכם (BYO), או קנו מספר/SIM מאיתנו לפי מדינה (Twilio). גלובלי: שלחו companyInfo.timezone (IANA) ו-companyInfo.country (ISO-3166) — הם מניעים את התזמון (קמפיינים, תזכורות, שעות עבודה) ואת הלוקאל. אף אחד מהם לא מכשיל את ההצטרפות: timezone חסר/לא תקין נגזר מ-country, אחרת ברירת המחדל היא Asia/Jerusalem. סוכן AI שמחזיק בכרטיס הלקוח יכול להוסיף אמצעי תשלום ישירות. חלונית ה-Meta היא שלב בדפדפן, ולכן מוחזר קישור מתארח והקוד מוחלף דרך ה-API. <strong>סדר חובה:</strong> (1) קודם יוצרים את החשבון — <code>POST /onboarding/create-trial-self-serve</code> (ציבורי, בלי מפתח ובלי טופס; אם מושמט organizationName הוא נוצר אוטומטית); (2) רק אז פותחים את <code>wabaConnectUrl</code> שחזר מהיצירה (או <code>GET /onboarding/waba/connect-link</code> עם ה-organizationName שחזר); (3) בודקים התקדמות עם <code>GET /onboarding/status</code>. אין להמציא שם ארגון — קישור/חיבור לארגון שלא נוצר יחזיר 404 <code>ORGANIZATION_NOT_FOUND</code>.',
+      en: 'Provision a new account (organization + first user) — either a free trial or straight-to-paid with a card on file. Use a Meta test number, an existing WhatsApp Business number (coexistence), your own number (BYO), or buy a number/SIM from us by country (Twilio). Global: send companyInfo.timezone (IANA) and companyInfo.country (ISO-3166) — they drive scheduling (campaigns, reminders, business hours) and locale. Neither hard-fails onboarding: a missing/invalid timezone is derived from country, else defaults to Asia/Jerusalem. An AI agent holding the customer\'s card can add a payment method directly. The Meta popup is a browser step, so a hosted link is returned and the code is exchanged via the API. <strong>Required order:</strong> (1) FIRST create the account — <code>POST /onboarding/create-trial-self-serve</code> (public: no key, no form; organizationName is generated if omitted); (2) only then open the <code>wabaConnectUrl</code> returned by that call (or <code>GET /onboarding/waba/connect-link</code> with the organizationName it returned); (3) poll <code>GET /onboarding/status</code>. Never invent an organization name — a connect link / connection for an account that was not created returns 404 <code>ORGANIZATION_NOT_FOUND</code>.',
     },
     endpoints: [
       {
@@ -2038,6 +2038,23 @@ export const API_SECTIONS = [
         curl: curl('POST', '/onboarding/available-numbers', { countryCode: 'US', numberType: 'local' }),
         response: `{ "success": true, "data": { "countryCode": "US", "numberType": "local", "count": 2, "numbers": [ { "phoneNumber": "+1201555....", "friendlyName": "(201) 555-....", "locality": "Jersey City", "region": "NJ", "capabilities": { "voice": true, "sms": true, "mms": true } } ] } }`,
         notes: { he: 'העבירו את ה-phoneNumber שנבחר ל-create-trial/create-paid כ-simInfo.selectedSimNumber עם simInfo.purchaseInTwilio=true.', en: 'Pass the chosen phoneNumber to create-trial/create-paid as simInfo.selectedSimNumber with simInfo.purchaseInTwilio=true.' },
+      },
+      {
+        method: 'POST', path: '/onboarding/create-trial-self-serve', scope: 'public (no key)',
+        summary: { he: 'שלב 1 — יצירת חשבון חדש בלי מפתח API ובלי למלא טופס (ניסיון חינם). זו נקודת הכניסה לסוכן AI/MCP שאין לו עדיין טוקן. אם organizationName מושמט הוא נוצר אוטומטית משם החברה + ח.פ.', en: 'Step 1 — create a brand-new account with NO API key and no form (free trial). This is the entry point for an AI agent / MCP that has no token yet. If organizationName is omitted it is generated from companyName + companyIdNumber.' },
+        params: [
+          { name: 'companyInfo', in: 'body', type: 'object', required: true, desc: { he: '{ companyName, companyIdNumber (ח.פ/ת.ז) — חובה כשאין organizationName; organizationName (אופציונלי), country (ISO-3166), timezone (IANA) }.', en: '{ companyName, companyIdNumber (tax id) — required when organizationName is omitted; organizationName (optional), country (ISO-3166), timezone (IANA) }.' } },
+          { name: 'contactInfo', in: 'body', type: 'object', required: true, desc: { he: '{ contactFullName, contactEmail, contactPhoneNumber } — לשם נשלחים פרטי ההתחברות.', en: '{ contactFullName, contactEmail, contactPhoneNumber } — login credentials are sent here.' } },
+          { name: 'useFreeNumber / useCoexisting / simInfo', in: 'body', type: 'object', required: false, desc: { he: 'אפשרויות מספר, כמו ב-create-trial. רכישת מספר מאיתנו דורשת verificationId מאומת (/onboarding/verification/send ואז /verify).', en: 'Number options, same as create-trial. Buying a number from us requires a verified verificationId (/onboarding/verification/send then /verify).' } },
+        ],
+        request: `{
+  "companyInfo": { "companyName": "Acme Inc", "companyIdNumber": "123456789", "country": "US", "timezone": "America/New_York" },
+  "contactInfo": { "contactFullName": "John Doe", "contactEmail": "john@acme.com", "contactPhoneNumber": "12015550100" },
+  "useFreeNumber": true
+}`,
+        curl: `curl -X POST "${API_BASE}/onboarding/create-trial-self-serve" \\\n  -H "Content-Type: application/json" \\\n  -d '{ "companyInfo": { "companyName": "Acme Inc", "companyIdNumber": "123456789", "country": "US" }, "contactInfo": { "contactFullName": "John Doe", "contactEmail": "john@acme.com", "contactPhoneNumber": "12015550100" }, "useFreeNumber": true }'`,
+        response: `{ "success": true, "message": "Trial account created successfully.", "data": { "organizationName": "acme-inc-123456789", "billing": "trial", "wabaConnectUrl": "https://gambot.co.il/complete-waba/acme-inc-123456789?lang=en", "paymentUrl": "https://gambot.co.il/addpayment?organizationName=acme-inc-123456789", "statusUrl": "https://api.gambot.co.il/api/v1/onboarding/status?organization=acme-inc-123456789" } }`,
+        notes: { he: 'השתמשו ב-organizationName וב-wabaConnectUrl שחזרו — לעולם אל תמציאו שם ארגון. אחרי היצירה: פתחו את wabaConnectUrl בדפדפן ובדקו התקדמות עם GET /onboarding/status.', en: 'Use the organizationName and wabaConnectUrl that come back — never invent an organization name. After creating: open wabaConnectUrl in a browser and poll GET /onboarding/status.' },
       },
       {
         method: 'POST', path: '/onboarding/create-trial', scope: 'onboarding:write',
@@ -2108,18 +2125,28 @@ export const API_SECTIONS = [
           { name: 'currency', in: 'body', type: 'string', required: false, desc: { he: 'מטבע.', en: 'Currency.' } },
           { name: 'contactEmail', in: 'body', type: 'string', required: false, desc: { he: 'אימייל ליצירת קשר.', en: 'Contact email.' } },
         ],
-        request: `{ "organizationName": "cohen-sons-514999999", "plan": "Basic", "price": "179", "paymentCycle": "monthly", "currency": "ILS", "contactEmail": "dana@example.com" }`,
-        curl: curl('POST', '/onboarding/payment-link', { organizationName: 'cohen-sons-514999999', plan: 'Basic', price: '179', paymentCycle: 'monthly', currency: 'ILS' }),
-        response: `{ "success": true, "message": "Secure hosted payment link.", "data": { "url": "https://gambot.co.il/addpayment?organizationName=cohen-sons-514999999&plan=Basic&price=179&paymentCycle=monthly&currency=ILS" } }`,
+        request: `{ "organizationName": "YOUR_ORGANIZATION_NAME", "plan": "Basic", "price": "179", "paymentCycle": "monthly", "currency": "ILS", "contactEmail": "dana@example.com" }`,
+        curl: curl('POST', '/onboarding/payment-link', { organizationName: 'YOUR_ORGANIZATION_NAME', plan: 'Basic', price: '179', paymentCycle: 'monthly', currency: 'ILS' }),
+        response: `{ "success": true, "message": "Secure hosted payment link.", "data": { "url": "https://gambot.co.il/addpayment?organizationName=acme-inc-123456789&plan=Basic&price=179&paymentCycle=monthly&currency=ILS" } }`,
         notes: { he: 'שתפו את הקישור עם הלקוח כדי להזין כרטיס בדף המאובטח; טוקן הכרטיס נשמר אוטומטית בהצלחה.', en: 'Share the link with the customer to enter a card on the secure page; the card token is saved automatically on success.' },
       },
       {
-        method: 'GET', path: '/onboarding/waba/connect-link', scope: 'onboarding:read',
-        summary: { he: 'קבלת כתובת הדף המתארח להשלמת Meta Embedded Signup (חיבור WhatsApp).', en: 'Get the hosted page URL to complete Meta Embedded Signup (connect WhatsApp).' },
-        params: [{ name: 'organization', in: 'query', type: 'string', required: true, desc: { he: 'שם הארגון.', en: 'Organization name.' } }],
+        method: 'GET', path: '/onboarding/waba/connect-link', scope: 'public (no key)',
+        summary: { he: 'שלב 2 — קבלת כתובת הדף המתארח להשלמת Meta Embedded Signup (חיבור WhatsApp). החשבון חייב כבר להיות קיים (שלב 1).', en: 'Step 2 — get the hosted page URL to complete Meta Embedded Signup (connect WhatsApp). The account MUST already exist (step 1).' },
+        params: [{ name: 'organization', in: 'query', type: 'string', required: true, desc: { he: 'שם הארגון כפי שהוחזר מיצירת החשבון (organizationName). לא להמציא.', en: 'The organizationName returned when the account was created. Do not invent one.' } }],
         request: null,
-        curl: `curl "${API_BASE}/onboarding/waba/connect-link?organization=cohen-sons-514999999" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
-        response: `{ "success": true, "data": { "url": "https://gambot.co.il/complete-waba/cohen-sons-514999999" } }`,
+        curl: `curl "${API_BASE}/onboarding/waba/connect-link?organization=YOUR_ORGANIZATION_NAME"`,
+        response: `{ "success": true, "data": { "url": "https://gambot.co.il/complete-waba/acme-inc-123456789?lang=en" } }`,
+        notes: { he: 'ארגון שלא נוצר מחזיר 404 עם code=ORGANIZATION_NOT_FOUND — צרו קודם חשבון עם POST /onboarding/create-trial-self-serve.', en: 'An organization that was not created returns 404 with code=ORGANIZATION_NOT_FOUND — create the account first with POST /onboarding/create-trial-self-serve.' },
+      },
+      {
+        method: 'GET', path: '/onboarding/status', scope: 'public (no key)',
+        summary: { he: 'שלב 3 — התקדמות ההצטרפות של ארגון: האם החשבון נוצר, האם יש כרטיס, והאם WhatsApp מחובר. לבדיקה חוזרת עד status=connected.', en: 'Step 3 — onboarding progress for an organization: account created, card on file, WhatsApp connected. Poll until status=connected.' },
+        params: [{ name: 'organization', in: 'query', type: 'string', required: true, desc: { he: 'שם הארגון שחזר מיצירת החשבון.', en: 'The organizationName returned when the account was created.' } }],
+        request: null,
+        curl: `curl "${API_BASE}/onboarding/status?organization=YOUR_ORGANIZATION_NAME"`,
+        response: `{ "success": true, "data": { "organization": "acme-inc-123456789", "accountCreated": true, "cardOnFile": false, "wabaConnected": false, "status": "account_created", "wabaConnectUrl": "https://gambot.co.il/complete-waba/acme-inc-123456789?lang=en", "nextStep": "Account created. The customer must finish connecting WhatsApp in the browser via wabaConnectUrl." } }`,
+        notes: { he: 'status: not_found | account_created | connected.', en: 'status: not_found | account_created | connected.' },
       },
       {
         method: 'POST', path: '/onboarding/waba/exchange-token', scope: 'waba:write',
@@ -2130,9 +2157,9 @@ export const API_SECTIONS = [
           { name: 'isCoexisting', in: 'body', type: 'bool', required: false, desc: { he: 'חיבור coexistence.', en: 'Coexistence connection.' } },
           { name: 'coexistingPhoneNumber', in: 'body', type: 'string', required: false, desc: { he: 'מספר קיים (coexistence).', en: 'Existing number (coexistence).' } },
         ],
-        request: `{ "code": "AQD...", "organization": "cohen-sons-514999999", "isCoexisting": true, "coexistingPhoneNumber": "972501234567" }`,
-        curl: curl('POST', '/onboarding/waba/exchange-token', { code: 'AQD...', organization: 'cohen-sons-514999999' }),
-        response: `{ "success": true, "message": "WhatsApp (WABA) connected successfully.", "data": { "organization": "cohen-sons-514999999", "message": "Business token updated successfully for organization." } }`,
+        request: `{ "code": "AQD...", "organization": "YOUR_ORGANIZATION_NAME", "isCoexisting": true, "coexistingPhoneNumber": "972501234567" }`,
+        curl: curl('POST', '/onboarding/waba/exchange-token', { code: 'AQD...', organization: 'YOUR_ORGANIZATION_NAME' }),
+        response: `{ "success": true, "message": "WhatsApp (WABA) connected successfully.", "data": { "organization": "acme-inc-123456789", "message": "Business token updated successfully for organization." } }`,
         notes: { he: 'ה-code מתקבל מחלונית Meta Embedded Signup (שלב בדפדפן, למשל בדף connect-link). ה-API אינו יכול להנפיק אותו בעצמו.', en: 'The code is obtained from the Meta Embedded Signup popup (a browser step, e.g. on the connect-link page). The API cannot mint it on its own.' },
       },
     ],

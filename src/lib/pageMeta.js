@@ -1,3 +1,5 @@
+import { MCP_FAQ_EN } from './mcpHub';
+
 /**
  * Centralized SEO metadata for all public pages.
  * Each key maps to a page route.
@@ -578,15 +580,15 @@ export const PAGE_META = {
     },
   },
   whatsappMcp: {
-    title: 'WhatsApp MCP Server — Connect WhatsApp to Claude, ChatGPT & Gemini | Gambot',
-    description: 'The Gambot WhatsApp MCP server lets AI agents (Claude, ChatGPT, Cursor, Gemini) send WhatsApp messages & templates, run campaigns and manage CRM through the Model Context Protocol. Official Meta-approved WhatsApp Business API. Install with one npx command.',
-    keywords: 'WhatsApp MCP, WhatsApp MCP server, MCP WhatsApp, WhatsApp Model Context Protocol, connect WhatsApp to Claude, WhatsApp for ChatGPT, WhatsApp Gemini, WhatsApp API for AI agents, AI WhatsApp API, send WhatsApp from Claude, MCP server WhatsApp Business API, Gambot MCP, WhatsApp API MCP, Cursor WhatsApp MCP',
+    title: 'WhatsApp Business MCP Server for AI Agents | Gambot',
+    description: 'WhatsApp Business MCP server for AI agents. Connect Claude, ChatGPT & Cursor to the official WhatsApp Business API — not WhatsApp Web. Start: npx -y gambot-mcp',
+    keywords: 'WhatsApp MCP, WhatsApp MCP server, WhatsApp Business MCP, WhatsApp Business MCP server, WhatsApp API MCP, WhatsApp MCP for AI agents, WhatsApp MCP for Claude, WhatsApp MCP for ChatGPT, WhatsApp MCP for Cursor, WhatsApp API for AI agents, official WhatsApp Business API MCP, Gambot MCP',
     canonical: 'https://gambot.co.il/whatsapp-mcp/',
     hreflang: { en: 'https://gambot.co.il/whatsapp-mcp/', 'x-default': 'https://gambot.co.il/whatsapp-mcp/' },
     og: {
       locale: 'en_US',
-      title: 'WhatsApp MCP Server — Send WhatsApp from Claude, ChatGPT & Gemini',
-      description: 'Connect any AI agent to WhatsApp via the Model Context Protocol. Send messages, templates & campaigns and manage CRM. Meta-approved WhatsApp Business API. npx install.',
+      title: 'Gambot — WhatsApp Business MCP for AI Agents',
+      description: 'Connect Claude, ChatGPT, Cursor and other AI agents to the official WhatsApp Business API. Not WhatsApp Web. Install with: npx -y gambot-mcp',
     },
     schema: {
       '@context': 'https://schema.org',
@@ -594,8 +596,10 @@ export const PAGE_META = {
         {
           '@type': 'SoftwareApplication',
           '@id': 'https://gambot.co.il/whatsapp-mcp/#software',
-          name: 'Gambot WhatsApp MCP Server',
-          alternateName: ['WhatsApp MCP Server', 'gambot-mcp'],
+          name: 'Gambot — WhatsApp Business MCP for AI Agents',
+          alternateName: ['Gambot WhatsApp MCP Server', 'WhatsApp Business MCP Server', 'gambot-mcp'],
+          sameAs: ['https://github.com/gambot-ai/gambot-mcp', 'https://www.npmjs.com/package/gambot-mcp'],
+          installUrl: 'https://www.npmjs.com/package/gambot-mcp',
           applicationCategory: 'DeveloperApplication',
           applicationSubCategory: 'MCP Server',
           operatingSystem: 'Windows, macOS, Linux (Node.js 18+)',
@@ -603,21 +607,15 @@ export const PAGE_META = {
           downloadUrl: 'https://www.npmjs.com/package/gambot-mcp',
           softwareVersion: '1.0.0',
           inLanguage: 'en',
-          description: 'A Model Context Protocol (MCP) server that connects AI assistants — Claude, ChatGPT, Gemini and Cursor — to the Gambot WhatsApp Business API. Send WhatsApp messages and templates, run campaigns, and manage contacts, leads, cases, tasks, quotes, invoices, forms, e-signatures and users.',
+          description: 'A WhatsApp Business MCP server that connects AI agents — Claude, ChatGPT, Cursor, Gemini and other MCP clients — to the official WhatsApp Business API (not WhatsApp Web). Send WhatsApp messages and templates, run campaigns, and manage contacts, leads, cases, tasks, quotes, invoices, forms, e-signatures and users. Install: npx -y gambot-mcp.',
           featureList: 'Send WhatsApp messages, Send WhatsApp templates, Run & schedule campaigns, Manage contacts & leads, CRM (cases, tasks), Quotes & invoices, Web forms & e-signatures, Onboarding & payments',
-          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Open-source MCP server (MIT). Requires a Gambot account; plans from ₪179/month with a free trial.' },
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Open-source MCP server (MIT). Self-serve: the AI agent can create a free-trial Gambot account; paid plans from ₪179/month.' },
           author: { '@id': 'https://gambot.co.il/#organization' },
           publisher: { '@id': 'https://gambot.co.il/#organization' },
         },
         {
           '@type': 'FAQPage',
-          mainEntity: [
-            { '@type': 'Question', name: 'What is the WhatsApp MCP server?', acceptedAnswer: { '@type': 'Answer', text: 'It is a Model Context Protocol (MCP) server for the Gambot WhatsApp Business API. It exposes WhatsApp actions as tools so AI agents like Claude, ChatGPT, Gemini and Cursor can send WhatsApp messages and templates, run campaigns and manage CRM data directly.' } },
-            { '@type': 'Question', name: 'How do I connect WhatsApp to Claude or ChatGPT?', acceptedAnswer: { '@type': 'Answer', text: 'Add the Gambot MCP server to your client config (Claude Desktop, Cursor, etc.) with the command "npx -y gambot-mcp" and your Gambot token as the GAMBOT_TOKEN environment variable. The AI agent can then send WhatsApp messages through Gambot.' } },
-            { '@type': 'Question', name: 'Is it an official / authorized WhatsApp API?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Gambot is an official Meta Business Solution Provider, so the MCP server runs on the authorized WhatsApp Business (Cloud) API — not an unofficial workaround.' } },
-            { '@type': 'Question', name: 'How do I install the Gambot WhatsApp MCP server?', acceptedAnswer: { '@type': 'Answer', text: 'No build needed — MCP clients run it on demand with "npx -y gambot-mcp". Provide GAMBOT_TOKEN (a gmbt_… token from Gambot Settings → General). It is also published to the MCP Registry and Smithery.' } },
-            { '@type': 'Question', name: 'Which AI tools support the WhatsApp MCP server?', acceptedAnswer: { '@type': 'Answer', text: 'Any MCP-compatible client, including Claude Desktop, Cursor, and other assistants that support the Model Context Protocol. It works anywhere MCP servers are supported.' } },
-          ],
+          mainEntity: MCP_FAQ_EN.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
         },
         {
           '@type': 'BreadcrumbList',
@@ -654,7 +652,7 @@ export function buildMetadata(pageKey, overrides = {}) {
       title: meta.og?.title || title,
       description: meta.og?.description || description,
       url: canonical,
-      siteName: 'Gambot | WhatsApp Business API',
+      siteName: 'Gambot',
       // Hebrew (Israel) is the default; global English pages (MCP / developers) opt in via og.locale.
       locale: meta.og?.locale || 'he_IL',
       type: 'website',

@@ -10,8 +10,11 @@ const ORG_REF = 'https://gambot.co.il/#organization';
 /** Next.js metadata for an English landing page (locale en_US, self-referential canonical + hreflang). */
 export function landingMetadata(data) {
   const { title, description, keywords, canonical, ogTitle, ogDescription } = data.seo;
+  // The root layout title template appends " | Gambot"; titles that already end with the brand would
+  // render "… | Gambot | Gambot". Use an absolute title for those.
+  const pageTitle = /\|\s*Gambot\s*$/.test(title) ? { absolute: title } : title;
   return {
-    title,
+    title: pageTitle,
     description,
     keywords,
     alternates: { canonical, languages: { en: canonical, 'x-default': canonical } },
@@ -19,7 +22,7 @@ export function landingMetadata(data) {
       title: ogTitle || title,
       description: ogDescription || description,
       url: canonical,
-      siteName: 'Gambot | WhatsApp Business API',
+      siteName: 'Gambot',
       locale: 'en_US',
       type: 'website',
       images: [{ url: OG_IMAGE, width: 1200, height: 630 }],

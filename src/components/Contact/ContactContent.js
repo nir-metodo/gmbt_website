@@ -67,7 +67,7 @@ export default function ContactContent() {
               <div className={styles.channel}>
                 <span className={styles.chIcon}>📍</span>
                 <div>
-                  <strong>תל אביב, ישראל</strong>
+                  <strong>נתניה, ישראל</strong>
                   <p>שותף Meta רשמי</p>
                 </div>
               </div>

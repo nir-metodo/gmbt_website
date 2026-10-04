@@ -1,6 +1,7 @@
 import './globals.css';
 import ClientLayout from '@/components/ClientLayout/ClientLayout';
 import SiteChrome from '@/components/ClientLayout/SiteChrome';
+import { GLOBAL_EN_SSR_SEGMENTS } from '@/lib/globalEnPaths';
 
 export const metadata = {
   metadataBase: new URL('https://gambot.co.il'),
@@ -35,7 +36,7 @@ export const metadata = {
     type: 'website',
     locale: 'he_IL',
     alternateLocale: 'en_US',
-    siteName: 'Gambot — WhatsApp Business API Israel',
+    siteName: 'Gambot',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Gambot - WhatsApp Business API Platform Israel' }],
   },
   twitter: {
@@ -60,8 +61,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="he" dir="rtl">
+    <html lang="he" dir="rtl" suppressHydrationWarning>
       <head>
+        {/* English global MCP/API pages: set <html lang/dir> before first paint (the static HTML ships
+            lang="he" for every route; the page body itself is server-rendered in English). Mirrors the
+            explicit-language priorities in ClientLayout/LangSync. Hebrew pages are untouched. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var en=${JSON.stringify(GLOBAL_EN_SSR_SEGMENTS)};var seg=(location.pathname.replace(/^\\/+/,'').split('/')[0]||'');var q=(new URLSearchParams(location.search).get('lang')||'').toLowerCase();var s=localStorage.getItem('gambot_lang');var l=(q==='he'||q==='en')?q:(s==='he'||s==='en')?s:(en.indexOf(seg)>-1?'en':'');if(l){var d=document.documentElement;d.lang=l;d.dir=l==='he'?'rtl':'ltr';}}catch(e){}})();`,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -110,7 +119,6 @@ export default function RootLayout({ children }) {
                   '@id': 'https://gambot.co.il/#website',
                   url: 'https://gambot.co.il',
                   name: 'Gambot',
-                  alternateName: 'גמבוט',
                   description: 'Gambot — WhatsApp Business API Platform for Israel',
                   publisher: { '@id': 'https://gambot.co.il/#organization' },
                   inLanguage: ['he-IL', 'en'],

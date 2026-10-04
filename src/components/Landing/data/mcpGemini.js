@@ -54,8 +54,8 @@ export const data = {
       type: 'bullets',
       title: 'Requirements',
       bullets: [
-        'A Gambot account with WhatsApp connected (<a href="' + SIGNUP + '" style="color:#25D366">create one free</a>).',
-        'Your Gambot token (<code>gmbt_\u2026</code>) from Gambot \u2192 <strong style="color:#e9edef">Settings \u2192 General</strong>.',
+        'No account yet? Run the server without a token: your agent creates a free-trial account and gives you a link to connect WhatsApp (self-service, no sales call). Prefer the browser? <a href="' + SIGNUP + '" style="color:#25D366">Create an account</a>.',
+        'Once WhatsApp is connected, set <code>GAMBOT_TOKEN</code> (<code>gmbt_\u2026</code> from <strong style="color:#e9edef">Settings \u2192 General</strong>) to unlock the full tool set.',
         'The Gemini CLI (or a Gemini client that supports MCP servers) and Node.js 18+.',
       ],
     },
@@ -140,8 +140,8 @@ export const data = {
       {
         title: '\u05d3\u05e8\u05d9\u05e9\u05d5\u05ea',
         bullets: [
-          '\u05d7\u05e9\u05d1\u05d5\u05df \u05d2\u05de\u05d1\u05d5\u05d8 \u05e2\u05dd \u05d5\u05d5\u05d0\u05d8\u05e1\u05d0\u05e4 \u05de\u05d7\u05d5\u05d1\u05e8 (<a href="' + SIGNUP + '" style="color:#25D366">\u05e6\u05e8\u05d5 \u05d7\u05e9\u05d1\u05d5\u05df \u05d7\u05d9\u05e0\u05dd</a>).',
-          '\u05d4\u05d8\u05d5\u05e7\u05df \u05e9\u05dc\u05db\u05dd \u05d1\u05d2\u05de\u05d1\u05d5\u05d8 (<code>gmbt_\u2026</code>) \u05de\u05ea\u05d5\u05da \u05d2\u05de\u05d1\u05d5\u05d8 \u2190 <strong style="color:#e9edef">\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea \u2190 \u05db\u05dc\u05dc\u05d9</strong>.',
+          '????? ??? ?????? ????? ?? ???? ??? ????: ????? ???? ????? ?????? ????? ??? ????? ?????? ??????? (????? ????, ??? ???? ?????). ??????? ?????? <a href="' + SIGNUP + '" style="color:#25D366">??? ?????</a>.',
+          '???? ???????? ?????, ?????? <code>GAMBOT_TOKEN</code> (<code>gmbt_\u2026</code> ???? <strong style="color:#e9edef">?????? ? ????</strong>) ??? ????? ?? ?? ?? ?????.',
           '\u05d4\u2011Gemini CLI (\u05d0\u05d5 \u05dc\u05e7\u05d5\u05d7 Gemini \u05e9\u05ea\u05d5\u05de\u05da \u05d1\u05e9\u05e8\u05ea\u05d9 MCP) \u05d5\u2011Node.js 18+.',
         ],
       },

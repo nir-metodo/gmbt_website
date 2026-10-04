@@ -39,6 +39,9 @@ export const data = {
       title: 'Side-by-side',
       columns: ['Dimension', 'Official Business API (Gambot + MCP)', 'WhatsApp Web automation'],
       rows: [
+        ['Architecture', 'Your app or agent calls an HTTPS API (REST or MCP); Meta delivers the messages from a verified business account', 'A script drives a browser or linked-device session that mirrors a personal WhatsApp'],
+        ['Meta relationship', 'Meta Business Solution Provider; the number sits in your own verified WhatsApp Business Account', 'No business account or contractual channel with Meta behind it'],
+        ['QR code', 'None. Connection is a one-time Meta Embedded Signup in the browser', 'A QR code must be scanned from a phone, and re-scanned when the session drops'],
         ['Authentication', 'Business tokens on the official Cloud API; managed by Gambot', 'Tied to a logged-in phone/session'],
         ['Sessions', 'Server-side, stable, no phone tethering', 'Depends on an active linked session'],
         ['Webhooks', 'First-class inbound event delivery', 'Typically polling/scraping the web client'],
@@ -96,6 +99,9 @@ export const data = {
         title: '\u05d4\u05e9\u05d5\u05d5\u05d0\u05d4 \u05d6\u05d5 \u05de\u05d5\u05dc \u05d6\u05d5',
         columns: ['\u05de\u05d3\u05d3', 'Business API \u05e8\u05e9\u05de\u05d9 (\u05d2\u05de\u05d1\u05d5\u05d8 + MCP)', '\u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d9\u05ea WhatsApp Web'],
         rows: [
+        ['ארכיטקטורה', 'האפליקציה או הסוכן קוראים ל־API על גבי HTTPS (REST או MCP); Meta מוסרת את ההודעות מחשבון עסקי מאומת', 'סקריפט מפעיל דפדפן או מכשיר מקושר שמשקף וואטסאפ אישי'],
+        ['קשר מול Meta', 'ספק פתרונות עסקי של Meta; המספר בחשבון WhatsApp Business מאומת שלכם', 'אין חשבון עסקי או ערוץ רשמי מול Meta מאחורי זה'],
+        ['קוד QR', 'אין. החיבור הוא חד־פעמי דרך Meta Embedded Signup בדפדפן', 'צריך לסרוק קוד QR מהטלפון, ולסרוק מחדש כשהסשן נופל'],
           ['\u05d0\u05d9\u05de\u05d5\u05ea', '\u05d8\u05d5\u05e7\u05e0\u05d9\u05dd \u05e2\u05e1\u05e7\u05d9\u05d9\u05dd \u05e2\u05dc \u05d4\u2011Cloud API \u05d4\u05e8\u05e9\u05de\u05d9; \u05de\u05e0\u05d5\u05d4\u05dc \u05e2\u05dc \u05d9\u05d3\u05d9 \u05d2\u05de\u05d1\u05d5\u05d8', '\u05e7\u05e9\u05d5\u05e8 \u05dc\u05d8\u05dc\u05e4\u05d5\u05df/\u05e1\u05e9\u05df \u05de\u05d7\u05d5\u05d1\u05e8'],
           ['\u05e1\u05e9\u05e0\u05d9\u05dd', '\u05e6\u05d3 \u05e9\u05e8\u05ea, \u05d9\u05e6\u05d9\u05d1, \u05d1\u05dc\u05d9 \u05ea\u05dc\u05d5\u05ea \u05d1\u05d8\u05dc\u05e4\u05d5\u05df', '\u05ea\u05dc\u05d5\u05d9 \u05d1\u05e1\u05e9\u05df \u05de\u05d7\u05d5\u05d1\u05e8 \u05e4\u05e2\u05d9\u05dc'],
           ['Webhooks', '\u05d0\u05e1\u05e4\u05e7\u05ea \u05d0\u05d9\u05e8\u05d5\u05e2\u05d9\u05dd \u05e0\u05db\u05e0\u05e1\u05d9\u05dd \u05de\u05d3\u05e8\u05d2\u05d4 \u05e8\u05d0\u05e9\u05d5\u05e0\u05d4', '\u05d1\u05d3\u05e8\u05da \u05db\u05dc\u05dc polling/scraping \u05e9\u05dc \u05dc\u05e7\u05d5\u05d7 \u05d4\u2011Web'],

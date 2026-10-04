@@ -270,7 +270,7 @@ export function buildEnMetadata(slug) {
       title: p.title,
       description: p.description,
       url: canonical,
-      siteName: 'Gambot | WhatsApp Business API',
+      siteName: 'Gambot',
       locale: 'en_US',
       type: 'website',
       images: [{ url: OG_IMAGE, width: 1200, height: 630 }],

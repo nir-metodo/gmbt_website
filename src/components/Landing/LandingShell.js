@@ -12,6 +12,7 @@
  */
 import TrackedLink from '@/components/Landing/TrackedLink';
 import PageViewTracker from '@/components/Landing/PageViewTracker';
+import { trackEvent } from '@/lib/track';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 // ── Language merge: overlay the Hebrew `data.he` strings on top of the English structure, keeping any
@@ -144,7 +145,7 @@ function Block({ block, page, ui }) {
           <div className="ls-wrap">
             {block.title && <h2 className="ls-h2">{block.title}</h2>}
             {block.intro && <p className="ls-p">{block.intro}</p>}
-            <pre className="ls-pre">{block.code}</pre>
+            <pre className="ls-pre" onCopy={() => trackEvent('mcp_install_copy', { page, block: block.title || '' })}>{block.code}</pre>
           </div>
         </section>
       );
@@ -230,7 +231,7 @@ export default function LandingShell({ data }) {
     agent: isHe ? 'סוכן' : 'Agent',
   };
   return (
-    <main dir={isHe ? 'rtl' : 'ltr'} style={{ background: DARK, color: TEXT, fontFamily: 'Rubik, "Open Sans", system-ui, sans-serif', direction: isHe ? 'rtl' : 'ltr' }}>
+    <main lang={isHe ? 'he' : 'en'} dir={isHe ? 'rtl' : 'ltr'} style={{ background: DARK, color: TEXT, fontFamily: 'Rubik, "Open Sans", system-ui, sans-serif', direction: isHe ? 'rtl' : 'ltr' }}>
       <PageViewTracker page={pageKey} />
       <style>{`
         .ls-wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }

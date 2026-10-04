@@ -37,6 +37,11 @@
     ],
     "cleanUrls": true,
     "redirects": [
+      { "source": "/en", "destination": "/", "type": 301 },
+      { "source": "/en/", "destination": "/", "type": 301 },
+      { "source": "/en/developers", "destination": "/developers/?lang=en", "type": 301 },
+      { "source": "/en/developers/", "destination": "/developers/?lang=en", "type": 301 },
+      { "source": "/en/:path*", "destination": "/:path*", "type": 301 },
       { "source": "/whatsapp-api-pricing", "destination": "/PriceList/", "type": 301 },
       { "source": "/whatsapp-api-pricing/", "destination": "/PriceList/", "type": 301 },
       { "source": "/whatsapp-api-price", "destination": "/PriceList/", "type": 301 },

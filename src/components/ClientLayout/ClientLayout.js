@@ -1,6 +1,8 @@
 'use client';
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
+import { isGlobalEnSsrPath } from '@/lib/globalEnPaths';
 import { EN_SLUGS } from '@/lib/enPages';
 
 // Best-effort, client-side guess of whether the visitor is physically in Israel — the SYNCHRONOUS
@@ -77,7 +79,7 @@ function firstSegment(path) {
 const GLOBAL_EN = [
   'whatsapp-mcp', 'developers', 'whatsapp-api', 'whatsapp-api-for-ai-agents',
   'whatsapp-api-for-developers', 'whatsapp-mcp-vs-whatsapp-web', 'whatsapp-api-vs-meta-cloud-api',
-  'whatsapp-api-pricing',
+  'whatsapp-api-pricing', 'whatsapp-business-api', 'whatsapp-cloud-api',
   // Marketing pages that render dedicated English components:
   'whatsapp-marketing', 'whatsapp-business-system', 'whatsapp-bot-campaign', 'whatsapp-bot-types',
   'crm-for-business', 'about',
@@ -135,8 +137,12 @@ function LangSync() {
 }
 
 export default function ClientLayout({ children }) {
+  // Server-render the English global MCP/API pages in English (the pathname is available during the
+  // static prerender), so crawlers that don't execute JS get English content under the English title.
+  // Every other path keeps the Hebrew default — Israeli pages are unchanged.
+  const pathname = usePathname() || '';
   return (
-    <LanguageProvider defaultLanguage="he">
+    <LanguageProvider defaultLanguage={isGlobalEnSsrPath(pathname) ? 'en' : 'he'}>
       <LangSync />
       {children}
     </LanguageProvider>

@@ -71,7 +71,7 @@ export async function generateMetadata({ params }) {
       authors: [post.author || 'גמבוט'],
       locale: lang === 'en' ? 'en_US' : 'he_IL',
       images: [{ url: `${SITE}${image}`, width: 1200, height: 630, alt: seoTitle }],
-      siteName: 'גמבוט | Gambot',
+      siteName: 'Gambot',
     },
     twitter: {
       card: 'summary_large_image',
