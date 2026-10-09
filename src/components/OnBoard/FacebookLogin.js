@@ -131,7 +131,9 @@
                 ...(isCoexisting && coexistingPhoneNumber && { number: coexistingPhoneNumber.replace(/[^0-9]/g, '') }) // ✅ Pre-fill phone number for co-existing
               },
             },
-            featureType: 'whatsapp_business_app_onboarding',
+            // featureType ONLY for coexistence (existing WhatsApp Business app number -> QR scan flow).
+            // For a regular new-number signup it must be omitted (Meta: leave blank for the default onboarding flow).
+            ...(isCoexisting ? { featureType: 'whatsapp_business_app_onboarding' } : {}),
             sessionInfoVersion: '3',
             
             // ✅ Force specific mode based on Step 2 selection

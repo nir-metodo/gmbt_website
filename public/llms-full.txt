@@ -94,7 +94,9 @@ Envelope: success `{ "success": true, "message": "...", "data": { ... } }`; erro
 | POST /messages/send-template | `{ "to", "templateId", "variables": [] }` approved template, works outside the window |
 | GET /messages/{messageId}/status?phone= | sent / delivered / read / failed |
 | GET /conversations/{phone}/window | `windowOpen`, `canSendFreeText`, `requiresTemplate`, `recommendation` |
-| GET /conversations/{phone}/messages | message history |
+| GET /conversations/{phone}/messages | message history (media messages carry `mediaId` + an authenticated `mediaUrl`) |
+| GET /media/{mediaId} | download a message's media (`?format=redirect` default / `json` / `stream`, `ttlMinutes`); MCP `gambot_get_media_url` |
+| GET /media/meta/{metaMediaId}?from= | download inbound WhatsApp media by the id from the webhook `media[]` |
 | GET /numbers | connected sender numbers |
 | GET /templates, GET /templates/{id}, GET /templates/{id}/variables, POST /templates | list, inspect, create templates |
 | POST /webhooks/forward, GET, DELETE; POST /webhooks/test | register, read, disable, test webhook forwarding |
@@ -121,6 +123,8 @@ curl -s -X POST https://api.gambot.co.il/api/v1/messages/send-template -H "Autho
 Register: `POST /webhooks/forward` with `{ "url": "https://your-server.com/webhook", "authHeader": "Bearer <secret>", "events": { "incomingMessage": true, "messageStatus": true, "templateStatus": true, "other": true } }`.
 
 Deliveries are JSON envelopes `{ type, event, types[], organization, receivedAt, meta_obj }`, where `meta_obj` is Meta's original payload. Headers: `Authorization` (your configured value), `X-Gambot-Organization`, `X-Gambot-Event`. `type` values include incoming_message, message_status, template_status_update, template_category_update, template_quality_update.
+
+Media: media storage is private. Every inbound media message (image, video, audio, document, sticker) adds a `media[]` list to the envelope: `{ messageId, from, type, mimeType, fileName, caption, metaMediaId, downloadUrl }`. `GET downloadUrl` (= `/api/v1/media/meta/{metaMediaId}?from={from}`) with the same Gambot token (`Authorization: Bearer gmbt_…` or `X-Api-Key`, scope `conversations:read`). Default `format=redirect` answers 302 to a signed link valid 15 minutes; `?format=stream` returns the bytes; `?format=json` returns `{ url, expiresAt }` (download `url` WITHOUT an Authorization header — use stream/json if your client forwards Authorization across redirects). Works even if the file is not stored yet (fetched from WhatsApp on demand; WhatsApp keeps media ~30 days, then 404). Only your organization's media is accessible. MCP: `gambot_get_media_url`.
 
 Handler rules: verify the Authorization header (constant-time), return 2xx quickly and process asynchronously, de-duplicate on the message id inside `meta_obj`, route on `X-Gambot-Event`. An inbound message opens the 24-hour window, so a free-text reply is allowed. Test with `POST /webhooks/test`.
 

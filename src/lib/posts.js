@@ -13111,6 +13111,614 @@ const posts = [
 `
   },
   seoUrl: getSeoUrl('קרדיטים API ו-MCP איך נספרת צריכת הממשק בגמבוט וכמה זה עולה')
+},
+{
+  id: 47,
+  seoTitle: {
+    he: 'כמה יעלה לי גמבוט בחודש? מדריך לחישוב עלות חודשית מדויקת 2026 | גמבוט',
+    en: 'How Much Will Gambot Cost Me Per Month? A Monthly Cost Calculation Guide 2026 | Gambot'
+  },
+  metaDescription: {
+    he: 'איך מחשבים כמה תשלמו על גמבוט בחודש: מחיר החבילה, המכסות הכלולות (הודעות דיוור, קרדיטים AI, קרדיטים API/MCP, משתמשים, אחסון), עלות החריגה ודוגמאות חישוב אמיתיות — כולל מתי כדאי לעבור חבילה.',
+    en: 'How to calculate what you will pay for Gambot each month: plan price, included quotas (broadcast messages, AI credits, API/MCP credits, users, storage), overage prices and real worked examples — including when it pays to move up a plan.'
+  },
+  keywords: {
+    he: ['כמה עולה גמבוט', 'מחיר גמבוט', 'חישוב עלות וואטסאפ API', 'עלות חודשית בוט וואטסאפ', 'מחירון גמבוט', 'חריגה ממכסה', 'איזו חבילה לבחור', 'עלות דיוור בוואטסאפ'],
+    en: ['gambot pricing', 'gambot cost per month', 'whatsapp api monthly cost', 'whatsapp bot cost calculator', 'which gambot plan', 'overage pricing', 'broadcast message cost']
+  },
+  title: {
+    he: 'כמה יעלה לי גמבוט בחודש? מדריך לחישוב עלות חודשית',
+    en: 'How Much Will Gambot Cost Me Per Month? A Monthly Cost Guide'
+  },
+  description: {
+    he: 'מדריך צעד־אחר־צעד לבעל עסק: איך להעריך מראש את החשבון החודשי — חבילה, מכסות כלולות, חריגות, ועלות ההודעות של Meta — עם שלוש דוגמאות חישוב ו"כללי אצבע" למעבר בין חבילות.',
+    en: 'A step-by-step guide for business owners: how to estimate your monthly bill in advance — plan, included quotas, overage and Meta message fees — with three worked examples and rules of thumb for moving between plans.'
+  },
+  category: 'Pricing',
+  author: 'ניר סגס',
+  publishedDate: '2026-10-06',
+  image: '/blog/blogHeader.jpg',
+  readTime: 9,
+  featured: true,
+  faq: {
+    he: [
+      { q: 'מה כלול במחיר החבילה החודשי?', a: 'מחיר החבילה (Growth ₪179, Pro ₪359, Business ₪645 לחודש, לפני מע״מ) כולל את מכסות החבילה: בוטים, שיחות חדשות, הודעות דיוור, אנשי קשר, אחסון, קרדיטים AI, קרדיטים API/MCP, משתמשים ומספר וואטסאפ אחד. מה שמעבר למכסה מתומחר בנפרד לפי הטבלה בכתבה.' },
+      { q: 'מה לא כלול במחיר החבילה?', a: 'עלות הודעות WhatsApp עצמן ש‑Meta גובה (לפי סוג ההודעה והמדינה), מע״מ, חריגות ממכסות, ותוספות אופציונליות כמו חשבוניות בחבילת Pro (₪89 לחודש) או Support Plus (₪650 לחודש).' },
+      { q: 'מה קורה אם אני חורג ממכסה?', a: 'בקרדיטי AI, בקרדיטי API/MCP, בהודעות דיוור, באחסון ובמשתמשים — ממשיכים לעבוד ומשלמים רק על מה שמעבר למכסה לפי מחיר החריגה של החבילה. מכסות אחרות (בוטים, שיחות חדשות, אנשי קשר) הן גבולות של החבילה — אם אתם קרובים אליהן, כדאי לשקול מעבר לחבילה הבאה.' },
+      { q: 'איך אני יודע אם כדאי לעבור לחבילה גבוהה יותר?', a: 'חשבו את החשבון החודשי הצפוי בכל חבילה (מחיר חבילה + חריגות). אם חבילה גבוהה זולה יותר או שווה בעלות — כדאי לעבור. בכתבה יש כללי אצבע וחישוב לדוגמה: למשל, עם 8,000 הודעות דיוור בחודש חבילת Business זולה מ‑Pro גם בלי לספור קרדיטים AI ומשתמשים.' },
+      { q: 'האם חיוב שנתי משנה את החישוב?', a: 'כן. בחיוב שנתי המחיר החודשי המקביל הוא Growth ₪143, Pro ₪287, Business ₪516 (חיסכון של כ‑20%). מכסות החריגה והתוספות זהות.' }
+    ],
+    en: [
+      { q: 'What is included in the monthly plan price?', a: 'The plan price (Growth ₪179, Pro ₪359, Business ₪645 per month, before VAT) includes the plan quotas: bots, new conversations, broadcast messages, contacts, storage, AI credits, API/MCP credits, users and one WhatsApp number. Anything beyond a quota is priced separately according to the table in this article.' },
+      { q: 'What is not included in the plan price?', a: 'The WhatsApp message fees that Meta charges (by message type and country), VAT, overage beyond quotas, and optional add-ons such as invoices on the Pro plan (₪89/month) or Support Plus (₪650/month).' },
+      { q: 'What happens if I exceed a quota?', a: 'For AI credits, API/MCP credits, broadcast messages, storage and users you keep working and pay only for what is beyond the quota, at your plan\'s overage price. Other quotas (bots, new conversations, contacts) are plan limits — if you are close to them, consider moving to the next plan.' },
+      { q: 'How do I know if I should move to a higher plan?', a: 'Calculate the expected monthly bill on each plan (plan price + overage). If a higher plan costs less or the same, move up. The article includes rules of thumb and a worked example: for instance, at 8,000 broadcast messages a month Business is cheaper than Pro even before counting AI credits and users.' },
+      { q: 'Does annual billing change the calculation?', a: 'Yes. With annual billing the equivalent monthly price is Growth ₪143, Pro ₪287, Business ₪516 (about 20% savings). Overage prices and add-ons are the same.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🧮 מחשבון עלות חודשית</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">כמה בעצם אשלם בחודש? — מדריך לבעל עסק</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">מחיר החבילה הוא רק חלק מהתמונה. הכתבה הזו מראה איך מחברים את כל הרכיבים — חבילה, מכסות, חריגות והודעות Meta — לחשבון חודשי צפוי, בלי הפתעות.</p>
+</div>
+
+<div style="background:#f0fdf4;border-inline-start:4px solid #128C7E;border-radius:8px;padding:14px 18px;margin:0 0 26px;font-size:0.95rem;color:#14532d;">
+  💡 <strong>כל המחירים בכתבה הם בש״ח ולפני מע״מ.</strong> בחיוב שנתי המחיר החודשי המקביל נמוך בכ‑20%.
+</div>
+
+<h2>🧩 החשבון החודשי = 4 רכיבים</h2>
+<ol>
+  <li><strong>מחיר החבילה</strong> — סכום קבוע: Growth ‏₪179 · Pro ‏₪359 · Business ‏₪645.</li>
+  <li><strong>חריגות ממכסות</strong> — רק אם צרכתם יותר ממה שכלול (טבלה למטה).</li>
+  <li><strong>תוספות אופציונליות</strong> — מספר וואטסאפ נוסף, חשבוניות ב‑Pro, Support Plus.</li>
+  <li><strong>עלות הודעות WhatsApp של Meta</strong> — משולמת לפי הודעה, לא נכללת במחיר החבילה (ראו בהמשך).</li>
+</ol>
+
+<h2>📦 מה כלול בכל חבילה</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:right;border:1px solid #e5e7eb;">רכיב</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Growth</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Pro</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Business</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;"><strong>מחיר חודשי</strong></td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪179</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪359</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪645</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">מחיר חודשי בחיוב שנתי</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪143</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪287</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪516</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">בוטים / תהליכי אוטומציה</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">6</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">שיחות חדשות בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">300</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">אנשי קשר</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">35,000</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">הודעות דיוור בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים AI בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים API/MCP בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">אחסון קבצים</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">50 GB</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">משתמשים</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">12</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">מספר וואטסאפ</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">1 כלול בכל חבילה</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">ריצות אוטומציה בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>💸 מחירי חריגה ותוספות</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:right;border:1px solid #e5e7eb;">פריט</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Growth</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Pro</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Business</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">כל 1,000 הודעות דיוור נוספות</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪149</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪99</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪49</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">כל 500 קרדיטים AI נוספים</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪39 (בכל החבילות)</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיט API/MCP נוסף</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪0.10 (בכל החבילות)</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">GB אחסון נוסף</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪5</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">משתמש נוסף</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪30</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">מספר וואטסאפ נוסף</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪119</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">חשבוניות דיגיטליות</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">—</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">תוספת ₪89 לחודש (עד 300)</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כלול (עד 1,000)</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Support Plus (אופציונלי)</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪650 לחודש, תוספת לכל חבילה</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>הודעות הדיוור נספרות <strong>לכל ערוץ בנפרד</strong> (וואטסאפ ו/או מייל). קרדיטי ה‑AI וקרדיטי ה‑API/MCP הם שני מאגרים נפרדים — פירוט: <a href="/blog/44/טוקני-גמבוט-קרדיטים-איך-מחשבים-ומעריכים-כמה-ai-תצרכו/">מדריך קרדיטי ה‑AI</a> ו<a href="/blog/46/קרדיטים-api-ו-mcp-איך-נספרת-צריכת-הממשק-בגמבוט-וכמה-זה-עולה/">מדריך קרדיטי ה‑API/MCP</a>.</p>
+
+<h2>📝 דף חישוב ב‑5 שאלות</h2>
+<p>לפני שבוחרים חבילה, ענו על חמש שאלות — ובעזרתן תבנו את החישוב:</p>
+<ol>
+  <li><strong>כמה הודעות דיוור אשלח בחודש?</strong> (וואטסאפ ומייל נספרים בנפרד; הודעה אחת לנמען אחד = הודעה אחת.)</li>
+  <li><strong>כמה קרדיטים AI אצרוך?</strong> תשובות הבוט הן הצריכה הכבדה — הערכה מפורטת במדריך קרדיטי ה‑AI.</li>
+  <li><strong>האם אחבר מערכת או סוכן AI דרך API / MCP?</strong> אם כן, העריכו את מספר הפעולות והכפילו במשקל (API ×1, MCP ×2, דיוור/ייצוא ×4, פעולת AI ×12).</li>
+  <li><strong>כמה אנשים יעבדו במערכת?</strong> ומה נפח האחסון הצפוי לקבצים ומדיה.</li>
+  <li><strong>האם צריך חשבוניות, מספר וואטסאפ נוסף או תמיכה מורחבת?</strong></li>
+</ol>
+<p>אחרי שענתם — חשבו לכל חבילה: <strong>מחיר חבילה + חריגות + תוספות</strong>, והשוו. זה בדיוק מה שנעשה בדוגמאות הבאות.</p>
+
+<h2>🧮 שלוש דוגמאות חישוב</h2>
+
+<h3>דוגמה 1 — עסק קטן עם בוט אחד (Growth)</h3>
+<p>700 הודעות דיוור בחודש, 800 קרדיטים AI, שני משתמשים.</p>
+<ul>
+  <li>חבילת Growth: ₪179</li>
+  <li>דיוור: 700 מתוך 1,000 — בתוך המכסה</li>
+  <li>קרדיטים AI: 800 מתוך 1,000 — בתוך המכסה</li>
+  <li>משתמשים: 2 מתוך 2 — בתוך המכסה</li>
+</ul>
+<p><strong>סה״כ: ₪179 לפני מע״מ</strong> (בתוספת עלות הודעות Meta).</p>
+
+<h3>דוגמה 2 — חנות צומחת: מתי Pro כבר לא משתלמת</h3>
+<p>8,000 הודעות דיוור בחודש, 6,200 קרדיטים AI, 7 משתמשים, ונדרשות חשבוניות.</p>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:right;border:1px solid #e5e7eb;">רכיב</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Pro</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Business</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">מחיר חבילה</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪359</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪645</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">דיוור: 8,000 הודעות</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">חריגה 3,000 → 3 × ₪99 = ₪297</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">בתוך המכסה (20,000)</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים AI: 6,200</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">חריגה 1,200 → 3 חבילות של 500 × ₪39 = ₪117</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">בתוך המכסה (15,000)</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">משתמשים: 7</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2 נוספים × ₪30 = ₪60</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">בתוך המכסה (12)</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">חשבוניות</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">תוספת ₪89</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כלול</td></tr>
+      <tr style="background:#ecfdf5;"><td style="padding:10px;border:1px solid #e5e7eb;"><strong>סה״כ</strong></td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:800;">₪922</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:800;color:#047857;">₪645</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>במקרה הזה <strong>Business זולה ב‑₪277 בחודש</strong> מ‑Pro, ובנוסף היא מעניקה יותר מרווח צמיחה. זו בדיוק הסיבה שחשוב לחשב לפני שבוחרים — החבילה "הזולה" לא תמיד זולה יותר בסוף החודש.</p>
+
+<h3>דוגמה 3 — אינטגרציה כבדה דרך API / MCP</h3>
+<p>4,500 קרדיטים API/MCP בחודש, 900 הודעות דיוור, 700 קרדיטים AI, שני משתמשים.</p>
+<ul>
+  <li><strong>Growth:</strong> ₪179 + חריגה של 3,500 קרדיטים × ₪0.10 = ₪350 → <strong>₪529</strong></li>
+  <li><strong>Pro:</strong> ₪359 + חריגה של 1,500 קרדיטים × ₪0.10 = ₪150 → <strong>₪509</strong></li>
+  <li><strong>Business:</strong> ₪645, הכל בתוך המכסה (10,000) → <strong>₪645</strong></li>
+</ul>
+<p>כאן Pro היא הזולה ביותר. שימו לב שבחירה צריכה להתחשב גם במה שהחבילה נותנת (בוטים, משתמשים, תמיכה) — לא רק במחיר.</p>
+
+<h2>🎯 כללי אצבע — מתי כדאי לעבור חבילה</h2>
+<p>ההערכות הבאות מניחות שאתם חורגים רק בפריט אחד, ומבוססות על ההפרש במחיר החבילה (Growth→Pro: ₪180; Pro→Business: ₪286):</p>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:right;border:1px solid #e5e7eb;">אם אתם צורכים…</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Pro זולה מ‑Growth כבר מ…</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Business זולה מ‑Pro כבר מ…</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">הודעות דיוור בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑2,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑8,000</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים AI בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑3,300</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑8,700</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים API/MCP בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑2,800</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑5,900</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>כשכמה פריטים חורגים יחד, המעבר משתלם הרבה קודם — לכן הדרך האמינה היא לחשב את החשבון המלא כמו בדוגמה 2.</p>
+
+<h2>📱 עלות הודעות WhatsApp של Meta</h2>
+<p>מעבר לחבילה, Meta גובה על הודעות WhatsApp לפי <strong>סוג ההודעה</strong> (שיווק, שירות, אימות) ו<strong>מדינת היעד</strong>. הסכומים משולמים לפי הודעה ואינם חלק ממחיר החבילה, ולכן הם נוספים לחשבון. את הטבלה העדכנית תמצאו <a href="/PriceList/MetaPricing">כאן</a> ואת ההסבר המלא <a href="/PriceList/WhatsAppMessagingPricingBlog">בכתבה על תמחור הודעות</a>.</p>
+<p>כדי להעריך: ספרו כמה הודעות מכל סוג תשלחו בחודש, והכפילו במחיר ההודעה ליעד שלכם.</p>
+
+<h2>✅ סיכום: איך מחשבים בפועל</h2>
+<ol>
+  <li>ענו על חמש השאלות וכתבו את הצריכה החודשית הצפויה.</li>
+  <li>לכל חבילה חשבו: מחיר + חריגות + תוספות.</li>
+  <li>הוסיפו הערכה של עלות הודעות Meta.</li>
+  <li>בחרו את החבילה הזולה מבין אלה שמתאימות לצרכים — ובדקו שוב אחרי חודש־חודשיים לפי הצריכה בפועל.</li>
+</ol>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">רוצים עזרה בחישוב לעסק שלכם?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">שלחו לנו את הצריכה הצפויה ונמליץ על החבילה המשתלמת ביותר.</p>
+  <a href="/PriceList/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">למחירון המלא ←</a>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🧮 MONTHLY COST CALCULATOR</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">What will I actually pay each month? — A guide for business owners</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">The plan price is only part of the picture. This article shows how to combine every component — plan, quotas, overage and Meta fees — into a predictable monthly bill, with no surprises.</p>
+</div>
+
+<div style="background:#f0fdf4;border-inline-start:4px solid #128C7E;border-radius:8px;padding:14px 18px;margin:0 0 26px;font-size:0.95rem;color:#14532d;">
+  💡 <strong>All prices in this article are in ILS (₪) and before VAT.</strong> With annual billing the equivalent monthly price is about 20% lower.
+</div>
+
+<h2>🧩 Your monthly bill = 4 components</h2>
+<ol>
+  <li><strong>The plan price</strong> — a fixed amount: Growth ₪179 · Pro ₪359 · Business ₪645.</li>
+  <li><strong>Overage beyond quotas</strong> — only if you used more than what is included (table below).</li>
+  <li><strong>Optional add-ons</strong> — an extra WhatsApp number, invoices on Pro, Support Plus.</li>
+  <li><strong>Meta's WhatsApp message fees</strong> — paid per message and not part of the plan price (see below).</li>
+</ol>
+
+<h2>📦 What each plan includes</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:left;border:1px solid #e5e7eb;">Item</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Growth</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Pro</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Business</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Monthly price</strong></td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪179</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪359</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪645</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Monthly price with annual billing</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪143</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪287</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪516</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Bots / automation flows</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">6</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">New conversations / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">300</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Contacts</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">35,000</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Broadcast messages / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">AI credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">API/MCP credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">File storage</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">50 GB</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Users</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">12</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">WhatsApp number</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">1 included in every plan</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Automation runs / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>💸 Overage prices and add-ons</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:left;border:1px solid #e5e7eb;">Item</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Growth</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Pro</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Business</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Each extra 1,000 broadcast messages</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪149</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪99</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪49</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Each extra 500 AI credits</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪39 (all plans)</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Extra API/MCP credit</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪0.10 (all plans)</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Extra GB of storage</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪5</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Extra user</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪30</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Extra WhatsApp number</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪119</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Digital invoices</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">—</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Add-on ₪89/month (up to 300)</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Included (up to 1,000)</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Support Plus (optional)</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪650/month, add-on to any plan</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Broadcast messages are counted <strong>per channel</strong> (WhatsApp and/or email). AI credits and API/MCP credits are two separate pools — details in the <a href="/blog/44/gambot-tokens-credits-how-to-calculate-and-estimate-your-ai-usage/">AI credits guide</a> and the <a href="/blog/46/api-mcp-credits-how-gambot-counts-interface-usage-and-what-it-costs/">API/MCP credits guide</a>.</p>
+
+<h2>📝 A 5-question worksheet</h2>
+<p>Before choosing a plan, answer five questions:</p>
+<ol>
+  <li><strong>How many broadcast messages will I send per month?</strong> (WhatsApp and email count separately; one message to one recipient = one message.)</li>
+  <li><strong>How many AI credits will I use?</strong> Bot replies are the heaviest — see the AI credits guide for estimation.</li>
+  <li><strong>Will I connect a system or an AI agent through API / MCP?</strong> If so, estimate the number of actions and multiply by weight (API ×1, MCP ×2, bulk send/export ×4, AI action ×12).</li>
+  <li><strong>How many people will work in the system?</strong> And how much file/media storage do I expect?</li>
+  <li><strong>Do I need invoices, an extra WhatsApp number or extended support?</strong></li>
+</ol>
+<p>Then compute for each plan: <strong>plan price + overage + add-ons</strong>, and compare — exactly as in the examples below.</p>
+
+<h2>🧮 Three worked examples</h2>
+
+<h3>Example 1 — A small business with one bot (Growth)</h3>
+<p>700 broadcast messages per month, 800 AI credits, two users.</p>
+<ul>
+  <li>Growth plan: ₪179</li>
+  <li>Broadcast: 700 of 1,000 — within quota</li>
+  <li>AI credits: 800 of 1,000 — within quota</li>
+  <li>Users: 2 of 2 — within quota</li>
+</ul>
+<p><strong>Total: ₪179 before VAT</strong> (plus Meta message fees).</p>
+
+<h3>Example 2 — A growing store: when Pro stops paying off</h3>
+<p>8,000 broadcast messages per month, 6,200 AI credits, 7 users, and invoices are required.</p>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:left;border:1px solid #e5e7eb;">Item</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Pro</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Business</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Plan price</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪359</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪645</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Broadcast: 8,000 messages</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000 over → 3 × ₪99 = ₪297</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Within quota (20,000)</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">AI credits: 6,200</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,200 over → 3 packs of 500 × ₪39 = ₪117</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Within quota (15,000)</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Users: 7</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2 extra × ₪30 = ₪60</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Within quota (12)</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Invoices</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Add-on ₪89</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Included</td></tr>
+      <tr style="background:#ecfdf5;"><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Total</strong></td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:800;">₪922</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:800;color:#047857;">₪645</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>Here <strong>Business is ₪277 cheaper per month</strong> than Pro, with more room to grow. That is exactly why it pays to calculate before choosing — the "cheaper" plan isn't always cheaper at the end of the month.</p>
+
+<h3>Example 3 — A heavy API / MCP integration</h3>
+<p>4,500 API/MCP credits per month, 900 broadcast messages, 700 AI credits, two users.</p>
+<ul>
+  <li><strong>Growth:</strong> ₪179 + 3,500 extra credits × ₪0.10 = ₪350 → <strong>₪529</strong></li>
+  <li><strong>Pro:</strong> ₪359 + 1,500 extra credits × ₪0.10 = ₪150 → <strong>₪509</strong></li>
+  <li><strong>Business:</strong> ₪645, everything within quota (10,000) → <strong>₪645</strong></li>
+</ul>
+<p>Here Pro is the cheapest. Keep in mind that the choice should also reflect what each plan gives you (bots, users, support) — not price alone.</p>
+
+<h2>🎯 Rules of thumb — when to move up</h2>
+<p>These estimates assume you exceed only one item, and are based on the plan-price difference (Growth→Pro: ₪180; Pro→Business: ₪286):</p>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:left;border:1px solid #e5e7eb;">If you use…</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Pro is cheaper than Growth from…</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Business is cheaper than Pro from…</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Broadcast messages / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~2,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~8,000</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">AI credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~3,300</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~8,700</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">API/MCP credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~2,800</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~5,900</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>When several items exceed together, moving up pays off much sooner — so the reliable way is to compute the full bill, as in Example 2.</p>
+
+<h2>📱 Meta's WhatsApp message fees</h2>
+<p>On top of the plan, Meta charges for WhatsApp messages by <strong>message type</strong> (marketing, service, authentication) and <strong>destination country</strong>. These are paid per message and are not part of the plan price, so they are added to your bill. The current table is <a href="/PriceList/MetaPricing">here</a>, and the full explanation is in the <a href="/PriceList/WhatsAppMessagingPricingBlog">messaging pricing article</a>.</p>
+<p>To estimate: count how many messages of each type you'll send per month, and multiply by the per-message price for your destination.</p>
+
+<h2>✅ Summary: how to calculate in practice</h2>
+<ol>
+  <li>Answer the five questions and write down your expected monthly usage.</li>
+  <li>For each plan compute: price + overage + add-ons.</li>
+  <li>Add an estimate of Meta's message fees.</li>
+  <li>Choose the cheapest plan that fits your needs — and re-check after a month or two against actual usage.</li>
+</ol>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">Want help calculating for your business?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">Send us your expected usage and we'll recommend the most cost-effective plan.</p>
+  <a href="/PriceList/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">See the full pricing →</a>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('כמה יעלה לי גמבוט בחודש? מדריך לחישוב עלות חודשית')
+},
+{
+  id: 48,
+  seoTitle: {
+    he: 'מגבלות שליחת מייל: Gmail, Outlook ו-Microsoft 365 — כמה אפשר לשלוח ביום ומה עדיף לדיוור | גמבוט',
+    en: 'Email Sending Limits: Gmail, Outlook & Microsoft 365 — How Many Per Day and What Is Best for Campaigns | Gambot'
+  },
+  metaDescription: {
+    he: 'חשבון Gmail מוגבל לכ-500 הודעות ב-24 שעות, Outlook חינמי ל-300, ו-Microsoft 365 ל-10,000 נמענים ביום. מדריך מלא: מה קורה כשחורגים, איך גוגל משביתה חשבונות, ואיזה ספק מייל עדיף לדיוור מגמבוט.',
+    en: 'A regular Gmail account is capped at about 500 messages per 24 hours, free Outlook at 300, and Microsoft 365 at 10,000 recipients per day. A full guide: what happens when you exceed the cap, how Google disables accounts, and which email provider is best for campaigns from Gambot.'
+  },
+  keywords: {
+    he: ['מגבלת שליחת מייל', 'מגבלת Gmail', 'כמה מיילים אפשר לשלוח ביום', 'חשבון גוגל הושבת', 'דיוור במייל', 'Microsoft 365 דיוור', 'Outlook מגבלת שליחה', 'Google Workspace מגבלה', 'שליחת מיילים שיווקיים'],
+    en: ['gmail sending limit', 'email sending limits per day', 'google account disabled bulk email', 'outlook sending limit', 'microsoft 365 sending limit', 'google workspace sending limit', 'email campaign limits']
+  },
+  title: {
+    he: 'מגבלות שליחת מייל: Gmail, Outlook ו-Microsoft 365 — כמה אפשר לשלוח ביום ומה עדיף',
+    en: 'Email Sending Limits: Gmail, Outlook & Microsoft 365 — How Many Per Day and What Is Best'
+  },
+  description: {
+    he: 'לפני שיוצאים לקמפיין מייל מהחשבון שלכם: מה המגבלות היומיות של Gmail, Outlook ו-Microsoft 365, למה חריגה גורמת להשבתת חשבון, ואיך לבחור ספק ולתכנן שליחה בטוחה.',
+    en: 'Before you launch an email campaign from your own account: the daily limits of Gmail, Outlook and Microsoft 365, why exceeding them can get an account disabled, and how to choose a provider and plan a safe send.'
+  },
+  category: 'Email',
+  author: 'ניר סגס',
+  publishedDate: '2026-10-08',
+  image: '/blog/blogHeader.jpg',
+  readTime: 6,
+  featured: false,
+  faq: {
+    he: [
+      { q: 'כמה מיילים אפשר לשלוח ביום מ-Gmail?', a: 'חשבון gmail.com רגיל מוגבל לכ-500 הודעות בחלון של 24 שעות, בסך כל השליחות מהחשבון (לא לכל קמפיין בנפרד). חשבון Google Workspace מוגבל לכ-2,000 ביום. המספרים מתעדכנים מעת לעת — כדאי לבדוק בתיעוד הרשמי של גוגל.' },
+      { q: 'מה קורה אם חורגים מהמגבלה?', a: 'ההודעות שמעבר למגבלה לא נשלחות ומוחזרות עם הודעת שגיאה (למשל "message limit exceeded"). חריגות חוזרות עלולות לגרום לגוגל להשבית את החשבון, ואז גם המייל האישי או העסקי שלכם לא זמין עד לשחרור.' },
+      { q: 'האם Outlook עדיף על Gmail לדיוור?', a: 'Microsoft 365 עסקי עדיף: מגבלה של כ-10,000 נמענים ביום לתיבה (עם קצב של כ-30 הודעות בדקה). חשבון Outlook.com / Hotmail חינמי, לעומת זאת, מוגבל לכ-300 הודעות ביום — פחות מ-Gmail.' },
+      { q: 'מה עדיף לדיוור שיווקי גדול?', a: 'שירות דיוור ייעודי (כמו Amazon SES או SendGrid) עם דומיין מאומת. שליחה מתיבת מייל אישית פוגעת במוניטין הדומיין, מסתכנת בהשבתת החשבון והודעות רבות מגיעות לספאם.' },
+      { q: 'איך גמבוט עוזרת למנוע חריגה?', a: 'כשמחברים חשבון Gmail, מוצגת לפני האישור אזהרה על מגבלת גוגל, ואם הקמפיין גדול מ-300 נמענים היא מציגה את מספר הנמענים ומומלץ לפצל. גמבוט גם שולחת בקבוצות עם הפסקות קצרות כדי לא לעבור את קצב השליחה.' }
+    ],
+    en: [
+      { q: 'How many emails can I send per day from Gmail?', a: 'A regular gmail.com account is limited to about 500 messages in a 24-hour window, across everything sent from the account (not per campaign). A Google Workspace account is limited to about 2,000 per day. The numbers change from time to time — check Google\'s official documentation.' },
+      { q: 'What happens if I exceed the limit?', a: 'Messages beyond the cap are not sent and bounce with an error (for example "message limit exceeded"). Repeated overruns can lead Google to disable the account, which makes your personal or business mailbox unavailable until it is restored.' },
+      { q: 'Is Outlook better than Gmail for campaigns?', a: 'Business Microsoft 365 is: about 10,000 recipients per day per mailbox (at a pace of about 30 messages per minute). A free Outlook.com / Hotmail account, however, is limited to about 300 messages a day — less than Gmail.' },
+      { q: 'What is best for large marketing campaigns?', a: 'A dedicated email-sending service (such as Amazon SES or SendGrid) with a verified domain. Sending from a personal mailbox harms domain reputation, risks the account being disabled, and many messages land in spam.' },
+      { q: 'How does Gambot help prevent overruns?', a: 'When you send through a connected Gmail account, a warning about Google\'s limit is shown before you confirm, and if the campaign is larger than 300 recipients it shows the recipient count and suggests splitting it. Gambot also sends in batches with short pauses so as not to exceed the sending pace.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">📧 דיוור במייל</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">כמה מיילים אפשר לשלוח ביום — ומה קורה כשחורגים?</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">שולחים דיוור מתיבת Gmail או Outlook ששימשה אתכם שנים? לפני שלוחצים "שלח" כדאי להכיר את המגבלות — כי חריגה יכולה להסתיים בחשבון מושבת.</p>
+</div>
+
+<div style="background:#fffbeb;border-inline-start:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:0 0 26px;font-size:0.95rem;color:#92400e;">
+  ⚠️ <strong>הנתונים בכתבה מבוססים על התיעוד הציבורי של גוגל ומיקרוסופט נכון לזמן הכתיבה.</strong> הספקים משנים מגבלות מעת לעת — לפני קמפיין גדול כדאי לוודא בתיעוד הרשמי.
+</div>
+
+<h2>🔍 הבעיה: המגבלה היא על החשבון, לא על הקמפיין</h2>
+<p>כשמחברים לגמבוט חשבון Gmail או Microsoft 365, המיילים יוצאים <strong>מתוך החשבון שלכם</strong> — באמצעות הממשק הרשמי של גוגל או מיקרוסופט. לכן המגבלות שחלות עליכם הן המגבלות של הספק, והן נספרות <strong>על כל מה שיוצא מהחשבון</strong> — כל הקמפיינים, וגם מיילים רגילים שאתם שולחים באותו יום.</p>
+<p>הטעות הנפוצה: לחשוב "הקמפיין שלי הוא רק 300 נמענים, אז אני בסדר". אבל קמפיין של 300 בבוקר ועוד קמפיין של 250 בערב הם <strong>550 הודעות ביממה</strong> — מעבר למגבלה של חשבון Gmail רגיל.</p>
+
+<h2>📊 המגבלות היומיות — השוואה</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:right;border:1px solid #e5e7eb;">סוג חשבון</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">מגבלה בערך</th>
+        <th style="padding:10px;text-align:right;border:1px solid #e5e7eb;">הערות</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Gmail רגיל</strong> (gmail.com)</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~500 הודעות ב-24 שעות</td><td style="padding:10px;border:1px solid #e5e7eb;">חלון נע של 24 שעות, בסך כל השליחות</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Google Workspace</strong></td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~2,000 ביום</td><td style="padding:10px;border:1px solid #e5e7eb;">חשבון עסקי על דומיין שלכם</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Outlook.com / Hotmail</strong> חינמי</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~300 הודעות ביום</td><td style="padding:10px;border:1px solid #e5e7eb;">הנמוך מבין השלושה — לא מתאים לדיוור</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Microsoft 365</strong> (Exchange Online)</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~10,000 נמענים ביום לתיבה</td><td style="padding:10px;border:1px solid #e5e7eb;">וגם הגבלת קצב: כ-30 הודעות בדקה</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>🚨 מה קורה כשחורגים</h2>
+<ol>
+  <li><strong>ההודעות לא נשלחות.</strong> הן מוחזרות אליכם עם הודעת שגיאה כמו "הגעת למגבלת שליחת דואר. ההודעות שלך לא נשלחו".</li>
+  <li><strong>חריגות חוזרות מסמנות את החשבון.</strong> גוגל ומיקרוסופט מזהות שליחה המונית מתיבה אישית כסימן אפשרי לספאם.</li>
+  <li><strong>החשבון עלול להיות מושבת.</strong> במקרה כזה לא רק הדיוור נעצר — גם המייל האישי או העסקי שלכם, ובמקרה של גוגל לעיתים גם שירותים אחרים המחוברים לאותו חשבון. החזרת חשבון דורשת ערעור מצד הבעלים, ואין לגמבוט (או לכל צד שלישי) דרך לשחרר אותו.</li>
+</ol>
+
+<h2>✅ מה עדיף לדיוור?</h2>
+<h3>1. לדיוורים קטנים (עד כמה מאות ביום)</h3>
+<p>אפשר להשתמש בחשבון קיים, בתנאי ש<strong>קמפיין אחד ביום</strong> ו<strong>בכל מקרה לא יותר מכ-300-400 נמענים ביממה</strong> (כדי להשאיר מרווח למיילים הרגילים שלכם).</p>
+
+<h3>2. לדיוורים גדולים יותר</h3>
+<p><strong>Microsoft 365 עסקי</strong> או <strong>Google Workspace</strong> — מגבלה גבוהה בהרבה, ודומיין משלכם. בין השניים, Microsoft 365 נותן נפח יומי גבוה יותר (כ-10,000 מול כ-2,000), אבל מגביל את הקצב לדקה — מה שחשוב לדעת בקמפיינים גדולים.</p>
+
+<h3>3. לדיוור שיווקי רציני</h3>
+<p>שליחה מתיבת מייל של אדם היא פתרון בינוני גם כשהיא תקינה: היא פוגעת במוניטין הדומיין, מוגבלת בנפח, ורבים מהמיילים מגיעים לספאם. לשליחה שיווקית קבועה מומלץ <strong>שירות דיוור ייעודי</strong> (כמו Amazon SES או SendGrid) עם דומיין מאומת (SPF, DKIM, DMARC).</p>
+
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:right;border:1px solid #e5e7eb;">הצורך שלכם</th>
+        <th style="padding:10px;text-align:right;border:1px solid #e5e7eb;">הבחירה המומלצת</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">עד ~300 נמענים ביום, מדי פעם</td><td style="padding:10px;border:1px solid #e5e7eb;">חשבון קיים — קמפיין אחד ביום</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">אלפים בחודש, באופן קבוע</td><td style="padding:10px;border:1px solid #e5e7eb;">Microsoft 365 עסקי או Google Workspace</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">רשימות גדולות / דיוור שיווקי שוטף</td><td style="padding:10px;border:1px solid #e5e7eb;">שירות דיוור ייעודי עם דומיין מאומת</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>🛡️ 6 כללים לשליחה בטוחה</h2>
+<ol>
+  <li><strong>ספרו ביממה, לא לקמפיין.</strong> סכמו את כל מה שיצא מהחשבון ב-24 השעות האחרונות לפני שליחה נוספת.</li>
+  <li><strong>פצלו קמפיינים גדולים</strong> לכמה ימים.</li>
+  <li><strong>שלחו רק למי שאישר</strong> — כתובות ישנות או לא מאומתות גורמות להחזרות ולדיווחי ספאם.</li>
+  <li><strong>נקו כתובות שגויות</strong> אחרי כל קמפיין: חזרות (bounces) חוזרות פוגעות במוניטין.</li>
+  <li><strong>הוסיפו קישור הסרה</strong> מרשימת התפוצה בכל מייל שיווקי.</li>
+  <li><strong>אל תשתמשו בתיבה היחידה והקריטית</strong> שלכם לדיוור — כדי שהשבתה לא תשבית את העסק.</li>
+</ol>
+
+<h2>🤖 מה גמבוט עושה בשבילכם</h2>
+<ul>
+  <li><strong>אזהרה לפני שליחה:</strong> כששולחים דרך Gmail מוצגת הודעה על מגבלת גוגל, ובקמפיין של יותר מ-300 נמענים מומלץ לפצל אותו.</li>
+  <li><strong>שליחה בקבוצות עם הפסקות</strong> כדי לא להציף את הספק.</li>
+  <li><strong>מעקב אחר כשלונות:</strong> בעמוד תוצאות הקמפיין תראו כמה נשלחו בהצלחה וכמה נכשלו.</li>
+</ul>
+<p>שימו לב: גמבוט לא יכולה לשנות את מגבלות גוגל או מיקרוסופט — היא עוזרת לכם להישאר בתוכן.</p>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">רוצים לתכנן דיוור בטוח?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">דברו איתנו — נעזור לבחור את הערוץ והחבילה המתאימים לנפח שלכם.</p>
+  <a href="/PriceList/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">למחירון המלא ←</a>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">📧 EMAIL CAMPAIGNS</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">How many emails can you send per day — and what happens when you exceed it?</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">Sending a campaign from a Gmail or Outlook mailbox you have used for years? Before you hit "send", know the limits — because exceeding them can end with a disabled account.</p>
+</div>
+
+<div style="background:#fffbeb;border-inline-start:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:0 0 26px;font-size:0.95rem;color:#92400e;">
+  ⚠️ <strong>The figures in this article are based on Google's and Microsoft's public documentation at the time of writing.</strong> Providers change limits from time to time — verify in the official documentation before a large campaign.
+</div>
+
+<h2>🔍 The catch: the limit is on the account, not on the campaign</h2>
+<p>When you connect a Gmail or Microsoft 365 account to Gambot, emails go out <strong>from your own account</strong> — through Google's or Microsoft's official interface. So the limits that apply are the provider's, and they are counted <strong>across everything leaving the account</strong> — every campaign, plus the regular emails you send that same day.</p>
+<p>The common mistake: "my campaign is only 300 recipients, so I'm fine." But a 300-recipient campaign in the morning plus a 250-recipient one in the evening is <strong>550 messages in a day</strong> — over the cap of a regular Gmail account.</p>
+
+<h2>📊 Daily limits — comparison</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:left;border:1px solid #e5e7eb;">Account type</th>
+        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Approx. limit</th>
+        <th style="padding:10px;text-align:left;border:1px solid #e5e7eb;">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Regular Gmail</strong> (gmail.com)</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~500 messages per 24 h</td><td style="padding:10px;border:1px solid #e5e7eb;">Rolling 24-hour window, across all sends</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Google Workspace</strong></td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~2,000 per day</td><td style="padding:10px;border:1px solid #e5e7eb;">Business account on your own domain</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Free Outlook.com / Hotmail</strong></td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~300 messages per day</td><td style="padding:10px;border:1px solid #e5e7eb;">The lowest of the three — not suited to campaigns</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Microsoft 365</strong> (Exchange Online)</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~10,000 recipients per day per mailbox</td><td style="padding:10px;border:1px solid #e5e7eb;">Plus a rate limit: about 30 messages per minute</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>🚨 What happens when you exceed it</h2>
+<ol>
+  <li><strong>Messages are not sent.</strong> They bounce back with an error such as "message limit for sending mail exceeded".</li>
+  <li><strong>Repeated overruns flag the account.</strong> Google and Microsoft treat bulk sending from a personal mailbox as a possible sign of spam.</li>
+  <li><strong>The account may be disabled.</strong> Then not only the campaign stops — your personal or business mailbox does too, and with Google sometimes other services tied to the account. Restoring it requires an appeal by the account owner; neither Gambot nor any third party can release it.</li>
+</ol>
+
+<h2>✅ What is best for campaigns?</h2>
+<h3>1. Small sends (up to a few hundred per day)</h3>
+<p>An existing account is fine, as long as it is <strong>one campaign a day</strong> and <strong>never more than about 300–400 recipients per 24 hours</strong> (leaving room for your regular emails).</p>
+
+<h3>2. Larger sends</h3>
+<p><strong>Business Microsoft 365</strong> or <strong>Google Workspace</strong> — a much higher cap and your own domain. Between the two, Microsoft 365 gives a higher daily volume (~10,000 vs ~2,000) but rate-limits per minute — worth knowing for large campaigns.</p>
+
+<h3>3. Serious marketing email</h3>
+<p>Sending from a person's mailbox is a mediocre solution even when it works: it harms domain reputation, is limited in volume, and many messages land in spam. For regular marketing sends, use a <strong>dedicated email-sending service</strong> (such as Amazon SES or SendGrid) with a verified domain (SPF, DKIM, DMARC).</p>
+
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
+    <thead>
+      <tr style="background:#075E54;color:#fff;">
+        <th style="padding:10px;text-align:left;border:1px solid #e5e7eb;">Your need</th>
+        <th style="padding:10px;text-align:left;border:1px solid #e5e7eb;">Recommended choice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Up to ~300 recipients a day, occasionally</td><td style="padding:10px;border:1px solid #e5e7eb;">An existing account — one campaign a day</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Thousands a month, regularly</td><td style="padding:10px;border:1px solid #e5e7eb;">Business Microsoft 365 or Google Workspace</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Large lists / ongoing marketing email</td><td style="padding:10px;border:1px solid #e5e7eb;">A dedicated sending service with a verified domain</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>🛡️ 6 rules for safe sending</h2>
+<ol>
+  <li><strong>Count per 24 hours, not per campaign.</strong> Add up everything that left the account in the last 24 hours before sending more.</li>
+  <li><strong>Split large campaigns</strong> across several days.</li>
+  <li><strong>Send only to people who opted in</strong> — old or unverified addresses cause bounces and spam reports.</li>
+  <li><strong>Clean bad addresses</strong> after each campaign: repeated bounces damage reputation.</li>
+  <li><strong>Include an unsubscribe link</strong> in every marketing email.</li>
+  <li><strong>Don't use your one critical mailbox</strong> for campaigns — so that a suspension can't take the business offline.</li>
+</ol>
+
+<h2>🤖 What Gambot does for you</h2>
+<ul>
+  <li><strong>A warning before sending:</strong> when sending through Gmail you see a note about Google's limit, and for campaigns over 300 recipients it suggests splitting.</li>
+  <li><strong>Batched sending with short pauses</strong> so as not to flood the provider.</li>
+  <li><strong>Failure tracking:</strong> the campaign results page shows how many were sent successfully and how many failed.</li>
+</ul>
+<p>Note: Gambot cannot change Google's or Microsoft's limits — it helps you stay within them.</p>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">Want to plan a safe campaign?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">Talk to us — we'll help you pick the right channel and plan for your volume.</p>
+  <a href="/PriceList/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">See the full pricing →</a>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('מגבלות שליחת מייל: Gmail, Outlook ו-Microsoft 365 — כמה אפשר לשלוח ביום ומה עדיף')
 }
 ];
 

@@ -307,6 +307,57 @@ export const API_SECTIONS = [
       },
       {
         method: 'GET',
+        path: '/media/{mediaId}',
+        scope: 'conversations:read',
+        summary: {
+          he: 'הורדת קובץ מדיה (תמונה, וידאו, הקלטה, מסמך) של הודעה. אחסון המדיה פרטי — לכן הודעות מה-API מחזירות mediaId ו-mediaUrl שהוא הכתובת הזו, ויש לפנות אליה עם אותו Gambot Token. נגישים רק קבצים של הארגון שלכם.',
+          en: 'Download a message\'s media file (image, video, audio/voice note, document). Media storage is private, so messages from the API return a mediaId and a mediaUrl that points to this endpoint — call it with the same Gambot Token. Only your organization\'s files are accessible.',
+        },
+        params: [
+          { name: 'mediaId', in: 'path', type: 'string', required: true, desc: { he: 'ה-mediaId שהוחזר בהודעה.', en: 'The mediaId returned on a message.' } },
+          { name: 'format', in: 'query', type: 'string', required: false, desc: { he: 'redirect (ברירת מחדל — 302 לקישור חתום ל-15 דקות) · json (מחזיר { url, expiresAt }) · stream (הקובץ עצמו).', en: 'redirect (default — 302 to a signed link valid 15 minutes) · json (returns { url, expiresAt }) · stream (the file bytes).' } },
+          { name: 'ttlMinutes', in: 'query', type: 'int', required: false, desc: { he: 'תוקף הקישור החתום בדקות (1–1440, ברירת מחדל 15).', en: 'Validity of the signed link in minutes (1–1440, default 15).' } },
+        ],
+        request: null,
+        curl: `curl -L "${API_BASE}/media/MEDIA_ID?format=stream" -o file \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `// ?format=json
+{
+  "success": true,
+  "data": { "mediaId": "1abc...", "url": "https://storage.googleapis.com/...&X-Goog-Signature=...", "expiresAt": "2026-10-07T14:15:00Z" }
+}`,
+        notes: {
+          he: 'אם הלקוח שלכם שולח את כותרת Authorization גם בהמשך ה-redirect, הקישור החתום יידחה — השתמשו ב-?format=stream, או ב-?format=json והורידו את ה-url ללא כותרת Authorization.',
+          en: 'If your HTTP client forwards the Authorization header across the redirect, the signed link is rejected — use ?format=stream, or ?format=json and download the url without an Authorization header.',
+        },
+      },
+      {
+        method: 'GET',
+        path: '/media/meta/{metaMediaId}',
+        scope: 'conversations:read',
+        summary: {
+          he: 'הורדת מדיה של הודעה נכנסת לפי מזהה המדיה של WhatsApp — המזהה שמגיע ב-media[].metaMediaId של אירוע ה-webhook incoming_message (שם יש גם downloadUrl מוכן). עובד גם אם הקובץ עוד לא נשמר אצלנו — הוא נמשך מ-WhatsApp לפי דרישה (WhatsApp שומרת מדיה כ-30 יום).',
+          en: 'Download an inbound message\'s media by its WhatsApp media id — the id delivered in media[].metaMediaId of the incoming_message webhook event (which also carries a ready-made downloadUrl). Works even if the file is not stored yet — it is fetched from WhatsApp on demand (WhatsApp keeps media ~30 days).',
+        },
+        params: [
+          { name: 'metaMediaId', in: 'path', type: 'string', required: true, desc: { he: 'המזהה מה-webhook (media[].metaMediaId).', en: 'The id from the webhook (media[].metaMediaId).' } },
+          { name: 'from', in: 'query', type: 'string', required: false, desc: { he: 'מספר השולח (ספרות בלבד) — מומלץ, כדי שהקובץ יישמר ויוגש מההעתק שלנו.', en: 'Sender phone (digits only) — recommended so the file is stored and served from our copy.' } },
+          { name: 'format', in: 'query', type: 'string', required: false, desc: { he: 'כמו ב-/media/{mediaId}: redirect (ברירת מחדל) · json · stream.', en: 'Same as /media/{mediaId}: redirect (default) · json · stream.' } },
+          { name: 'ttlMinutes', in: 'query', type: 'int', required: false, desc: { he: 'תוקף הקישור החתום בדקות (1–1440, ברירת מחדל 15).', en: 'Validity of the signed link in minutes (1–1440, default 15).' } },
+        ],
+        request: null,
+        curl: `curl -L "${API_BASE}/media/meta/1234567890?from=972501234567&format=stream" -o file \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `// ?format=json
+{
+  "success": true,
+  "data": { "mediaId": "1abc...", "url": "https://storage.googleapis.com/...&X-Goog-Signature=...", "expiresAt": "2026-10-07T14:15:00Z" }
+}`,
+        notes: {
+          he: 'שגיאות: 404 not_found — מזהה שגוי, מדיה של ארגון אחר, או שפג תוקפה ב-WhatsApp ואין לנו עותק. MCP: הכלי gambot_get_media_url.',
+          en: 'Errors: 404 not_found — wrong id, another organization\'s media, or it expired at WhatsApp and we hold no copy. MCP: the gambot_get_media_url tool.',
+        },
+      },
+      {
+        method: 'GET',
         path: '/conversations/sla',
         scope: 'conversations:read',
         summary: {
@@ -2168,8 +2219,8 @@ export const API_SECTIONS = [
     id: 'webhooks',
     title: { he: 'Webhooks (רישום והעברת אירועים)', en: 'Webhooks (register & event forwarding)' },
     description: {
-      he: 'מיועד למי שבונה מערכת/אינטגרציה שצריכה <strong>לקבל הודעות ועדכונים בחזרה</strong> מגמבוט בזמן אמת — למשל לסנכרן ל-CRM/DB שלכם, להפעיל סוכן, או לעדכן אפליקציה. רשמו את נקודת הקצה שלכם פעם אחת (<code>POST /webhooks/forward</code>) וגמבוט תשלח לכם (POST) כל אירוע תואם ברגע שהוא קורה — הודעות נכנסות, סטטוסי הודעה ועדכוני תבניות. זהו ה-webhook <em>של המערכת</em>: מטא שולחת אלינו, ואנחנו מעבירים אליכם — אינכם צריכים לנהל מנוי Meta Graph. Best practice: אמתו כל בקשה מול כותרת ה-<code>Authorization</code> שהגדרתם, השיבו 2xx במהירות ועבדו את האירוע אסינכרונית, נתבו לפי <code>X-Gambot-Event</code>, והשתמשו במזהה ההודעה שב-<code>meta_obj</code> ל-idempotency (מניעת כפילויות).',
-      en: 'For developers building a system/integration that needs to <strong>receive messages and updates back</strong> from Gambot in real time — e.g. to sync to your CRM/DB, trigger an agent, or update your app. Register your endpoint once (<code>POST /webhooks/forward</code>) and Gambot POSTs every matching event as it happens — inbound messages, message statuses and template updates. This is the <em>system</em> webhook: Meta sends to us, we forward to you — no Meta Graph subscription to manage on your side. Best practice: verify each request against the <code>Authorization</code> header you configured, return 2xx quickly and process the event asynchronously, route on <code>X-Gambot-Event</code>, and use the message id inside <code>meta_obj</code> for idempotency (de-duplication).',
+      he: 'מיועד למי שבונה מערכת/אינטגרציה שצריכה <strong>לקבל הודעות ועדכונים בחזרה</strong> מגמבוט בזמן אמת — למשל לסנכרן ל-CRM/DB שלכם, להפעיל סוכן, או לעדכן אפליקציה. רשמו את נקודת הקצה שלכם פעם אחת (<code>POST /webhooks/forward</code>) וגמבוט תשלח לכם (POST) כל אירוע תואם ברגע שהוא קורה — הודעות נכנסות, סטטוסי הודעה ועדכוני תבניות. זהו ה-webhook <em>של המערכת</em>: מטא שולחת אלינו, ואנחנו מעבירים אליכם — אינכם צריכים לנהל מנוי Meta Graph. Best practice: אמתו כל בקשה מול כותרת ה-<code>Authorization</code> שהגדרתם, השיבו 2xx במהירות ועבדו את האירוע אסינכרונית, נתבו לפי <code>X-Gambot-Event</code>, והשתמשו במזהה ההודעה שב-<code>meta_obj</code> ל-idempotency (מניעת כפילויות). <strong>מדיה (תמונות, קבצים, הודעות קוליות):</strong> אחסון המדיה פרטי, ולכן כל הודעה נכנסת עם מדיה מוסיפה לאירוע רשימת <code>media[]</code> — בכל פריט <code>metaMediaId</code>, <code>from</code>, <code>type</code>, <code>mimeType</code>, <code>caption</code> ו-<code>downloadUrl</code> מוכן. שלחו <code>GET</code> לכתובת הזו עם ה-Gambot Token (<code>Authorization: Bearer gmbt_…</code>) כדי לקבל את הקובץ — הוסיפו <code>?format=stream</code> לקבלת הקובץ עצמו, או <code>?format=json</code> לקישור חתום קצר-מועד (ראו <code>GET /media/meta/{metaMediaId}</code>).',
+      en: 'For developers building a system/integration that needs to <strong>receive messages and updates back</strong> from Gambot in real time — e.g. to sync to your CRM/DB, trigger an agent, or update your app. Register your endpoint once (<code>POST /webhooks/forward</code>) and Gambot POSTs every matching event as it happens — inbound messages, message statuses and template updates. This is the <em>system</em> webhook: Meta sends to us, we forward to you — no Meta Graph subscription to manage on your side. Best practice: verify each request against the <code>Authorization</code> header you configured, return 2xx quickly and process the event asynchronously, route on <code>X-Gambot-Event</code>, and use the message id inside <code>meta_obj</code> for idempotency (de-duplication). <strong>Media (images, files, voice notes):</strong> media storage is private, so every inbound media message adds a <code>media[]</code> list to the event — each item has <code>metaMediaId</code>, <code>from</code>, <code>type</code>, <code>mimeType</code>, <code>caption</code> and a ready <code>downloadUrl</code>. <code>GET</code> that URL with your Gambot Token (<code>Authorization: Bearer gmbt_…</code>) to get the file — add <code>?format=stream</code> for the bytes, or <code>?format=json</code> for a short-lived signed link (see <code>GET /media/meta/{metaMediaId}</code>).',
     },
     endpoints: [
       {

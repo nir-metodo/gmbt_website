@@ -49,6 +49,7 @@ const POST_CARDS = {
   42: { gradient: 'linear-gradient(135deg,#4f46e5,#0891b2)', icon: '🔌', labelHe: 'MCP לסוכני AI', labelEn: 'MCP for AI Agents' },
   43: { gradient: 'linear-gradient(135deg,#0369a1,#0891b2)', icon: '⚙️', labelHe: 'התקנת MCP Server', labelEn: 'MCP Server Setup' },
   44: { gradient: 'linear-gradient(135deg,#0891b2,#0369a1)', icon: '🪙', labelHe: 'קרדיטים ותמחור', labelEn: 'Credits & Pricing' },
+  48: { gradient: 'linear-gradient(135deg,#d97706,#b45309)', icon: '📧', labelHe: 'מגבלות דיוור במייל', labelEn: 'Email Sending Limits' },
 };
 const FALLBACK_CARD = { gradient: 'linear-gradient(135deg,#1565C0,#0288D1)', icon: '💬', labelHe: 'WhatsApp', labelEn: 'WhatsApp' };
 
