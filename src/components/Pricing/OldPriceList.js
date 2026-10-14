@@ -555,6 +555,72 @@ const [showModal, setShowModal] = useState(false);
         </div>
       </div>
 
+      {/* ─── Gambot Hunter Add-on ─── */}
+      {(() => {
+        const en = currentLanguage === 'en';
+        const hunterTiers = [
+          { name: 'Scout', price: 299, prospects: 150, extra: '2.40', note: en ? 'To start and test' : 'להתחלה ובדיקה' },
+          { name: 'Hunter', price: 949, prospects: 600, extra: '1.90', note: en ? 'Most popular' : 'הכי פופולרי', featured: true },
+          { name: 'Hunter Max', price: 1990, prospects: 1500, extra: '1.60', note: en ? 'For heavy outreach' : 'לפעילות אאוטבאונד אינטנסיבית' },
+        ];
+        const hunterFeatures = en
+          ? ['AI finds businesses that match your target description', 'Preview first — you only pay for prospects you approve', 'AI-written personal email, sent from your own mailbox', 'Replies automatically become Leads; prospects saved in Contacts with a "Hunter" tag', 'Built-in safeguards: provider daily limits, warm-up, bounce auto-pause, unsubscribe link and ad label']
+          : ['ה-AI מוצא עסקים שמתאימים לתיאור הלקוח האידיאלי שלכם', 'תצוגה מקדימה לפני שליחה — משלמים רק על פרוספקטים שאישרתם', 'מייל אישי שנכתב ע״י AI ונשלח מתיבת המייל שלכם', 'תגובות הופכות אוטומטית ללידים; הפרוספקטים נשמרים באנשי קשר עם תג Hunter', 'הגנות מובנות: מגבלות יומיות לפי ספק המייל, חימום הדרגתי, עצירה אוטומטית בקפיצות, קישור הסרה ותווית פרסומת'];
+        return (
+          <div className="addon-section hunter-addon" dir={en ? 'ltr' : 'rtl'}>
+            <div className="addon-container" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', borderColor: '#f59e0b', padding: '32px 24px' }}>
+              <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+                <span style={{ display: 'inline-block', background: '#f59e0b', color: '#1a1a2e', fontSize: '0.75rem', fontWeight: 800, padding: '3px 12px', borderRadius: '50px', marginBottom: '10px' }}>
+                  {en ? 'COMING SOON — PILOT' : 'בקרוב — בפיילוט'}
+                </span>
+                <h2 style={{ margin: '0 0 6px', fontSize: '1.7rem', fontWeight: 800, color: '#fff' }}>🎯 Gambot Hunter</h2>
+                <p style={{ margin: 0, color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem' }}>
+                  {en ? 'Add-on for any plan: AI-powered outbound that finds prospects and starts the conversation for you.' : 'תוספת לכל חבילה: אאוטבאונד מבוסס AI שמוצא לקוחות פוטנציאליים ופותח את השיחה בשבילכם.'}
+                </p>
+              </div>
+              <div className="hunter-addon-grid">
+                {hunterTiers.map((tier) => (
+                  <div key={tier.name} className="hunter-tier-card" style={{ border: tier.featured ? '2px solid #f59e0b' : '1px solid rgba(255,255,255,0.15)' }}>
+                    <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.55)', fontWeight: 600 }}>{tier.note}</div>
+                    <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#fff', margin: '4px 0 8px' }}>{tier.name}</div>
+                    <div style={{ display: 'flex', alignItems: 'flex-end', gap: '4px', justifyContent: 'center' }}>
+                      <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#f59e0b', marginBottom: '6px' }}>₪</span>
+                      <span style={{ fontSize: '2.6rem', fontWeight: 900, color: '#f59e0b', lineHeight: 1 }}>{tier.price.toLocaleString()}</span>
+                      <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', marginBottom: '6px' }}>{en ? '/month' : '/חודש'}</span>
+                    </div>
+                    <div style={{ margin: '12px 0 4px', fontSize: '0.95rem', fontWeight: 700, color: '#fff' }}>
+                      {en ? `${tier.prospects.toLocaleString()} approved prospects / month` : `${tier.prospects.toLocaleString()} פרוספקטים מאושרים בחודש`}
+                    </div>
+                    <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)' }}>
+                      {en ? `Each extra prospect ₪${tier.extra}` : `כל פרוספקט נוסף ₪${tier.extra}`}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '24px auto 0', maxWidth: '720px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {hunterFeatures.map((f, i) => (
+                  <li key={i} style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.85)', fontWeight: 500 }}>✓ {f}</li>
+                ))}
+              </ul>
+              <p style={{ textAlign: 'center', margin: '18px 0 0', fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)' }}>
+                {en
+                  ? 'A "prospect" is a business whose details you approved after the preview. Prices exclude VAT. Messaging compliance (including Israeli anti-spam law) is the customer\'s responsibility.'
+                  : '״פרוספקט״ = עסק שאישרתם אחרי התצוגה המקדימה. המחירים לפני מע״מ. האחריות לעמידה בדין (כולל חוק הספאם) חלה על הלקוח.'}
+              </p>
+              <div style={{ textAlign: 'center', marginTop: '16px' }}>
+                <a
+                  href={`https://wa.me/97233768997?text=${encodeURIComponent(en ? 'I want to join the Gambot Hunter waiting list' : 'אני רוצה להצטרף לרשימת ההמתנה של Gambot Hunter')}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#1a1a2e', padding: '10px 24px', borderRadius: '50px', fontSize: '0.9rem', fontWeight: 800, textDecoration: 'none' }}
+                >
+                  {en ? '💬 Join the waiting list' : '💬 הצטרפו לרשימת ההמתנה'}
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
       {/* ─── Support Explanation ─── */}
       <div style={{ padding: '48px 16px', background: '#f8fafc', boxSizing: 'border-box' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>

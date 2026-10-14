@@ -25,21 +25,21 @@ const WhatsAppApiPricing = () => {
       {
         "@type": "Offer",
         "name": "Growth Plan",
-        "price": "143",
+        "price": "179",
         "priceCurrency": "ILS",
         "description": "WhatsApp API plan for small businesses getting started"
       },
       {
         "@type": "Offer", 
         "name": "Pro Plan",
-        "price": "287",
+        "price": "359",
         "priceCurrency": "ILS",
         "description": "Advanced WhatsApp API plan with AI automation and analytics"
       },
       {
         "@type": "Offer",
         "name": "Business Plan", 
-        "price": "865",
+        "price": "645",
         "priceCurrency": "ILS",
         "description": "Enterprise WhatsApp API solution for large organizations"
       }
@@ -98,7 +98,7 @@ const WhatsAppApiPricing = () => {
                 <h3 className="plan-name">Growth</h3>
                 <div className="plan-price">
                   <span className="currency">₪</span>
-                  <span className="amount">143</span>
+                  <span className="amount">179</span>
                   <span className="period">/חודש</span>
                 </div>
                 <p className="plan-description">חבילת הבסיס לעסק שלכם</p>
@@ -111,15 +111,15 @@ const WhatsAppApiPricing = () => {
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>500 שיחות חדשות בחודש</span>
+                  <span>300 שיחות חדשות בחודש</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>120 תגובות / פעולות AI (כל 500 נוספות 50 ש"ח)</span>
+                  <span>1,000 קרדיטים AI בחודש (כל 500 נוספים 39 ש"ח)</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>3 משתמשים (כל משתמש נוסף 30 ש"ח)</span>
+                  <span>2 משתמשים (כל משתמש נוסף 30 ש"ח)</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
@@ -137,7 +137,7 @@ const WhatsAppApiPricing = () => {
                 <h3 className="plan-name">Pro</h3>
                 <div className="plan-price">
                   <span className="currency">₪</span>
-                  <span className="amount">287</span>
+                  <span className="amount">359</span>
                   <span className="period">/חודש</span>
                 </div>
                 <p className="plan-description">חבילת הפרימיום לעסק שלכם</p>
@@ -146,15 +146,15 @@ const WhatsAppApiPricing = () => {
               <div className="card-features">
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>2 בוטים / תהליכי אוטומציה</span>
+                  <span>3 בוטים / תהליכי אוטומציה</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>1000 שיחות חדשות בחודש</span>
+                  <span>1,000 שיחות חדשות בחודש</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>300 תגובות / פעולות AI (כל 500 נוספות 50 ש"ח)</span>
+                  <span>5,000 קרדיטים AI בחודש (כל 500 נוספים 39 ש"ח)</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
@@ -175,7 +175,7 @@ const WhatsAppApiPricing = () => {
                 <h3 className="plan-name">Business</h3>
                 <div className="plan-price">
                   <span className="currency">₪</span>
-                  <span className="amount">865</span>
+                  <span className="amount">645</span>
                   <span className="period">/חודש</span>
                 </div>
                 <p className="plan-description">חבילה מותאמת לארגון גדול</p>
@@ -184,19 +184,19 @@ const WhatsAppApiPricing = () => {
               <div className="card-features">
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>3 בוטים / תהליכי אוטומציה</span>
+                  <span>6 בוטים / תהליכי אוטומציה</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>2000 שיחות חדשות בחודש</span>
+                  <span>3,000 שיחות חדשות בחודש</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>1250 תגובות / פעולות AI (כל 500 נוספות 50 ש"ח)</span>
+                  <span>15,000 קרדיטים AI בחודש (כל 500 נוספים 39 ש"ח)</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>8 משתמשים (כל משתמש נוסף 30 ש"ח)</span>
+                  <span>12 משתמשים (כל משתמש נוסף 30 ש"ח)</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />

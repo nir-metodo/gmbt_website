@@ -73,7 +73,7 @@ const Verification = ({
     // Get currency-aware pricing from LanguageContext
     const currency = getCurrency(); // 'ILS' or 'USD'
     const currencySymbol = getCurrencySymbol(); // '₪' or '$'
-    const planPricesData = getPlanPrices(); // { Basic: 143/41, Premium: 287/82, Enterprise: 865/247, sim: 35/10 }
+    const planPricesData = getPlanPrices(); // { Basic: 179/51, Premium: 359/103, Enterprise: 645/184, sim: 35/10 }
   
     const sendVerificationCode = React.useCallback(async () => {
       try {
@@ -152,9 +152,26 @@ const Verification = ({
       }
     }, [companyInfo?.contactPhoneNumber, companyInfo?.contactEmail, name, companyInfo?.companyName, companyInfo?.organizationName, companyInfo?.idNumber, hasSim, useFreeNumber, useCoexisting, companyInfo?.companyUrl, organizationPhoneNumber, plan, paymentCyctle, companyInfo]);
 
+    // Update token for this company ID: issued after the customer verified an EXISTING account (BasicInfo) or
+    // when this browser created the org. With a token there is nothing more to verify here — go straight to
+    // creating/updating the account (a 2nd code to details typed in the form would be redundant).
+    const updateTokenKey = `gambot_update_token_${(companyInfo?.idNumber || '').replace(/\D/g, '')}`;
+    const readUpdateToken = () => {
+      try { return localStorage.getItem(updateTokenKey) || ''; } catch { return ''; }
+    };
+    const autoSubmittedRef = React.useRef(false);
+
     // useEffect hooks placed after sendVerificationCode definition
     useEffect(() => {
+      if (readUpdateToken()) {
+        if (!autoSubmittedRef.current) {
+          autoSubmittedRef.current = true;
+          handleNextStep();
+        }
+        return;
+      }
       sendVerificationCode();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sendVerificationCode]);
   
     useEffect(() => {
@@ -309,6 +326,7 @@ const Verification = ({
           // ✅ Keep ONLY these at root for backwards compatibility
           useFreeNumber,
           useCoexisting,
+          updateToken: readUpdateToken() || undefined, // required by the server to UPDATE an existing account
         };
 
         // 🔍 DEBUG: Log the exact payload being sent
@@ -331,7 +349,7 @@ const Verification = ({
         console.log('   - selectedSimNumber:', `'${data.simInfo.selectedSimNumber}'`, data.simInfo.selectedSimNumber ? '✅ HAS VALUE' : '⚪ EMPTY');
         console.log('   - simNumberEntered:', `'${data.simInfo.simNumberEntered}'`, data.simInfo.simNumberEntered ? '✅ HAS VALUE' : '⚪ EMPTY');
         console.log('📦 FULL PAYLOAD:');
-        console.log(JSON.stringify(data, null, 2));
+        console.log(JSON.stringify({ ...data, updateToken: data.updateToken ? '***' : undefined }, null, 2));
         console.log('═══════════════════════════════════════════════════════════');
   
         const response = await axiosInstance.post(
@@ -340,6 +358,8 @@ const Verification = ({
         );
   
         if (response.status === 200) {
+          // Keep the token the server (re)issued so going back a step / retrying in this session is not blocked.
+          try { if (response.data?.updateToken) localStorage.setItem(updateTokenKey, response.data.updateToken); } catch { }
           // ✅ Account created — fire the Meta Pixel "CompleteRegistration" conversion here (right
           // after the verification code succeeds and the trial subscription is created), NOT at the
           // later WABA token exchange in step 5. Guarded so a retry/refresh can't double-count it.
@@ -359,6 +379,18 @@ const Verification = ({
           );
         }
       } catch (error) {
+        if (error?.response?.status === 403 && error?.response?.data?.code === 'account_verification_required') {
+          // Token missing/expired for an existing account → drop it; going back to step 1 re-runs the verification.
+          try { localStorage.removeItem(updateTokenKey); } catch { }
+          showAlert(
+              currentLanguage === 'he' ? 'נדרש אימות חשבון' : 'Account verification required',
+              currentLanguage === 'he'
+                  ? 'כבר קיים חשבון עם ח.פ/ת.ז זה. חזור לשלב הראשון ואמת את הקוד שיישלח לטלפון הרשום בחשבון.'
+                  : 'An account already exists for this company ID. Go back to the first step and verify the code sent to the phone registered on the account.',
+              "warning"
+          );
+          return;
+        }
         showAlert(
             getVerificationText('verification.alerts.subscriptionError'),
             error.message || '',

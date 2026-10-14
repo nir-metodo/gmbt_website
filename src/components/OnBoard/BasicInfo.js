@@ -268,7 +268,9 @@ const BasicInfo = ({ companyInfo, setCompanyInfo, nextStep, prevStep }) => {
                 'https://gambot.azurewebsites.net/api/webhooks/CheckOrganizationExists',
                 {
                     companyName: companyInfo.companyName,
-                    companyIdNumber: companyInfo.idNumber
+                    companyIdNumber: companyInfo.idNumber,
+                    // A token from this browser (verified earlier / creator of the org) skips the OTP.
+                    updateToken: (() => { try { return localStorage.getItem(`gambot_update_token_${(companyInfo?.idNumber || '').replace(/\D/g, '')}`) || ''; } catch { return ''; } })()
                 },
                 {
                     headers: { 'Content-Type': 'application/json; charset=utf-8' }
@@ -284,93 +286,151 @@ const BasicInfo = ({ companyInfo, setCompanyInfo, nextStep, prevStep }) => {
         }
     };
 
-    // Show warning modal when organization name already exists
-    const showWarningModal = async (sanitizedOrgName) => {
-        const result = await Swal.fire({
-            title: currentLanguage === 'he' ? 'שם ארגון קיים' : 'Organization Name Exists',
-            html: `
-                <div style="text-align: ${isRTL ? 'right' : 'left'}; direction: ${isRTL ? 'rtl' : 'ltr'};">
-                    <p style="margin-bottom: 12px; color: #374151;">
-                        ${currentLanguage === 'he' 
-                            ? `ארגון עם השם <strong style="color: #059669;">${sanitizedOrgName}</strong> כבר קיים במערכת.`
-                            : `An organization with the name <strong style="color: #059669;">${sanitizedOrgName}</strong> already exists.`}
-                    </p>
-                    <p style="color: #6b7280; font-size: 14px;">
-                        ${currentLanguage === 'he'
-                            ? 'אם תמשיך, ייווצר ארגון חדש עם שם ייחודי (יתווסף תאריך ושעה).'
-                            : 'If you continue, a new organization will be created with a unique name (timestamp will be added).'}
-                    </p>
-                </div>
-            `,
-            icon: 'warning',
-            iconColor: '#f59e0b',
-            showCancelButton: true,
-            confirmButtonText: currentLanguage === 'he' ? 'המשך בכל זאת' : 'Continue Anyway',
-            cancelButtonText: currentLanguage === 'he' ? 'ביטול' : 'Cancel',
-            confirmButtonColor: '#059669',
-            cancelButtonColor: '#6b7280',
-            customClass: {
-                popup: `${isRTL ? 'rtl-popup' : 'ltr-popup'} gambot-modal`,
-                confirmButton: 'gambot-confirm-btn',
-                cancelButton: 'gambot-cancel-btn'
-            },
-            background: '#ffffff',
-            backdrop: 'rgba(0, 0, 0, 0.5)'
-        });
-        
-        return result.isConfirmed;
+    // ── One organization per company ID (ח.פ/ת.ז) ─────────────────────────────────────────────
+    // When an account already exists we never create a second org. The customer verifies with a code
+    // sent to the phone registered ON THE ACCOUNT, then continues the onboarding to UPDATE the account
+    // (WhatsApp number, plan, company, contact, email) and connect WABA.
+    const UPDATE_TOKEN_PREFIX = 'gambot_update_token_';
+    const idKey = () => `${UPDATE_TOKEN_PREFIX}${(companyInfo?.idNumber || '').replace(/\D/g, '')}`;
+    const readUpdateToken = () => {
+        try { return localStorage.getItem(idKey()) || ''; } catch { return ''; }
+    };
+    const saveUpdateToken = (token) => {
+        try { if (token) localStorage.setItem(idKey(), token); } catch { /* ignore */ }
     };
 
-    // Show block modal when company ID exists twice (contact support)
-    const showBlockModal = (countByCompanyId) => {
-        return Swal.fire({
-            title: currentLanguage === 'he' ? 'ארגון קיים במערכת' : 'Organization Already Exists',
-            html: `
-                <div style="text-align: ${isRTL ? 'right' : 'left'}; direction: ${isRTL ? 'rtl' : 'ltr'};">
-                    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 12px; padding: 16px; margin-bottom: 16px; border: 1px solid #f59e0b;">
-                        <p style="margin: 0; color: #92400e; font-weight: 500;">
-                            ${currentLanguage === 'he'
-                                ? `נמצאו ${countByCompanyId} ארגונים עם מספר ח.פ/ת.ז זה.`
-                                : `Found ${countByCompanyId} organizations with this company ID.`}
-                        </p>
-                    </div>
-                    <p style="color: #374151; margin-bottom: 16px;">
-                        ${currentLanguage === 'he'
-                            ? 'לא ניתן ליצור ארגון נוסף עם אותו מספר ח.פ/ת.ז.'
-                            : 'Cannot create another organization with the same company ID.'}
-                    </p>
-                    <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 12px; padding: 16px; border: 1px solid #059669;">
-                        <p style="margin: 0 0 8px 0; color: #065f46; font-weight: 600;">
-                            ${currentLanguage === 'he' ? 'צור קשר עם השירות:' : 'Contact Support:'}
-                        </p>
-                        <p style="margin: 0; color: #047857;">
-                            <strong>WhatsApp:</strong> +972-52-595-8080<br/>
-                            <strong>Email:</strong> support@gambot.co.il
-                        </p>
-                    </div>
-                </div>
-            `,
-            icon: 'error',
-            iconColor: '#dc2626',
-            confirmButtonText: currentLanguage === 'he' ? 'הבנתי' : 'Got it',
-            confirmButtonColor: '#059669',
-            customClass: {
-                popup: `${isRTL ? 'rtl-popup' : 'ltr-popup'} gambot-modal`,
-                confirmButton: 'gambot-confirm-btn'
+    const verifyErrorText = (code) => {
+        const he = currentLanguage === 'he';
+        switch (code) {
+            case 'code_incorrect': return he ? 'הקוד שגוי, נסה שוב' : 'Incorrect code, try again';
+            case 'expired': return he ? 'הקוד פג תוקף - שלח קוד חדש' : 'The code expired - send a new one';
+            case 'too_many_attempts': return he ? 'יותר מדי ניסיונות - המתן שהקוד יפוג ושלח קוד חדש' : 'Too many attempts - wait for the code to expire and send a new one';
+            case 'not_found': return he ? 'לא נשלח קוד - שלח קוד חדש' : 'No code was sent - send a new one';
+            default: return he ? 'האימות נכשל, נסה שוב' : 'Verification failed, try again';
+        }
+    };
+
+    const sendExistingAccountCode = async (checkResult) => {
+        const res = await axios.post(
+            'https://gambot.azurewebsites.net/api/webhooks/SendExistingAccountCode',
+            {
+                companyIdNumber: companyInfo.idNumber,
+                companyName: companyInfo.companyName,
+                existingOrgName: checkResult.existingOrgName
             },
-            background: '#ffffff',
-            backdrop: 'rgba(0, 0, 0, 0.5)'
+            { headers: { 'Content-Type': 'application/json; charset=utf-8' } }
+        );
+        return res.data || {};
+    };
+
+    // Returns true once the customer proved control of the account (and stores the update token).
+    const verifyExistingAccount = async (checkResult) => {
+        const he = currentLanguage === 'he';
+        const where = [checkResult.maskedPhone && (he ? `לטלפון ${checkResult.maskedPhone}` : `to ${checkResult.maskedPhone}`),
+                       checkResult.maskedEmail && (he ? `ולמייל ${checkResult.maskedEmail}` : `and ${checkResult.maskedEmail}`)]
+                       .filter(Boolean).join(' ');
+
+        const intro = await Swal.fire({
+            title: he ? 'כבר יש לך חשבון בגמבוט' : 'You already have a Gambot account',
+            html: `<div style="text-align:${isRTL ? 'right' : 'left'};direction:${isRTL ? 'rtl' : 'ltr'};color:#374151;line-height:1.7">
+                ${he
+                    ? `נשלח קוד אימות ${where} הרשומים בחשבון.<br/>אחרי האימות תוכל לעדכן פרטים (מספר וואטסאפ, חבילה, פרטי החברה, איש קשר ומייל) ולהמשיך לחיבור וואטסאפ.`
+                    : `We'll send a verification code ${where} registered on the account.<br/>After verifying you can update your details (WhatsApp number, plan, company, contact and email) and continue to connect WhatsApp.`}
+            </div>`,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: he ? 'שלח קוד אימות' : 'Send verification code',
+            cancelButtonText: he ? 'ביטול' : 'Cancel',
+            confirmButtonColor: '#059669',
+            cancelButtonColor: '#6b7280',
+            customClass: { popup: `${isRTL ? 'rtl-popup' : 'ltr-popup'} gambot-modal` }
         });
+        if (!intro.isConfirmed) return false;
+
+        const sendErrorAlert = (code) => Swal.fire({
+            icon: 'error',
+            title: he ? 'לא ניתן לשלוח קוד' : 'Could not send the code',
+            text: code === 'no_contact_on_file'
+                ? (he ? 'אין טלפון או מייל רשומים בחשבון. פנה לתמיכה: 052-595-8080' : 'There is no phone or email on the account. Contact support: +972-52-595-8080')
+                : (he ? 'נסה שוב בעוד רגע, או פנה לתמיכה: 052-595-8080' : 'Please try again in a moment, or contact support: +972-52-595-8080'),
+            confirmButtonColor: '#059669'
+        });
+
+        try {
+            const sent = await sendExistingAccountCode(checkResult);
+            // too_soon = a code was just sent (still valid) - go straight to entering it.
+            if (!sent.success && sent.code !== 'too_soon') { await sendErrorAlert(sent.code); return false; }
+        } catch (e) {
+            await sendErrorAlert();
+            return false;
+        }
+
+        let hint = '';
+        // eslint-disable-next-line no-constant-condition
+        while (true) {
+            const result = await Swal.fire({
+                title: he ? 'הזן את קוד האימות' : 'Enter the verification code',
+                text: hint || (he ? 'הקוד בן 6 ספרות ובתוקף 10 דקות' : 'The 6-digit code is valid for 10 minutes'),
+                input: 'text',
+                inputAttributes: { maxlength: 6, inputmode: 'numeric', autocomplete: 'one-time-code', dir: 'ltr' },
+                showCancelButton: true,
+                showDenyButton: true,
+                confirmButtonText: he ? 'אמת והמשך' : 'Verify and continue',
+                denyButtonText: he ? 'שלח קוד שוב' : 'Send code again',
+                cancelButtonText: he ? 'ביטול' : 'Cancel',
+                confirmButtonColor: '#059669',
+                denyButtonColor: '#6b7280',
+                showLoaderOnConfirm: true,
+                allowOutsideClick: () => !Swal.isLoading(),
+                customClass: { popup: `${isRTL ? 'rtl-popup' : 'ltr-popup'} gambot-modal` },
+                preConfirm: async (value) => {
+                    const code = (value || '').trim();
+                    if (!code) { Swal.showValidationMessage(he ? 'הזן את הקוד' : 'Enter the code'); return false; }
+                    try {
+                        const res = await axios.post(
+                            'https://gambot.azurewebsites.net/api/webhooks/VerifyExistingAccountCode',
+                            { companyIdNumber: companyInfo.idNumber, existingOrgName: checkResult.existingOrgName, code },
+                            { headers: { 'Content-Type': 'application/json; charset=utf-8' } }
+                        );
+                        if (res.data?.success && res.data?.updateToken) return res.data;
+                        Swal.showValidationMessage(verifyErrorText(res.data?.code));
+                        return false;
+                    } catch (e) {
+                        Swal.showValidationMessage(verifyErrorText());
+                        return false;
+                    }
+                }
+            });
+
+            if (result.isConfirmed && result.value?.updateToken) {
+                saveUpdateToken(result.value.updateToken);
+                return true;
+            }
+            if (result.isDenied) {
+                try {
+                    const sent = await sendExistingAccountCode(checkResult);
+                    hint = sent.success
+                        ? (he ? 'קוד חדש נשלח' : 'A new code was sent')
+                        : (sent.code === 'too_soon'
+                            ? (he ? 'קוד נשלח זה עתה - המתן דקה לפני שליחה חוזרת' : 'A code was just sent - wait a minute before resending')
+                            : (he ? 'השליחה נכשלה, נסה שוב' : 'Sending failed, try again'));
+                } catch (e) {
+                    hint = he ? 'השליחה נכשלה, נסה שוב' : 'Sending failed, try again';
+                }
+                continue;
+            }
+            return false; // cancelled
+        }
     };
 
     // Generate organization name from backend
-    const generateOrganizationName = async (forceCreate = false) => {
+    const generateOrganizationName = async () => {
         try {
             // Check localStorage cache first (prevents duplicates on multiple clicks)
             const storageKey = `gambot_org_${companyInfo.idNumber}`;
             const cachedOrgName = companyInfo?.idNumber ? localStorage.getItem(storageKey) : null;
             
-            if (cachedOrgName && !forceCreate) {
+            if (cachedOrgName) {
                 console.log('💾 [BasicInfo] Using cached org name:', cachedOrgName);
                 return cachedOrgName;
             }
@@ -381,8 +441,7 @@ const BasicInfo = ({ companyInfo, setCompanyInfo, nextStep, prevStep }) => {
                 'https://gambot.azurewebsites.net/api/webhooks/GenerateOrganizationName',
                 {
                     companyName: companyInfo.companyName,
-                    companyIdNumber: companyInfo.idNumber,
-                    forceCreate: forceCreate
+                    companyIdNumber: companyInfo.idNumber
                 },
                 {
                     headers: { 'Content-Type': 'application/json; charset=utf-8' }
@@ -426,33 +485,29 @@ const BasicInfo = ({ companyInfo, setCompanyInfo, nextStep, prevStep }) => {
                 console.log('🔍 [BasicInfo] Step 1: Checking organization existence...');
                 const checkResult = await checkOrganizationExists();
                 
-                // Step 2: Handle blocked case (company ID exists 2+ times)
-                if (checkResult.showBlockModal || checkResult.countByCompanyId >= 2) {
-                    console.log('🚫 [BasicInfo] Blocked - company ID exists multiple times');
-                    setIsLoading(false);
-                    await showBlockModal(checkResult.countByCompanyId);
-                    return; // Stop here
-                }
-                
-                // Step 3: Handle warning case (name exists, but can continue)
-                let forceCreate = false;
-                if (checkResult.showWarningModal || checkResult.nameExists) {
-                    console.log('⚠️ [BasicInfo] Warning - name exists, showing modal');
-                    setIsLoading(false);
-                    const userConfirmed = await showWarningModal(checkResult.sanitizedOrgName);
-                    
-                    if (!userConfirmed) {
-                        console.log('❌ [BasicInfo] User cancelled');
-                        return; // User clicked cancel
+                // Step 2: ONE organization per company ID. If an account already exists we never create a
+                // second one: the customer verifies (code to the phone registered on the account) and then
+                // continues the onboarding to UPDATE the account and connect WABA.
+                const accountExists = !!(checkResult.accountExists || checkResult.nameExists) && !!checkResult.existingOrgName;
+                let finalOrganizationName;
+                if (accountExists) {
+                    if (!checkResult.alreadyVerified) {
+                        setIsLoading(false);
+                        const verified = await verifyExistingAccount(checkResult);
+                        if (!verified) {
+                            console.log('❌ [BasicInfo] Existing account - verification cancelled/failed');
+                            return;
+                        }
+                        setIsLoading(true);
                     }
-                    
-                    forceCreate = true; // User confirmed, create with timestamp
-                    setIsLoading(true);
+                    finalOrganizationName = checkResult.existingOrgName;
+                    // Make sure no stale cached name (e.g. an old timestamped org) overrides the real one.
+                    try { localStorage.setItem(`gambot_org_${companyInfo.idNumber}`, finalOrganizationName); } catch { /* ignore */ }
+                } else {
+                    // Step 3: New company ID - generate organization name
+                    console.log('🚀 [BasicInfo] Step 3: Generating organization name...');
+                    finalOrganizationName = await generateOrganizationName();
                 }
-                
-                // Step 4: Generate organization name
-                console.log('🚀 [BasicInfo] Step 4: Generating organization name...');
-                const finalOrganizationName = await generateOrganizationName(forceCreate);
                 
                 // Update state
                 const updatedCompanyInfo = { 

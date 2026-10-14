@@ -143,6 +143,13 @@ export default function ManagedBroadcastContent() {
           </div>
         </div>
 
+        <p className="retro-note" style={{ textAlign: 'center', margin: '1.5rem 0 0.75rem' }}>
+          רוצים לעשות את זה בעצמכם, בלי להמתין לנו?{' '}
+          <Link href="/one-time-broadcast/" style={{ fontWeight: 700 }}>
+            דיוור חד־פעמי — עשה זאת בעצמך (מחיר מדורג מ־₪0.55 להודעה)
+          </Link>
+        </p>
+
         <a href={waLink} target="_blank" rel="noopener noreferrer" className="retro-button">
           דברו איתנו על קמפיין דיוור
         </a>

@@ -2243,3 +2243,9 @@
     margin: 0 auto;
   }
 }
+
+/* Gambot Hunter add-on */
+.hunter-addon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.hunter-tier-card { background: rgba(255,255,255,0.05); border-radius: 14px; padding: 20px 16px; text-align: center; }
+@media (max-width: 768px) { .hunter-addon-grid { grid-template-columns: 1fr; } }
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <title>התשלום לא הושלם</title>
+  <style>
+    body { margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, Arial, sans-serif; background: #fef2f2; color: #991b1b; }
+  </style>
+</head>
+<body>
+  <p>התשלום לא הושלם — חוזרים לדף ההזמנה…</p>
+  <script>
+    var target = window.location.origin + '/one-time-broadcast/?payment=failed';
+    if (window.parent && window.parent !== window) window.parent.location.href = target;
+    else window.location.href = target;
+  </script>
+</body>
+</html>
