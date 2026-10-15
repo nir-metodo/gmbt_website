@@ -555,7 +555,7 @@ const [showModal, setShowModal] = useState(false);
         </div>
       </div>
 
-      {/* ─── Gambot Hunter Add-on ─── */}
+      {/* ─── Gambot Hunter Add-on ─── HIDDEN FOR NOW (no Hunter customers yet). To show it again, remove this comment wrapper (down to "END OF HIDDEN HUNTER BLOCK").
       {(() => {
         const en = currentLanguage === 'en';
         const hunterTiers = [
@@ -620,6 +620,7 @@ const [showModal, setShowModal] = useState(false);
           </div>
         );
       })()}
+      END OF HIDDEN HUNTER BLOCK */}
 
       {/* ─── Support Explanation ─── */}
       <div style={{ padding: '48px 16px', background: '#f8fafc', boxSizing: 'border-box' }}>

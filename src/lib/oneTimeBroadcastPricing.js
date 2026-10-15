@@ -23,7 +23,7 @@ export const OTB_TIERS = [
 export const OTB_MIN_ORDER = 49; // ₪ before VAT
 export const OTB_VAT = 0.18;
 export const OTB_MAX_MESSAGES = 10000;
-export const OTB_MIN_LEAD_HOURS = 24;
+export const OTB_MIN_LEAD_HOURS = 25;
 
 const PRICING_FX = 3.26;
 const FLOOR_DIVISOR = 0.23;

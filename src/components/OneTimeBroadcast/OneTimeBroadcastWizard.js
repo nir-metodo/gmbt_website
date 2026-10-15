@@ -24,7 +24,7 @@ const STEPS = [
   { title: 'אקסל', sub: 'העלאה ובדיקת מספרים' },
   { title: 'הודעה', sub: 'תבנית עם שדות אישיים' },
   { title: 'תשלום', sub: 'מאובטח, עם חשבונית' },
-  { title: 'תזמון', sub: 'לפחות 24 שעות קדימה' },
+  { title: 'תזמון', sub: `לפחות ${OTB_MIN_LEAD_HOURS} שעות קדימה` },
 ];
 const MAX_FILE_MB = 8;
 const WA_CONTACT = 'https://wa.me/97233768997';
@@ -164,6 +164,7 @@ export default function OneTimeBroadcastWizard() {
   const [resuming, setResuming] = useState(true);
   const [verifying, setVerifying] = useState(false);
   const [codeInput, setCodeInput] = useState('');
+  const [footerHelp, setFooterHelp] = useState(false);
 
   const headers = sheet ? sheet.headers : [];
 
@@ -345,7 +346,7 @@ export default function OneTimeBroadcastWizard() {
           headerType: hMode === 'TEXT' ? 'TEXT' : hMode === 'MEDIA' ? spec.headerMedia.format : 'NONE',
           header: hMode === 'TEXT' ? spec.header : '',
           headerMedia: hMode === 'MEDIA' ? { url: spec.headerMedia.url, mime: spec.headerMedia.mime, name: spec.headerMedia.name, size: spec.headerMedia.size } : null,
-          buttons: spec.buttons.map((b) => ({ type: b.type, text: b.text, url: b.url, phone: b.phone })),
+          buttons: spec.buttons.map((b) => ({ type: b.type, text: b.text, url: b.url, phone: b.phone, autoReply: b.type === 'QUICK_REPLY' ? (b.autoReply || '').trim() : '' })),
         },
       });
       try { window.localStorage.setItem(LS_KEY, draft.orderId); } catch (_) { /* ignore */ }
@@ -488,7 +489,23 @@ export default function OneTimeBroadcastWizard() {
       <div className="otb-bubble">
         {renderHeader(header)}
         <div className="otb-bubble-text">{text || 'כאן תופיע ההודעה…'}</div>
-        <div className="otb-bubble-footer">{footer}</div>
+        <div className="otb-bubble-footer">
+          <span>{footer}</span>
+          <span className="otb-help">
+            <button
+              type="button"
+              className="otb-help-btn"
+              aria-label="מידע על הפוטר ועל אישור Meta"
+              aria-expanded={footerHelp}
+              onClick={() => setFooterHelp((v) => !v)}
+              onBlur={() => setFooterHelp(false)}
+            >?</button>
+            <span role="tooltip" className={'otb-help-pop' + (footerHelp ? ' open' : '')}>
+              🔒 בתחתית ההודעה מתווספת אוטומטית השורה <b>“{footer}”</b> (שם העסק נלקח מפרטי ההזמנה בשלב הבא).
+              התבנית נשלחת לאישור Meta — לכן התזמון הוא לפחות {OTB_MIN_LEAD_HOURS} שעות קדימה.
+            </span>
+          </span>
+        </div>
         {btns.map((b, i) => (<div key={i} className="otb-bubble-btn">{b}</div>))}
       </div>
     </div>
@@ -500,6 +517,37 @@ export default function OneTimeBroadcastWizard() {
     .sort((a, b) => (a.type === 'QUICK_REPLY') - (b.type === 'QUICK_REPLY'))
     .filter((b) => b.text.trim())
     .map((b) => `${BTN_ICON[b.type]} ${b.text.trim()}`);
+
+  // live checklist: payment approved? template sent to Meta? campaign created? (shown right after payment and on the final screen)
+  const renderStatus = () => {
+    if (!order) return null;
+    const payOk = ['paid', 'scheduling', 'scheduled'].includes(order.status);
+    const payWait = order.status === 'payment_unverified';
+    const tplOk = !!order.templateName;
+    const campOk = !!order.campaignId;
+    const ts = String(order.templateStatus || '').toUpperCase();
+    const tplText = !tplOk
+      ? 'תיווצר ותישלח ל-Meta מיד כשתתזמנו'
+      : ts === 'APPROVED' ? 'נשלחה ל-Meta ואושרה ✅'
+        : ts === 'REJECTED' ? 'נשלחה ל-Meta ונדחתה — נחזור אליכם לתיקון'
+          : 'נשלחה ל-Meta וממתינה לאישור (בדרך כלל עד 24 שעות)';
+    const rows = [
+      { ok: payOk, wait: payWait, title: 'העסקה', text: payOk ? `אושרה ✅${q ? ` — ${fmtILS(q.total)}` : ''}${order.paymentRef ? ` · אישור ${order.paymentRef}` : ''}` : payWait ? 'התקבלה ובאימות מול חברת הסליקה' : 'לא אושרה' },
+      { ok: tplOk, wait: !tplOk && payOk, title: 'התבנית', text: tplText },
+      { ok: campOk, wait: !campOk && payOk, title: 'הדיוור', text: campOk ? `נוצר ותוזמן ל-${String(order.runAtLocal || '').replace('T', ' ')} (שעון ישראל)` : 'ייווצר מיד כשתתזמנו' },
+    ];
+    return (
+      <ul className="otb-status" aria-live="polite">
+        {rows.map((r) => (
+          <li key={r.title} className={r.ok ? 'ok' : r.wait ? 'wait' : 'bad'}>
+            <span className="otb-status-ic">{r.ok ? '✓' : r.wait ? '…' : '✕'}</span>
+            <span><b>{r.title}:</b> {r.text}</span>
+          </li>
+        ))}
+        {order.lastError && !campOk && <li className="bad"><span className="otb-status-ic">✕</span><span>{order.lastError}</span></li>}
+      </ul>
+    );
+  };
 
   if (resuming) return <div className="otb-page"><div className="otb-card otb-center">טוען…</div></div>;
 
@@ -681,11 +729,6 @@ export default function OneTimeBroadcastWizard() {
               footer={footer}
             />
 
-            <div className="otb-note">
-              🔒 בתחתית ההודעה מתווספת אוטומטית השורה <b>“{footer}”</b> (שם העסק נלקח מפרטי ההזמנה בשלב הבא).
-              התבנית נשלחת לאישור Meta — לכן התזמון הוא לפחות {OTB_MIN_LEAD_HOURS} שעות קדימה.
-            </div>
-
             {error && <div className="otb-error" role="alert">{error}</div>}
             {blockers.length > 0 && (
               <div className="otb-blockers" role="status">
@@ -756,14 +799,18 @@ export default function OneTimeBroadcastWizard() {
                   <label className="otb-field"><span>טלפון *</span><input type="tel" value={contact.phone} onChange={(e) => setContact((p) => ({ ...p, phone: e.target.value }))} /></label>
                   <label className="otb-field"><span>אימייל * (לאישור וחשבונית)</span><input type="email" value={contact.email} onChange={(e) => setContact((p) => ({ ...p, email: e.target.value }))} /></label>
                 </div>
+                <div className="otb-note">
+                  📅 מיד אחרי אישור התשלום תבחרו תאריך ושעה לשליחה (לפחות {OTB_MIN_LEAD_HOURS} שעות מעכשיו), ותראו מיד אם התבנית נשלחה לאישור והדיוור נוצר.
+                </div>
                 <label className="otb-check">
                   <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
                   <div className="otb-consent-text">
                     <b>הצהרה ואישור (חובה)</b>
                     <ul>
-                      <li>אני מצהיר/ה שלכל הנמענים ברשימה ניתנה הסכמה מפורשת מראש לקבל ממני הודעות שיווקיות (סעיף 30א לחוק התקשורת), ושההסכמה מתועדת ברשותי.</li>
-                      <li>גמבוט היא <b>כלי טכנולוגי בלבד</b>. אני נושא/ת באחריות <b>המלאה והבלעדית</b> לרשימה, לתוכן ההודעה ולשליחתה, ולכל תביעה, קנס או נזק הנובעים מהם.</li>
-                      <li>אני מוותר/ת על כל טענה ותביעה כלפי גמבוט, ומתחייב/ת לשפותה בגין כל דרישה של נמען או צד שלישי.</li>
+                      <li>אני מצהיר/ה שלכל הנמענים ברשימה ניתנה <b>הסכמה מפורשת מראש</b> לקבל ממני הודעות שיווקיות (סעיף 30א לחוק התקשורת), ושההסכמה מתועדת ברשותי ואוכל להציגה לפי דרישה.</li>
+                      <li>גמבוט היא <b>כלי טכנולוגי בלבד</b> — היא אינה בוחרת, בודקת או מאשרת את הרשימה או את תוכן ההודעה. <b>כל האחריות המשפטית, הפלילית והכספית היא עליי בלבד</b>: הרשימה, התוכן, ההסכמות והשליחה, וכל תביעה (לרבות תביעה ייצוגית), קנס, פיצוי סטטוטורי (עד 1,000 ₪ להודעה לפי סעיף 30א) או נזק שייגרמו לגמבוט או לצד שלישי בגינם.</li>
+                      <li>אני מוותר/ת על כל טענה ותביעה כלפי גמבוט, מתחייב/ת <b>לשפות אותה במלואה</b> (כולל שכר טרחת עו״ד והוצאות) על כל דרישה של נמען, רשות או צד שלישי, וגמבוט רשאית להפסיק או לבטל את הדיוור בכל שלב אם יש חשש לאי-חוקיות — ללא החזר.</li>
+                      <li>אני מבין/ה שמשלוח הודעות למי שלא הסכים לכך עלול להיות עבירה על החוק, ושהאחריות לכך חלה עליי ועל העסק שלי בלבד.</li>
                       <li>קראתי ואני מסכים/ה ל<Link href="/one-time-broadcast-terms/" target="_blank">תנאי השימוש בשירות הדיוור החד פעמי</Link>.</li>
                     </ul>
                   </div>
@@ -804,17 +851,20 @@ export default function OneTimeBroadcastWizard() {
             <>
               <h2>התשלום התקבל ובאימות</h2>
               <p>קיבלנו את התשלום ואנחנו מאמתים אותו מול חברת הסליקה. נחזור אליך במייל (ובוואטסאפ) בהקדם כדי להשלים את התזמון.</p>
+              {renderStatus()}
             </>
           ) : (
             <>
               <div className="otb-step-label">שלב 4 מתוך 4</div>
               <h2>מתי לשלוח?</h2>
               <p className="otb-ok">✅ התשלום התקבל. נשאר לבחור מועד שליחה.</p>
+              {renderStatus()}
               <label className="otb-field">
                 <span>תאריך ושעה (שעון ישראל) — לפחות {OTB_MIN_LEAD_HOURS} שעות מעכשיו</span>
                 <input type="datetime-local" min={order.minRunAtLocal} value={runAt} onChange={(e) => setRunAt(e.target.value)} />
               </label>
-              <p className="otb-muted small">למה 24 שעות? כדי שיהיה זמן לאישור התבנית ע״י Meta. אם התבנית תידחה — נחזור אליכם לתיקון ללא עלות.</p>
+              <p className="otb-muted small">למה {OTB_MIN_LEAD_HOURS} שעות? כדי שיהיה זמן לאישור התבנית ע״י Meta. אם התבנית תידחה — נחזור אליכם לתיקון ללא עלות. כשהתבנית תאושר נעדכן אתכם במייל.</p>
+              <p className="otb-muted small">📊 כ־24 שעות אחרי השליחה תקבלו למייל שהזנתם <b>דוח תוצאות</b> — כמה הודעות נשלחו, נמסרו ונקראו, כמה לחצו על הכפתורים והקישורים, ומה ענו.</p>
 
               {editBody !== null && (
                 <div className="otb-fallbacks">
@@ -839,12 +889,9 @@ export default function OneTimeBroadcastWizard() {
           <p>
             {order.recipients.toLocaleString('he-IL')} נמענים · שליחה ב־<b>{String(order.runAtLocal || '').replace('T', ' ')}</b> (שעון ישראל)
           </p>
-          <p className="otb-muted">
-            סטטוס התבנית ב-Meta: <b>{order.templateStatus || 'נשלחה לאישור'}</b>
-            {order.templateStatus === 'APPROVED' && ' ✅'}
-            {order.templateStatus === 'REJECTED' && ' — נחזור אליך לתיקון'}
-          </p>
+          {renderStatus()}
           <p className="otb-muted small">אישור נשלח לאימייל שלך. חשבונית מס/קבלה תישלח בנפרד.</p>
+          <p className="otb-muted small">נעדכן אותך במייל כשהתבנית תאושר, וכ־24 שעות אחרי השליחה תקבל/י <b>דוח תוצאות</b> (נשלחו, נמסרו, נקראו, לחיצות ותגובות) לאותו מייל.</p>
           <div className="otb-actions center"><button className="otb-btn" onClick={startOver}>הזמנה חדשה</button></div>
         </section>
       )}

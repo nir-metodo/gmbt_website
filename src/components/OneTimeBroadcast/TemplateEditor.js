@@ -21,7 +21,7 @@ const BTN_TYPES = [
 const EMOJIS = ['😀', '😊', '😍', '🙏', '👍', '🎉', '🔥', '✨', '❤️', '💥', '🎁', '🛍️', '⭐', '📣', '📅', '⏰', '✅', '👋', '🤝', '💬', '📞', '📍', '💰', '🏷️'];
 
 const uid = () => `b${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
-export const newButton = (type, text = '') => ({ id: uid(), type, text, url: '', phone: '' });
+export const newButton = (type, text = '', autoReply = '') => ({ id: uid(), type, text, url: '', phone: '', autoReply });
 
 const MEDIA_ICON = { IMAGE: '🖼️', VIDEO: '🎬', DOCUMENT: '📄' };
 const fmtSize = (n) => (n >= 1048576 ? `${(n / 1048576).toFixed(1)}MB` : `${Math.max(1, Math.round((n || 0) / 1024))}KB`);
@@ -80,10 +80,11 @@ export function specIssues(spec) {
       if (!(b.phone || '').trim()) e.phone = 'חובה למלא מספר טלפון';
       else if (!isValidCallPhone(b.phone)) e.phone = 'מספר הטלפון אינו תקין (למשל 03-1234567 או 050-1234567)';
     }
+    if (b.type === 'QUICK_REPLY' && !(b.autoReply || '').trim()) e.reply = 'חובה לכתוב את התגובה האוטומטית שתישלח כשלוחצים על הכפתור';
     if (Object.keys(e).length) {
       out.buttons[b.id] = e;
       const what = b.type === 'URL' ? 'קישור' : b.type === 'PHONE_NUMBER' ? 'חיוג' : 'תשובה מהירה';
-      out.list.push(`כפתור ${n} (${what}): ${e.text || e.url || e.phone}`);
+      out.list.push(`כפתור ${n} (${what}): ${e.text || e.url || e.phone || e.reply}`);
     }
   });
   return out;
@@ -337,9 +338,24 @@ export default function TemplateEditor({ columns, value, onChange, fallbacks, on
             {b.type === 'PHONE_NUMBER' && (
               <input className={'otb-ime-input' + (issues.buttons[b.id] && issues.buttons[b.id].phone ? ' bad' : '')} dir="ltr" type="tel" value={b.phone} placeholder="03-1234567" onChange={(e) => setBtn(i, { phone: e.target.value })} />
             )}
-            {issues.buttons[b.id] && <div className="otb-ime-err">{issues.buttons[b.id].text || issues.buttons[b.id].url || issues.buttons[b.id].phone}</div>}
-            {b.type === 'QUICK_REPLY' && <div className="otb-ime-mini">↩ הנמען לוחץ והתשובה מגיעה אלינו (לא נענית אוטומטית)</div>}
-            {b.type !== 'QUICK_REPLY' && <div className="otb-ime-mini">{b.type === 'URL' ? '🔗 פותח את הקישור' : '📞 מחייג למספר'}</div>}
+            {issues.buttons[b.id] && (issues.buttons[b.id].text || issues.buttons[b.id].url || issues.buttons[b.id].phone) && (
+              <div className="otb-ime-err">{issues.buttons[b.id].text || issues.buttons[b.id].url || issues.buttons[b.id].phone}</div>
+            )}
+            {b.type === 'QUICK_REPLY' && (
+              <>
+                <textarea
+                  className={'otb-ime-input otb-ime-reply' + (issues.buttons[b.id] && issues.buttons[b.id].reply ? ' bad' : '')}
+                  rows={2}
+                  maxLength={1000}
+                  value={b.autoReply || ''}
+                  placeholder="תגובה אוטומטית שתישלח לנמען כשילחץ על הכפתור — למשל: תודה! נחזור אליך בהקדם 🙏"
+                  onChange={(e) => setBtn(i, { autoReply: e.target.value })}
+                />
+                {issues.buttons[b.id] && issues.buttons[b.id].reply && <div className="otb-ime-err">{issues.buttons[b.id].reply}</div>}
+                <div className="otb-ime-mini">↩ כשהנמען לוחץ — התגובה שכתבתם נשלחת אליו אוטומטית בוואטסאפ</div>
+              </>
+            )}
+            {b.type !== 'QUICK_REPLY' && <div className="otb-ime-mini">{b.type === 'URL' ? '🔗 פותח את הקישור · הלחיצות נספרות אוטומטית ויופיעו בדוח' : '📞 מחייג למספר'}</div>}
           </div>
         ))}
         <div className="otb-ime-tools">
