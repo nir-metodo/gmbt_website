@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import { FaCheckCircle, FaSpinner } from 'react-icons/fa';
@@ -15,13 +15,13 @@ import 'react-pdf/dist/Page/TextLayer.css';
 // via ESignature_SubmitForm.
 
 const API_BASE = 'https://gambot.azurewebsites.net/api/Webhooks';
+
 const gambotLogo = '/new_logo.png';
 
 // pdfjs v5 uses an ES-module worker served SAME-ORIGIN from /public (copied from react-pdf's bundled
 // pdfjs-dist) so the version can never drift and cross-origin module-worker loading can't fail.
 pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
-// Stable options reference — react-pdf reloads the document whenever this prop changes identity.
 const PDF_OPTIONS = {
   cMapUrl: `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/cmaps/`,
   cMapPacked: true,
@@ -29,9 +29,10 @@ const PDF_OPTIONS = {
 };
 
 // Field types the recipient actively fills. `name`/`date`/`date_today` are shown too (auto/typed).
-// Keep in sync with the editor's INPUT_FIELD_TYPES + the gmbt_frontend copy of this form, otherwise
-// placed fields (e.g. multiline_text / address) silently vanish from the public link.
-const INPUT_TYPES = ['text', 'multiline_text', 'address', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox', 'name', 'date', 'date_today', 'signature', 'initials'];
+// `variable` = a document/auto field authored in the TEMPLATE editor (template-role fields are stored
+// as `variable`, e.g. an auto date). It carries a stamped/resolved value and is shown READ-ONLY so it
+// no longer silently vanishes from the public form.
+const INPUT_TYPES = ['text', 'multiline_text', 'address', 'id_number', 'email', 'phone', 'number', 'dropdown', 'radio_group', 'checkbox', 'name', 'date', 'date_today', 'signature', 'initials', 'variable'];
 
 const isValidIsraeliId = (rawId) => {
   const digits = String(rawId ?? '').trim();
@@ -45,6 +46,14 @@ const isValidIsraeliId = (rawId) => {
   }
   return sum % 10 === 0;
 };
+
+// Shared format checks (used by the contact header, custom questions and PDF fields alike).
+const isValidPhone = (raw) => {
+  const v = String(raw ?? '').trim();
+  const digits = v.replace(/\D/g, '');
+  return /^[\d\s\-+()]+$/.test(v) && digits.length >= 9 && digits.length <= 15;
+};
+const isValidEmail = (raw) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(raw ?? '').trim());
 
 const DocumentFormPublic = () => {
   // Parse /:organization/form/:documentId/:token from window.location (static Next.js export).
@@ -62,9 +71,16 @@ const DocumentFormPublic = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [doc, setDoc] = useState(null);
-  // Live form settings from the SOURCE TEMPLATE (contact header visibility/required + submit label
-  // are authored only there). Preferred over the document's cached copy so template edits apply.
+  // Multi-signer: the signer this link belongs to (resolved by the backend from the token). Used to
+  // scope the fields so signer #1 only fills/signs THEIR fields — not signer #2's signature.
+  const [currentSigner, setCurrentSigner] = useState(null);
+  // Live form settings pulled from the SOURCE TEMPLATE (contact header etc. are authored only there).
+  // Preferred over the document's cached copy so template edits apply even to already-sent links.
   const [tplFormConfig, setTplFormConfig] = useState(null);
+  // Auto "today's date" (and similar read-only) fields authored on the SOURCE template. Older
+  // documents were generated before the backend kept `date_today` in signatureFields, so we merge
+  // them back in here — the date then appears on already-sent links without re-generating them.
+  const [tplAutoFields, setTplAutoFields] = useState([]);
   const [orgInfo, setOrgInfo] = useState(null);
   const [values, setValues] = useState({}); // keyed by fieldId
   const [signerName, setSignerName] = useState('');
@@ -91,13 +107,12 @@ const DocumentFormPublic = () => {
   const pdfWidth = Math.max(220, Math.round(baseWidth * zoom));
   // The PDF page's intrinsic (scale-1) width. Field coordinates were authored in the editor's
   // pixel space = intrinsicWidth × EDITOR_SCALE, so we must scale against THIS width — not a
-  // hardcoded 612 (that assumption drifted fields on non-Letter pages like A4).
+  // hardcoded 612 (that assumption drifted fields upward/left on non-Letter pages like A4).
   const [pdfIntrinsicWidth, setPdfIntrinsicWidth] = useState(612);
   const [pdfError, setPdfError] = useState(false);
   const [showFullscreen, setShowFullscreen] = useState(false);
 
-  // Signature capture (tap-to-sign) — the drawn signature is stored as a data-URL in values[fieldId]
-  // and embedded into the filled PDF on submit.
+  // Signature capture (tap-to-sign) — stored as a data-URL in values[fieldId], embedded into the PDF.
   const [showSignatureModal, setShowSignatureModal] = useState(false);
   const [activeSignatureFieldId, setActiveSignatureFieldId] = useState(null);
   const modalSigCanvas = useRef(null);
@@ -121,6 +136,9 @@ const DocumentFormPublic = () => {
         if (data?.success || data?.Success) {
           const d = data.data || data.Data;
           setDoc(d);
+          // Which signer this link belongs to (multi-signer scoping). The backend resolves it from the
+          // token; fall back to any role carried on the document itself.
+          setCurrentSigner(data.currentSigner || data.CurrentSigner || d?.currentSigner || null);
           if (data?.organizationInfo) setOrgInfo(data.organizationInfo);
           if (d?.signerName) setSignerName(d.signerName);
           if (d?.signerEmail) setSignerEmail(d.signerEmail);
@@ -135,6 +153,10 @@ const DocumentFormPublic = () => {
               const tplRes = await axios.post(`${API_BASE}/DocTemplates_GetById`, { organization, templateId: tplId });
               const tplData = tplRes.data?.Data || tplRes.data?.data;
               if (tplData?.formConfig) setTplFormConfig(tplData.formConfig);
+              // Keep only the auto date field(s) — genuine `variable` fields are already burned into
+              // the stamped PDF, so overlaying them too would double them up.
+              const overlay = Array.isArray(tplData?.overlayFields) ? tplData.overlayFields : [];
+              setTplAutoFields(overlay.filter(f => (f?.fieldType || '').toLowerCase() === 'date_today'));
             } catch (tplErr) {
               console.warn('Could not load template formConfig (using document copy):', tplErr);
             }
@@ -155,23 +177,44 @@ const DocumentFormPublic = () => {
     // eslint-disable-next-line
   }, [organization, documentId, token]);
 
-  // Input fields the recipient fills (skip signature/initials/variable). Keep read-only auto fields
-  // (date_today) so they still display + submit.
   // Field types that must ALWAYS render on the public link. Their backend `editable` flag defaults
   // to false (C# bool default — the editor never sets it for these), so gating on `editable !== false`
   // used to silently drop the name / signature / date fields. Only genuine text inputs explicitly
   // marked read-only should be hidden.
-  const ALWAYS_SHOWN_TYPES = ['name', 'date', 'date_today', 'signature', 'initials'];
+  const ALWAYS_SHOWN_TYPES = ['name', 'date', 'date_today', 'signature', 'initials', 'variable'];
+
+  // Multi-signer scoping: when this link belongs to a specific signer, show ONLY that signer's fields
+  // plus shared/document fields (no signer role, the "template" pseudo-role, or read-only auto fields).
+  // This prevents signer #1 from being forced to fill/sign signer #2's fields (e.g. the company
+  // signature). When there is no signer context (single-filler forms), show everything as before.
+  const currentSignerRole = currentSigner?.signerRole || currentSigner?.SignerRole || doc?.currentSignerRole || null;
+  const isFieldForCurrentSigner = useCallback((f) => {
+    if (!currentSignerRole) return true; // no role context → single filler fills everything
+    const role = (f?.signerRole || '').toLowerCase();
+    const ft = (f?.fieldType || '').toLowerCase();
+    // Shared / document fields always render (unscoped, the "template" pseudo-role, or read-only auto).
+    if (!role || role === 'template' || ft === 'date_today' || ft === 'variable') return true;
+    return f.signerRole === currentSignerRole; // otherwise only THIS signer's fields
+  }, [currentSignerRole]);
+
   const fields = useMemo(() => {
     const all = doc?.signatureFields || [];
-    return all
+    const base = all
       .filter(f => INPUT_TYPES.includes((f.fieldType || '').toLowerCase()))
-      .filter(f => ALWAYS_SHOWN_TYPES.includes((f.fieldType || '').toLowerCase()) || f.editable !== false);
-  }, [doc]);
+      .filter(f => ALWAYS_SHOWN_TYPES.includes((f.fieldType || '').toLowerCase()) || f.editable !== false)
+      .filter(isFieldForCurrentSigner);
+    // Merge any auto date field from the source template that the document is missing (older docs
+    // generated before the backend kept `date_today`). Dedupe by fieldId so newer docs never double up.
+    const seen = new Set(base.map(f => f.fieldId));
+    const merged = [...base];
+    tplAutoFields.forEach(f => { if (f?.fieldId && !seen.has(f.fieldId)) { merged.push(f); seen.add(f.fieldId); } });
+    return merged;
+  }, [doc, tplAutoFields, isFieldForCurrentSigner]);
 
-  // Per-template form settings. Prefer the live template config; fall back to the doc's cached copy.
-  // Defaults keep the previous behavior (contact header shown, full name required).
+  // Per-template form settings (authored in the template editor). Defaults keep the previous
+  // behavior (contact header shown, full name required) for templates saved before this existed.
   const cfg = useMemo(() => {
+    // Prefer the live template config (authoritative) and fall back to the document's cached copy.
     const c = tplFormConfig || doc?.formConfig || {};
     return {
       collectContact: c.collectContact !== false,
@@ -181,11 +224,7 @@ const DocumentFormPublic = () => {
       showName: c.showName !== false,
       showPhone: c.showPhone !== false,
       showEmail: c.showEmail !== false,
-      // Keep ONLY well-formed question objects with a stable id. A null/undefined entry (or a stray
-      // primitive left by a bad save) would blow up renderCustomField (`cf.id` on null) and take the
-      // whole public form down with a client-side exception — so we defensively drop anything invalid.
-      customFields: (Array.isArray(c.customFields) ? c.customFields : [])
-        .filter(cf => cf && typeof cf === 'object' && (cf.id != null || cf.label != null || cf.labelEn != null)),
+      customFields: Array.isArray(c.customFields) ? c.customFields : [],
       submitLabel: c.submitLabel || '',
       submitLabelEn: c.submitLabelEn || '',
       successMessage: c.successMessage || '',
@@ -195,8 +234,79 @@ const DocumentFormPublic = () => {
     };
   }, [doc, tplFormConfig]);
 
+  // ---- Field-by-field navigation (best UX for the person filling the form) ----
+  // The user can jump between fields in a natural reading order (top→bottom, then
+  // start-of-line→end-of-line respecting RTL) using Enter or the floating Prev/Next bar,
+  // instead of hunting for scattered inputs on the PDF.
+  const inputRefs = useRef({});
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  const orderedFields = useMemo(() => {
+    return [...fields]
+      .filter(f => !['date_today', 'signature', 'initials', 'variable'].includes((f.fieldType || '').toLowerCase())) // read-only / tap-to-sign, not keyboard-navigable
+      .sort((a, b) => {
+        const pa = a.page || 1, pb = b.page || 1;
+        if (pa !== pb) return pa - pb;
+        const ya = a.y || 0, yb = b.y || 0;
+        if (Math.abs(ya - yb) > 10) return ya - yb; // same visual row tolerance
+        const xa = a.x || 0, xb = b.x || 0;
+        return isRTL ? xb - xa : xa - xb;
+      });
+  }, [fields, isRTL]);
+
+  const registerRef = (id, el) => { if (el) inputRefs.current[id] = el; };
+
+  const focusFieldAt = (idx) => {
+    if (idx < 0 || idx >= orderedFields.length) return;
+    const f = orderedFields[idx];
+    setActiveIdx(idx);
+    const el = inputRefs.current[f.fieldId];
+    if (el) {
+      try { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (_) {}
+      setTimeout(() => { try { el.focus({ preventScroll: true }); } catch (_) {} }, 80);
+    }
+  };
+
+  const goNextField = () => focusFieldAt(Math.min(activeIdx + 1, orderedFields.length - 1));
+  const goPrevField = () => focusFieldAt(Math.max(activeIdx - 1, 0));
+
+  // Enter advances to the next field (single-line inputs only — there are no textareas here).
+  const onFieldKeyDown = (e, f) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      blurValidate(f);
+      const idx = orderedFields.findIndex(x => x.fieldId === f.fieldId);
+      if (idx >= 0 && idx < orderedFields.length - 1) focusFieldAt(idx + 1);
+      else e.currentTarget?.blur?.();
+    }
+  };
+
+  // Shared props wiring ref + Enter navigation + active-index tracking onto every input.
+  const navProps = (f) => ({
+    ref: (el) => registerRef(f.fieldId, el),
+    onKeyDown: (e) => onFieldKeyDown(e, f),
+    onFocus: () => {
+      const idx = orderedFields.findIndex(x => x.fieldId === f.fieldId);
+      if (idx >= 0) setActiveIdx(idx);
+    },
+  });
+
   const labelFor = (f) => f.label || f.placeholder || f.fieldName || f.fieldKey || L('שדה', 'Field');
   const todayStr = () => new Date().toLocaleDateString(lang === 'he' ? 'he-IL' : 'en-US');
+
+  // A `variable` field is a document/auto field authored on the template (never a signer input).
+  // It shows a stamped value. If empty and it clearly represents a date (auto date / signing date /
+  // today / תאריך), fall back to today so the "date" line is never blank on the public form.
+  const looksLikeDateVar = (f) => {
+    const key = `${f.variableKey || ''} ${f.fieldKey || ''} ${f.label || ''} ${f.placeholder || ''}`.toLowerCase();
+    return /date|today|תאריך/.test(key);
+  };
+  const variableDisplay = (f) => {
+    const v = (f.value ?? values[f.fieldId] ?? '').toString().trim();
+    if (v) return v;
+    if (looksLikeDateVar(f)) return todayStr();
+    return '';
+  };
 
   // Format hint shown as a placeholder so the user knows exactly what to type (e.g. email format).
   const phFor = (f) => {
@@ -223,7 +333,7 @@ const DocumentFormPublic = () => {
 
   const validate = (f, raw) => {
     const ft = (f.fieldType || '').toLowerCase();
-    if (ft === 'date_today') return null; // auto-stamped
+    if (ft === 'date_today' || ft === 'variable') return null; // read-only auto/document fields
     const label = labelFor(f);
     const isCheckbox = ft === 'checkbox';
     const boolVal = raw === true || raw === 'true';
@@ -239,7 +349,7 @@ const DocumentFormPublic = () => {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return L(`כתובת אימייל לא תקינה: ${label}`, `Invalid email: ${label}`);
         break;
       case 'phone':
-        if (value.replace(/\D/g, '').length < 9) return L(`מספר טלפון לא תקין: ${label}`, `Invalid phone: ${label}`);
+        if (!isValidPhone(value)) return L(`מספר טלפון לא תקין: ${label}`, `Invalid phone: ${label}`);
         break;
       case 'number':
         if (!/^-?\d+(\.\d+)?$/.test(value)) return L(`יש להזין מספר בשדה: ${label}`, `Must be a number: ${label}`);
@@ -256,29 +366,49 @@ const DocumentFormPublic = () => {
     const ft = (f.fieldType || '').toLowerCase();
     if (ft === 'name') return signerName;
     if (ft === 'date_today') return todayStr();
+    if (ft === 'variable') return variableDisplay(f);
     if (ft === 'checkbox') return (values[f.fieldId] === true || values[f.fieldId] === 'true') ? 'true' : 'false';
     return values[f.fieldId] ?? (f.value || '');
   };
 
-  // Position an overlay field on the PDF. Fields saved in canvas pixels at editor scale 1.8 over the
-  // page's INTRINSIC width → scale to the current display width. (Identical to the signing page.)
   const getFieldStyle = (field) => {
     if (!pdfWidth) return {};
     const editorScale = 1.8;
     // Displayed width ÷ editor authoring width (intrinsic × editorScale).
     const scale = pdfWidth / (pdfIntrinsicWidth * editorScale);
+    const isActive = orderedFields[activeIdx]?.fieldId === field.fieldId;
+    let left = (field.x || 0) * scale;
+    let top = (field.y || 0) * scale;
+    let width = (field.width || 120) * scale;
+    let height = (field.height || 32) * scale;
+    // A signature box authored thin (to sit on a printed "חתימה ____" line, e.g. h=18) shrinks to ~5px on
+    // a phone: the customer sees only the red * and no place to sign. Keep it a usable tap target by
+    // growing it (never smaller than authored). It grows DOWNWARD from its top edge and sideways around its
+    // center — growing up would cover the name/text fields that sit right above a signature line. The same box
+    // shows the drawn signature after signing, so a tiny box also made a fresh signature "disappear".
+    const ft = (field.fieldType || '').toLowerCase();
+    if (ft === 'signature' || ft === 'initials') {
+      const minW = 130, minH = 38;
+      if (width < minW) { left -= (minW - width) / 2; width = minW; }
+      if (height < minH) height = minH;
+    }
     return {
       position: 'absolute',
-      left: `${(field.x || 0) * scale}px`,
-      top: `${(field.y || 0) * scale}px`,
-      width: `${(field.width || 120) * scale}px`,
-      height: `${(field.height || 32) * scale}px`,
-      zIndex: 10,
+      left: `${left}px`,
+      top: `${top}px`,
+      width: `${width}px`,
+      height: `${height}px`,
+      zIndex: isActive ? 15 : 10,
+      outline: isActive ? '3px solid #34d399' : 'none',
+      outlineOffset: '2px',
+      borderRadius: 6,
+      transition: 'outline-color .15s',
     };
   };
 
   const setVal = (fieldId, v) => {
     setValues(prev => ({ ...prev, [fieldId]: v }));
+    // Clear a previously shown error as soon as the user edits the field.
     setErrors(prev => (prev[fieldId] ? { ...prev, [fieldId]: undefined } : prev));
   };
 
@@ -309,6 +439,7 @@ const DocumentFormPublic = () => {
     closeSignatureModal();
   };
 
+  // Re-validate a single field on blur so the user gets an immediate, specific hint.
   const blurValidate = (f) => {
     const ft = (f.fieldType || '').toLowerCase();
     const raw = ft === 'name' ? signerName : (ft === 'checkbox' ? (values[f.fieldId] === true || values[f.fieldId] === 'true') : values[f.fieldId]);
@@ -316,7 +447,6 @@ const DocumentFormPublic = () => {
     setErrors(prev => ({ ...prev, [f.fieldId]: err || undefined }));
   };
 
-  // Render the fillable control positioned ON the document.
   const renderOverlayControl = (f) => {
     const ft = (f.fieldType || '').toLowerCase();
     const id = f.fieldId;
@@ -334,15 +464,19 @@ const DocumentFormPublic = () => {
     const onBlur = () => blurValidate(f);
 
     if (ft === 'name') {
-      return <input style={base} value={signerName} onClick={stop} onBlur={onBlur} onChange={(e) => { setSignerName(e.target.value); setErrors(prev => prev[id] ? { ...prev, [id]: undefined } : prev); }} placeholder={phFor(f)} />;
+      return <input {...navProps(f)} style={base} value={signerName} onClick={stop} onBlur={onBlur} onChange={(e) => { setSignerName(e.target.value); setErrors(prev => prev[id] ? { ...prev, [id]: undefined } : prev); }} placeholder={phFor(f)} />;
     }
     if (ft === 'date_today') {
       return <div style={readOnlyBox} title={labelFor(f)}>{todayStr()}</div>;
     }
+    if (ft === 'variable') {
+      // Document/auto field authored on the template — read-only stamped value (e.g. auto date).
+      const disp = variableDisplay(f);
+      return <div style={{ ...readOnlyBox, background: 'transparent', border: 'none', color: '#111827', justifyContent: 'flex-start' }} title={labelFor(f)}>{disp}</div>;
+    }
     if (ft === 'signature' || ft === 'initials') {
       const openSig = (e) => { stop(e); setActiveSignatureFieldId(id); setShowSignatureModal(true); };
       if (val) {
-        // Signed → show the captured signature; tap to re-sign.
         return (
           <div onClick={openSig} title={L('לחיצה לחתימה מחדש', 'Tap to re-sign')}
             style={{ ...base, padding: 2, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff' }}>
@@ -358,12 +492,12 @@ const DocumentFormPublic = () => {
       );
     }
     if (ft === 'date') {
-      return <input type="date" style={base} value={val ?? ''} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
+      return <input {...navProps(f)} type="date" style={base} value={val ?? ''} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
     }
     if (ft === 'dropdown') {
       const opts = Array.isArray(f.options) ? f.options : [];
       return (
-        <select style={base} value={val ?? ''} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)}>
+        <select {...navProps(f)} style={base} value={val ?? ''} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)}>
           <option value="">{phFor(f)}</option>
           {opts.map((o, i) => <option key={i} value={o}>{o}</option>)}
         </select>
@@ -371,46 +505,47 @@ const DocumentFormPublic = () => {
     }
     if (ft === 'radio_group') {
       const opts = Array.isArray(f.options) ? f.options : [];
-      // Two author-selectable display styles (field.displayStyle):
-      //  • 'toggle'   → a compact segmented כן/לא bar that fills the field box.
-      //  • 'checkbox' → (default) each option on its own row with a square check box.
-      // Both are mutually-exclusive (single choice); the stored value is the chosen option text.
-      // Default = 'checkbox' because the old inline-chip layout overflowed narrow fields into a
-      // horizontal scrollbar (the "◄|►" the field looked broken as).
-      const dstyle = f.displayStyle === 'toggle' ? 'toggle' : 'checkbox';
+      // Mutually-exclusive choice; the stored value is the chosen option text.
+      // Horizontal toggle is the DEFAULT for every option count (a stacked list can't fit the small
+      // pre-printed "כן / לא" box and shows only scrollbar arrows, so the customer can't fill it).
+      // Stacked checkboxes only when the author explicitly forced 'checkbox'.
+      const dstyle = f.displayStyle === 'checkbox' ? 'checkbox' : 'toggle';
       if (dstyle === 'toggle') {
-        // Compact segmented pill, centered in the field box (no full-box border/fill). The old version
-        // stretched a heavy 14px green bar across the whole box, which looked oversized next to the
-        // tiny pre-printed "כן / לא" text. Small font + tight padding keeps it unobtrusive.
+        // Horizontal segmented toggle filling the field box: every option side by side, the chosen one
+        // turns solid green with a ✓ so the customer SEES that the tap registered.
         return (
           <div style={{ ...base, padding: 0, border: 'none', background: 'transparent', boxShadow: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }} onClick={stop}>
-            <div style={{ display: 'inline-flex', border: `1.5px solid ${borderColor}`, borderRadius: 999, overflow: 'hidden', background: '#fff', maxWidth: '100%' }}>
-              {opts.slice(0, 3).map((o, i) => {
+            <div role="radiogroup" aria-label={labelFor(f)} dir={isRTL ? 'rtl' : 'ltr'}
+              style={{ display: 'flex', width: '100%', height: '100%', minHeight: 24, maxHeight: 36, boxSizing: 'border-box', border: `2px solid ${borderColor}`, borderRadius: 999, overflow: 'hidden', background: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,.18)' }}>
+              {opts.map((o, i) => {
                 const selected = val === o;
                 return (
-                  <button type="button" key={i} title={o} onClick={() => setVal(id, o)} style={{
-                    border: 'none', cursor: 'pointer', padding: '1px 8px', minWidth: 0,
-                    background: selected ? '#2e6155' : 'transparent',
-                    color: selected ? '#fff' : '#374151', fontWeight: selected ? 700 : 500,
-                    fontSize: 11, lineHeight: 1.5, whiteSpace: 'nowrap',
-                    borderInlineStart: i > 0 ? `1px solid ${borderColor}` : 'none',
-                    transition: 'all .12s ease',
-                  }}>{o}</button>
+                  <button {...(i === 0 ? navProps(f) : {})} type="button" role="radio" aria-checked={selected} key={i} title={o}
+                    onClick={() => { setVal(id, o); }}
+                    style={{
+                      flex: '1 1 0', minWidth: 0, border: 'none', cursor: 'pointer', padding: '0 6px',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
+                      background: selected ? '#2e6155' : '#fff',
+                      color: selected ? '#fff' : '#475569', fontWeight: 700,
+                      fontSize: 13, lineHeight: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                      borderInlineStart: i > 0 ? `1px solid ${borderColor}` : 'none',
+                      transition: 'background .12s ease, color .12s ease',
+                    }}>
+                    {selected && <span aria-hidden="true">✓</span>}{o}
+                  </button>
                 );
               })}
             </div>
           </div>
         );
       }
-      // 'checkbox' (stacked): square box + label per row, mutually exclusive. Hidden native radio
-      // preserved for accessibility + keyboard navigation.
       return (
         <div style={{ ...base, padding: '4px 8px', display: 'flex', flexDirection: 'column', alignItems: 'stretch', justifyContent: 'center', gap: 4, overflow: 'auto' }} onClick={stop}>
           {opts.map((o, i) => {
             const selected = val === o;
             return (
               <label key={i} title={o} style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                <input type="radio" name={id} value={o} checked={selected} onChange={() => setVal(id, o)} style={{ position: 'absolute', opacity: 0, width: 1, height: 1, margin: 0, pointerEvents: 'none' }} />
+                <input {...(i === 0 ? navProps(f) : {})} type="radio" name={id} value={o} checked={selected} onChange={() => setVal(id, o)} style={{ position: 'absolute', opacity: 0, width: 1, height: 1, margin: 0, pointerEvents: 'none' }} />
                 <span style={{
                   width: 18, height: 18, minWidth: 18, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                   border: `2px solid ${selected ? '#2e6155' : '#94a3b8'}`, borderRadius: 4,
@@ -427,32 +562,41 @@ const DocumentFormPublic = () => {
       const checked = val === true || val === 'true';
       return (
         <label style={{ ...base, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={stop} title={labelFor(f)}>
-          <input type="checkbox" checked={checked} onChange={(e) => setVal(id, e.target.checked)} style={{ width: 18, height: 18 }} />
+          <input {...navProps(f)} type="checkbox" checked={checked} onChange={(e) => setVal(id, e.target.checked)} style={{ width: 18, height: 18 }} />
         </label>
       );
     }
-    if (ft === 'number') return <input type="number" inputMode="decimal" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
-    if (ft === 'email') return <input type="email" inputMode="email" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
-    if (ft === 'phone') return <input type="tel" inputMode="tel" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
-    if (ft === 'id_number') return <input inputMode="numeric" dir="ltr" maxLength={9} style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value.replace(/\D/g, ''))} />;
+    if (ft === 'number') return <input {...navProps(f)} type="number" inputMode="decimal" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
+    if (ft === 'email') return <input {...navProps(f)} type="email" inputMode="email" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
+    if (ft === 'phone') return <input {...navProps(f)} type="tel" inputMode="tel" dir="ltr" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
+    if (ft === 'id_number') return <input {...navProps(f)} inputMode="numeric" dir="ltr" maxLength={9} style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value.replace(/\D/g, ''))} />;
     if (ft === 'multiline_text') {
       // Multi-line text: Enter inserts a newline (don't advance to the next field like single-line inputs do).
-      return <textarea onKeyDown={stop} style={{ ...base, resize: 'none', lineHeight: 1.3, textAlign: 'start', whiteSpace: 'pre-wrap', overflow: 'auto' }} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
+      return <textarea {...navProps(f)} onKeyDown={stop} style={{ ...base, resize: 'none', lineHeight: 1.3, textAlign: 'start', whiteSpace: 'pre-wrap', overflow: 'auto' }} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
     }
-    return <input type="text" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
+    return <input {...navProps(f)} type="text" style={base} value={val ?? ''} placeholder={phFor(f)} onClick={stop} onBlur={onBlur} onChange={(e) => setVal(id, e.target.value)} />;
   };
 
   // Admin-defined custom question shown at the very top of the form (see template "Fill-form settings").
+  // Required + format validation of one custom question (email / phone / ID number / number).
+  const customFieldError = (cf, raw) => {
+    const type = String(cf.type || 'text').toLowerCase();
+    const val = String(raw ?? '').trim();
+    if (!val) return cf.required ? L('שדה חובה', 'Required field') : null;
+    if (type === 'email' && !isValidEmail(val)) return L('כתובת אימייל לא תקינה', 'Invalid email address');
+    if (type === 'phone' && !isValidPhone(val)) return L('מספר טלפון לא תקין', 'Invalid phone number');
+    if (type === 'id_number' && !isValidIsraeliId(val)) return L('תעודת זהות לא תקינה', 'Invalid ID number');
+    if (type === 'number' && !/^-?\d+(\.\d+)?$/.test(val)) return L('יש להזין מספר', 'Must be a number');
+    return null;
+  };
+
   const renderCustomField = (cf) => {
     const cid = cf.id;
     const label = (isRTL ? cf.label : cf.labelEn) || cf.label || cf.labelEn || '';
     const v = customValues[cid] ?? '';
     const errKey = `custom_${cid}`;
     const cls = `dfp-input${errors[errKey] ? ' dfp-input-err' : ''}`;
-    // Corrupted legacy configs stored cf.type as [] (empty array) instead of a string. [] is truthy,
-    // so `(cf.type || 'text')` yields [] and `.toLowerCase()` throws, crashing the whole public form.
-    // Coerce anything non-string to a safe 'text' default.
-    const type = (typeof cf.type === 'string' ? cf.type : 'text').toLowerCase();
+    const type = String(cf.type || 'text').toLowerCase();
     let control;
     if (type === 'textarea') {
       control = <textarea className={cls} rows={3} value={v} onChange={(e) => setCustomVal(cid, e.target.value)} placeholder={label} style={{ resize: 'vertical' }} />;
@@ -466,8 +610,16 @@ const DocumentFormPublic = () => {
       );
     } else {
       const inputType = type === 'number' ? 'number' : type === 'email' ? 'email' : type === 'phone' ? 'tel' : 'text';
-      const dir = (type === 'email' || type === 'phone' || type === 'number') ? 'ltr' : undefined;
-      control = <input className={cls} type={inputType} dir={dir} value={v} onChange={(e) => setCustomVal(cid, e.target.value)} placeholder={label} />;
+      const dir = (type === 'email' || type === 'phone' || type === 'number' || type === 'id_number') ? 'ltr' : undefined;
+      const isId = type === 'id_number';
+      control = (
+        <input className={cls} type={inputType} dir={dir}
+          inputMode={isId ? 'numeric' : undefined} maxLength={isId ? 9 : undefined}
+          value={v}
+          onChange={(e) => setCustomVal(cid, isId ? e.target.value.replace(/\D/g, '') : e.target.value)}
+          onBlur={() => setErrors(prev => ({ ...prev, [errKey]: customFieldError(cf, customValues[cid]) || undefined }))}
+          placeholder={isId ? L('9 ספרות', '9 digits') : label} />
+      );
     }
     return (
       <div key={cid} style={{ ...styles.field, flex: '1 1 100%' }}>
@@ -486,19 +638,16 @@ const DocumentFormPublic = () => {
     if (cfg.collectContact) {
       if (cfg.showName && cfg.requireName && !signerName.trim()) nextErrors.signerName = L('נא להזין שם מלא', 'Please enter your full name');
       if (cfg.showPhone && cfg.requirePhone && !signerPhone.trim()) nextErrors.signerPhone = L('נא להזין טלפון', 'Please enter your phone');
+      if (cfg.showPhone && signerPhone.trim() && !isValidPhone(signerPhone)) nextErrors.signerPhone = L('מספר טלפון לא תקין', 'Invalid phone number');
       if (cfg.showEmail && cfg.requireEmail && !signerEmail.trim()) nextErrors.signerEmail = L('נא להזין אימייל', 'Please enter your email');
-      if (cfg.showEmail && signerEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signerEmail.trim())) {
+      if (cfg.showEmail && signerEmail.trim() && !isValidEmail(signerEmail)) {
         nextErrors.signerEmail = L('כתובת אימייל לא תקינה', 'Invalid email address');
       }
     }
     // Validate the custom questions (required + email format).
     (cfg.customFields || []).forEach(cf => {
-      const raw = customValues[cf.id];
-      const empty = raw === undefined || raw === null || String(raw).trim() === '';
-      if (cf.required && empty) nextErrors[`custom_${cf.id}`] = L('שדה חובה', 'Required field');
-      else if ((typeof cf.type === 'string' ? cf.type : '').toLowerCase() === 'email' && !empty && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(raw).trim())) {
-        nextErrors[`custom_${cf.id}`] = L('כתובת אימייל לא תקינה', 'Invalid email address');
-      }
+      const err = customFieldError(cf, customValues[cf.id]);
+      if (err) nextErrors[`custom_${cf.id}`] = err;
     });
     for (const f of fields) {
       const ft = (f.fieldType || '').toLowerCase();
@@ -513,8 +662,8 @@ const DocumentFormPublic = () => {
     }
     try {
       setSubmitting(true);
-      const fieldValues = {}; // keyed by fieldId
-      const fieldData = {};   // keyed by fieldKey
+      const fieldValues = {};
+      const fieldData = {};
       fields.forEach(f => {
         fieldValues[f.fieldId] = resolveValue(f);
         if (f.fieldKey) fieldData[f.fieldKey] = resolveValue(f);
@@ -587,7 +736,7 @@ const DocumentFormPublic = () => {
   const errorCount = Object.values(errors).filter(Boolean).length;
 
   return shell(
-    <form onSubmit={handleSubmit} style={styles.content}>
+    <form onSubmit={handleSubmit} style={{ ...styles.content, paddingBottom: fields.length > 1 ? 100 : 40 }}>
       <div style={styles.hint}>{L('מלא את השדות המסומנים על המסמך, ולאחר מכן שלח.', 'Fill in the highlighted fields on the document, then submit.')}</div>
 
       {errorCount > 0 && (
@@ -599,7 +748,6 @@ const DocumentFormPublic = () => {
         </div>
       )}
 
-      {/* Contact details (needed to record who filled the form) — shown only when the template asks for it */}
       {cfg.collectContact && (cfg.showName || cfg.showPhone || cfg.showEmail) && (
       <div style={styles.contactCard}>
         {cfg.showName && (
@@ -617,7 +765,7 @@ const DocumentFormPublic = () => {
           <label style={styles.label}>{L('טלפון', 'Phone')} {cfg.requirePhone && <span style={styles.req}>*</span>}</label>
           <input className={`dfp-input${errors.signerPhone ? ' dfp-input-err' : ''}`} value={signerPhone}
             onChange={(e) => { setSignerPhone(e.target.value); setErrors(p => p.signerPhone ? { ...p, signerPhone: undefined } : p); }}
-            onBlur={() => setErrors(p => ({ ...p, signerPhone: (cfg.requirePhone && !signerPhone.trim()) ? L('נא להזין טלפון', 'Please enter your phone') : undefined }))}
+            onBlur={() => setErrors(p => ({ ...p, signerPhone: (cfg.requirePhone && !signerPhone.trim()) ? L('נא להזין טלפון', 'Please enter your phone') : (signerPhone.trim() && !isValidPhone(signerPhone)) ? L('מספר טלפון לא תקין', 'Invalid phone number') : undefined }))}
             dir="ltr" placeholder="050-0000000" />
           {errors.signerPhone && <span style={styles.inlineErr}>{errors.signerPhone}</span>}
         </div>
@@ -641,7 +789,6 @@ const DocumentFormPublic = () => {
         </div>
       )}
 
-      {/* The document itself, with fillable fields overlaid on it */}
       {hasPdf && (
         <>
           <div style={styles.viewerToolbar}>
@@ -687,9 +834,7 @@ const DocumentFormPublic = () => {
                       {pageFields.map((f) => (
                         <div key={f.fieldId} style={getFieldStyle(f)} title={labelFor(f)}>
                           {renderOverlayControl(f)}
-                          {f.required && (
-                            <span style={styles.reqDot}>*</span>
-                          )}
+                          {f.required && <span style={styles.reqDot}>*</span>}
                           {errors[f.fieldId] && <span style={styles.fieldErr}>{errors[f.fieldId]}</span>}
                         </div>
                       ))}
@@ -703,7 +848,6 @@ const DocumentFormPublic = () => {
         </>
       )}
 
-      {/* Fallback: no PDF attached → render fields as a plain list so the form still works */}
       {!hasPdf && fields.length > 0 && (
         <div style={styles.contactCard}>
           {fields.map((f) => (
@@ -719,10 +863,36 @@ const DocumentFormPublic = () => {
       )}
 
       <button type="submit" style={styles.submit} disabled={submitting}>
-        {submitting ? <><FaSpinner className="dfp-spin" /> {L('שולח...', 'Submitting...')}</> : ((isRTL ? cfg.submitLabel : cfg.submitLabelEn) || L('שלח טופס', 'Submit form'))}
+        {submitting
+          ? <><FaSpinner className="dfp-spin" /> {L('שולח...', 'Submitting...')}</>
+          : ((isRTL ? cfg.submitLabel : cfg.submitLabelEn) || L('שלח טופס', 'Submit form'))}
       </button>
 
-      {/* Fullscreen document */}
+      {orderedFields.length > 1 && (
+        <div style={styles.navBar}>
+          <button type="button" style={{ ...styles.navBtn, opacity: activeIdx <= 0 ? 0.4 : 1 }}
+            disabled={activeIdx <= 0} onClick={goPrevField} title={L('שדה קודם', 'Previous field')}>
+            {isRTL ? '›' : '‹'} {L('הקודם', 'Prev')}
+          </button>
+          <div style={styles.navInfo}>
+            <span style={styles.navCount}>{L(`שדה ${activeIdx + 1} מתוך ${orderedFields.length}`, `Field ${activeIdx + 1} of ${orderedFields.length}`)}</span>
+            <span style={styles.navLabel}>{labelFor(orderedFields[activeIdx])}</span>
+          </div>
+          {activeIdx >= orderedFields.length - 1 ? (
+            <button type="button" style={{ ...styles.navBtn, ...styles.navBtnPrimary }}
+              onClick={() => { const b = document.querySelector('button[type="submit"]'); b?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }}
+              title={L('סיום', 'Finish')}>
+              {L('סיום', 'Finish')} ✓
+            </button>
+          ) : (
+            <button type="button" style={{ ...styles.navBtn, ...styles.navBtnPrimary }}
+              onClick={goNextField} title={L('שדה הבא', 'Next field')}>
+              {L('הבא', 'Next')} {isRTL ? '‹' : '›'}
+            </button>
+          )}
+        </div>
+      )}
+
       {showFullscreen && hasPdf && (
         <div style={styles.fsOverlay} onClick={() => setShowFullscreen(false)}>
           <div style={styles.fsContent} onClick={(e) => e.stopPropagation()}>
@@ -762,7 +932,6 @@ const DocumentFormPublic = () => {
         </div>
       )}
 
-      {/* Signature capture modal */}
       {showSignatureModal && (
         <div style={styles.sigOverlay} onClick={closeSignatureModal}>
           <div style={styles.sigModal} onClick={(e) => e.stopPropagation()}>
@@ -844,6 +1013,22 @@ const styles = {
   sigFooter: { display: 'flex', justifyContent: 'space-between', gap: 10, marginTop: 14 },
   sigClearBtn: { padding: '10px 16px', background: '#f1f5f9', color: '#334155', border: '1px solid #e2e8f0', borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: 'pointer' },
   sigSaveBtn: { padding: '10px 18px', background: 'linear-gradient(135deg,#2e6155,#34d399)', color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer' },
+  navBar: {
+    position: 'fixed', insetInline: 0, bottom: 0, zIndex: 900,
+    margin: '0 auto', maxWidth: 560, width: 'calc(100% - 24px)',
+    left: 0, right: 0,
+    background: 'rgba(15,23,42,.94)', backdropFilter: 'blur(6px)',
+    borderRadius: '14px 14px 0 0', boxShadow: '0 -6px 24px rgba(2,6,23,.28)',
+    padding: '10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10,
+  },
+  navBtn: {
+    padding: '9px 14px', background: 'rgba(255,255,255,.12)', color: '#fff', border: '1px solid rgba(255,255,255,.18)',
+    borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
+  },
+  navBtnPrimary: { background: 'linear-gradient(135deg,#2e6155,#34d399)', border: 'none' },
+  navInfo: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, flex: 1, minWidth: 0, textAlign: 'center' },
+  navCount: { color: '#94f5d0', fontSize: 11, fontWeight: 700 },
+  navLabel: { color: '#e2e8f0', fontSize: 13, fontWeight: 600, maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
 };
 
 export default DocumentFormPublic;

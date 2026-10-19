@@ -310,8 +310,8 @@ export const API_SECTIONS = [
         path: '/media/{mediaId}',
         scope: 'conversations:read',
         summary: {
-          he: 'הורדת קובץ מדיה (תמונה, וידאו, הקלטה, מסמך) של הודעה. אחסון המדיה פרטי — לכן הודעות מה-API מחזירות mediaId ו-mediaUrl שהוא הכתובת הזו, ויש לפנות אליה עם אותו Gambot Token. נגישים רק קבצים של הארגון שלכם.',
-          en: 'Download a message\'s media file (image, video, audio/voice note, document). Media storage is private, so messages from the API return a mediaId and a mediaUrl that points to this endpoint — call it with the same Gambot Token. Only your organization\'s files are accessible.',
+          he: 'מדיה של שיחות (לא ספריית המדיה — לספרייה ראו /library/files): הורדת קובץ מדיה (תמונה, וידאו, הקלטה, מסמך) של הודעה. אחסון המדיה פרטי — לכן הודעות מה-API מחזירות mediaId ו-mediaUrl שהוא הכתובת הזו, ויש לפנות אליה עם אותו Gambot Token. נגישים רק קבצים של הארגון שלכם.',
+          en: 'CHAT MEDIA (not the media library — for the library see /library/files): download a message\'s media file (image, video, audio/voice note, document). Media storage is private, so messages from the API return a mediaId and a mediaUrl that points to this endpoint — call it with the same Gambot Token. Only your organization\'s files are accessible.',
         },
         params: [
           { name: 'mediaId', in: 'path', type: 'string', required: true, desc: { he: 'ה-mediaId שהוחזר בהודעה.', en: 'The mediaId returned on a message.' } },
@@ -355,6 +355,137 @@ export const API_SECTIONS = [
           he: 'שגיאות: 404 not_found — מזהה שגוי, מדיה של ארגון אחר, או שפג תוקפה ב-WhatsApp ואין לנו עותק. MCP: הכלי gambot_get_media_url.',
           en: 'Errors: 404 not_found — wrong id, another organization\'s media, or it expired at WhatsApp and we hold no copy. MCP: the gambot_get_media_url tool.',
         },
+      },
+      {
+        method: 'POST',
+        path: '/library/files',
+        scope: 'library:write',
+        summary: {
+          he: 'ספריית המדיה (קבצים שאתם שומרים בכוונה, לא מדיה של שיחות): העלאת קובץ או טקסט לאחסון אונליין. שלחו text (למשל JSON/Markdown), contentBase64 או url (Gambot מוריד ומאחסן) — או multipart עם part בשם file. מחזיר permanentUrl: קישור קבוע שאינו פג לעולם. עם ttlHours (1–168) מחזיר גם קישור זמני בשדה url + expiresAt.',
+          en: 'MEDIA LIBRARY (files you store on purpose — not chat media): upload a file or text for online storage. Send text (e.g. JSON/Markdown), contentBase64 or url (Gambot downloads and re-hosts it) — or multipart with a part named file. Returns permanentUrl: a link that never expires. With ttlHours (1–168) it also returns an expiring link in url + expiresAt.',
+        },
+        params: [
+          { name: 'text', in: 'body', type: 'string', required: false, desc: { he: 'תוכן טקסט לשמירה. השתמשו ב-fileName לקביעת הסוג (config.json, notes.md).', en: 'Text content to store. Use fileName to set the type (config.json, notes.md).' } },
+          { name: 'contentBase64', in: 'body', type: 'string', required: false, desc: { he: 'תוכן הקובץ ב-base64 (גם data: URI).', en: 'File content as base64 (a data: URI is accepted).' } },
+          { name: 'url', in: 'body', type: 'string', required: false, desc: { he: 'כתובת ציבורית להורדה ואחסון.', en: 'Public URL to download and re-host.' } },
+          { name: 'fileName', in: 'body', type: 'string', required: false, desc: { he: 'שם הקובץ כולל סיומת.', en: 'File name including extension.' } },
+          { name: 'contentType', in: 'body', type: 'string', required: false, desc: { he: 'סוג MIME (מזוהה לפי הסיומת אם חסר).', en: 'MIME type (guessed from the extension when omitted).' } },
+          { name: 'folderId', in: 'body', type: 'string', required: false, desc: { he: 'תיקייה בספרייה (GET /media/folders).', en: 'Library folder (GET /media/folders).' } },
+          { name: 'ttlHours', in: 'body', type: 'int', required: false, desc: { he: 'ריק/0 = קישור קבוע בלבד. 1–168 = מחזיר גם קישור זמני שפג אחרי מספר השעות (מקסימום 7 ימים).', en: 'Empty/0 = permanent link only. 1–168 = also return an expiring link that dies after that many hours (max 7 days).' } },
+        ],
+        request: `{
+  "text": "{ \\"openHours\\": \\"9-18\\" }",
+  "fileName": "config.json",
+  "ttlHours": 24
+}`,
+        curl: curl('POST', '/library/files', `{ "text": "{ \\"openHours\\": \\"9-18\\" }", "fileName": "config.json", "ttlHours": 24 }`),
+        response: `{
+  "success": true,
+  "message": "File uploaded.",
+  "data": {
+    "id": "k3J9...", "mediaId": "1T3Jn...", "name": "config.json", "mimeType": "application/json", "fileType": "document", "size": 24,
+    "folderId": "", "createdAt": "2026-10-18T10:00:00Z",
+    "permanentUrl": "https://gambot.azurewebsites.net/api/media/share?t=...",
+    "url": "https://storage.googleapis.com/...&X-Goog-Signature=...", "expiring": true, "expiresAt": "2026-10-19T10:00:00Z"
+  }
+}`,
+        notes: {
+          he: 'קישור permanentUrl אינו דורש כותרת Authorization ופועל עד למחיקת הקובץ. קבצים עד 50MB. MCP: gambot_library_upload_file.',
+          en: 'permanentUrl needs no Authorization header and works until the file is deleted. Files up to 50MB. MCP: gambot_upload_media.',
+        },
+      },
+      {
+        method: 'GET',
+        path: '/library/files',
+        scope: 'library:read',
+        summary: {
+          he: 'ספריית המדיה (לא מדיה של שיחות): רשימת הקבצים השמורים (מהחדש לישן). כל פריט כולל permanentUrl (קבוע) ו-url (זהה, או קישור זמני כשנשלח ttlHours).',
+          en: 'MEDIA LIBRARY (not chat media): list stored files (newest first). Each item has permanentUrl (permanent) and url (same, or an expiring link when ttlHours is sent).',
+        },
+        params: [
+          { name: 'folderId', in: 'query', type: 'string', required: false, desc: { he: 'סינון לפי תיקייה.', en: 'Filter by folder.' } },
+          { name: 'fileType', in: 'query', type: 'string', required: false, desc: { he: 'image | video | audio | document', en: 'image | video | audio | document' } },
+          { name: 'q', in: 'query', type: 'string', required: false, desc: { he: 'חיפוש בשם הקובץ.', en: 'Search in the file name.' } },
+          { name: 'limit', in: 'query', type: 'int', required: false, desc: { he: '1–100 (ברירת מחדל 50).', en: '1–100 (default 50).' } },
+          { name: 'offset', in: 'query', type: 'int', required: false, desc: { he: 'דילוג.', en: 'Skip.' } },
+          { name: 'ttlHours', in: 'query', type: 'int', required: false, desc: { he: 'קישורים זמניים ל-1–168 שעות. ללא = קבועים.', en: 'Expiring links for 1–168 hours. Omit = permanent.' } },
+        ],
+        request: null,
+        curl: `curl "${API_BASE}/library/files?fileType=image&limit=20" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{ "success": true, "data": { "items": [ { "id": "k3J9...", "name": "logo.png", "fileType": "image", "permanentUrl": "...", "url": "..." } ], "count": 1, "total": 1, "limit": 20, "offset": 0 } }`,
+      },
+      {
+        method: 'GET',
+        path: '/library/files/{id}',
+        scope: 'library:read',
+        summary: {
+          he: 'קובץ אחד מהספרייה עם הקישורים שלו. includeContent=true מחזיר גם את התוכן (content) של קובץ טקסט קטן (עד 512KB) — כך קוראים מידע ששמרתם.',
+          en: 'One library file with its links. includeContent=true also returns the content of a small text file (up to 512KB) — this is how you read back information you stored.',
+        },
+        params: [
+          { name: 'id', in: 'path', type: 'string', required: true, desc: { he: 'מזהה הקובץ (id).', en: 'File id.' } },
+          { name: 'ttlHours', in: 'query', type: 'int', required: false, desc: { he: 'קישור זמני ל-1–168 שעות; ללא = קבוע.', en: 'Expiring link for 1–168 hours; omit = permanent.' } },
+          { name: 'includeContent', in: 'query', type: 'boolean', required: false, desc: { he: 'החזר את הטקסט של קובץ טקסט קטן.', en: 'Return the text of a small text file.' } },
+        ],
+        request: null,
+        curl: `curl "${API_BASE}/library/files/FILE_ID?includeContent=true" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{ "success": true, "data": { "id": "k3J9...", "name": "config.json", "mimeType": "application/json", "permanentUrl": "...", "url": "...", "expiring": false, "expiresAt": null, "content": "{ \\"openHours\\": \\"9-18\\" }" } }`,
+      },
+      {
+        method: 'PUT',
+        path: '/library/files/{id}',
+        scope: 'library:write',
+        summary: {
+          he: 'החלפת התוכן של קובץ קיים במקום — אותו id ואותו permanentUrl, כך שכל מי שמצביע על הקישור מקבל מיד את התוכן החדש. מתאים לשמירת קובץ הגדרות / מחירון אונליין מעודכן.',
+          en: 'Replace the content of an existing file in place — same id and same permanentUrl, so everything pointing to the link serves the new content immediately. Ideal for keeping an online config / price list current.',
+        },
+        params: [
+          { name: 'id', in: 'path', type: 'string', required: true, desc: { he: 'מזהה הקובץ.', en: 'File id.' } },
+          { name: 'text | contentBase64 | url', in: 'body', type: 'string', required: false, desc: { he: 'התוכן החדש (כמו בהעלאה).', en: 'The new content (as in upload).' } },
+          { name: 'fileName', in: 'body', type: 'string', required: false, desc: { he: 'שם תצוגה חדש.', en: 'New display name.' } },
+          { name: 'contentType', in: 'body', type: 'string', required: false, desc: { he: 'סוג MIME חדש.', en: 'New MIME type.' } },
+        ],
+        request: `{ "text": "{ \\"openHours\\": \\"8-20\\" }" }`,
+        curl: curl('PUT', '/library/files/FILE_ID', `{ "text": "{ \\"openHours\\": \\"8-20\\" }" }`),
+        response: `{ "success": true, "message": "File updated.", "data": { "id": "k3J9...", "permanentUrl": "...", "size": 25 } }`,
+      },
+      {
+        method: 'DELETE',
+        path: '/library/files/{id}',
+        scope: 'library:write',
+        summary: {
+          he: 'מחיקת קובץ מהספרייה — הרשומה והקובץ עצמו; הקישור הקבוע וכל קישור זמני מפסיקים לעבוד. לא ניתן לשחזור.',
+          en: 'Delete a library file — the record and the stored file; its permanent link and any expiring links stop working. Irreversible.',
+        },
+        params: [
+          { name: 'id', in: 'path', type: 'string', required: true, desc: { he: 'מזהה הקובץ.', en: 'File id.' } },
+        ],
+        request: null,
+        curl: `curl -X DELETE "${API_BASE}/library/files/FILE_ID" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{ "success": true, "message": "File deleted.", "data": { "id": "k3J9...", "deleted": true, "fileDeleted": true } }`,
+      },
+      {
+        method: 'GET',
+        path: '/library/folders',
+        scope: 'library:read',
+        summary: { he: 'רשימת תיקיות ספריית המדיה.', en: 'List the media library folders.' },
+        params: [],
+        request: null,
+        curl: `curl "${API_BASE}/library/folders" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{ "success": true, "data": { "items": [ { "id": "f1...", "name": "Menus", "parentId": "" } ], "count": 1 } }`,
+      },
+      {
+        method: 'POST',
+        path: '/library/folders',
+        scope: 'library:write',
+        summary: { he: 'יצירת תיקייה בספריית המדיה (אפשר בתוך parentId).', en: 'Create a media library folder (optionally inside parentId).' },
+        params: [
+          { name: 'name', in: 'body', type: 'string', required: true, desc: { he: 'שם התיקייה.', en: 'Folder name.' } },
+          { name: 'parentId', in: 'body', type: 'string', required: false, desc: { he: 'תיקיית אב.', en: 'Parent folder.' } },
+        ],
+        request: `{ "name": "Menus" }`,
+        curl: curl('POST', '/library/folders', `{ "name": "Menus" }`),
+        response: `{ "success": true, "message": "Folder created.", "data": { "id": "f1...", "name": "Menus", "parentId": "" } }`,
       },
       {
         method: 'GET',
@@ -1269,8 +1400,8 @@ export const API_SECTIONS = [
           { name: 'intervalNumber', in: 'body', type: 'int', required: false, desc: { he: 'כל N מרווחים.', en: 'Every N intervals.' } },
           { name: 'endCondition', in: 'body', type: 'object', required: false, desc: { he: '{ type: none|until|count, value }.', en: '{ type: none|until|count, value }.' } },
           { name: 'recipientSource', in: 'body', type: 'string', required: false, desc: { he: 'למשל "Excel".', en: 'e.g. "Excel".' } },
-          { name: 'ExcelData', in: 'body', type: 'object', required: false, desc: { he: '{ recipients: [{ phone, variables, rowData }] }.', en: '{ recipients: [{ phone, variables, rowData }] }.' } },
-          { name: 'ContactFilters', in: 'body', type: 'object', required: false, desc: { he: 'פלח CRM: { filters:[…], logic:"AND|OR" }.', en: 'CRM segment: { filters:[…], logic:"AND|OR" }.' } },
+          { name: 'ExcelData', in: 'body', type: 'object', required: false, desc: { he: '{ recipients: [{ phone, variables, rowData }], historyFilters?: { logic, filters:[…] } }. historyFilters מסנן שורות לפי היסטוריית שיחות וואטסאפ בזמן ההרצה (שורות שהוסרו מסומנות "Skipped - Filter") — ראו "פילטרים לפי שיחות וואטסאפ" בדוגמאות.', en: '{ recipients: [{ phone, variables, rowData }], historyFilters?: { logic, filters:[…] } }. historyFilters removes rows by WhatsApp conversation history at run time (removed rows are marked "Skipped - Filter") — see the "WhatsApp-history filters" examples.' } },
+          { name: 'ContactFilters', in: 'body', type: 'object', required: false, desc: { he: 'פלח CRM: { filters:[…], logic:"AND|OR" }. סוגי פילטר: group (תגית), contactField, relatedRecord, campaign (received/notReceived), ctwa ו-whatsappHistory (היסטוריית שיחות).', en: 'CRM segment: { filters:[…], logic:"AND|OR" }. Filter types: group (tag), contactField, relatedRecord, campaign (received/notReceived), ctwa and whatsappHistory (conversation history).' } },
           { name: 'templateVariableQuery', in: 'body', type: 'object[]', required: false, desc: { he: 'ממפה משתני תבנית לעמודות/שדות.', en: 'Maps template variables to columns/fields.' } },
           { name: 'fromNumberId', in: 'body', type: 'string', required: false, desc: { he: 'שולח לארגונים מרובי-מספרים — phoneNumberId או מספר תצוגה (ראו GET /numbers). ברירת מחדל: המספר הראשי.', en: 'Sender for multi-number orgs — a phoneNumberId or display number (see GET /numbers). Defaults to the primary number.' } },
           { name: 'sendResultsSummary', in: 'body', type: 'bool', required: false, desc: { he: 'שליחת סיכום תוצאות הרצה במייל אחרי כל הרצה. ברירת מחדל דרך ה-API/MCP: true. שלחו false להשבתה.', en: 'Email a run-results summary after each run. Default via API/MCP: true. Send false to disable.' } },
@@ -1370,6 +1501,58 @@ export const API_SECTIONS = [
   "ContactFilters": { "logic": "AND", "filters": [ { "filterType": "group", "operator": "equals", "value": "Leads" } ] }
 }`),
           },
+          {
+            label: { he: '5) פילטרים לפי שיחות וואטסאפ — קהל "שותק" 30 ימים (תגית VIP)', en: '5) WhatsApp-history filters — "silent" audience for 30 days (VIP tag)' },
+            code: curl('POST', '/campaigns', `{
+  "campaignName": "winback_vip_0626",
+  "campaignTrigger": "Manually",
+  "messageType": "Template",
+  "wabaTemplateId": "winback_vip_0626",
+  "ContactFilters": {
+    "logic": "AND",
+    "filters": [
+      { "filterType": "group", "operator": "equals", "groupValue": ["VIP"] },
+      { "filterType": "whatsappHistory", "operator": "no_message_in_last", "value": "30", "historyUnit": "days" }
+    ]
+  }
+}`),
+          },
+          {
+            label: { he: '6) פילטר קמפיין — מי שלא קיבל את קמפיין קודם (notReceived)', en: '6) Campaign filter — contacts who did NOT receive a previous campaign (notReceived)' },
+            code: curl('POST', '/campaigns', `{
+  "campaignName": "promo_followup_0626",
+  "campaignTrigger": "Manually",
+  "messageType": "Template",
+  "wabaTemplateId": "promo_followup_0626",
+  "ContactFilters": {
+    "logic": "AND",
+    "filters": [
+      { "filterType": "group", "operator": "equals", "groupValue": ["לקוחות חדשים"] },
+      { "filterType": "campaign", "operator": "notReceived", "campaignValue": "PREVIOUS_CAMPAIGN_ID" }
+    ]
+  }
+}`),
+          },
+          {
+            label: { he: '7) אקסל + היסטוריית שיחות — רק מי שמעולם לא שלחנו לו הודעה', en: '7) Excel + conversation history — only people we never messaged' },
+            code: curl('POST', '/campaigns', `{
+  "campaignName": "excel_new_people_0626",
+  "campaignTrigger": "Manually",
+  "messageType": "Template",
+  "wabaTemplateId": "welcome_new_lead_0626",
+  "recipientSource": "Excel",
+  "ExcelData": {
+    "recipients": [
+      { "phone": "972501234567", "variables": { "var1": "דנה" } },
+      { "phone": "972507654321", "variables": { "var1": "יוסי" } }
+    ],
+    "historyFilters": {
+      "logic": "AND",
+      "filters": [ { "filterType": "whatsappHistory", "operator": "never_messaged" } ]
+    }
+  }
+}`),
+          },
         ],
       },
       {
@@ -1414,6 +1597,7 @@ export const API_SECTIONS = [
           { name: 'excelRecipients', in: 'body', type: 'object[]', required: false, desc: { he: '[{ phone, variables, rowData }].', en: '[{ phone, variables, rowData }].' } },
           { name: 'keys', in: 'body', type: 'string[]', required: false, desc: { he: 'קהל לפי תגיות/רשימות: שליחה לכל איש קשר המתויג באחת מאלה (למשל ["לקוחות חדשים"]). הדרך הפשוטה ל"שליחה לתגית X". מקבל גם tags.', en: 'Audience by tags/lists: send to every contact tagged with ANY of these (e.g. ["לקוחות חדשים"]). The simple way to do "send to tag X". "tags" also accepted.' } },
           { name: 'filters', in: 'body', type: 'object', required: false, desc: { he: 'פלח CRM מתקדם — מתורגם למספרי טלפון. { logic, filters:[...] }. פריט תגית: { filterType:"group", operator:"equals", groupValue:["VIP"] }.', en: 'Advanced CRM segment — resolved to phone numbers. { logic, filters:[...] }. Tag item: { filterType:"group", operator:"equals", groupValue:["VIP"] }.' } },
+          { name: 'historyFilters', in: 'body', type: 'object', required: false, desc: { he: 'סינון הקהל לפי היסטוריית שיחות וואטסאפ, אחרי שהקהל נקבע (keys / recipientPhoneNumbers / excelRecipients / filters). { logic:"AND|OR", filters:[ { filterType:"whatsappHistory", operator, value?, historyUnit? } , { filterType:"campaign", operator:"received|notReceived", campaignValue } ] }. אופרטורים: never_messaged (מעולם לא החלפנו הודעה) | never_replied (מעולם לא כתב/ה לנו) | no_message_in_last / no_inbound_in_last / no_outbound_in_last (אין הודעה / אין הודעה נכנסת / אין הודעה יוצאת בטווח — כולל מי שמעולם לא יצרנו איתו קשר) | inbound_in_last / outbound_in_last (יש הודעה נכנסת / יוצאת בטווח) | last_message_inbound (הוא/היא דיבר/ה אחרון) | last_message_outbound (אנחנו דיברנו אחרונים ולא ענו לנו). לאופרטורים *_in_last: value = מספר, historyUnit = "hours" או "days" (ברירת מחדל days). התגובה כוללת historyFilter { applied, before, kept, removed }; אם כולם הוסרו — שגיאת empty_audience. אותם פריטים עובדים גם בתוך filters (פלח CRM).', en: 'Narrow the audience by WhatsApp conversation history AFTER it is resolved (keys / recipientPhoneNumbers / excelRecipients / filters). { logic:"AND|OR", filters:[ { filterType:"whatsappHistory", operator, value?, historyUnit? } , { filterType:"campaign", operator:"received|notReceived", campaignValue } ] }. Operators: never_messaged (we never exchanged a message) | never_replied (they never wrote to us) | no_message_in_last / no_inbound_in_last / no_outbound_in_last (no message / no inbound / no outbound within the range — also matches people never contacted) | inbound_in_last / outbound_in_last (inbound / outbound message within the range) | last_message_inbound (they spoke last) | last_message_outbound (we spoke last and they did not answer). For the *_in_last operators: value = a number, historyUnit = "hours" or "days" (default days). The response includes historyFilter { applied, before, kept, removed }; if everyone is removed the call fails with empty_audience. The same items also work inside filters (CRM segment).' } },
           { name: 'consentConfirmed', in: 'body', type: 'bool', required: false, desc: { he: 'אישור הסכמה לדיוור לקהל זה. ברירת מחדל true. נמענים תמיד יכולים להסיר עצמם (ראו optOut בתגובה).', en: 'Assert consent to mail this audience. Defaults to true. Recipients can always opt out (see optOut in the response).' } },
           { name: 'dryRun', in: 'body', type: 'bool', required: false, desc: { he: 'תצוגה מקדימה בלבד — לא שולח. מחזיר את גודל הקהל, ולדיוור regular כמה נמענים עם חלון 24 שעות סגור (לא יקבלו אותו) בתוספת המלצה.', en: 'Preview only — does not send. Returns the audience size, and for a regular broadcast how many recipients have a CLOSED 24h window (won\'t receive it) plus a recommendation.' } },
           { name: 'confirmRegular', in: 'body', type: 'bool', required: false, desc: { he: 'נדרש כדי לשלוח בפועל דיוור "regular" (טקסט חופשי) דרך ה-MCP. בלעדיו השליחה נחסמת ומחזירה regular_window_confirmation_required עם מספר החלונות הסגורים — הציגו זאת למשתמש והמליצו על תבנית, ואז שלחו שוב עם confirmRegular=true. מתעלמים ממנו כאשר messageType=Template.', en: 'Required to actually SEND a "regular" free-text broadcast via MCP. Without it the send is blocked and returns regular_window_confirmation_required with the closed-window count — surface it to the user and recommend a template, then re-send with confirmRegular=true. Ignored for messageType=Template.' } },
@@ -1479,6 +1663,57 @@ export const API_SECTIONS = [
   "messageType": "regular",
   "message": "מבצע חדש רק עבורכם!",
   "filters": { "logic": "OR", "filters": [ { "filterType": "group", "operator": "equals", "groupValue": ["VIP"] } ] }
+}`),
+          },
+          {
+            label: { he: 'היסטוריה: תגית + מעולם לא שלחנו להם (never_messaged)', en: 'History: a tag + people we never messaged (never_messaged)' },
+            code: curl('POST', '/campaigns/send', `{
+  "messageType": "Template",
+  "templateId": "intro_offer_0626",
+  "keys": ["לידים מהאתר"],
+  "historyFilters": { "logic": "AND", "filters": [ { "filterType": "whatsappHistory", "operator": "never_messaged" } ] }
+}`),
+          },
+          {
+            label: { he: 'היסטוריה: לא כתבו לנו 48 שעות (no_inbound_in_last)', en: 'History: have not written to us in 48 hours (no_inbound_in_last)' },
+            code: curl('POST', '/campaigns/send', `{
+  "messageType": "Template",
+  "templateId": "gentle_reminder_0626",
+  "recipientPhoneNumbers": ["972501234567", "972507654321"],
+  "historyFilters": { "logic": "AND", "filters": [ { "filterType": "whatsappHistory", "operator": "no_inbound_in_last", "value": "48", "historyUnit": "hours" } ] }
+}`),
+          },
+          {
+            label: { he: 'היסטוריה: לא ענו להודעה האחרונה שלנו (last_message_outbound) — בפלח CRM', en: 'History: did not answer our last message (last_message_outbound) — inside a CRM segment' },
+            code: curl('POST', '/campaigns/send', `{
+  "messageType": "Template",
+  "templateId": "followup_no_answer_0626",
+  "filters": {
+    "logic": "AND",
+    "filters": [
+      { "filterType": "group", "operator": "equals", "groupValue": ["הצעת מחיר"] },
+      { "filterType": "whatsappHistory", "operator": "last_message_outbound" }
+    ]
+  }
+}`),
+          },
+          {
+            label: { he: 'היסטוריה: כתבו לנו ב-7 הימים האחרונים (inbound_in_last) — תצוגה מקדימה (dryRun)', en: 'History: wrote to us in the last 7 days (inbound_in_last) — preview (dryRun)' },
+            code: curl('POST', '/campaigns/send', `{
+  "messageType": "Template",
+  "templateId": "active_customers_update_0626",
+  "keys": ["לקוחות"],
+  "dryRun": true,
+  "historyFilters": { "logic": "AND", "filters": [ { "filterType": "whatsappHistory", "operator": "inbound_in_last", "value": "7", "historyUnit": "days" } ] }
+}`),
+          },
+          {
+            label: { he: 'קמפיין קודם: מי שלא קיבל את קמפיין X (notReceived)', en: 'Previous campaign: contacts who did not receive campaign X (notReceived)' },
+            code: curl('POST', '/campaigns/send', `{
+  "messageType": "Template",
+  "templateId": "promo_summer_sale_0626",
+  "keys": ["לקוחות"],
+  "historyFilters": { "logic": "AND", "filters": [ { "filterType": "campaign", "operator": "notReceived", "campaignValue": "PREVIOUS_CAMPAIGN_ID" } ] }
 }`),
           },
         ],
@@ -2516,6 +2751,8 @@ export const API_SECTIONS = [
 export const API_SCOPES = [
   { scope: 'messages:send', he: 'שליחת הודעות ותבניות', en: 'Send messages and templates' },
   { scope: 'conversations:read', he: 'קריאת שיחות והודעות', en: 'Read conversations and messages' },
+  { scope: 'library:read', he: 'קריאת ספריית המדיה (קבצים שאוחסנו בכוונה) וקבלת קישורים קבועים/זמניים — לא מדיה של שיחות', en: 'Read the media library (files stored on purpose) and get permanent/expiring links — not chat media' },
+  { scope: 'library:write', he: 'העלאה, עדכון ומחיקה בספריית המדיה', en: 'Upload, update and delete media library files' },
   { scope: 'templates:read', he: 'קריאת תבניות', en: 'Read templates' },
   { scope: 'templates:write', he: 'יצירת תבניות', en: 'Create templates' },
   { scope: 'contacts:read', he: 'קריאת אנשי קשר', en: 'Read contacts' },

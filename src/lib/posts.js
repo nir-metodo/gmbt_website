@@ -13719,6 +13719,196 @@ const posts = [
 `
   },
   seoUrl: getSeoUrl('מגבלות שליחת מייל: Gmail, Outlook ו-Microsoft 365 — כמה אפשר לשלוח ביום ומה עדיף')
+},
+{
+  id: 49,
+  seoTitle: {
+    he: 'דיוור חד פעמי בוואטסאפ בלי מספר ובלי אימות מול מטא — השקנו פתרון | גמבוט',
+    en: 'One-Time WhatsApp Broadcast With No Number and No Meta Verification — We Built the Solution | Gambot'
+  },
+  metaDescription: {
+    he: 'רוצים לשלוח הודעת וואטסאפ אחת לרשימה — למשל הזמנה לקבוצה — בלי להקים מספר ובלי לעבור אימות עסק מול מטא? בנינו דיוור חד פעמי: מעלים אקסל, כותבים הודעה, משלמים ומתזמנים. החל מ-49 ש"ח לפני מע"מ.',
+    en: 'Want to send a single WhatsApp message to a list — for example an invitation to a group — without setting up a number or going through Meta business verification? We built one-time broadcast: upload a spreadsheet, write a message, pay and schedule. From ILS 49 before VAT.'
+  },
+  keywords: {
+    he: ['דיוור חד פעמי', 'דיוור חד פעמי בוואטסאפ', 'שליחת הודעה חד פעמית בוואטסאפ', 'הזמנה לקבוצת וואטסאפ', 'דיוור וואטסאפ בלי מספר', 'דיוור וואטסאפ בלי אימות מטא', 'שליחת וואטסאפ לרשימה', 'גמבוט'],
+    en: ['one-time whatsapp broadcast', 'whatsapp broadcast without business number', 'whatsapp broadcast without meta verification', 'invite to whatsapp group broadcast', 'send whatsapp message to a list once', 'whatsapp bulk message no subscription']
+  },
+  title: {
+    he: 'דיוור חד פעמי בוואטסאפ בלי מספר ובלי אימות מול מטא — השקנו פתרון',
+    en: 'One-Time WhatsApp Broadcast With No Number and No Meta Verification — We Built the Solution'
+  },
+  description: {
+    he: 'למה בנינו דיוור חד פעמי, איך הוא עובד, כמה הוא עולה, ומה חשוב לדעת — כולל מה לא ניתן לעשות בו.',
+    en: 'Why we built one-time broadcast, how it works, what it costs, and what to know before ordering — including what it cannot do.'
+  },
+  category: 'Broadcast',
+  author: 'ניר סגס',
+  publishedDate: '2026-10-17',
+  image: '/blog/blogHeader.jpg',
+  readTime: 5,
+  featured: false,
+  faq: {
+    he: [
+      { q: 'האם צריך מספר טלפון ייעודי כדי לשלוח דיוור חד פעמי?', a: 'לא. ההודעות נשלחות דרך חשבון WhatsApp Business API המאומת של גמבוט, ולכן אין צורך להקים מספר, לפתוח חשבון משלכם או לעבור אימות עסק מול מטא.' },
+      { q: 'האם אפשר לשלוח מיד?', a: 'ההזמנה נעשית תוך דקות וללא הקמה מוקדמת, אבל השליחה מתוזמנת לפחות 25 שעות קדימה, כי כל תבנית הודעה צריכה אישור של מטא (בדרך כלל עד 24 שעות). מקבלים מייל כשהתבנית אושרה.' },
+      { q: 'כמה זה עולה?', a: 'המחיר מדורג: 0.90 ש"ח להודעה עד 500 הודעות, 0.75 עד 2,000, 0.65 עד 5,000 ו-0.58 עד 10,000. מינימום הזמנה 49 ש"ח. המחירים לפני מע"מ, כוללים את עלויות וואטסאפ ומתייחסים לנמענים בישראל.' },
+      { q: 'מי נראה כשולח ההודעה?', a: 'ההודעה נשלחת מהמספר של גמבוט, ובתחתיתה מופיע “נשלח על ידי גמבוט עבור [שם העסק שלכם]”. תשובות לא מגיעות אליכם, ולכן כדאי להוסיף כפתור אתר או חיוג.' },
+      { q: 'אפשר להשתמש בזה להזמנה לקבוצת וואטסאפ?', a: 'כן, זה אחד השימושים המרכזיים. כותבים הודעה עם כפתור קישור להזמנה לקבוצה, ובספריית התבניות יש תבנית מוכנה לכך. חשוב לשלוח רק למי שנתן הסכמה לקבל הודעות.' }
+    ],
+    en: [
+      { q: 'Do I need a dedicated phone number to send a one-time broadcast?', a: 'No. Messages are sent through Gambot\'s verified WhatsApp Business API account, so there is no need to set up a number, open your own account or go through Meta business verification.' },
+      { q: 'Can I send right away?', a: 'Ordering takes minutes with no prior setup, but the send itself is scheduled at least 25 hours ahead, because every message template needs Meta approval (usually within 24 hours). You get an email as soon as the template is approved.' },
+      { q: 'How much does it cost?', a: 'Pricing is tiered: ILS 0.90 per message up to 500 messages, 0.75 up to 2,000, 0.65 up to 5,000 and 0.58 up to 10,000. Minimum order is ILS 49. Prices are before VAT, include WhatsApp fees and apply to recipients in Israel.' },
+      { q: 'Who appears as the sender?', a: 'The message is sent from Gambot\'s number, with the footer "Sent by Gambot on behalf of [your business name]". Replies do not reach you, so add a website or call button.' },
+      { q: 'Can I use it to invite people to a WhatsApp group?', a: 'Yes, that is one of the main uses. Write a message with a link button to the group invitation; the template library includes a ready-made template. Send only to people who gave consent to receive messages.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🚀 חדש: דיוור חד פעמי</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">להודעה אחת לא צריך להקים מערכת</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">בלי מספר ייעודי, בלי אימות עסק מול מטא ובלי מנוי. מעלים אקסל, כותבים הודעה, משלמים ומתזמנים.</p>
+</div>
+
+<p><strong>דיוור חד פעמי בוואטסאפ של גמבוט הוא שירות שבו מעלים אקסל עם מספרי טלפון, כותבים הודעה, משלמים ומתזמנים — בלי מספר וואטסאפ עסקי, בלי אימות מול מטא ובלי מנוי.</strong> המחיר מתחיל ב-49 ש"ח לפני מע"מ וכולל את עלויות וואטסאפ.</p>
+
+<h2>הבעיה: כדי לשלוח הודעה אחת צריך להקים הכול</h2>
+<p>שוב ושוב פנו אלינו אנשים עם צורך פשוט: לשלוח הודעה אחת לרשימה. להזמין אנשים להצטרף לקבוצת וואטסאפ, להודיע על אירוע, על מבצע או על מעבר לכתובת חדשה. והדרך הרגילה לעשות את זה דרשה:</p>
+<ul>
+  <li><strong>מספר טלפון ייעודי</strong> שמחובר ל-WhatsApp Business API (ולא לאפליקציה הרגילה).</li>
+  <li><strong>אימות עסק מול מטא</strong> — תהליך שלעיתים לוקח ימים ואף יותר.</li>
+  <li><strong>אישור תבנית הודעה</strong> של מטא, ולרוב גם מנוי חודשי לפלטפורמה.</li>
+</ul>
+<p>האלטרנטיבה, רשימת תפוצה באפליקציית וואטסאפ עסקי, מוגבלת ל-256 נמענים ורק לאנשים ששמרו את המספר שלכם — כלומר לא מתאימה להזמנה לקבוצה של אנשים שאינם אנשי קשר.</p>
+<p>בשביל הודעה אחת, זה יותר מדי.</p>
+
+<h2>הפתרון: דיוור חד פעמי</h2>
+<p>בנינו שירות שמאפשר לדלג על כל ההקמה הזו. ההודעות נשלחות דרך חשבון WhatsApp Business API המאומת של גמבוט, ולכן:</p>
+<ul>
+  <li><strong>לא צריך מספר</strong> — לא להקים ולא לחבר.</li>
+  <li><strong>לא צריך אימות מול מטא</strong> — החשבון של גמבוט כבר מאומת.</li>
+  <li><strong>לא צריך מנוי</strong> — משלמים פעם אחת, לפי כמות ההודעות.</li>
+  <li><strong>אפשר להזמין מיד</strong> — ההזמנה לוקחת דקות, בלי להמתין להקמה.</li>
+</ul>
+
+<h2>איך זה עובד</h2>
+<ol>
+  <li><strong>מעלים אקסל</strong> עם מספרי הטלפון (ושדות אישיים כמו שם). המערכת מסננת מספרים לא תקינים, קוויים וכפילויות.</li>
+  <li><strong>כותבים הודעה</strong> עם כפתור קישור, חיוג או תשובה מהירה — או בוחרים תבנית מוכנה, כמו “הזמנה להצטרף לקבוצת וואטסאפ”.</li>
+  <li><strong>משלמים</strong> בכרטיס אשראי, אחרי שהמחשבון הציג את המחיר המדויק.</li>
+  <li><strong>מתזמנים</strong> תאריך ושעה לשליחה.</li>
+</ol>
+<p>במהלך הדרך מקבלים עדכונים במייל: כשהתבנית אושרה, כשהדיוור הסתיים בהצלחה, ובערך יום אחרי השליחה — דוח תוצאות עם כמות הודעות שנשלחו, נמסרו ונקראו, לחיצות על כפתורים ותגובות.</p>
+
+<div style="background:#fffbeb;border-inline-start:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:26px 0;font-size:0.95rem;color:#92400e;">
+  ⏱️ <strong>על המילה “מיד”:</strong> ההזמנה היא מיידית, אבל השליחה עצמה מתוזמנת לפחות 25 שעות קדימה. הסיבה: כל תבנית הודעה עוברת אישור של מטא, שנמשך בדרך כלל עד 24 שעות. אם התבנית נדחית — חוזרים אליכם לתיקון ללא עלות.
+</div>
+
+<h2>כמה זה עולה</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">טווח הודעות</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">מחיר להודעה (לפני מע"מ)</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">1–500</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">₪0.90</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">501–2,000</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">₪0.75</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">2,001–5,000</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">₪0.65</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">5,001–10,000</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">₪0.58</td></tr>
+  </tbody>
+</table>
+<p>כל טווח מחויב במחירו, ומינימום ההזמנה הוא 49 ש"ח. לדוגמה: 1,000 נמענים עולים 825 ש"ח לפני מע"מ. המחירים מתייחסים לנמענים בישראל; ביעדים אחרים תעריף מטא גבוה יותר והמחשבון יציג את המחיר המדויק לפני התשלום.</p>
+
+<h2>מה חשוב לדעת — ומה לא ניתן לעשות</h2>
+<ul>
+  <li><strong>השולח הוא גמבוט.</strong> ההודעה יוצאת מהמספר של גמבוט, ובתחתיתה כתוב “נשלח על ידי גמבוט עבור [שם העסק שלכם]”.</li>
+  <li><strong>תשובות לא מגיעות אליכם.</strong> לכן כדאי להוסיף כפתור אתר או חיוג שמפנה אליכם ישירות.</li>
+  <li><strong>רק למי שהסכים.</strong> שולחים רק לאנשים שנתנו הסכמה לקבל מכם הודעות, והאחריות על הרשימה והתוכן היא שלכם.</li>
+  <li><strong>עד 10,000 הודעות להזמנה.</strong> לכמות גדולה יותר או לליווי מלא יש את שירות הדיוור המנוהל.</li>
+  <li><strong>לדיוורים קבועים</strong> עדיף <a href="/מערכת-דיוור-וואטסאפ/">מערכת דיוור מלאה</a> שפועלת מהמספר של העסק שלכם.</li>
+</ul>
+
+<h2>למי זה מתאים</h2>
+<p>הזמנה להצטרף לקבוצת וואטסאפ או לערוץ עדכונים, אירוע או הרצאה חד פעמיים, מבצע לזמן מוגבל, מעבר לכתובת או למספר חדש, סקר קצר או בקשת תרומה. פירוט נוסף בדף <a href="/דיוור-חד-פעמי/">דיוור חד פעמי בוואטסאפ</a>.</p>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">מוכנים לשלוח?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">מעלים אקסל, כותבים הודעה ומתזמנים. החל מ-49 ש"ח לפני מע"מ.</p>
+  <a href="/one-time-broadcast/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">להזמנת דיוור חד פעמי →</a>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🚀 New: one-time broadcast</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">You don't need to set up a system to send one message</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">No dedicated number, no Meta business verification, no subscription. Upload a spreadsheet, write a message, pay and schedule.</p>
+</div>
+
+<p><strong>Gambot's one-time WhatsApp broadcast is a service where you upload a spreadsheet of phone numbers, write a message, pay and schedule — with no WhatsApp business number, no Meta verification and no subscription.</strong> Pricing starts at ILS 49 before VAT and includes WhatsApp fees.</p>
+
+<h2>The problem: sending one message meant setting everything up</h2>
+<p>People kept coming to us with a simple need: send one message to a list. Invite people to a WhatsApp group, announce an event, a sale or a change of address. The usual way required:</p>
+<ul>
+  <li><strong>A dedicated phone number</strong> connected to the WhatsApp Business API (not the regular app).</li>
+  <li><strong>Meta business verification</strong> — a process that can take days or longer.</li>
+  <li><strong>Meta approval of a message template</strong>, and usually a monthly platform subscription.</li>
+</ul>
+<p>The alternative, a broadcast list in the WhatsApp Business app, is limited to 256 recipients and only reaches people who saved your number — so it doesn't fit inviting non-contacts to a group.</p>
+<p>For a single message, that is too much.</p>
+
+<h2>The solution: one-time broadcast</h2>
+<p>We built a service that skips all of that setup. Messages go out through Gambot's verified WhatsApp Business API account, so:</p>
+<ul>
+  <li><strong>No number needed</strong> — nothing to set up or connect.</li>
+  <li><strong>No Meta verification needed</strong> — Gambot's account is already verified.</li>
+  <li><strong>No subscription</strong> — you pay once, by message volume.</li>
+  <li><strong>Order right away</strong> — ordering takes minutes, with no setup wait.</li>
+</ul>
+
+<h2>How it works</h2>
+<ol>
+  <li><strong>Upload a spreadsheet</strong> with phone numbers (and personal fields such as a name). The system filters invalid numbers, landlines and duplicates.</li>
+  <li><strong>Write a message</strong> with a link, call or quick-reply button — or pick a ready template such as "Invitation to join a WhatsApp group".</li>
+  <li><strong>Pay</strong> by credit card, after the calculator shows the exact price.</li>
+  <li><strong>Schedule</strong> the date and time of the send.</li>
+</ol>
+<p>Along the way you get emails: when the template is approved, when the broadcast finished successfully, and about a day after sending, a results report — messages sent, delivered and read, button clicks and replies.</p>
+
+<div style="background:#fffbeb;border-inline-start:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:26px 0;font-size:0.95rem;color:#92400e;">
+  ⏱️ <strong>About "right away":</strong> ordering is immediate, but the send itself is scheduled at least 25 hours ahead. Every message template goes through Meta approval, which usually takes up to 24 hours. If a template is rejected, we come back to you to fix it at no charge.
+</div>
+
+<h2>What it costs</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">Messages</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">Price per message (before VAT)</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">1–500</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">ILS 0.90</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">501–2,000</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">ILS 0.75</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">2,001–5,000</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">ILS 0.65</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">5,001–10,000</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">ILS 0.58</td></tr>
+  </tbody>
+</table>
+<p>Each band is charged at its own rate, and the minimum order is ILS 49. For example, 1,000 recipients cost ILS 825 before VAT. Prices apply to recipients in Israel; for other countries Meta's rates are higher and the calculator shows the exact price before payment.</p>
+
+<h2>What to know — and what it can't do</h2>
+<ul>
+  <li><strong>The sender is Gambot.</strong> The message goes out from Gambot's number, with the footer "Sent by Gambot on behalf of [your business name]".</li>
+  <li><strong>Replies don't reach you.</strong> Add a website or call button that sends people to you directly.</li>
+  <li><strong>Only to people who consented.</strong> Send only to people who agreed to receive messages from you; the list and content are your responsibility.</li>
+  <li><strong>Up to 10,000 messages per order.</strong> For more volume or full assistance there is the managed broadcast service.</li>
+  <li><strong>For recurring broadcasts</strong>, a full <a href="/מערכת-דיוור-וואטסאפ/">broadcasting system</a> that runs from your own business number is a better fit.</li>
+</ul>
+
+<h2>Who it is for</h2>
+<p>Invitations to a WhatsApp group or updates channel, a one-off event or lecture, a limited-time sale, a move to a new address or number, a short survey or a donation request. More details on the <a href="/דיוור-חד-פעמי/">one-time WhatsApp broadcast</a> page.</p>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">Ready to send?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">Upload a spreadsheet, write a message and schedule. From ILS 49 before VAT.</p>
+  <a href="/one-time-broadcast/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">Order a one-time broadcast →</a>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('דיוור חד פעמי בוואטסאפ בלי מספר ובלי אימות מול מטא — השקנו פתרון')
 }
 ];
 
