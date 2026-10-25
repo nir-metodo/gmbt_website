@@ -1,8 +1,8 @@
 import { buildMetadata } from '@/lib/pageMeta';
-import OldPriceList from '@/components/Pricing/OldPriceList';
+import PriceListPage from '@/components/Pricing/PriceListPage';
 
 export const metadata = buildMetadata('pricing');
 
-export default function PriceListPage() {
-  return <OldPriceList />;
+export default function PriceListRoute() {
+  return <PriceListPage />;
 }

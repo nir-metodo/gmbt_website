@@ -1,11 +1,13 @@
-﻿import React from 'react';
+import React from 'react';
 import './ProgressBar.css';
 import { FaCreditCard, FaMobileAlt, FaUser, FaShieldAlt, FaWhatsapp, FaCheck } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+// Wizard stepper. Desktop: numbered circles with labels joined by a progress line.
+// Mobile: the circles shrink and only the active step keeps its label ("Step 2 of 5" summary above).
 const ProgressBar = ({ step }) => {
-    const { t, isRTL } = useLanguage();
-    
+    const { t, isRTL, currentLanguage } = useLanguage();
+
     const steps = [
         { label: t('onboarding.progressBar.steps.planSelection'), icon: FaCreditCard },
         { label: t('onboarding.progressBar.steps.simSelection'), icon: FaMobileAlt },
@@ -14,9 +16,17 @@ const ProgressBar = ({ step }) => {
         { label: t('onboarding.progressBar.steps.whatsappAccount'), icon: FaWhatsapp }
     ];
 
+    const percent = steps.length > 1 ? ((step - 1) / (steps.length - 1)) * 100 : 0;
+    const stepWord = currentLanguage === 'he' ? 'שלב' : 'Step';
+    const ofWord = currentLanguage === 'he' ? 'מתוך' : 'of';
+
     return (
-        <div className={`progress-container ${isRTL ? 'rtl' : 'ltr'}`}>
-            <div 
+        <div className={`progress-container ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="progress-summary" aria-hidden="true">
+                <span className="progress-summary-step">{stepWord} {step} {ofWord} {steps.length}</span>
+                <span className="progress-summary-label">{steps[step - 1]?.label}</span>
+            </div>
+            <ol
                 className={`progress-wrapper step-${step}`}
                 role="progressbar"
                 aria-valuemin={1}
@@ -24,37 +34,36 @@ const ProgressBar = ({ step }) => {
                 aria-valuenow={step}
                 aria-label={t('onboarding.progressBar.accessibility.progressLabel', { current: step, total: steps.length })}
             >
-                <div className={`progress-line step-${step}`}></div>
+                <li className="progress-track" aria-hidden="true">
+                    <span className="progress-line" style={{ width: `${percent}%` }} />
+                </li>
                 {steps.map((stepItem, index) => {
-                    const isActive = index + 1 <= step;
-                    const isCompleted = index + 1 < step;
+                    const number = index + 1;
+                    const isCurrent = number === step;
+                    const isCompleted = number < step;
                     const IconComponent = stepItem.icon;
-                    
+
                     return (
-                        <div 
-                            className={`progress-step ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}`} 
+                        <li
+                            className={`progress-step ${isCurrent ? 'active current' : ''} ${isCompleted ? 'completed' : ''}`}
                             key={index}
-                            role="listitem"
-                            aria-current={isActive && !isCompleted ? 'step' : undefined}
-                            aria-label={t('onboarding.progressBar.accessibility.stepLabel', { number: index + 1, label: stepItem.label })}
+                            aria-current={isCurrent ? 'step' : undefined}
+                            aria-label={t('onboarding.progressBar.accessibility.stepLabel', { number, label: stepItem.label })}
                         >
-                            <div 
-                                className="step-circle"
-                                aria-hidden="true"
-                            >
+                            <span className="step-circle" aria-hidden="true">
                                 {isCompleted ? (
-                                    <FaCheck className="check-icon" aria-label={t('onboarding.progressBar.accessibility.completed')} />
-                                ) : isActive ? (
+                                    <FaCheck className="check-icon" />
+                                ) : isCurrent ? (
                                     <IconComponent className="step-icon" />
                                 ) : (
-                                    <span className="progress-step-number">{index + 1}</span>
+                                    <span className="progress-step-number">{number}</span>
                                 )}
-                            </div>
-                            <div className="step-label">{stepItem.label}</div>
-                        </div>
+                            </span>
+                            <span className="step-label">{stepItem.label}</span>
+                        </li>
                     );
                 })}
-            </div>
+            </ol>
         </div>
     );
 };

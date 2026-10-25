@@ -1,0 +1,522 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Step 2 – SIM / account type  (wizard overrides)
+   Loaded after SimSelection.css. Everything is scoped under the wizard
+   container so it wins over the legacy global rules without touching other
+   screens. Goal: three equal, compact option cards that fit one viewport and a
+   calm single-column sub-flow once an option is chosen.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.onboarding-process-container .sim-selection-wrapper {
+  position: static;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  border: 0;
+  box-shadow: none;
+  font-family: inherit;
+  overflow: visible;
+}
+.onboarding-process-container .sim-selection-wrapper::before,
+.onboarding-process-container .sim-selection-container::before,
+.onboarding-process-container .option-card::before,
+.onboarding-process-container .option-icon::before { display: none !important; content: none !important; }
+
+.onboarding-process-container .sim-selection-container {
+  position: static;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.onboarding-process-container .sim-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin: 0 0 20px;
+  padding: 0;
+  text-align: start;
+}
+.onboarding-process-container .sim-header .sim-title {
+  flex: 1 1 100%;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+  color: #1b2a26;
+  text-align: start;
+}
+.onboarding-process-container .sim-header .sim-subtitle {
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6b7d76;
+  text-align: start;
+}
+.onboarding-process-container .sim-header .account-type-guide-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 7px 14px;
+  border: 1px solid #cdd9d4;
+  border-radius: 999px;
+  background: #fff;
+  color: #2e6155;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color .15s, border-color .15s;
+}
+.onboarding-process-container .sim-header .account-type-guide-button:hover { background: #f2f6f4; border-color: #b4c6bf; }
+
+/* ── Option cards ───────────────────────────────────────────────────────── */
+.onboarding-process-container .sim-selection-options { margin: 0; padding: 0; }
+.onboarding-process-container .sim-selection-wrapper .option-cards,
+.onboarding-process-container .sim-selection-wrapper.rtl .option-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+.onboarding-process-container .sim-selection-wrapper .option-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+  padding: 22px 18px 18px;
+  background: #fff;
+  border: 1px solid #dbe5e1;
+  border-radius: 14px;
+  box-shadow: none;
+  text-align: start;
+  cursor: pointer;
+  overflow: visible;
+  min-height: 0;
+  height: auto;
+  transform: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.onboarding-process-container .sim-selection-wrapper .option-card:hover {
+  transform: none;
+  border-color: #2e6155;
+  box-shadow: 0 8px 24px rgba(15, 61, 51, 0.1);
+}
+.onboarding-process-container .sim-selection-wrapper .option-card.recommended,
+.onboarding-process-container .sim-selection-wrapper .option-card.coexisting-waba.recommended {
+  background: linear-gradient(180deg, #f1faf6 0%, #fff 55%);
+  border: 1.5px solid #10b981;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12);
+  transform: none;
+}
+
+.onboarding-process-container .sim-selection-wrapper .recommended-badge {
+  position: absolute;
+  top: -11px;
+  inset-inline-start: 16px;
+  inset-inline-end: auto;
+  left: auto;
+  right: auto;
+  transform: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #10b981;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.4;
+  white-space: nowrap;
+  box-shadow: none;
+  animation: none;
+}
+.onboarding-process-container .sim-selection-wrapper .recommended-badge .verified-icon { font-size: 13px; }
+/* LTR/RTL badge anchoring: inset-inline-* needs left/right unset */
+.onboarding-process-container .sim-selection-wrapper.ltr .recommended-badge { left: 16px; }
+.onboarding-process-container .sim-selection-wrapper.rtl .recommended-badge { right: 16px; }
+
+.onboarding-process-container .sim-selection-wrapper .option-icon,
+.onboarding-process-container .sim-selection-wrapper .option-card.coexisting-waba .option-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 0 12px;
+  border-radius: 12px;
+  background: #e8f1ed;
+  color: #2e6155;
+  font-size: 18px;
+  box-shadow: none;
+  transform: none;
+  animation: none;
+}
+.onboarding-process-container .sim-selection-wrapper .option-card.recommended .option-icon { background: #10b981; color: #fff; }
+.onboarding-process-container .sim-selection-wrapper .option-card:hover .option-icon { transform: none; }
+
+.onboarding-process-container .sim-selection-wrapper .option-card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #1b2a26;
+  text-align: start;
+}
+.onboarding-process-container .sim-selection-wrapper .option-card > p {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b7d76;
+  text-align: start;
+  flex-grow: 0;
+}
+
+.onboarding-process-container .sim-selection-wrapper .option-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 14px 0 0;
+  background: none;
+  border: 0;
+  border-top: 1px solid #edf2f0;
+  border-radius: 0;
+}
+.onboarding-process-container .sim-selection-wrapper .option-features .feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #33443e;
+  text-align: start;
+  direction: inherit;
+  transform: none;
+}
+.onboarding-process-container .sim-selection-wrapper .option-features .feature::before,
+.onboarding-process-container .sim-selection-wrapper .option-features .feature::after { display: none; content: none; }
+.onboarding-process-container .sim-selection-wrapper .option-features .feature-icon,
+.onboarding-process-container .sim-selection-wrapper .option-card.coexisting-waba .feature-icon {
+  flex: 0 0 auto;
+  margin: 2px 0 0;
+  padding: 0;
+  font-size: 13px !important;
+  color: #10b981 !important;
+  background: none !important;
+  border-radius: 0;
+  box-shadow: none;
+  position: static;
+}
+.onboarding-process-container .sim-selection-wrapper .option-features .feature span { flex: 1; }
+.onboarding-process-container .sim-selection-wrapper .option-features .info-icon { margin: 1px 0 0 !important; font-size: 14px !important; flex: 0 0 auto; order: 3; }
+.onboarding-process-container .sim-selection-wrapper .history-tooltip { z-index: 60 !important; }
+
+.onboarding-process-container .sim-selection-wrapper .option-button,
+.onboarding-process-container .sim-selection-wrapper .option-card.coexisting-waba .option-button.coexisting-btn {
+  margin: auto 0 0;
+  width: 100%;
+  height: 42px;
+  padding: 0 16px;
+  border: 1px solid #2e6155;
+  border-radius: 10px;
+  background: #fff;
+  color: #2e6155;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+  transform: none;
+  transition: background-color .15s, color .15s;
+}
+.onboarding-process-container .sim-selection-wrapper .option-button::before,
+.onboarding-process-container .sim-selection-wrapper .option-button::after { display: none; content: none; }
+.onboarding-process-container .sim-selection-wrapper .option-button:hover,
+.onboarding-process-container .sim-selection-wrapper .option-card:hover .option-button { background: #2e6155; color: #fff; transform: none; box-shadow: none; }
+.onboarding-process-container .sim-selection-wrapper .option-button.primary,
+.onboarding-process-container .sim-selection-wrapper .option-card.coexisting-waba .option-button.coexisting-btn.primary {
+  background: #10b981;
+  border-color: #10b981;
+  color: #fff;
+}
+.onboarding-process-container .sim-selection-wrapper .option-button.primary:hover,
+.onboarding-process-container .sim-selection-wrapper .option-card:hover .option-button.primary,
+.onboarding-process-container .sim-selection-wrapper .option-card.coexisting-waba .option-button.coexisting-btn.primary:hover { background: #0e9f6e; border-color: #0e9f6e; color: #fff; }
+
+/* ── Sub-flow after choosing an option ──────────────────────────────────── */
+.onboarding-process-container .sim-selection-wrapper .sim-selection-content {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  display: block;
+}
+/* keep the form column readable; the sticky action bar stays full width */
+.onboarding-process-container .sim-selection-wrapper .sim-selection-content > :not(.navigation-buttons):not(.change-selection-button) {
+  max-width: 680px;
+  margin-inline: auto !important;
+}
+.onboarding-process-container .sim-selection-wrapper .change-selection-button {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 16px;
+  margin-inline-start: max(0px, calc((100% - 680px) / 2));
+  padding: 6px 12px;
+  border: 1px solid #cdd9d4;
+  border-radius: 999px;
+  background: #fff;
+  color: #2e6155;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+  transform: none;
+}
+.onboarding-process-container .sim-selection-wrapper .change-selection-button:hover { background: #f2f6f4; transform: none; box-shadow: none; }
+
+.onboarding-process-container .sim-selection-wrapper .coexisting-confirmation-section,
+.onboarding-process-container .sim-selection-wrapper .free-number-confirmation-section {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+.onboarding-process-container .sim-selection-wrapper .coexisting-header { margin: 0 0 16px; text-align: start; }
+.onboarding-process-container .sim-selection-wrapper .coexisting-header .coexisting-icon { display: none; }
+.onboarding-process-container .sim-selection-wrapper .coexisting-header h3 { margin: 0 0 4px; font-size: 20px; font-weight: 800; color: #1b2a26; text-align: start; }
+.onboarding-process-container .sim-selection-wrapper .coexisting-header p { margin: 0; font-size: 14px; color: #6b7d76; text-align: start; }
+
+.onboarding-process-container .sim-selection-wrapper .phone-input-section,
+.onboarding-process-container .sim-selection-wrapper .forwarding-input-section {
+  margin: 0 0 16px;
+  padding: 18px;
+  background: #f7faf9;
+  border: 1px solid #e3e9e6;
+  border-radius: 14px;
+  box-shadow: none;
+}
+.onboarding-process-container .sim-selection-wrapper .phone-input-section::before,
+.onboarding-process-container .sim-selection-wrapper .forwarding-input-section::before { display: none; content: none; }
+.onboarding-process-container .sim-selection-wrapper .input-header {
+  display: block;
+  margin: 0 0 12px;
+  padding: 0;
+  text-align: start;
+}
+.onboarding-process-container .sim-selection-wrapper .input-header .input-icon { display: none; }
+.onboarding-process-container .sim-selection-wrapper .input-header h3,
+.onboarding-process-container .sim-selection-wrapper .input-header h4 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #1b2a26;
+  text-align: start;
+}
+.onboarding-process-container .sim-selection-wrapper .input-header > p { margin: 0; font-size: 13px; line-height: 1.5; color: #6b7d76; text-align: start; }
+.onboarding-process-container .sim-selection-wrapper .coexisting-explanation {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #e3e9e6;
+  border-radius: 10px;
+}
+.onboarding-process-container .sim-selection-wrapper .coexisting-explanation .explanation-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 4px;
+  padding: 0;
+  background: none;
+  color: #2e6155;
+  font-size: 12px;
+  font-weight: 800;
+}
+.onboarding-process-container .sim-selection-wrapper .coexisting-explanation p { margin: 0; font-size: 12.5px; line-height: 1.55; color: #55675f; text-align: start; }
+
+.onboarding-process-container .sim-selection-wrapper .phone-input-wrapper { width: 100%; max-width: none; margin: 0; padding: 0; background: none; border: 0; box-shadow: none; direction: ltr; }
+.onboarding-process-container .sim-selection-wrapper .phone-input-wrapper .simple-phone-input,
+.onboarding-process-container .sim-selection-wrapper .phone-input-wrapper .react-tel-input { width: 100% !important; max-width: none; }
+.onboarding-process-container .sim-selection-wrapper .simple-phone-input .react-tel-input .form-control { height: 46px !important; font-size: 15px !important; border-radius: 10px !important; }
+
+.onboarding-process-container .sim-selection-wrapper .error-message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #d93036;
+  text-align: start;
+}
+.onboarding-process-container .sim-selection-wrapper .error-message .error-icon { width: auto; height: auto; flex: 0 0 auto; font-size: 13px; line-height: 1; margin: 0; }
+
+.onboarding-process-container .sim-selection-wrapper .coexisting-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+.onboarding-process-container .sim-selection-wrapper .coexisting-details .detail-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: start;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-size: 13px;
+  color: #33443e;
+}
+.onboarding-process-container .sim-selection-wrapper .coexisting-details .detail-icon { flex: 0 0 auto; width: auto; height: auto; margin: 2px 0 0; padding: 0; font-size: 13px !important; color: #10b981 !important; background: none !important; border: 0; border-radius: 0; box-shadow: none; position: static; animation: none; }
+.onboarding-process-container .sim-selection-wrapper .coexisting-details .detail-item.warning { border-radius: 12px !important; padding: 12px 14px !important; margin-top: 8px !important; gap: 10px !important; }
+
+.onboarding-process-container .sim-selection-wrapper .selected-phone-section,
+.onboarding-process-container .sim-selection-wrapper .forwarding-section {
+  margin: 0 0 16px;
+  padding: 16px;
+  background: #f7faf9;
+  border: 1px solid #e3e9e6;
+  border-radius: 14px;
+  box-shadow: none;
+}
+.onboarding-process-container .sim-selection-wrapper .forwarding-header { margin: 0 0 12px; text-align: start; }
+.onboarding-process-container .sim-selection-wrapper .forwarding-header .forwarding-icon { display: none; }
+.onboarding-process-container .sim-selection-wrapper .forwarding-header h3 { margin: 0 0 4px; font-size: 16px; font-weight: 800; color: #1b2a26; }
+.onboarding-process-container .sim-selection-wrapper .forwarding-header p { margin: 0; font-size: 13px; color: #6b7d76; text-align: start; }
+.onboarding-process-container .sim-selection-wrapper .forwarding-section .forwarding-input-section { padding: 0; background: none; border: 0; margin: 0; }
+
+.onboarding-process-container .sim-selection-wrapper .sim-selection-phone-number-list { margin: 0; padding: 0; background: none; border: 0; box-shadow: none; overflow: visible; }
+.onboarding-process-container .sim-selection-wrapper .sim-selection-phone-number-list::before,
+.onboarding-process-container .sim-selection-wrapper .sim-selection-phone-number-list::after { display: none; content: none; }
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .onboarding-process-container .sim-selection-wrapper .option-cards,
+  .onboarding-process-container .sim-selection-wrapper.rtl .option-cards { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .onboarding-process-container .sim-selection-wrapper .option-card { padding: 20px 16px 16px; }
+  .onboarding-process-container .sim-selection-wrapper .option-button { margin-top: 0; }
+  .onboarding-process-container .sim-header .sim-title { font-size: 21px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .onboarding-process-container .sim-selection-wrapper * { transition: none !important; animation: none !important; }
+}
+
+/* ── Purchase flow: selected number + forwarding ───────────────────────── */
+.onboarding-process-container .sim-selection-wrapper .selected-phone-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  padding: 14px 16px;
+  text-align: start;
+  background: #f1faf6;
+  border: 1.5px solid #10b981;
+  border-radius: 14px;
+}
+.onboarding-process-container .sim-selection-wrapper .selection-confirmation,
+.onboarding-process-container .sim-selection-wrapper.ltr .selection-confirmation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin: 0;
+  direction: inherit;
+  min-width: 0;
+}
+.onboarding-process-container .sim-selection-wrapper .selection-confirmation .confirmation-icon {
+  flex: 0 0 auto;
+  font-size: 22px;
+  color: #10b981;
+}
+.onboarding-process-container .sim-selection-wrapper .confirmation-content { min-width: 0; }
+.onboarding-process-container .sim-selection-wrapper .confirmation-content h3 {
+  margin: 0 0 2px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  color: #2e6155;
+  text-align: start;
+}
+.onboarding-process-container .sim-selection-wrapper .selected-number {
+  display: flex;
+  gap: 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: .3px;
+  color: #1b2a26;
+  direction: ltr;
+  font-variant-numeric: tabular-nums;
+}
+.onboarding-process-container .sim-selection-wrapper .selected-number .phone-prefix { margin: 0 0 0 0; }
+.onboarding-process-container .sim-selection-wrapper .selected-number .phone-prefix,
+.onboarding-process-container .sim-selection-wrapper .selected-number .phone-number { color: inherit; font-weight: inherit; }
+.onboarding-process-container .sim-selection-wrapper .reset-button {
+  flex: 0 0 auto;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid #cdd9d4;
+  border-radius: 999px;
+  background: #fff;
+  color: #2e6155;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: none;
+  transform: none;
+}
+.onboarding-process-container .sim-selection-wrapper .reset-button:hover { background: #f2f6f4; border-color: #b4c6bf; transform: none; box-shadow: none; }
+.onboarding-process-container .sim-selection-wrapper .reset-button .reset-icon { font-size: 12px; }
+
+.onboarding-process-container .sim-selection-wrapper .forwarding-section { text-align: start; }
+.onboarding-process-container .sim-selection-wrapper .forwarding-header .required-note {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #b4232a;
+}
+.onboarding-process-container .sim-selection-wrapper .forwarding-section .forwarding-input-section .input-header { margin: 14px 0 8px; }
+.onboarding-process-container .sim-selection-wrapper .forwarding-section .forwarding-input-section .input-header h4 { font-size: 14px; }

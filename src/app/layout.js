@@ -139,42 +139,21 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
-        {/* Google Analytics + Google Ads */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18018385768" />
+        {/* Consent Mode v2: everything is DENIED by default. Google Analytics / Google Ads / Meta Pixel
+            are NOT loaded here any more — components/Compliance/CookieConsent.js loads them only after
+            the visitor opts in (Israeli Privacy Protection Law Amendment 13, GDPR/ePrivacy).
+            gtag() is stubbed so existing gtag('event', ...) calls simply queue until consent is given. */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-GFMXYNTV1N');
-              gtag('config', 'AW-18018385768');
+              gtag('consent', 'default', { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
+              gtag('set', 'ads_data_redaction', true);
+              gtag('set', 'url_passthrough', false);
             `,
           }}
         />
-        {/* Meta Pixel Code */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1009749608779359');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
-        <noscript
-          dangerouslySetInnerHTML={{
-            __html: `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1009749608779359&ev=PageView&noscript=1" />`,
-          }}
-        />
-        {/* End Meta Pixel Code */}
       </head>
       <body>
         <ClientLayout>

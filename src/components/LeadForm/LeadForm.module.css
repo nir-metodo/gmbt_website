@@ -35,11 +35,21 @@
   transition: border-color 0.2s;
 }
 
-.input::placeholder { color: rgba(255,255,255,0.6); }
+.input::placeholder { color: rgba(255,255,255,0.8); }
 
-.input:focus {
-  outline: none;
-  border-color: rgba(255,255,255,0.6);
+.field { display: flex; flex-direction: column; gap: 6px; }
+.label { color: #ffffff; font-size: 0.85rem; font-weight: 600; }
+
+.consentRow { display: flex; align-items: flex-start; gap: 10px; color: #ffffff; font-size: 0.85rem; line-height: 1.5; margin-bottom: 16px; cursor: pointer; }
+.consentRow input { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; accent-color: #25D366; }
+.consentRow a { color: #ffffff; text-decoration: underline; font-weight: 600; }
+.privacyNote { color: rgba(255,255,255,0.9); font-size: 0.8rem; text-align: center; margin-top: 12px; }
+.privacyNote a { color: #ffffff; text-decoration: underline; }
+
+.input:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+  border-color: #ffffff;
   background: rgba(255,255,255,0.2);
 }
 

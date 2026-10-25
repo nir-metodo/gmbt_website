@@ -10,6 +10,8 @@ import { usePathname } from 'next/navigation';
 export default function Footer() {
   const [phone, setPhone] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [newsConsent, setNewsConsent] = useState(false);
+  const [newsMsg, setNewsMsg] = useState(null);
   const { currentLanguage } = useLanguage();
   const isEn = currentLanguage === 'en';
   const pathname = usePathname();
@@ -20,17 +22,36 @@ export default function Footer() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!phone) { alert(isEn ? 'Please enter a phone number' : 'אנא הזן מספר טלפון'); return; }
+    setNewsMsg(null);
+    if (!phone) { setNewsMsg({ ok: false, text: isEn ? 'Please enter a phone number' : 'אנא הזן מספר טלפון' }); return; }
+    // Israeli Spam Law (Communications Law s.30A): marketing messages need explicit, prior opt-in.
+    if (!newsConsent) {
+      setNewsMsg({ ok: false, text: isEn ? 'Please tick the consent box to subscribe' : 'יש לסמן את תיבת ההסכמה כדי להירשם' });
+      return;
+    }
     setIsSubmitting(true);
     try {
-      await fetch('https://prod-00.northeurope.logic.azure.com:443/workflows/24826d9f1f30448cb12884561d7bcc2b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=RMrmjA9SPjryV5VE5iP8elY_V6tFdxhMgjs-zQI8FPQ', {
+      const consentText = isEn
+        ? 'I agree to receive updates, news and promotional messages from Gambot on WhatsApp. I can unsubscribe at any time by replying "STOP".'
+        : 'אני מסכים/ה לקבל מגמבוט עדכונים, חדשות והודעות שיווקיות בוואטסאפ. ניתן להסיר את ההרשמה בכל עת בהשבת "הסר".';
+      const res = await fetch('https://prod-00.northeurope.logic.azure.com:443/workflows/24826d9f1f30448cb12884561d7bcc2b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=RMrmjA9SPjryV5VE5iP8elY_V6tFdxhMgjs-zQI8FPQ', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: phone, ClientId: 'R9f6r4oe5PSCLr6CnYRQ' }),
+        body: JSON.stringify({
+          phoneNumber: phone,
+          ClientId: 'R9f6r4oe5PSCLr6CnYRQ',
+          marketingConsent: true,
+          consentText,
+          consentTimestamp: new Date().toISOString(),
+          consentSource: 'website_footer_newsletter',
+          consentPage: typeof window !== 'undefined' ? window.location.href : '',
+        }),
       });
-      alert(isEn ? 'Successfully subscribed!' : 'ההרשמה בוצעה בהצלחה!');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setNewsMsg({ ok: true, text: isEn ? 'Successfully subscribed!' : 'ההרשמה בוצעה בהצלחה!' });
       setPhone('');
-    } catch { alert(isEn ? 'An error occurred. Please try again.' : 'הייתה שגיאה בשליחת הבקשה.'); }
+      setNewsConsent(false);
+    } catch { setNewsMsg({ ok: false, text: isEn ? 'An error occurred. Please try again.' : 'הייתה שגיאה בשליחת הבקשה.' }); }
     finally { setIsSubmitting(false); }
   };
 
@@ -85,7 +106,17 @@ export default function Footer() {
           <ul>
             <li><Link href="/TermOfPayments/">{isEn ? 'Payment Terms' : 'תנאי תשלום'}</Link></li>
             <li><Link href="/TermOfUse/">{isEn ? 'Terms of Use' : 'תנאי שימוש'}</Link></li>
-            <li><Link href="/privacy/">{isEn ? 'Privacy Policy' : 'מדיניות פרטיות'}</Link></li>
+            <li><Link href={isEn ? '/privacy/en/' : '/privacy/'}>{isEn ? 'Privacy Policy' : 'מדיניות פרטיות'}</Link></li>
+            <li><Link href="/accessibility/">{isEn ? 'Accessibility Statement' : 'הצהרת נגישות'}</Link></li>
+            <li>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event('gambot:open-cookie-settings'))}
+                style={{ background: 'none', color: 'inherit', font: 'inherit', padding: 0, textAlign: 'start', textDecoration: 'underline', cursor: 'pointer' }}
+              >
+                {isEn ? 'Cookie settings' : 'הגדרות עוגיות'}
+              </button>
+            </li>
           </ul>
           <h3 style={{ marginTop: '24px' }}>{isEn ? 'Contact Us' : 'צור קשר'}</h3>
           <ul>
@@ -103,9 +134,13 @@ export default function Footer() {
               ? 'Get updates, news and deals directly on WhatsApp'
               : 'קבלו עדכונים, חדשות ומבצעים ישירות לוואטסאפ'}
           </p>
-          <form onSubmit={handleSubmit} className={styles.newsForm}>
+          <form onSubmit={handleSubmit} className={styles.newsForm} aria-label={isEn ? 'Newsletter subscription' : 'הרשמה לניוזלטר'} style={{ flexWrap: 'wrap' }}>
             <input
               type="tel"
+              name="phone"
+              autoComplete="tel"
+              inputMode="tel"
+              aria-label={isEn ? 'Phone number' : 'מספר טלפון'}
               placeholder={isEn ? 'Phone number' : 'מספר טלפון'}
               value={phone}
               onChange={e => setPhone(e.target.value)}
@@ -114,7 +149,24 @@ export default function Footer() {
             <button type="submit" disabled={isSubmitting}>
               {isSubmitting ? '...' : (isEn ? 'Subscribe' : 'הרשמה')}
             </button>
+            <label style={{ display: 'flex', gap: 8, alignItems: 'flex-start', flexBasis: '100%', fontSize: '0.8rem', lineHeight: 1.5, cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={newsConsent}
+                onChange={e => setNewsConsent(e.target.checked)}
+                style={{ width: 20, height: 20, flexShrink: 0, marginTop: 2, accentColor: '#2e6155' }}
+              />
+              <span>
+                {isEn
+                  ? 'I agree to receive updates, news and promotional messages from Gambot on WhatsApp. I can unsubscribe at any time. '
+                  : 'אני מסכים/ה לקבל מגמבוט עדכונים, חדשות והודעות שיווקיות בוואטסאפ. ניתן להסיר את ההרשמה בכל עת. '}
+                <Link href={isEn ? '/privacy/en/' : '/privacy/'} style={{ textDecoration: 'underline' }}>{isEn ? 'Privacy Policy' : 'מדיניות פרטיות'}</Link>
+              </span>
+            </label>
           </form>
+          <p role="status" aria-live="polite" style={{ marginTop: 8, fontSize: '0.85rem', fontWeight: 600, color: newsMsg?.ok ? '#7fd4b8' : '#FFB4A9' }}>
+            {newsMsg?.text || ''}
+          </p>
         </div>
       </div>
 

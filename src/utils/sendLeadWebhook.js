@@ -1,3 +1,5 @@
+import { fingerprint, wasRecentlySent, markSent, unmarkSent } from './submitGuard';
+
 const GAMBOT_WEBHOOK_URL = 'https://gambot.azurewebsites.net/api/external/webhooks/GambotDemo/landing_page';
 const GAMBOT_WEBHOOK_TOKEN = 'Bearer EAAJT4Xz94h0BOZBFZBE8X7JG09mddZAGTO0wxAnyLiAiJWatmQZBsyM5VsgR6luorX4ldUWsFL4MohZAB2ZCANsL44AdFZCew4OKNbYFUAMtOEeBlH8Eju2y1RErm8tWFP3HVZCURjetG1KBmdEwkWAz9h47zKb7oet9qLAzXh7Af98btiOQZAPPpVH6gshOeghXpqZCDZCTylYZCGrvrt5iMXbC7uZBTRFfO0cDgntPmBIRNNGZAZBSbRDeMMkc4xNZCWIl';
 
@@ -20,13 +22,19 @@ function normalizeIsraeliPhone(raw = '') {
  * page_url and page_name are captured automatically from the browser.
  * Failures are swallowed so they never block the user-facing form submission.
  */
-export async function sendLeadWebhook({ name = '', email = '', phone = '', message = '', businessName = '', source = 'website' }) {
+export async function sendLeadWebhook({ name = '', email = '', phone = '', message = '', businessName = '', source = 'website', marketingConsent = false, consentText = '', consentTimestamp = '' }) {
+  // Duplicate guard: the same person sending the same details to the same form again within a few
+  // minutes (double-click, retry after a false "error", page reload) must NOT create another lead.
+  const dedupeKey = fingerprint('lead-webhook', source, normalizeIsraeliPhone(phone), email, message);
+  if (wasRecentlySent(dedupeKey)) return;
+  markSent(dedupeKey);
+
   try {
     const normalizedPhone = normalizeIsraeliPhone(phone);
     const pageUrl  = typeof window !== 'undefined' ? window.location.href : '';
     const pagePath = typeof window !== 'undefined' ? window.location.pathname : '';
 
-    await fetch(GAMBOT_WEBHOOK_URL, {
+    const res = await fetch(GAMBOT_WEBHOOK_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,9 +49,17 @@ export async function sendLeadWebhook({ name = '', email = '', phone = '', messa
         form:      source,
         page_url:  pageUrl,
         page_path: pagePath,
+        // Spam-law audit trail: only true when the visitor ticked the (optional, unchecked-by-default) box.
+        marketing_consent: !!marketingConsent,
+        consent_text: consentText,
+        consent_timestamp: consentTimestamp,
+        // Stable id of THIS submission (same value if it is ever re-sent) so the backend can de-dupe too
+        submission_id: dedupeKey,
       }),
     });
+    if (!res.ok) unmarkSent(dedupeKey); // failed -> allow a genuine retry
   } catch {
+    unmarkSent(dedupeKey);
     // Fire-and-forget — do not surface webhook errors to the user
   }
 }

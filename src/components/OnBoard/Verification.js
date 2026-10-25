@@ -1,11 +1,11 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axiosInstance from './axiosInstance';
 import './Verification.css';
+import './VerificationWizard.css';
 import LoadingOverlay from './LoadingOverlay';
 import TutorialVideoButton from './TutorialVideoButton';
 import { FaWhatsapp, FaEnvelope, FaClock, FaArrowRight, FaArrowLeft, FaCheckCircle, FaExclamationTriangle, FaSync } from "react-icons/fa";
-import { HiOutlineSparkles } from "react-icons/hi2";
-import { MdSecurity, MdVerified } from "react-icons/md";
+import { MdVerified } from "react-icons/md";
 import { useLanguage } from '@/contexts/LanguageContext';
 import Swal from 'sweetalert2';
 const Verification = ({
@@ -407,24 +407,9 @@ const Verification = ({
         <div className={`verification-container ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
           {/* Enhanced Header */}
           <div className="verification-header">
-            <div className="header-badge">
-              <HiOutlineSparkles className="sparkle-icon" />
-              <span>{getVerificationText('verification.header.badge')}</span>
-            </div>
             <h2 className="verification-title">{getVerificationText('verification.header.title')}</h2>
             <p className="verification-subtitle">{getVerificationText('verification.header.subtitle')}</p>
             <TutorialVideoButton step={4} />
-          </div>
-
-          {/* Security Info */}
-          <div className="security-info">
-            <div className="security-icon">
-              <MdSecurity />
-            </div>
-            <div className="security-content">
-              <h3>{getVerificationText('verification.security.title')}</h3>
-              <p>{getVerificationText('verification.security.description')}</p>
-            </div>
           </div>
 
           {/* Verification Channels */}
@@ -471,6 +456,7 @@ const Verification = ({
             </div>
           </div>
 
+          <div className="verify-meta">
           {/* Timer Section */}
           <div className="timer-section">
             <div className="timer-icon">
@@ -502,6 +488,8 @@ const Verification = ({
               <FaSync className={`resend-icon ${isLoading ? 'spinning' : ''}`} />
               <span>{getVerificationText('verification.resend.button')}</span>
             </button>
+          </div>
+
           </div>
 
           {/* Navigation Buttons */}

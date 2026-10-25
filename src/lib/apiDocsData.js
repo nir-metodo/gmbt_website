@@ -155,13 +155,15 @@ export const API_SECTIONS = [
         params: [
           { name: 'to', in: 'body', type: 'string', required: true, desc: { he: 'הנמען. מקבל גם phoneNumber.', en: 'Recipient. phoneNumber also accepted.' } },
           { name: 'templateId', in: 'body', type: 'string', required: true, desc: { he: 'מזהה התבנית.', en: 'Template id.' } },
-          { name: 'variables', in: 'body', type: 'string[]', required: false, desc: { he: 'משתני ה-Body לפי הסדר. לחלופין templateVariableQuery.', en: 'Body variables in order. Or use templateVariableQuery.' } },
+          { name: 'variables', in: 'body', type: 'string[]', required: false, desc: { he: 'משתני ה-Body לפי הסדר (גוף ההודעה בלבד — לא הכפתור). לחלופין templateVariableQuery.', en: 'Body variables in order (message body only — not the button). Or use templateVariableQuery.' } },
+          { name: 'buttonVariables', in: 'body', type: 'string[] | object', required: false, desc: { he: 'ערך לכפתור URL דינמי (כתובת שמסתיימת ב-{{1}}). מערך/מחרוזת = הכפתור הדינמי הראשון בתבנית; אובייקט {"1": "ערך"} = כפתור לפי מיקומו בתבנית (מ-1). בלי הערך הזה נשלח ערך הדוגמה של התבנית לכל הנמענים.', en: 'Value for a dynamic URL button (a URL ending in {{1}}). An array/string = the template\'s first dynamic button; an object {"1": "value"} = a button by its position in the template (1-based). Without it, the template\'s example value is sent to every recipient.' } },
           { name: 'from', in: 'body', type: 'string', required: false, desc: { he: 'ארגונים מרובי-מספרים: מאיזה מספר לשלוח — מספר תצוגה או phoneNumberId (ראו GET /numbers). ברירת מחדל: המספר הראשי.', en: 'Multi-number orgs: which number to send FROM — a display number or phoneNumberId (see GET /numbers). Defaults to the primary number.' } },
         ],
         request: `{
   "to": "972501234567",
   "templateId": "welcome_new_customer_0626",
-  "variables": ["דנה", "הזמנה #1234"]
+  "variables": ["דנה", "הזמנה #1234"],
+  "buttonVariables": ["abc123"]
 }`,
         curl: curl('POST', '/messages/send-template', `{ "to": "972501234567", "templateId": "welcome_0626", "variables": ["Dana"] }`),
         response: `{

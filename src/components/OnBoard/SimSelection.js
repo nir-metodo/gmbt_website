@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './SimSelection.css';
+import './SimSelectionWizard.css';
 import PhoneNumbersList from './PhoneNumbersList';
 import PhoneInputWithModal from './PhoneInputWithModal';
 import { cleanIsraeliPhoneNumber } from '@/utils/phoneUtils';
@@ -7,7 +8,6 @@ import FreeNumberWarningModal from './FreeNumberWarningModal';
 import ExistingSimWarningModal from './ExistingSimWarningModal';
 import TutorialVideoButton from './TutorialVideoButton';
 import { FaMobileAlt, FaPhoneAlt, FaArrowRight, FaArrowLeft, FaShoppingCart, FaSync, FaCheckCircle, FaInfoCircle } from "react-icons/fa";
-import { HiOutlineSparkles } from "react-icons/hi2";
 import { MdVerified, MdCallReceived } from "react-icons/md";
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -21,7 +21,7 @@ const SimSelection = ({
     const [isValidForwardingNumber, setIsValidForwardingNumber] = useState(false); // ✅ Validation for forwarding number
     const [callForwarding, setCallForwarding] = useState(false);
     const [showPhoneNumbersList, setShowPhoneNumbersList] = useState(false);
-    const [showSimSelectionButtons, setShowSimSelectionButtons] = useState(true);
+    const [showSimSelectionButtons, setShowSimSelectionButtons] = useState(!(hasSim || useFreeNumber || useCoexisting || isPhoneNumberSelected));
     const [showFreeNumberWarning, setShowFreeNumberWarning] = useState(false);
     const [showExistingSimWarning, setShowExistingSimWarning] = useState(false);
     const [showHistoryTooltip, setShowHistoryTooltip] = useState(false);
@@ -141,53 +141,24 @@ const SimSelection = ({
         <div className={`sim-selection-wrapper ${isRTL ? 'rtl' : 'ltr'}`}>
             <div className="sim-selection-container" dir={isRTL ? 'rtl' : 'ltr'}>
                 {/* Enhanced Header */}
-                <div className="sim-header">
-                    <div className="header-badge">
-                        <HiOutlineSparkles className="sparkle-icon" />
-                        <span>{t('simSelection.header.badge')}</span>
-                    </div>
+                {showSimSelectionButtons && <div className="sim-header">
                     <h2 className="sim-title">{t('simSelection.header.title')}</h2>
                     <p className="sim-subtitle">{t('simSelection.header.subtitle')}</p>
                     <TutorialVideoButton step={2} />
                     
                     {/* ✅ איך לבחור סוג חשבון - Button */}
-                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                        <button 
-                            type="button"
-                            className="account-type-guide-button"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setShowAccountTypeGuide(true);
-                            }}
-                            style={{
-                                padding: '12px 24px',
-                                backgroundColor: '#FFD700',
-                                color: '#333',
-                                border: 'none',
-                                borderRadius: '8px',
-                                fontSize: '16px',
-                                fontWeight: '600',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '8px',
-                                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                                transition: 'background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, transform 0.3s ease'
-                            }}
-                            onMouseEnter={(e) => {
-                                e.target.style.transform = 'translateY(-2px)';
-                                e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.target.style.transform = 'translateY(0)';
-                                e.target.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
-                            }}
-                        >
-                            <FaInfoCircle />
-                            {currentLanguage === 'he' ? 'איך לבחור סוג חשבון?' : 'How to choose account type?'}
-                        </button>
-                    </div>
-                </div>
+                    <button
+                        type="button"
+                        className="account-type-guide-button"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setShowAccountTypeGuide(true);
+                        }}
+                    >
+                        <FaInfoCircle />
+                        {currentLanguage === 'he' ? 'איך לבחור סוג חשבון?' : 'How to choose account type?'}
+                    </button>
+                </div>}
 
             {showSimSelectionButtons && (
                 <div className="sim-selection-options">
@@ -459,7 +430,7 @@ const SimSelection = ({
             {(hasSim !== null || useFreeNumber || useCoexisting) && (
                 <div className="sim-selection-content">
                     {/* Change Selection Button */}
-                    <button 
+                    {!showSimSelectionButtons && (<button
                         className="change-selection-button"
                         onClick={() => {
                             setShowSimSelectionButtons(true);
@@ -473,7 +444,7 @@ const SimSelection = ({
                     >
                         <FaSync className="change-icon" />
                         <span>{currentLanguage === 'he' ? 'שינוי סוג חשבון' : 'Change Account Type'}</span>
-                    </button>
+                    </button>)}
 
                     {useCoexisting ? (
                         <div className="coexisting-confirmation-section">
@@ -810,8 +781,7 @@ const SimSelection = ({
                                         <div className="confirmation-content">
                                             <h3>{t('simSelection.confirmation.selected')}</h3>
                                             <div className="selected-number">
-                                                <span className="phone-prefix">{organizationPhoneNumber.slice(0, 4)}</span>
-                                                <span className="phone-number">{organizationPhoneNumber.slice(4)}</span>
+                                                <span className="phone-number">{organizationPhoneNumber.startsWith('+') ? '' : '+'}{organizationPhoneNumber}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -829,8 +799,10 @@ const SimSelection = ({
                                         <h3>{t('simSelection.callForwarding.title')}</h3>
                                         <p>{t('simSelection.callForwarding.description')}</p>
                                         {/* ✅ Mandatory notice for verification codes */}
-                                        <p style={{ color: '#e74c3c', fontWeight: '500', marginTop: '8px', fontSize: '14px' }}>
-                                            * שדה חובה - קודי אימות יועברו למספר זה בתהליך ההצטרפות
+                                        <p className="required-note">
+                                            {currentLanguage === 'he'
+                                                ? '* שדה חובה - קודי אימות יועברו למספר זה בתהליך ההצטרפות'
+                                                : '* Required - verification codes will be forwarded to this number during sign-up'}
                                         </p>
                                     </div>
                                     {/* ✅ Always show phone input - mandatory for SIM purchase */}
@@ -880,7 +852,7 @@ const SimSelection = ({
                         >
                             <span>{t('simSelection.navigation.back')}</span>
                         </button>
-                        <button 
+                        {!showSimSelectionButtons && <button 
                             className={`nav-button next-button ${
                                 useFreeNumber ? '' : 
                                 useCoexisting ? (!isValidPhoneNumber || !organizationPhoneNumber ? 'disabled' : '') :
@@ -896,7 +868,7 @@ const SimSelection = ({
                             }
                         >
                             <span>{t('simSelection.navigation.next')}</span>
-                        </button>
+                        </button>}
                     </div>
                 </div>
             )}

@@ -1,311 +1,190 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import FacebookLogin from './FacebookLogin';
 import TutorialVideoButton from './TutorialVideoButton';
-import './WabaOnboarding.css';
-import { FaWhatsapp, FaFacebookF, FaPlay, FaCopy, FaCheckCircle, FaExclamationTriangle, FaArrowLeft, FaArrowRight, FaShieldAlt, FaCreditCard, FaPhoneAlt } from "react-icons/fa";
-import { HiOutlineSparkles } from "react-icons/hi2";
-import { MdVerified, MdBusinessCenter } from "react-icons/md";
+import './WabaConnect.css';
+import { FaFacebookF, FaUser, FaCreditCard, FaPhoneAlt, FaCopy, FaCheck, FaShieldAlt, FaChevronDown, FaPlay, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+// Final onboarding step. Used by BOTH the sign-up wizard (/OnboardingProcess, step 5) and the
+// post-payment page (/complete-waba), so it must look right on its own — all styling is in
+// WabaConnect.css under the .wc prefix and does not depend on the wizard container.
 const WabaOnboarding = ({ onPrevStep, organization, email, hasSim, useFreeNumber, useCoexisting, simPhoneNumber, contactPhoneNumber, organizationName }) => {
-    const { t, currentLanguage, isRTL } = useLanguage();
-    const [phoneNumberCopied, setPhoneNumberCopied] = useState(false);
-    // No need for wabaMode state - we get useCoexisting from props
+    const { currentLanguage, isRTL } = useLanguage();
+    const he = currentLanguage !== 'en';
+    const L = (heText, enText) => (he ? heText : enText);
+    const [copied, setCopied] = useState(false);
+    const [showVideo, setShowVideo] = useState(false);
 
-    // 🔍 DEBUG: Log organizationName when WabaOnboarding component mounts
-    useEffect(() => {
-        console.log('═══════════════════════════════════════════════════');
-        console.log('🚀 [WabaOnboarding - Step 5] Component Mounted');
-        console.log('🏢 [WabaOnboarding] Organization Name (DB Key):', organization);
-        console.log('🏪 [WabaOnboarding] Company Name (Display):', organizationName);
-        console.log('📧 [WabaOnboarding] Email:', email);
-        console.log('📱 [WabaOnboarding] SIM Phone Number:', simPhoneNumber);
-        console.log('☎️  [WabaOnboarding] Contact Phone Number:', contactPhoneNumber);
-        console.log('🔑 [WabaOnboarding] Has SIM:', hasSim);
-        console.log('✅ [WabaOnboarding] This organization will be created in Firestore!');
-        console.log('═══════════════════════════════════════════════════');
-    }, [organization, organizationName, email, simPhoneNumber, contactPhoneNumber, hasSim]);
-
-    // Fallback function for WabaOnboarding translations
-    const getWabaText = (key) => {
-        const translation = t(key);
-        if (translation === key) {
-            const fallbacks = {
-                'wabaOnboarding.header.badge': currentLanguage === 'he' ? 'שלב אחרון' : 'Final Step',
-                'wabaOnboarding.header.title': currentLanguage === 'he' ? 'חיבור לחשבון WhatsApp Business' : 'Connect to WhatsApp Business Account',
-                'wabaOnboarding.header.subtitle': currentLanguage === 'he' ? 'כמה צעדים אחרונים כדי להשלים את ההגדרה שלך' : 'A few final steps to complete your setup',
-                'wabaOnboarding.video.title': currentLanguage === 'he' ? 'סרטון הדרכה' : 'Tutorial Video',
-                'wabaOnboarding.video.description': currentLanguage === 'he' ? 'צפה בסרטון קצר שמסביר איך להתחבר' : 'Watch a short video explaining how to connect',
-                'wabaOnboarding.video.notSupported': currentLanguage === 'he' ? 'הדפדפן שלך לא תומך בסרטון.' : 'Your browser does not support the video.',
-                'wabaOnboarding.facebookLogin.title': currentLanguage === 'he' ? 'התחבר עם Facebook' : 'Connect with Facebook',
-                'wabaOnboarding.facebookLogin.description': currentLanguage === 'he' ? 'כדי להתחבר לחשבון WhatsApp Business שלך' : 'To connect to your WhatsApp Business account',
-                'wabaOnboarding.facebookLogin.button': currentLanguage === 'he' ? 'התחבר עם Facebook' : 'Connect with Facebook',
-                'wabaOnboarding.facebookLogin.requirement': currentLanguage === 'he' ? 'נדרש חשבון Facebook עסקי' : 'Business Facebook account required',
-                'wabaOnboarding.phoneNumber.title': currentLanguage === 'he' ? 'מספר הטלפון שלך' : 'Your Phone Number',
-                'wabaOnboarding.phoneNumber.description': currentLanguage === 'he' ? 'המספר שיחובר לחשבון WhatsApp Business' : 'The number that will be connected to WhatsApp Business account',
-                'wabaOnboarding.phoneNumber.copy': currentLanguage === 'he' ? 'העתק מספר' : 'Copy Number',
-                'wabaOnboarding.phoneNumber.copied': currentLanguage === 'he' ? 'הועתק!' : 'Copied!',
-                'wabaOnboarding.phoneNumber.note': currentLanguage === 'he' ? 'שמור מספר זה - תצטרך אותו בתהליך ההרשמה' : 'Save this number - you will need it during the registration process',
-                'wabaOnboarding.security.title': currentLanguage === 'he' ? 'חיבור מאובטח' : 'Secure Connection',
-                'wabaOnboarding.security.description': currentLanguage === 'he' ? 'ההתחברות מתבצעת באופן מאובטח דרך Facebook' : 'The connection is made securely through Facebook',
-                'wabaOnboarding.businessInfo.title': currentLanguage === 'he' ? 'פרטי עסק' : 'Business Details',
-                'wabaOnboarding.businessInfo.organization': currentLanguage === 'he' ? 'ארגון' : 'Organization',
-                'wabaOnboarding.businessInfo.email': currentLanguage === 'he' ? 'אימייל' : 'Email',
-                'wabaOnboarding.businessInfo.phone': currentLanguage === 'he' ? 'טלפון' : 'Phone',
-                'wabaOnboarding.navigation.back': currentLanguage === 'he' ? 'חזרה' : 'Back',
-                'wabaOnboarding.requirements.title': currentLanguage === 'he' ? 'דרישות לחיבור WhatsApp Business' : 'WhatsApp Business Connection Requirements',
-                'wabaOnboarding.requirements.description': currentLanguage === 'he' ? 'וודא שאתה עומד בדרישות הבאות לפני החיבור' : 'Make sure you meet the following requirements before connecting',
-                'wabaOnboarding.requirements.businessAccount.title': currentLanguage === 'he' ? 'חשבון פייסבוק פרטי' : 'Personal Facebook Account',
-                'wabaOnboarding.requirements.businessAccount.description': currentLanguage === 'he' ? 'צריך להתחבר עם חשבון פייסבוק פרטי. מומלץ שיהיה לו גישה לנכסים העסקיים שלך. אם אין תיק עסקי (Business Portfolio) במטא — הוא ייווצר אוטומטית, כך שאין שום מניעה להתחבר.' : 'Connect with a personal Facebook account — ideally one that has access to your business assets. If you don\'t have a Business Portfolio on Meta yet, one will be created automatically, so nothing is stopping you from connecting.',
-                'wabaOnboarding.requirements.paymentMethod.title': currentLanguage === 'he' ? 'אמצעי תשלום פעיל' : 'Active Payment Method',
-                'wabaOnboarding.requirements.paymentMethod.description': currentLanguage === 'he' ? 'חשבון הפייסבוק העסקי חייב לכלול אמצעי תשלום פעיל ומאומת.' : 'The Facebook business account must include an active and verified payment method.',
-                'wabaOnboarding.requirements.phoneNumber.title': currentLanguage === 'he' ? 'מספר טלפון ייעודי' : 'Dedicated Phone Number',
-                'wabaOnboarding.requirements.phoneNumber.yourNumber': currentLanguage === 'he' ? 'מספר הטלפון שנרכש עבורך:' : 'The phone number purchased for you:',
-                'wabaOnboarding.requirements.phoneNumber.contactNumber': currentLanguage === 'he' ? 'המספר שלך:' : 'Your number:',
-                'wabaOnboarding.requirements.phoneNumber.note': currentLanguage === 'he' ? 'קוד אימות ייקח בדרך כלל -ל 97254801010 יישלח אמצעותנו. com' : 'Verification code will usually be sent to 97254801010 through our service. com',
-                'wabaOnboarding.requirements.phoneNumber.verificationSent': currentLanguage === 'he' ? 'קוד אימות יישלח ל-{phone} ול-{email}' : 'Verification code will be sent to {phone} and {email}',
-                'wabaOnboarding.requirements.phoneNumber.warning': currentLanguage === 'he' ? 'ודא שיש לך גישה למספר הטלפון שבחרת. לא מומלץ להשתמש במספר אישי פעיל כדי למנוע אובדן מידע.' : 'Make sure you have access to the phone number you selected. It is not recommended to use an active personal number to prevent data loss.',
-                'wabaOnboarding.requirements.phoneNumber.coexistNumber': currentLanguage === 'he' ? 'המספר שבחרת (Coexistence):' : 'The number you selected (Coexistence):',
-                'wabaOnboarding.requirements.phoneNumber.coexistWarning': currentLanguage === 'he' ? 'ודא שיש לך גישה למספר הטלפון שבחרת לקבל קוד אימות ממטא.' : 'Make sure you have access to the phone number you selected so you can receive a verification code from Meta.',
-                'wabaOnboarding.requirements.secureConnection.title': currentLanguage === 'he' ? 'חיבור מאובטח' : 'Secure Connection',
-                'wabaOnboarding.requirements.secureConnection.description': currentLanguage === 'he' ? 'תחבור את החשבון באופן מאובטח, כדי שנוכל לקבל בקרות WhatsApp API את עבור את הצוות.' : 'Connect your account securely so we can get WhatsApp API controls for your team.',
-                'wabaOnboarding.requirements.readySection.title': currentLanguage === 'he' ? 'מוכן להמשיך?' : 'Ready to Continue?',
-                'wabaOnboarding.requirements.readySection.description': currentLanguage === 'he' ? 'אם אתה עומד בכל הדרישות לעיל, לחץ על "התחבר עם פייסבוק" להשלמת התהליך.' : 'If you meet all the requirements above, click "Connect with Facebook" to complete the process.'
-            };
-            return fallbacks[key] || key;
-        }
-        return translation;
+    const handleCopy = () => {
+        if (!simPhoneNumber) return;
+        const done = () => { setCopied(true); setTimeout(() => setCopied(false), 2000); };
+        navigator.clipboard.writeText(simPhoneNumber).then(done).catch(() => {});
     };
 
-    const handleCopyPhoneNumber = () => {
-        navigator.clipboard.writeText(simPhoneNumber);
-        setPhoneNumberCopied(true);
-        setTimeout(() => setPhoneNumberCopied(false), 2000);
-    };
+    // Which option the user must tap inside Meta's popup (it depends on the account type chosen in step 2).
+    const metaChoice = useCoexisting
+        ? 'Use an existing WhatsApp Business Account'
+        : (!hasSim && !useFreeNumber ? 'Create a new WhatsApp Business Account' : null);
+
+    const videoSrc = useCoexisting
+        ? 'https://www.youtube.com/embed/mBBmoxCRRmI?start=330&rel=0&autoplay=1'
+        : 'https://www.youtube.com/embed/6y8A61Z7Zv4?start=140&rel=0&autoplay=1';
+
+    const verificationText = L(
+        `קוד האימות יישלח ל-${contactPhoneNumber || ''} ול-${email || ''}`,
+        `The verification code will be sent to ${contactPhoneNumber || ''} and ${email || ''}`
+    );
+
+    const copyButton = (
+        <button type="button" className={`wc-copy${copied ? ' is-copied' : ''}`} onClick={handleCopy}>
+            {copied ? <FaCheck aria-hidden="true" /> : <FaCopy aria-hidden="true" />}
+            {copied ? L('הועתק', 'Copied') : L('העתקה', 'Copy')}
+        </button>
+    );
+
+    const BackIcon = isRTL ? FaArrowRight : FaArrowLeft;
 
     return (
-        <div className={`waba-onboarding-container ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
-            {/* Enhanced Header */}
-            <div className="waba-header">
-                <div className="header-badge">
-                    <HiOutlineSparkles className="sparkle-icon" />
-                    <span>{getWabaText('wabaOnboarding.header.badge')}</span>
+        <div className={`wc ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+            <header className="wc-header">
+                <div className="wc-header-text">
+                    <h1 className="wc-title">{L('חיבור WhatsApp דרך Facebook', 'Connect WhatsApp through Facebook')}</h1>
+                    <p className="wc-subtitle">{L('הצעד האחרון: מחברים את מספר ה-WhatsApp העסקי שלכם למערכת.', 'Last step: connect your business WhatsApp number to Gambot.')}</p>
                 </div>
-                <h1 className="waba-title">{getWabaText('wabaOnboarding.header.title')}</h1>
-                <p className="waba-subtitle">{getWabaText('wabaOnboarding.header.subtitle')}</p>
-            </div>
+                <TutorialVideoButton step={5} />
+            </header>
 
-            {/* Tutorial Video Button - prominent placement at top */}
-            <TutorialVideoButton step={5} />
-
-            {/* Show content */}
-            <div className="waba-content">
-                {/* Video Section */}
-                <div className="video-section">
-                    <div className="video-header">
-                        <div className="video-icon">
-                            <FaPlay />
-                        </div>
-                        <h2>{getWabaText('wabaOnboarding.video.title')}</h2>
-                        <p>{getWabaText('wabaOnboarding.video.description')}</p>
+            {/* ── The one action that matters ─────────────────────────── */}
+            <section className="wc-action" aria-labelledby="wc-action-title">
+                <div className="wc-action-head">
+                    <span className="wc-fb-badge" aria-hidden="true"><FaFacebookF /></span>
+                    <div>
+                        <h2 id="wc-action-title">{L('התחברו עם Facebook כדי להשלים', 'Connect with Facebook to finish')}</h2>
+                        <p>
+                            {L(
+                                'החיבור ל-WhatsApp Business מתבצע דרך Meta, ולכן חובה להתחבר עם חשבון Facebook. בלי זה החשבון לא יופעל.',
+                                'WhatsApp Business is connected through Meta, so signing in with Facebook is required. Without it your account cannot be activated.'
+                            )}
+                        </p>
                     </div>
-                    <div className="video-wrapper">
-                        {/* Show the tutorial that matches the chosen account type:
-                            Co-existing → the Co-existence account-creation video from 5:30 (start=330).
-                            Otherwise  → the WhatsApp API onboarding video from 2:20 (start=140). */}
+                </div>
+
+                {metaChoice && (
+                    <div className="wc-choice">
+                        <span className="wc-choice-label">{L('בחלון של Facebook שייפתח, בחרו:', 'In the Facebook window that opens, choose:')}</span>
+                        <strong className="wc-choice-value" dir="ltr">{metaChoice}</strong>
+                    </div>
+                )}
+
+                <FacebookLogin
+                    organization={organization}
+                    buisnessEmail={email}
+                    organizationName={organizationName}
+                    isCoexisting={useCoexisting}
+                    coexistingPhoneNumber={simPhoneNumber}
+                />
+
+                <p className="wc-secure">
+                    <FaShieldAlt aria-hidden="true" />
+                    {L('החיבור מאובטח דרך Facebook. בסיום תועברו למסך הכניסה של Gambot.', 'The connection is secured by Facebook. When you finish, you will be taken to the Gambot sign-in page.')}
+                </p>
+            </section>
+
+            {/* ── What to have ready ─────────────────────────────────── */}
+            <section className="wc-block" aria-labelledby="wc-ready-title">
+                <h2 id="wc-ready-title" className="wc-block-title">{L('לפני שמתחילים — שלושה דברים שצריך', 'Before you start — three things you need')}</h2>
+                <ul className="wc-ready">
+                    <li>
+                        <span className="wc-ready-icon"><FaUser /></span>
+                        <div>
+                            <h3>{L('חשבון Facebook אישי', 'A personal Facebook account')}</h3>
+                            <p>{L(
+                                'התחברו עם החשבון האישי שלכם, רצוי כזה שיש לו גישה לנכסי העסק. עדיין אין Business Portfolio ב-Meta? הוא ייווצר אוטומטית.',
+                                'Sign in with your own account, ideally one with access to your business assets. No Business Portfolio on Meta yet? One is created automatically.'
+                            )}</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span className="wc-ready-icon"><FaCreditCard /></span>
+                        <div>
+                            <h3>{L('אמצעי תשלום פעיל', 'An active payment method')}</h3>
+                            <p>{L(
+                                'Meta דורשת אמצעי תשלום פעיל ומאומת בחשבון העסקי.',
+                                'Meta requires an active, verified payment method on the business account.'
+                            )}</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span className="wc-ready-icon"><FaPhoneAlt /></span>
+                        <div>
+                            <h3>{L('גישה למספר הטלפון', 'Access to the phone number')}</h3>
+                            {useCoexisting ? (
+                                <>
+                                    <p>{L('המספר שבחרתם:', 'The number you selected:')}</p>
+                                    <div className="wc-number">
+                                        <span dir="ltr">{simPhoneNumber}</span>
+                                        {copyButton}
+                                    </div>
+                                    <p>{L('ודאו שיש לכם גישה אליו כדי לקבל קוד אימות מ-Meta.', 'Make sure you can access it to receive a verification code from Meta.')}</p>
+                                </>
+                            ) : !hasSim ? (
+                                <>
+                                    <p>{L('המספר שנרכש עבורכם:', 'The number purchased for you:')}</p>
+                                    <div className="wc-number">
+                                        <span dir="ltr">{simPhoneNumber}</span>
+                                        {copyButton}
+                                    </div>
+                                    <p>{verificationText}</p>
+                                </>
+                            ) : (
+                                <>
+                                    {simPhoneNumber && (
+                                        <div className="wc-number">
+                                            <span dir="ltr">{simPhoneNumber}</span>
+                                            {copyButton}
+                                        </div>
+                                    )}
+                                    <p>{L(
+                                        'ודאו שיש לכם גישה למספר שבחרתם. לא מומלץ להשתמש במספר אישי פעיל, כדי למנוע אובדן מידע.',
+                                        'Make sure you have access to the number you selected. Using an active personal number is not recommended, to avoid losing data.'
+                                    )}</p>
+                                </>
+                            )}
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            {/* ── What will happen ───────────────────────────────────── */}
+            <section className="wc-block" aria-labelledby="wc-how-title">
+                <h2 id="wc-how-title" className="wc-block-title">{L('איך זה עובד', 'How it works')}</h2>
+                <ol className="wc-steps">
+                    <li><span className="wc-step-num">1</span><span>{L('לוחצים על "התחברות עם Facebook".', 'Click "Connect with Facebook".')}</span></li>
+                    <li><span className="wc-step-num">2</span><span>{L('בחלון של Meta מתחברים, מאשרים את פרטי העסק ומזינים את קוד האימות.', 'In the Meta window, sign in, confirm your business details and enter the verification code.')}</span></li>
+                    <li><span className="wc-step-num">3</span><span>{L('זהו — מועברים למסך הכניסה ומתחילים לעבוד.', 'That is it — you are taken to sign-in and can start working.')}</span></li>
+                </ol>
+
+                {showVideo ? (
+                    <div className="wc-video">
                         <iframe
-                            className="tutorial-video"
-                            src={useCoexisting
-                                ? 'https://www.youtube.com/embed/mBBmoxCRRmI?start=330&rel=0'
-                                : 'https://www.youtube.com/embed/6y8A61Z7Zv4?start=140&rel=0'}
-                            title={getWabaText('wabaOnboarding.video.title')}
+                            src={videoSrc}
+                            title={L('סרטון הדרכה', 'Tutorial video')}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen
-                            style={{ width: '100%', aspectRatio: '16 / 9', border: 0, borderRadius: '12px', display: 'block' }}
                         />
                     </div>
+                ) : (
+                    <button type="button" className="wc-video-toggle" onClick={() => setShowVideo(true)}>
+                        <FaPlay aria-hidden="true" /> {L('צפו בהדרכה קצרה לפני שמתחילים', 'Watch a short walkthrough first')} <FaChevronDown aria-hidden="true" />
+                    </button>
+                )}
+            </section>
 
-                    {/* Facebook Login Card */}
-                    <div className="facebook-login-card">
-                        <div className="login-header">
-                            <div className="login-icon">
-                                <FaFacebookF />
-                            </div>
-                            <h3>{getWabaText('wabaOnboarding.facebookLogin.title')}</h3>
-                            <p>{getWabaText('wabaOnboarding.facebookLogin.description')}</p>
-                        </div>
-                        
-                        {/* ✅ Important Note: Guide user on what to select in Facebook modal */}
-                        {useCoexisting && (
-                            <div className="facebook-mode-reminder coexisting-mode" style={{
-                                background: 'linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)',
-                                border: '2px solid #10b981',
-                                borderRadius: '12px',
-                                padding: '16px',
-                                margin: '16px 0',
-                                display: 'flex',
-                                alignItems: 'flex-start',
-                                gap: '12px'
-                            }}>
-                                <FaCheckCircle style={{ color: '#10b981', fontSize: '24px', flexShrink: 0, marginTop: '2px' }} />
-                                <div style={{ flex: 1 }}>
-                                    <strong style={{ color: '#065f46', fontSize: '15px', display: 'block', marginBottom: '6px' }}>
-                                        ⚠️ חשוב! בחרת במסלול Co-existing
-                                    </strong>
-                                    <p style={{ color: '#047857', fontSize: '14px', margin: 0, lineHeight: '1.5' }}>
-                                        בחלון של Facebook שייפתח, בחר באופציה:<br />
-                                        <strong>"Use an existing WhatsApp Business Account"</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        )}
-                        
-                        {!useCoexisting && !hasSim && !useFreeNumber && (
-                            <div className="facebook-mode-reminder new-mode" style={{
-                                background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-                                border: '2px solid #3b82f6',
-                                borderRadius: '12px',
-                                padding: '16px',
-                                margin: '16px 0',
-                                display: 'flex',
-                                alignItems: 'flex-start',
-                                gap: '12px'
-                            }}>
-                                <FaCheckCircle style={{ color: '#3b82f6', fontSize: '24px', flexShrink: 0, marginTop: '2px' }} />
-                                <div style={{ flex: 1 }}>
-                                    <strong style={{ color: '#1e40af', fontSize: '15px', display: 'block', marginBottom: '6px' }}>
-                                        ⚠️ חשוב! בחרת במסלול חשבון חדש
-                                    </strong>
-                                    <p style={{ color: '#1e3a8a', fontSize: '14px', margin: 0, lineHeight: '1.5' }}>
-                                        בחלון של Facebook שייפתח, בחר באופציה:<br />
-                                        <strong>"Create a new WhatsApp Business Account"</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        )}
-                        
-                        <FacebookLogin 
-                            organization={organization} 
-                            buisnessEmail={email}
-                            organizationName={organizationName}
-                            isCoexisting={useCoexisting}
-                            coexistingPhoneNumber={simPhoneNumber}
-                        />
-                    </div>
-                </div>
-
-
-                {/* Requirements Section */}
-                <div className="requirements-section">
-                    <div className="requirements-header">
-                        <div className="requirements-icon">
-                            <FaWhatsapp />
-                        </div>
-                        <h2>{getWabaText('wabaOnboarding.requirements.title')}</h2>
-                        <p>{getWabaText('wabaOnboarding.requirements.description')}</p>
-                    </div>
-
-                    <div className="requirements-list">
-                        {/* Facebook Account Requirement */}
-                        <div className="requirement-card business-account">
-                            <div className="requirement-icon">
-                                <MdBusinessCenter />
-                            </div>
-                            <div className="requirement-content">
-                                <h3>{getWabaText('wabaOnboarding.requirements.businessAccount.title')}</h3>
-                                <p>{getWabaText('wabaOnboarding.requirements.businessAccount.description')}</p>
-                            </div>
-                            <MdVerified className="requirement-status" />
-                        </div>
-
-                        {/* Payment Method Requirement */}
-                        <div className="requirement-card payment-method">
-                            <div className="requirement-icon">
-                                <FaCreditCard />
-                            </div>
-                            <div className="requirement-content">
-                                <h3>{getWabaText('wabaOnboarding.requirements.paymentMethod.title')}</h3>
-                                <p>{getWabaText('wabaOnboarding.requirements.paymentMethod.description')}</p>
-                            </div>
-                            <MdVerified className="requirement-status" />
-                        </div>
-
-                        {/* Phone Number Requirement */}
-                        <div className="requirement-card phone-number">
-                            <div className="requirement-icon">
-                                <FaPhoneAlt />
-                            </div>
-                            <div className="requirement-content">
-                                <h3>{getWabaText('wabaOnboarding.requirements.phoneNumber.title')}</h3>
-                                {useCoexisting ? (
-                                    <div className="phone-details">
-                                        <p>{getWabaText('wabaOnboarding.requirements.phoneNumber.coexistNumber')}</p>
-                                        <div className="phone-number-display">
-                                            <span className="phone-number">{simPhoneNumber}</span>
-                                        </div>
-                                        <div className="verification-info">
-                                            <FaShieldAlt className="verification-icon" />
-                                            <p>{getWabaText('wabaOnboarding.requirements.phoneNumber.coexistWarning')}</p>
-                                        </div>
-                                    </div>
-                                ) : !hasSim ? (
-                                    <div className="phone-details">
-                                        <p>{getWabaText('wabaOnboarding.requirements.phoneNumber.yourNumber')}</p>
-                                        <div className="phone-number-display">
-                                            <span className="phone-number">{simPhoneNumber}</span>
-                                            <button
-                                                onClick={handleCopyPhoneNumber}
-                                                className={`copy-button ${phoneNumberCopied ? 'copied' : ''}`}
-                                            >
-                                                {phoneNumberCopied ? (
-                                                    <>
-                                                        <FaCheckCircle />
-                                                        <span>{getWabaText('wabaOnboarding.phoneNumber.copied')}</span>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <FaCopy />
-                                                        <span>{getWabaText('wabaOnboarding.phoneNumber.copy')}</span>
-                                                    </>
-                                                )}
-                                            </button>
-                                        </div>
-                                        <div className="verification-info">
-                                            <FaShieldAlt className="verification-icon" />
-                                            <p>{getWabaText('wabaOnboarding.requirements.phoneNumber.verificationSent').replace('{phone}', contactPhoneNumber).replace('{email}', email)}</p>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className="phone-warning">
-                                        <FaExclamationTriangle className="warning-icon" />
-                                        <p>{getWabaText('wabaOnboarding.requirements.phoneNumber.warning')}</p>
-                                    </div>
-                                )}
-                            </div>
-                            <MdVerified className="requirement-status" />
-                        </div>
-                    </div>
-
-                    <div className="ready-section">
-                        <div className="ready-icon">
-                            <FaCheckCircle />
-                        </div>
-                        <div className="ready-content">
-                            <h3>{getWabaText('wabaOnboarding.requirements.readySection.title')}</h3>
-                            <p>{getWabaText('wabaOnboarding.requirements.readySection.description')}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Navigation Footer */}
-            <div className={`waba-footer ${isRTL ? 'rtl' : 'ltr'}`}>
-                <button className="nav-button prev-button" onClick={onPrevStep}>
-                    {isRTL ? <FaArrowRight className="nav-icon" /> : <FaArrowLeft className="nav-icon" />}
-                    <span>{getWabaText('wabaOnboarding.navigation.back')}</span>
+            <footer className="wc-footer">
+                <button type="button" className="wc-back" onClick={onPrevStep}>
+                    <BackIcon aria-hidden="true" /> {L('חזרה', 'Back')}
                 </button>
-            </div>
-
+            </footer>
         </div>
     );
 };

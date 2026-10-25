@@ -159,14 +159,15 @@ export default function Navbar() {
   const currentLang = LANG_OPTIONS.find(l => l.code === lang);
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
+    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} dir={isRTL ? 'rtl' : 'ltr'} aria-label={isRTL ? 'ניווט ראשי' : 'Main navigation'}
+      onKeyDown={(e) => { if (e.key === 'Escape') { setOpenDropdown(null); setLangDropOpen(false); if (isOpen) setIsOpen(false); } }}>
       <div className={styles.container}>
         {/* Logo — in RTL (Hebrew) pushed to the LEFT (order 1), hamburger takes the RIGHT (order -1) */}
         <Link href="/" className={styles.logo} style={isRTL ? { order: 1 } : {}}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/gambot_logo_transparent.png"
-            alt="גמבוט לוגו"
+            alt={isRTL ? 'גמבוט — לדף הבית' : 'Gambot — home'}
             width={130}
             height={44}
             style={{ display: 'block', width: '44px', height: '44px', objectFit: 'contain' }}
@@ -182,9 +183,16 @@ export default function Navbar() {
                 className={styles.dropdown}
                 onMouseEnter={() => setOpenDropdown(i)}
                 onMouseLeave={() => setOpenDropdown(null)}
+                onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setOpenDropdown((cur) => (cur === i ? null : cur)); }}
               >
-                <button className={styles.dropBtn}>
-                  {link.label} <span>▾</span>
+                <button
+                  type="button"
+                  className={styles.dropBtn}
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown === i}
+                  onClick={() => setOpenDropdown(i)}
+                >
+                  {link.label} <span aria-hidden="true">▾</span>
                 </button>
                 <div className={`${styles.megaMenu} ${openDropdown === i ? styles.dropOpen : ''}`}>
                   {link.groups.map((group, gi) => (
@@ -217,8 +225,11 @@ export default function Navbar() {
           <div className={styles.langWrapper}>
             <button
               className={styles.langBtn}
+              type="button"
               onClick={() => setLangDropOpen(v => !v)}
-              aria-label="שנה שפה"
+              aria-label={isRTL ? 'שינוי שפה' : 'Change language'}
+              aria-haspopup="true"
+              aria-expanded={langDropOpen}
             >
               <span>{currentLang?.flag}</span>
               <span className={styles.langLabel}>{currentLang?.code === 'he' ? 'עב' : 'EN'}</span>
@@ -229,6 +240,9 @@ export default function Navbar() {
                 {LANG_OPTIONS.map(opt => (
                   <button
                     key={opt.code}
+                    type="button"
+                    lang={opt.code}
+                    aria-current={lang === opt.code ? 'true' : undefined}
                     className={`${styles.langOption} ${lang === opt.code ? styles.langOptionActive : ''}`}
                     onClick={() => changeLang(opt.code)}
                   >
@@ -250,8 +264,10 @@ export default function Navbar() {
         {/* Hamburger — in RTL: RIGHT side (order -1 = before logo); in LTR: RIGHT side (space-between end) */}
         <button
           className={`${styles.hamburger} ${isOpen ? styles.hamburgerOpen : ''}`}
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="תפריט"
+          aria-label={isRTL ? 'תפריט' : 'Menu'}
+          aria-expanded={isOpen}
           style={isRTL ? { order: -1 } : {}}
         >
           <span /><span /><span />
@@ -265,7 +281,9 @@ export default function Navbar() {
             link.groups ? (
               <div key={i} className={styles.mobileAccordion}>
                 <button
+                  type="button"
                   className={styles.mobileAccordionBtn}
+                  aria-expanded={mobileSolutionsOpen}
                   onClick={() => setMobileSolutionsOpen(v => !v)}
                 >
                   <span>{link.label}</span>
@@ -279,6 +297,7 @@ export default function Navbar() {
                       <div key={gi} className={styles.mobileCategory}>
                         <button
                           type="button"
+                          aria-expanded={mobileOpenCat === group.title}
                           className={styles.mobileCategoryBtn}
                           onClick={() => setMobileOpenCat(prev => (prev === group.title ? null : group.title))}
                         >
@@ -321,6 +340,9 @@ export default function Navbar() {
             {LANG_OPTIONS.map(opt => (
               <button
                 key={opt.code}
+                type="button"
+                lang={opt.code}
+                aria-current={lang === opt.code ? 'true' : undefined}
                 className={`${styles.mobileLangOpt} ${lang === opt.code ? styles.mobileLangOptActive : ''}`}
                 onClick={() => changeLang(opt.code)}
               >

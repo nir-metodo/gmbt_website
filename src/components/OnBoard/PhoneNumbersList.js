@@ -1,280 +1,164 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { FaSearch, FaSyncAlt, FaPhoneAlt } from 'react-icons/fa';
 import axiosInstance from './axiosInstance';
 import './PhoneNumbersList.css';
-import Swal from 'sweetalert2';
 import { useLanguage } from '@/contexts/LanguageContext';
+
+const COUNTRIES = [
+    ['IL', 'ישראל', 'Israel'], ['US', 'ארצות הברית', 'United States'], ['GB', 'בריטניה', 'United Kingdom'],
+    ['DE', 'גרמניה', 'Germany'], ['FR', 'צרפת', 'France'], ['IT', 'איטליה', 'Italy'], ['ES', 'ספרד', 'Spain'],
+    ['TR', 'טורקיה', 'Turkey'], ['RU', 'רוסיה', 'Russia'], ['IN', 'הודו', 'India'], ['BR', 'ברזיל', 'Brazil'],
+    ['MX', 'מקסיקו', 'Mexico'], ['AR', 'ארגנטינה', 'Argentina'], ['CO', 'קולומביה', 'Colombia'], ['PE', 'פרו', 'Peru'],
+    ['ID', 'אינדונזיה', 'Indonesia'], ['PH', 'הפיליפינים', 'Philippines'], ['VN', 'וייטנאם', 'Vietnam'],
+    ['TH', 'תאילנד', 'Thailand'], ['PK', 'פקיסטן', 'Pakistan'], ['BD', 'בנגלדש', 'Bangladesh'],
+    ['NG', 'ניגריה', 'Nigeria'], ['EG', 'מצרים', 'Egypt'], ['KE', 'קניה', 'Kenya'], ['DZ', "אלג'יריה", 'Algeria'],
+    ['SA', 'ערב הסעודית', 'Saudi Arabia'],
+];
 
 const PhoneNumbersList = ({ onPhoneNumberSelect }) => {
     const { t, currentLanguage, isRTL } = useLanguage();
+    const isHe = currentLanguage === 'he';
     const [phoneNumbers, setPhoneNumbers] = useState([]);
     const [countryCode, setCountryCode] = useState('IL');
-    const [selectedPhoneNumber, setSelectedPhoneNumber] = useState(null);
+    const [query, setQuery] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const requestId = useRef(0);
 
-    // Direct translations with fallback
-    const getTranslation = (key, fallbackHe, fallbackEn) => {
-        const translation = t(key);
-        if (translation === key) {
-            // Translation key returned, use fallback
-            return currentLanguage === 'he' ? fallbackHe : fallbackEn;
-        }
-        return translation;
+    // Use the translation file when the key exists, otherwise the inline fallback.
+    const tr = (key, fallbackHe, fallbackEn) => {
+        const value = t(key);
+        return value === key ? (isHe ? fallbackHe : fallbackEn) : value;
     };
 
-    // Fetch available phone numbers based on the selected country code
     const fetchPhoneNumbers = async (selectedCountryCode) => {
+        const id = ++requestId.current;
         setLoading(true);
         setError(null);
-        
         try {
             const response = await axiosInstance.post(
                 '/api/Webhooks/GetAvailablePhoneNumbersToPurchaseByCountry',
                 { countryCode: selectedCountryCode }
             );
-            console.log('Phone numbers response:', response.data);
-            console.log('First number:', response.data[0]);
-            setPhoneNumbers(response.data);
-        } catch (error) {
-            console.error("Error fetching phone numbers:", error);
-            setError(getTranslation('phoneNumbersList.error', 'שגיאה בטעינת מספרי טלפון', 'Error loading phone numbers'));
+            if (id !== requestId.current) return; // a newer country was picked meanwhile
+            setPhoneNumbers(Array.isArray(response.data) ? response.data : []);
+        } catch (err) {
+            if (id !== requestId.current) return;
+            console.error('Error fetching phone numbers:', err);
+            setError(tr('phoneNumbersList.error', 'שגיאה בטעינת מספרי טלפון', 'Error loading phone numbers'));
             setPhoneNumbers([]);
         } finally {
-            setLoading(false);
+            if (id === requestId.current) setLoading(false);
         }
     };
 
-    // Handle country code change
-    const handleCountryCodeChange = (event) => {
-        setCountryCode(event.target.value);
-        fetchPhoneNumbers(event.target.value);
-    };
-
-    // Fetch available phone numbers when the component mounts or country code changes
     useEffect(() => {
+        setQuery('');
         fetchPhoneNumbers(countryCode);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [countryCode]);
 
-    const formatPhoneNumber = (phoneNumber) => {
-        const prefix = phoneNumber.slice(0, 4);
-        const number = phoneNumber.slice(4);
-        return `
-            <div class="phone-number-container">
-                <span class="phone-wrapper">
-                    <span class="phone-prefix">${prefix}</span>
-                    <span class="phone-space">&nbsp;</span>
-                    <span class="phone-number">${number}</span>
-                </span>
-            </div>`;
-    };
+    const visibleNumbers = useMemo(() => {
+        const digits = query.replace(/\D/g, '');
+        if (!digits) return phoneNumbers;
+        return phoneNumbers.filter((n) => String(n.phone_number || '').replace(/\D/g, '').includes(digits));
+    }, [phoneNumbers, query]);
 
-    const handleBuyClick = (phoneNumber) => {
-        const formattedPhoneNumber = formatPhoneNumber(phoneNumber);
-        Swal.fire({
-            title: getTranslation('phoneNumbersList.confirmation.title', 'אישור בחירה', 'Confirm Selection'),
-            html: `${getTranslation('phoneNumbersList.confirmation.message', 'האם אתה בטוח שברצונך לבחור את המספר', 'Are you sure you want to select the number')} ${formattedPhoneNumber}`,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: getTranslation('phoneNumbersList.confirmation.confirm', 'כן, אני בטוח', 'Yes, I\'m sure'),
-            cancelButtonText: getTranslation('phoneNumbersList.confirmation.cancel', 'ביטול', 'Cancel'),
-            reverseButtons: isRTL,
-            customClass: {
-                popup: 'rtl-popup',
-                confirmButton: 'swal2-confirm',
-                cancelButton: 'swal2-cancel'
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                setSelectedPhoneNumber(phoneNumber);
-                Swal.fire({
-                    title: getTranslation('phoneNumbersList.confirmation.success', 'מצוין!', 'Excellent!'),
-                    html: `${getTranslation('phoneNumbersList.confirmation.successMessage', 'בחרת את המספר', 'You selected the number')} - ${formattedPhoneNumber}`,
-                    icon: 'success',
-                    confirmButtonText: getTranslation('phoneNumbersList.confirmation.close', 'סגור', 'Close'),
-                    customClass: {
-                        popup: 'rtl-popup'
-                    }
-                });
-                onPhoneNumberSelect(phoneNumber);
-            }
-        });
-    };
-
-    // Define countries directly based on current language
-    const getCountryOptions = () => {
-        if (currentLanguage === 'he') {
-            return [
-                { value: 'IL', label: 'ישראל (IL)' },
-                { value: 'US', label: 'ארצות הברית (US)' },
-                { value: 'IN', label: 'הודו (IN)' },
-                { value: 'BR', label: 'ברזיל (BR)' },
-                { value: 'ID', label: 'אינדונזיה (ID)' },
-                { value: 'MX', label: 'מקסיקו (MX)' },
-                { value: 'RU', label: 'רוסיה (RU)' },
-                { value: 'PK', label: 'פקיסטן (PK)' },
-                { value: 'NG', label: 'ניגריה (NG)' },
-                { value: 'DE', label: 'גרמניה (DE)' },
-                { value: 'PH', label: 'הפיליפינים (PH)' },
-                { value: 'VN', label: 'וייטנאם (VN)' },
-                { value: 'EG', label: 'מצרים (EG)' },
-                { value: 'TR', label: 'טורקיה (TR)' },
-                { value: 'CO', label: 'קולומביה (CO)' },
-                { value: 'GB', label: 'בריטניה (GB)' },
-                { value: 'IT', label: 'איטליה (IT)' },
-                { value: 'ES', label: 'ספרד (ES)' },
-                { value: 'AR', label: 'ארגנטינה (AR)' },
-                { value: 'KE', label: 'קניה (KE)' },
-                { value: 'SA', label: 'ערב הסעודית (SA)' },
-                { value: 'FR', label: 'צרפת (FR)' },
-                { value: 'TH', label: 'תאילנד (TH)' },
-                { value: 'DZ', label: 'אלג\'יריה (DZ)' },
-                { value: 'BD', label: 'בנגלדש (BD)' },
-                { value: 'PE', label: 'פרו (PE)' }
-            ];
-        } else {
-            return [
-                { value: 'IL', label: 'Israel (IL)' },
-                { value: 'US', label: 'United States (US)' },
-                { value: 'IN', label: 'India (IN)' },
-                { value: 'BR', label: 'Brazil (BR)' },
-                { value: 'ID', label: 'Indonesia (ID)' },
-                { value: 'MX', label: 'Mexico (MX)' },
-                { value: 'RU', label: 'Russia (RU)' },
-                { value: 'PK', label: 'Pakistan (PK)' },
-                { value: 'NG', label: 'Nigeria (NG)' },
-                { value: 'DE', label: 'Germany (DE)' },
-                { value: 'PH', label: 'Philippines (PH)' },
-                { value: 'VN', label: 'Vietnam (VN)' },
-                { value: 'EG', label: 'Egypt (EG)' },
-                { value: 'TR', label: 'Turkey (TR)' },
-                { value: 'CO', label: 'Colombia (CO)' },
-                { value: 'GB', label: 'United Kingdom (GB)' },
-                { value: 'IT', label: 'Italy (IT)' },
-                { value: 'ES', label: 'Spain (ES)' },
-                { value: 'AR', label: 'Argentina (AR)' },
-                { value: 'KE', label: 'Kenya (KE)' },
-                { value: 'SA', label: 'Saudi Arabia (SA)' },
-                { value: 'FR', label: 'France (FR)' },
-                { value: 'TH', label: 'Thailand (TH)' },
-                { value: 'DZ', label: 'Algeria (DZ)' },
-                { value: 'BD', label: 'Bangladesh (BD)' },
-                { value: 'PE', label: 'Peru (PE)' }
-            ];
-        }
-    };
-
-    const countryOptions = getCountryOptions();
+    const priceLabel = isHe ? '₪35' : '$10';
 
     return (
-        <div className="phone-numbers-list-container" dir={isRTL ? 'rtl' : 'ltr'}>
-            <h1 className="phone-numbers-list-header">
-                {getTranslation('phoneNumbersList.header', 'בחר קוד מדינה ומספר טלפון:', 'Select country code and phone number:')}
-            </h1>
-            
-            {/* Price info - shown only on mobile */}
-            <div className="phone-numbers-price-info-mobile">
-                {currentLanguage === 'he' 
-                    ? 'עלות חודשית: ₪35 למספר' 
-                    : 'Monthly cost: $10 per number'}
+        <div className="pn" dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="pn-head">
+                <div className="pn-head-text">
+                    <h3 className="pn-title">{isHe ? 'בחירת מספר WhatsApp' : 'Choose your WhatsApp number'}</h3>
+                    <p className="pn-sub">{isHe ? 'בחרו מדינה ואז מספר פנוי מהרשימה.' : 'Pick a country, then an available number from the list.'}</p>
+                </div>
+                <span className="pn-price">
+                    <strong>{priceLabel}</strong> {isHe ? 'לחודש למספר' : 'per number / month'}
+                </span>
             </div>
 
-            {/* Country code dropdown */}
-            <div className="phone-numbers-list-country-select">
-                <label htmlFor="countryCode-select">
-                    {getTranslation('phoneNumbersList.countryLabel', 'בחר מדינה:', 'Select country:')}
+            <div className="pn-toolbar">
+                <label className="pn-field">
+                    <span className="pn-label">{tr('phoneNumbersList.countryLabel', 'מדינה', 'Country').replace(/:\s*$/, '')}</span>
+                    <select
+                        id="countryCode-select"
+                        className="pn-select"
+                        value={countryCode}
+                        onChange={(e) => setCountryCode(e.target.value)}
+                        disabled={loading}
+                    >
+                        {COUNTRIES.map(([code, he, en]) => (
+                            <option key={code} value={code}>{isHe ? he : en} ({code})</option>
+                        ))}
+                    </select>
                 </label>
-                <select 
-                    id="countryCode-select" 
-                    value={countryCode} 
-                    onChange={handleCountryCodeChange}
-                    disabled={loading}
-                >
-                    {countryOptions.map(option => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
+                <label className="pn-field pn-search">
+                    <span className="pn-label">{isHe ? 'חיפוש לפי ספרות' : 'Search by digits'}</span>
+                    <span className="pn-search-box">
+                        <FaSearch className="pn-search-icon" aria-hidden="true" />
+                        <input
+                            type="search"
+                            inputMode="numeric"
+                            className="pn-input"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder={isHe ? 'למשל 1234' : 'e.g. 1234'}
+                            disabled={loading || phoneNumbers.length === 0}
+                        />
+                    </span>
+                </label>
             </div>
 
-            {/* Available phone numbers title */}
-            <h2 className="phone-numbers-list-title">
-                {getTranslation('phoneNumbersList.availableNumbers', 'מספרי טלפון זמינים:', 'Available phone numbers:')}
-            </h2>
-
-            {/* Loading state */}
             {loading && (
-                <div className="phone-numbers-loading">
-                    <div className="loading-spinner"></div>
-                    {getTranslation('phoneNumbersList.loading', 'טוען מספרי טלפון...', 'Loading phone numbers...')}
+                <ul className="pn-list" aria-busy="true" aria-label={tr('phoneNumbersList.loading', 'טוען מספרי טלפון...', 'Loading phone numbers...')}>
+                    {[0, 1, 2, 3, 4].map((i) => (
+                        <li key={i} className="pn-row pn-skeleton"><span /><span /><span /></li>
+                    ))}
+                </ul>
+            )}
+
+            {!loading && error && (
+                <div className="pn-state pn-state-error" role="alert">
+                    <span>{error}</span>
+                    <button type="button" className="pn-retry" onClick={() => fetchPhoneNumbers(countryCode)}>
+                        <FaSyncAlt /> {isHe ? 'נסו שוב' : 'Try again'}
+                    </button>
                 </div>
             )}
 
-            {/* Error state */}
-            {error && (
-                <div className="phone-numbers-empty">
-                    <div className="empty-icon">⚠️</div>
-                    {getTranslation('phoneNumbersList.error', 'שגיאה בטעינת מספרי טלפון', 'Error loading phone numbers')}
+            {!loading && !error && phoneNumbers.length === 0 && (
+                <div className="pn-state">
+                    <FaPhoneAlt className="pn-state-icon" aria-hidden="true" />
+                    <span>{tr('phoneNumbersList.noNumbers', 'אין מספרים זמינים כרגע', 'No numbers available at the moment')}</span>
                 </div>
             )}
 
-            {/* Phone numbers table */}
-            {!loading && !error && selectedPhoneNumber === null && (
-                phoneNumbers.length > 0 ? (
-                    <div className="phone-numbers-list-table-container">
-                        <table className="phone-numbers-list-table">
-                            <thead>
-                                <tr>
-                                    <th>{getTranslation('phoneNumbersList.tableHeaders.phoneNumber', 'מספר טלפון', 'Phone Number')}</th>
-                                    <th>{getTranslation('phoneNumbersList.tableHeaders.monthlyPayment', 'תשלום חודשי', 'Monthly Payment')}</th>
-                                    <th>{getTranslation('phoneNumbersList.tableHeaders.action', 'פעולה', 'Action')}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {phoneNumbers.map((number, index) => (
-                                    <tr
-                                        key={index}
-                                        className={selectedPhoneNumber === number.phone_number ? 'phone-numbers-selected' : ''}
-                                    >
-                                        <td className='phone-numbers-list-table-container-phonenumber-value' style={{color: '#1e293b', textAlign: 'center'}}>
-                                            <div style={{color: '#1e293b', textAlign: 'center'}}>
-                                                <div style={{color: '#1e293b', fontWeight: '700', fontSize: '16px'}}>
-                                                    {number.phone_number}
-                                                </div>
-                                                <div className="district" style={{color: '#64748b', fontSize: '12px'}}>
-                                                    {number.locality}
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            {currentLanguage === 'he' ? '₪35' : '$10'}
-                                        </td>
-                                        <td>
-                                            <button
-                                                className="phone-numbers-list-buy-button"
-                                                onClick={() => handleBuyClick(number.phone_number)}
-                                            >
-                                                {currentLanguage === 'he' ? 'בחר' : 'Select'}
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                ) : (
-                    <div className="phone-numbers-empty">
-                        <div className="empty-icon">📞</div>
-                        {getTranslation('phoneNumbersList.noNumbers', 'אין מספרים זמינים כרגע', 'No numbers available at the moment')}
-                    </div>
-                )
+            {!loading && !error && phoneNumbers.length > 0 && visibleNumbers.length === 0 && (
+                <div className="pn-state">
+                    <span>{isHe ? 'לא נמצאו מספרים שמתאימים לחיפוש' : 'No numbers match your search'}</span>
+                </div>
             )}
 
-            {/* Display selected phone number */}
-            {selectedPhoneNumber && (
-                <div className="phone-numbers-list-selected">
-                    {getTranslation('phoneNumbersList.confirmation.successMessage', 'בחרת את המספר', 'You selected the number')}: {selectedPhoneNumber}
-                </div>
+            {!loading && !error && visibleNumbers.length > 0 && (
+                <ul className="pn-list">
+                    {visibleNumbers.map((number, index) => (
+                        <li key={`${number.phone_number}-${index}`} className="pn-row">
+                            <div className="pn-number-col">
+                                <span className="pn-number" dir="ltr">{number.phone_number}</span>
+                                {number.locality && <span className="pn-locality">{number.locality}</span>}
+                            </div>
+                            <span className="pn-row-price">{priceLabel} <small>{isHe ? '/חודש' : '/mo'}</small></span>
+                            <button
+                                type="button"
+                                className="pn-select-btn"
+                                onClick={() => onPhoneNumberSelect(number.phone_number)}
+                            >
+                                {isHe ? 'בחירה' : 'Select'}
+                            </button>
+                        </li>
+                    ))}
+                </ul>
             )}
         </div>
     );

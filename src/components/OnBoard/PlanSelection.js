@@ -2,13 +2,12 @@ import React, { useState, useRef } from "react";
 import "./PlanSelection.css";
 import TutorialVideoButton from './TutorialVideoButton';
 import { FaCheck, FaCrown, FaStar, FaRocket, FaLightbulb, FaCheckCircle, FaArrowRight, FaArrowLeft, FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { HiOutlineSparkles } from "react-icons/hi2";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep }) => {
   const { t, currentLanguage, isRTL } = useLanguage();
-  const [isChecked, setIsChecked] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState(null);
+  // Coming back from a later step: the plan is already chosen, so the terms were already accepted.
+  const [isChecked, setIsChecked] = useState(!!plan);
   const [expandedCards, setExpandedCards] = useState({});
   const termsRef = useRef(null);
   
@@ -33,9 +32,8 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
     setIsChecked(!isChecked);
   };
 
-  const handlePlanSelection = (selectedPlan) => {
-    setPlan(selectedPlan);
-    setSelectedPlan(selectedPlan); // Store selected plan
+  const handlePlanSelection = (planName) => {
+    setPlan(planName);
   };
 
   // Enhanced plan data with icons and features
@@ -92,72 +90,68 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
     setPaymentCycle(cycle); // Set payment cycle (monthly or yearly)
   };
 
+  // Cards show the first VISIBLE_FEATURES bullets; the rest (incl. CRM extras) opens on demand.
+  const VISIBLE_FEATURES = 5;
+  const selectedPlanItem = plans.monthly.find((p) => p.name === plan);
+  const selectedPrice = selectedPlanItem
+    ? formatPrice(paymentCycle === 'monthly' ? selectedPlanItem.price : selectedPlanItem.yearlyPrice / 12)
+    : null;
+  const canContinue = !!plan && isChecked;
+
   return (
     <div className={`plan-selection-wrapper ${isRTL ? 'rtl' : 'ltr'}`}>
       <div className="plan-selection-container" dir={isRTL ? 'rtl' : 'ltr'}>
-        {/* Enhanced Header */}
+        {/* Title row: heading on one side, billing cycle switch on the other */}
         <div className="selection-header">
-          <div className="header-badge">
-            <HiOutlineSparkles className="sparkle-icon" />
-            <span>{t('planSelection.header.badge')}</span>
+          <div className="selection-heading">
+            <h2 className="selection-title">{t('planSelection.header.title')}</h2>
+            <p className="selection-subtitle">{t('planSelection.header.subtitle')}</p>
           </div>
-          <h2 className="selection-title">{t('planSelection.header.title')}</h2>
-          <p className="selection-subtitle">{t('planSelection.header.subtitle')}</p>
-          <TutorialVideoButton step={1} />
-        </div>
 
-        {/* Enhanced Billing Toggle */}
-        <div className="billing-toggle-wrapper">
-          <h3 className="toggle-title">{t('planSelection.billing.title')}</h3>
-          <div className="billing-toggle">
-                    <button
-          className={paymentCycle === "monthly" ? "active" : ""}
-          onClick={() => handlePaymentCycleChange("monthly")}
-          aria-pressed={paymentCycle === "monthly"}
-          aria-label={`${t('planSelection.billing.monthly.label')} - ${t('planSelection.billing.monthly.description')}`}
-        >
-          <span className="toggle-label">{t('planSelection.billing.monthly.label')}</span>
-          <span className="toggle-desc">{t('planSelection.billing.monthly.description')}</span>
-        </button>
-        <button
-          className={paymentCycle === "yearly" ? "active" : ""}
-          onClick={() => handlePaymentCycleChange("yearly")}
-          aria-pressed={paymentCycle === "yearly"}
-          aria-label={`${t('planSelection.billing.yearly.label')} - ${t('planSelection.billing.yearly.description')}`}
-        >
-          <span className="toggle-label">{t('planSelection.billing.yearly.label')}</span>
-          <span className="toggle-desc">{t('planSelection.billing.yearly.description')}</span>
-          <span className="discount-badge">{t('planSelection.billing.yearly.badge')}</span>
-        </button>
+          <div className="billing-toggle-wrapper">
+            <div className="billing-toggle" role="group" aria-label={t('planSelection.billing.title')}>
+              <button
+                type="button"
+                className={paymentCycle === "monthly" ? "active" : ""}
+                onClick={() => handlePaymentCycleChange("monthly")}
+                aria-pressed={paymentCycle === "monthly"}
+              >
+                <span className="toggle-label">{t('planSelection.billing.monthly.label')}</span>
+              </button>
+              <button
+                type="button"
+                className={paymentCycle === "yearly" ? "active" : ""}
+                onClick={() => handlePaymentCycleChange("yearly")}
+                aria-pressed={paymentCycle === "yearly"}
+              >
+                <span className="toggle-label">{t('planSelection.billing.yearly.label')}</span>
+                <span className="discount-badge">{t('planSelection.billing.yearly.badge')}</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Enhanced Plans Grid */}
-        <div className="plans-container-selection">
+        {/* Plans */}
+        <div className="plans-container-selection" role="listbox" aria-label={t('planSelection.header.title')}>
           {plans.monthly.map((planItem, index) => {
             const IconComponent = planItem.icon;
-            const isSelected = selectedPlan === planItem.name;
-            
+            const isSelected = plan === planItem.name;
+            const allFeatures = [...planItem.features, ...planItem.moreFeatures];
+            const hiddenCount = Math.max(allFeatures.length - VISIBLE_FEATURES, 0);
+            const isExpanded = !!expandedCards[planItem.name];
+            const shownFeatures = isExpanded ? allFeatures : allFeatures.slice(0, VISIBLE_FEATURES);
+            const price = formatPrice(paymentCycle === "monthly" ? planItem.price : planItem.yearlyPrice / 12);
+
             return (
               <div
                 key={index}
                 className={`plan-card-selection ${isSelected ? "selected" : ""} ${planItem.recommended ? "recommended" : ""}`}
-                style={{cursor: 'pointer', '--plan-color': planItem.color}}
+                style={{ cursor: 'pointer', '--plan-color': planItem.color }}
                 role="option"
                 aria-selected={isSelected}
-                aria-label={`${t('planSelection.ui.plan')} ${planItem.name} - ${planItem.description}${planItem.recommended ? ` (${t('planSelection.plans.premium.recommended')})` : ''}`}
-                onClick={() => {
-                  handlePlanSelection(planItem.name);
-                  setSelectedPlan(planItem.name);
-
-                  // Scroll to terms checkbox after short delay
-                  setTimeout(() => {
-                    if (termsRef.current) {
-                      const offsetTop = termsRef.current.getBoundingClientRect().top + window.pageYOffset - 150;
-                      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-                    }
-                  }, 200);
-                }}
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handlePlanSelection(planItem.name); } }}
+                onClick={() => handlePlanSelection(planItem.name)}
               >
                 {planItem.recommended && (
                   <div className="recommended-badge-selection">
@@ -167,22 +161,19 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                 )}
 
                 <div className="plan-header">
-                  <div className="plan-icon" style={{backgroundColor: planItem.color}}>
+                  <div className="plan-icon" style={{ backgroundColor: planItem.color }}>
                     <IconComponent />
                   </div>
-                  <h3 className="plan-name-selection">{planItem.name}</h3>
-                  <p className="plan-description-selection">{planItem.description}</p>
+                  <div className="plan-header-text">
+                    <h3 className="plan-name-selection">{planItem.name}</h3>
+                    <p className="plan-description-selection">{planItem.description}</p>
+                  </div>
                 </div>
 
                 <div className="plan-pricing">
                   <div className="plan-price-selection">
-                    <span className="currency">{formatPrice(planItem.price).currency}</span>
-                    <span className="amount">
-                      {paymentCycle === "monthly" 
-                        ? formatPrice(planItem.price).amount 
-                        : formatPrice(planItem.yearlyPrice / 12).amount
-                      }
-                    </span>
+                    <span className="currency">{price.currency}</span>
+                    <span className="amount">{price.amount}</span>
                     <span className="period">{t('planSelection.ui.perMonth')}</span>
                   </div>
 
@@ -195,9 +186,8 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                 </div>
 
                 <div className="plan-features">
-                  <h4>{t('planSelection.ui.includes')}</h4>
                   <ul>
-                    {planItem.features.map((feature, i) => {
+                    {shownFeatures.map((feature, i) => {
                       const isBroadcast = /הודעות דיוור/.test(feature) || /broadcast messages/i.test(feature);
                       const isAiResponses = /תגובות\s*AI/i.test(feature) || /AI responses/i.test(feature);
                       const isGeneralTokens = /טוקנים\s*כלליים/i.test(feature) || /general (ai )?tokens/i.test(feature);
@@ -264,64 +254,36 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                       );
                     })}
                   </ul>
-                  {planItem.moreFeatures.length > 0 && (
-                    <>
-                      <button
-                        className="plan-expand-toggle"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setExpandedCards(prev => ({ ...prev, [planItem.name]: !prev[planItem.name] }));
-                        }}
-                      >
-                        {expandedCards[planItem.name]
-                          ? <><FaChevronUp /> {currentLanguage === 'en' ? 'Show less' : 'הצג פחות'}</>
-                          : <><FaChevronDown /> {currentLanguage === 'en' ? `+${planItem.moreFeatures.length} CRM features` : `+${planItem.moreFeatures.length} יכולות CRM`}</>
-                        }
-                      </button>
-                      {expandedCards[planItem.name] && (
-                        <ul className="plan-more-features">
-                          {planItem.moreFeatures.map((feature, i) => (
-                            <li key={i}>
-                              <FaCheck className="feature-check" />
-                              <span>{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </>
+                  {hiddenCount > 0 && (
+                    <button
+                      type="button"
+                      className="plan-expand-toggle"
+                      aria-expanded={isExpanded}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setExpandedCards(prev => ({ ...prev, [planItem.name]: !prev[planItem.name] }));
+                      }}
+                    >
+                      {isExpanded
+                        ? <><FaChevronUp /> {currentLanguage === 'en' ? 'Show less' : 'הצג פחות'}</>
+                        : <><FaChevronDown /> {currentLanguage === 'en' ? `Show all features (+${hiddenCount})` : `הצג את כל היכולות (+${hiddenCount})`}</>
+                      }
+                    </button>
                   )}
                 </div>
 
                 <button
+                  type="button"
                   className={`plan-button ${isSelected ? "selected" : ""} ${planItem.recommended && !isSelected ? "recommended-btn" : ""} ${!isSelected && !planItem.recommended ? "secondary" : ""}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handlePlanSelection(planItem.name);
-                    setSelectedPlan(planItem.name);
-
-                    setTimeout(() => {
-                      if (termsRef.current) {
-                        const offsetTop = termsRef.current.getBoundingClientRect().top + window.pageYOffset - 150;
-                        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-                      }
-                    }, 200);
-                  }}
-                  aria-label={`${t('planSelection.ui.selectPlan')} ${planItem.name} ${paymentCycle === "monthly" ? planItem.price : Math.floor(planItem.yearlyPrice / 12)} ${t('planSelection.ui.currency')} ${t('planSelection.ui.perMonth')}`}
+                  onClick={(e) => { e.stopPropagation(); handlePlanSelection(planItem.name); }}
                 >
                   {isSelected ? (
                     <>
                       <FaCheckCircle className="button-icon" />
                       <span>{t('planSelection.ui.selectedPlan')}</span>
                     </>
-                  ) : planItem.recommended ? (
-                    <>
-                      <FaCrown className="button-icon" />
-                      <span>{t('planSelection.ui.selectPlan')} — {t('planSelection.plans.premium.recommended')}</span>
-                    </>
                   ) : (
-                    <>
-                      <span>{t('planSelection.ui.selectPlan')}</span>
-                    </>
+                    <span>{t('planSelection.ui.selectPlan')}</span>
                   )}
                 </button>
               </div>
@@ -329,10 +291,22 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
           })}
         </div>
 
-        {/* Enhanced Terms Section */}
-        <div ref={termsRef} className="terms-section">
-          <div className="terms-container">
-            <div className="terms-checkbox-wrapper">
+        {/* Sticky action bar: what you picked + terms + continue */}
+        <div className="navigation-section wz-actionbar">
+          <div className="wz-actionbar-info">
+            <div className="wz-selection-summary" aria-live="polite">
+              {selectedPlanItem ? (
+                <>
+                  <FaCheckCircle className="wz-selection-icon" />
+                  <span className="wz-selection-name">{selectedPlanItem.name}</span>
+                  <span className="wz-selection-price">{selectedPrice.currency}{selectedPrice.amount} {t('planSelection.ui.perMonth')}</span>
+                </>
+              ) : (
+                <span className="wz-selection-hint">{currentLanguage === 'en' ? 'Pick a plan to continue' : 'בחרו מסלול כדי להמשיך'}</span>
+              )}
+            </div>
+
+            <div ref={termsRef} className="terms-checkbox-wrapper">
               <input
                 type="checkbox"
                 id="terms-checkbox"
@@ -356,29 +330,15 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
               </label>
             </div>
           </div>
-        </div>
 
-        {plan && (
-          <div className="selection-confirmation">
-            <div className="confirmation-content">
-              <FaCheckCircle className="confirmation-icon" />
-              <div className="confirmation-text">
-                <h3>{t('planSelection.confirmation.title')}</h3>
-                <p>{t('planSelection.confirmation.description', { planName: plan })}</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Enhanced Next Button */}
-        <div className="navigation-section">
-                  <button
-          className={`next-button ${(!plan || !isChecked) ? "disabled" : ""}`}
-          onClick={nextStep}
-          disabled={!plan || !isChecked}
-          aria-label={`${t('planSelection.navigation.nextStep')}${(!plan || !isChecked) ? ` - ${t('planSelection.navigation.nextStepDisabled')}` : ''}`}
-        >
+          <button
+            type="button"
+            className={`next-button ${!canContinue ? "disabled" : ""}`}
+            onClick={nextStep}
+            disabled={!canContinue}
+          >
             <span>{t('planSelection.navigation.nextStep')}</span>
+            {isRTL ? <FaArrowLeft className="nav-icon" /> : <FaArrowRight className="nav-icon" />}
           </button>
         </div>
       </div>

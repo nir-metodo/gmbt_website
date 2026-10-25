@@ -64,6 +64,9 @@
     "perPage": "לעמוד"
   },
   "login": {
+    "welcomeBack": "ברוך שובך",
+    "continueToApp": "המשך למערכת",
+    "useAnotherAccount": "התחברות עם משתמש אחר",
     "title": "התחברות",
     "emailPlaceholder": "כתובת אימייל",
     "passwordPlaceholder": "סיסמה",

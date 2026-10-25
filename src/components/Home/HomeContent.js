@@ -427,7 +427,7 @@ function SecureAreaWidget({ isHe }) {
         Language: userLanguage,
       };
       const encodedUser = btoa(encodeURIComponent(JSON.stringify(newUser)));
-      window.location.href = `${APP_URL}/auth?user=${encodedUser}&token=${encodeURIComponent(token || '')}`;
+      window.location.href = `${APP_URL}/auth?user=${encodedUser}&token=${encodeURIComponent(token || '')}&remember=1`;
     } catch (err) {
       setError(isHe ? 'שם משתמש או סיסמה שגויים' : 'Invalid credentials');
       setLoading(false);

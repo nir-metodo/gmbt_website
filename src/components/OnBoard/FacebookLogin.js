@@ -3,9 +3,11 @@
   import './FacebookLogin.css';
   import { useRouter } from 'next/navigation';
   import { FaFacebookF } from 'react-icons/fa';
+  import { useLanguage } from '@/contexts/LanguageContext';
 
   const FacebookLogin = ({organization , buisnessEmail , organizationName, isCoexisting = false, coexistingPhoneNumber, onCodeReceived}) => {
       const router = useRouter();
+      const { currentLanguage } = useLanguage();
       const [isLoading, setIsLoading] = useState(false);
       const [isSDKLoaded, setIsSDKLoaded] = useState(false);
     
@@ -156,12 +158,12 @@
         {isLoading ? (
           <>
             <div className="loading-spinner"></div>
-            <span>מתחבר לפייסבוק...</span>
+            <span>{currentLanguage === 'en' ? 'Connecting to Facebook...' : 'מתחבר לפייסבוק...'}</span>
           </>
         ) : (
           <>
             <FaFacebookF className="fb-icon" />
-            <span>התחבר דרך Facebook</span>
+            <span>{currentLanguage === 'en' ? 'Connect with Facebook' : 'התחברות עם Facebook'}</span>
           </>
         )}
       </button>

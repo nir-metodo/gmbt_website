@@ -64,6 +64,9 @@
     "perPage": "per page"
   },
   "login": {
+    "welcomeBack": "Welcome back",
+    "continueToApp": "Continue to the app",
+    "useAnotherAccount": "Sign in with another account",
     "title": "Sign In",
     "emailPlaceholder": "Email address",
     "passwordPlaceholder": "Password",

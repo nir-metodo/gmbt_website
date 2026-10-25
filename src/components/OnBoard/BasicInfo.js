@@ -1,4 +1,4 @@
-﻿
+
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import PhoneInputWithModal from './PhoneInputWithModal';
@@ -6,9 +6,7 @@ import TutorialVideoButton from './TutorialVideoButton';
 import './BasicInfo.css';
 import Swal from 'sweetalert2';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
-import { FaUser, FaBuilding, FaGlobe, FaPhone, FaEnvelope, FaIdCard, FaClock, FaArrowRight, FaArrowLeft, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
-import { HiOutlineSparkles } from "react-icons/hi2";
-import { MdBusiness } from "react-icons/md";
+import { FaUser, FaBuilding, FaGlobe, FaEnvelope, FaIdCard, FaArrowRight, FaArrowLeft, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
 import { useLanguage } from '@/contexts/LanguageContext';
 import axios from 'axios';
 import { cleanIsraeliPhoneNumber } from '@/utils/phoneUtils';
@@ -591,192 +589,150 @@ const BasicInfo = ({ companyInfo, setCompanyInfo, nextStep, prevStep }) => {
         }
     ];
 
+    // Companion line under each input: the error when there is one, otherwise the helper text.
+    const renderFieldFooter = (name, description, note) => (
+        errors[name] ? (
+            <div className="error-message" role="alert">
+                <FaExclamationTriangle className="error-icon" />
+                <span>{errors[name]}</span>
+            </div>
+        ) : (
+            <>
+                {description && <p className="field-description">{description}</p>}
+                {note && <p className="field-note">{note}</p>}
+            </>
+        )
+    );
+
     return (
         <>
             <LoadingOverlay loading={isLoading} />
             <div className={`basic-info-container ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
-                {/* Enhanced Header */}
-            <div className="basic-info-header">
-                <div className="header-badge">
-                    <HiOutlineSparkles className="sparkle-icon" />
-                    <span>{getBasicInfoText('basicInfo.header.badge')}</span>
+                <div className="basic-info-header">
+                    <h2 className="basic-info-title">{getBasicInfoText('basicInfo.header.title')}</h2>
+                    <p className="basic-info-subtitle">{getBasicInfoText('basicInfo.header.subtitle')}</p>
                 </div>
-                <h2 className="basic-info-title">{getBasicInfoText('basicInfo.header.title')}</h2>
-                <p className="basic-info-subtitle">{getBasicInfoText('basicInfo.header.subtitle')}</p>
-                <TutorialVideoButton step={3} />
-            </div>
 
-            <div className="basic-info-form">
-                {formFields.map(({ label, name, type, placeholder, maxLength, icon: IconComponent, description, note, showCharCount }) => {
-                    const currentLength = (companyInfo[name] || '').length;
-                    const isAtLimit = maxLength && currentLength >= maxLength;
-                    
-                    return (
-                        <div key={name} className="form-field">
-                            <div className="field-header">
-                                <div className="field-icon">
-                                    <IconComponent />
+                <div className="basic-info-form">
+                    {formFields.map(({ label, name, type, placeholder, maxLength, icon: IconComponent, description, note, showCharCount }) => {
+                        const currentLength = (companyInfo[name] || '').length;
+                        const isAtLimit = maxLength && currentLength >= maxLength;
+                        const dir = getDirection(companyInfo[name] || '');
+
+                        return (
+                            <div key={name} className={`form-field field-${name}`}>
+                                <label className="field-label" htmlFor={`basic-${name}`}>{label}</label>
+                                <div className={`input-wrapper ${errors[name] ? 'has-error' : ''}`}>
+                                    <span className="input-adornment" aria-hidden="true"><IconComponent /></span>
+                                    <input
+                                        id={`basic-${name}`}
+                                        type={type}
+                                        name={name}
+                                        value={companyInfo[name] || ''}
+                                        onChange={handleCompanyChange}
+                                        onBlur={handleCompanyChange}
+                                        placeholder={placeholder}
+                                        maxLength={maxLength}
+                                        required
+                                        className={`form-input ${errors[name] ? 'error' : ''} ${companyInfo[name] ? 'filled' : ''} ${isAtLimit ? 'at-limit' : ''}`}
+                                        style={{ direction: dir, textAlign: dir === 'rtl' ? 'right' : 'left' }}
+                                    />
+                                    {companyInfo[name] && !errors[name] && <FaCheckCircle className="input-success-icon" />}
+                                    {errors[name] && <FaExclamationTriangle className="input-error-icon" />}
                                 </div>
-                                <div className="field-labels">
-                                    <label className="field-label">{label}</label>
-                                    <p className="field-description">{description}</p>
-                                    {note && <p className="field-note">{note}</p>}
-                                </div>
+                                {renderFieldFooter(name, description, note)}
+                                {showCharCount && maxLength && currentLength > maxLength - 10 && (
+                                    <div className={`char-counter ${isAtLimit ? 'at-limit' : ''}`}>
+                                        <span>{currentLength}/{maxLength}</span>
+                                        {isAtLimit && (
+                                            <span className="limit-warning">
+                                                {currentLanguage === 'he' ? 'הגעת למקסימום תווים' : 'Maximum characters reached'}
+                                            </span>
+                                        )}
+                                    </div>
+                                )}
+                                {name === 'companyUrl' && <WebsiteAiHint he={currentLanguage === 'he'} />}
                             </div>
-                            <div className="input-wrapper">
-                                <input
-                                    type={type}
-                                    name={name}
-                                    value={companyInfo[name] || ''}
-                                    onChange={handleCompanyChange}
-                                    onBlur={handleCompanyChange}
-                                    placeholder={placeholder}
-                                    maxLength={maxLength}
-                                    required
-                                    className={`form-input ${errors[name] ? 'error' : ''} ${companyInfo[name] ? 'filled' : ''} ${isAtLimit ? 'at-limit' : ''}`}
-                                    style={{ 
-                                        direction: getDirection(companyInfo[name] || ''), 
-                                        textAlign: getDirection(companyInfo[name] || '') === 'rtl' ? 'right' : 'left' 
-                                    }}
+                        );
+                    })}
+
+                    {/* Phone */}
+                    <div className="form-field field-contactPhoneNumber">
+                        <label className="field-label">{getBasicInfoText('basicInfo.fields.contactPhoneNumber.label')}</label>
+                        <div className={`input-wrapper phone-input-wrapper ${errors.contactPhoneNumber ? 'has-error' : ''}`}>
+                            <PhoneInputWithModal
+                                country="il"
+                                value={companyInfo?.contactPhoneNumber || ''}
+                                onChange={handlePhoneNumberChange}
+                                onBlur={handlePhoneNumberBlur}
+                                searchStyle={{
+                                    textAlign: 'left',
+                                    direction: 'ltr',
+                                    paddingLeft: '2rem',
+                                    backgroundPosition: 'left center',
+                                    backgroundRepeat: 'no-repeat',
+                                }}
+                                containerClass="enhanced-phone-container"
+                                inputClass={`enhanced-phone-input ${errors.contactPhoneNumber ? 'error' : ''} ${companyInfo?.contactPhoneNumber ? 'filled' : ''}`}
+                                dropdownStyle={{ direction: 'ltr', textAlign: 'left' }}
+                                required
+                            />
+                            {companyInfo?.contactPhoneNumber && !errors.contactPhoneNumber && <FaCheckCircle className="input-success-icon" />}
+                            {errors.contactPhoneNumber && <FaExclamationTriangle className="input-error-icon" />}
+                        </div>
+                        {renderFieldFooter(
+                            'contactPhoneNumber',
+                            getBasicInfoText('basicInfo.fields.contactPhoneNumber.description'),
+                            getBasicInfoText('basicInfo.fields.contactPhoneNumber.note')
+                        )}
+                    </div>
+
+                    {/* Timezone - hidden for Hebrew (defaults to Israel) */}
+                    {currentLanguage !== 'he' && (
+                        <div className="form-field field-timezone">
+                            <label className="field-label">{getBasicInfoText('basicInfo.fields.timezone.label')}</label>
+                            <div className={`input-wrapper timezone-wrapper ${errors.timezone ? 'has-error' : ''}`}>
+                                <Select
+                                    value={companyInfo?.timezone}
+                                    onChange={handleTimezoneChange}
+                                    options={timezoneOptions}
+                                    className={`enhanced-timezone-select ${errors.timezone ? 'error' : ''} ${companyInfo?.timezone ? 'filled' : ''}`}
+                                    classNamePrefix="timezone-select"
+                                    placeholder={getBasicInfoText('basicInfo.fields.timezone.placeholder')}
+                                    isSearchable={true}
+                                    isClearable={true}
                                 />
                             </div>
-                            {/* Character counter for fields with maxLength and showCharCount */}
-                            {showCharCount && maxLength && (
-                                <div className={`char-counter ${isAtLimit ? 'at-limit' : ''}`}>
-                                    <span>{currentLength}/{maxLength}</span>
-                                    {isAtLimit && (
-                                        <span className="limit-warning">
-                                            {currentLanguage === 'he' ? 'הגעת למקסימום תווים' : 'Maximum characters reached'}
-                                        </span>
-                                    )}
-                                </div>
-                            )}
-                            {companyInfo[name] && !errors[name] && (
-                                <FaCheckCircle className="input-success-icon" />
-                            )}
-                            {errors[name] && (
-                                <FaExclamationTriangle className="input-error-icon" />
-                            )}
-                            {errors[name] && (
-                                <div className="error-message">
-                                    <FaExclamationTriangle className="error-icon" />
-                                    <span>{errors[name]}</span>
-                                </div>
-                            )}
-                            {name === 'companyUrl' && <WebsiteAiHint he={currentLanguage === 'he'} />}
-                        </div>
-                    );
-                })}
-
-                {/* Enhanced Phone Input */}
-                <div className="form-field">
-                    <div className="field-header">
-                        <div className="field-icon">
-                            <FaPhone />
-                        </div>
-                        <div className="field-labels">
-                            <label className="field-label">{getBasicInfoText('basicInfo.fields.contactPhoneNumber.label')}</label>
-                            <p className="field-description">{getBasicInfoText('basicInfo.fields.contactPhoneNumber.description')}</p>
-                            <p className="field-note">{getBasicInfoText('basicInfo.fields.contactPhoneNumber.note')}</p>
-                        </div>
-                    </div>
-                    <div className="input-wrapper phone-input-wrapper">
-                        <PhoneInputWithModal
-                            country="il"
-                            value={companyInfo?.contactPhoneNumber || ''}
-                            onChange={handlePhoneNumberChange}
-                            onBlur={handlePhoneNumberBlur}
-                            searchStyle={{
-                                textAlign: 'left',
-                                direction: 'ltr',
-                                paddingLeft: '2rem',
-                                backgroundPosition: 'left center',
-                                backgroundRepeat: 'no-repeat',
-                            }}
-                            containerClass="enhanced-phone-container"
-                            inputClass={`enhanced-phone-input ${errors.contactPhoneNumber ? 'error' : ''} ${companyInfo?.contactPhoneNumber ? 'filled' : ''}`}
-                            dropdownStyle={{ direction: 'ltr', textAlign: 'left' }}
-                            required
-                        />
-                        {companyInfo?.contactPhoneNumber && !errors.contactPhoneNumber && (
-                            <FaCheckCircle className="input-success-icon" />
-                        )}
-                        {errors.contactPhoneNumber && (
-                            <FaExclamationTriangle className="input-error-icon" />
-                        )}
-                    </div>
-                    {errors.contactPhoneNumber && (
-                        <div className="error-message">
-                            <FaExclamationTriangle className="error-icon" />
-                            <span>{errors.contactPhoneNumber}</span>
+                            {renderFieldFooter('timezone', getBasicInfoText('basicInfo.fields.timezone.description'), null)}
                         </div>
                     )}
                 </div>
 
-                {/* Enhanced Timezone Input - Hidden for Hebrew (defaults to Israel) */}
-                {currentLanguage !== 'he' && (
-                    <div className="form-field">
-                        <div className="field-header">
-                            <div className="field-icon">
-                                <FaClock />
-                            </div>
-                            <div className="field-labels">
-                                <label className="field-label">{getBasicInfoText('basicInfo.fields.timezone.label')}</label>
-                                <p className="field-description">{getBasicInfoText('basicInfo.fields.timezone.description')}</p>
-                            </div>
-                        </div>
-                        <div className="input-wrapper timezone-wrapper">
-                            <Select 
-                                value={companyInfo?.timezone} 
-                                onChange={handleTimezoneChange} 
-                                options={timezoneOptions}
-                                className={`enhanced-timezone-select ${errors.timezone ? 'error' : ''} ${companyInfo?.timezone ? 'filled' : ''}`}
-                                classNamePrefix="timezone-select"
-                                placeholder={getBasicInfoText('basicInfo.fields.timezone.placeholder')}
-                                isSearchable={true}
-                                isClearable={true}
-                            />
-                        </div>
-                        {companyInfo?.timezone && !errors.timezone && (
-                            <FaCheckCircle className="input-success-icon" />
-                        )}
-                        {errors.timezone && (
-                            <FaExclamationTriangle className="input-error-icon" />
-                        )}
-                        {errors.timezone && (
-                            <div className="error-message">
-                                <FaExclamationTriangle className="error-icon" />
-                                <span>{errors.timezone}</span>
-                            </div>
-                        )}
-                    </div>
-                )}
-            </div>
+                {/* Sticky action bar */}
+                <div className={`navigation-buttons ${isRTL ? 'rtl' : 'ltr'}`}>
+                    <button
+                        className="nav-button prev-button"
+                        onClick={prevStep}
+                        disabled={isLoading}
+                    >
+                        {isRTL ? <FaArrowRight className="nav-icon" /> : <FaArrowLeft className="nav-icon" />}
+                        <span>{getBasicInfoText('basicInfo.navigation.back')}</span>
+                    </button>
+                    <button
+                        className="nav-button next-button"
+                        onClick={handleNextStep}
+                        disabled={isLoading}
+                    >
+                        <span>{getBasicInfoText('basicInfo.navigation.next')}</span>
+                        {isRTL ? <FaArrowLeft className="nav-icon" /> : <FaArrowRight className="nav-icon" />}
+                    </button>
+                </div>
 
-            {/* Enhanced Navigation Buttons */}
-            <div className={`navigation-buttons ${isRTL ? 'rtl' : 'ltr'}`}>
-                <button 
-                    className="nav-button prev-button" 
-                    onClick={prevStep}
-                    disabled={isLoading}
-                >
-                    {isRTL ? <FaArrowRight className="nav-icon" /> : <FaArrowLeft className="nav-icon" />}
-                    <span>{getBasicInfoText('basicInfo.navigation.back')}</span>
-                </button>
-                <button 
-                    className="nav-button next-button"
-                    onClick={handleNextStep}
-                    disabled={isLoading}
-                >
-                    <span>{getBasicInfoText('basicInfo.navigation.next')}</span>
-                    {isRTL ? <FaArrowLeft className="nav-icon" /> : <FaArrowRight className="nav-icon" />}
-                </button>
+                {/* Tutorial Video Button */}
+                <TutorialVideoButton step={3} />
             </div>
-
-        </div>
         </>
     );
 };
 
 export default BasicInfo;
-

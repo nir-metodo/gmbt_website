@@ -99,22 +99,23 @@ export default function ContactContent() {
               <form onSubmit={handleSubmit} dir="rtl">
                 <h2>שלחו לנו הודעה</h2>
                 <div className={styles.formGrid}>
-                  <input type="text" placeholder="שם מלא *" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required className={styles.input} />
-                  <input type="tel" placeholder="מספר טלפון *" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} required className={styles.input} dir="ltr" />
-                  <input type="email" placeholder="אימייל *" value={form.email} onChange={e => setForm({...form, email: e.target.value})} required className={styles.input} dir="ltr" style={{ gridColumn: '1 / -1' }} />
-                  <select value={form.subject} onChange={e => setForm({...form, subject: e.target.value})} className={styles.input} style={{ gridColumn: '1 / -1' }}>
+                  <input type="text" name="name" autoComplete="name" aria-label="שם מלא" aria-required="true" placeholder="שם מלא *" value={form.name} onChange={e => setForm({...form, name: e.target.value})} required className={styles.input} />
+                  <input type="tel" name="phone" autoComplete="tel" aria-label="מספר טלפון" aria-required="true" placeholder="מספר טלפון *" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} required className={styles.input} dir="ltr" />
+                  <input type="email" name="email" autoComplete="email" aria-label="אימייל" aria-required="true" placeholder="אימייל *" value={form.email} onChange={e => setForm({...form, email: e.target.value})} required className={styles.input} dir="ltr" style={{ gridColumn: '1 / -1' }} />
+                  <select name="subject" aria-label="נושא הפנייה" value={form.subject} onChange={e => setForm({...form, subject: e.target.value})} className={styles.input} style={{ gridColumn: '1 / -1' }}>
                     <option value="">בחרו נושא פנייה</option>
                     <option value="demo">הדגמה חינמית</option>
                     <option value="pricing">שאלה על מחירים</option>
                     <option value="technical">תמיכה טכנית</option>
                     <option value="general">פנייה כללית</option>
                   </select>
-                  <textarea placeholder="מה נוכל לעזור? *" value={form.message} onChange={e => setForm({...form, message: e.target.value})} required className={`${styles.input} ${styles.textarea}`} style={{ gridColumn: '1 / -1' }} rows={4} />
+                  <textarea name="message" aria-label="תוכן ההודעה" aria-required="true" placeholder="מה נוכל לעזור? *" value={form.message} onChange={e => setForm({...form, message: e.target.value})} required className={`${styles.input} ${styles.textarea}`} style={{ gridColumn: '1 / -1' }} rows={4} />
                 </div>
                 <button type="submit" className={styles.submit} disabled={status === 'loading'}>
                   {status === 'loading' ? '⏳ שולח...' : '📨 שלחו הודעה'}
                 </button>
-                {status === 'error' && <p className={styles.error}>שגיאה בשליחה. <a href="https://wa.me/97233768997">נסו בוואטסאפ</a></p>}
+                <div role="alert">{status === 'error' && <p className={styles.error}>שגיאה בשליחה. <a href="https://wa.me/97233768997">נסו בוואטסאפ</a></p>}</div>
+                <p style={{ fontSize: '0.8rem', marginTop: 10 }}>הפרטים ישמשו אותנו לצורך מענה לפנייתך בלבד. <a href="/privacy/" style={{ textDecoration: 'underline' }}>מדיניות פרטיות</a></p>
               </form>
             )}
           </div>

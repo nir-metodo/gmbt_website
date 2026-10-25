@@ -1,0 +1,146 @@
+﻿/* ── Cookie consent banner ─────────────────────────────────────── */
+.consent {
+  position: fixed;
+  inset-inline: 12px;
+  bottom: 12px;
+  margin-inline: auto;
+  max-width: 760px;
+  z-index: 10000;
+  background: #ffffff;
+  color: #1a1a2e;
+  border: 1px solid #cbd5e0;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  padding: 18px 20px;
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  font-family: var(--font-main);
+}
+.consentTitle { font-size: 1.05rem; font-weight: 700; margin: 0 0 6px; }
+.consentText { font-size: 0.92rem; line-height: 1.6; color: #2d3748; margin: 0 0 14px; }
+.consentText a { color: #0b5cad; text-decoration: underline; font-weight: 600; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btnPrimary,
+.btnGhost {
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid #075e54;
+}
+.btnPrimary { background: #075e54; color: #ffffff; }
+.btnPrimary:hover { background: #054a42; border-color: #054a42; }
+.btnGhost { background: #ffffff; color: #075e54; }
+.btnGhost:hover { background: #e6f4f1; }
+
+.cats { display: flex; flex-direction: column; gap: 10px; margin: 0 0 14px; }
+.cat {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 14px; cursor: pointer;
+}
+.cat strong { display: block; font-size: 0.95rem; }
+.cat p { font-size: 0.85rem; color: #4a5568; margin: 2px 0 0; line-height: 1.5; }
+.cat input[type='checkbox'] { width: 24px; height: 24px; flex-shrink: 0; accent-color: #075e54; cursor: pointer; }
+.always { font-size: 0.8rem; font-weight: 700; color: #075e54; white-space: nowrap; }
+
+/* ── Accessibility toolbar ─────────────────────────────────────── */
+.a11yBtn {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+  z-index: 9997;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #1a1a2e;
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.a11yBtn:hover { background: #2d2d4d; }
+.a11yBtn svg { width: 28px; height: 28px; fill: currentColor; }
+
+.a11yPanel {
+  position: fixed;
+  left: 14px;
+  bottom: 76px;
+  z-index: 9997;
+  width: 300px;
+  max-width: calc(100vw - 28px);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: #ffffff;
+  color: #1a1a2e;
+  border: 1px solid #cbd5e0;
+  border-radius: 16px;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  font-family: var(--font-main);
+}
+.a11yHead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.a11yTitle { font-size: 1.05rem; font-weight: 700; margin: 0; }
+.a11yClose { width: 44px; height: 44px; margin: -8px; border-radius: 50%; background: transparent; font-size: 1.3rem; color: #1a1a2e; }
+.a11yClose:hover { background: #edf2f7; }
+.a11yGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.a11yOpt {
+  min-height: 56px;
+  padding: 8px;
+  border: 2px solid #cbd5e0;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1a1a2e;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+}
+.a11yOpt:hover { border-color: #075e54; background: #f0faf8; }
+.a11yOpt[aria-pressed='true'] { background: #075e54; border-color: #075e54; color: #ffffff; }
+.a11yWide { grid-column: 1 / -1; }
+.a11yFoot { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; gap: 8px; font-size: 0.85rem; }
+.a11yFoot a { color: #0b5cad; text-decoration: underline; font-weight: 600; }
+.a11yReset { background: transparent; color: #b00020; font-weight: 700; text-decoration: underline; font-size: 0.85rem; min-height: 44px; padding: 0 6px; }
+
+/* ── Skip link ─────────────────────────────────────────────────── */
+.skip {
+  position: fixed;
+  top: -100px;
+  inset-inline-start: 12px;
+  z-index: 10001;
+  background: #1a1a2e;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 0 0 12px 12px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.skip:focus { top: 0; }
+
+/* ── Accessibility statement page ──────────────────────────────── */
+.statement { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; line-height: 1.8; }
+.statement h1 { font-size: 2rem; margin-bottom: 8px; }
+.statement h2 { font-size: 1.3rem; margin: 32px 0 8px; }
+.statement p, .statement li { font-size: 1rem; color: #2d3748; }
+.statement ul { padding-inline-start: 24px; margin: 8px 0; }
+.statement a { color: #0b5cad; text-decoration: underline; }
+.updated { color: #4a5568; font-size: 0.9rem; margin-bottom: 24px; }
+
+/* ── Newsletter / lead form consent checkbox ───────────────────── */
+.consentRow { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; line-height: 1.5; text-align: start; }
+.consentRow input { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; accent-color: #075e54; }
+.consentRow a { text-decoration: underline; font-weight: 600; }
+.formMsg { font-size: 0.9rem; font-weight: 600; margin-top: 8px; }
+.formMsgOk { color: #0b6b3a; }
+.formMsgErr { color: #b00020; }
+
+@media (max-width: 520px) {
+  .actions > button { flex: 1 1 100%; }
+  .a11yBtn { width: 48px; height: 48px; }
+}

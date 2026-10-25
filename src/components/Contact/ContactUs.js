@@ -1,12 +1,13 @@
 'use client';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { sendLeadWebhook } from '@/utils/sendLeadWebhook';
+import { fingerprint, wasRecentlySent, markSent, unmarkSent } from '@/utils/submitGuard';
 import "./ContactUs.css";
+import "./ContactUsClean.css";
 import { FaPhone, FaPaperPlane, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import { MdEmail, MdSend } from "react-icons/md";
 import { FaCheckDouble } from "react-icons/fa6";
 import { CiInstagram, CiFacebook, CiLinkedin, CiYoutube } from "react-icons/ci";
-import { HiOutlineSparkles } from "react-icons/hi2";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const GambotLogo = '/new_logo.png';
@@ -23,6 +24,7 @@ const ContactUs = () => {
       message: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const submittingRef = useRef(false);
     const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
   
     const handleChange = (e) => {
@@ -32,8 +34,25 @@ const ContactUs = () => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+
+      // Synchronous lock: React state updates are async, so a fast double-click / Enter+click could
+      // enter this handler twice before `isSubmitting` is applied. The ref flips immediately.
+      if (submittingRef.current) return;
+      submittingRef.current = true;
+
       setIsSubmitting(true);
       setSubmitStatus(null);
+
+      // Same details already sent a moment ago (e.g. user retried after a false "error")? Don't create another lead.
+      const fp = fingerprint('contact-us', formData.phone, formData.email, formData.message);
+      if (wasRecentlySent(fp)) {
+        setSubmitStatus('success');
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setIsSubmitting(false);
+        submittingRef.current = false;
+        return;
+      }
+      markSent(fp);
   
       // Prepare data to send
       const requestData = {
@@ -47,7 +66,7 @@ const ContactUs = () => {
   
       try {
         // Send request to the endpoint
-        const [response] = await Promise.allSettled([
+        const [response, webhook] = await Promise.allSettled([
           fetch("https://prod-63.northeurope.logic.azure.com:443/workflows/ddf6cff7db1b4d438d460e8c4221e768/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ll3QhRKnU64AkU4nk7kF31ob5ZrQzdJElP_ubUtKM5o", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -61,14 +80,17 @@ const ContactUs = () => {
           setSubmitStatus('success');
           setFormData({ name: "", email: "", phone: "", message: "" });
         } else {
-          console.error('Request failed:', response);
+          console.error('Request failed:', response, webhook);
+          unmarkSent(fp); // nothing was accepted -> a genuine retry must be possible
           setSubmitStatus('error');
         }
       } catch (error) {
         console.error('Error during request:', error);
+        unmarkSent(fp);
         setSubmitStatus('error');
       } finally {
         setIsSubmitting(false);
+        submittingRef.current = false;
       }
     };
   
@@ -77,10 +99,6 @@ const ContactUs = () => {
       <div className={`ContactUsContainer ${isRTL ? 'rtl' : 'ltr'}`} style={{ paddingTop: '68px' }}>
         {/* Enhanced Header */}
         <div className="contact-header">
-          <div className="contact-header-badge">
-            <HiOutlineSparkles className="sparkle-icon" />
-            <span>{t('websiteContact.professionalSupport')}</span>
-          </div>
           <h1 className="contact-title">{t('websiteContact.title')}</h1>
           <p className="contact-subtitle">
             <FaClock className="subtitle-icon" />

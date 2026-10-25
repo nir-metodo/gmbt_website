@@ -1,11 +1,12 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaEye, FaEyeSlash, FaLock, FaUser, FaBuilding, FaArrowLeft, FaShieldAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
-import { HiOutlineSparkles } from 'react-icons/hi2';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LoginErrorModal from './LoginErrorModal';
+import { readSsoCookie } from '@/lib/ssoCookie';
 import './Login.css';
+import './LoginClean.css';
 
 const APP_URL = 'https://app.gambot.co.il';
 const API_URL = 'https://gambot.azurewebsites.net';
@@ -24,7 +25,15 @@ export default function LoginPage() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
+  // Someone already signed in on the app (app.gambot.co.il)? A parent-domain cookie lets us offer
+  // one-click "Continue as ..." - localStorage can't be shared between the two origins.
+  const [sso, setSso] = useState(null);
+  const [useAnotherAccount, setUseAnotherAccount] = useState(false);
+  useEffect(() => {
+    const hint = readSsoCookie();
+    if (hint) { setSso(hint); setEmail(hint.e); }
+  }, []);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [modalErrorType, setModalErrorType] = useState('general_error');
   // Real org id (ת.ז / ח.פ) returned by the backend on a blocked login. Used to build the
@@ -112,7 +121,7 @@ export default function LoginPage() {
 
       // Admin mode → go to /admin, org mode → go to /auth
       const destination = (isGambotAdmin && adminMode === 'admin') ? '/admin' : '/auth';
-      window.location.href = `${APP_URL}${destination}?user=${encodedUser}&token=${encodeURIComponent(token || '')}`;
+      window.location.href = `${APP_URL}${destination}?user=${encodedUser}&token=${encodeURIComponent(token || '')}&remember=${rememberMe ? 1 : 0}`;
 
     } catch (error) {
       console.error('Login Error:', error);
@@ -168,24 +177,40 @@ export default function LoginPage() {
     }
   };
 
+  const showWelcome = !!sso && !useAnotherAccount && !showForgotPassword;
+
   return (
     <div className={`login-page ${isRTL ? 'rtl' : 'ltr'}`} style={{ minHeight: '100vh', paddingTop: '68px' }}>
       <div className="login-container">
         <div className="login-header">
-          <div className="login-badge">
-            <HiOutlineSparkles className="sparkle-icon" />
-            <span>{t('login.secureArea')}</span>
-          </div>
           <h1 className="login-title">
-            {showForgotPassword ? t('login.passwordRecovery') : t('login.title')}
+            {showForgotPassword ? t('login.passwordRecovery') : (showWelcome ? t('login.welcomeBack') : t('login.title'))}
           </h1>
           <div className="security-indicator">
-            <FaShieldAlt className="security-icon" />
+            <FaLock className="security-icon" />
             <span>{t('login.sslSecure')}</span>
           </div>
         </div>
 
-        {!showForgotPassword ? (
+        {showWelcome ? (
+          <div className="login-welcome">
+            <div className="login-welcome-user">
+              <div className="login-welcome-avatar">{(sso.n || sso.e).trim().charAt(0).toUpperCase()}</div>
+              <div className="login-welcome-text">
+                {sso.n && <strong>{sso.n}</strong>}
+                <span dir="ltr">{sso.e}</span>
+              </div>
+            </div>
+            <a className="login-btn login-welcome-btn" href={`${APP_URL}/Contacts`}>
+              <FaUser className="btn-icon" />
+              <span>{t('login.continueToApp')}</span>
+            </a>
+            <button type="button" className="login-welcome-other"
+              onClick={() => { setUseAnotherAccount(true); setEmail(''); }}>
+              {t('login.useAnotherAccount')}
+            </button>
+          </div>
+        ) : !showForgotPassword ? (
           <div className="login-form">
             <div className="form-fields">
               <div className="input-group">

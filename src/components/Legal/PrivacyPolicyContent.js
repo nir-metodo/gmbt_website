@@ -210,7 +210,18 @@ export const HebrewContent = () => (
     <section className="TermOfUse-section">
       <h2 className="TermOfUse-subheader">7. עוגיות</h2>
       <p className="TermOfUse-paragraph">
-        אנו משתמשים בעוגיות חיוניות לאימות וניהול הפעלה. אנחנו לא משתמשים בעוגיות פרסום או מעקב.
+        האתר משתמש בעוגיות (Cookies) ובאחסון מקומי בדפדפן בשלוש קטגוריות:
+      </p>
+      <ul className="TermOfUse-list">
+        <li><strong>חיוניות</strong> — נדרשות לאימות, אבטחה, שמירת העדפות שפה, נגישות והסכמה. פועלות תמיד ואינן דורשות הסכמה.</li>
+        <li><strong>סטטיסטיקה (Google Analytics)</strong> — מסייעות לנו להבין כיצד משתמשים באתר ולשפר אותו. נטענות רק לאחר הסכמתך.</li>
+        <li><strong>שיווק (Google Ads, Meta Pixel)</strong> — מודדות המרות ומאפשרות הצגת פרסומות רלוונטיות. נטענות רק לאחר הסכמתך.</li>
+      </ul>
+      <p className="TermOfUse-paragraph">
+        בכניסה הראשונה לאתר תוצג לך האפשרות לאשר, לדחות או לבחור קטגוריות. ניתן לשנות או לבטל את ההסכמה בכל עת דרך הקישור &quot;הגדרות עוגיות&quot; בתחתית האתר; ביטול ההסכמה פועל מרגע הלחיצה ומוחק את העוגיות שנוצרו. ניתן גם לחסום עוגיות בהגדרות הדפדפן.
+      </p>
+      <p className="TermOfUse-paragraph">
+        דיוור שיווקי (הודעות וואטסאפ, SMS או דוא&quot;ל) יישלח אך ורק למי שנתן הסכמה מפורשת לכך, בהתאם לסעיף 30א לחוק התקשורת (בזק ושידורים), ובכל הודעה תופיע אפשרות הסרה. ניתן להסיר את עצמך בכל עת על ידי מענה &quot;הסר&quot; להודעה או פנייה ל־info@gambot.co.il.
       </p>
     </section>
 
@@ -482,7 +493,18 @@ export const EnglishContent = () => (
     <section className="TermOfUse-section">
       <h2 className="TermOfUse-subheader">7. Cookies</h2>
       <p className="TermOfUse-paragraph">
-        We use essential cookies for authentication and session management. We do not use advertising or tracking cookies.
+        This website uses cookies and browser local storage in three categories:
+      </p>
+      <ul className="TermOfUse-list">
+        <li><strong>Essential</strong> — required for authentication, security, and for remembering your language, accessibility and consent choices. Always active; no consent needed.</li>
+        <li><strong>Analytics (Google Analytics)</strong> — help us understand how the site is used so we can improve it. Loaded only after you consent.</li>
+        <li><strong>Marketing (Google Ads, Meta Pixel)</strong> — measure conversions and enable relevant advertising. Loaded only after you consent.</li>
+      </ul>
+      <p className="TermOfUse-paragraph">
+        On your first visit you can accept, reject, or pick categories. You can change or withdraw consent at any time through the &quot;Cookie settings&quot; link in the site footer; withdrawal takes effect immediately and deletes the cookies set. You can also block cookies in your browser settings.
+      </p>
+      <p className="TermOfUse-paragraph">
+        Marketing messages (WhatsApp, SMS or email) are sent only to people who gave explicit consent, in line with Section 30A of the Israeli Communications Law (the &quot;Spam Law&quot;) and, where applicable, the GDPR. Every message includes an opt-out; you can unsubscribe at any time by replying &quot;STOP&quot; or emailing info@gambot.co.il.
       </p>
     </section>
 

@@ -1,0 +1,198 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Step 4 – Verification (wizard overrides)
+   One focused column: where the code was sent → big code box → timer/resend.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.onboarding-process-container .verification-container {
+  position: static;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  font-family: inherit;
+  color: #1b2a26;
+}
+/* keep the form column narrow; the sticky action bar stays full width */
+.onboarding-process-container .verification-container > :not(.navigation-buttons) { max-width: 560px; margin-inline: auto; }
+.onboarding-process-container .verification-container::before,
+.onboarding-process-container .verification-container::after { display: none; content: none; }
+
+.onboarding-process-container .verification-header { margin: 8px 0 22px; text-align: center; }
+.onboarding-process-container .verification-title { margin: 0 0 6px; font-size: 24px; font-weight: 800; letter-spacing: -0.2px; color: #1b2a26; }
+.onboarding-process-container .verification-subtitle { margin: 0; font-size: 14px; line-height: 1.5; color: #6b7d76; }
+
+/* where the code was sent */
+.onboarding-process-container .verification-channels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 24px;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+.onboarding-process-container .verification-channels .channel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+  padding: 12px 14px;
+  background: #f7faf9;
+  border: 1px solid #e3e9e6;
+  border-radius: 12px;
+  box-shadow: none;
+  text-align: start;
+  transform: none;
+  flex-direction: row !important;
+  direction: inherit;
+}
+.onboarding-process-container .verification-channels .channel::before { display: none; content: none; }
+.onboarding-process-container .verification-channels .channel-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 17px;
+  box-shadow: none;
+}
+.onboarding-process-container .verification-channels .whatsapp-channel .channel-icon { background: #25d366; }
+.onboarding-process-container .verification-channels .email-channel .channel-icon { background: #3b82f6; }
+.onboarding-process-container .verification-channels .channel-content { flex: 1; min-width: 0; text-align: start; }
+.onboarding-process-container .verification-channels .channel-content h4 { margin: 0 0 1px; font-size: 13px; font-weight: 800; color: #1b2a26; text-align: start; }
+.onboarding-process-container .verification-channels .channel-content p {
+  margin: 0;
+  font-size: 12.5px;
+  color: #6b7d76;
+  text-align: start;
+  direction: ltr;
+  unicode-bidi: plaintext;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.onboarding-process-container .verification-channels .channel-status { position: static; flex: 0 0 auto; font-size: 18px; color: #10b981; }
+
+/* code */
+.onboarding-process-container .code-input-section { margin: 0 0 14px; padding: 0; background: none; border: 0; text-align: center; }
+.onboarding-process-container .code-label { display: block; margin: 0 0 10px; font-size: 14px; font-weight: 800; color: #1b2a26; }
+.onboarding-process-container .code-input-wrapper { position: relative; display: block; max-width: 340px; margin: 0 auto; }
+.onboarding-process-container .verification-code-input {
+  display: block;
+  width: 100%;
+  height: 60px;
+  padding: 0 44px;
+  border: 1.5px solid #cdd9d4;
+  border-radius: 14px;
+  background: #fff;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-align: center;
+  color: #1b2a26;
+  box-shadow: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.onboarding-process-container .verification-code-input::placeholder { font-size: 14px; font-weight: 500; letter-spacing: 0; color: #a3b1ab; }
+.onboarding-process-container .verification-code-input:focus { outline: none; border-color: #2e6155; box-shadow: 0 0 0 4px rgba(46, 97, 85, 0.14); }
+.onboarding-process-container .verification-code-input.filled { border-color: #2e6155; background: #fff; }
+.onboarding-process-container .code-input-wrapper .input-success-icon {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: 14px;
+  transform: translateY(-50%);
+  width: auto;
+  height: auto;
+  margin: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  font-size: 18px;
+  color: #10b981;
+}
+
+/* timer + resend on one tidy row */
+.onboarding-process-container .verify-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0;
+  padding: 0;
+}
+.onboarding-process-container .timer-section {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  font-size: 13px;
+  color: #6b7d76;
+  flex-direction: row !important;
+  direction: inherit;
+}
+.onboarding-process-container .timer-section .timer-icon { display: inline-flex; margin: 0; padding: 0; background: none; box-shadow: none; width: auto; height: auto; font-size: 14px; color: #8a9a94; }
+.onboarding-process-container .timer-section .timer-content { display: inline-flex; flex-direction: row !important; align-items: center; gap: 6px; }
+.onboarding-process-container .timer-section .timer-value {
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #eef2f0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #2e6155;
+}
+.onboarding-process-container .timer-section .timer-expired { font-weight: 700; color: #d93036; }
+.onboarding-process-container .timer-section .timer-expired-icon { color: #d93036; }
+
+.onboarding-process-container .resend-section {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: start;
+}
+.onboarding-process-container .resend-section .resend-text { margin: 0; font-size: 13px; color: #6b7d76; }
+.onboarding-process-container .resend-section .resend-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 6px 12px;
+  border: 1px solid #cdd9d4;
+  border-radius: 999px;
+  background: #fff;
+  color: #2e6155;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: none;
+  transform: none;
+}
+.onboarding-process-container .resend-section .resend-button:hover:not(:disabled) { background: #f2f6f4; transform: none; box-shadow: none; }
+.onboarding-process-container .resend-section .resend-button:disabled { opacity: .55; cursor: not-allowed; }
+.onboarding-process-container .resend-section .resend-icon { font-size: 12px; }
+
+@media (max-width: 560px) {
+  .onboarding-process-container .verification-channels { grid-template-columns: minmax(0, 1fr); }
+  .onboarding-process-container .verify-meta { flex-direction: column; }
+  .onboarding-process-container .verification-title { font-size: 21px; }
+}
