@@ -25,7 +25,7 @@ const ANIMATIONS = {
     .gb-btn.anim-float { animation: gb-float 3s ease-in-out infinite; }
   `,
   pulse: `
-    @keyframes gb-ring { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.9); opacity: 0; } }
+    @keyframes gb-ring { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(var(--gb-ring, 1.5)); opacity: 0; } }
     .gb-btn.anim-pulse::before, .gb-btn.anim-pulse::after {
       content: ''; position: absolute; inset: 0; border-radius: 50%; background: inherit;
       animation: gb-ring 2.2s ease-out infinite; z-index: -1;
@@ -211,6 +211,9 @@ function WidgetApp() {
 
   const isRight = cfg.position === 'right';
   const btnSize = { sm: 52, md: 62, lg: 74 }[cfg.size];
+  // The iframe is cropped to the widget box, so the pulse ring may only grow as far as the padding allows.
+  const PAD = 24;
+  const ringScale = ((btnSize / 2 + PAD - 2) / (btnSize / 2)).toFixed(2);
 
   /* business hours (re-evaluated every minute) */
   useEffect(() => {
@@ -308,7 +311,7 @@ function WidgetApp() {
 
         .gb-root {
           position: fixed; bottom: 0; ${isRight ? 'right: 0;' : 'left: 0;'}
-          display: inline-flex; flex-direction: column; gap: 12px; padding: 14px;
+          display: inline-flex; flex-direction: column; gap: 12px; padding: ${PAD}px; /* room for the pulse rings + button shadow, so they are never cut by the iframe edge */
           align-items: ${isRight ? 'flex-end' : 'flex-start'};
           font-family: ${cfg.fontMain};
           visibility: ${visible ? 'visible' : 'hidden'};
@@ -371,7 +374,7 @@ function WidgetApp() {
         .gb-powered a { color: #1b5e50; font-weight: 700; text-decoration: underline; }
 
         /* ── Launcher row ── */
-        .gb-row { display: flex; align-items: center; gap: 8px; flex-direction: ${isRight ? 'row-reverse' : 'row'}; }
+        .gb-row { display: flex; align-items: center; gap: 8px; flex-direction: ${isRight ? 'row' : 'row-reverse'}; }
         .gb-teaser {
           background: #fff; color: ${cfg.bubbleTextColor}; font-family: ${cfg.fontBubble};
           border: 2px solid ${cfg.borderColor}; border-radius: 14px; min-height: 44px; padding: 8px 16px;
@@ -388,9 +391,13 @@ function WidgetApp() {
         .gb-btn {
           position: relative; width: ${btnSize}px; height: ${btnSize}px; border-radius: 50%; border: 0; flex-shrink: 0;
           background: ${cfg.brandColor}; color: ${cfg.iconColor}; cursor: pointer; display: grid; place-items: center;
-          box-shadow: 0 8px 22px ${cfg.brandColor}77; transition: transform .2s, box-shadow .2s;
+          box-shadow: 0 6px 16px ${cfg.brandColor}77; transition: transform .2s, box-shadow .2s;
+          --gb-ring: ${ringScale};
         }
         .gb-btn:hover { transform: scale(1.07) !important; animation: none !important; }
+        /* While the panel is open the launcher (now the close button) must stay perfectly still. */
+        .gb-btn.is-open, .gb-btn.is-open::before, .gb-btn.is-open::after { animation: none !important; }
+        .gb-btn.is-open::before, .gb-btn.is-open::after { display: none; }
         .gb-btn svg { width: ${Math.round(btnSize * 0.52)}px; height: ${Math.round(btnSize * 0.52)}px; fill: currentColor; }
 
         ${ANIMATIONS[cfg.animationStyle]}
@@ -402,9 +409,11 @@ function WidgetApp() {
         }
       `}</style>
 
-      <div className="gb-root" ref={rootRef} dir={cfg.dir} lang={cfg.lang}>
+      {/* Layout is always LTR so left/right are physical: with dir="rtl" on the root, flex-end meant LEFT and the
+          launcher jumped sideways when the panel opened. The text direction is applied to the content below. */}
+      <div className="gb-root" ref={rootRef} dir="ltr" lang={cfg.lang}>
         {isOpen && (
-          <div className="gb-popup" role="dialog" aria-modal="false" aria-labelledby="gb-title" id="gb-panel">
+          <div className="gb-popup" dir={cfg.dir} role="dialog" aria-modal="false" aria-labelledby="gb-title" id="gb-panel">
             <div className="gb-head">
               <div className="gb-avatar" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d={ICONS[cfg.chatButton]} /></svg>
@@ -455,7 +464,7 @@ function WidgetApp() {
         <div className="gb-row">
           {showTeaser && (
             <>
-              <button type="button" className="gb-teaser" onClick={toggle}>{cfg.chatBubbleText}</button>
+              <button type="button" className="gb-teaser" dir={cfg.dir} onClick={toggle}>{cfg.chatBubbleText}</button>
               <button type="button" className="gb-teaser-x" onClick={() => setBubbleVisible(false)} aria-label={cfg.s.dismiss}>
                 <span aria-hidden="true">×</span>
               </button>
@@ -464,7 +473,7 @@ function WidgetApp() {
           <button
             type="button"
             ref={launcherRef}
-            className={`gb-btn anim-${cfg.animationStyle}`}
+            className={`gb-btn anim-${cfg.animationStyle}${isOpen ? ' is-open' : ''}`}
             onClick={toggle}
             aria-label={isOpen ? cfg.s.close : (cfg.chatBubbleText || cfg.s.open)}
             aria-expanded={isOpen}

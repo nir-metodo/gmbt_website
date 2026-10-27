@@ -71,7 +71,8 @@ export default function GambotWhatsAppWidget() {
       openFormButtonTextColor: '#ffffff',
       openFormBodyBorderLineColor: '#0b7261',
       iconColor: '#ffffff',
-      chatBubbleText: c.bubble,
+      chatBubbleText: c.bubble, // not shown (iconOnly) — kept only as the launcher's accessible name
+      iconOnly: 'true',
       headerTitle: c.title,
       headerSubtitle: c.subtitle,
       welcomeText: c.welcome,

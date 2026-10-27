@@ -8,7 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 // Final onboarding step. Used by BOTH the sign-up wizard (/OnboardingProcess, step 5) and the
 // post-payment page (/complete-waba), so it must look right on its own — all styling is in
 // WabaConnect.css under the .wc prefix and does not depend on the wizard container.
-const WabaOnboarding = ({ onPrevStep, organization, email, hasSim, useFreeNumber, useCoexisting, simPhoneNumber, contactPhoneNumber, organizationName }) => {
+const WabaOnboarding = ({ onPrevStep, organization, email, hasSim, useFreeNumber, useCoexisting, simPhoneNumber, contactPhoneNumber, organizationName, allowBuyNewNumber = false }) => {
     const { currentLanguage, isRTL } = useLanguage();
     const he = currentLanguage !== 'en';
     const L = (heText, enText) => (he ? heText : enText);
@@ -179,6 +179,32 @@ const WabaOnboarding = ({ onPrevStep, organization, email, hasSim, useFreeNumber
                     </button>
                 )}
             </section>
+
+            {/* ── Switch to a different / brand-new Gambot number ─────────
+                Only on the standalone /complete-waba page (the sign-up wizard already has a Back button).
+                The number is bought in the sign-up wizard (steps 2–3) and saved on the account, and only
+                THEN does the Facebook connection above use it — so the customer must go through the wizard
+                first (account-update verification code → "buy a number"), then come back here. */}
+            {allowBuyNewNumber && (
+                <section className="wc-block" aria-labelledby="wc-newnum-title">
+                    <h2 id="wc-newnum-title" className="wc-block-title">{L('רוצים מספר אחר?', 'Want a different number?')}</h2>
+                    <p>{L(
+                        'אפשר לרכוש מספר חדש מ-Gambot ולחבר אותו במקום המספר הנוכחי. תתבקשו לאמת את החשבון בקוד שיישלח לטלפון שבחשבון, תבחרו "רכישת מספר", ובסיום תחזרו למסך הזה לחיבור עם Facebook.',
+                        'You can buy a new number from Gambot and connect it instead of the current one. You will verify the account with a code sent to the phone on the account, choose "Buy a number", and then come back to this screen to connect with Facebook.'
+                    )}</p>
+                    <button
+                        type="button"
+                        className="wc-back"
+                        onClick={() => {
+                            // Drop any stale wizard state (e.g. a saved "step 5") so the wizard starts clean at step 1.
+                            try { localStorage.removeItem('gambot_onboarding_state'); } catch (e) { /* noop */ }
+                            window.location.assign('/OnboardingProcess');
+                        }}
+                    >
+                        <FaPhoneAlt aria-hidden="true" /> {L('רכישת מספר חדש', 'Buy a new number')}
+                    </button>
+                </section>
+            )}
 
             <footer className="wc-footer">
                 <button type="button" className="wc-back" onClick={onPrevStep}>

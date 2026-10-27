@@ -12875,20 +12875,20 @@ const posts = [
     en: 'Gambot API & MCP Credits — How Interface Usage Is Counted and What It Costs 2026 | Gambot'
   },
   metaDescription: {
-    he: 'מדריך מלא לקרדיטי API/MCP בגמבוט: מה נספר כקרדיט, כמה עולה כל סוג קריאה (API, MCP, פעולת AI, דיוור/ייצוא), אילו מכסות כלולות בכל חבילה (1,000 / 3,000 / 10,000), ומה עלות החריגה — עם דוגמאות חישוב.',
-    en: 'A full guide to Gambot API/MCP credits: what counts as a credit, how much each call type costs (API, MCP, AI action, bulk/export), the monthly quota included in each plan (1,000 / 3,000 / 10,000), and the overage price — with worked examples.'
+    he: 'מדריך לקרדיטי הממשק (API/MCP) בגמבוט: קרדיט = הודעה שעוברת דרך האינטגרציה. הודעה יוצאת 2 קרדיטים, הודעה נכנסת שהועברה אליכם 1, עדכוני סטטוס וקריאות ניהול חינם. מכסות כלולות 3,000 / 10,000 / 30,000 וחריגה ב-₪0.015 לקרדיט — עם דוגמאות חישוב.',
+    en: 'A guide to Gambot interface credits (API/MCP): a credit = a message passing through the integration. An outgoing message is 2 credits, an incoming message forwarded to you is 1, status updates and management calls are free. Included quotas 3,000 / 10,000 / 30,000 and overage at ₪0.015 per credit — with worked examples.'
   },
   keywords: {
-    he: ['קרדיטים API', 'קרדיטים MCP', 'תמחור API וואטסאפ', 'WhatsApp API מחיר', 'MCP גמבוט', 'קרדיטים גמבוט', 'עלות API', 'מכסת API'],
-    en: ['api credits', 'mcp credits', 'whatsapp api pricing', 'gambot api cost', 'gambot mcp', 'api quota', 'api usage pricing', 'whatsapp mcp cost']
+    he: ['קרדיטים API', 'קרדיטים MCP', 'תמחור API וואטסאפ', 'WhatsApp API מחיר', 'MCP גמבוט', 'קרדיטים גמבוט', 'עלות API', 'מכסת API', 'webhook וואטסאפ'],
+    en: ['api credits', 'mcp credits', 'whatsapp api pricing', 'gambot api cost', 'gambot mcp', 'api quota', 'api usage pricing', 'whatsapp webhook pricing']
   },
   title: {
     he: 'קרדיטים API ו-MCP: איך נספרת צריכת הממשק בגמבוט וכמה זה עולה',
     en: 'API & MCP Credits: How Gambot Counts Interface Usage and What It Costs'
   },
   description: {
-    he: 'הסבר ברור על קרדיטי ה‑API/MCP: מה נספר, כמה עולה כל סוג פעולה, אילו מכסות כלולות בכל חבילה ומה קורה בחריגה — כדי שתדעו מראש כמה תצרכו.',
-    en: 'A clear explanation of API/MCP credits: what is counted, how much each action type costs, the quota included in each plan and what happens on overage — so you can estimate your usage in advance.'
+    he: 'משלמים על הודעות, לא על כל קריאה: הודעה יוצאת = 2 קרדיטים, הודעה נכנסת שהועברה אליכם = 1, וכל השאר חינם. הסבר על המכסות, החריגה ודוגמאות חישוב.',
+    en: 'You pay for messages, not for every call: an outgoing message = 2 credits, an incoming message forwarded to you = 1, everything else is free. Quotas, overage and worked examples explained.'
   },
   category: 'API',
   author: 'ניר סגס',
@@ -12898,67 +12898,91 @@ const posts = [
   featured: true,
   faq: {
     he: [
-      { q: 'מה זה קרדיט API/MCP?', a: 'קרדיט הוא יחידת המדידה של שימוש בממשק החיצוני של גמבוט (REST API ושרת ה‑MCP). כל פעולה שאתם מבצעים דרך הממשק צורכת מספר קרדיטים לפי סוגה: קריאת API רגילה = 1 קרדיט, פעולת MCP = 2 קרדיטים, פעולת AI דרך הממשק = 12 קרדיטים, ושליחת דיוור/ייצוא בכמות = 4 קרדיטים.' },
-      { q: 'כמה קרדיטים כלולים בכל חבילה?', a: 'Growth כוללת 1,000 קרדיטים בחודש, Pro כוללת 3,000, ו‑Business כוללת 10,000 קרדיטים בחודש. המכסה מתאפסת בכל חודש והיא נפרדת ממכסת שיחות ה‑WhatsApp ומקרדיטי ה‑AI של הבוט.' },
-      { q: 'מה קורה אם חורגים מהמכסה?', a: 'אין חסימה — פשוט ממשיכים לעבוד. חריגה מעבר למכסה החודשית מחויבת ₪0.10 לכל קרדיט נוסף. כך שגם חודש עמוס לא עוצר את האינטגרציה שלכם.' },
-      { q: 'למה פעולת MCP עולה יותר מקריאת API?', a: 'קריאת API רגילה היא פעולה בודדת ומוגדרת מראש. פעולת MCP מגיעה דרך סוכן AI (Claude/ChatGPT/Gemini/Cursor) ולרוב כרוכה בשלב פרשנות והכנה נוסף בצד גמבוט, ולכן משקלה 2 קרדיטים. פעולה שמפעילה מנוע AI מלא (כמו יצירת תשובה חכמה) יקרה יותר — 12 קרדיטים.' },
-      { q: 'איפה רואים כמה קרדיטים ניצלתי?', a: 'בהגדרות ← כללי מוצג לוג הפעילות של ה‑API/MCP (כל קריאה, האם הצליחה והזמן שלקחה). המכסה הכלולה והחריגה מוצגות במחירון וגם בתהליך ההצטרפות, ליד שם החבילה.' }
+      { q: 'מה זה קרדיט ממשק (API/MCP)?', a: 'קרדיט הוא יחידת המדידה של הודעות שעוברות דרך האינטגרציה עם גמבוט (REST API, שרת ה‑MCP ו‑Webhook). הודעה יוצאת ששלחתם דרך ה‑API או ה‑MCP עולה 2 קרדיטים, והודעה נכנסת שגמבוט העבירה ל‑URL שלכם עולה קרדיט אחד. עדכוני סטטוס וקריאות ניהול (CRM, שליפת נתונים, הגדרות) אינם נספרים.' },
+      { q: 'האם מקבלים חיוב על הודעות שאני שולח מהאפליקציה של גמבוט?', a: 'לא. הודעות שנשלחות מהאפליקציה, מבוטים או מקמפיינים שמופעלים מהממשק לא נספרות בקרדיטי הממשק — הן כלולות במכסת השיחות של החבילה שלכם. קרדיטי ממשק נספרים רק על הודעות שעוברות דרך האינטגרציה (API, MCP או Webhook).' },
+      { q: 'אני רק מקבל הודעות נכנסות למערכת שלי. האם אני משלם?', a: 'כן — קרדיט אחד על כל הודעה נכנסת שגמבוט מעבירה ל‑URL שלכם בהצלחה. אם ה‑endpoint שלכם לא ענה בהצלחה, לא תחויבו. הודעה נספרת פעם אחת בלבד גם אם נדרשו ניסיונות חוזרים.' },
+      { q: 'למה הודעה יוצאת עולה יותר מהודעה נכנסת?', a: 'הודעה יוצאת עוברת אצלנו את כל תהליך השליחה: אימות, שליחה ל‑Meta, שמירה וניסיונות חוזרים. הודעה נכנסת רק נשמרת ומועברת אליכם, ולכן היא עולה חצי.' },
+      { q: 'כמה קרדיטים כלולים בכל חבילה ומה העלות בחריגה?', a: 'Growth כוללת 3,000 קרדיטים בחודש, Pro כוללת 10,000 ו‑Business כוללת 30,000. המכסה מתאפסת בכל חודש. אין חסימה בחריגה — מחויבים ₪0.015 לכל קרדיט נוסף (₪0.03 להודעה יוצאת, ₪0.015 להודעה נכנסת).' },
+      { q: 'האם עמלות WhatsApp של Meta כלולות בקרדיטים?', a: 'לא. עמלות Meta על שיחות והודעות תבנית מחויבות בנפרד לפי סוג השיחה והמדינה, ואינן חלק מקרדיטי הממשק.' },
+      { q: 'מה לגבי פעולות AI?', a: 'פעולות AI מחויבות ממאגר קרדיטי ה‑AI של החבילה (כל 500 קרדיטי AI נוספים ₪39), ולא מקרדיטי הממשק.' },
+      { q: 'איפה רואים כמה קרדיטים ניצלתי?', a: 'בהגדרות ← כללי מוצגים לוג הפעילות של ה‑API/MCP ומד צריכה חודשי: כמה קרדיטים נוצלו מתוך המכסה, בפירוט לפי הודעות יוצאות ונכנסות.' }
     ],
     en: [
-      { q: 'What is an API/MCP credit?', a: 'A credit is the unit that measures usage of Gambot\'s external interface (the REST API and the MCP server). Every action you perform through the interface consumes credits by its type: a plain API call = 1 credit, an MCP action = 2 credits, an AI action via the interface = 12 credits, and a bulk send/export = 4 credits.' },
-      { q: 'How many credits are included in each plan?', a: 'Growth includes 1,000 credits per month, Pro includes 3,000, and Business includes 10,000 per month. The quota resets every month and is separate from your WhatsApp conversation quota and from the bot\'s AI credits.' },
-      { q: 'What happens if I exceed the quota?', a: 'Nothing is blocked — you simply keep working. Usage beyond the monthly quota is billed at ₪0.10 per extra credit, so even a busy month won\'t stop your integration.' },
-      { q: 'Why does an MCP action cost more than an API call?', a: 'A plain API call is a single, predefined operation. An MCP action arrives through an AI agent (Claude/ChatGPT/Gemini/Cursor) and usually involves an extra interpretation/preparation step on Gambot\'s side, so its weight is 2 credits. An action that triggers a full AI engine (like generating a smart reply) costs more — 12 credits.' },
-      { q: 'Where do I see how many credits I used?', a: 'Settings → General shows the API/MCP activity log (every call, whether it succeeded and how long it took). The included quota and overage are shown on the pricing page and during onboarding, next to the plan name.' }
+      { q: 'What is an interface credit (API/MCP)?', a: 'A credit measures messages passing through your integration with Gambot (REST API, the MCP server and webhooks). An outgoing message you send via the API or MCP costs 2 credits, and an incoming message Gambot forwards to your URL costs 1 credit. Status updates and management calls (CRM, fetching data, settings) are not counted.' },
+      { q: 'Am I charged for messages I send from the Gambot app?', a: 'No. Messages sent from the app, from bots, or from campaigns launched in the interface are not counted as interface credits — they are covered by your plan\'s conversation quota. Interface credits only count messages that pass through the integration (API, MCP or webhook).' },
+      { q: 'I only receive incoming messages into my own system. Do I pay?', a: 'Yes — 1 credit for every incoming message Gambot successfully forwards to your URL. If your endpoint did not answer successfully you are not charged. A message is counted once even if retries were needed.' },
+      { q: 'Why does an outgoing message cost more than an incoming one?', a: 'An outgoing message goes through our whole sending pipeline: authentication, delivery to Meta, storage and retries. An incoming message is only stored and forwarded to you, so it costs half.' },
+      { q: 'How many credits does each plan include and what does overage cost?', a: 'Growth includes 3,000 credits per month, Pro 10,000 and Business 30,000. The quota resets every month. Nothing is blocked on overage — you pay ₪0.015 per extra credit (₪0.03 per outgoing message, ₪0.015 per incoming message).' },
+      { q: 'Are Meta\'s WhatsApp fees included in the credits?', a: 'No. Meta\'s conversation and template fees are billed separately by conversation type and country, and are not part of interface credits.' },
+      { q: 'What about AI actions?', a: 'AI actions are charged from your plan\'s AI credits pool (each additional 500 AI credits costs ₪39), not from interface credits.' },
+      { q: 'Where do I see how many credits I used?', a: 'Settings → General shows the API/MCP activity log and a monthly usage meter: how many credits you used out of your quota, broken down into outgoing and incoming messages.' }
     ]
   },
   content: {
     he: `
 <div style="background:linear-gradient(135deg,#0891b2 0%,#0369a1 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
-  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🔌 קרדיטים API / MCP</div>
-  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">כמה "עולה" לתפעל את גמבוט דרך API ו‑MCP — בשקיפות מלאה</div>
-  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">כל חבילה כוללת מכסת קרדיטים חודשית לשימוש בממשק החיצוני. הכתבה הזו מסבירה בדיוק מה נספר כקרדיט, כמה עולה כל סוג פעולה, ומה קורה כשחורגים — כדי שתוכלו להעריך מראש כמה תצרכו.</p>
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🔌 קרדיטי ממשק · API / MCP</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">משלמים על הודעות — לא על כל קריאה</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">כל חבילה כוללת מכסת קרדיטים חודשית לשימוש באינטגרציה. הכתבה מסבירה בדיוק מה נספר, כמה זה עולה, ומה קורה כשחורגים — כדי שתוכלו להעריך מראש כמה תצרכו.</p>
 </div>
 
 <div style="background:#f0f9ff;border-inline-start:4px solid #0891b2;border-radius:8px;padding:14px 18px;margin:0 0 26px;font-size:0.95rem;color:#0c4a6e;">
-  💡 <strong>שים לב:</strong> קרדיטי API/MCP הם מאגר <strong>נפרד</strong> ממכסת שיחות ה‑WhatsApp ומקרדיטי ה‑AI של הבוט. הם נספרים רק על פעולות שמגיעות דרך ה‑API או שרת ה‑MCP.
+  💡 <strong>שים לב:</strong> קרדיטי ממשק הם מאגר <strong>נפרד</strong> ממכסת שיחות ה‑WhatsApp ומקרדיטי ה‑AI של הבוט. הם נספרים רק על הודעות שעוברות דרך האינטגרציה — API, שרת MCP ו‑Webhook.
 </div>
 
-<h2>⚖️ מה נספר כקרדיט — טבלת המשקלים</h2>
-<p>לא כל פעולה שווה. פעולה פשוטה עולה קרדיט אחד, ופעולה "כבדה" שמפעילה מנוע AI עולה יותר. אלה המשקלים:</p>
+<h2>⚖️ העיקרון: קרדיט = הודעה שעוברת דרך האינטגרציה</h2>
+<p>במקום לספור כל קריאה טכנית, אנחנו סופרים את מה שבאמת שווה כסף — <strong>הודעות</strong>. הודעה יוצאת עולה יותר מהודעה נכנסת, כי היא עוברת אצלנו את כל תהליך השליחה: אימות, שליחה ל‑Meta, שמירה וניסיונות חוזרים. הודעה נכנסת רק נשמרת ומועברת אליכם.</p>
 <div style="overflow-x:auto;margin:20px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
     <thead>
       <tr style="background:#0369a1;color:#fff;">
-        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">סוג הפעולה</th>
-        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">עלות (קרדיטים)</th>
-        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">דוגמה</th>
+        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">מה קורה</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">קרדיטים</th>
+        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">הערה</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td style="padding:12px;border:1px solid #e5e7eb;">קריאת API רגילה</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1</td>
-        <td style="padding:12px;border:1px solid #e5e7eb;">שליחת הודעה, עדכון איש קשר, שליפת נתונים</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הודעה יוצאת דרך ה‑API או ה‑MCP</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">2</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">טקסט או תבנית. נספרת רק אם השליחה התקבלה בהצלחה</td>
       </tr>
       <tr style="background:#f9fafb;">
-        <td style="padding:12px;border:1px solid #e5e7eb;">פעולת MCP</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">2</td>
-        <td style="padding:12px;border:1px solid #e5e7eb;">כל כלי שסוכן AI מפעיל דרך שרת ה‑MCP</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">הודעה נכנסת שהועברה ל‑URL שלכם</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">נספרת רק אם ה‑endpoint שלכם ענה בהצלחה, ופעם אחת לכל הודעה</td>
       </tr>
       <tr>
-        <td style="padding:12px;border:1px solid #e5e7eb;">דיוור / ייצוא בכמות</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">4</td>
-        <td style="padding:12px;border:1px solid #e5e7eb;">שליחת קמפיין לרשימה, ייצוא אנשי קשר</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">דיוור דרך ה‑API</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1 לנמען</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">קמפיין ל‑1,000 נמענים = 1,000 קרדיטים</td>
       </tr>
       <tr style="background:#f9fafb;">
-        <td style="padding:12px;border:1px solid #e5e7eb;">פעולת AI דרך הממשק</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">12</td>
-        <td style="padding:12px;border:1px solid #e5e7eb;">יצירת תשובה חכמה, ניתוח או סיכום ב‑AI</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">עדכוני סטטוס (נשלח, נמסר, נקרא)</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#15803d;">חינם</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">כלולים במחיר ההודעה היוצאת</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">קריאות ניהול: CRM, שליפת שיחות, הגדרות, כלי MCP שאינם שולחים הודעה</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#15803d;">חינם</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">בכפוף לשימוש הוגן</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">פעולות AI</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">ממאגר קרדיטי ה‑AI</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">לא מקרדיטי הממשק</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<h2>🚫 מה לא נספר</h2>
+<ul>
+  <li><strong>הודעות מהאפליקציה של גמבוט</strong> — שיחות, בוטים וקמפיינים שמופעלים מהממשק כלולים במכסת השיחות של החבילה.</li>
+  <li><strong>בקשות שנכשלו</strong> — מפתח לא תקין, שגיאת ולידציה או שגיאת שרת. משלמים רק על מה שהצליח.</li>
+  <li><strong>ניסיונות חוזרים</strong> — הודעה שהועברה אליכם פעם אחת נספרת פעם אחת, גם אם ה‑endpoint שלכם היה למטה והיינו צריכים לנסות שוב.</li>
+  <li><strong>עמלות Meta</strong> — עמלות WhatsApp על שיחות והודעות תבנית מחויבות בנפרד, לפי סוג השיחה והמדינה, ואינן חלק מהקרדיטים.</li>
+</ul>
 
 <h2>📦 מה כלול בכל חבילה</h2>
 <div style="overflow-x:auto;margin:20px 0;">
@@ -12973,90 +12997,109 @@ const posts = [
     <tbody>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">Growth</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">1,000</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;" rowspan="3">₪0.10 לכל קרדיט נוסף</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">3,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;" rowspan="3">₪0.015 לכל קרדיט נוסף<br/><span style="font-size:0.85rem;color:#6b7280;">₪0.03 להודעה יוצאת · ₪0.015 להודעה נכנסת</span></td>
       </tr>
       <tr style="background:#f9fafb;">
         <td style="padding:12px;border:1px solid #e5e7eb;">Pro</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">3,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">10,000</td>
       </tr>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">Business</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">10,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">30,000</td>
       </tr>
     </tbody>
   </table>
 </div>
 <div style="background:#ecfeff;border:2px solid #a5f3fc;border-radius:14px;padding:18px 20px;margin:20px 0;">
   <strong style="color:#0e7490;">בלי הפתעות:</strong>
-  <p style="margin:8px 0 0;color:#374151;">המכסה מתאפסת בכל חודש, ואין חסימה בחריגה — אתם ממשיכים לעבוד ומשלמים רק על מה שמעבר למכסה, ₪0.10 לקרדיט.</p>
+  <p style="margin:8px 0 0;color:#374151;">המכסה מתאפסת בכל חודש, ואין חסימה בחריגה — אתם ממשיכים לעבוד ומשלמים רק על מה שמעבר למכסה.</p>
 </div>
 
-<h2>🧮 דוגמת חישוב</h2>
-<p>נניח שבחודש נתון ביצעתם דרך הממשק:</p>
+<h2>🧮 דוגמאות חישוב</h2>
+<p><strong>עסק שמחבר CRM וסוכן AI.</strong> בחודש נתון, דרך האינטגרציה:</p>
 <ul>
-  <li>3,000 קריאות API רגילות (שליחת הודעות, עדכוני CRM) → 3,000 קרדיטים</li>
-  <li>500 פעולות MCP מתוך Claude/ChatGPT → 1,000 קרדיטים</li>
-  <li>2 קמפייני דיוור לרשימות → 8 קרדיטים</li>
-  <li>50 יצירות תשובה חכמה ב‑AI → 600 קרדיטים</li>
+  <li>2,000 הודעות יוצאות שנשלחו דרך ה‑API → 4,000 קרדיטים</li>
+  <li>3,000 הודעות נכנסות שהועברו ל‑CRM → 3,000 קרדיטים</li>
+  <li>דיוור דרך ה‑API ל‑1,500 נמענים → 1,500 קרדיטים</li>
+  <li>6,000 עדכוני סטטוס ו‑10,000 קריאות CRM ושליפה → 0 קרדיטים</li>
 </ul>
-<p><strong>סה״כ ≈ 4,608 קרדיטים.</strong> בחבילת Pro (3,000 כלולים) החריגה היא כ‑1,608 קרדיטים × ₪0.10 = <strong>₪161 בערך</strong> באותו חודש. בחבילת Business (10,000 כלולים) — הכל בתוך המכסה, ללא תוספת.</p>
+<p><strong>סה״כ 8,500 קרדיטים.</strong> בחבילת Pro (10,000 כלולים) — הכל בתוך המכסה. בחבילת Growth (3,000 כלולים) החריגה היא 5,500 קרדיטים × ₪0.015 = <strong>₪82.5 בערך</strong> באותו חודש.</p>
+<p><strong>ארגון שרק מקבל הודעות למערכת שלו.</strong> 4,000 הודעות נכנסות שהועברו ל‑URL → 4,000 קרדיטים. בחבילת Growth החריגה היא 1,000 × ₪0.015 = <strong>₪15</strong>; בחבילת Pro — הכל בתוך המכסה.</p>
 
 <h2>👀 איפה רואים את הצריכה</h2>
-<p>בתוך המערכת, תחת <strong>הגדרות ← כללי</strong>, מוצג לוג פעילות ה‑API/MCP: כל קריאה, מקורה (API או MCP), האם הצליחה וכמה זמן לקחה. כך אפשר לעקוב בזמן אמת ולזהות מה צורך הכי הרבה. המכסה הכלולה בכל חבילה והחריגה מוצגות במחירון וגם בתהליך ההצטרפות, ליד שם החבילה — עם ה‑<strong>?</strong> שמסביר בקצרה.</p>
+<p>בתוך המערכת, תחת <strong>הגדרות ← כללי</strong>, מוצג לוג פעילות ה‑API/MCP ומד צריכה חודשי: כמה קרדיטים נוצלו מתוך המכסה, בפירוט לפי הודעות יוצאות ונכנסות. כך אפשר לעקוב בזמן אמת ולזהות מה צורך הכי הרבה. המכסה הכלולה והחריגה מוצגות גם במחירון ובתהליך ההצטרפות, ליד שם החבילה.</p>
 
 <div style="background:linear-gradient(135deg,#0891b2,#0369a1);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
-  <h3 style="margin:0 0 12px;color:#fff;border:none;">רוצים לחבר את גמבוט ל‑API או ל‑AI שלכם?</h3>
-  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">כל חבילה כוללת מכסת קרדיטים לשימוש בממשק — בלי התחייבות ובלי הפתעות.</p>
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">רוצים לחבר את גמבוט למערכת או ל‑AI שלכם?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">כל חבילה כוללת מכסת קרדיטים לשימוש באינטגרציה — בלי התחייבות ובלי הפתעות.</p>
   <a href="/PriceList/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">למחירון המלא ←</a>
 </div>
 `,
     en: `
 <div style="background:linear-gradient(135deg,#0891b2 0%,#0369a1 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
-  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🔌 API / MCP CREDITS</div>
-  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">What it "costs" to drive Gambot via API and MCP — in full transparency</div>
-  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">Every plan includes a monthly credit quota for using the external interface. This article explains exactly what counts as a credit, how much each action type costs, and what happens on overage — so you can estimate your usage up front.</p>
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🔌 INTERFACE CREDITS · API / MCP</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">You pay for messages — not for every call</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">Every plan includes a monthly credit quota for using the integration. This article explains exactly what is counted, what it costs, and what happens on overage — so you can estimate your usage up front.</p>
 </div>
 
 <div style="background:#f0f9ff;border-inline-start:4px solid #0891b2;border-radius:8px;padding:14px 18px;margin:0 0 26px;font-size:0.95rem;color:#0c4a6e;">
-  💡 <strong>Note:</strong> API/MCP credits are a <strong>separate</strong> pool from your WhatsApp conversation quota and from the bot's AI credits. They are only counted for actions that arrive through the API or the MCP server.
+  💡 <strong>Note:</strong> interface credits are a <strong>separate</strong> pool from your WhatsApp conversation quota and from the bot's AI credits. They are only counted for messages that pass through the integration — the API, the MCP server and webhooks.
 </div>
 
-<h2>⚖️ What counts as a credit — the weight table</h2>
-<p>Not every action is equal. A simple action costs one credit, and a "heavy" action that triggers an AI engine costs more. Here are the weights:</p>
+<h2>⚖️ The principle: a credit = a message passing through the integration</h2>
+<p>Instead of counting every technical call, we count what actually matters — <strong>messages</strong>. An outgoing message costs more than an incoming one because it goes through our whole sending pipeline: authentication, delivery to Meta, storage and retries. An incoming message is only stored and forwarded to you.</p>
 <div style="overflow-x:auto;margin:20px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
     <thead>
       <tr style="background:#0369a1;color:#fff;">
-        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Action type</th>
-        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Cost (credits)</th>
-        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Example</th>
+        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">What happens</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Credits</th>
+        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Note</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td style="padding:12px;border:1px solid #e5e7eb;">Plain API call</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1</td>
-        <td style="padding:12px;border:1px solid #e5e7eb;">Send a message, update a contact, fetch data</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Outgoing message via the API or MCP</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">2</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Text or template. Counted only if the send was accepted</td>
       </tr>
       <tr style="background:#f9fafb;">
-        <td style="padding:12px;border:1px solid #e5e7eb;">MCP action</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">2</td>
-        <td style="padding:12px;border:1px solid #e5e7eb;">Any tool an AI agent runs via the MCP server</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Incoming message forwarded to your URL</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Counted only if your endpoint answered successfully, once per message</td>
       </tr>
       <tr>
-        <td style="padding:12px;border:1px solid #e5e7eb;">Bulk send / export</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">4</td>
-        <td style="padding:12px;border:1px solid #e5e7eb;">Send a campaign to a list, export contacts</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Broadcast via the API</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1 per recipient</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">A campaign to 1,000 recipients = 1,000 credits</td>
       </tr>
       <tr style="background:#f9fafb;">
-        <td style="padding:12px;border:1px solid #e5e7eb;">AI action via the interface</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">12</td>
-        <td style="padding:12px;border:1px solid #e5e7eb;">Generate a smart reply, AI analysis or summary</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Status updates (sent, delivered, read)</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#15803d;">Free</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Included in the outgoing message price</td>
+      </tr>
+      <tr>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Management calls: CRM, reading conversations, settings, MCP tools that don't send a message</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#15803d;">Free</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Subject to fair use</td>
+      </tr>
+      <tr style="background:#f9fafb;">
+        <td style="padding:12px;border:1px solid #e5e7eb;">AI actions</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">From the AI credits pool</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">Not from interface credits</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<h2>🚫 What is not counted</h2>
+<ul>
+  <li><strong>Messages from the Gambot app</strong> — conversations, bots and campaigns launched from the interface are covered by your plan's conversation quota.</li>
+  <li><strong>Failed requests</strong> — an invalid key, a validation error or a server error. You only pay for what succeeded.</li>
+  <li><strong>Retries</strong> — a message forwarded to you once is counted once, even if your endpoint was down and we had to try again.</li>
+  <li><strong>Meta fees</strong> — WhatsApp conversation and template fees are billed separately by conversation type and country, and are not part of the credits.</li>
+</ul>
 
 <h2>📦 What's included in each plan</h2>
 <div style="overflow-x:auto;margin:20px 0;">
@@ -13071,41 +13114,42 @@ const posts = [
     <tbody>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">Growth</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">1,000</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;" rowspan="3">₪0.10 per extra credit</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">3,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;" rowspan="3">₪0.015 per extra credit<br/><span style="font-size:0.85rem;color:#6b7280;">₪0.03 per outgoing message · ₪0.015 per incoming message</span></td>
       </tr>
       <tr style="background:#f9fafb;">
         <td style="padding:12px;border:1px solid #e5e7eb;">Pro</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">3,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">10,000</td>
       </tr>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">Business</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">10,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">30,000</td>
       </tr>
     </tbody>
   </table>
 </div>
 <div style="background:#ecfeff;border:2px solid #a5f3fc;border-radius:14px;padding:18px 20px;margin:20px 0;">
   <strong style="color:#0e7490;">No surprises:</strong>
-  <p style="margin:8px 0 0;color:#374151;">The quota resets every month and there's no hard block on overage — you keep working and pay only for what's beyond the quota, ₪0.10 per credit.</p>
+  <p style="margin:8px 0 0;color:#374151;">The quota resets every month and there's no hard block on overage — you keep working and pay only for what's beyond the quota.</p>
 </div>
 
-<h2>🧮 A worked example</h2>
-<p>Say in a given month you performed, through the interface:</p>
+<h2>🧮 Worked examples</h2>
+<p><strong>A business connecting a CRM and an AI agent.</strong> In a given month, through the integration:</p>
 <ul>
-  <li>3,000 plain API calls (sending messages, CRM updates) → 3,000 credits</li>
-  <li>500 MCP actions from Claude/ChatGPT → 1,000 credits</li>
-  <li>2 broadcast campaigns to lists → 8 credits</li>
-  <li>50 smart-reply generations via AI → 600 credits</li>
+  <li>2,000 outgoing messages sent via the API → 4,000 credits</li>
+  <li>3,000 incoming messages forwarded to the CRM → 3,000 credits</li>
+  <li>An API broadcast to 1,500 recipients → 1,500 credits</li>
+  <li>6,000 status updates and 10,000 CRM and read calls → 0 credits</li>
 </ul>
-<p><strong>Total ≈ 4,608 credits.</strong> On the Pro plan (3,000 included), the overage is about 1,608 credits × ₪0.10 = <strong>≈ ₪161</strong> that month. On the Business plan (10,000 included) — all within quota, no extra charge.</p>
+<p><strong>Total 8,500 credits.</strong> On the Pro plan (10,000 included) — all within quota. On the Growth plan (3,000 included) the overage is 5,500 credits × ₪0.015 = <strong>≈ ₪82.5</strong> that month.</p>
+<p><strong>An organization that only receives messages into its own system.</strong> 4,000 incoming messages forwarded to its URL → 4,000 credits. On Growth the overage is 1,000 × ₪0.015 = <strong>₪15</strong>; on Pro — all within quota.</p>
 
 <h2>👀 Where to see your usage</h2>
-<p>Inside the system, under <strong>Settings → General</strong>, you'll find the API/MCP activity log: every call, its source (API or MCP), whether it succeeded and how long it took. That lets you monitor in real time and spot what consumes the most. The included quota and overage are shown on the pricing page and during onboarding, next to the plan name — with the <strong>?</strong> that explains it briefly.</p>
+<p>Inside the system, under <strong>Settings → General</strong>, you'll find the API/MCP activity log and a monthly usage meter: how many credits you used out of your quota, broken down into outgoing and incoming messages. That lets you monitor in real time and spot what consumes the most. The included quota and overage are also shown on the pricing page and during onboarding, next to the plan name.</p>
 
 <div style="background:linear-gradient(135deg,#0891b2,#0369a1);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
-  <h3 style="margin:0 0 12px;color:#fff;border:none;">Want to connect Gambot to your API or your AI?</h3>
-  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">Every plan includes a credit quota for interface usage — no commitment, no surprises.</p>
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">Want to connect Gambot to your system or your AI?</h3>
+  <p style="margin:0 0 20px;opacity:0.9;font-size:0.95rem;">Every plan includes a credit quota for using the integration — no commitment, no surprises.</p>
   <a href="/PriceList/" style="display:inline-block;background:#25D366;color:#fff;font-weight:700;padding:13px 30px;border-radius:50px;text-decoration:none;">See the full pricing →</a>
 </div>
 `

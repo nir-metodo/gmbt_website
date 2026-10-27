@@ -187,6 +187,7 @@ const WabaOnboardingWrapperNext = () => {
       simPhoneNumber={orgData.simPhoneNumber}
       contactPhoneNumber={orgData.contactPhoneNumber}
       organizationName={orgData.organizationName}
+      allowBuyNewNumber
       onPrevStep={() => router.push('/login')}
     />
   );
