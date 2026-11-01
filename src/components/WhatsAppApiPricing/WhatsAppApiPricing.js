@@ -43,12 +43,7 @@ const WhatsAppApiPricing = () => {
         "priceCurrency": "ILS",
         "description": "Enterprise WhatsApp API solution for large organizations"
       }
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "150"
-    }
+    ]
   };
 
   return (

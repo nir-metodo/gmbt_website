@@ -2,7 +2,8 @@ import Script from 'next/script';
 import AddPayment from '@/components/OnBoard/AddPayment';
 
 export const metadata = {
-  title: 'השלמת פרטי תשלום | Gambot',
+  robots: { index: false, follow: false },
+  title: 'השלמת פרטי תשלום',
   description: 'השלם את פרטי התשלום שלך להמשך השימוש בגמבוט.',
 };
 

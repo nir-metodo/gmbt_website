@@ -6,16 +6,16 @@ import { MCP_FAQ_EN } from './mcpHub';
  */
 export const PAGE_META = {
   home: {
-    title: 'Gambot | גמבוט — WhatsApp Business API Platform Israel | AI Bot, Automation & CRM',
-    description: 'Gambot (גמבוט) — Israel\'s leading WhatsApp Business API platform. Official Meta Partner. AI chatbot, automation, campaigns, CRM & 24/7 customer service. No-code. Free trial.',
+    title: 'גמבוט | בוט לוואטסאפ לעסק, מערכת דיוור, CRM וריבוי נציגים',
+    description: 'גמבוט (Gambot) — מערכת וואטסאפ עסקי מובילה בישראל: בוט תפריטים ובוט AI לעסק, דיוור והודעות המוניות, CRM וריבוי נציגים באפליקציה אחת. שותף Meta רשמי. ניסיון חינם.',
     keywords: 'Gambot, gambot, גמבוט, WhatsApp API Israel, WhatsApp Business API, WhatsApp bot, WhatsApp automation, WhatsApp CRM, WhatsApp marketing Israel, Gambot WhatsApp, Gambot AI',
     canonical: 'https://gambot.co.il/',
-    og: { title: 'Gambot — WhatsApp Business API Platform | Israel #1', description: 'Official Meta Partner. AI chatbot, automation, campaigns, CRM & 24/7 customer service. Free trial.' },
+    og: { title: 'גמבוט — בוט לוואטסאפ, דיוור, CRM וריבוי נציגים | WhatsApp Business API', description: 'שותף Meta רשמי. בוט תפריטים ובוט AI לעסק, דיוור המוני, CRM וריבוי נציגים, אפליקציה לנייד. ניסיון חינם.' },
   },
   whatsappBot: {
-    title: 'בוט לוואטסאפ | Gambot - בנו בוט ללא קוד | ישראל 2026',
-    description: 'בוט לוואטסאפ מתקדם ללא קוד - Workflow Designer חזותי, AI Trigger, אינטגרציות ושירות לקוחות 24/7. מובילים בישראל. התחילו בחינם.',
-    keywords: 'בוט לוואטסאפ, בוט וואטסאפ ישראל, WhatsApp bot, אוטומציה וואטסאפ, workflow designer, בוט ללא קוד, Gambot',
+    title: 'בוט לוואטסאפ לעסק | בוט תפריטים ובוט AI ללא קוד | גמבוט',
+    description: 'בוט לוואטסאפ לעסק: בוט תפריטים, בוט AI וסוכן חכם — בונים ללא קוד, עם ריבוי נציגים, CRM ושירות לקוחות 24/7. שותף Meta רשמי. ניסיון חינם חודש.',
+    keywords: 'בוט לוואטסאפ, בוט לוואטסאפ לעסק, בוט לעסק בוואטסאפ, בוט תפריטים בוואטסאפ, בוט וואטסאפ ישראל, WhatsApp bot, אוטומציה וואטסאפ, workflow designer, בוט ללא קוד, Gambot',
     canonical: 'https://gambot.co.il/בוט-וואטסאפ/',
     hreflang: { he: 'https://gambot.co.il/בוט-וואטסאפ/', en: 'https://gambot.co.il/bot-whatsapp/', 'x-default': 'https://gambot.co.il/bot-whatsapp/' },
     schema: {
@@ -25,9 +25,26 @@ export const PAGE_META = {
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
       offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-      aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '327' },
       description: 'פלטפורמה ישראלית לבניית בוט לוואטסאפ ללא קוד עם Workflow Designer מתקדם',
     },
+  },
+  quotations: {
+    title: 'הצעות מחיר בוואטסאפ | שליחה, מעקב וסגירה דיגיטלית | גמבוט',
+    description: 'שלחו הצעות מחיר דיגיטליות ישירות בוואטסאפ, עקבו אחרי צפייה ואישור וסגרו עסקאות מהר יותר — הכול במערכת אחת עם CRM וריבוי נציגים.',
+    keywords: 'הצעות מחיר בוואטסאפ, הצעת מחיר דיגיטלית, וואטסאפ CRM, גמבוט',
+    canonical: 'https://gambot.co.il/הצעות-מחיר/',
+  },
+  digitalSignature: {
+    title: 'חתימה דיגיטלית בוואטסאפ | חוזים ומסמכים לחתימה | גמבוט',
+    description: 'שלחו מסמכים וחוזים לחתימה דיגיטלית ישירות בוואטסאפ — הלקוח חותם מהנייד תוך שניות, והמסמך החתום נשמר ב-CRM. מאובטח ומהיר.',
+    keywords: 'חתימה דיגיטלית בוואטסאפ, חתימה על חוזה בוואטסאפ, מסמכים לחתימה, גמבוט',
+    canonical: 'https://gambot.co.il/חתימה-דיגיטלית/',
+  },
+  whatsappBotGuide: {
+    title: 'בוט לוואטסאפ לעסק — המדריך המלא 2026: סוגים, מחירים ומה השתנה ב-Meta',
+    description: 'מדריך לבוט לוואטסאפ לעסק: בוט תפריטים או בוט AI, כמה זה עולה בישראל, מה השתנה בחיוב של Meta באוקטובר 2026 ומה לבדוק לפני שבוחרים ספק.',
+    keywords: 'בוט לוואטסאפ לעסק, בוט לעסק בוואטסאפ, כמה עולה בוט וואטסאפ, בוט תפריטים, בוט AI לוואטסאפ, מדריך בוט וואטסאפ',
+    canonical: 'https://gambot.co.il/מדריך-בוט-לוואטסאפ-לעסק/',
   },
   whatsappBusiness: {
     title: 'וואטסאפ עסקי | WhatsApp Business API ישראל | גמבוט 2026',
@@ -64,9 +81,9 @@ export const PAGE_META = {
     canonical: 'https://gambot.co.il/%D7%93%D7%99%D7%95%D7%95%D7%A8-%D7%97%D7%93-%D7%A4%D7%A2%D7%9E%D7%99/',
   },
   whatsappNewsletter: {
-    title: 'דיוור בוואטסאפ | ניוזלטר וואטסאפ לעסקים | גמבוט 2026',
-    description: 'דיוור בוואטסאפ עם אחוזי פתיחה של 95%! שלחו ניוזלטר, עדכונים ומבצעים ישירות לוואטסאפ של הלקוחות. פשוט ויעיל.',
-    keywords: 'דיוור בוואטסאפ, ניוזלטר וואטסאפ, WhatsApp newsletter, שליחה המונית וואטסאפ, bulk messaging',
+    title: 'דיוור בוואטסאפ | מערכת דיוור והודעות המוניות לעסקים | גמבוט',
+    description: 'מערכת דיוור בוואטסאפ לעסקים: שליחה המונית חוקית עם תבניות מאושרות Meta, פילוח רשימות, תזמון ומדידה בזמן אמת. שותף Meta רשמי. ניסיון חינם חודש.',
+    keywords: 'דיוור בוואטסאפ, מערכת דיוור וואטסאפ, דיוור המוני בוואטסאפ, ניוזלטר וואטסאפ, WhatsApp newsletter, שליחה המונית וואטסאפ, bulk messaging',
     canonical: 'https://gambot.co.il/דיוור-בוואטסאפ/',
     hreflang: { he: 'https://gambot.co.il/דיוור-בוואטסאפ/', en: 'https://gambot.co.il/whatsapp-newsletter/', 'x-default': 'https://gambot.co.il/whatsapp-newsletter/' },
   },
@@ -94,7 +111,6 @@ export const PAGE_META = {
           inLanguage: 'he',
           url: 'https://gambot.co.il/בוט-ai-וואטסאפ/',
           offers: { '@type': 'Offer', price: '287', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '214', bestRating: '5' },
           description: 'בוט AI לוואטסאפ מבוסס GPT-4 שמנהל שיחות טבעיות, סורק אתרים, מתאם פגישות ומשיג מטרות עסקיות אוטומטית.',
           featureList: 'שיחות AI טבעיות, סריקת אתר אוטומטית, קביעת פגישות, שליחת מדיה, זיכרון שיחה, העברה לנציג',
         },
@@ -173,7 +189,6 @@ export const PAGE_META = {
           description: 'מערכת ניהול לידים עם תגובה אוטומטית בוואטסאפ — לידים מכל מקור, קנבן ויזואלי, AI לסיווג לידים ודוחות המרה.',
           featureList: 'תגובה אוטומטית בוואטסאפ, קנבן פייפליין, ניהול משימות, הצעות מחיר, דוחות המרה, בוט AI לניהול לידים',
           offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '47', bestRating: '5' },
           author: { '@id': 'https://gambot.co.il/#organization' },
         },
         {
@@ -241,7 +256,6 @@ export const PAGE_META = {
           description: 'מערכת CRM לניהול לקוחות ולידים עם ממשק וואטסאפ מובנה, קנבן ויזואלי, אוטומציות, חשבוניות ובוט AI.',
           featureList: 'ניהול לידים, קנבן ויזואלי, שדות דינמיים, CRM וואטסאפ, אוטומציות, משימות, הצעות מחיר, דוחות, בוט AI',
           offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31', description: 'החל מ-₪179 לחודש. ניסיון חינם 30 יום ללא כרטיס אשראי.' },
-          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '47', bestRating: '5' },
           author: { '@id': 'https://gambot.co.il/#organization' },
           publisher: { '@id': 'https://gambot.co.il/#organization' },
         },
@@ -365,7 +379,6 @@ export const PAGE_META = {
           inLanguage: 'he',
           url: 'https://gambot.co.il/ניהול-משימות/',
           offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', ratingCount: '156', bestRating: '5' },
           description: 'ניהול משימות ישירות מוואטסאפ — יצירה, שיוך לנציגים, דדליינים, תזכורות ואינטגרציה עם CRM.',
           featureList: 'יצירת משימות מהשיחה, שיוך לנציגים, תזכורות, סטטוסים דינמיים, חיבור ל-CRM, דוחות ביצועים',
         },
@@ -397,7 +410,6 @@ export const PAGE_META = {
           inLanguage: 'he',
           url: 'https://gambot.co.il/חשבוניות-דיגיטליות/',
           offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '189', bestRating: '5' },
           description: 'מערכת חשבוניות דיגיטליות מאושרת רשות המסים — הפקה ושליחה בוואטסאפ, מחוברת ל-CRM, הצעות מחיר ומעקב תשלומים.',
           featureList: 'חשבוניות מאושרות רשות המסים, שליחה בוואטסאפ, המרת הצעות מחיר, מעקב תשלומים, דוחות כספיים, מספור אוטומטי',
         },
@@ -429,7 +441,6 @@ export const PAGE_META = {
           inLanguage: 'he',
           url: 'https://gambot.co.il/דיווח-שעות-עובדים/',
           offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.7', ratingCount: '132', bestRating: '5' },
           description: 'דיווח שעות עובדים בוואטסאפ — כניסה/יציאה בהודעה, חישוב שעות נוספות, דוחות חודשיים וייצוא לשכר.',
           featureList: 'כניסה/יציאה בוואטסאפ, הפסקות, שעות נוספות, דוחות חודשיים, תזכורות דיווח, ייצוא לשכר',
         },
@@ -461,7 +472,6 @@ export const PAGE_META = {
           inLanguage: 'he',
           url: 'https://gambot.co.il/טלפוניה-וואטסאפ/',
           offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', ratingCount: '97', bestRating: '5' },
           description: 'מערכת טלפוניה משולבת וואטסאפ — שיחות מהדפדפן, הקלטות, סיכום AI, שיחה לא נענתה → הודעת וואטסאפ אוטומטית.',
           featureList: 'שיחות מהדפדפן, הקלטת שיחות, סיכום AI, שיחה לא נענתה → וואטסאפ, ניתוב שיחות, שיוך CRM',
         },
@@ -504,7 +514,6 @@ export const PAGE_META = {
           inLanguage: 'he',
           url: 'https://gambot.co.il/מערכת-דיוור-וואטסאפ/',
           offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '241', bestRating: '5' },
           description: 'מערכת דיוור ושיווק בוואטסאפ מאותו מספר עסקי, מאושר מטא — יצירת תבניות, דיוור לאקסל/אנשי קשר, תזמון וברכות חג עם AI.',
           featureList: 'דיוור מאותו מספר, מורשה מטא, יצירת תבניות, דיוור לאקסל, תזמון קמפיינים, ברכות חג AI, דוחות פתיחה',
         },
@@ -536,7 +545,6 @@ export const PAGE_META = {
           inLanguage: 'he',
           url: 'https://gambot.co.il/מערכת-אוטומציה-וואטסאפ/',
           offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '198', bestRating: '5' },
           description: 'מערכת אוטומציה בוואטסאפ לתהליכים כמו אישור הזמנה, תזכורות, פולואפים ובקשות ביקורת — עם אינטגרציית Webhook ו-HTTP Request ותזמון.',
           featureList: 'אישור הזמנה אוטומטי, תזכורות, פולואפים, בקשות ביקורת גוגל, Webhook, HTTP Request, תזמון תהליכים, שליחה ממקור חיצוני',
         },
@@ -569,7 +577,6 @@ export const PAGE_META = {
           inLanguage: 'he',
           url: 'https://gambot.co.il/יצירת-בוטים-וואטסאפ/',
           offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-          aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '312', bestRating: '5' },
           description: 'כלי יצירת בוטים בוואטסאפ בגרירה ושחרור — בוט תפריטים ו-AI, Coexistence, תזכורות, דוחות מתקדמים ועבודה משותפת אדם-בוט.',
           featureList: 'תכנון גרור ושחרר, Coexistence, בוט תפריטים, בוט AI, תזכורות, דוחות מתקדמים, עבודה משותפת אדם-בוט',
         },
@@ -641,10 +648,13 @@ export const PAGE_META = {
  */
 export function buildMetadata(pageKey, overrides = {}) {
   const meta = PAGE_META[pageKey] || {};
-  const title = overrides.title || meta.title || PAGE_META.home.title;
+  const fullTitle = overrides.title || meta.title || PAGE_META.home.title;
   const description = overrides.description || meta.description || PAGE_META.home.description;
   const canonical = overrides.canonical || meta.canonical || 'https://gambot.co.il';
   const keywords = overrides.keywords || meta.keywords || '';
+  // The root layout title template appends " | Gambot"; drop a trailing brand from the page title so the
+  // rendered <title> doesn't read "… | Gambot | Gambot". OG/Twitter keep the full title.
+  const title = fullTitle.replace(/\s*[|\-–—]\s*(Gambot|גמבוט)\s*$/i, '');
 
   return {
     title,
@@ -655,7 +665,7 @@ export function buildMetadata(pageKey, overrides = {}) {
       languages: meta.hreflang || {},
     },
     openGraph: {
-      title: meta.og?.title || title,
+      title: meta.og?.title || fullTitle,
       description: meta.og?.description || description,
       url: canonical,
       siteName: 'Gambot',
@@ -666,10 +676,12 @@ export function buildMetadata(pageKey, overrides = {}) {
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: fullTitle,
       description,
       images: ['https://gambot.co.il/og-image.jpg'],
     },
     ...overrides,
+    // Must come after the overrides spread so the brand-stripped title wins over a raw overrides.title.
+    title,
   };
 }

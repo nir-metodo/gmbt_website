@@ -1,7 +1,8 @@
 import PaymentSuccess from '@/components/OnBoard/PaymentSuccess';
 
 export const metadata = {
-  title: 'תשלום הצליח | Gambot',
+  robots: { index: false, follow: false },
+  title: 'תשלום הצליח',
   description: 'פרטי התשלום נשמרו בהצלחה.',
 };
 

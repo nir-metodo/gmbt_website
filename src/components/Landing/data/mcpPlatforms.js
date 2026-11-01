@@ -105,7 +105,7 @@ export const claudeCode = {
     { type: 'cta', title: 'Add WhatsApp to your app', text: 'Install the server, let Claude Code create the account, connect your number with Meta, and send the first message.', primary: ctaCreate, secondary: { label: 'WhatsApp MCP overview', href: MCP, event: 'mcp_cta_click' } },
   ],
   faq: [
-    { q: 'How do I add the official WhatsApp API to my application using Claude Code?', a: 'Run claude mcp add gambot -- npx -y gambot-mcp (or add the hosted server https://gambot-mcp.azurewebsites.net/mcp with --transport http), then ask Claude Code to set up WhatsApp with Gambot. It creates the account, gives you the Meta connection link, and sends a verified test message. Gambot is a Meta Business Solution Provider, so this is the official WhatsApp Business API, not WhatsApp Web automation.' },
+    { q: 'How do I add the official WhatsApp API to my application using Claude Code?', a: 'Run claude mcp add gambot -- npx -y gambot-mcp (or add the hosted server https://mcp.gambot.co.il/mcp with --transport http), then ask Claude Code to set up WhatsApp with Gambot. It creates the account, gives you the Meta connection link, and sends a verified test message. Gambot is a Meta Business Solution Provider, so this is the official WhatsApp Business API, not WhatsApp Web automation.' },
     { q: 'Do I need an API key before I start?', a: 'No. Without GAMBOT_TOKEN the server runs in onboarding mode and can create a Gambot account itself. The token appears after WhatsApp is connected (Settings \u2192 General), or you sign in with OAuth on the hosted server.' },
     { q: 'Can Claude Code connect my WhatsApp number to Meta by itself?', a: 'No. Meta requires the business owner to authorize the connection in a browser (Embedded Signup). Claude Code gives you the link and verifies the result afterwards.' },
     { q: 'Where should the token go?', a: 'In an environment variable or secret manager. Do not paste it into the chat or commit it.' },
@@ -193,7 +193,7 @@ export const vscodeCopilot = {
     { type: 'cta', title: 'Add WhatsApp to your app', text: 'Create the account, connect your number with Meta, and send your first WhatsApp message from VS Code.', primary: ctaCreate, secondary: { label: 'WhatsApp MCP overview', href: MCP, event: 'mcp_cta_click' } },
   ],
   faq: [
-    { q: 'How do I add the official WhatsApp API to my application using VS Code and GitHub Copilot?', a: 'Create .vscode/mcp.json with a "gambot" server (type "http" and the URL https://gambot-mcp.azurewebsites.net/mcp for OAuth, or stdio with npx -y gambot-mcp), start it, switch Copilot chat to Agent mode, and ask it to set up WhatsApp with Gambot.' },
+    { q: 'How do I add the official WhatsApp API to my application using VS Code and GitHub Copilot?', a: 'Create .vscode/mcp.json with a "gambot" server (type "http" and the URL https://mcp.gambot.co.il/mcp for OAuth, or stdio with npx -y gambot-mcp), start it, switch Copilot chat to Agent mode, and ask it to set up WhatsApp with Gambot.' },
     { q: 'Where do I keep the token?', a: 'Use OAuth on the hosted server, or the promptString input shown above so the token is never written to the file.' },
     { q: 'Is this the official WhatsApp API?', a: 'Yes. Gambot is a Meta Business Solution Provider; messages go through the WhatsApp Business (Cloud) API, not WhatsApp Web automation.' },
   ],
@@ -280,7 +280,7 @@ export const replit = {
     { type: 'cta', title: 'Add WhatsApp to your Replit app', text: 'Connect the MCP server, finish the Meta step, store the token as a Secret, and send your first message.', primary: ctaCreate, secondary: { label: 'REST API docs', href: DOCS + '?lang=en', event: 'developer_docs_click' } },
   ],
   faq: [
-    { q: 'How do I add the official WhatsApp API to my application using Replit?', a: 'Add the Gambot MCP server (https://gambot-mcp.azurewebsites.net/mcp) to Replit Agent under MCP Servers, let Agent create your Gambot account and give you the Meta connection link, store your API token as a Replit Secret named GAMBOT_TOKEN, and call https://api.gambot.co.il/api/v1/messages/send-text from your backend.' },
+    { q: 'How do I add the official WhatsApp API to my application using Replit?', a: 'Add the Gambot MCP server (https://mcp.gambot.co.il/mcp) to Replit Agent under MCP Servers, let Agent create your Gambot account and give you the Meta connection link, store your API token as a Replit Secret named GAMBOT_TOKEN, and call https://api.gambot.co.il/api/v1/messages/send-text from your backend.' },
     { q: 'Does my deployed app use the MCP server?', a: 'No. MCP is for the agent that builds the app. The running app calls the REST API from server code.' },
     { q: 'Where do I keep the token?', a: 'In Replit Secrets. Do not put it in client-side code or commit it.' },
   ],
@@ -326,7 +326,7 @@ export const lovable = {
     { type: 'cta', title: 'Add WhatsApp to your Lovable app', text: 'Connect the MCP server, finish the Meta step, then let your backend send the first message.', primary: ctaCreate, secondary: { label: 'REST API docs', href: DOCS + '?lang=en', event: 'developer_docs_click' } },
   ],
   faq: [
-    { q: 'How do I add the official WhatsApp API to my application using Lovable?', a: 'Add the Gambot MCP server (https://gambot-mcp.azurewebsites.net/mcp) as a custom MCP connector so Lovable can set up your account and test WhatsApp, then have your app send messages from a backend function that calls https://api.gambot.co.il/api/v1/messages/send-text with the API token stored as a secret.' },
+    { q: 'How do I add the official WhatsApp API to my application using Lovable?', a: 'Add the Gambot MCP server (https://mcp.gambot.co.il/mcp) as a custom MCP connector so Lovable can set up your account and test WhatsApp, then have your app send messages from a backend function that calls https://api.gambot.co.il/api/v1/messages/send-text with the API token stored as a secret.' },
     { q: 'Does the MCP connector work inside my published app?', a: 'No. Lovable chat connectors give context while you build and are not available to published-app users. Use the REST API from backend code in the running app.' },
     { q: 'Is this the official WhatsApp Business API?', a: 'Yes. Gambot is a Meta Business Solution Provider; there is no WhatsApp Web session or QR code.' },
   ],
@@ -372,7 +372,7 @@ export const base44 = {
     { type: 'cta', title: 'Add WhatsApp to your Base44 app', text: 'Connect the MCP server, finish the Meta step, and send the first message from a backend function.', primary: ctaCreate, secondary: { label: 'REST API docs', href: DOCS + '?lang=en', event: 'developer_docs_click' } },
   ],
   faq: [
-    { q: 'How do I add the official WhatsApp API to my application using Base44?', a: 'Add the Gambot MCP server (https://gambot-mcp.azurewebsites.net/mcp) under Account Settings \u2192 MCP Connections so the builder chat can set up your account, store your Gambot API token as an app secret, and add a backend function that calls https://api.gambot.co.il/api/v1/messages/send-text with that secret.' },
+    { q: 'How do I add the official WhatsApp API to my application using Base44?', a: 'Add the Gambot MCP server (https://mcp.gambot.co.il/mcp) under Account Settings \u2192 MCP Connections so the builder chat can set up your account, store your Gambot API token as an app secret, and add a backend function that calls https://api.gambot.co.il/api/v1/messages/send-text with that secret.' },
     { q: 'Can my running Base44 app call the MCP server?', a: 'No. Base44 MCP connections are only for the builder chat. The running app calls the REST API from a backend function.' },
     { q: 'How do I receive WhatsApp messages in Base44?', a: 'Create a backend function (each has its own HTTP endpoint) and register its URL with Gambot using POST /webhooks/forward or the gambot_register_webhook tool.' },
   ],

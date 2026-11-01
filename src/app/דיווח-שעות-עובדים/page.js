@@ -11,7 +11,7 @@ export default function EmployeeTimeTrackingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PAGE_META.employeeTimeTracking.schema) }}
       />
-      <LandingPageContent content={SOLUTIONS.employeeTimeTracking} />
+      <LandingPageContent skipFaqSchema content={SOLUTIONS.employeeTimeTracking} />
     </>
   );
 }

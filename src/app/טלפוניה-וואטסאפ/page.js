@@ -11,7 +11,7 @@ export default function TelephonyWhatsAppPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PAGE_META.telephonyWhatsApp.schema) }}
       />
-      <LandingPageContent content={SOLUTIONS.telephonyWhatsApp} />
+      <LandingPageContent skipFaqSchema content={SOLUTIONS.telephonyWhatsApp} />
     </>
   );
 }

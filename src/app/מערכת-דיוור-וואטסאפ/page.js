@@ -13,7 +13,7 @@ export default function WhatsAppBroadcastPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(PAGE_META.whatsappBroadcast.schema) }}
         />
       )}
-      <LandingPageContent content={SOLUTIONS.whatsappBroadcast} />
+      <LandingPageContent skipFaqSchema content={SOLUTIONS.whatsappBroadcast} />
     </>
   );
 }

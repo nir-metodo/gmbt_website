@@ -54,11 +54,11 @@ JSON clients (Claude Desktop, Cursor, Windsurf, Gemini CLI):
 { "mcpServers": { "gambot": { "command": "npx", "args": ["-y", "gambot-mcp"] } } }
 ```
 
-Claude Code: `claude mcp add gambot -- npx -y gambot-mcp` or hosted `claude mcp add --transport http gambot https://gambot-mcp.azurewebsites.net/mcp`.
+Claude Code: `claude mcp add gambot -- npx -y gambot-mcp` or hosted `claude mcp add --transport http gambot https://mcp.gambot.co.il/mcp`.
 OpenAI Codex (`~/.codex/config.toml`): `[mcp_servers.gambot]` with `command = "npx"` and `args = ["-y", "gambot-mcp"]`.
-VS Code (`.vscode/mcp.json`): `{"servers":{"gambot":{"type":"http","url":"https://gambot-mcp.azurewebsites.net/mcp"}}}`.
+VS Code (`.vscode/mcp.json`): `{"servers":{"gambot":{"type":"http","url":"https://mcp.gambot.co.il/mcp"}}}`.
 
-Hosted MCP: https://gambot-mcp.azurewebsites.net/mcp (Streamable HTTP; OAuth 2.0 with PKCE and dynamic client registration, or `Authorization: Bearer gmbt_...`). A token-less endpoint that only exposes account-creation tools: https://gambot-mcp.azurewebsites.net/mcp/onboarding . Service index: https://gambot-mcp.azurewebsites.net/ .
+Hosted MCP: https://mcp.gambot.co.il/mcp (Streamable HTTP; OAuth 2.0 with PKCE and dynamic client registration, or `Authorization: Bearer gmbt_...`). A token-less endpoint that only exposes account-creation tools: https://mcp.gambot.co.il/mcp/onboarding . Service index: https://mcp.gambot.co.il/ .
 
 Per-platform guides: https://gambot.co.il/whatsapp-mcp/ (Claude Code, Claude Desktop, Cursor, Codex, ChatGPT, Gemini CLI, VS Code/Copilot, Windsurf, Replit, Lovable, Base44).
 Lovable, Base44 and Replit: the MCP server helps the builder agent while building; the running app calls the REST API from backend code with the token stored as a secret.
@@ -75,7 +75,7 @@ Agent Skill (open SKILL.md format): `npx skills add gambot-ai/gambot-mcp --skill
 
 ## 5. Onboarding (account and Meta connection)
 
-1. Create the account (no API key needed): MCP `gambot_create_trial_account`, REST `POST /onboarding/create-trial-self-serve`, or the web flow https://gambot.co.il/OnboardingProcess/ . Needed: company name, company/tax id, country (ISO-3166 alpha-2), contact name/email/phone, and a number option (free test number, coexistence with the existing WhatsApp Business app number, bring-your-own number, or buy a number after email/WhatsApp verification). Use the `organizationName` returned; never invent one.
+1. Create the account (no API key needed): MCP `gambot_create_trial_account`, REST `POST /onboarding/create-trial-self-serve`, or the web flow https://gambot.co.il/OnboardingProcess/ . Needed: company name, company/tax id, country (ISO-3166 alpha-2), contact name/email/phone, and a number option (coexistence with the existing WhatsApp Business app number, or bring-your-own number; the 30-day free trial applies to these). Gambot provides no free or test numbers. A number bought from Gambot is prepaid with no trial: use `gambot_create_paid_account_self_serve` after email/WhatsApp verification. Use the `organizationName` returned; never invent one.
 2. The response includes `wabaConnectUrl`. A person must open it in a browser and complete Meta Embedded Signup. This cannot run inside an agent.
 3. Poll `gambot_get_onboarding_status` (REST `GET /onboarding/status?organization=...`) until `status` is `connected` (`not_found` | `account_created` | `connected`).
 4. Obtain credentials (section 4) and verify with `gambot_setup_whatsapp_integration`.

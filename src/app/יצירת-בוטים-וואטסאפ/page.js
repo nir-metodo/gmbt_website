@@ -13,7 +13,7 @@ export default function WhatsAppBotBuilderPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(PAGE_META.whatsappBotBuilder.schema) }}
         />
       )}
-      <LandingPageContent content={SOLUTIONS.whatsappBotBuilder} />
+      <LandingPageContent skipFaqSchema content={SOLUTIONS.whatsappBotBuilder} />
     </>
   );
 }

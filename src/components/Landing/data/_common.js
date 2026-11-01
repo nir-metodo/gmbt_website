@@ -7,7 +7,7 @@ export const DEVELOPERS = 'https://gambot.co.il/whatsapp-api-for-developers/';
 export const GITHUB = 'https://github.com/gambot-ai/gambot-mcp';
 export const NPM = 'https://www.npmjs.com/package/gambot-mcp';
 export const API_BASE = 'https://api.gambot.co.il/api/v1';
-export const HOSTED_MCP = 'https://gambot-mcp.azurewebsites.net/mcp';
+export const HOSTED_MCP = 'https://mcp.gambot.co.il/mcp';
 
 export const ctaCreate = { label: 'Create free account →', href: SIGNUP, event: 'create_account_click' };
 export const ctaDocs = { label: 'Read the API docs', href: DOCS, event: 'developer_docs_click' };

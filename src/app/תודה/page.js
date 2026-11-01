@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import ThankYouContent from './ThankYouContent';
 
 export const metadata = {
-  title: 'תודה שפנית | Gambot',
+  title: 'תודה שפנית',
   description: 'קיבלנו את פרטייך ונחזור אליך בהקדם.',
   robots: 'noindex, nofollow',
 };

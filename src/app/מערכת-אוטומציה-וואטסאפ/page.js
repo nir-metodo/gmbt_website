@@ -13,7 +13,7 @@ export default function WhatsAppAutomationProPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(PAGE_META.whatsappAutomationPro.schema) }}
         />
       )}
-      <LandingPageContent content={SOLUTIONS.whatsappAutomationPro} />
+      <LandingPageContent skipFaqSchema content={SOLUTIONS.whatsappAutomationPro} />
     </>
   );
 }

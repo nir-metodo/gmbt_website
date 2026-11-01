@@ -11,7 +11,7 @@ export default function WhatsAppAiBotPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PAGE_META.whatsappAiBot.schema) }}
       />
-      <LandingPageContent content={SOLUTIONS.whatsappAiBot} />
+      <LandingPageContent skipFaqSchema content={SOLUTIONS.whatsappAiBot} />
     </>
   );
 }

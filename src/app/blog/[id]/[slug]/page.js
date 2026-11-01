@@ -53,7 +53,8 @@ export async function generateMetadata({ params }) {
   languages['x-default'] = `${SITE}/blog/${post.id}/${heSlug}/`;
 
   return {
-    title: seoTitle,
+    // Root title template already appends " | Gambot"; strip a trailing brand to avoid "… | Gambot | Gambot".
+    title: String(seoTitle || '').replace(/\s*[|\-–—]\s*(Gambot|גמבוט)\s*$/i, ''),
     description: metaDesc,
     keywords,
     authors: [{ name: post.author || 'גמבוט' }],

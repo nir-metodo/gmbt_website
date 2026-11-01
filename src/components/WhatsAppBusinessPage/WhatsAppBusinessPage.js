@@ -130,6 +130,18 @@ const FAQS = [
     a: 'המערכת עובדת עם WhatsApp Business API (WABA) — מספר עסקי רשמי שמאפשר ריבוי נציגים, אוטומציה ואינטגרציות. אנחנו מסייעים בתהליך הרישום.',
   },
   {
+    q: 'כמה נציגים יכולים לענות מאותו מספר וואטסאפ?',
+    a: 'באפליקציית WhatsApp Business הרגילה מוגבלים למספר מכשירים מקושרים. עם WhatsApp Business API דרך גמבוט כמה נציגים עובדים במקביל על מספר אחד מתיבת שיחות משותפת, כל אחד עם משתמש אישי משלו.',
+  },
+  {
+    q: 'איך מונעים משני נציגים לענות לאותו לקוח?',
+    a: 'לכל שיחה מוגדר בעלים וסטטוס (פתוח, בטיפול, ממתין, סגור), כך שתמיד ברור מי אחראי. אפשר להעביר שיחה בין נציגים תוך שניות ולהוסיף הערות פנימיות שהלקוח לא רואה.',
+  },
+  {
+    q: 'האם אפשר לענות לשיחות גם מהנייד?',
+    a: 'כן. לגמבוט יש אפליקציה לנייד, כך שהנציגים יכולים לענות, לראות לידים ולנהל פניות גם מחוץ למשרד.',
+  },
+  {
     q: 'כמה נציגים ניתן לחבר?',
     a: 'אין מגבלה טכנית. החבילות מתומחרות לפי כמות נציגים — ניתן להתחיל עם 2-3 ולהרחיב בכל עת.',
   },
@@ -168,7 +180,7 @@ function FaqItem({ q, a }) {
         <span>{q}</span>
         <span className={styles.faqArrow}>{open ? '▲' : '▼'}</span>
       </button>
-      {open && <p className={styles.faqA}>{a}</p>}
+      <p className={styles.faqA} hidden={!open}>{a}</p>
     </div>
   );
 }
@@ -404,6 +416,16 @@ export default function WhatsAppBusinessPage() {
       </section>
 
       {/* FAQ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: FAQS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+          }),
+        }}
+      />
       <section className={styles.faq}>
         <div className={styles.container}>
           <h2 className={styles.sectionTitle}>❓ שאלות נפוצות</h2>

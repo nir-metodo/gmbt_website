@@ -1,7 +1,7 @@
 import ServiceRequestContent from '@/components/Support/ServiceRequestContent';
 
 export const metadata = {
-  title: 'פתיחת בקשת שירות | Gambot',
+  title: 'פתיחת בקשת שירות',
   description: 'פתחו בקשת שירות ותמיכה טכנית למערכת Gambot',
   robots: { index: false },
 };

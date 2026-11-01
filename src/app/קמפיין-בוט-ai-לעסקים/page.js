@@ -1,7 +1,7 @@
 import AiBotPage from '@/components/AiBotPage/AiBotPage';
 
 export const metadata = {
-  title: 'בוט AI לוואטסאפ לעסקים | Gambot',
+  title: 'בוט AI לוואטסאפ לעסקים',
   description: 'בוט AI שעונה בשפה טבעית לכל שאלה, מאומן על ידע העסק שלכם ומשתלב עם ה-CRM. לא ChatGPT — AI עסקי מותאם אישית.',
   robots: 'noindex, nofollow',
 };

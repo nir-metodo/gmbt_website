@@ -1,7 +1,8 @@
 import PaymentFailure from '@/components/OnBoard/PaymentFailure';
 
 export const metadata = {
-  title: 'תשלום נכשל | Gambot',
+  robots: { index: false, follow: false },
+  title: 'תשלום נכשל',
   description: 'אירעה שגיאה בעת אימות פרטי התשלום.',
 };
 

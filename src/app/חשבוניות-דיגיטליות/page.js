@@ -11,7 +11,7 @@ export default function DigitalInvoicesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PAGE_META.digitalInvoices.schema) }}
       />
-      <LandingPageContent content={SOLUTIONS.digitalInvoices} />
+      <LandingPageContent skipFaqSchema content={SOLUTIONS.digitalInvoices} />
     </>
   );
 }

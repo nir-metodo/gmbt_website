@@ -11,7 +11,7 @@ export default function TaskManagementPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PAGE_META.taskManagement.schema) }}
       />
-      <LandingPageContent content={SOLUTIONS.taskManagement} />
+      <LandingPageContent skipFaqSchema content={SOLUTIONS.taskManagement} />
     </>
   );
 }

@@ -11,6 +11,9 @@ import { FaMobileAlt, FaPhoneAlt, FaArrowRight, FaArrowLeft, FaShoppingCart, FaS
 import { MdVerified, MdCallReceived } from "react-icons/md";
 import { useLanguage } from '@/contexts/LanguageContext';
 
+// A Gambot-purchased number is prepaid-only; the free-trial signup collects no card (backend rejects it).
+const ALLOW_TRIAL_SIM_PURCHASE = false;
+
 const SimSelection = ({
     hasSim, setHasSim, useFreeNumber, setUseFreeNumber, organizationPhoneNumber, setOrganizationPhoneNumber,
     isPhoneNumberSelected, setIsPhoneNumberSelected, nextStep, prevStep,
@@ -345,7 +348,10 @@ const SimSelection = ({
                             </button>
                         </div>
 
-                        {/* Purchase SIM - Second Option */}
+                        {/* Purchase SIM - hidden: a Gambot number is PREPAID only (never on a free trial). The trial
+                            signup takes no card, so the backend rejects it (sim_requires_paid). Set
+                            ALLOW_TRIAL_SIM_PURCHASE=true only when this step collects + charges a card first. */}
+                        {ALLOW_TRIAL_SIM_PURCHASE && (
                         <div 
                             className="option-card purchase-sim" 
                             onClick={() => {
@@ -372,6 +378,7 @@ const SimSelection = ({
                                 <span>{t('simSelection.options.purchase.button')}</span>
                             </button>
                         </div>
+                        )}
 
                         {/* Existing SIM - Third Option */}
                         <div 

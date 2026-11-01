@@ -8,8 +8,8 @@ import styles from '@/app/page.module.css';
 const DATA = {
   he: {
     badge: '🏆 שותף מטא רשמי לישראל',
-    heroTitle: ['Gambot — מערכת ', 'WhatsApp API', ' מובילה בישראל'],
-    heroDesc: 'גמבוט (Gambot) — שותף מטא רשמי. בוט AI, אוטומציה, קמפיינים ושירות לקוחות 24/7 — הכל ללא קוד, עם ממשק עברי מלא ותמיכה ישראלית',
+    heroTitle: ['גמבוט — מערכת וואטסאפ לעסקים: ', 'בוט, דיוור, CRM', ' וריבוי נציגים'],
+    heroDesc: 'גמבוט (Gambot) — שותף מטא רשמי. בוט תפריטים ובוט AI לעסק, דיוור והודעות המוניות בוואטסאפ ובמייל, CRM, ריבוי נציגים ואפליקציה לנייד — הכול במקום אחד, ללא קוד, עם ממשק עברי מלא ותמיכה ישראלית',
     ctaPrimary: '🚀 התחילו ניסיון חינם — חודש',
     ctaSecondary: '📞 הזמינו הדגמה',
     stats: [
@@ -222,7 +222,6 @@ const SCHEMA = {
       operatingSystem: 'Web, iOS, Android',
       url: 'https://gambot.co.il',
       offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
-      aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', ratingCount: '520', bestRating: '5' },
       description: 'Gambot — WhatsApp Business API platform with AI chatbot, automation, campaigns, CRM and customer service.',
       featureList: 'WhatsApp AI Bot, Automation, Campaigns, CRM, Lead Management, Appointment Scheduling, Digital Invoices',
     },

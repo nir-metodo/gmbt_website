@@ -44,13 +44,11 @@ export const metadata = {
     site: '@Gambot',
     creator: '@Gambot',
   },
+  // NOTE: no site-wide `canonical` / `languages` here. Next.js inherits root `alternates` into every page that
+  // does not define its own, which made ~12 pages declare the HOMEPAGE as their canonical (and a wrong
+  // en hreflang) — i.e. told Google not to index them. Each page sets its own canonical.
   alternates: {
-    canonical: 'https://gambot.co.il',
-    languages: { 'he-IL': 'https://gambot.co.il', 'en': 'https://gambot.co.il/about/' },
     types: { 'application/rss+xml': 'https://gambot.co.il/blog/' },
-  },
-  verification: {
-    google: 'REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE',
   },
   // NOTE: Site-wide geo.region=IL / content-language=he were intentionally removed.
   // Gambot now targets a global developer/business audience; those tags pinned the whole

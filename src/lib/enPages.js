@@ -259,7 +259,8 @@ export function buildEnMetadata(slug) {
   const canonical = enUrl(slug);
   const he = heUrl(p.heSlug);
   return {
-    title: p.title,
+    // Root title template already appends " | Gambot"; avoid "… | Gambot | Gambot".
+    title: p.title.replace(/\s*[|\-–—]\s*(Gambot|גמבוט)\s*$/i, ''),
     description: p.description,
     keywords: p.keywords,
     alternates: {

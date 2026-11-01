@@ -11743,7 +11743,7 @@ const posts = [
       },
       {
         question: { en: "Can I connect an online (remote) MCP server instead of running it locally?", he: "אפשר לחבר שרת MCP מקוון במקום להריץ מקומית?" },
-        answer: { en: "Yes. Point your client at the hosted HTTPS endpoint (https://gambot-mcp.azurewebsites.net/mcp) with an Authorization header, or bridge to it using 'npx mcp-remote' if your client only supports stdio. Either way your gmbt_ token authorizes the connection.", he: "כן. מכוונים את הלקוח לכתובת המקוונת (https://gambot-mcp.azurewebsites.net/mcp) עם כותרת Authorization, או מגשרים אליה עם 'npx mcp-remote' אם הלקוח תומך רק ב-stdio. בכל מקרה הטוקן (gmbt_) מאמת את החיבור." }
+        answer: { en: "Yes. Point your client at the hosted HTTPS endpoint (https://mcp.gambot.co.il/mcp) with an Authorization header, or bridge to it using 'npx mcp-remote' if your client only supports stdio. Either way your gmbt_ token authorizes the connection.", he: "כן. מכוונים את הלקוח לכתובת המקוונת (https://mcp.gambot.co.il/mcp) עם כותרת Authorization, או מגשרים אליה עם 'npx mcp-remote' אם הלקוח תומך רק ב-stdio. בכל מקרה הטוקן (gmbt_) מאמת את החיבור." }
       },
       {
         question: { en: "Can Claude send bulk WhatsApp campaigns?", he: "האם Claude יכול לשלוח קמפיינים המוניים בוואטסאפ?" },
@@ -11817,7 +11817,7 @@ const posts = [
       <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
   "mcpServers": {
     "gambot": {
-      "url": "https://gambot-mcp.azurewebsites.net/mcp",
+      "url": "https://mcp.gambot.co.il/mcp",
       "headers": { "Authorization": "Bearer gmbt_your_token_here" }
     }
   }
@@ -11827,7 +11827,7 @@ const posts = [
   "mcpServers": {
     "gambot": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://gambot-mcp.azurewebsites.net/mcp",
+      "args": ["-y", "mcp-remote", "https://mcp.gambot.co.il/mcp",
                "--header", "Authorization: Bearer gmbt_your_token_here"]
     }
   }
@@ -11892,7 +11892,7 @@ const posts = [
       <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
   "mcpServers": {
     "gambot": {
-      "url": "https://gambot-mcp.azurewebsites.net/mcp",
+      "url": "https://mcp.gambot.co.il/mcp",
       "headers": { "Authorization": "Bearer gmbt_your_token_here" }
     }
   }
@@ -11902,7 +11902,7 @@ const posts = [
   "mcpServers": {
     "gambot": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://gambot-mcp.azurewebsites.net/mcp",
+      "args": ["-y", "mcp-remote", "https://mcp.gambot.co.il/mcp",
                "--header", "Authorization: Bearer gmbt_your_token_here"]
     }
   }
@@ -11964,7 +11964,7 @@ const posts = [
       },
       {
         question: { en: "What is the difference between a local and a hosted (online) MCP server?", he: "מה ההבדל בין שרת MCP מקומי לשרת מקוון (Hosted)?" },
-        answer: { en: "A local server runs on your machine via 'npx -y gambot-mcp'. A hosted server runs online and you connect to a URL (https://gambot-mcp.azurewebsites.net/mcp) with an Authorization header — nothing to install, ideal for teams and always-on agents.", he: "שרת מקומי רץ על המחשב שלכם דרך 'npx -y gambot-mcp'. שרת מקוון רץ אונליין ומתחברים אליו בכתובת URL (https://gambot-mcp.azurewebsites.net/mcp) עם כותרת Authorization — בלי התקנה, אידיאלי לצוותים ולסוכנים 24/7." }
+        answer: { en: "A local server runs on your machine via 'npx -y gambot-mcp'. A hosted server runs online and you connect to a URL (https://mcp.gambot.co.il/mcp) with an Authorization header — nothing to install, ideal for teams and always-on agents.", he: "שרת מקומי רץ על המחשב שלכם דרך 'npx -y gambot-mcp'. שרת מקוון רץ אונליין ומתחברים אליו בכתובת URL (https://mcp.gambot.co.il/mcp) עם כותרת Authorization — בלי התקנה, אידיאלי לצוותים ולסוכנים 24/7." }
       },
       {
         question: { en: "Can ChatGPT or Gemini use the WhatsApp MCP server?", he: "האם ChatGPT או Gemini יכולים להשתמש בשרת ה-MCP?" },
@@ -12012,7 +12012,7 @@ const posts = [
       <p>There are two ways to connect the same server, and you can switch anytime:</p>
       <ul>
         <li><strong>Local (stdio)</strong> — your client launches the server on demand with <code>npx -y gambot-mcp</code>. Great for a single developer machine.</li>
-        <li><strong>Hosted (online) over HTTPS</strong> — your client connects to a remote URL such as <code>https://gambot-mcp.azurewebsites.net/mcp</code> with an <code>Authorization: Bearer gmbt_…</code> header. Nothing to install, ideal for cloud IDEs, shared teams and always-on agents. Clients that only speak stdio can bridge to the URL with <code>npx mcp-remote</code>.</li>
+        <li><strong>Hosted (online) over HTTPS</strong> — your client connects to a remote URL such as <code>https://mcp.gambot.co.il/mcp</code> with an <code>Authorization: Bearer gmbt_…</code> header. Nothing to install, ideal for cloud IDEs, shared teams and always-on agents. Clients that only speak stdio can bridge to the URL with <code>npx mcp-remote</code>.</li>
       </ul>
       <div style="background:#f0f7ff;border-left:5px solid #2196f3;padding:16px 20px;border-radius:10px;margin:22px 0;">
         <strong>Rule of thumb:</strong> a single developer → local; a team, a server, or a 24/7 agent → hosted URL.
@@ -12060,7 +12060,7 @@ const posts = [
       <p>יש שתי דרכים לחבר את אותו שרת, ואפשר להחליף בכל רגע:</p>
       <ul>
         <li><strong>מקומי (stdio)</strong> — הלקוח מריץ את השרת לפי דרישה עם <code>npx -y gambot-mcp</code>. מצוין למחשב מפתח יחיד.</li>
-        <li><strong>מקוון (Hosted) מעל HTTPS</strong> — הלקוח מתחבר לכתובת מרוחקת כמו <code>https://gambot-mcp.azurewebsites.net/mcp</code> עם כותרת <code>Authorization: Bearer gmbt_…</code>. אין מה להתקין — אידיאלי ל-IDE בענן, לצוותים ולסוכנים 24/7. לקוחות שתומכים רק ב-stdio מגשרים לכתובת עם <code>npx mcp-remote</code>.</li>
+        <li><strong>מקוון (Hosted) מעל HTTPS</strong> — הלקוח מתחבר לכתובת מרוחקת כמו <code>https://mcp.gambot.co.il/mcp</code> עם כותרת <code>Authorization: Bearer gmbt_…</code>. אין מה להתקין — אידיאלי ל-IDE בענן, לצוותים ולסוכנים 24/7. לקוחות שתומכים רק ב-stdio מגשרים לכתובת עם <code>npx mcp-remote</code>.</li>
       </ul>
       <div style="background:#f0f7ff;border-left:5px solid #2196f3;padding:16px 20px;border-radius:10px;margin:22px 0;">
         <strong>כלל אצבע:</strong> מפתח יחיד → מקומי; צוות, שרת או סוכן 24/7 → כתובת מקוונת.
@@ -12120,7 +12120,7 @@ const posts = [
       },
       {
         question: { en: "How do I connect the hosted MCP server by URL?", he: "איך מתחברים לשרת ה-MCP המקוון לפי URL?" },
-        answer: { en: "Use a 'url' entry pointing to https://gambot-mcp.azurewebsites.net/mcp with an 'Authorization: Bearer gmbt_…' header. If your client is stdio-only, bridge to it with 'npx -y mcp-remote <url> --header'. No local install needed.", he: "מגדירים 'url' לכתובת https://gambot-mcp.azurewebsites.net/mcp עם כותרת 'Authorization: Bearer gmbt_…'. אם הלקוח תומך רק ב-stdio, מגשרים עם 'npx -y mcp-remote <url> --header'. בלי התקנה מקומית." }
+        answer: { en: "Use a 'url' entry pointing to https://mcp.gambot.co.il/mcp with an 'Authorization: Bearer gmbt_…' header. If your client is stdio-only, bridge to it with 'npx -y mcp-remote <url> --header'. No local install needed.", he: "מגדירים 'url' לכתובת https://mcp.gambot.co.il/mcp עם כותרת 'Authorization: Bearer gmbt_…'. אם הלקוח תומך רק ב-stdio, מגשרים עם 'npx -y mcp-remote <url> --header'. בלי התקנה מקומית." }
       },
       {
         question: { en: "Should I use the local or the hosted server?", he: "עדיף שרת מקומי או מקוון?" },
@@ -12169,12 +12169,12 @@ const posts = [
       <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
   "mcpServers": {
     "gambot": {
-      "url": "https://gambot-mcp.azurewebsites.net/mcp",
+      "url": "https://mcp.gambot.co.il/mcp",
       "headers": { "Authorization": "Bearer gmbt_your_token_here" }
     }
   }
 }</code></pre>
-      <p>Stdio-only client? Bridge to the same URL with <code>npx -y mcp-remote https://gambot-mcp.azurewebsites.net/mcp --header "Authorization: Bearer gmbt_your_token_here"</code>. Use <strong>local</strong> for a single machine and the <strong>hosted URL</strong> for teams, cloud IDEs and 24/7 agents.</p>
+      <p>Stdio-only client? Bridge to the same URL with <code>npx -y mcp-remote https://mcp.gambot.co.il/mcp --header "Authorization: Bearer gmbt_your_token_here"</code>. Use <strong>local</strong> for a single machine and the <strong>hosted URL</strong> for teams, cloud IDEs and 24/7 agents.</p>
 
       <h3>4. Test it</h3>
       <p>Ask your AI client: <em>"List my WhatsApp templates"</em> or <em>"Send a WhatsApp to +1 202 555 0134 saying hello"</em>. If you see a result, you're live.</p>
@@ -12235,12 +12235,12 @@ const posts = [
       <pre style="background:#0f1a21;color:#cfe9d8;border-radius:12px;padding:18px 20px;overflow:auto;font-size:13.5px;line-height:1.6;"><code>{
   "mcpServers": {
     "gambot": {
-      "url": "https://gambot-mcp.azurewebsites.net/mcp",
+      "url": "https://mcp.gambot.co.il/mcp",
       "headers": { "Authorization": "Bearer gmbt_your_token_here" }
     }
   }
 }</code></pre>
-      <p>לקוח שתומך רק ב-stdio? מגשרים לאותה כתובת עם <code>npx -y mcp-remote https://gambot-mcp.azurewebsites.net/mcp --header "Authorization: Bearer gmbt_your_token_here"</code>. משתמשים ב<strong>מקומי</strong> למחשב יחיד וב<strong>כתובת המקוונת</strong> לצוותים, IDE בענן וסוכנים 24/7.</p>
+      <p>לקוח שתומך רק ב-stdio? מגשרים לאותה כתובת עם <code>npx -y mcp-remote https://mcp.gambot.co.il/mcp --header "Authorization: Bearer gmbt_your_token_here"</code>. משתמשים ב<strong>מקומי</strong> למחשב יחיד וב<strong>כתובת המקוונת</strong> לצוותים, IDE בענן וסוכנים 24/7.</p>
 
       <h3>4. בדיקה</h3>
       <p>מבקשים: <em>"תראה לי את תבניות ה-WhatsApp"</em> או <em>"שלח WhatsApp ל-+972501234567 עם שלום"</em>. אם קיבלתם תוצאה — אתם באוויר.</p>

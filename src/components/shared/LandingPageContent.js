@@ -64,7 +64,7 @@ function VideoCard({ v }) {
   );
 }
 
-export default function LandingPageContent({ content, forceLang }) {
+export default function LandingPageContent({ content, forceLang, skipFaqSchema = false }) {
   const [openFaq, setOpenFaq] = useState(null);
   const { currentLanguage } = useLanguage();
   // English-alias routes pass forceLang="en" so the STATIC HTML renders English (for non-JS crawlers),
@@ -118,6 +118,23 @@ export default function LandingPageContent({ content, forceLang }) {
 
   return (
     <div className={styles.page} style={{ paddingTop: '68px' }} dir={dir}>
+      {/* FAQPage structured data — built from the exact visible FAQ so it can never drift from the page. */}
+      {c.faq && c.faq.length > 0 && !skipFaqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: c.faq.map((f) => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            }),
+          }}
+        />
+      )}
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.container}>

@@ -208,6 +208,9 @@ export default function PublicInvoicePage() {
             {invoice.documentNumber && <div style={styles.docNumber}>מס׳ {stripDocPrefix(invoice.documentNumber)}</div>}
             {invoice.date && <div style={styles.docDate}>תאריך: {invoice.date}</div>}
             {invoice.dueDate && <div style={styles.docDate}>תאריך פירעון: {invoice.dueDate}</div>}
+            {(invoice.allocationNumberShort || invoice.allocationNumber) && (
+              <div style={styles.docDate}>מספר הקצאה: {invoice.allocationNumberShort || invoice.allocationNumber}</div>
+            )}
             <div style={{ ...styles.statusBadge, background: status.color }}>
               {status.he}
             </div>

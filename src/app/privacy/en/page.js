@@ -1,7 +1,7 @@
 import PrivacyPolicyEN from '@/components/Legal/PrivacyPolicyEN';
 
 export const metadata = {
-  title: 'Privacy Policy | Gambot',
+  title: 'Privacy Policy',
   description: 'Privacy policy of the Gambot WhatsApp Business management platform',
   alternates: {
     canonical: 'https://gambot.co.il/privacy/en/',

@@ -3,12 +3,12 @@ import styles from '../page.module.css';
 import LeadForm from '@/components/LeadForm/LeadForm';
 
 export const metadata = {
-  title: 'WhatsApp CRM | ניהול לידים, משימות ופניות | גמבוט',
+  title: 'WhatsApp CRM | ניהול לידים, משימות ופניות',
   description: 'גמבוט CRM — ניהול לידים, הצעות מחיר, משימות ופניות ישירות מתוך וואטסאפ. כל מידע הלקוח במקום אחד. מסנני תצוגה מותאמים אישית.',
   keywords: 'WhatsApp CRM, ניהול לידים וואטסאפ, CRM לוואטסאפ, ניהול פניות, ניהול משימות, הצעות מחיר',
   alternates: { canonical: 'https://gambot.co.il/וואטסאפ-crm/' },
   openGraph: {
-    title: 'WhatsApp CRM | ניהול לידים, משימות ופניות | גמבוט',
+    title: 'WhatsApp CRM | ניהול לידים, משימות ופניות',
     description: 'ניהול לידים, הצעות מחיר, משימות ופניות ישירות מוואטסאפ',
     url: 'https://gambot.co.il/וואטסאפ-crm/',
     locale: 'he_IL',
