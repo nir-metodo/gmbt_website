@@ -11,16 +11,16 @@ import { FaMobileAlt, FaPhoneAlt, FaArrowRight, FaArrowLeft, FaShoppingCart, FaS
 import { MdVerified, MdCallReceived } from "react-icons/md";
 import { useLanguage } from '@/contexts/LanguageContext';
 
-// A Gambot-purchased number is prepaid-only; the free-trial signup collects no card (backend rejects it).
-const ALLOW_TRIAL_SIM_PURCHASE = false;
+// Buying a Gambot number at signup is offered to everyone (Hebrew and English site, any country).
+// The SIM is paid up front (35 ILS / 10 USD + VAT) while the account itself stays a free trial.
 
 const SimSelection = ({
     hasSim, setHasSim, useFreeNumber, setUseFreeNumber, organizationPhoneNumber, setOrganizationPhoneNumber,
     isPhoneNumberSelected, setIsPhoneNumberSelected, nextStep, prevStep,
     setForwardingPhoneNumber, forwardingPhoneNumber, useCoexisting, setUseCoexisting
 }) => {
-    const { t, currentLanguage, isRTL } = useLanguage();
-    const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(true);
+    const { t, currentLanguage, isRTL, getCurrencySymbol, getPlanPrices } = useLanguage();
+    const simChargeLabel = `${getCurrencySymbol()}${getPlanPrices().sim}`;
     const [isValidForwardingNumber, setIsValidForwardingNumber] = useState(false); // ✅ Validation for forwarding number
     const [callForwarding, setCallForwarding] = useState(false);
     const [showPhoneNumbersList, setShowPhoneNumbersList] = useState(false);
@@ -349,8 +349,7 @@ const SimSelection = ({
                         </div>
 
                         {/* Purchase SIM - hidden: a Gambot number is PREPAID only (never on a free trial). The trial
-                            signup takes no card, so the backend rejects it (sim_requires_paid). Set
-                            ALLOW_TRIAL_SIM_PURCHASE=true only when this step collects + charges a card first. */}
+                        {/* Purchase SIM - offered to everyone; paid up front (the account stays a trial). */}
                         {ALLOW_TRIAL_SIM_PURCHASE && (
                         <div 
                             className="option-card purchase-sim" 
@@ -373,7 +372,11 @@ const SimSelection = ({
                                         <span>{feature}</span>
                                     </div>
                                 ))}
-                            </div>
+                            <p style={{ margin: '10px 0 0', fontSize: '0.85em', fontWeight: 600, color: '#b45309' }}>
+                                {currentLanguage === 'he'
+                                    ? `⚠️ רכישת מספר מאיתנו מחויבת מיידית: ${simChargeLabel} + מע״מ (החשבון עצמו נשאר בתקופת ניסיון חינם)`
+                                    : `⚠️ Buying a number from us is charged immediately: ${simChargeLabel} + VAT (your account itself stays on a free trial)`}
+                            </p>
                             <button className="option-button">
                                 <span>{t('simSelection.options.purchase.button')}</span>
                             </button>

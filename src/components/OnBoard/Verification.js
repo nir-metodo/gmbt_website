@@ -20,6 +20,8 @@ const Verification = ({
     plan,
     paymentCyctle,
     forwardingPhoneNumber,
+    simPaymentRef,
+    onSimPaymentFailed,
   }) => {
     const { t, currentLanguage, isRTL, getCurrency, getCurrencySymbol, getPlanPrices } = useLanguage();
     const [enteredCode, setEnteredCode] = useState('');
@@ -393,6 +395,17 @@ const Verification = ({
         }
         showAlert(
             getVerificationText('verification.alerts.subscriptionError'),
+        if (error?.response?.status === 402) {
+          // SIM payment missing / declined: nothing was created. Back to the payment step to verify a card again.
+          const serverMsg = error.response?.data?.message || '';
+          await showAlert(
+              currentLanguage === 'he' ? 'התשלום על ה-SIM לא הושלם' : 'The SIM payment was not completed',
+              serverMsg,
+              "error"
+          );
+          if (onSimPaymentFailed) onSimPaymentFailed();
+          return;
+        }
             error.message || '',
             "error"
         );

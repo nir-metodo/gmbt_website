@@ -5,6 +5,7 @@ import BasicInfo from './BasicInfo';
 import ProgressBar from './ProgressBar';
 import WabaOnboarding from './WabaOnboarding';
 import Verification from './Verification';
+import SimPayment from './SimPayment';
 import './OnboardingProcess.css';
 import { useLanguage } from '@/contexts/LanguageContext';
 import axiosInstance from './axiosInstance';
@@ -32,6 +33,10 @@ const OnboardingProcess = () => {
     const [forwardingPhoneNumber, setForwardingPhoneNumber] = useState(saved?.forwardingPhoneNumber || '');
     const [paymentCycle, setPaymentCycle] = useState(saved?.paymentCycle || 'monthly');
     const [verificationCode, setVerificationCode] = useState('');
+    // Buying a number from Gambot: the SIM is paid up front. simPaymentRef identifies the card verified for it.
+    const [simPaymentRef, setSimPaymentRef] = useState(saved?.simPaymentRef || '');
+    const [simPaid, setSimPaid] = useState(saved?.simPaid || false);
+    const buyingSim = !hasSim && !useFreeNumber && !useCoexisting;
 
     const [companyInfo, setCompanyInfo] = useState(saved?.companyInfo || {
         companyName: '',
@@ -51,10 +56,10 @@ const OnboardingProcess = () => {
             localStorage.setItem(STORAGE_KEY, JSON.stringify({
                 step, plan, hasSim, useFreeNumber, useCoexisting,
                 organizationPhoneNumber, isPhoneNumberSelected,
-                forwardingPhoneNumber, paymentCycle, companyInfo
+                forwardingPhoneNumber, paymentCycle, companyInfo, simPaymentRef, simPaid
             }));
         } catch { }
-    }, [step, plan, hasSim, useFreeNumber, useCoexisting, organizationPhoneNumber, isPhoneNumberSelected, forwardingPhoneNumber, paymentCycle, companyInfo]);
+    }, [step, plan, hasSim, useFreeNumber, useCoexisting, organizationPhoneNumber, isPhoneNumberSelected, forwardingPhoneNumber, paymentCycle, companyInfo, simPaymentRef, simPaid]);
 
     // Every step change starts at the top of the wizard (the sticky stepper stays in view).
     // Skipped on first render so a restored step doesn't jump the page.
@@ -143,8 +148,19 @@ const OnboardingProcess = () => {
                             prevStep={prevStep}
                         />
                     )}
-                    {step === 4 && (
+                    {step === 4 && buyingSim && !simPaid && (
+                        <SimPayment
+                            companyInfo={companyInfo}
+                            simPaymentRef={simPaymentRef}
+                            setSimPaymentRef={setSimPaymentRef}
+                            onPaid={(ref) => { setSimPaymentRef(ref); setSimPaid(true); }}
+                            prevStep={prevStep}
+                        />
+                    )}
+                    {step === 4 && (!buyingSim || simPaid) && (
                         <Verification
+                            simPaymentRef={buyingSim ? simPaymentRef : ''}
+                            onSimPaymentFailed={() => { setSimPaid(false); setSimPaymentRef(''); }}
                             companyInfo={companyInfo}
                             name={companyInfo?.contactFullName}
                             nextStep={nextStep}

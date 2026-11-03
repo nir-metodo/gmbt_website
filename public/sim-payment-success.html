@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Card verified</title>
+    <style>
+        body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh;
+               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; color: #166534; background: #f0fdf4; text-align: center; }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>✓ Card verified / הכרטיס אומת</h2>
+        <p>Continuing… / ממשיכים…</p>
+    </div>
+    <script>
+        // Stay inside the iframe (the wizard keeps its state); just tell the wizard we're done.
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'gambot-sim-card', status: 'success' }, window.location.origin);
+        }
+    </script>
+</body>
+</html>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
+import { ClampedDescription, publicDocTableCss } from '../shared/ClampedDescription';
 
 const CURRENCY_SYMBOLS = { ILS: '₪', USD: '$', EUR: '€', GBP: '£' };
 
@@ -170,6 +171,11 @@ export default function PublicInvoicePage() {
   const paymentRows = (invoice.payments || []).filter(p => (parseFloat(p.amount) || 0) > 0 || p.method);
   const totalReceived = paymentRows.reduce((s, p) => s + (parseFloat(p.amount) || 0), 0);
   const showSignatureImg = branding.showSignature !== false && !!branding.signature;
+  // Same rule as the in-app document (InvoiceForm): "bank details to pay" only on a document still awaiting payment —
+  // not on receipt / tax-invoice-receipt / credit documents, not when paid by credit card, not when paid in full.
+  const hideBankDetails = isReceipt || invoice.type === 'credit_invoice'
+    || paymentRows.some(p => p.method === 'credit_card' && (parseFloat(p.amount) || 0) > 0)
+    || (totalReceived > 0.01 && totalReceived >= total - 0.01);
 
   return (
     <div style={styles.page}>
@@ -186,6 +192,7 @@ export default function PublicInvoicePage() {
           th { padding: 8px 8px; font-size: 12.5px; }
           td { padding: 8px 8px; font-size: 13px; }
         }
+        ${publicDocTableCss(primaryColor)}
       `}</style>
 
       <div style={styles.container}>
@@ -234,7 +241,7 @@ export default function PublicInvoicePage() {
           <div style={styles.section}>
             <div style={{ ...styles.sectionTitle, color: primaryColor }}>פירוט ({items.length} פריטים)</div>
             <div style={{ overflowX: 'auto', maxHeight: items.length > 15 ? 500 : 'none', overflowY: items.length > 15 ? 'auto' : 'visible' }}>
-              <table>
+              <table className="pq-table">
                 <thead>
                   <tr style={{ background: primaryColor, color: 'white', position: items.length > 15 ? 'sticky' : 'static', top: 0, zIndex: 1 }}>
                     <th style={{ textAlign: 'right', whiteSpace: 'nowrap', width: 90 }}>מק"ט</th>
@@ -250,12 +257,12 @@ export default function PublicInvoicePage() {
                     const price = parseFloat(item.unitPrice) || 0;
                     const lineTotal = qty * price;
                     return (
-                      <tr key={idx} style={{ borderBottom: '1px solid #e5e7eb', background: idx % 2 === 0 ? '#fff' : '#f9fafb' }}>
-                        <td style={{ whiteSpace: 'nowrap', color: '#6b7280' }}>{item.sku || '—'}</td>
-                        <td>{item.description || item.name || ''}</td>
-                        <td style={{ textAlign: 'center' }}>{qty}</td>
-                        <td style={{ textAlign: 'center' }}>{currency}{formatNum(price)}</td>
-                        <td style={{ textAlign: 'center', fontWeight: 600 }}>{currency}{formatNum(lineTotal)}</td>
+                      <tr key={idx} className="pq-row no-img" style={{ borderBottom: '1px solid #e5e7eb', background: idx % 2 === 0 ? '#fff' : '#f9fafb' }}>
+                        <td className="pq-sku" data-label={'מק"ט'} style={{ whiteSpace: 'nowrap', color: '#6b7280' }}>{item.sku || '—'}</td>
+                        <td className="pq-desc"><ClampedDescription text={item.description || item.name || ''} /></td>
+                        <td className="pq-num" data-label="כמות" style={{ textAlign: 'center' }}>{qty}</td>
+                        <td className="pq-num" data-label="מחיר יחידה" style={{ textAlign: 'center' }}>{currency}{formatNum(price)}</td>
+                        <td className="pq-num" data-label="סה״כ" style={{ textAlign: 'center', fontWeight: 600 }}>{currency}{formatNum(lineTotal)}</td>
                       </tr>
                     );
                   })}
@@ -345,7 +352,7 @@ export default function PublicInvoicePage() {
         )}
 
         {/* Bank details */}
-        {(branding.bankAccount || branding.bankName) && (
+        {(branding.bankAccount || branding.bankName) && !hideBankDetails && (
           <div style={styles.section}>
             <div style={{ ...styles.sectionTitle, color: primaryColor }}>🏦 פרטי בנק לתשלום</div>
             {branding.bankName && <div style={styles.infoRow}>בנק: {branding.bankName}{branding.bankBranch ? ` · סניף: ${branding.bankBranch}` : ''}</div>}

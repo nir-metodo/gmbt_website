@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
+import { ClampedDescription, publicDocTableCss } from '../shared/ClampedDescription';
 
 const CURRENCY_SYMBOLS = { ILS: '₪', USD: '$', EUR: '€', GBP: '£' };
 
@@ -202,6 +203,7 @@ export default function PublicQuotePage() {
         thead tr { border-radius: 8px; }
         th { padding: 11px 14px; text-align: right; font-size: 14px; font-weight: 600; letter-spacing: 0.3px; }
         td { padding: 10px 14px; text-align: right; }
+        ${publicDocTableCss(primaryColor)}
       `}</style>
 
       {/* Floating Actions Button */}
@@ -271,7 +273,7 @@ export default function PublicQuotePage() {
         <div style={styles.section}>
           <div style={{ ...styles.sectionTitle, color: primaryColor }}>פירוט</div>
           <div style={{ overflowX: 'auto' }}>
-            <table>
+            <table className="pq-table">
               <thead>
                 <tr style={{ background: primaryColor, color: 'white' }}>
                   {hasAnyImage && <th style={{ width: 50 }}></th>}
@@ -286,7 +288,7 @@ export default function PublicQuotePage() {
                 {items.map((item, idx) => {
                   if (item.type === 'section') {
                     return (
-                      <tr key={idx}>
+                      <tr key={idx} className="pq-section">
                         <td colSpan={hasAnyImage ? 6 : 5} style={{ background: '#f8fafc', fontWeight: 700, color: primaryColor, paddingTop: 16, paddingBottom: 8, borderBottom: `2px solid ${primaryColor}20` }}>
                           {item.description}
                         </td>
@@ -304,9 +306,9 @@ export default function PublicQuotePage() {
                   const itemImages = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : []);
                   const hasMultiple = itemImages.length > 1;
                   return (
-                    <tr key={idx} style={{ borderBottom: '1px solid #e5e7eb', background: isDiscountRow ? '#fef2f2' : (idx % 2 === 0 ? '#fff' : '#f9fafb') }}>
+                    <tr key={idx} className={`pq-row ${itemImages.length > 0 ? '' : 'no-img'}`} style={{ borderBottom: '1px solid #e5e7eb', background: isDiscountRow ? '#fef2f2' : (idx % 2 === 0 ? '#fff' : '#f9fafb') }}>
                       {hasAnyImage && (
-                        <td style={{ textAlign: 'center', padding: '4px', width: 50 }}>
+                        <td className="pq-img" style={{ textAlign: 'center', padding: '4px', width: 50 }}>
                           {itemImages.length > 0 && (
                             <div
                               style={{ position: 'relative', display: 'inline-block', cursor: hasMultiple ? 'pointer' : 'default' }}
@@ -328,13 +330,13 @@ export default function PublicQuotePage() {
                           )}
                         </td>
                       )}
-                      <td style={isDiscountRow ? { color: '#dc2626' } : undefined}>{item.description || ''}</td>
-                      <td style={{ textAlign: 'center' }}>{qty}</td>
-                      <td style={{ textAlign: 'center', color: isDiscountRow ? '#dc2626' : undefined }}>
+                      <td className="pq-desc" style={isDiscountRow ? { color: '#dc2626' } : undefined}><ClampedDescription text={item.description || ''} /></td>
+                      <td className="pq-num" data-label="כמות" style={{ textAlign: 'center' }}>{qty}</td>
+                      <td className="pq-num" data-label="מחיר יחידה" style={{ textAlign: 'center', color: isDiscountRow ? '#dc2626' : undefined }}>
                         {isDiscountRow ? `-${currency}${formatNum(Math.abs(price))}` : `${currency}${formatNum(price)}`}
                       </td>
-                      {items.some(i => i.discount) && <td style={{ textAlign: 'center' }}>{disc ? `${disc}%` : '—'}</td>}
-                      <td style={{ textAlign: 'center', fontWeight: 600, color: isDiscountRow ? '#dc2626' : undefined }}>
+                      {items.some(i => i.discount) && <td className="pq-num" data-label="הנחה" style={{ textAlign: 'center' }}>{disc ? `${disc}%` : '—'}</td>}
+                      <td className="pq-num" data-label="סה״כ" style={{ textAlign: 'center', fontWeight: 600, color: isDiscountRow ? '#dc2626' : undefined }}>
                         {isDiscountRow ? `-${currency}${formatNum(Math.abs(lineTotal))}` : `${currency}${formatNum(lineTotal)}`}
                       </td>
                     </tr>
