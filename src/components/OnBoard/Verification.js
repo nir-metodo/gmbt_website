@@ -205,7 +205,7 @@ const Verification = ({
             title,
             text,
             icon,
-            confirmButtonText: t('basicInfo.alerts.confirm') || (currentLanguage === 'he' ? 'אישור' : 'Confirm'),
+            confirmButtonText: currentLanguage === 'he' ? 'אישור' : 'Confirm',
             customClass: {
                 popup: isRTL ? "rtl-popup" : "ltr-popup",
                 confirmButton: "swal2-confirm"
@@ -329,6 +329,8 @@ const Verification = ({
           useFreeNumber,
           useCoexisting,
           updateToken: readUpdateToken() || undefined, // required by the server to UPDATE an existing account
+          // Card verified in the SIM payment step; the server debits the SIM with it (only when buying a number from us)
+          simPaymentRef: shouldChargeSim ? (simPaymentRef || undefined) : undefined,
         };
 
         // 🔍 DEBUG: Log the exact payload being sent
@@ -393,8 +395,6 @@ const Verification = ({
           );
           return;
         }
-        showAlert(
-            getVerificationText('verification.alerts.subscriptionError'),
         if (error?.response?.status === 402) {
           // SIM payment missing / declined: nothing was created. Back to the payment step to verify a card again.
           const serverMsg = error.response?.data?.message || '';
@@ -406,6 +406,8 @@ const Verification = ({
           if (onSimPaymentFailed) onSimPaymentFailed();
           return;
         }
+        showAlert(
+            getVerificationText('verification.alerts.subscriptionError'),
             error.message || '',
             "error"
         );

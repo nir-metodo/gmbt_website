@@ -21,6 +21,7 @@ const SimSelection = ({
 }) => {
     const { t, currentLanguage, isRTL, getCurrencySymbol, getPlanPrices } = useLanguage();
     const simChargeLabel = `${getCurrencySymbol()}${getPlanPrices().sim}`;
+    const [isValidPhoneNumber, setIsValidPhoneNumber] = useState(true);
     const [isValidForwardingNumber, setIsValidForwardingNumber] = useState(false); // ✅ Validation for forwarding number
     const [callForwarding, setCallForwarding] = useState(false);
     const [showPhoneNumbersList, setShowPhoneNumbersList] = useState(false);
@@ -348,9 +349,7 @@ const SimSelection = ({
                             </button>
                         </div>
 
-                        {/* Purchase SIM - hidden: a Gambot number is PREPAID only (never on a free trial). The trial
                         {/* Purchase SIM - offered to everyone; paid up front (the account stays a trial). */}
-                        {ALLOW_TRIAL_SIM_PURCHASE && (
                         <div 
                             className="option-card purchase-sim" 
                             onClick={() => {
@@ -372,6 +371,7 @@ const SimSelection = ({
                                         <span>{feature}</span>
                                     </div>
                                 ))}
+                            </div>
                             <p style={{ margin: '10px 0 0', fontSize: '0.85em', fontWeight: 600, color: '#b45309' }}>
                                 {currentLanguage === 'he'
                                     ? `⚠️ רכישת מספר מאיתנו מחויבת מיידית: ${simChargeLabel} + מע״מ (החשבון עצמו נשאר בתקופת ניסיון חינם)`
@@ -381,7 +381,6 @@ const SimSelection = ({
                                 <span>{t('simSelection.options.purchase.button')}</span>
                             </button>
                         </div>
-                        )}
 
                         {/* Existing SIM - Third Option */}
                         <div 
