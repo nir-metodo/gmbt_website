@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { FaCheck, FaCrown, FaStar, FaLightbulb, FaChevronDown, FaChevronUp, FaArrowRight, FaArrowLeft, FaMoneyBillWave } from 'react-icons/fa';
+import { FaCheck, FaCrown, FaStar, FaLightbulb, FaChevronDown, FaChevronUp, FaArrowRight, FaArrowLeft, FaMoneyBillWave, FaPhoneAlt, FaClock, FaSms } from 'react-icons/fa';
 import { FaRocket } from 'react-icons/fa6';
 import { MdVerified, MdFlashOn } from 'react-icons/md';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -216,6 +216,50 @@ const PriceListPage = () => {
                     <span className="pl-banner-btn">{L('דברו איתנו בוואטסאפ', 'Talk to us on WhatsApp')} <Arrow aria-hidden="true" /></span>
                 </a>
                 <p className="pl-footnote">{L('* חשבוניות: המערכת תומכת כרגע בחשבוניות עד ₪10,000 לחשבונית בודדת', '* Invoices: the system currently supports invoices of up to ₪10,000 per invoice')}</p>
+
+                {/* ── Telephony costs (same for every plan) ────────── */}
+                <section className="pl-section">
+                    <div className="pl-section-head">
+                        <h2>{L('עלות טלפונית', 'Telephony costs')}</h2>
+                        <p>{L('אחיד לכל החבילות — משלמים רק על מה שמשתמשים', 'Same for every plan — you only pay for what you use')}</p>
+                    </div>
+                    <div className="pl-tel-grid">
+                        {[
+                            {
+                                icon: FaPhoneAlt,
+                                title: L('שלוחה טלפונית', 'Phone extension'),
+                                amount: money(29),
+                                unit: L('לשלוחה / חודש', 'per extension / month'),
+                            },
+                            {
+                                icon: FaClock,
+                                title: L('חבילת 1,000 דקות', '1,000-minute bundle'),
+                                amount: money(119),
+                                unit: L('לחודש', 'per month'),
+                            },
+                            {
+                                icon: FaSms,
+                                title: L('הודעות SMS', 'SMS messages'),
+                                amount: en ? { currency: '$', amount: '0.03' } : { currency: '₪', amount: '0.09' },
+                                unit: L('להודעה', 'per message'),
+                            },
+                        ].map((item) => {
+                            const Icon = item.icon;
+                            return (
+                                <div key={item.title} className="pl-tel-card">
+                                    <span className="pl-tel-icon"><Icon aria-hidden="true" /></span>
+                                    <h3>{item.title}</h3>
+                                    <div className="pl-tel-price">
+                                        <span className="pl-tel-currency">{item.amount.currency}</span>
+                                        <span className="pl-tel-amount">{item.amount.amount}</span>
+                                    </div>
+                                    <span className="pl-tel-unit">{item.unit}</span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    {!en && <p className="pl-footnote">* המחירים אינם כוללים מע״מ</p>}
+                </section>
 
                 {/* ── Included in all plans ────────────────────────── */}
                 <section className="pl-section">

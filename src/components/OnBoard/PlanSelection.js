@@ -207,8 +207,8 @@ const PlanSelection = ({ plan, setPlan, paymentCycle, setPaymentCycle, nextStep 
                         ? 'AI credits are one unified pool for ALL AI usage — bot replies plus proactive messages, reports, analysis and summaries. Heavier/premium usage costs more. Extra: ₪39 per 500 credits. Click for the full guide.'
                         : 'קרדיטים AI הם מאגר אחד מאוחד לכל שימושי ה‑AI — תשובות הבוט וגם הודעות פרואקטיביות, דוחות, ניתוח וסיכומים. שימוש כבד/מודל יקר עולה יותר. תוספת: ₪39 לכל 500 קרדיטים. לחצו למדריך המלא.';
                       const apiMcpTooltip = currentLanguage === 'en'
-                        ? 'API/MCP credits are a separate pool for external-interface usage: a plain API call = 1 credit, an MCP action = 2, a bulk send/export = 4, an AI action via the interface = 12. Quota is included; overage ₪0.10/credit. Click for the full guide.'
-                        : 'קרדיטים API/MCP הם מאגר נפרד לשימוש בממשק החיצוני: קריאת API רגילה = 1 קרדיט, פעולת MCP = 2, דיוור/ייצוא = 4, ופעולת AI דרך הממשק = 12. המכסה כלולה; חריגה ₪0.10 לקרדיט. לחצו למדריך המלא.';
+                        ? 'API/MCP credits are a separate pool for external-interface usage: an outgoing message = 1 credit, API broadcast = 1 credit per recipient, 4 incoming messages forwarded to you = 1 credit; status updates and management calls are free. Quota is included; overage by plan: ₪0.08 / ₪0.04 / ₪0.02 per credit (Basic / Mid / Large). Click for the full guide.'
+                        : 'קרדיטים API/MCP הם מאגר נפרד לשימוש בממשק החיצוני: הודעה יוצאת = קרדיט אחד, דיוור דרך ה-API = קרדיט לנמען, 4 הודעות נכנסות שהועברו אליכם = קרדיט אחד; עדכוני סטטוס וקריאות ניהול חינם. המכסה כלולה; חריגה לפי החבילה: ₪0.08 / ₪0.04 / ₪0.02 לקרדיט (בסיסית / אמצעית / גדולה). לחצו למדריך המלא.';
                       const isCreditLine = isApiMcp || isCredits || isAiResponses || isGeneralTokens;
                       const creditsBlogUrl = isApiMcp
                         ? (currentLanguage === 'en'

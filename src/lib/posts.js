@@ -12875,8 +12875,8 @@ const posts = [
     en: 'Gambot API & MCP Credits — How Interface Usage Is Counted and What It Costs 2026 | Gambot'
   },
   metaDescription: {
-    he: 'מדריך לקרדיטי הממשק (API/MCP) בגמבוט: קרדיט = הודעה שעוברת דרך האינטגרציה. הודעה יוצאת 2 קרדיטים, הודעה נכנסת שהועברה אליכם 1, עדכוני סטטוס וקריאות ניהול חינם. מכסות כלולות 3,000 / 10,000 / 30,000 וחריגה ב-₪0.015 לקרדיט — עם דוגמאות חישוב.',
-    en: 'A guide to Gambot interface credits (API/MCP): a credit = a message passing through the integration. An outgoing message is 2 credits, an incoming message forwarded to you is 1, status updates and management calls are free. Included quotas 3,000 / 10,000 / 30,000 and overage at ₪0.015 per credit — with worked examples.'
+    he: 'מדריך לקרדיטי הממשק (API/MCP) בגמבוט: קרדיט = הודעה שעוברת דרך האינטגרציה. הודעה יוצאת קרדיט אחד, הודעה נכנסת שהועברה אליכם רבע קרדיט (4 הודעות = קרדיט), עדכוני סטטוס וקריאות ניהול חינם. מכסות כלולות 1,500 / 5,000 / 20,000 וחריגה ב-₪0.08 / ₪0.04 / ₪0.02 לקרדיט לפי החבילה — עם דוגמאות חישוב.',
+    en: 'A guide to Gambot interface credits (API/MCP): a credit = a message passing through the integration. An outgoing message is 1 credit, an incoming message forwarded to you is a quarter of a credit (4 messages = 1 credit), status updates and management calls are free. Included quotas 1,500 / 5,000 / 20,000 and overage at ₪0.08 / ₪0.04 / ₪0.02 per credit by plan — with worked examples.'
   },
   keywords: {
     he: ['קרדיטים API', 'קרדיטים MCP', 'תמחור API וואטסאפ', 'WhatsApp API מחיר', 'MCP גמבוט', 'קרדיטים גמבוט', 'עלות API', 'מכסת API', 'webhook וואטסאפ'],
@@ -12887,8 +12887,8 @@ const posts = [
     en: 'API & MCP Credits: How Gambot Counts Interface Usage and What It Costs'
   },
   description: {
-    he: 'משלמים על הודעות, לא על כל קריאה: הודעה יוצאת = 2 קרדיטים, הודעה נכנסת שהועברה אליכם = 1, וכל השאר חינם. הסבר על המכסות, החריגה ודוגמאות חישוב.',
-    en: 'You pay for messages, not for every call: an outgoing message = 2 credits, an incoming message forwarded to you = 1, everything else is free. Quotas, overage and worked examples explained.'
+    he: 'משלמים על הודעות, לא על כל קריאה: הודעה יוצאת = קרדיט אחד, הודעה נכנסת שהועברה אליכם = רבע קרדיט, וכל השאר חינם. הסבר על המכסות, החריגה ודוגמאות חישוב.',
+    en: 'You pay for messages, not for every call: an outgoing message = 1 credit, an incoming message forwarded to you = a quarter of a credit, everything else is free. Quotas, overage and worked examples explained.'
   },
   category: 'API',
   author: 'ניר סגס',
@@ -12898,21 +12898,21 @@ const posts = [
   featured: true,
   faq: {
     he: [
-      { q: 'מה זה קרדיט ממשק (API/MCP)?', a: 'קרדיט הוא יחידת המדידה של הודעות שעוברות דרך האינטגרציה עם גמבוט (REST API, שרת ה‑MCP ו‑Webhook). הודעה יוצאת ששלחתם דרך ה‑API או ה‑MCP עולה 2 קרדיטים, והודעה נכנסת שגמבוט העבירה ל‑URL שלכם עולה קרדיט אחד. עדכוני סטטוס וקריאות ניהול (CRM, שליפת נתונים, הגדרות) אינם נספרים.' },
+      { q: 'מה זה קרדיט ממשק (API/MCP)?', a: 'קרדיט הוא יחידת המדידה של הודעות שעוברות דרך האינטגרציה עם גמבוט (REST API, שרת ה‑MCP ו‑Webhook). הודעה יוצאת ששלחתם דרך ה‑API או ה‑MCP עולה קרדיט אחד, והודעה נכנסת שגמבוט העבירה ל‑URL שלכם עולה רבע קרדיט (4 הודעות = קרדיט). עדכוני סטטוס וקריאות ניהול (CRM, שליפת נתונים, הגדרות) אינם נספרים.' },
       { q: 'האם מקבלים חיוב על הודעות שאני שולח מהאפליקציה של גמבוט?', a: 'לא. הודעות שנשלחות מהאפליקציה, מבוטים או מקמפיינים שמופעלים מהממשק לא נספרות בקרדיטי הממשק — הן כלולות במכסת השיחות של החבילה שלכם. קרדיטי ממשק נספרים רק על הודעות שעוברות דרך האינטגרציה (API, MCP או Webhook).' },
-      { q: 'אני רק מקבל הודעות נכנסות למערכת שלי. האם אני משלם?', a: 'כן — קרדיט אחד על כל הודעה נכנסת שגמבוט מעבירה ל‑URL שלכם בהצלחה. אם ה‑endpoint שלכם לא ענה בהצלחה, לא תחויבו. הודעה נספרת פעם אחת בלבד גם אם נדרשו ניסיונות חוזרים.' },
+      { q: 'אני רק מקבל הודעות נכנסות למערכת שלי. האם אני משלם?', a: 'כן — רבע קרדיט (4 הודעות = קרדיט אחד) על כל הודעה נכנסת שגמבוט מעבירה ל‑URL שלכם בהצלחה. אם ה‑endpoint שלכם לא ענה בהצלחה, לא תחויבו. הודעה נספרת פעם אחת בלבד גם אם נדרשו ניסיונות חוזרים.' },
       { q: 'למה הודעה יוצאת עולה יותר מהודעה נכנסת?', a: 'הודעה יוצאת עוברת אצלנו את כל תהליך השליחה: אימות, שליחה ל‑Meta, שמירה וניסיונות חוזרים. הודעה נכנסת רק נשמרת ומועברת אליכם, ולכן היא עולה חצי.' },
-      { q: 'כמה קרדיטים כלולים בכל חבילה ומה העלות בחריגה?', a: 'Growth כוללת 3,000 קרדיטים בחודש, Pro כוללת 10,000 ו‑Business כוללת 30,000. המכסה מתאפסת בכל חודש. אין חסימה בחריגה — מחויבים ₪0.015 לכל קרדיט נוסף (₪0.03 להודעה יוצאת, ₪0.015 להודעה נכנסת).' },
+      { q: 'כמה קרדיטים כלולים בכל חבילה ומה העלות בחריגה?', a: 'Growth כוללת 1,500 קרדיטים בחודש, Pro כוללת 5,000 ו‑Business כוללת 20,000. המכסה מתאפסת בכל חודש. אין חסימה בחריגה — מחויבים לפי החבילה: Growth ₪0.08, Pro ₪0.04, Business ₪0.02 לכל קרדיט נוסף (כלומר באותו מחיר להודעה יוצאת, ורבע ממנו להודעה נכנסת).' },
       { q: 'האם עמלות WhatsApp של Meta כלולות בקרדיטים?', a: 'לא. עמלות Meta על שיחות והודעות תבנית מחויבות בנפרד לפי סוג השיחה והמדינה, ואינן חלק מקרדיטי הממשק.' },
       { q: 'מה לגבי פעולות AI?', a: 'פעולות AI מחויבות ממאגר קרדיטי ה‑AI של החבילה (כל 500 קרדיטי AI נוספים ₪39), ולא מקרדיטי הממשק.' },
       { q: 'איפה רואים כמה קרדיטים ניצלתי?', a: 'בהגדרות ← כללי מוצגים לוג הפעילות של ה‑API/MCP ומד צריכה חודשי: כמה קרדיטים נוצלו מתוך המכסה, בפירוט לפי הודעות יוצאות ונכנסות.' }
     ],
     en: [
-      { q: 'What is an interface credit (API/MCP)?', a: 'A credit measures messages passing through your integration with Gambot (REST API, the MCP server and webhooks). An outgoing message you send via the API or MCP costs 2 credits, and an incoming message Gambot forwards to your URL costs 1 credit. Status updates and management calls (CRM, fetching data, settings) are not counted.' },
+      { q: 'What is an interface credit (API/MCP)?', a: 'A credit measures messages passing through your integration with Gambot (REST API, the MCP server and webhooks). An outgoing message you send via the API or MCP costs 1 credit, and an incoming message Gambot forwards to your URL costs a quarter of a credit (4 messages = 1 credit). Status updates and management calls (CRM, fetching data, settings) are not counted.' },
       { q: 'Am I charged for messages I send from the Gambot app?', a: 'No. Messages sent from the app, from bots, or from campaigns launched in the interface are not counted as interface credits — they are covered by your plan\'s conversation quota. Interface credits only count messages that pass through the integration (API, MCP or webhook).' },
-      { q: 'I only receive incoming messages into my own system. Do I pay?', a: 'Yes — 1 credit for every incoming message Gambot successfully forwards to your URL. If your endpoint did not answer successfully you are not charged. A message is counted once even if retries were needed.' },
+      { q: 'I only receive incoming messages into my own system. Do I pay?', a: 'Yes — a quarter of a credit (4 messages = 1 credit) for every incoming message Gambot successfully forwards to your URL. If your endpoint did not answer successfully you are not charged. A message is counted once even if retries were needed.' },
       { q: 'Why does an outgoing message cost more than an incoming one?', a: 'An outgoing message goes through our whole sending pipeline: authentication, delivery to Meta, storage and retries. An incoming message is only stored and forwarded to you, so it costs half.' },
-      { q: 'How many credits does each plan include and what does overage cost?', a: 'Growth includes 3,000 credits per month, Pro 10,000 and Business 30,000. The quota resets every month. Nothing is blocked on overage — you pay ₪0.015 per extra credit (₪0.03 per outgoing message, ₪0.015 per incoming message).' },
+      { q: 'How many credits does each plan include and what does overage cost?', a: 'Growth includes 1,500 credits per month, Pro 5,000 and Business 20,000. The quota resets every month. Nothing is blocked on overage — you pay by plan: Growth ₪0.08, Pro ₪0.04, Business ₪0.02 per extra credit (the same per outgoing message, a quarter of it per incoming message).' },
       { q: 'Are Meta\'s WhatsApp fees included in the credits?', a: 'No. Meta\'s conversation and template fees are billed separately by conversation type and country, and are not part of interface credits.' },
       { q: 'What about AI actions?', a: 'AI actions are charged from your plan\'s AI credits pool (each additional 500 AI credits costs ₪39), not from interface credits.' },
       { q: 'Where do I see how many credits I used?', a: 'Settings → General shows the API/MCP activity log and a monthly usage meter: how many credits you used out of your quota, broken down into outgoing and incoming messages.' }
@@ -12944,13 +12944,13 @@ const posts = [
     <tbody>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">הודעה יוצאת דרך ה‑API או ה‑MCP</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">2</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1</td>
         <td style="padding:12px;border:1px solid #e5e7eb;">טקסט או תבנית. נספרת רק אם השליחה התקבלה בהצלחה</td>
       </tr>
       <tr style="background:#f9fafb;">
         <td style="padding:12px;border:1px solid #e5e7eb;">הודעה נכנסת שהועברה ל‑URL שלכם</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1</td>
-        <td style="padding:12px;border:1px solid #e5e7eb;">נספרת רק אם ה‑endpoint שלכם ענה בהצלחה, ופעם אחת לכל הודעה</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">¼</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">רבע קרדיט להודעה (4 הודעות = קרדיט). נספרת רק אם ה‑endpoint שלכם ענה בהצלחה, ופעם אחת לכל הודעה</td>
       </tr>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">דיוור דרך ה‑API</td>
@@ -12997,16 +12997,15 @@ const posts = [
     <tbody>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">Growth</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">3,000</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;" rowspan="3">₪0.015 לכל קרדיט נוסף<br/><span style="font-size:0.85rem;color:#6b7280;">₪0.03 להודעה יוצאת · ₪0.015 להודעה נכנסת</span></td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">1,500</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">₪0.08 לכל קרדיט נוסף<br/><span style="font-size:0.85rem;color:#6b7280;">₪0.08 להודעה יוצאת · ₪0.02 להודעה נכנסת</span></td>
       </tr>
       <tr style="background:#f9fafb;">
         <td style="padding:12px;border:1px solid #e5e7eb;">Pro</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">10,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">5,000</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">₪0.04 per extra credit<br/><span style="font-size:0.85rem;color:#6b7280;">₪0.04 per outgoing message · ₪0.01 per incoming message</span></td>
       </tr>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">Business</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">30,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">20,000</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">₪0.02 per extra credit<br/><span style="font-size:0.85rem;color:#6b7280;">₪0.02 per outgoing message · ₪0.005 per incoming message</span></td>
       </tr>
     </tbody>
   </table>
@@ -13019,13 +13018,13 @@ const posts = [
 <h2>🧮 דוגמאות חישוב</h2>
 <p><strong>עסק שמחבר CRM וסוכן AI.</strong> בחודש נתון, דרך האינטגרציה:</p>
 <ul>
-  <li>2,000 הודעות יוצאות שנשלחו דרך ה‑API → 4,000 קרדיטים</li>
-  <li>3,000 הודעות נכנסות שהועברו ל‑CRM → 3,000 קרדיטים</li>
+  <li>2,000 הודעות יוצאות שנשלחו דרך ה‑API → 2,000 קרדיטים</li>
+  <li>3,000 הודעות נכנסות שהועברו ל‑CRM → 750 קרדיטים</li>
   <li>דיוור דרך ה‑API ל‑1,500 נמענים → 1,500 קרדיטים</li>
   <li>6,000 עדכוני סטטוס ו‑10,000 קריאות CRM ושליפה → 0 קרדיטים</li>
 </ul>
-<p><strong>סה״כ 8,500 קרדיטים.</strong> בחבילת Pro (10,000 כלולים) — הכל בתוך המכסה. בחבילת Growth (3,000 כלולים) החריגה היא 5,500 קרדיטים × ₪0.015 = <strong>₪82.5 בערך</strong> באותו חודש.</p>
-<p><strong>ארגון שרק מקבל הודעות למערכת שלו.</strong> 4,000 הודעות נכנסות שהועברו ל‑URL → 4,000 קרדיטים. בחבילת Growth החריגה היא 1,000 × ₪0.015 = <strong>₪15</strong>; בחבילת Pro — הכל בתוך המכסה.</p>
+<p><strong>סה״כ 4,250 קרדיטים.</strong> בחבילת Pro (5,000 כלולים) — הכל בתוך המכסה. בחבילת Growth (1,500 כלולים) החריגה היא 2,750 קרדיטים × ₪0.08 = <strong>₪220 בערך</strong> באותו חודש.</p>
+<p><strong>ארגון שרק מקבל הודעות למערכת שלו.</strong> 4,000 הודעות נכנסות שהועברו ל‑URL → 1,000 קרדיטים. בחבילת Growth (1,500 כלולים) וגם בחבילת Pro — הכל בתוך המכסה, בלי חריגה.</p>
 
 <h2>👀 איפה רואים את הצריכה</h2>
 <p>בתוך המערכת, תחת <strong>הגדרות ← כללי</strong>, מוצג לוג פעילות ה‑API/MCP ומד צריכה חודשי: כמה קרדיטים נוצלו מתוך המכסה, בפירוט לפי הודעות יוצאות ונכנסות. כך אפשר לעקוב בזמן אמת ולזהות מה צורך הכי הרבה. המכסה הכלולה והחריגה מוצגות גם במחירון ובתהליך ההצטרפות, ליד שם החבילה.</p>
@@ -13061,13 +13060,13 @@ const posts = [
     <tbody>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">Outgoing message via the API or MCP</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">2</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1</td>
         <td style="padding:12px;border:1px solid #e5e7eb;">Text or template. Counted only if the send was accepted</td>
       </tr>
       <tr style="background:#f9fafb;">
         <td style="padding:12px;border:1px solid #e5e7eb;">Incoming message forwarded to your URL</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">1</td>
-        <td style="padding:12px;border:1px solid #e5e7eb;">Counted only if your endpoint answered successfully, once per message</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#0369a1;">¼</td>
+        <td style="padding:12px;border:1px solid #e5e7eb;">A quarter of a credit per message (4 messages = 1 credit). Counted only if your endpoint answered successfully, once per message</td>
       </tr>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">Broadcast via the API</td>
@@ -13114,16 +13113,15 @@ const posts = [
     <tbody>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">Growth</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">3,000</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;" rowspan="3">₪0.015 per extra credit<br/><span style="font-size:0.85rem;color:#6b7280;">₪0.03 per outgoing message · ₪0.015 per incoming message</span></td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">1,500</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">₪0.08 per extra credit<br/><span style="font-size:0.85rem;color:#6b7280;">₪0.08 per outgoing message · ₪0.02 per incoming message</span></td>
       </tr>
       <tr style="background:#f9fafb;">
         <td style="padding:12px;border:1px solid #e5e7eb;">Pro</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">10,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">5,000</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">₪0.04 per extra credit<br/><span style="font-size:0.85rem;color:#6b7280;">₪0.04 per outgoing message · ₪0.01 per incoming message</span></td>
       </tr>
       <tr>
         <td style="padding:12px;border:1px solid #e5e7eb;">Business</td>
-        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">30,000</td>
+        <td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">20,000</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">₪0.02 per extra credit<br/><span style="font-size:0.85rem;color:#6b7280;">₪0.02 per outgoing message · ₪0.005 per incoming message</span></td>
       </tr>
     </tbody>
   </table>
@@ -13136,13 +13134,13 @@ const posts = [
 <h2>🧮 Worked examples</h2>
 <p><strong>A business connecting a CRM and an AI agent.</strong> In a given month, through the integration:</p>
 <ul>
-  <li>2,000 outgoing messages sent via the API → 4,000 credits</li>
-  <li>3,000 incoming messages forwarded to the CRM → 3,000 credits</li>
+  <li>2,000 outgoing messages sent via the API → 2,000 credits</li>
+  <li>3,000 incoming messages forwarded to the CRM → 750 credits</li>
   <li>An API broadcast to 1,500 recipients → 1,500 credits</li>
   <li>6,000 status updates and 10,000 CRM and read calls → 0 credits</li>
 </ul>
-<p><strong>Total 8,500 credits.</strong> On the Pro plan (10,000 included) — all within quota. On the Growth plan (3,000 included) the overage is 5,500 credits × ₪0.015 = <strong>≈ ₪82.5</strong> that month.</p>
-<p><strong>An organization that only receives messages into its own system.</strong> 4,000 incoming messages forwarded to its URL → 4,000 credits. On Growth the overage is 1,000 × ₪0.015 = <strong>₪15</strong>; on Pro — all within quota.</p>
+<p><strong>Total 4,250 credits.</strong> On the Pro plan (5,000 included) — all within quota. On the Growth plan (1,500 included) the overage is 2,750 credits × ₪0.08 = <strong>≈ ₪220</strong> that month.</p>
+<p><strong>An organization that only receives messages into its own system.</strong> 4,000 incoming messages forwarded to its URL → 1,000 credits. On Growth (1,500 included) and on Pro — all within quota, no overage.</p>
 
 <h2>👀 Where to see your usage</h2>
 <p>Inside the system, under <strong>Settings → General</strong>, you'll find the API/MCP activity log and a monthly usage meter: how many credits you used out of your quota, broken down into outgoing and incoming messages. That lets you monitor in real time and spot what consumes the most. The included quota and overage are also shown on the pricing page and during onboarding, next to the plan name.</p>
@@ -13239,7 +13237,7 @@ const posts = [
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">אנשי קשר</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">35,000</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">הודעות דיוור בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים AI בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
-      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים API/MCP בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים API/MCP בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">אחסון קבצים</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">50 GB</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">משתמשים</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">12</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">מספר וואטסאפ</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">1 כלול בכל חבילה</td></tr>
@@ -13262,7 +13260,7 @@ const posts = [
     <tbody>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">כל 1,000 הודעות דיוור נוספות</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪149</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪99</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪49</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">כל 500 קרדיטים AI נוספים</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪39 (בכל החבילות)</td></tr>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיט API/MCP נוסף</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪0.10 (בכל החבילות)</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיט API/MCP נוסף</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪0.08</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪0.04</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪0.02</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">GB אחסון נוסף</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪5</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">משתמש נוסף</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪30</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">מספר וואטסאפ נוסף</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪119</td></tr>
@@ -13278,7 +13276,7 @@ const posts = [
 <ol>
   <li><strong>כמה הודעות דיוור אשלח בחודש?</strong> (וואטסאפ ומייל נספרים בנפרד; הודעה אחת לנמען אחד = הודעה אחת.)</li>
   <li><strong>כמה קרדיטים AI אצרוך?</strong> תשובות הבוט הן הצריכה הכבדה — הערכה מפורטת במדריך קרדיטי ה‑AI.</li>
-  <li><strong>האם אחבר מערכת או סוכן AI דרך API / MCP?</strong> אם כן, העריכו את מספר הפעולות והכפילו במשקל (API ×1, MCP ×2, דיוור/ייצוא ×4, פעולת AI ×12).</li>
+  <li><strong>האם אחבר מערכת או סוכן AI דרך API / MCP?</strong> אם כן, העריכו כמה הודעות יוצאות תשלחו דרכם (קרדיט להודעה, גם בדיוור) וכמה הודעות נכנסות יועברו למערכת שלכם (רבע קרדיט להודעה).</li>
   <li><strong>כמה אנשים יעבדו במערכת?</strong> ומה נפח האחסון הצפוי לקבצים ומדיה.</li>
   <li><strong>האם צריך חשבוניות, מספר וואטסאפ נוסף או תמיכה מורחבת?</strong></li>
 </ol>
@@ -13320,11 +13318,11 @@ const posts = [
 <p>במקרה הזה <strong>Business זולה ב‑₪277 בחודש</strong> מ‑Pro, ובנוסף היא מעניקה יותר מרווח צמיחה. זו בדיוק הסיבה שחשוב לחשב לפני שבוחרים — החבילה "הזולה" לא תמיד זולה יותר בסוף החודש.</p>
 
 <h3>דוגמה 3 — אינטגרציה כבדה דרך API / MCP</h3>
-<p>4,500 קרדיטים API/MCP בחודש, 900 הודעות דיוור, 700 קרדיטים AI, שני משתמשים.</p>
+<p>10,000 קרדיטים API/MCP בחודש, 900 הודעות דיוור, 700 קרדיטים AI, שני משתמשים.</p>
 <ul>
-  <li><strong>Growth:</strong> ₪179 + חריגה של 3,500 קרדיטים × ₪0.10 = ₪350 → <strong>₪529</strong></li>
-  <li><strong>Pro:</strong> ₪359 + חריגה של 1,500 קרדיטים × ₪0.10 = ₪150 → <strong>₪509</strong></li>
-  <li><strong>Business:</strong> ₪645, הכל בתוך המכסה (10,000) → <strong>₪645</strong></li>
+  <li><strong>Growth:</strong> ₪179 + חריגה של 8,500 קרדיטים × ₪0.08 = ₪680 → <strong>₪859</strong></li>
+  <li><strong>Pro:</strong> ₪359 + חריגה של 5,000 קרדיטים × ₪0.04 = ₪200 → <strong>₪559</strong></li>
+  <li><strong>Business:</strong> ₪645, הכל בתוך המכסה (20,000) → <strong>₪645</strong></li>
 </ul>
 <p>כאן Pro היא הזולה ביותר. שימו לב שבחירה צריכה להתחשב גם במה שהחבילה נותנת (בוטים, משתמשים, תמיכה) — לא רק במחיר.</p>
 
@@ -13342,7 +13340,7 @@ const posts = [
     <tbody>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">הודעות דיוור בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑2,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑8,000</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים AI בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑3,300</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑8,700</td></tr>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים API/MCP בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑2,800</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑5,900</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים API/MCP בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑3,750</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">כ‑12,150</td></tr>
     </tbody>
   </table>
 </div>
@@ -13404,7 +13402,7 @@ const posts = [
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">Contacts</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">35,000</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Broadcast messages / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">AI credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
-      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">API/MCP credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">API/MCP credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">File storage</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">50 GB</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Users</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">12</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">WhatsApp number</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">1 included in every plan</td></tr>
@@ -13427,7 +13425,7 @@ const posts = [
     <tbody>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">Each extra 1,000 broadcast messages</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪149</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪99</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪49</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Each extra 500 AI credits</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪39 (all plans)</td></tr>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Extra API/MCP credit</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪0.10 (all plans)</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Extra API/MCP credit</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪0.08</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪0.04</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪0.02</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Extra GB of storage</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪5</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">Extra user</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪30</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Extra WhatsApp number</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">₪119</td></tr>
@@ -13443,7 +13441,7 @@ const posts = [
 <ol>
   <li><strong>How many broadcast messages will I send per month?</strong> (WhatsApp and email count separately; one message to one recipient = one message.)</li>
   <li><strong>How many AI credits will I use?</strong> Bot replies are the heaviest — see the AI credits guide for estimation.</li>
-  <li><strong>Will I connect a system or an AI agent through API / MCP?</strong> If so, estimate the number of actions and multiply by weight (API ×1, MCP ×2, bulk send/export ×4, AI action ×12).</li>
+  <li><strong>Will I connect a system or an AI agent through API / MCP?</strong> If so, estimate how many outgoing messages you will send through them (1 credit per message, broadcast included) and how many incoming messages will be forwarded to your system (a quarter of a credit each).</li>
   <li><strong>How many people will work in the system?</strong> And how much file/media storage do I expect?</li>
   <li><strong>Do I need invoices, an extra WhatsApp number or extended support?</strong></li>
 </ol>
@@ -13485,11 +13483,11 @@ const posts = [
 <p>Here <strong>Business is ₪277 cheaper per month</strong> than Pro, with more room to grow. That is exactly why it pays to calculate before choosing — the "cheaper" plan isn't always cheaper at the end of the month.</p>
 
 <h3>Example 3 — A heavy API / MCP integration</h3>
-<p>4,500 API/MCP credits per month, 900 broadcast messages, 700 AI credits, two users.</p>
+<p>10,000 API/MCP credits per month, 900 broadcast messages, 700 AI credits, two users.</p>
 <ul>
-  <li><strong>Growth:</strong> ₪179 + 3,500 extra credits × ₪0.10 = ₪350 → <strong>₪529</strong></li>
-  <li><strong>Pro:</strong> ₪359 + 1,500 extra credits × ₪0.10 = ₪150 → <strong>₪509</strong></li>
-  <li><strong>Business:</strong> ₪645, everything within quota (10,000) → <strong>₪645</strong></li>
+  <li><strong>Growth:</strong> ₪179 + 8,500 extra credits × ₪0.08 = ₪680 → <strong>₪859</strong></li>
+  <li><strong>Pro:</strong> ₪359 + 5,000 extra credits × ₪0.04 = ₪200 → <strong>₪559</strong></li>
+  <li><strong>Business:</strong> ₪645, everything within quota (20,000) → <strong>₪645</strong></li>
 </ul>
 <p>Here Pro is the cheapest. Keep in mind that the choice should also reflect what each plan gives you (bots, users, support) — not price alone.</p>
 
@@ -13507,7 +13505,7 @@ const posts = [
     <tbody>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">Broadcast messages / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~2,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~8,000</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">AI credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~3,300</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~8,700</td></tr>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">API/MCP credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~2,800</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~5,900</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">API/MCP credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~3,750</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">~12,150</td></tr>
     </tbody>
   </table>
 </div>
@@ -13953,6 +13951,244 @@ const posts = [
 `
   },
   seoUrl: getSeoUrl('דיוור חד פעמי בוואטסאפ בלי מספר ובלי אימות מול מטא — השקנו פתרון')
+},
+{
+  id: 50,
+  seoTitle: {
+    he: 'תבנית שירות (Utility) או שיווק (Marketing) בוואטסאפ — ההבדלים ואיך לאשר תבנית כשירות | גמבוט',
+    en: 'WhatsApp Utility vs Marketing Templates — The Differences and How to Get a Template Approved as Utility | Gambot'
+  },
+  metaDescription: {
+    he: 'מה ההבדל בין תבנית Utility ל-Marketing בוואטסאפ API, למה זה משפיע על שגיאות 131049 ו-130472, ואיך כותבים תבנית ש-Meta מאשרת כשירות. כולל דוגמאות לפני ואחרי.',
+    en: 'What is the difference between WhatsApp API Utility and Marketing templates, why it affects errors 131049 and 130472, and how to write a template Meta approves as Utility — with before/after examples.'
+  },
+  keywords: {
+    he: ['תבנית utility', 'תבנית marketing', 'ההבדל בין utility ל-marketing', 'סיווג תבניות וואטסאפ', 'שגיאה 131049', 'שגיאה 130472', 'תבנית וואטסאפ שירות', 'אישור תבנית וואטסאפ', 'whatsapp api תבניות', 'גמבוט'],
+    en: ['whatsapp utility template', 'whatsapp marketing template', 'utility vs marketing whatsapp', 'whatsapp template categories', 'whatsapp error 131049', 'whatsapp error 130472', 'whatsapp template approval', 'whatsapp template recategorization', 'whatsapp api templates']
+  },
+  title: {
+    he: 'תבנית שירות (Utility) או שיווק (Marketing) בוואטסאפ — ההבדלים ואיך לאשר תבנית כשירות',
+    en: 'WhatsApp Utility vs Marketing Templates — The Differences and How to Get a Template Approved as Utility'
+  },
+  description: {
+    he: 'מה Meta דורשת כדי לסווג תבנית כשירות, למה שיווק נחסם בשגיאות 131049 ו-130472, איך כותבים נכון, ומה גמבוט עושה בשבילכם.',
+    en: 'What Meta requires to classify a template as Utility, why marketing gets blocked with errors 131049 and 130472, how to write it right, and what Gambot does for you.'
+  },
+  category: 'WhatsApp API',
+  author: 'ניר סגס',
+  publishedDate: '2026-11-05',
+  image: '/blog/blogHeader.jpg',
+  readTime: 7,
+  featured: false,
+  faq: {
+    he: [
+      { q: 'מה ההבדל בין תבנית Utility לתבנית Marketing?', a: 'תבנית Utility היא הודעה לא שיווקית שקשורה לעסקה, להזמנה, לחשבון או לבקשה ספציפית של הלקוח (או הודעה קריטית עבורו). כל מה שמקדם, משכנע או מציע — וגם תוכן מעורב של שירות ושיווק — נחשב Marketing.' },
+      { q: 'האם בחירה ב-Utility בעת יצירת התבנית מספיקה?', a: 'לא. Meta מסווגת לפי התוכן ולא לפי הקטגוריה שבחרתם. תבנית שנראית שיווקית תאושר כ-Marketing, או תסווג מחדש מ-Utility ל-Marketing גם אחרי שאושרה.' },
+      { q: 'האם שם התבנית משפיע על הסיווג?', a: 'לפי התיעוד של Meta הסיווג נקבע לפי תוכן ההודעה. שם תיאורי באנגלית הוא היגיינה טובה לניהול התבניות, אבל לא תחליף לכתיבה נכונה של התוכן.' },
+      { q: 'האם שגיאות 131049 ו-130472 חלות על תבניות Utility?', a: 'לא. שתיהן חלות רק על תבניות Marketing: 131049 היא מגבלת הודעות שיווק פר נמען, ו-130472 היא ניסוי של Meta שבו כ-1% מהמספרים לא מקבלים הודעות שיווק. תבנית שנשארה Utility לא נחסמת בגללן.' },
+      { q: 'מה עושים כשתבנית שירות סווגה בטעות כשיווק?', a: 'אפשר לבקש ביקורת על הקטגוריה מול Meta עד 60 יום מרגע השינוי, או לכתוב את התבנית מחדש כך שתהיה ספציפית לעסקה ובלי שפה שיווקית.' },
+      { q: 'אפשר לשלוח תבנית שירות ללקוח שלא ביקש כלום?', a: 'לא כדאי. הודעת שירות צריכה להיות קשורה לפעולה, לבקשה או לשירות קיים של הלקוח. שליחת תוכן שיווקי כתבנית שירות עלולה להוביל לסיווג מחדש ולסנקציות על החשבון.' }
+    ],
+    en: [
+      { q: 'What is the difference between a Utility and a Marketing template?', a: 'A Utility template is a non-promotional message tied to a transaction, order, account or a specific customer request (or something critical to them). Anything that promotes, persuades or offers — and mixed service-plus-marketing content — is Marketing.' },
+      { q: 'Is choosing Utility when creating the template enough?', a: 'No. Meta classifies by content, not by the category you pick. A template that looks promotional is approved as Marketing, or recategorized from Utility to Marketing even after approval.' },
+      { q: 'Does the template name affect the classification?', a: 'According to Meta\'s documentation, the category is determined by the message content. A descriptive English name is good hygiene for managing templates, but it does not replace writing the content correctly.' },
+      { q: 'Do errors 131049 and 130472 apply to Utility templates?', a: 'No. Both apply only to Marketing templates: 131049 is a per-recipient marketing message limit, and 130472 is a Meta experiment where about 1% of numbers do not receive marketing messages. A template that stays Utility is not blocked by them.' },
+      { q: 'What if a service template was classified as marketing by mistake?', a: 'You can request a category review from Meta within 60 days of the change, or rewrite the template so it is specific to a transaction and free of promotional language.' },
+      { q: 'Can I send a Utility template to a customer who asked for nothing?', a: 'It is not advisable. A service message must relate to an action, request or existing service of the customer. Sending promotional content as a Utility template can lead to recategorization and account-level restrictions.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">📋 מדריך תבניות וואטסאפ</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">שירות או שיווק? ההבדל קובע אם ההודעה תגיע</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">מה Meta דורשת כדי לאשר תבנית כשירות, למה הודעות שיווק נחסמות, ואיך כותבים נכון.</p>
+</div>
+
+<p><strong>בוואטסאפ API כל תבנית משויכת לאחת משלוש קטגוריות — שיווק (Marketing), שירות (Utility) או אימות (Authentication) — ו-Meta מחליטה עליה לפי תוכן ההודעה, לא לפי מה שבחרתם בטופס.</strong> ההבדל חשוב כי רוב מגבלות המסירה של וואטסאפ חלות רק על שיווק: תבנית שירות אמיתית ממשיכה להגיע גם כשתבנית שיווק נחסמת.</p>
+
+<h2>שלוש הקטגוריות במבט אחד</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">קטגוריה</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">למה היא מיועדת</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;"><strong>Marketing</strong></td><td style="border:1px solid #e2e8f0;padding:8px 12px;">מודעות, מכירות, הצעות, חידוש קשר, בניית קשר עם לקוח. הקטגוריה הגמישה ביותר</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">“מבצע לחברי מועדון עד יום שישי”</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;"><strong>Utility</strong></td><td style="border:1px solid #e2e8f0;padding:8px 12px;">מעקב אחרי פעולה או בקשה של הלקוח: הזמנה, תשלום, תור, מסמך, עדכון חשבון</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">“הצעת המחיר מס׳ 1042 שביקשת מוכנה לצפייה”</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;"><strong>Authentication</strong></td><td style="border:1px solid #e2e8f0;padding:8px 12px;">קודים חד-פעמיים לאימות זהות. רק קטגוריה זו יכולה לשלוח קוד OTP</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">“קוד האימות שלך הוא 482913”</td></tr>
+  </tbody>
+</table>
+
+<h2>למה זה משנה: מה נחסם רק בשיווק</h2>
+<p>אם ראיתם בצ׳אט או בדוח קמפיין הודעה שנכשלה עם אחת מהשגיאות הבאות, סביר מאוד שהתבנית שנשלחה הייתה Marketing:</p>
+<ul>
+  <li><strong>131049 — “Healthy Ecosystem”.</strong> מגבלת הודעות שיווק פר נמען: מי שכבר קיבל יותר מדי הודעות שיווק (מכל העסקים ביחד) או לא מגיב אליהן, לא יקבל עוד. Meta ממליצה להמתין לפחות 24 שעות, וניסיונות חוזרים מיידיים עלולים להאריך את החסימה. המגבלה לא חלה על Utility ו-Authentication.</li>
+  <li><strong>130472 — “מספר בניסוי”.</strong> כ-1% מהמספרים בעולם משתתפים בניסוי של Meta ולא מקבלים תבניות שיווק מאף עסק, אלא אם יש חלון שיחה פתוח של 24 שעות. אי אפשר לבטל את זה ושליחה חוזרת תיכשל שוב. תבניות שירות לא מושפעות מהניסוי.</li>
+</ul>
+<p>בנוסף, תבנית שירות זולה בדרך כלל מתבנית שיווק לפי תעריפון Meta, ואין סיכוי שתיחסם על ידי תקרת התדירות של הנמען.</p>
+
+<h2>מה Meta דורשת כדי לסווג תבנית כשירות</h2>
+<p>שני תנאים, ושניהם חייבים להתקיים:</p>
+<ol>
+  <li><strong>לא שיווקית.</strong> בלי תוכן מקדם, בלי שכנוע, בלי הצעות, בלי הזמנה לרכוש עוד.</li>
+  <li><strong>ספציפית ללקוח או חיונית לו.</strong> ההודעה קשורה באופן ברור להזמנה, לחשבון, לשירות או לעסקה של הנמען, או שהוא ביקש אותה — או שהיא חיונית לו (למשל התראת בטיחות).</li>
+</ol>
+<p>לפי הנחיות Meta, תבנית עם תוכן מעורב — למשל עדכון הזמנה שמצורפת אליו הנחה, או סקר שביעות רצון עם אלמנט שיווקי — נחשבת שיווק.</p>
+
+<h2>מה כן שירות: סוגי הודעות שמתאימים</h2>
+<ul>
+  <li><strong>ניהול הזמנה או עסקה</strong> — אישור, עדכון משלוח, ביטול, החזר כספי. בלי המלצה על מוצרים נוספים.</li>
+  <li><strong>עדכוני חשבון והתראות</strong> — תזכורת תשלום, יתרה, שינוי פרטי שירות, תזכורת לתור.</li>
+  <li><strong>משוב על אינטראקציה ספציפית</strong> — “איך היה השירות בהזמנה {{1}}?”. סקר כללי, שלא קשור להזמנה או מפגש מסוים, לא יאושר כשירות.</li>
+  <li><strong>המשך שיחה שהלקוח ביקש</strong> — למשל המשך פנייה שהחלה בערוץ אחר. אסור ליזום אותה בלי שהלקוח ביקש לעבור לוואטסאפ.</li>
+</ul>
+
+<h2>דוגמאות: מה Meta תסווג כשיווק, ואיך להפוך את זה לשירות</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#fef2f2;">נחשב שיווק</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f0fdf4;">מתאים לשירות</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">היי {{1}}, מה קורה? רצינו לבדוק מה שלומך 😊</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">שלום {{1}}, חזרנו אליך בנוגע לפנייה מס׳ {{2}} שפתחת אצלנו. אפשר להשיב כאן להמשך הטיפול.</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">שלחנו לך הצעת מחיר מעולה! כדאי לסגור השבוע לפני שהמחיר עולה 🔥</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">שלום {{1}}, הצעת המחיר מס׳ {{2}} שביקשת מוכנה וצורפה להודעה.</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">נשמח לשמוע מה דעתך עלינו! דרגו אותנו</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">שלום {{1}}, איך היה השירות בביקור ב-{{2}}? אפשר להשיב כאן בקצרה.</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">התור שלך מחר! ובהזדמנות זו — 10% הנחה על טיפול נוסף</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">שלום {{1}}, תזכורת: התור שלך אצלנו מחר בשעה {{2}}. לשינוי או ביטול אפשר להשיב כאן.</td></tr>
+  </tbody>
+</table>
+
+<h2>7 כללים לכתיבת תבנית שירות</h2>
+<ol>
+  <li><strong>כתבו על עסקה אחת ספציפית.</strong> מספר הזמנה, מספר הצעה, תאריך תור — משתנים שמצביעים על משהו שהלקוח עשה או ביקש.</li>
+  <li><strong>בלי מילות שיווק.</strong> מבצע, הנחה, בלעדי, מוגבל, “אל תפספסו”, “הזדמנות”. גם משפט אחד כזה הופך את התבנית כולה לשיווק.</li>
+  <li><strong>אל תערבבו.</strong> אם רוצים להציע משהו נוסף, זו תבנית שיווק נפרדת.</li>
+  <li><strong>הסבירו מה קרה ומה עושים עכשיו.</strong> תועלת מעשית: צפייה במסמך, אישור, תשלום, תיאום.</li>
+  <li><strong>כפתורים תואמים.</strong> “צפייה בהצעה”, “תשלום”, “אישור הגעה” — לא “קנו עכשיו” או “לפרטים נוספים”.</li>
+  <li><strong>דוגמאות משתנים אמיתיות.</strong> מספרי הזמנה ותאריכים ממשיים, לא “דוגמה” או “טקסט”.</li>
+  <li><strong>טון מקצועי ותמציתי.</strong> בלי אימוג׳ים מרובים ובלי סימני קריאה חוזרים.</li>
+</ol>
+
+<h2>מה לא עובד</h2>
+<ul>
+  <li><strong>לבחור Utility בטופס ולקוות.</strong> Meta בודקת את התוכן. מאפריל 2025 תבנית שהוגדרה Utility ונראית שיווקית מאושרת אוטומטית כ-Marketing, במקום להידחות.</li>
+  <li><strong>שם תבנית “שירותי”.</strong> התיעוד של Meta קובע שהסיווג מבוסס על התוכן. שם תיאורי באנגלית עוזר לסדר, אבל לא משנה את ההחלטה.</li>
+  <li><strong>לעקוף את המערכת.</strong> Meta מסווגת מחדש גם תבניות שכבר אושרו כשירות. עסק שמסווג שיווק כשירות שוב ושוב מקבל אזהרה, אחריה מגבלת קצב על הודעות שירות (לפחות 7 ימים), ובהמשך סיווג מחדש של כל תבניות השירות בחשבון לשיווק (7 עד 30 ימים). זה פוגע בהודעות החשובות באמת.</li>
+</ul>
+
+<div style="background:#fffbeb;border-inline-start:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:26px 0;font-size:0.95rem;color:#92400e;">
+  ⚠️ <strong>אם תבנית שירות סווגה כשיווק:</strong> אפשר לבקש ביקורת על הקטגוריה מול Meta עד 60 יום מהשינוי. אם התוכן באמת שיווקי, הפתרון הוא לכתוב אותו נכון כשיווק ולשלוח רק למי שהסכים.
+</div>
+
+<h2>ומה עם הודעות שיווק? הן לגיטימיות, ויש להן כללים</h2>
+<p>אין בעיה בשיווק בוואטסאפ, אבל הוא כפוף למגבלות שתבנית שירות פטורה מהן. כדי להקטין כשלונות: שלחו רק למי שנתן הסכמה, אל תחזרו על אותה הודעה בטווח של 24 שעות לנמען שנחסם, והעדיפו להשיב בהודעה חופשית כשהלקוח כבר כתב לכם וחלון 24 השעות פתוח.</p>
+
+<h2>איפה גמבוט עוזרת</h2>
+<ul>
+  <li><strong>ברירת מחדל של שירות.</strong> יצירת תבנית חדשה מתחילה בקטגוריית Utility.</li>
+  <li><strong>מחולל תבניות עם AI שמבין את ההבדל.</strong> בקטגוריית Utility הוא כותב בסגנון נקי ומקצועי, בלי שפה שיווקית ובלי שורת הסרה. בשיווק הוא כותב ערני ומוסיף שורת הסרה בפוטר.</li>
+  <li><strong>שם תבנית באנגלית אוטומטי.</strong> בכתיבת שם בעברית, המערכת מתרגמת לשם עובדתי ותיאורי של מטרת ההודעה, כמו <code>quote_ready_1125</code>, ומסירה ממנו מילות שיווק. זו היגיינה ולא הבטחה לסיווג, כי Meta מחליטה לפי התוכן.</li>
+  <li><strong>הסבר בעברית על כל כשל.</strong> בפרטי הודעה שנכשלה (131049, 130472 ועוד) מוצג מה זה אומר ומה עושים, כולל מתי תבנית שירות פותרת את הבעיה.</li>
+  <li><strong>שליחת מסמכים נכונה.</strong> הצעות מחיר, חשבוניות וקישורי תשלום יוצאים כהודעה חופשית כשחלון 24 השעות פתוח, וכתבנית כשהוא סגור — ובחשבונות עם כמה מספרים, מהמספר שבו התנהלה השיחה.</li>
+  <li><strong>בלי כפילויות.</strong> כשתבנית זהה כבר קיימת וחיה, המערכת משתמשת בה ולא יוצרת עוד אחת.</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">הכלל הקצר</h3>
+  <p style="margin:0;opacity:0.92;font-size:1rem;">אם ההודעה עוסקת במשהו ספציפי שהלקוח עשה או ביקש, ואין בה אף משפט שמנסה למכור — היא שירות. כל השאר הוא שיווק, וכדאי לנהל אותו בהתאם.</p>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">📋 WhatsApp template guide</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">Utility or Marketing? The difference decides whether your message arrives</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">What Meta requires to approve a template as Utility, why marketing messages get blocked, and how to write it right.</p>
+</div>
+
+<p><strong>In the WhatsApp API every template belongs to one of three categories — Marketing, Utility or Authentication — and Meta decides which one from the message content, not from what you picked in the form.</strong> The distinction matters because most WhatsApp delivery limits apply only to marketing: a genuine Utility template keeps arriving even when a marketing template is blocked.</p>
+
+<h2>The three categories at a glance</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">Category</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">Purpose</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">Example</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;"><strong>Marketing</strong></td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Awareness, sales, offers, re-engagement, relationship building. The most flexible category</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">"Members-only sale until Friday"</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;"><strong>Utility</strong></td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Follow-up on a customer's action or request: order, payment, appointment, document, account update</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">"The quote no. 1042 you requested is ready to view"</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;"><strong>Authentication</strong></td><td style="border:1px solid #e2e8f0;padding:8px 12px;">One-time codes to verify identity. Only this category may send an OTP</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">"Your verification code is 482913"</td></tr>
+  </tbody>
+</table>
+
+<h2>Why it matters: what is blocked only for marketing</h2>
+<p>If a message failed in the chat or in a campaign report with one of these errors, the template sent was very likely Marketing:</p>
+<ul>
+  <li><strong>131049 — "Healthy Ecosystem".</strong> A per-recipient marketing limit: a person who already received too many marketing messages (from all businesses combined) or does not engage with them will not get more. Meta recommends waiting at least 24 hours, and immediate retries may extend the block. It does not apply to Utility and Authentication.</li>
+  <li><strong>130472 — "number is part of an experiment".</strong> About 1% of numbers worldwide are in a Meta experiment and do not receive marketing templates from any business unless a 24-hour customer service window is open. It cannot be switched off and resending fails again. Utility templates are not affected.</li>
+</ul>
+<p>In addition, a Utility template is usually cheaper than a marketing one on Meta's rate card, and it cannot be blocked by the recipient's frequency cap.</p>
+
+<h2>What Meta requires to classify a template as Utility</h2>
+<p>Two conditions, and both must be met:</p>
+<ol>
+  <li><strong>Non-promotional.</strong> No promotional or persuasive content, no offers, no invitation to buy more.</li>
+  <li><strong>Specific to the customer or essential to them.</strong> The message clearly relates to the recipient's order, account, service or transaction, or they requested it — or it is essential to them (for example a safety alert).</li>
+</ol>
+<p>Per Meta's guidelines, mixed content — such as an order update with a promo attached, or a feedback survey with a promotional element — is treated as marketing.</p>
+
+<h2>What counts as Utility</h2>
+<ul>
+  <li><strong>Order or transaction management</strong> — confirmation, shipping update, cancellation, refund. No recommending more products.</li>
+  <li><strong>Account updates and alerts</strong> — payment reminders, balances, service changes, appointment reminders.</li>
+  <li><strong>Feedback on a specific interaction</strong> — "How was the service on order {{1}}?". A generic survey unrelated to a particular order or visit will not be approved as Utility.</li>
+  <li><strong>Continuing a conversation the customer asked for</strong> — for example following up on a request that started in another channel. It must not be initiated unless the customer asked to move to WhatsApp.</li>
+</ul>
+
+<h2>Examples: what Meta classifies as marketing, and the Utility rewrite</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#fef2f2;">Treated as marketing</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f0fdf4;">Fits Utility</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">Hi {{1}}, what's up? Just checking in 😊</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Hello {{1}}, we are following up on the request no. {{2}} you opened with us. Reply here to continue.</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">We sent you a great quote! Close this week before the price goes up 🔥</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Hello {{1}}, the quote no. {{2}} you requested is ready and attached.</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">We'd love to hear what you think of us! Rate us</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Hello {{1}}, how was the service on your visit on {{2}}? Reply here in a few words.</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">Your appointment is tomorrow! And while you're at it — 10% off another treatment</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Hello {{1}}, a reminder: your appointment with us is tomorrow at {{2}}. Reply here to change or cancel.</td></tr>
+  </tbody>
+</table>
+
+<h2>7 rules for writing a Utility template</h2>
+<ol>
+  <li><strong>Write about one specific transaction.</strong> Order number, quote number, appointment date — variables that point to something the customer did or asked for.</li>
+  <li><strong>No marketing words.</strong> Sale, discount, exclusive, limited, "don't miss out", "opportunity". Even one such sentence turns the whole template into marketing.</li>
+  <li><strong>Don't mix.</strong> If you want to offer something else, that is a separate marketing template.</li>
+  <li><strong>Say what happened and what to do now.</strong> A practical benefit: view the document, confirm, pay, schedule.</li>
+  <li><strong>Matching buttons.</strong> "View quote", "Pay", "Confirm arrival" — not "Buy now" or "Learn more".</li>
+  <li><strong>Real variable examples.</strong> Actual order numbers and dates, not "example" or "text".</li>
+  <li><strong>Professional, concise tone.</strong> Few emojis and no repeated exclamation marks.</li>
+</ol>
+
+<h2>What does not work</h2>
+<ul>
+  <li><strong>Picking Utility in the form and hoping.</strong> Meta checks the content. Since April 2025 a template submitted as Utility that looks promotional is approved as Marketing instead of being rejected.</li>
+  <li><strong>A "service-like" template name.</strong> Meta's documentation says the category is based on content. A descriptive English name helps organization but does not change the decision.</li>
+  <li><strong>Gaming the system.</strong> Meta also recategorizes templates that were already approved as Utility. A business that repeatedly submits marketing as Utility gets a warning, then a rate limit on Utility messages (at least 7 days), and later all Utility templates on the account are recategorized to Marketing (7 to 30 days). That hurts the messages that truly matter.</li>
+</ul>
+
+<div style="background:#fffbeb;border-inline-start:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:26px 0;font-size:0.95rem;color:#92400e;">
+  ⚠️ <strong>If a service template was classified as marketing:</strong> you can request a category review from Meta within 60 days of the change. If the content really is promotional, the fix is to write it properly as marketing and send it only to people who consented.
+</div>
+
+<h2>And marketing messages? They are legitimate, with rules</h2>
+<p>There is nothing wrong with marketing on WhatsApp, but it is subject to limits that Utility is exempt from. To reduce failures: send only to people who consented, don't repeat the same message within 24 hours to a recipient who was blocked, and prefer a free-form reply when the customer has already written to you and the 24-hour window is open.</p>
+
+<h2>Where Gambot helps</h2>
+<ul>
+  <li><strong>Utility by default.</strong> Creating a new template starts with the Utility category.</li>
+  <li><strong>An AI template generator that knows the difference.</strong> For Utility it writes in a clean, professional style with no promotional language and no opt-out line. For marketing it writes with energy and adds an opt-out line to the footer.</li>
+  <li><strong>Automatic English template names.</strong> When you type a name in Hebrew, the system translates it into a factual, descriptive name of the message purpose, such as <code>quote_ready_1125</code>, and strips marketing words. This is hygiene, not a classification promise, because Meta decides by content.</li>
+  <li><strong>Plain-language explanation of every failure.</strong> The details of a failed message (131049, 130472 and more) show what it means and what to do, including when a Utility template solves the problem.</li>
+  <li><strong>Sending documents correctly.</strong> Quotes, invoices and payment links go out as a free-form message while the 24-hour window is open, and as a template when it is closed — and in accounts with several numbers, from the number the conversation took place on.</li>
+  <li><strong>No duplicates.</strong> When an identical live template already exists, the system reuses it instead of creating another.</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">The short rule</h3>
+  <p style="margin:0;opacity:0.92;font-size:1rem;">If the message is about something specific the customer did or asked for, and no sentence in it tries to sell — it is Utility. Everything else is marketing, and should be managed as such.</p>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('תבנית שירות (Utility) או שיווק (Marketing) בוואטסאפ — ההבדלים ואיך לאשר תבנית כשירות')
 }
 ];
 

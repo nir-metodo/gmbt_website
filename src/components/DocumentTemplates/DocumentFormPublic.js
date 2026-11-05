@@ -243,7 +243,7 @@ const DocumentFormPublic = () => {
 
   const orderedFields = useMemo(() => {
     return [...fields]
-      .filter(f => !['date_today', 'signature', 'initials', 'variable'].includes((f.fieldType || '').toLowerCase())) // read-only / tap-to-sign, not keyboard-navigable
+      .filter(f => !['date_today', 'variable'].includes((f.fieldType || '').toLowerCase())) // read-only auto fields are not navigable; signature/initials ARE (counted + scrolled to)
       .sort((a, b) => {
         const pa = a.page || 1, pb = b.page || 1;
         if (pa !== pb) return pa - pb;
@@ -475,17 +475,17 @@ const DocumentFormPublic = () => {
       return <div style={{ ...readOnlyBox, background: 'transparent', border: 'none', color: '#111827', justifyContent: 'flex-start' }} title={labelFor(f)}>{disp}</div>;
     }
     if (ft === 'signature' || ft === 'initials') {
-      const openSig = (e) => { stop(e); setActiveSignatureFieldId(id); setShowSignatureModal(true); };
+      const openSig = (e) => { stop(e); setActiveSignatureFieldId(id); setShowSignatureModal(true); const oi = orderedFields.findIndex(x => x.fieldId === id); if (oi >= 0) setActiveIdx(oi); };
       if (val) {
         return (
-          <div onClick={openSig} title={L('לחיצה לחתימה מחדש', 'Tap to re-sign')}
+          <div ref={(el) => registerRef(id, el)} onClick={openSig} title={L('לחיצה לחתימה מחדש', 'Tap to re-sign')}
             style={{ ...base, padding: 2, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fff' }}>
             <img src={val} alt="signature" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
           </div>
         );
       }
       return (
-        <div onClick={openSig} title={labelFor(f)}
+        <div ref={(el) => registerRef(id, el)} onClick={openSig} title={labelFor(f)}
           style={{ ...base, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, background: '#f8fafc', borderStyle: 'dashed', color: '#2e6155', fontWeight: 600 }}>
           ✍️ {ft === 'initials' ? L('ראשי תיבות', 'Initials') : L('לחתום כאן', 'Sign here')}
         </div>
@@ -872,7 +872,7 @@ const DocumentFormPublic = () => {
         <div style={styles.navBar}>
           <button type="button" style={{ ...styles.navBtn, opacity: activeIdx <= 0 ? 0.4 : 1 }}
             disabled={activeIdx <= 0} onClick={goPrevField} title={L('שדה קודם', 'Previous field')}>
-            {isRTL ? '›' : '‹'} {L('הקודם', 'Prev')}
+            {L('הקודם', 'Prev')}
           </button>
           <div style={styles.navInfo}>
             <span style={styles.navCount}>{L(`שדה ${activeIdx + 1} מתוך ${orderedFields.length}`, `Field ${activeIdx + 1} of ${orderedFields.length}`)}</span>
