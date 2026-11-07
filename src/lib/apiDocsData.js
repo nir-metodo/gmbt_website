@@ -177,7 +177,7 @@ export const API_SECTIONS = [
         path: '/messages/{messageId}/status',
         scope: 'conversations:read',
         summary: {
-          he: 'סטטוס שליחה של הודעה לפי מזהה ההודעה (ה-messageId שחוזר מ-send-text / send-template, או לכל נמען מ-campaigns/send). שימושי כשמשתמש אומר "לא רואה שההודעה הגיעה". אם הכשל הוא 131042 מתווסף בלוק paymentIssue שמסביר שאמצעי התשלום ל-API נפרד מזה של המודעות (Ads) — טעות נפוצה.',
+          he: 'סטטוס שליחה של הודעה לפי מזהה ההודעה (ה-messageId שחוזר מ-send-text / send-template, או לכל נמען מ-campaigns/send). שימושי כשמשתמש אומר "לא רואה שההודעה הגיעה". אם הכשל הוא 131042 מתווסף בלוק paymentIssue שמסביר שאמצעי התשלום ל-API נפרד מזה של המודעות (Ads) — טעות נפוצה. כשההודעה נכשלה מוחזר גם failureInfo: הסבר מובנה על קוד השגיאה של Meta (האם היא קשורה למגבלת שיווק, האם כדאי לנסות שוב, מה לעשות) — ובכשלי שיווק (131049 / 130472 / 131050) גם serviceAlternative עם הצעה לשלוח את החלק העסקי כתבנית שירות (UTILITY) או כטקסט חופשי כשחלון 24 השעות פתוח.',
           en: 'Delivery status of a message by its messageId (the id returned from send-text / send-template, or per-recipient from campaigns/send). Use it when a user says "I don\'t see the message arrived". If the failure is Meta 131042, a paymentIssue block is added explaining that the WhatsApp-API payment method is SEPARATE from the Meta Ads payment method — a common mistake.',
         },
         params: [
@@ -199,6 +199,16 @@ export const API_SECTIONS = [
       "message": "אין אמצעי תשלום פעיל לחשבון ה-WhatsApp Business API ב-Meta.",
       "commonMistake": "טעות נפוצה: לחשוב שאמצעי התשלום של המודעות (Ads) מכסה גם הודעות API — אלו אמצעים נפרדים לגמרי.",
       "fix": "Meta Business Settings ▸ Billing & Payments של חשבון ה-WhatsApp — הוסיפו אמצעי תשלום."
+    },
+    "failureInfo": {
+      "metaCode": 131049,
+      "reason": "marketing_limit",
+      "marketingRelated": true,
+      "retryable": false,
+      "templateCategory": "MARKETING",
+      "summary": "Meta לא מסרה הודעת שיווק זו כדי לשמור על חוויית המשתמש...",
+      "whatToDo": ["..."],
+      "serviceAlternative": { "applies": "...", "guide": "GET /api/v1/templates/category-guide", "howTo": "POST /api/v1/templates with category UTILITY", "freeTextInsteadIfWindowOpen": "..." }
     }
   }
 }`,
@@ -565,6 +575,22 @@ export const API_SECTIONS = [
       },
       {
         method: 'GET',
+        path: '/templates/category-guide',
+        scope: 'templates:read',
+        summary: {
+          he: 'מדריך שירות (UTILITY) מול שיווק (MARKETING): איך Meta מחליטה, למה תבנית שירות זולה ופחות נחסמת (שגיאות 131049 / 130472), דפוסי כתיבה שאושרו כשירות ודוגמאות מוכנות לתבניות שירות. קראו אותו לפני יצירת תבנית שירות, ובכל כשל שיווק ב-GET /messages/{id}/status.',
+          en: 'Service (UTILITY) vs MARKETING guide: how Meta decides, why service templates are cheaper and less likely to be blocked (errors 131049 / 130472), writing patterns that get approved as service, and ready-made service-template examples. Read it before creating a service template and after any marketing failure in GET /messages/{id}/status.',
+        },
+        params: [],
+        request: null,
+        curl: `curl "${API_BASE}/templates/category-guide" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
+        response: `{
+  "success": true,
+  "data": { "summary": "...", "observedInPractice": { ... }, "examples": [ { "name": "...", "template": { "category": "UTILITY", "components": [ ... ] } } ] }
+}`,
+      },
+      {
+        method: 'GET',
         path: '/templates/{templateId}',
         scope: 'templates:read',
         summary: { he: 'תבנית בודדת כולל סטטוס האישור של Meta.', en: 'A single template incl. Meta approval status.' },
@@ -629,7 +655,15 @@ export const API_SECTIONS = [
         response: `{
   "success": true,
   "message": "Template created",
-  "data": { "id": "?", "status": "PENDING" }
+  "data": { "id": "?", "status": "PENDING" },
+  "categoryGuidance": {
+    "requestedCategory": "UTILITY",
+    "metaDecides": true,
+    "guide": "GET /api/v1/templates/category-guide",
+    "estimate": { "verdict": "...", "utilityScore": 40, "issues": ["..."], "tips": ["..."] },
+    "likelyMetaCategory": "MARKETING",
+    "warning": "..."
+  }
 }`,
         examples: [
           {
