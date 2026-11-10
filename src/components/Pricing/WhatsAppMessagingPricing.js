@@ -290,6 +290,7 @@ const TX = {
     noticeText: 'המחירים המוצגים כאן הם עבור הודעות תבנית (Template), בדולר ארה"ב להודעה שנמסרה, ומעודכנים לפי מחירון Meta בתוקף מ-1 באוקטובר 2026. הודעות שירות בתגובה ללקוח בתוך חלון 24 שעות חינמיות עד 1,000 בחודש לכל מספר עסקי, ובחלון כניסה חינמי (עד 7 ימים) ההודעות אינן מחויבות.',
     noticeExp: 'לרוב שיחה תיפתח באמצעות פניה יזומה של הלקוח או באמצעות שליחת טמפלט בתשלום. לאחר פתיחת השיחה, שאר ההתכתבות הן הודעות שירות בתוך חלון 24 שעות (חינמיות עד המכסה החודשית). מחירי Meta מתעדכנים אחת לרבעון (ינואר, אפריל, יולי, אוקטובר); בהודעות Utility ואימות חלות הנחות לפי נפח שליחה.',
     selectCountry: 'בחרו מדינה:',
+    selectCountryHint: 'מחיר המדינה נקבע לפי המדינה של הנמען אליו שולחים את ההודעה (קידומת המספר שלו), ולא לפי המדינה של העסק.',
     selectCategory: 'בחרו קטגוריית הודעה:',
     selectMessages: 'מספר הודעות לחודש:',
     catMarketing: 'שיווק (Marketing)',
@@ -400,6 +401,7 @@ const TX = {
     noticeText: 'Prices shown here are for template messages, in USD per delivered message, updated per Meta\'s rate card effective October 1, 2026. Service messages in response to a customer within the 24-hour window are free up to 1,000 per month per business phone number, and inside a Free Entry Point window (up to 7 days) messages are not charged.',
     noticeExp: 'Typically, a conversation starts through a customer-initiated contact or by sending a paid template. After opening the conversation, the rest of the messages are service messages within the 24-hour window (free up to the monthly allowance). Meta updates its rates quarterly (January, April, July, October); volume discounts apply to utility and authentication messages.',
     selectCountry: 'Select Country:',
+    selectCountryHint: 'The price is set by the country of the recipient you send the message to (their phone number\'s country code), not by the country of your business.',
     selectCategory: 'Select Message Category:',
     selectMessages: 'Messages per Month:',
     catMarketing: 'Marketing',
@@ -670,6 +672,7 @@ export default function WhatsAppMessagingPricing() {
                   ))}
                 </select>
               </div>
+              <small style={{ display: 'block', marginTop: '6px', fontSize: '12px', lineHeight: 1.4, color: '#888' }}>{tx.selectCountryHint}</small>
             </div>
 
             <div className="form-group">

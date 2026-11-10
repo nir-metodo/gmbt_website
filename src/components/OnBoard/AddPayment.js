@@ -112,6 +112,7 @@ const AddPaymentInner = () => {
   const translations = {
     ILS: {
       header: "סיכום מסלול",
+      organization: "הארגון:",
       selectedPlan: "התכנית הנבחרת:",
       planCost: "עלות התכנית:",
       simCost: "עלות סים:",
@@ -132,6 +133,7 @@ const AddPaymentInner = () => {
     },
     USD: {
       header: "Plan Summary",
+      organization: "Organization:",
       selectedPlan: "Selected Plan:",
       planCost: "Plan Cost:",
       simCost: "SIM Cost:",
@@ -362,6 +364,14 @@ const AddPaymentInner = () => {
     <div className="addpayment-container">
       <LoadingOverlay loading={isLoading}></LoadingOverlay>
       <h2 className="addpayment-container-header">{t.header}</h2>
+
+      {/* Which organization this payment is for, so the person knows they're on the right page */}
+      {(companyName || organizationName) && (
+        <p className="addpayment-container-plan-info">
+          <IoIosCheckmarkCircleOutline className="checkmark-icon" />
+          <strong>{t.organization}</strong> <u style={{ unicodeBidi: 'plaintext' }}>{companyName || organizationName}{companyName && organizationName ? ` (${organizationName})` : ''}</u>
+        </p>
+      )}
 
       <p className="addpayment-container-plan-info">
         <IoIosCheckmarkCircleOutline className="checkmark-icon" />
