@@ -399,10 +399,8 @@ const DocumentFormPublic = () => {
       width: `${width}px`,
       height: `${height}px`,
       zIndex: isActive ? 15 : 10,
-      outline: isActive ? '3px solid #34d399' : 'none',
-      outlineOffset: '2px',
+      // No wrapper outline/box: the active field is indicated on the input itself (see `base` in renderOverlayControl).
       borderRadius: 6,
-      transition: 'outline-color .15s',
     };
   };
 
@@ -447,18 +445,38 @@ const DocumentFormPublic = () => {
     setErrors(prev => ({ ...prev, [f.fieldId]: err || undefined }));
   };
 
-  const renderOverlayControl = (f) => {
+  // `dims` = rendered box size in px ({w,h}) when the caller isn't the standard PDF overlay (fullscreen / list view).
+  const renderOverlayControl = (f, dims) => {
     const ft = (f.fieldType || '').toLowerCase();
     const id = f.fieldId;
     const val = values[id];
     const hasErr = !!errors[id];
     const stop = (e) => e.stopPropagation();
-    const borderColor = hasErr ? '#dc2626' : '#2e6155';
+    const isActiveField = orderedFields[activeIdx]?.fieldId === id;
+    const isEmptyVal = (val === undefined || val === null || val === '' || val === false || val === 'false');
+    // Still-to-fill fields get a clear solid border; once filled it fades to a quiet one (so what's left to do is obvious).
+    const borderColor = hasErr ? '#dc2626' : (isActiveField ? '#10b981' : (isEmptyVal ? '#2e6155' : 'rgba(46,97,85,.35)'));
+    // Fields authored thin (to sit inside a small printed cell, e.g. 13px tall on screen) must not get the
+    // roomy 4px/8px padding + 14px font: that made text boxes look much bigger than the printed cell and
+    // cover the form's text. Compact the padding/font to fit the authored height.
+    const gfs = dims ? null : getFieldStyle(f);
+    const boxH = dims ? dims.h : (parseFloat(gfs.height) || 32);
+    const boxW = dims ? dims.w : (parseFloat(gfs.width) || 120);
+    const compact = boxH < 24;
+    // Look like the editor: an EMPTY field is a light translucent tint (clearly "tap to fill") with a thin
+    // border and a faint small placeholder; once filled it turns white so the typed value is readable.
+    const hasVal = !(val === undefined || val === null || val === '' || val === false || val === 'false');
     const base = {
+      // display:block — an <input> is inline-block by default, so it sat on the text baseline of the wrapper's line box
+      // and was pushed DOWN (e.g. 9px for a 13px-tall field), out of the printed cell. Block removes that offset.
+      display: 'block', margin: 0, verticalAlign: 'top',
       width: '100%', height: '100%', boxSizing: 'border-box',
-      border: `2px solid ${borderColor}`, borderRadius: '4px', background: '#fff',
-      padding: '4px 8px', fontSize: '14px', color: '#111827', outline: 'none',
-      boxShadow: hasErr ? '0 0 0 3px rgba(220,38,38,.12)' : 'none',
+      border: `${isEmptyVal || isActiveField ? 1.5 : 1}px solid ${borderColor}`, borderRadius: '4px',
+      background: 'transparent',
+      padding: compact ? '0 6px' : '4px 8px', fontSize: compact ? `${Math.max(10, Math.min(13, Math.round(boxH - 4)))}px` : '13px', color: '#111827', outline: 'none',
+      // Active = same-box 1px ring on the input's own edge (never outside its bounds) — subtle, not a glow.
+      boxShadow: hasErr ? '0 0 0 1px #dc2626' : (isActiveField ? '0 0 0 1px #10b981' : 'none'),
+      transition: 'border-color .12s, box-shadow .12s',
     };
     const readOnlyBox = { ...base, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f1f5f9', color: '#475569', borderStyle: 'dashed' };
     const onBlur = () => blurValidate(f);
@@ -516,18 +534,18 @@ const DocumentFormPublic = () => {
         return (
           <div style={{ ...base, padding: 0, border: 'none', background: 'transparent', boxShadow: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'visible' }} onClick={stop}>
             <div role="radiogroup" aria-label={labelFor(f)} dir={isRTL ? 'rtl' : 'ltr'}
-              style={{ display: 'flex', width: '100%', height: '100%', minHeight: 24, maxHeight: 36, boxSizing: 'border-box', border: `2px solid ${borderColor}`, borderRadius: 999, overflow: 'hidden', background: '#fff', boxShadow: '0 1px 3px rgba(0,0,0,.18)' }}>
+              style={{ display: 'inline-flex', maxWidth: '100%', height: Math.max(14, Math.min(boxH, 22)), boxSizing: 'border-box', border: `1.5px solid ${borderColor}`, borderRadius: 999, overflow: 'hidden', background: '#fff', boxShadow: '0 1px 2px rgba(0,0,0,.15)' }}>
               {opts.map((o, i) => {
                 const selected = val === o;
                 return (
                   <button {...(i === 0 ? navProps(f) : {})} type="button" role="radio" aria-checked={selected} key={i} title={o}
                     onClick={() => { setVal(id, o); }}
                     style={{
-                      flex: '1 1 0', minWidth: 0, border: 'none', cursor: 'pointer', padding: '0 6px',
+                      flex: '0 1 auto', minWidth: 0, border: 'none', cursor: 'pointer', padding: '0 9px',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
                       background: selected ? '#2e6155' : '#fff',
                       color: selected ? '#fff' : '#475569', fontWeight: 700,
-                      fontSize: 13, lineHeight: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                      fontSize: compact ? 11 : 12, lineHeight: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                       borderInlineStart: i > 0 ? `1px solid ${borderColor}` : 'none',
                       transition: 'background .12s ease, color .12s ease',
                     }}>
@@ -560,9 +578,13 @@ const DocumentFormPublic = () => {
     }
     if (ft === 'checkbox') {
       const checked = val === true || val === 'true';
+      // Size the native checkbox to the box the author drew on the PDF (minus the 2px border) instead of
+      // a fixed 18px with 4px/8px padding ? that fixed size made every checkbox bigger than the printed
+      // square (covering the form text) and made shrinking the field in the editor have no effect.
+      const side = Math.max(8, Math.min(boxW, boxH) - 4);
       return (
-        <label style={{ ...base, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={stop} title={labelFor(f)}>
-          <input {...navProps(f)} type="checkbox" checked={checked} onChange={(e) => setVal(id, e.target.checked)} style={{ width: 18, height: 18 }} />
+        <label style={{ ...base, padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }} onClick={stop} title={labelFor(f)}>
+          <input {...navProps(f)} type="checkbox" checked={checked} onChange={(e) => setVal(id, e.target.checked)} style={{ width: side, height: side, margin: 0, flex: 'none' }} />
         </label>
       );
     }
@@ -832,7 +854,7 @@ const DocumentFormPublic = () => {
                         onLoadSuccess={(page) => { if (pageNum === 1) setPdfIntrinsicWidth(page.originalWidth || page.width); }}
                       />
                       {pageFields.map((f) => (
-                        <div key={f.fieldId} style={getFieldStyle(f)} title={labelFor(f)}>
+                        <div key={f.fieldId} className="dfp-ovl" style={getFieldStyle(f)} title={labelFor(f)}>
                           {renderOverlayControl(f)}
                           {f.required && <span style={styles.reqDot}>*</span>}
                           {errors[f.fieldId] && <span style={styles.fieldErr}>{errors[f.fieldId]}</span>}
@@ -855,7 +877,7 @@ const DocumentFormPublic = () => {
               {(f.fieldType || '').toLowerCase() !== 'checkbox' && (
                 <label style={styles.label}>{labelFor(f)} {f.required && <span style={styles.req}>*</span>}</label>
               )}
-              <div style={{ position: 'relative', minHeight: 44 }}>{renderOverlayControl(f)}</div>
+              <div style={{ position: 'relative', minHeight: 44 }}>{renderOverlayControl(f, { w: 300, h: 44 })}</div>
               {errors[f.fieldId] && <span style={styles.inlineErr}>{errors[f.fieldId]}</span>}
             </div>
           ))}
@@ -887,7 +909,7 @@ const DocumentFormPublic = () => {
           ) : (
             <button type="button" style={{ ...styles.navBtn, ...styles.navBtnPrimary }}
               onClick={goNextField} title={L('שדה הבא', 'Next field')}>
-              {L('הבא', 'Next')} {isRTL ? '‹' : '›'}
+              {L('הבא', 'Next')}
             </button>
           )}
         </div>
@@ -919,8 +941,8 @@ const DocumentFormPublic = () => {
                           width: `${(f.width || 120) * fsScale}px`,
                           height: `${(f.height || 32) * fsScale}px`,
                           zIndex: 10,
-                        }} title={labelFor(f)}>
-                          {renderOverlayControl(f)}
+                        }} className="dfp-ovl" title={labelFor(f)}>
+                          {renderOverlayControl(f, { w: (f.width || 120) * fsScale, h: (f.height || 32) * fsScale })}
                         </div>
                       ))}
                     </div>
@@ -962,6 +984,8 @@ const DocumentFormPublic = () => {
         .dfp-input { width: 100%; box-sizing: border-box; padding: 11px 12px; border: 1px solid #d1d5db; border-radius: 10px; font-size: 15px; outline: none; transition: border-color .15s; background: #fff; }
         .dfp-input:focus { border-color: #2e6155; box-shadow: 0 0 0 3px rgba(46,97,85,.12); }
         .dfp-input-err { border-color: #dc2626 !important; box-shadow: 0 0 0 3px rgba(220,38,38,.12) !important; }
+        .dfp-ovl input::placeholder, .dfp-ovl textarea::placeholder { color: #64748b; opacity: 1; font-weight: 400; }
+        .dfp-ovl input[type=text], .dfp-ovl input:not([type]), .dfp-ovl input[type=email], .dfp-ovl input[type=tel], .dfp-ovl input[type=number], .dfp-ovl textarea, .dfp-ovl select { text-overflow: ellipsis; }
         .dfp-spin { animation: dfpspin 1s linear infinite; }
         @keyframes dfpspin { to { transform: rotate(360deg); } }
       `}</style>

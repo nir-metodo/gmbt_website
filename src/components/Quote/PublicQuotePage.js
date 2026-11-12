@@ -117,7 +117,8 @@ export default function PublicQuotePage() {
   const branding = quote.branding || {};
   const primaryColor = branding.primaryColor || '#2e6155';
   const currency = CURRENCY_SYMBOLS[quote.currency] || '₪';
-  const items = quote.items || [];
+  // Hide unpicked add-on placeholder rows (older saved quotes may still contain them).
+  const items = (quote.items || []).filter(i => !(i.lineKind === 'extra' && !(i.description || '').trim()));
   const hasAnyImage = items.some(i => i.image || (i.images && i.images.length > 0));
   const status = STATUS_LABELS[quote.status] || { he: quote.status || '', color: '#6b7280' };
 
@@ -330,7 +331,7 @@ export default function PublicQuotePage() {
                           )}
                         </td>
                       )}
-                      <td className="pq-desc" style={isDiscountRow ? { color: '#dc2626' } : undefined}><ClampedDescription text={item.description || ''} /></td>
+                      <td className="pq-desc" style={isDiscountRow ? { color: '#dc2626' } : undefined}><ClampedDescription text={item.description || ''} />{/^https?:\/\//.test(item.link || '') && (<a href={item.link} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: '12px', color: '#2563eb' }}>🔗 פרטים באתר</a>)}</td>
                       <td className="pq-num" data-label="כמות" style={{ textAlign: 'center' }}>{qty}</td>
                       <td className="pq-num" data-label="מחיר יחידה" style={{ textAlign: 'center', color: isDiscountRow ? '#dc2626' : undefined }}>
                         {isDiscountRow ? `-${currency}${formatNum(Math.abs(price))}` : `${currency}${formatNum(price)}`}

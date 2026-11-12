@@ -57,6 +57,10 @@
 .otbl-final { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; padding: 64px 0; text-align: center; }
 .otbl-final h2 { font-size: 2rem; margin: 0 0 8px; }
 .otbl-final p { margin: 0 0 22px; }
+/* English (LTR) version of the page */
+.otbl[dir="ltr"] .otbl-steps, .otbl[dir="ltr"] .otbl-list { padding-right: 0; padding-left: 22px; }
+.otbl[dir="ltr"] .otbl-table th, .otbl[dir="ltr"] .otbl-table td { text-align: left; }
+
 .otbl a.otbl-btn.primary { }
 .otbl-final .otbl-btn.primary { background: #fff; color: #128C7E !important; box-shadow: none; }
 .otbl-final .otbl-updated { margin-top: 26px; font-size: .85rem; opacity: .85; }

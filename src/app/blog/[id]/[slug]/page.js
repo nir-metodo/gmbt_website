@@ -23,6 +23,10 @@ export async function generateStaticParams() {
     if (enTitle && getSeoUrl(enTitle) !== getSeoUrl(heTitle)) {
       params.push({ id: String(post.id), slug: getSeoUrl(enTitle) });
     }
+    // Old slugs (post renamed) keep working; canonical in generateMetadata points to the current slug.
+    (post.legacySlugs || []).forEach(s => {
+      if (s && !params.some(p => p.slug === s)) params.push({ id: String(post.id), slug: s });
+    });
     return params;
   });
 }

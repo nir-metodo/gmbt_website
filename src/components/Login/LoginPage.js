@@ -93,11 +93,20 @@ export default function LoginPage() {
       const userLanguage = (normalizedLang === 'english' || normalizedLang === 'en') ? 'en' : 'he';
 
       const newUser = {
-        fullname: user.UserName || user.userName || email,
+        // Same shape as the in-app login (app.gambot.co.il/login), so both entrances end in the same session.
+        fullname: user.FullName || user.fullName || user.UserName || user.userName || email,
+        UserName: user.UserName || user.userName || user.FullName || user.fullName || '',
         email: user.UserEmail || user.userEmail || email,
         photoURL: data.userCredential?.photoURL || null,
         userId: data.userCredential?.Uid || user.uID,
-        organization: email === 'info@gambot.co.il' ? organization : (user.Organization || user.organization),
+        // Gambot staff entering "an organization" get the org they typed; info@ in admin mode has none (the app
+        // substitutes its 'gambot-admin' placeholder); everyone else uses their own organization.
+        organization: (isGambotAdmin && adminMode === 'org' && organization)
+          ? organization
+          : (email === 'info@gambot.co.il'
+            ? (organization || user.Organization || user.organization || '')
+            : (user.Organization || user.organization)),
+        assignedWhatsAppNumbers: user?.assignedWhatsAppNumbers || [],
         wabaNumber: user.wabaNumber || null,
         timeZone: user?.timeZone || null,
         phoneNumber: user?.PhoneNumber || user?.phoneNumber || null,

@@ -79,11 +79,18 @@ export const PAGE_META = {
     description: 'צריכים לשלוח הודעת וואטסאפ אחת לרשימה — למשל הזמנה לקבוצת וואטסאפ? מעלים אקסל, כותבים הודעה, משלמים ומתזמנים. בלי מספר ייעודי, בלי אימות עסק מול Meta ובלי מנוי. החל מ־₪49 לפני מע״מ.',
     keywords: 'דיוור חד פעמי, דיוור חד פעמי בוואטסאפ, שליחת הודעה חד פעמית בוואטסאפ, הזמנה לקבוצת וואטסאפ, דיוור וואטסאפ בלי מספר, דיוור וואטסאפ בלי אימות מטא, שליחת וואטסאפ לרשימה, one-time WhatsApp broadcast',
     canonical: 'https://gambot.co.il/%D7%93%D7%99%D7%95%D7%95%D7%A8-%D7%97%D7%93-%D7%A4%D7%A2%D7%9E%D7%99/',
+    hreflang: {
+      he: 'https://gambot.co.il/%D7%93%D7%99%D7%95%D7%95%D7%A8-%D7%97%D7%93-%D7%A4%D7%A2%D7%9E%D7%99/',
+      en: 'https://gambot.co.il/one-time-whatsapp-broadcast/',
+      'x-default': 'https://gambot.co.il/one-time-whatsapp-broadcast/',
+    },
   },
   whatsappNewsletter: {
-    title: 'דיוור בוואטסאפ | מערכת דיוור והודעות המוניות לעסקים | גמבוט',
-    description: 'מערכת דיוור בוואטסאפ לעסקים: שליחה המונית חוקית עם תבניות מאושרות Meta, פילוח רשימות, תזמון ומדידה בזמן אמת. שותף Meta רשמי. ניסיון חינם חודש.',
-    keywords: 'דיוור בוואטסאפ, מערכת דיוור וואטסאפ, דיוור המוני בוואטסאפ, ניוזלטר וואטסאפ, WhatsApp newsletter, שליחה המונית וואטסאפ, bulk messaging',
+    // PRIMARY page for the generic/informational "דיוור בוואטסאפ" (what it is, legality, newsletter, vs email/SMS).
+    // The product query "מערכת דיוור" belongs to /מערכת-דיוור-וואטסאפ/ and "קמפיינים" to /קמפיינים-בוואטסאפ/.
+    title: 'דיוור בוואטסאפ — מה זה, איך עושים את זה חוקית ובלי חסימות | גמבוט',
+    description: 'מדריך לדיוור בוואטסאפ: מה זה דיוור והודעות המוניות, איך שולחים ניוזלטר חוקי עם תבניות מאושרות Meta, הסכמה והסרה (opt-out), ומה ההבדל מאימייל ו-SMS. שותף Meta רשמי.',
+    keywords: 'דיוור בוואטסאפ, מה זה דיוור בוואטסאפ, דיוור המוני בוואטסאפ, ניוזלטר וואטסאפ, הודעות המוניות בוואטסאפ, דיוור וואטסאפ חוקי, WhatsApp newsletter, bulk messaging',
     canonical: 'https://gambot.co.il/דיוור-בוואטסאפ/',
     hreflang: { he: 'https://gambot.co.il/דיוור-בוואטסאפ/', en: 'https://gambot.co.il/whatsapp-newsletter/', 'x-default': 'https://gambot.co.il/whatsapp-newsletter/' },
   },
@@ -498,9 +505,11 @@ export const PAGE_META = {
     },
   },
   whatsappBroadcast: {
-    title: 'קמפיינים בוואטסאפ | מערכת דיוור ושיווק בוואטסאפ | גמבוט 2026',
-    description: 'קמפיינים ודיוור בוואטסאפ מהמערכת המובילה בישראל — שיווק מאותו מספר עסקי, מאושר מטא. יוצרים תבניות, מדוורים לאקסל או אנשי קשר, מתזמנים קמפיינים וברכות חג עם AI. ניסיון חינם.',
-    keywords: 'קמפיינים בוואטסאפ, מערכת דיוור בוואטסאפ, מערכת דיוור לוואטסאפ, דיוור בוואטסאפ, שיווק בוואטסאפ, שיווק בוואטסאפ לעסקים, דיוור המוני וואטסאפ, מערכת שיווק וואטסאפ, WhatsApp campaigns, WhatsApp broadcast, מורשה מטא, תבניות וואטסאפ, גמבוט',
+    // PRIMARY page for the product query "מערכת דיוור (בוואטסאפ/לוואטסאפ)". "קמפיינים בוואטסאפ" belongs to
+    // /קמפיינים-בוואטסאפ/ and the generic/informational "דיוור בוואטסאפ" to /דיוור-בוואטסאפ/ — don't compete with them.
+    title: 'מערכת דיוור בוואטסאפ | דיוור קבוע, חוזר ומתוזמן מהמספר העסקי | גמבוט 2026',
+    description: 'מערכת דיוור לוואטסאפ מהמובילות בישראל — דיוור מאותו מספר עסקי, מאושר מטא. יוצרים תבניות, מדוורים לאקסל או אנשי קשר, מתזמנים דיוור קבוע (כל רביעי, כל 5 בחודש) וברכות חג עם AI. ניסיון חינם.',
+    keywords: 'מערכת דיוור בוואטסאפ, מערכת דיוור לוואטסאפ, מערכת דיוור וואטסאפ, תוכנת דיוור וואטסאפ, דיוור מתוזמן וואטסאפ, דיוור קבוע בוואטסאפ, מערכת שיווק וואטסאפ, WhatsApp broadcast, WhatsApp broadcasting system, מורשה מטא, תבניות וואטסאפ, גמבוט',
     canonical: 'https://gambot.co.il/מערכת-דיוור-וואטסאפ/',
     hreflang: { he: 'https://gambot.co.il/מערכת-דיוור-וואטסאפ/', en: 'https://gambot.co.il/whatsapp-broadcast/', 'x-default': 'https://gambot.co.il/whatsapp-broadcast/' },
     schema: {
@@ -523,6 +532,39 @@ export const PAGE_META = {
             { '@type': 'Question', name: 'האם דיוור בוואטסאפ חוקי?', acceptedAnswer: { '@type': 'Answer', text: 'כן, כל עוד מדוורים ללקוחות שהסכימו לקבל הודעות (opt-in) ומאפשרים הסרה. גמבוט הוא ערוץ רשמי של Meta.' } },
             { '@type': 'Question', name: 'מדוורים מאיזה מספר?', acceptedAnswer: { '@type': 'Answer', text: 'מאותו מספר הוואטסאפ העסקי שלכם שהלקוחות כבר מכירים — לא ממספר זר.' } },
             { '@type': 'Question', name: 'אפשר לתזמן דיוור קבוע?', acceptedAnswer: { '@type': 'Answer', text: 'כן, אפשר להגדיר דיוור חוזר — למשל כל יום רביעי או כל 5 בחודש — והמערכת שולחת אוטומטית.' } },
+          ],
+        },
+      ],
+    },
+  },
+  // Guide/landing for "דיוור קבוע / חוזר / מתוזמן בוואטסאפ" (content: SOLUTIONS.whatsappRecurringBroadcast).
+  // FAQPage JSON-LD is emitted by LandingPageContent from the visible FAQ; this adds HowTo + Breadcrumb.
+  recurringBroadcast: {
+    title: 'דיוור קבוע בוואטסאפ — דיוור חוזר ומתוזמן כל שבוע או כל חודש | גמבוט',
+    description: 'איך מגדירים דיוור קבוע בוואטסאפ: דיוור חוזר כל יום רביעי או כל 5 בחודש, עם דילוג אוטומטי על שבתות וחגים, תנאי סיום ודוח אחרי כל שליחה. דוגמאות: קצבייה, רואה חשבון, חדר כושר. חודש ניסיון חינם.',
+    keywords: 'דיוור קבוע בוואטסאפ, דיוור חוזר בוואטסאפ, דיוור מתוזמן בוואטסאפ, תזמון הודעות וואטסאפ, שליחת הודעות וואטסאפ אוטומטית כל שבוע, תזכורת חודשית בוואטסאפ ללקוחות, דיוור וואטסאפ כל חודש, recurring WhatsApp broadcast, scheduled WhatsApp broadcast',
+    canonical: 'https://gambot.co.il/דיוור-קבוע-בוואטסאפ/',
+    hreflang: { he: 'https://gambot.co.il/דיוור-קבוע-בוואטסאפ/', en: 'https://gambot.co.il/recurring-whatsapp-broadcast/', 'x-default': 'https://gambot.co.il/recurring-whatsapp-broadcast/' },
+    schema: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'HowTo',
+          name: 'איך מגדירים דיוור קבוע (חוזר) בוואטסאפ',
+          inLanguage: 'he',
+          step: [
+            { '@type': 'HowToStep', position: 1, name: 'יוצרים תבנית מאושרת', text: 'בונים תבנית וואטסאפ במערכת ושולחים לאישור Meta — פעם אחת בלבד.' },
+            { '@type': 'HowToStep', position: 2, name: 'בוחרים קהל', text: 'מעלים אקסל או בוחרים אנשי קשר ורשימות — רק למי שהסכים לקבל הודעות.' },
+            { '@type': 'HowToStep', position: 3, name: 'מגדירים תזמון חוזר', text: 'בוחרים טריגר "מתוזמן" ואז חזרה שבועית, חודשית או לפי מרווח, שעה ותנאי סיום, ואם צריך טיפול בשבתות וחגים.' },
+            { '@type': 'HowToStep', position: 4, name: 'מתבוננים ומשפרים', text: 'מקבלים דוח אחרי כל שליחה ומעדכנים את התבנית — התזמון ממשיך לרוץ.' },
+          ],
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Gambot', item: 'https://gambot.co.il/' },
+            { '@type': 'ListItem', position: 2, name: 'מערכת דיוור בוואטסאפ', item: 'https://gambot.co.il/מערכת-דיוור-וואטסאפ/' },
+            { '@type': 'ListItem', position: 3, name: 'דיוור קבוע בוואטסאפ', item: 'https://gambot.co.il/דיוור-קבוע-בוואטסאפ/' },
           ],
         },
       ],

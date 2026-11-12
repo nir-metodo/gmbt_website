@@ -12266,24 +12266,24 @@ const posts = [
 {
   id: 44,
   seoTitle: {
-    he: 'טוקני גמבוט (קרדיטים) — איך מחשבים ומעריכים שימוש ב‑AI 2026 | Gambot',
-    en: 'Gambot Tokens (Credits) — How to Calculate & Estimate AI Usage 2026 | Gambot'
+    he: 'קרדיטים בגמבוט — כמה הודעות AI כלולות בכל חבילה 2026 | Gambot',
+    en: 'Gambot Credits — How Many AI Messages Are in Each Plan 2026 | Gambot'
   },
   metaDescription: {
-    he: 'מדריך מלא לטוקני גמבוט: מהו טוקן/קרדיט, אילו פעולות AI צורכות טוקנים וכמה, איך מעריכים שימוש חודשי, ולמה תשובות הבוט הן הצריכה הכבדה ביותר — עם דוגמאות חישוב.',
-    en: 'A full guide to Gambot Tokens: what a token/credit is, which AI actions consume tokens and how many, how to estimate monthly usage, and why bot replies are the heaviest — with worked examples.'
+    he: 'מדריך לקרדיטים בגמבוט: כמה הודעות AI כלולות בכל חבילה (Growth, Pro, Business), אילו פעולות צורכות קרדיטים, ואיך מעריכים שימוש חודשי — עם דוגמאות חישוב.',
+    en: 'A guide to Gambot credits: how many AI messages are included in each plan (Growth, Pro, Business), which actions use credits, and how to estimate monthly usage — with worked examples.'
   },
   keywords: {
-    he: ['טוקני גמבוט', 'קרדיטים גמבוט', 'תמחור AI', 'עלות בוט AI', 'כמה עולה בוט וואטסאפ', 'חישוב טוקנים', 'צריכת AI', 'תמחור טוקנים'],
-    en: ['gambot tokens', 'gambot credits', 'ai pricing', 'whatsapp bot cost', 'token calculation', 'ai usage estimate', 'ai credits whatsapp']
+    he: ['קרדיטים גמבוט', 'כמה הודעות AI בחבילה', 'תמחור AI', 'עלות בוט AI', 'כמה עולה בוט וואטסאפ', 'צריכת AI', 'חבילות גמבוט'],
+    en: ['gambot credits', 'ai messages per plan', 'ai pricing', 'whatsapp bot cost', 'ai usage estimate', 'ai credits whatsapp']
   },
   title: {
-    he: 'טוקני גמבוט (קרדיטים): איך מחשבים ומעריכים כמה AI תצרכו',
-    en: 'Gambot Tokens (Credits): How to Calculate and Estimate Your AI Usage'
+    he: 'קרדיטים בגמבוט: כמה הודעות AI כלולות בכל חבילה',
+    en: 'Gambot Credits: How Many AI Messages Are Included in Each Plan'
   },
   description: {
-    he: 'מפה מלאה של כל פעולות ה‑AI שצורכות טוקנים, כמה כל אחת עולה, ואיך מעריכים את הצריכה החודשית — כולל למה תשובות הבוט הן הפריט הכבד ואיך להוזיל.',
-    en: 'A complete map of every AI action that consumes tokens, how much each costs, and how to estimate your monthly usage — including why bot replies are the heavy item and how to reduce them.'
+    he: 'כמה הודעות AI כלולות בכל חבילה, מה עוד צורך קרדיטים, ואיך מעריכים את הצריכה החודשית — כולל דוגמאות ומחשבון.',
+    en: 'How many AI messages are included in each plan, what else uses credits, and how to estimate your monthly usage — with examples and a calculator.'
   },
   category: 'AI',
   author: 'ניר סגס',
@@ -12293,241 +12293,212 @@ const posts = [
   featured: true,
   faq: {
     he: [
-      { q: 'מה זה טוקן גמבוט (קרדיט)?', a: 'טוקן גמבוט הוא יחידת המדידה של שימוש ב‑AI במערכת. חוק האצבע: יחידה אחת שקולה בערך ל‑1,000 טוקני מודל (המילים והתווים שהמודל קורא וכותב), מעוגל כלפי מעלה, מינימום 1 לכל פעולת AI. פעולות פשוטות עולות טוקן בודד; תשובות בוט עשירות בהקשר עולות יותר.' },
-      { q: 'אילו פעולות צורכות טוקנים?', a: 'תשובות בוט ה‑AI בשיחה (הכבד ביותר), החלטות AI בתוך בוטומציות (AI Context), יצירת תשובת AI ידנית בצ׳אט, הקופיילוט (צ׳אט/שאילתות/פעולות), דוחות AI, הודעות פרו‑אקטיביות, חיפוש AI בהערות, אימות מיפוי קמפיין, קופיילוט טפסים ויצירת מדיה AI. שאלות עזרה/מידע לקופיילוט הן חינמיות.' },
-      { q: 'למה תשובות הבוט צורכות הכי הרבה?', a: 'לפני כל תשובה הבוט קורא את בסיס הידע העסקי שלכם (קטלוג, שאלות ותשובות, מטרות, שעות פעילות), את היסטוריית השיחה, ומריץ כמה בדיקות איכות (זיהוי כוונה, ניסוח, בדיקת עובדות, בדיקת זמינות ביומן). לכן תשובה בודדת יכולה לצרוך עשרות אלפי טוקני מודל — הרבה יותר מפעולה פשוטה.' },
-      { q: 'איך אני מעריך כמה טוקנים אצרוך בחודש?', a: 'ספרו את מספר תשובות הבוט הצפויות בחודש והכפילו בטווח של כ‑15–40 יחידות לתשובה, הוסיפו את ההודעות היזומות (יחידה לכל אחת), ואת שאר הכלים לפי הטבלה בכתבה. הדוגמאות בהמשך מראות חישוב לעסק קטן, בינוני וגדול.' },
-      { q: 'איך אפשר להוזיל את צריכת ה‑AI?', a: 'בחרו מודל זול לשיחות פשוטות (למשל להשאיר מודל חזק רק לשאלות מורכבות ולהפעיל מעבר אוטומטי למודל זול ב"שיחת חולין"), שמרו בסיס ידע ממוקד ומתויג היטב כדי שהבוט יטען רק מה שרלוונטי, והגדירו לבוט מתי לא לענות. כל אלה מקטינים את מספר הטוקנים לכל תשובה.' },
-      { q: 'איזה מודלים נתמכים והאם זה משפיע על העלות?', a: 'ניתן לבחור בין משפחות ChatGPT, Gemini ו‑Claude. לכל מודל תמחור טוקנים שונה — מודל "מהיר/זול" עולה פחות לכל תשובה, ומודל "חזק" עולה יותר אך מדויק יותר במשימות מורכבות. אתם בוחרים את המודל של תשובות הבוט, והחישוב מתאים את עצמו אליו.' }
+      { q: 'מה זה קרדיט בגמבוט?', a: 'קרדיט הוא יחידת המדידה של שימוש ב‑AI במערכת. כל תשובת AI צורכת קרדיטים לפי המודל שנבחר ולפי כמות המידע שהמודל קרא וכתב. כל חבילה כוללת מכסת קרדיטים חודשית שמתאפסת בתחילת כל חודש.' },
+      { q: 'כמה הודעות AI יש בכל חבילה?', a: 'במודל המומלץ (GPT‑6 Luna): Growth (2,500 קרדיטים) כ‑300 הודעות, Pro (8,000) כ‑950, Business (15,000) כ‑1,800. במודל יקר יותר (Claude Sonnet / Opus) מקבלים פחות. הטבלה בכתבה מראה את המספרים לכל מודל.' },
+      { q: 'האם המודל שבחרתי משפיע על כמות ההודעות?', a: 'כן. מודל יקר יותר צורך יותר קרדיטים בכל הודעה. GPT‑6 Luna, GPT‑5 mini ו‑Claude Haiku 5.5 הם הזולים ביותר, ומודלים חזקים כמו GPT‑6.1 Terra, Sonnet ו‑Opus צורכים כמה פעמים יותר.' },
+      { q: 'אילו פעולות צורכות קרדיטים?', a: 'תשובות הבוט, תמלול הודעות קוליות ומדיה, החלטות AI בתוך בוטומציות, דוחות AI, הקופיילוט (שאלות עזרה חינמיות) ויצירת מדיה AI.' },
+      { q: 'איך אני מעריך כמה קרדיטים אצרוך בחודש?', a: 'בחרו מודל, העריכו כמה הודעות בוט צפויות בחודש, והשתמשו בטבלה או במחשבון שבכתבה כדי לראות כמה קרדיטים זה יעלה ואיזו חבילה מתאימה.' },
+      { q: 'מה קורה אם נגמרו הקרדיטים?', a: 'אפשר להוסיף חבילות של 500 קרדיטים ב‑₪39 כל אחת, או לעבור לחבילה גבוהה יותר. ניתן להגדיר תקרת הוצאה חודשית כדי לשלוט בעלות.' }
     ],
     en: [
-      { q: 'What is a Gambot Token (credit)?', a: 'A Gambot Token is the unit that measures AI usage in the system. Rule of thumb: one unit is roughly 1,000 model tokens (the text the model reads and writes), rounded up, minimum 1 per AI action. Simple actions cost a single token; context-rich bot replies cost more.' },
-      { q: 'Which actions consume tokens?', a: 'AI bot replies in chat (the heaviest), AI decisions inside botomations (AI Context), manually generating an AI reply in chat, the Copilot (chat/queries/actions), AI reports, proactive messages, AI notes search, campaign mapping validation, the Web Forms copilot, and AI media generation. Copilot help/info questions are free.' },
-      { q: 'Why do bot replies consume the most?', a: 'Before each reply the bot reads your business knowledge base (catalog, Q&A, goals, business hours), the conversation history, and runs several quality checks (intent detection, phrasing, fact-grounding, calendar availability). So a single reply can consume tens of thousands of model tokens — far more than a simple action.' },
-      { q: 'How do I estimate my monthly tokens?', a: 'Count the bot replies you expect per month and multiply by roughly 15–40 units each, add proactive messages (one unit each), and the other tools per the table in the article. The examples below show a small, medium and large business.' },
-      { q: 'How can I reduce AI usage?', a: 'Pick a cheap model for simple conversations (e.g. keep the strong model only for complex questions and enable automatic downgrade for small talk), keep a focused, well-tagged knowledge base so the bot loads only what is relevant, and tell the bot when NOT to reply. All of these lower the tokens per reply.' },
-      { q: 'Which models are supported and does it affect cost?', a: 'You can choose between the ChatGPT, Gemini and Claude families. Each model has different token pricing — a fast/cheap model costs less per reply, a strong model costs more but is more accurate on complex tasks. You pick the model for bot replies, and the calculation adapts to it.' }
+      { q: 'What is a credit in Gambot?', a: 'A credit is the unit that measures AI usage in the system. Every AI reply uses credits according to the chosen model and how much information the model read and wrote. Each plan includes a monthly credit allowance that resets at the start of every month.' },
+      { q: 'How many AI messages are in each plan?', a: 'On the recommended model (GPT‑6 Luna): Growth (2,500 credits) about 300 messages, Pro (8,000) about 950, Business (15,000) about 1,800. A more expensive model (Claude Sonnet / Opus) gives fewer. The table in the article shows the numbers for every model.' },
+      { q: 'Does the model I choose affect the number of messages?', a: 'Yes. A more expensive model uses more credits per message. GPT‑6 Luna, GPT‑5 mini and Claude Haiku 5.5 are the cheapest, and strong models like GPT‑6.1 Terra, Sonnet and Opus use several times more.' },
+      { q: 'Which actions consume credits?', a: 'Bot replies, voice-note and media transcription, AI decisions inside botomations, AI reports, the Copilot (help questions are free) and AI media generation.' },
+      { q: 'How do I estimate my monthly credits?', a: 'Pick a model, estimate how many bot messages you expect per month, and use the table or the calculator in the article to see how many credits that costs and which plan fits.' },
+      { q: 'What happens if I run out of credits?', a: 'You can add credit packs of 500 credits for ₪39 each, or move to a higher plan. You can set a monthly spending cap to control the cost.' }
     ]
   },
   content: {
     he: `
 <div style="background:linear-gradient(135deg,#0891b2 0%,#0369a1 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
   <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🪙 קרדיטים ותמחור AI</div>
-  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">טוקני גמבוט — יחידת המדידה של השימוש ב‑AI, בשקיפות מלאה</div>
-  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">כל פעולת AI במערכת "עולה" טוקנים. הכתבה הזו ממפה בדיוק אילו פעולות צורכות טוקנים, כמה כל אחת עולה, ואיך להעריך מראש את הצריכה החודשית — כדי שלא תהיו מופתעים.</p>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">כמה הודעות AI יוצאות לכם בחודש — לפי המודל שבחרתם</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">כל תשובה של הבוט צורכת קרדיטים מהמכסה החודשית של החבילה. כמה קרדיטים? זה תלוי במודל שבחרתם: מודל זול נותן יותר הודעות, מודל חזק ויקר נותן פחות. הכתבה מראה בדיוק כמה הודעות מקבלים בכל חבילה ובכל מודל.</p>
 </div>
 
-<h2>⚖️ חוק האצבע: יחידה אחת ≈ 1,000 טוקני מודל</h2>
-<p>מודל שפה לא סופר "מילים" אלא <strong>טוקנים</strong> — פיסות טקסט קטנות שהוא קורא (הקלט) וכותב (הפלט). ככל שהבוט צריך לקרוא יותר מידע (קטלוג, שאלות ותשובות, היסטוריית שיחה) ולכתוב תשובה ארוכה יותר — כך נצרכים יותר טוקנים.</p>
+<h2>⚖️ הכלל הפשוט: מודל יקר יותר = יותר קרדיטים להודעה</h2>
+<p>הקרדיטים נמדדים לפי השימוש האמיתי במודל (כמה מידע הבוט קרא וכתב), ולכן לכל מודל יש עלות שונה להודעה. המודלים הזולים (GPT‑6 Luna, GPT‑5 mini, Claude Haiku 5.5) נותנים הכי הרבה הודעות, ומודלים חזקים (GPT‑6.1 Terra, Sonnet, Opus) עולים כמה פעמים יותר. הקרדיטים מתאפסים בתחילת כל חודש קלנדרי.</p>
+
+<h2>📦 כמה הודעות יש בכל חבילה?</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead>
+      <tr style="background:#0369a1;color:#fff;">
+        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">חבילה</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">מחיר לחודש (לפני מע״מ)</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">קרדיטים בחודש</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">≈ הודעות בחודש (במודל המומלץ)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>Growth</strong></td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">₪179</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">2,500</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;color:#0369a1;">~300</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;"><strong>Pro</strong></td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">₪359</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">8,000</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;color:#0369a1;">~950</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>Business</strong></td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">₪645</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">15,000</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;color:#0369a1;">~1,800</td></tr>
+    </tbody>
+  </table>
+</div>
+<p style="font-size:0.9rem;color:#64748b;">קרדיטים נוספים: ₪39 ל‑500 קרדיטים (≈ 60 הודעות נוספות במודל המומלץ).</p>
 <div style="background:#ecfeff;border:2px solid #a5f3fc;border-radius:14px;padding:18px 20px;margin:20px 0;">
-  <strong style="color:#0e7490;">הכלל הפשוט:</strong>
-  <p style="margin:8px 0 0;color:#374151;">כל <strong>1,000 טוקני מודל</strong> ≈ <strong>יחידת גמבוט אחת</strong> (מעוגל כלפי מעלה, מינימום 1 לכל פעולה). פעולה פשוטה = טוקן אחד. תשובת בוט עשירה = עשרות טוקנים.</p>
+  <strong style="color:#0e7490;">הכוונה:</strong>
+  <p style="margin:8px 0 0;color:#374151;">חבילת Pro מספיקה לכ‑950 הודעות AI בחודש במודל המומלץ — מתאים לרוב העסקים הקטנים והבינוניים.</p>
 </div>
 
-<h2>🗺️ מפת הצריכה — אילו פעולות עולות טוקנים</h2>
+<h2>🔀 כמה הודעות תקבלו — לפי המודל שתבחרו</h2>
+<p>הטבלה מראה בממוצע כמה הודעות בוט (תשובה אחת של ה‑AI ללקוח) יוצאות לכם בחודש בכל חבילה, לפי המודל שנבחר בבוט:</p>
 <div style="overflow-x:auto;margin:20px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
     <thead>
       <tr style="background:#0369a1;color:#fff;">
-        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">פעולת AI</th>
-        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">עלות (טוקני גמבוט)</th>
+        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">מודל</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">רמת עלות</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">קרדיטים להודעה (בממוצע)</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Growth<br><small>2,500</small></th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Pro<br><small>8,000</small></th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Business<br><small>15,000</small></th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">תוספת<br><small>500 קרדיטים · ₪39</small></th>
       </tr>
     </thead>
     <tbody>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>Gambot AI Action / Agent</strong> — תשובת הבוט בשיחה (הכבד ביותר)</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#b45309;">~15–40 לתשובה (תלוי מודל)</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">החלטת AI בבוטומציה (AI Context / טריגר)</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">לפי נפח, ~1 לכל 1,000 טוקנים</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>AI Generated</strong> — יצירת תשובת/תוכן AI ידני בצ׳אט</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">1 (תלוי מודל)</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">הודעה יזומה (פרו‑אקטיב)</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">1 להודעה</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">קופיילוט — שאלת עזרה/מידע</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;color:#047857;font-weight:700;">חינם (0)</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">קופיילוט — צ׳אט כללי</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">1–2</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">קופיילוט — שאילתת נתונים</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">1–5</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">קופיילוט — פעולה (תיוג/יצירת ליד/עדכון מסה)</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">1–50 לפי היקף</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">דוח AI</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">3</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">חיפוש AI בהערות · אימות מיפוי קמפיין · קופיילוט טפסים</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">2</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">יצירת מדיה AI (תמונה/נכס)</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">~10 לנכס</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">ChatGPT · GPT-6 Luna (מומלץ)</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲 זול</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~8.4</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">300</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:800;color:#0369a1;">950</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">1,800</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">60</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">ChatGPT · GPT-5 mini</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲 זול</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~8.4</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">300</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">950</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">1,800</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">60</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">Claude · Haiku 5.5</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲 זול</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~8.4</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">300</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">950</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">1,800</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">60</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Gemini 3.5 Flash-Lite</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲 זול</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~10.4</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">240</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">770</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">1,450</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">50</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">ChatGPT · GPT-6.1 Terra</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲💲 חזק</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~25.6</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">100</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">310</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">590</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">20</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Gemini 3.6 Flash</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲💲 חזק</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~38.4</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">65</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">210</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">390</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">15</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">Claude · Sonnet 5.5</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲💲💲 יקר</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~46</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">55</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">170</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">330</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">10</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Claude · Opus 5.5</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲💲💲 יקר</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~92</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">25</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">85</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">160</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">5</td></tr>
     </tbody>
   </table>
 </div>
-
-<h2>🤖 הפריט הכבד: תשובות הבוט</h2>
-<p>למה תשובה אחת של הבוט "שווה" הרבה יותר מפעולה פשוטה? כי לפני כל תשובה הבוט עושה עבודה אמיתית:</p>
-<ul>
-  <li><strong>קורא את בסיס הידע שלכם</strong> — קטלוג המוצרים/שירותים, שאלות ותשובות, מטרות השיחה ושעות הפעילות.</li>
-  <li><strong>קורא את היסטוריית השיחה</strong> — כדי לענות בהקשר ולא לחזור על עצמו.</li>
-  <li><strong>מריץ בדיקות איכות</strong> — זיהוי כוונת הלקוח, ניסוח התשובה, בדיקה שהתשובה מבוססת על עובדות אמיתיות, ובדיקת זמינות ביומן לתיאום פגישות.</li>
-</ul>
-<p>בפועל, קריאת AI אחת עם כל ההקשר העסקי המלא צורכת בסביבות <strong>11,000–13,000 טוקני קלט</strong> (מדידה אמיתית מהמערכת), ותשובה מלאה מריצה כמה שלבים כאלה — ולכן תשובה בודדת מסתכמת בטווח של <strong>~15–40 יחידות</strong>, תלוי בגודל בסיס הידע ואורך השיחה.</p>
-<div style="background:#fffbeb;border:2px solid #fcd34d;border-radius:14px;padding:16px 20px;margin:20px 0;">
-  <strong style="color:#92400e;">💡 טיפ:</strong>
-  <p style="margin:6px 0 0;color:#374151;">ככל שבסיס הידע ממוקד ומתויג טוב יותר, כך הבוט טוען פחות מידע מיותר לכל תשובה — וזה מוריד ישירות את מספר הטוקנים.</p>
+<p style="font-size:0.9rem;color:#64748b;">* ממוצעים להודעה לפי שימוש אמיתי: GPT‑5 mini נמדד בארגונים פעילים; שאר המודלים הם הערכה לפי מחירון הספקים (נובמבר 2026). GPT‑6 Luna ו‑Claude Haiku 5.5 מחויבים באותו מחיר כמו GPT‑5 mini — מהירים ומתקדמים יותר, בלי לשלם יותר. מודלים ישנים (GPT‑5, GPT‑4o, Claude 4.5) ממשיכים לעבוד בבוטים קיימים ועולים יותר. החישוב שמרני וללא הנחת קאש. עסק עם בסיס ידע גדול יותר (למשל כ‑28,000 טוקנים) יקבל פחות הודעות, וקטן יותר — יותר.</p>
+<div style="background:#ecfeff;border:2px solid #a5f3fc;border-radius:14px;padding:18px 20px;margin:20px 0;">
+  <strong style="color:#0e7490;">איך לבחור:</strong>
+  <p style="margin:8px 0 0;color:#374151;">GPT‑6 Luna (מומלץ), GPT‑5 mini ו‑Claude Haiku 5.5 הם הזולים ביותר ומתאימים לרוב השיחות. מודלים חזקים (GPT‑6.1 Terra, Claude Sonnet / Opus) מתאימים לשיחות מורכבות — אבל מקטינים משמעותית את מספר ההודעות בחבילה.</p>
 </div>
 
-<h2>🧮 דוגמאות הערכה חודשית</h2>
-<div style="overflow-x:auto;margin:20px 0;">
-  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
-    <thead>
-      <tr style="background:#0369a1;color:#fff;">
-        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">עסק</th>
-        <th style="padding:12px;text-align:right;border:1px solid #e5e7eb;">שימוש חודשי משוער</th>
-        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">≈ טוקנים / חודש</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">קטן</td><td style="padding:12px;border:1px solid #e5e7eb;">150 תשובות בוט · 300 יזומות · 10 דוחות</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">~4,000</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">בינוני</td><td style="padding:12px;border:1px solid #e5e7eb;">500 תשובות בוט · 2,000 יזומות · 20 דוחות · קופיילוט יומי</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">~15,000</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">גדול</td><td style="padding:12px;border:1px solid #e5e7eb;">2,000 תשובות בוט · 8,000 יזומות · 60 דוחות · קופיילוט אינטנסיבי</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">~60,000</td></tr>
-    </tbody>
-  </table>
-</div>
-<p style="font-size:0.9rem;color:#64748b;">* הערכות. הצריכה האמיתית תלויה בגודל בסיס הידע, אורך השיחות והמודל שנבחר.</p>
-
-<h2>🔧 איך מוזילים את הצריכה</h2>
+<h2>🗺️ מה עוד צורך קרדיטים</h2>
 <ul>
-  <li><strong>בוחרים מודל לפי צורך.</strong> אפשר לבחור בין ChatGPT, Gemini ו‑Claude לתשובות הבוט. מודל מהיר/זול עולה פחות לכל תשובה; שומרים מודל חזק רק לשאלות מורכבות.</li>
-  <li><strong>מעבר אוטומטי ב"שיחת חולין".</strong> אפשר להפעיל שהבוט יעבור למודל הזול ביותר עבור ברכות ותשובות קצרות, וישמור את המודל שנבחר לשאלות אמיתיות.</li>
-  <li><strong>בסיס ידע ממוקד ומתויג.</strong> תיוג טוב של הקטלוג והשאלות‑ותשובות גורם לבוט לטעון רק את מה שרלוונטי לשאלה — פחות טוקנים, תשובות מדויקות יותר.</li>
-  <li><strong>מגדירים מתי לא לענות.</strong> חוקי "אל תגיב" מונעים תשובות מיותרות שצורכות טוקנים ללא צורך.</li>
+  <li><strong>הודעה קולית או מדיה שהלקוח שולח</strong> — תמלול וניתוח, צורך יותר מהודעת טקסט.</li>
+  <li><strong>החלטות AI בתוך בוטומציות, דוחות AI והקופיילוט</strong> — נמדדים לפי השימוש בפועל. שאלות עזרה בקופיילוט חינמיות.</li>
+  <li><strong>יצירת מדיה AI</strong> (תמונה/נכס) — צורכת יותר מתשובת טקסט.</li>
 </ul>
 
-<h2>🔍 מאחורי הקלעים — עלות המודל</h2>
-<p>לשקיפות מלאה, כך מתומחרים המודלים (לפי מיליון טוקנים, קלט/פלט):</p>
-<div style="overflow-x:auto;margin:16px 0;">
-  <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
-    <thead>
-      <tr style="background:#334155;color:#fff;">
-        <th style="padding:10px;text-align:right;border:1px solid #e5e7eb;">מודל</th>
-        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">קלט / 1M</th>
-        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">פלט / 1M</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">מהיר/זול (ברירת מחדל לרוב הכלים)</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$0.15</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$0.60</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e5e7eb;">מאוזן</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$0.25</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$2.00</td></tr>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">חזק</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$2.50</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$10.00</td></tr>
-    </tbody>
-  </table>
-</div>
-<p style="font-size:0.9rem;color:#64748b;">לדוגמה: קריאת AI מלאה של ~12,000 טוקנים במודל הזול עולה בפועל כ‑$0.002 בלבד — ולכן אפשר להריץ בוט חכם בעלות סבירה.</p>
+<h2>🔧 איך מקבלים יותר הודעות מאותה מכסה</h2>
+<ul>
+  <li><strong>בוחרים מודל לפי צורך.</strong> שומרים מודל חזק רק לשיחות שבאמת דורשות אותו.</li>
+  <li><strong>מעבר אוטומטי ב"שיחת חולין".</strong> הבוט עובר למודל הזול ביותר לברכות ותשובות קצרות.</li>
+  <li><strong>מגדירים מתי לא לענות.</strong> חוקי "אל תגיב" מונעים הודעות מיותרות.</li>
+  <li><strong>בסיס ידע ממוקד.</strong> פחות טקסט לכל תשובה = פחות קרדיטים להודעה.</li>
+</ul>
 
 <div style="background:linear-gradient(135deg,#0891b2,#0369a1);border-radius:16px;padding:28px;text-align:center;margin:32px 0;color:#fff;">
   <h3 style="margin:0 0 10px;font-size:1.3rem;color:#fff;border:none;">רוצים בוט AI חכם בעלות שקופה?</h3>
-  <p style="margin:0 0 20px;opacity:0.92;font-size:0.95rem;">גמבוט נותנת לכם לבחור מודל, לראות בדיוק כמה נצרך, ולשלוט בעלות — עם בוט שמבוסס על הידע העסקי שלכם בלבד.</p>
+  <p style="margin:0 0 20px;opacity:0.92;font-size:0.95rem;">גמבוט נותנת לכם לבחור מודל, לראות בדיוק כמה קרדיטים נצרכו ולשלוט בעלות.</p>
   <a href="/demo/" style="display:inline-block;background:#fff;color:#0369a1;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">דברו איתנו ←</a>
 </div>
 
 <h2>🧮 מחשבון קרדיטים אינטראקטיבי</h2>
-<p>רוצים הערכה מדויקת לעסק שלכם? השתמשו במחשבון שלמטה — בחרו סוג שימוש (Gambot AI Action / Agent, AI Generated ועוד), בחרו מודל, והזינו כמות חודשית. המחשבון יראה כמה קרדיטים תצרכו ואיזו חבילה מתאימה.</p>
+<p>רוצים הערכה מדויקת לעסק שלכם? בחרו מודל והזינו כמה הודעות בוט אתם מצפים בחודש — המחשבון יראה כמה קרדיטים תצרכו ואיזו חבילה מתאימה.</p>
 `,
     en: `
 <div style="background:linear-gradient(135deg,#0891b2 0%,#0369a1 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
   <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">🪙 Credits & AI Pricing</div>
-  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">Gambot Tokens — the unit that measures AI usage, in full transparency</div>
-  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">Every AI action in the system "costs" tokens. This article maps exactly which actions consume tokens, how much each costs, and how to estimate your monthly usage up front — so there are no surprises.</p>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">How many AI messages you get per month — by the model you choose</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">Every bot reply uses credits from your plan's monthly allowance. How many credits? It depends on the model you pick: a cheap model gives more messages, a strong and expensive one gives fewer. This article shows exactly how many messages you get in each plan and each model.</p>
 </div>
 
-<h2>⚖️ Rule of Thumb: One Unit ≈ 1,000 Model Tokens</h2>
-<p>A language model does not count "words" — it counts <strong>tokens</strong>, small chunks of text it reads (input) and writes (output). The more the bot has to read (catalog, Q&A, conversation history) and the longer the reply it writes, the more tokens are consumed.</p>
+<h2>⚖️ The Simple Rule: A More Expensive Model = More Credits per Message</h2>
+<p>Credits are measured by actual model usage (how much information the bot read and wrote), so every model has a different cost per message. The cheap models (GPT‑6 Luna, GPT‑5 mini, Claude Haiku 5.5) give the most messages, and strong models (GPT‑6.1 Terra, Sonnet, Opus) cost several times more. Credits reset at the start of each calendar month.</p>
+
+<h2>📦 How Many Messages Are in Each Plan?</h2>
+<div style="overflow-x:auto;margin:20px 0;">
+  <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+    <thead>
+      <tr style="background:#0369a1;color:#fff;">
+        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Plan</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Monthly price (ex. VAT)</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Credits / month</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">≈ messages / month (recommended model)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>Growth</strong></td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">₪179</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">2,500</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;color:#0369a1;">~300</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;"><strong>Pro</strong></td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">₪359</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">8,000</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;color:#0369a1;">~950</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>Business</strong></td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">₪645</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">15,000</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;color:#0369a1;">~1,800</td></tr>
+    </tbody>
+  </table>
+</div>
+<p style="font-size:0.9rem;color:#64748b;">Extra credits: ₪39 per 500 credits (≈ 60 extra messages on GPT‑5 mini).</p>
 <div style="background:#ecfeff;border:2px solid #a5f3fc;border-radius:14px;padding:18px 20px;margin:20px 0;">
-  <strong style="color:#0e7490;">The simple rule:</strong>
-  <p style="margin:8px 0 0;color:#374151;">Every <strong>1,000 model tokens</strong> ≈ <strong>one Gambot unit</strong> (rounded up, minimum 1 per action). A simple action = one token. A context-rich bot reply = dozens of tokens.</p>
+  <strong style="color:#0e7490;">Guideline:</strong>
+  <p style="margin:8px 0 0;color:#374151;">The Pro plan covers about 950 AI messages per month on the recommended model — a fit for most small and mid-size businesses.</p>
 </div>
 
-<h2>🗺️ The Usage Map — Which Actions Cost Tokens</h2>
+<h2>🔀 How Many Messages You Get — by Model</h2>
+<p>The table shows, on average, how many bot messages (one AI reply to a customer) you get per month in each plan, by the model selected in the bot:</p>
 <div style="overflow-x:auto;margin:20px 0;">
   <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
     <thead>
       <tr style="background:#0369a1;color:#fff;">
-        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">AI action</th>
-        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Cost (Gambot Tokens)</th>
+        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Model</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Cost level</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Credits / message (avg)</th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Growth<br><small>2,500</small></th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Pro<br><small>8,000</small></th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Business<br><small>15,000</small></th>
+        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">Add-on<br><small>500 credits · ₪39</small></th>
       </tr>
     </thead>
     <tbody>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>Gambot AI Action / Agent</strong> — bot reply in chat (the heaviest)</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;color:#b45309;">~15–40 per reply (model‑dependent)</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">AI decision in a botomation (AI Context / trigger)</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">by volume, ~1 per 1,000 tokens</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;"><strong>AI Generated</strong> — reply/content generated manually in chat</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">1 (model‑dependent)</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Proactive message</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">1 per message</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">Copilot — help/info question</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;color:#047857;font-weight:700;">Free (0)</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Copilot — general chat</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">1–2</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">Copilot — data query</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">1–5</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Copilot — action (tagging / create lead / bulk update)</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">1–50 by scope</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">AI report</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">3</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">AI notes search · campaign mapping validation · Web Forms copilot</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">2</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">AI media generation (image/asset)</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;">~10 per asset</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">ChatGPT · GPT-6 Luna (recommended)</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲 Low</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~8.4</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">300</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:800;color:#0369a1;">950</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">1,800</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">60</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">ChatGPT · GPT-5 mini</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲 Low</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~8.4</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">300</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">950</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">1,800</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">60</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">Claude · Haiku 5.5</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲 Low</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~8.4</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">300</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">950</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">1,800</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">60</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Gemini 3.5 Flash-Lite</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲 Low</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~10.4</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">240</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">770</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">1,450</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">50</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">ChatGPT · GPT-6.1 Terra</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲💲 Medium</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~25.6</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">100</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">310</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">590</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">20</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Gemini 3.6 Flash</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲💲 Medium</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~38.4</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">65</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">210</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">390</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">15</td></tr>
+      <tr><td style="padding:12px;border:1px solid #e5e7eb;">Claude · Sonnet 5.5</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲💲💲 High</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~46</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">55</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">170</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">330</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">10</td></tr>
+      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Claude · Opus 5.5</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">💲💲💲 High</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">~92</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">25</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;font-weight:700;">85</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;">160</td><td style="padding:12px;border:1px solid #e5e7eb;text-align:center;background:#f0f9ff;">5</td></tr>
     </tbody>
   </table>
 </div>
-
-<h2>🤖 The Heavy Item: Bot Replies</h2>
-<p>Why is a single bot reply "worth" far more than a simple action? Because before every reply the bot does real work:</p>
-<ul>
-  <li><strong>Reads your knowledge base</strong> — product/service catalog, Q&A, conversation goals and business hours.</li>
-  <li><strong>Reads the conversation history</strong> — so it answers in context and doesn't repeat itself.</li>
-  <li><strong>Runs quality checks</strong> — intent detection, phrasing, verifying the reply is grounded in real facts, and checking calendar availability for scheduling.</li>
-</ul>
-<p>In practice, one AI call with the full business context consumes about <strong>11,000–13,000 input tokens</strong> (a real measurement from the system), and a full reply runs several such steps — so a single reply lands in the <strong>~15–40 unit</strong> range, depending on the size of the knowledge base and the length of the conversation.</p>
-<div style="background:#fffbeb;border:2px solid #fcd34d;border-radius:14px;padding:16px 20px;margin:20px 0;">
-  <strong style="color:#92400e;">💡 Tip:</strong>
-  <p style="margin:6px 0 0;color:#374151;">The more focused and well-tagged your knowledge base is, the less irrelevant data the bot loads per reply — which directly lowers the token count.</p>
+<p style="font-size:0.9rem;color:#64748b;">* Averages per message based on real usage: GPT‑5 mini was measured on active organizations; the other models are estimates based on provider list prices (Nov 2026). GPT‑6 Luna and Claude Haiku 5.5 are billed at the same price as GPT‑5 mini — faster and more advanced at no extra cost. Older models (GPT‑5, GPT‑4o, Claude 4.5) keep working on existing bots and cost more. Calculated conservatively with no cache discount. A larger knowledge base (e.g. about 28,000 tokens) gives fewer messages, a smaller one gives more.</p>
+<div style="background:#ecfeff;border:2px solid #a5f3fc;border-radius:14px;padding:18px 20px;margin:20px 0;">
+  <strong style="color:#0e7490;">How to choose:</strong>
+  <p style="margin:8px 0 0;color:#374151;">GPT‑6 Luna (recommended), GPT‑5 mini and Claude Haiku 5.5 are the cheapest and fit most conversations. Strong models (GPT‑6.1 Terra, Claude Sonnet / Opus) suit complex conversations — but significantly reduce the number of messages in your plan.</p>
 </div>
 
-<h2>🧮 Monthly Estimation Examples</h2>
-<div style="overflow-x:auto;margin:20px 0;">
-  <table style="width:100%;border-collapse:collapse;font-size:0.92rem;">
-    <thead>
-      <tr style="background:#0369a1;color:#fff;">
-        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Business</th>
-        <th style="padding:12px;text-align:left;border:1px solid #e5e7eb;">Estimated monthly usage</th>
-        <th style="padding:12px;text-align:center;border:1px solid #e5e7eb;">≈ tokens / month</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">Small</td><td style="padding:12px;border:1px solid #e5e7eb;">150 bot replies · 300 proactive · 10 reports</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">~4,000</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:12px;border:1px solid #e5e7eb;">Medium</td><td style="padding:12px;border:1px solid #e5e7eb;">500 bot replies · 2,000 proactive · 20 reports · daily copilot</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">~15,000</td></tr>
-      <tr><td style="padding:12px;border:1px solid #e5e7eb;">Large</td><td style="padding:12px;border:1px solid #e5e7eb;">2,000 bot replies · 8,000 proactive · 60 reports · heavy copilot</td><td style="padding:12px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">~60,000</td></tr>
-    </tbody>
-  </table>
-</div>
-<p style="font-size:0.9rem;color:#64748b;">* Estimates. Real usage depends on the knowledge-base size, conversation length and the model you pick.</p>
-
-<h2>🔧 How to Reduce Usage</h2>
+<h2>🗺️ What Else Uses Credits</h2>
 <ul>
-  <li><strong>Pick a model to fit the need.</strong> You can choose between ChatGPT, Gemini and Claude for bot replies. A fast/cheap model costs less per reply; keep a strong model only for complex questions.</li>
-  <li><strong>Automatic downgrade for small talk.</strong> You can have the bot switch to the cheapest model for greetings and short replies, while keeping your chosen model for real questions.</li>
-  <li><strong>Focused, well-tagged knowledge base.</strong> Good tagging of the catalog and Q&A makes the bot load only what's relevant to the question — fewer tokens, more accurate answers.</li>
-  <li><strong>Define when NOT to reply.</strong> "Do not respond" rules prevent unnecessary replies that consume tokens for nothing.</li>
+  <li><strong>Voice notes or media sent by the customer</strong> — transcription and analysis, uses more than a text message.</li>
+  <li><strong>AI decisions inside botomations, AI reports and the Copilot</strong> — measured by actual usage. Copilot help questions are free.</li>
+  <li><strong>AI media generation</strong> (image/asset) — uses more than a text reply.</li>
 </ul>
 
-<h2>🔍 Behind the Scenes — Model Cost</h2>
-<p>For full transparency, here is how models are priced (per million tokens, input/output):</p>
-<div style="overflow-x:auto;margin:16px 0;">
-  <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
-    <thead>
-      <tr style="background:#334155;color:#fff;">
-        <th style="padding:10px;text-align:left;border:1px solid #e5e7eb;">Model</th>
-        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Input / 1M</th>
-        <th style="padding:10px;text-align:center;border:1px solid #e5e7eb;">Output / 1M</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Fast/cheap (default for most tools)</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$0.15</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$0.60</td></tr>
-      <tr style="background:#f8fafc;"><td style="padding:10px;border:1px solid #e5e7eb;">Balanced</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$0.25</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$2.00</td></tr>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Strong</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$2.50</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">$10.00</td></tr>
-    </tbody>
-  </table>
-</div>
-<p style="font-size:0.9rem;color:#64748b;">For example: a full AI call of ~12,000 tokens on the cheap model actually costs about $0.002 — which is why a smart bot can run at a reasonable cost.</p>
+<h2>🔧 How to Get More Messages from the Same Allowance</h2>
+<ul>
+  <li><strong>Pick a model to fit the need.</strong> Keep a strong model only for conversations that truly need it.</li>
+  <li><strong>Automatic downgrade for small talk.</strong> The bot switches to the cheapest model for greetings and short replies.</li>
+  <li><strong>Define when NOT to reply.</strong> "Do not respond" rules prevent unnecessary messages.</li>
+  <li><strong>Focused knowledge base.</strong> Less text per reply = fewer credits per message.</li>
+</ul>
 
 <div style="background:linear-gradient(135deg,#0891b2,#0369a1);border-radius:16px;padding:28px;text-align:center;margin:32px 0;color:#fff;">
   <h3 style="margin:0 0 10px;font-size:1.3rem;color:#fff;border:none;">Want a smart AI bot with transparent cost?</h3>
-  <p style="margin:0 0 20px;opacity:0.92;font-size:0.95rem;">Gambot lets you choose a model, see exactly how much is consumed, and control the cost — with a bot grounded only in your business knowledge.</p>
+  <p style="margin:0 0 20px;opacity:0.92;font-size:0.95rem;">Gambot lets you choose a model, see exactly how many credits were used and control the cost.</p>
   <a href="/demo/" style="display:inline-block;background:#fff;color:#0369a1;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">Talk to us ←</a>
 </div>
 
 <h2>🧮 Interactive Credit Calculator</h2>
-<p>Want an accurate estimate for your business? Use the calculator below — pick a usage type (Gambot AI Action / Agent, AI Generated and more), choose a model, and enter a monthly quantity. It will show how many credits you'll use and which plan fits.</p>
+<p>Want an accurate estimate for your business? Pick a model and enter how many bot messages you expect per month — the calculator shows how many credits you'll use and which plan fits.</p>
 `
   },
-  seoUrl: getSeoUrl('טוקני גמבוט קרדיטים איך מחשבים ומעריכים כמה AI תצרכו')
+  seoUrl: getSeoUrl('טוקני גמבוט קרדיטים איך מחשבים ומעריכים כמה AI תצרכו'),
+  // Previous title slugs (the URL is generated from the title) — keep old links alive after the title change.
+  legacySlugs: [
+    getSeoUrl('טוקני גמבוט (קרדיטים): איך מחשבים ומעריכים כמה AI תצרכו'),
+    getSeoUrl('Gambot Tokens (Credits): How to Calculate and Estimate Your AI Usage')
+  ]
 }
 ,
 {
@@ -13236,7 +13207,7 @@ const posts = [
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">שיחות חדשות בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">300</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">אנשי קשר</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">35,000</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">הודעות דיוור בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים AI בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים AI בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">8,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">קרדיטים API/MCP בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">אחסון קבצים</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">50 GB</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">משתמשים</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">12</td></tr>
@@ -13401,7 +13372,7 @@ const posts = [
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">New conversations / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">300</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">Contacts</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">35,000</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Broadcast messages / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">AI credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
+      <tr><td style="padding:10px;border:1px solid #e5e7eb;">AI credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">8,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">API/MCP credits / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">File storage</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">50 GB</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Users</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">12</td></tr>

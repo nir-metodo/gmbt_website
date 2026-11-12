@@ -110,7 +110,7 @@ const WhatsAppApiPricing = () => {
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>1,000 קרדיטים AI בחודש (כל 500 נוספים 39 ש"ח)</span>
+                  <span>2,500 קרדיטים AI בחודש (כל 500 נוספים 39 ש"ח)</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
@@ -149,7 +149,7 @@ const WhatsAppApiPricing = () => {
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>5,000 קרדיטים AI בחודש (כל 500 נוספים 39 ש"ח)</span>
+                  <span>8,000 קרדיטים AI בחודש (כל 500 נוספים 39 ש"ח)</span>
                 </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />

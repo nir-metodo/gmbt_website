@@ -148,7 +148,7 @@ export default function OneTimeBroadcastLanding() {
           </p>
           <p>
             זה מתאים למי שצריך לשלוח הודעה פעם אחת או מדי פעם — למשל להזמין אנשים להצטרף לקבוצת וואטסאפ — ולא רוצה לחכות לאימות, להקים מספר או לשלם דמי מנוי.
-            מי שמדוור באופן קבוע יכול לעבור ל<Link href="/מערכת-דיוור-וואטסאפ/">מערכת דיוור מלאה</Link> של Gambot.
+            מי שמדוור באופן קבוע יכול לעבור ל<Link href="/דיוור-קבוע-בוואטסאפ/">דיוור קבוע ומתוזמן</Link> ב<Link href="/מערכת-דיוור-וואטסאפ/">מערכת דיוור מלאה</Link> של Gambot.
           </p>
         </div>
       </section>
@@ -277,8 +277,10 @@ export default function OneTimeBroadcastLanding() {
           <h2>קראו עוד</h2>
           <ul className="otbl-list">
             <li><Link href={BLOG_PATH}>למה בנינו דיוור חד־פעמי: בלי מספר ובלי אימות מול Meta</Link></li>
-            <li><Link href="/דיוור-בוואטסאפ/">דיוור בוואטסאפ — המדריך המלא</Link></li>
+            <li><Link href="/דיוור-קבוע-בוואטסאפ/">דיוור קבוע, חוזר ומתוזמן בוואטסאפ — מדריך עם דוגמאות</Link></li>
+            <li><Link href="/דיוור-בוואטסאפ/">דיוור בוואטסאפ — מה זה וחוקיות</Link></li>
             <li><Link href="/מערכת-דיוור-וואטסאפ/">מערכת דיוור וואטסאפ לדיוורים קבועים</Link></li>
+            <li><a href="https://gambot.co.il/one-time-whatsapp-broadcast/" hrefLang="en">English version: One-time WhatsApp broadcast</a></li>
             <li><Link href="/PriceList/ManagedBroadcast/">שירות דיוור מנוהל</Link></li>
           </ul>
         </div>

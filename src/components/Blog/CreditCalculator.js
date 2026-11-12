@@ -2,76 +2,37 @@
 import { useMemo, useState } from 'react';
 
 // ═══════════════════════════════════════════════════════════════════════════
-// Gambot Credit Calculator — mirrors the backend CreditCalculator (AiService.cs)
-//   credits = ceil( providerCostUsd * MARKUP / CREDIT_VALUE_USD )
-//   MARKUP = 10 , CREDIT_VALUE_USD = 0.01  →  factor = 1000
-// Per-model input/output USD per 1M tokens are copied 1:1 from the backend.
-// ═══════════════════════════════════════════════════════════════════════════
-const FACTOR = 10 / 0.01; // 1000
+// Gambot Credit Calculator — token-based credit model: a bot message costs credits according to the
+// chosen model (credit = fixed provider cost; credits/message = avg provider cost per message / credit value).
+// Averages assume a typical knowledge base (~15k input tokens) + the intent call, with no cache discount
+// (conservative) for any model. Keep in sync with the blog table.
+// Non-bot rows (voice/report/copilot/media/proactive) keep flat estimates.
 
-// model key → [inputUsdPer1M, outputUsdPer1M]  (must match backend keys)
-const MODEL_RATES = {
-  'gpt-4o-mini':            [0.15, 0.60],
-  'gpt-5-mini':             [0.25, 2.00],
-  'gpt-4o':                 [2.50, 10.00],
-  'gpt-5':                  [1.25, 10.00],
-  'gemini-3.5-flash-lite':  [0.10, 0.40],
-  'gemini-3.6-flash':       [0.30, 2.50],
-  'gemini-3.1-pro':         [1.25, 10.00],
-  'claude-haiku':           [1.00, 5.00],
-  'claude-sonnet':          [3.00, 15.00],
-  'claude-opus':            [5.00, 25.00],
-};
-
-// Grouped options for the model dropdown (value = backend key)
-const MODEL_GROUPS = [
-  {
-    label: 'ChatGPT (OpenAI)',
-    options: [
-      { value: 'gpt-4o-mini', he: 'GPT‑4o mini — מהיר/זול', en: 'GPT‑4o mini — fast/cheap' },
-      { value: 'gpt-5-mini',  he: 'GPT‑5 mini — מאוזן',     en: 'GPT‑5 mini — balanced' },
-      { value: 'gpt-4o',      he: 'GPT‑4o — חזק',           en: 'GPT‑4o — strong' },
-      { value: 'gpt-5',       he: 'GPT‑5 — חזק+',           en: 'GPT‑5 — strong+' },
-    ],
-  },
-  {
-    label: 'Gemini (Google)',
-    options: [
-      { value: 'gemini-3.5-flash-lite', he: 'Gemini Flash Lite — מהיר/זול', en: 'Gemini Flash Lite — fast/cheap' },
-      { value: 'gemini-3.6-flash',      he: 'Gemini Flash — מאוזן',         en: 'Gemini Flash — balanced' },
-      { value: 'gemini-3.1-pro',        he: 'Gemini Pro — חזק',             en: 'Gemini Pro — strong' },
-    ],
-  },
-  {
-    label: 'Claude (Anthropic)',
-    options: [
-      { value: 'claude-haiku',  he: 'Claude Haiku — מהיר',  en: 'Claude Haiku — fast' },
-      { value: 'claude-sonnet', he: 'Claude Sonnet — חזק',  en: 'Claude Sonnet — strong' },
-      { value: 'claude-opus',   he: 'Claude Opus — חזק+',   en: 'Claude Opus — strong+' },
-    ],
-  },
+// value → credits per average bot message
+const MODELS = [
+  { value: 'gpt-6-luna', he: 'ChatGPT · GPT-6 Luna — מומלץ', en: 'ChatGPT · GPT-6 Luna — recommended', credits: 8.4 },
+  { value: 'gpt-5-mini', he: 'ChatGPT · GPT-5 mini', en: 'ChatGPT · GPT-5 mini', credits: 8.4 },
+  { value: 'claude-haiku-5-5', he: 'Claude · Haiku 5.5', en: 'Claude · Haiku 5.5', credits: 8.4 },
+  { value: 'gemini-3.5-flash-lite', he: 'Gemini 3.5 Flash-Lite', en: 'Gemini 3.5 Flash-Lite', credits: 10.4 },
+  { value: 'gpt-6.1-terra', he: 'ChatGPT · GPT-6.1 Terra — חזק', en: 'ChatGPT · GPT-6.1 Terra — strong', credits: 25.6 },
+  { value: 'gemini-3.6-flash', he: 'Gemini 3.6 Flash', en: 'Gemini 3.6 Flash', credits: 38.4 },
+  { value: 'claude-sonnet-5-5', he: 'Claude · Sonnet 5.5 — יקר', en: 'Claude · Sonnet 5.5 — expensive', credits: 46 },
+  { value: 'claude-opus-5-5', he: 'Claude · Opus 5.5 — הכי יקר', en: 'Claude · Opus 5.5 — most expensive', credits: 92 },
 ];
+const creditsForModel = (model) => (MODELS.find((m) => m.value === model) || MODELS[0]).credits;
+// ═══════════════════════════════════════════════════════════════════════════
 
-// credits for a model-based action given a representative token profile
-function creditsForModel(model, inTok, outTok) {
-  const [i, o] = MODEL_RATES[model] || MODEL_RATES['gpt-5-mini'];
-  const costUsd = (inTok * i) / 1e6 + (outTok * o) / 1e6;
-  return Math.max(1, Math.ceil(costUsd * FACTOR));
-}
-
-// Action rows. modelBased rows compute per-unit credits from the selected model
-// using a representative token profile; fixed rows use a flat credit cost.
+// Action rows: each has a flat per-unit credit cost.
 const ACTIONS = [
   {
     key: 'agent',
     icon: '🤖',
-    he: 'Gambot AI Action / Agent',
-    en: 'Gambot AI Action / Agent',
-    heDesc: 'תשובת הבוט בשיחה — קורא את כל הידע העסקי ומריץ בדיקות איכות. הפריט הכבד.',
-    enDesc: 'A bot reply in the conversation — reads all business knowledge and runs quality checks. The heavy item.',
+    he: 'הודעת בוט AI (Gambot AI Action / Agent)',
+    en: 'AI bot message (Gambot AI Action / Agent)',
+    heDesc: 'כל הודעה שהבוט שולח ללקוח בשיחה. מודל יקר יותר צורך יותר קרדיטים להודעה.',
+    enDesc: 'Every message the bot sends to a customer. A more expensive model uses more credits per message.',
     modelBased: true,
-    profile: { in: 90000, out: 3000 },
-    defaultModel: 'gpt-4o-mini',
+    defaultModel: 'gpt-6-luna',
     defaultQty: 500,
   },
   {
@@ -79,12 +40,20 @@ const ACTIONS = [
     icon: '✍️',
     he: 'AI Generated (תוכן/תשובה)',
     en: 'AI Generated (content/reply)',
-    heDesc: 'יצירת תשובה או תוכן AI ידני בצ׳אט. תלוי במודל שנבחר.',
-    enDesc: 'Generating an AI reply or content manually in chat. Depends on the chosen model.',
-    modelBased: true,
-    profile: { in: 2500, out: 500 },
-    defaultModel: 'gpt-4o-mini',
+    heDesc: 'יצירת תשובה או תוכן AI ידני בצ׳אט.',
+    enDesc: 'Generating an AI reply or content manually in chat.',
+    fixed: 1,
     // Off by default — don't assume every feature is in use. The user turns it on by typing a qty.
+    defaultQty: 0,
+  },
+  {
+    key: 'voice',
+    icon: '🎙️',
+    he: 'הודעה קולית / מדיה מהלקוח',
+    en: 'Customer voice note / media',
+    heDesc: 'תמלול וניתוח של הודעה קולית או מדיה שהלקוח שולח לבוט.',
+    enDesc: 'Transcription and analysis of a voice note or media the customer sends to the bot.',
+    fixed: 9,
     defaultQty: 0,
   },
   {
@@ -135,8 +104,8 @@ const ACTIONS = [
 // coverage — that's how we know when stacking banks on a small plan is more expensive than simply
 // moving up a tier.
 const PLANS = [
-  { name: 'Growth',   credits: 1000,  price: 179 },
-  { name: 'Pro',      credits: 5000,  price: 359 },
+  { name: 'Growth',   credits: 2500,  price: 179 },
+  { name: 'Pro',      credits: 8000,  price: 359 },
   { name: 'Business', credits: 15000, price: 645 },
 ];
 const ADDON_CREDITS = 500;
@@ -148,6 +117,14 @@ const ENTERPRISE_PRICE = 1000;
 
 const fmt = (n) => Number(n).toLocaleString();
 
+// Average bot messages per month for a model in a plan (rounded for display, same as the blog table).
+function avgMessages(credits, perMsg) {
+  const n = credits / perMsg;
+  if (n < 100) return Math.round(n / 5) * 5;
+  if (n < 1000) return Math.round(n / 10) * 10;
+  return Math.round(n / 50) * 50;
+}
+
 export default function CreditCalculator({ lang = 'he' }) {
   const he = lang !== 'en';
   const t = (h, e) => (he ? h : e);
@@ -155,19 +132,17 @@ export default function CreditCalculator({ lang = 'he' }) {
   const [qty, setQty] = useState(() =>
     Object.fromEntries(ACTIONS.map((a) => [a.key, a.defaultQty]))
   );
+
+  const [showTable, setShowTable] = useState(false);
   const [models, setModels] = useState(() =>
-    Object.fromEntries(
-      ACTIONS.filter((a) => a.modelBased).map((a) => [a.key, a.defaultModel])
-    )
+    Object.fromEntries(ACTIONS.filter((a) => a.modelBased).map((a) => [a.key, a.defaultModel]))
   );
 
   const rows = useMemo(() => {
     return ACTIONS.map((a) => {
-      const perUnit = a.modelBased
-        ? creditsForModel(models[a.key], a.profile.in, a.profile.out)
-        : a.fixed;
+      const perUnit = a.modelBased ? creditsForModel(models[a.key]) : a.fixed;
       const count = Math.max(0, Number(qty[a.key]) || 0);
-      return { ...a, perUnit, count, credits: perUnit * count };
+      return { ...a, perUnit, count, credits: Math.ceil(perUnit * count) };
     });
   }, [qty, models]);
 
@@ -193,10 +168,9 @@ export default function CreditCalculator({ lang = 'he' }) {
     return { enterprise: false, ...best };
   }, [total]);
 
+  const setModelFor = (key, v) => setModels((prev) => ({ ...prev, [key]: v }));
   const setQtyFor = (key, v) =>
     setQty((prev) => ({ ...prev, [key]: v === '' ? '' : Math.max(0, Number(v)) }));
-  const setModelFor = (key, v) =>
-    setModels((prev) => ({ ...prev, [key]: v }));
 
   const dir = he ? 'rtl' : 'ltr';
 
@@ -210,8 +184,8 @@ export default function CreditCalculator({ lang = 'he' }) {
           </h2>
           <p style={S.headerSub}>
             {t(
-              'בחרו סוג שימוש, מודל וכמות — והמחשבון יראה כמה קרדיטים תצרכו ואיזו חבילה מתאימה.',
-              'Pick a usage type, model and quantity — the calculator shows how many credits you\'ll use and which plan fits.'
+              'בחרו מודל וכמות — והמחשבון יראה כמה קרדיטים תצרכו ואיזו חבילה מתאימה.',
+              'Pick a model and quantity — the calculator shows how many credits you\'ll use and which plan fits.'
             )}
           </p>
         </div>
@@ -245,14 +219,10 @@ export default function CreditCalculator({ lang = 'he' }) {
                   style={S.select}
                   aria-label={t('בחירת מודל', 'Select model')}
                 >
-                  {MODEL_GROUPS.map((g) => (
-                    <optgroup key={g.label} label={g.label}>
-                      {g.options.map((o) => (
-                        <option key={o.value} value={o.value}>
-                          {he ? o.he : o.en}
-                        </option>
-                      ))}
-                    </optgroup>
+                  {MODELS.map((m) => (
+                    <option key={m.value} value={m.value}>
+                      {he ? m.he : m.en}
+                    </option>
                   ))}
                 </select>
               ) : (
@@ -330,10 +300,51 @@ export default function CreditCalculator({ lang = 'he' }) {
 
         <p style={S.note}>
           {t(
-            '💡 שימו לב: מודל חזק צורך הרבה יותר קרדיטים לכל תשובה. בחירת מודל מהיר/זול לשיחות פשוטות מורידה משמעותית את הצריכה.',
-            '💡 Note: a strong model consumes many more credits per reply. Choosing a fast/cheap model for simple conversations lowers usage significantly.'
+            '💡 שימו לב: מודל חזק צורך הרבה יותר קרדיטים להודעה. מודל זול (GPT-6 Luna / GPT-5 mini / Claude Haiku 5.5) מתאים לרוב השיחות ונותן הכי הרבה הודעות.',
+            '💡 Note: a strong model uses many more credits per message. A cheap model (GPT-6 Luna / GPT-5 mini / Claude Haiku 5.5) fits most conversations and gives the most messages.'
           )}
         </p>
+
+        <div style={{ marginTop: 14 }}>
+          <button type="button" onClick={() => setShowTable((v) => !v)} style={S.tableBtn} aria-expanded={showTable}>
+            {showTable
+              ? t('הסתר ממוצע הודעות לפי מודל ▲', 'Hide average messages by model ▲')
+              : t('📊 ממוצע הודעות לפי מודל וחבילה ▼', '📊 Average messages by model & plan ▼')}
+          </button>
+          {showTable && (
+            <div style={{ overflowX: 'auto', marginTop: 10 }}>
+              <table style={S.table}>
+                <thead>
+                  <tr>
+                    <th style={{ ...S.th, textAlign: he ? 'right' : 'left' }}>{t('מודל', 'Model')}</th>
+                    {PLANS.map((p) => (
+                      <th key={p.name} style={S.th}>
+                        {p.name}
+                        <div style={S.thSub}>{fmt(p.credits)}</div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {MODELS.map((m) => (
+                    <tr key={m.value}>
+                      <td style={{ ...S.td, textAlign: he ? 'right' : 'left' }}>{he ? m.he : m.en}</td>
+                      {PLANS.map((p) => (
+                        <td key={p.name} style={S.td}>≈{fmt(avgMessages(p.credits, m.credits))}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p style={S.note}>
+                {t(
+                  'ממוצע הודעות בוט בחודש לפי שימוש אמיתי (GPT-5 mini נמדד; שאר המודלים הערכה לפי מחירון הספקים, נובמבר 2026). עסק עם בסיס ידע גדול יותר יקבל פחות הודעות.',
+                  'Average bot messages per month with a typical knowledge base. A larger knowledge base gives fewer messages.'
+                )}
+              </p>
+            </div>
+          )}
+        </div>
 
         <a href="/OnboardingProcess" style={S.cta}>
           {t('התחילו ניסיון חינם ←', 'Start a free trial →')}
@@ -397,6 +408,16 @@ const S = {
   rowIcon: { fontSize: 20, flexShrink: 0 },
   rowName: { fontWeight: 700, fontSize: '0.92rem', color: '#1a1a2e' },
   rowDesc: { fontSize: '0.76rem', color: '#64748b', lineHeight: 1.4, marginTop: 2 },
+  qtyInput: {
+    width: 80,
+    padding: '8px 10px',
+    borderRadius: 8,
+    border: '1.5px solid #cbd5e1',
+    fontSize: '0.9rem',
+    textAlign: 'center',
+    fontWeight: 600,
+  },
+  perUnit: { fontWeight: 600, color: '#0369a1', fontSize: '0.9rem' },
   select: {
     width: '100%',
     maxWidth: 200,
@@ -408,16 +429,20 @@ const S = {
     cursor: 'pointer',
   },
   fixedTag: { fontSize: '0.75rem', color: '#94a3b8', fontStyle: 'italic' },
-  qtyInput: {
-    width: 80,
-    padding: '8px 10px',
-    borderRadius: 8,
-    border: '1.5px solid #cbd5e1',
-    fontSize: '0.9rem',
-    textAlign: 'center',
-    fontWeight: 600,
+  tableBtn: {
+    background: '#fff',
+    border: '1.5px solid #0891b2',
+    color: '#0369a1',
+    fontWeight: 700,
+    fontSize: '0.88rem',
+    padding: '9px 16px',
+    borderRadius: 10,
+    cursor: 'pointer',
   },
-  perUnit: { fontWeight: 600, color: '#0369a1', fontSize: '0.9rem' },
+  table: { width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem', background: '#fff' },
+  th: { padding: '8px', border: '1px solid #bae6fd', background: '#e0f2fe', color: '#0369a1', textAlign: 'center' },
+  thSub: { fontSize: '0.7rem', fontWeight: 400, color: '#64748b' },
+  td: { padding: '8px', border: '1px solid #e0f2fe', textAlign: 'center' },
   rowTotal: { fontWeight: 800, color: '#b45309', fontSize: '0.95rem' },
   result: {
     marginTop: 20,
