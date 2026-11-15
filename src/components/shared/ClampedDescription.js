@@ -40,7 +40,9 @@ export const publicDocTableCss = (primaryColor) => `
   .pq-clamp { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.6; }
   .pq-clamp.is-clamped { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
   .pq-more { margin-top: 2px; padding: 0; background: none; border: none; color: ${primaryColor}; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; }
+  .pq-extras-list { display: flex; flex-wrap: wrap; gap: 8px; max-height: 150px; overflow-y: auto; padding: 2px 2px 2px 6px; scrollbar-width: thin; }
   @media print {
+    .pq-extras-list { max-height: none !important; overflow: visible !important; }
     .pq-clamp.is-clamped { display: block !important; -webkit-line-clamp: unset !important; overflow: visible !important; }
   }
   @media (max-width: 640px) {

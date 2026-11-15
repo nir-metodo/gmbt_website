@@ -18,6 +18,7 @@ function OAuthSuccessInner() {
         if (microsoftConnected) provider = 'microsoft';
         if (googleConnected)    provider = 'google';
         if (facebookConnected)  provider = 'facebook';
+        if (searchParams.get('tiktok_connected') || error === 'tiktok_oauth_error') provider = 'tiktok';
 
         const broadcast = (data, channelName) => {
             try {

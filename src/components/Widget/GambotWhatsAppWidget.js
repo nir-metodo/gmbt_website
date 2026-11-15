@@ -37,8 +37,9 @@ const COPY = {
   },
 };
 
-// Pages that must stay clean (signer-facing documents, the widget iframe itself, onboarding funnels).
-const HIDE_ON = /(?:^|\/)(form|esig|esignature|wabaChatWidgetIframe|complete-waba|oauth-success|shared-token|wa-connect)(?:\/|$)/i;
+// Pages that must stay clean (documents our customers share with THEIR customers: quotes, invoices, forms, e-signature;
+// the widget iframe itself, onboarding funnels). A Gambot sales chat button must never show on a business's own document.
+const HIDE_ON = /(?:^|\/)(form|forms|esig|esignature|quote|invoice|catalog|pay|p|wabaChatWidgetIframe|complete-waba|oauth-success|shared-token|wa-connect)(?:\/|$)/i;
 
 export default function GambotWhatsAppWidget() {
   const pathname = usePathname() || '';

@@ -28,7 +28,7 @@ const LoginErrorModal = ({ isOpen, onClose, errorType, organizationName, email }
           label: t('loginError.trialExpired.completePaymentButton'),
           icon: <FaCreditCard />,
           color: 'primary',
-          link: `/AddPayment?organization=${organizationName}&email=${email}`
+          link: `/addpayment?organizationName=${encodeURIComponent(organizationName || '')}&email=${encodeURIComponent(email || '')}`
         }
       ]
     },
@@ -70,7 +70,7 @@ const LoginErrorModal = ({ isOpen, onClose, errorType, organizationName, email }
           label: t('loginError.paymentFailed.updatePaymentButton'),
           icon: <FaCreditCard />,
           color: 'primary',
-          link: `/AddPayment?organization=${organizationName}&email=${email}`
+          link: `/addpayment?organizationName=${encodeURIComponent(organizationName || '')}&email=${encodeURIComponent(email || '')}`
         }
       ]
     },

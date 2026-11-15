@@ -36,7 +36,7 @@ const AddPaymentInner = () => {
   const queryParams = searchParams;
 
   // Extract values from query parameters
-  const organizationName = queryParams.get("organizationName");
+  const organizationName = queryParams.get("organizationName") || queryParams.get("organization");
   const plan = queryParams.get("plan");
   const price = queryParams.get("price");
   const paymentCycle = queryParams.get("paymentCycle");
@@ -50,6 +50,22 @@ const AddPaymentInner = () => {
   const discountByPercentageSim = parseFloat(queryParams.get("discount_by_percentage_sim")) || 0;
   const urlCurrency = queryParams.get("currency") || "ILS"; // Get currency from URL (default to ILS for backward compatibility)
   const nextChargeDate = queryParams.get("nextChargeDate"); // Next charge date from reminder URL
+
+  // Bare link (e.g. from the login "trial ended" popup) carries only the organization - no plan/price/cycle.
+  // Without them the page shows an empty summary and the card is charged against nothing. Resolve the
+  // org's real plan details server-side and reload this page with the full reminder URL.
+  useEffect(() => {
+    if (!organizationName || plan) return;
+    let cancelled = false;
+    axios
+      .post("https://gambot.azurewebsites.net/api/Webhooks/GetPaymentReminderUrl", { organization: organizationName })
+      .then((res) => {
+        const url = (res?.data?.ReminderUrl || "").replace(/addpayment%3F/gi, "addpayment?");
+        if (!cancelled && res?.data?.Success && url) window.location.replace(url);
+      })
+      .catch((e) => console.warn("GetPaymentReminderUrl failed:", e?.message));
+    return () => { cancelled = true; };
+  }, [organizationName, plan]);
   
   // Get language context and currency helpers
   const { language, setCurrentLanguage } = useLanguage();

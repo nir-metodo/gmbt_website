@@ -52,6 +52,8 @@ export default function PublicQuotePage() {
   const [lightboxImages, setLightboxImages] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [actionsOpen, setActionsOpen] = useState(false);
+  const [extraBusy, setExtraBusy] = useState(false);
+  const [extraError, setExtraError] = useState('');
 
   const openLightbox = useCallback((images) => {
     if (!images || images.length === 0) return;
@@ -97,6 +99,23 @@ export default function PublicQuotePage() {
   useEffect(() => {
     fetchQuote();
   }, [fetchQuote]);
+
+  // The customer ticks / unticks an add-on: the server turns the chosen ones into lines of this quote and returns the updated quote.
+  const toggleExtra = async (name) => {
+    if (extraBusy || !quote) return;
+    const mine = (quote.items || []).filter(i => i.lineKind === 'extra' && i.selectedByCustomer).map(i => (i.description || '').trim());
+    const selected = mine.includes(name) ? mine.filter(n => n !== name) : [...mine, name];
+    setExtraBusy(true); setExtraError('');
+    try {
+      const res = await axios.post(`${API_BASE}/SetPublicQuoteExtras`, { org, quoteId, selected });
+      if (res.data?.success && res.data.data) setQuote(res.data.data);
+      else setExtraError('לא ניתן לעדכן את הבחירה כרגע');
+    } catch (e) {
+      setExtraError('לא ניתן לעדכן את הבחירה כרגע, נסו שוב');
+    } finally {
+      setExtraBusy(false);
+    }
+  };
 
   if (loading) return (
     <div style={styles.centered}>
@@ -307,7 +326,8 @@ export default function PublicQuotePage() {
                   const itemImages = item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : []);
                   const hasMultiple = itemImages.length > 1;
                   return (
-                    <tr key={idx} className={`pq-row ${itemImages.length > 0 ? '' : 'no-img'}`} style={{ borderBottom: '1px solid #e5e7eb', background: isDiscountRow ? '#fef2f2' : (idx % 2 === 0 ? '#fff' : '#f9fafb') }}>
+                    <React.Fragment key={idx}>
+                    <tr className={`pq-row ${itemImages.length > 0 ? '' : 'no-img'}`} style={{ borderBottom: '1px solid #e5e7eb', background: isDiscountRow ? '#fef2f2' : (idx % 2 === 0 ? '#fff' : '#f9fafb') }}>
                       {hasAnyImage && (
                         <td className="pq-img" style={{ textAlign: 'center', padding: '4px', width: 50 }}>
                           {itemImages.length > 0 && (
@@ -341,6 +361,55 @@ export default function PublicQuotePage() {
                         {isDiscountRow ? `-${currency}${formatNum(Math.abs(lineTotal))}` : `${currency}${formatNum(lineTotal)}`}
                       </td>
                     </tr>
+                    {/* All add-ons this product offers — one row under the product, view only (the salesperson adds the ones the customer chose as their own lines) */}
+                    {!item.lineKind && Array.isArray(item.availableExtras) && item.availableExtras.length > 0 && (
+                      <tr className="pq-section pq-extras">
+                        <td colSpan={hasAnyImage ? 6 : 5} style={{ background: '#faf5ff', padding: '10px 14px', borderBottom: '1px solid #e9d5ff' }}>
+                          <div style={{ fontSize: 12, fontWeight: 700, color: primaryColor, marginBottom: 6 }}>🧩 {quote.customerCanSelectExtras ? 'רוצים להוסיף תוספת? סמנו אותה — היא תתווסף להצעה והסכום יתעדכן מיד' : 'תוספות אפשריות למוצר'}{extraBusy ? ' …' : ''}</div>
+                          <div className="pq-extras-list">
+                            {item.availableExtras.map((ex, ei) => {
+                              const chosenLine = items.find(x => x.lineKind === 'extra' && (x.description || '').trim() === ex.name);
+                              const chosen = !!chosenLine;
+                              const canToggle = !!quote.customerCanSelectExtras && (!chosenLine || !!chosenLine.selectedByCustomer);
+                              const chip = (
+                                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 10px 4px 6px', background: '#fff', border: `1.5px solid ${chosen ? '#16a34a' : '#e5e7eb'}`, borderRadius: 999, fontSize: 12, color: '#374151' }}>
+                                  {ex.image && <img src={ex.image} alt="" style={{ width: 24, height: 24, objectFit: 'cover', borderRadius: '50%' }} />}
+                                  <span style={{ fontWeight: 600 }}>{ex.name}</span>
+                                  {ex.price > 0 && <span style={{ color: primaryColor, fontWeight: 700 }}>{currency}{formatNum(ex.price)}</span>}
+                                  {chosen && <span style={{ color: '#16a34a', fontWeight: 700 }}>✓ נבחרה</span>}
+                                  {canToggle && !chosen && <span style={{ color: primaryColor, fontWeight: 700 }}>＋</span>}
+                                </span>
+                              );
+                              if (canToggle) {
+                                // Selectable card: the whole card (checkbox + name + price) is ONE button that adds / removes the add-on;
+                                // the product page is a separate, explicitly labelled text link, so the two actions are never confused.
+                                const hasLink = /^https?:\/\//.test(ex.link || '');
+                                return (
+                                  <div key={ei} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2 }}>
+                                    <button
+                                      type="button" disabled={extraBusy} onClick={() => toggleExtra(ex.name)} aria-pressed={chosen}
+                                      style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 12px', background: chosen ? '#ecfdf5' : '#fff', border: `2px solid ${chosen ? '#16a34a' : primaryColor}`, borderRadius: 12, fontSize: 13, color: '#1f2937', fontFamily: 'inherit', cursor: extraBusy ? 'wait' : 'pointer', opacity: extraBusy ? 0.6 : 1, textAlign: 'start' }}
+                                    >
+                                      <span aria-hidden="true" style={{ width: 20, height: 20, borderRadius: 6, flexShrink: 0, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: chosen ? '#16a34a' : '#fff', border: `2px solid ${chosen ? '#16a34a' : '#9ca3af'}`, color: '#fff', fontSize: 14, fontWeight: 800, lineHeight: 1 }}>{chosen ? '✓' : ''}</span>
+                                      {ex.image && <img src={ex.image} alt="" style={{ width: 30, height: 30, objectFit: 'cover', borderRadius: 8 }} />}
+                                      <span style={{ fontWeight: 700 }}>{ex.name}</span>
+                                      {ex.price > 0 && <span style={{ color: chosen ? '#15803d' : primaryColor, fontWeight: 800 }}>+{currency}{formatNum(ex.price)}</span>}
+                                      <span style={{ fontSize: 11, fontWeight: 700, color: chosen ? '#15803d' : '#6b7280' }}>{chosen ? 'נוספה להצעה · לחצו להסרה' : 'לחצו להוספה'}</span>
+                                    </button>
+                                    {hasLink && <a href={ex.link} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11, color: '#2563eb', paddingInlineStart: 6 }}>🔗 פרטים באתר</a>}
+                                  </div>
+                                );
+                              }
+                              return /^https?:\/\//.test(ex.link || '')
+                                ? <a key={ei} href={ex.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>{chip}</a>
+                                : <span key={ei}>{chip}</span>;
+                            })}
+                          </div>
+                          {extraError && <div style={{ color: '#dc2626', fontSize: 12, marginTop: 6 }}>{extraError}</div>}
+                        </td>
+                      </tr>
+                    )}
+                    </React.Fragment>
                   );
                 })}
               </tbody>
