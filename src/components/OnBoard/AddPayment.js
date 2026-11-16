@@ -54,6 +54,7 @@ const AddPaymentInner = () => {
   // Bare link (e.g. from the login "trial ended" popup) carries only the organization - no plan/price/cycle.
   // Without them the page shows an empty summary and the card is charged against nothing. Resolve the
   // org's real plan details server-side and reload this page with the full reminder URL.
+  const [reminderFailed, setReminderFailed] = useState(false);
   useEffect(() => {
     if (!organizationName || plan) return;
     let cancelled = false;
@@ -62,8 +63,12 @@ const AddPaymentInner = () => {
       .then((res) => {
         const url = (res?.data?.ReminderUrl || "").replace(/addpayment%3F/gi, "addpayment?");
         if (!cancelled && res?.data?.Success && url) window.location.replace(url);
+        else if (!cancelled) setReminderFailed(true);
       })
-      .catch((e) => console.warn("GetPaymentReminderUrl failed:", e?.message));
+      .catch((e) => {
+        console.warn("GetPaymentReminderUrl failed:", e?.message);
+        if (!cancelled) setReminderFailed(true);
+      });
     return () => { cancelled = true; };
   }, [organizationName, plan]);
   
@@ -376,6 +381,24 @@ const AddPaymentInner = () => {
   };
   */
 
+  // Bare link (no plan yet): don't render the price summary - it would crash on an undefined plan
+  // (planPricesData.monthly[undefined].toFixed). Wait for the redirect to the full reminder URL.
+  if (!plan) {
+    return (
+      <div className="addpayment-container">
+        {reminderFailed ? (
+          <p className="addpayment-error-message">
+            {effectiveLanguage === "he"
+              ? "לא הצלחנו לטעון את פרטי המסלול. אנא פנו אלינו בוואטסאפ ונשלים את התשלום יחד: 03-376-8997"
+              : "We couldn't load your plan details. Please contact us on WhatsApp: +972 3-376-8997"}
+          </p>
+        ) : (
+          <LoadingOverlay loading={true}></LoadingOverlay>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="addpayment-container">
       <LoadingOverlay loading={isLoading}></LoadingOverlay>
@@ -561,28 +584,35 @@ const AddPaymentInner = () => {
       </div>
 
       {/* Next charge date - if provided */}
-      {nextChargeDate && (
+      {nextChargeDate && (() => {
+        // A date that already passed (trial ended, card added late) is NOT the real billing start:
+        // the backend re-anchors the first charge to today, so say "starting today" instead.
+        const d = new Date(nextChargeDate);
+        const startOfToday = new Date(); startOfToday.setHours(0, 0, 0, 0);
+        const isPast = !isNaN(d.getTime()) && d < startOfToday;
+        return (
         <div className="next-charge-notice">
           <span className="calendar-icon">📅</span>
           <p>
             <strong>
               {paymentCycle === 'monthly' 
-                ? (effectiveLanguage === 'he' ? 'חיוב חודשי החל מה-' : 'Monthly billing starting ')
-                : (effectiveLanguage === 'he' ? 'חיוב שנתי החל מה-' : 'Annual billing starting ')
+                ? (effectiveLanguage === 'he' ? (isPast ? 'חיוב חודשי החל ' : 'חיוב חודשי החל מה-') : 'Monthly billing starting ')
+                : (effectiveLanguage === 'he' ? (isPast ? 'חיוב שנתי החל ' : 'חיוב שנתי החל מה-') : 'Annual billing starting ')
               }
             </strong>
             <span className="charge-date">
-              {(() => {
-                const d = new Date(nextChargeDate);
-                if (isNaN(d.getTime())) return nextChargeDate;
-                return d.toLocaleDateString(effectiveLanguage === 'he' ? 'he-IL' : 'en-US', {
-                  year: 'numeric', month: 'long', day: 'numeric'
-                });
-              })()}
+              {isPast
+                ? (effectiveLanguage === 'he' ? 'מהיום' : 'today')
+                : (isNaN(d.getTime())
+                    ? nextChargeDate
+                    : d.toLocaleDateString(effectiveLanguage === 'he' ? 'he-IL' : 'en-US', {
+                        year: 'numeric', month: 'long', day: 'numeric'
+                      }))}
             </span>
           </p>
         </div>
-      )}
+        );
+      })()}
 
       {paymentError && <p className="addpayment-error-message">{paymentError}</p>}
 

@@ -14160,6 +14160,254 @@ const posts = [
 `
   },
   seoUrl: getSeoUrl('תבנית שירות (Utility) או שיווק (Marketing) בוואטסאפ — ההבדלים ואיך לאשר תבנית כשירות')
+},
+{
+  id: 51,
+  seoTitle: {
+    he: 'מליד לכסף — שיטת העבודה המומלצת לאיש מכירות: ליד, הצעת מחיר, סליקה | גמבוט',
+    en: 'From Lead to Cash — The Recommended Sales Workflow: Lead, Quote, Payment | Gambot'
+  },
+  metaDescription: {
+    he: 'איך עובדים נכון בלידים, שולחים הצעת מחיר ומסגרים עסקה בלי לעדכן שלבים ידנית: הצעת מחיר משויכת לליד, אישור לקוח, סליקה והעברה אוטומטית של הליד ל"הצטרף" עם סכום העסקה.',
+    en: 'How to work leads, send a quote and close a deal without manually updating stages: a quote linked to the lead, customer approval, payment, and the lead automatically moving to Won with the deal amount.'
+  },
+  keywords: {
+    he: ['שיטת עבודה לאיש מכירות', 'ניהול לידים', 'הצעת מחיר מליד', 'הצעת מחיר בוואטסאפ', 'סליקה והצעת מחיר', 'עדכון שלב ליד אוטומטי', 'סכום עסקה', 'פייפליין מכירות', 'crm לוואטסאפ', 'גמבוט'],
+    en: ['sales workflow', 'lead management', 'quote from lead', 'whatsapp quotes', 'quote payment', 'automatic lead stage update', 'deal amount', 'sales pipeline', 'whatsapp crm', 'gambot']
+  },
+  title: {
+    he: 'מליד לכסף — שיטת העבודה המומלצת לאיש מכירות: ליד, הצעת מחיר, סליקה',
+    en: 'From Lead to Cash — The Recommended Sales Workflow: Lead, Quote, Payment'
+  },
+  description: {
+    he: 'שיטה פשוטה אחת: עובדים על הליד, שולחים הצעת מחיר ומדברים עם הלקוח. כשהוא מאשר ומשלם, המערכת מעדכנת את ההצעה, את הליד ואת סכום העסקה.',
+    en: 'One simple method: work the lead, send a quote and talk to the customer. When they approve and pay, the system updates the quote, the lead and the deal amount.'
+  },
+  category: 'Sales',
+  author: 'ניר סגס',
+  publishedDate: '2026-11-16',
+  image: '/blog/07/sales.png',
+  readTime: 8,
+  featured: false,
+  faq: {
+    he: [
+      { q: 'למה כדאי לפתוח הצעת מחיר מתוך הליד ולא מאפס?', a: 'כשההצעה נוצרת מהליד היא משויכת אליו. השיוך הזה מאפשר למערכת להעביר את הליד לשלב הבא בשליחה, בחתימה ובתשלום, ולהציג את סכום ההצעה כסכום העסקה. הצעה שנוצרה מאפס, בלי שיוך לליד, לא תעדכן אותו.' },
+      { q: 'מה קורה לליד כשהלקוח משלם על הצעת המחיר?', a: 'ההצעה עוברת לסטטוס "שולם" והליד המשויך עובר אוטומטית לשלב "הצטרף" (או לשלב אחר שהגדרתם), וסכום הליד מתעדכן לסכום ההצעה. ליד שכבר נסגר, כצלחה או כנפילה, לא זז.' },
+      { q: 'ומה קורה כשמסלקים תשלום ישירות על הליד, בלי הצעת מחיר?', a: 'הליד עצמו עובר ל"הצטרף" וסכום העסקה הוא הסכום ששולם. זה מתאים לעסקאות שלא עוברות הצעת מחיר, למשל מכירה קטנה או תשלום מראש.' },
+      { q: 'מה עושים כשהעסקה נסגרה מחוץ למערכת, למשל תשלום במזומן בלי סליקה?', a: 'מעבירים את הליד ל"הצטרף" ידנית. במקום לעדכן בשקט, קופץ חלון "אישור סכום העסקה" שבו בוחרים סכום מהצעת מחיר, מסכום הליד או מזינים ידנית. כך נתוני המכירות והדשבורד נשארים מדויקים.' },
+      { q: 'האם תשלום חלקי או מקדמה מסמן את ההצעה כשולמה?', a: 'כרגע כל תשלום מוצלח על הצעה מסמן אותה "שולם". אם גובים מקדמה, כדאי לרשום זאת בהערה ולהבין שהסטטוס משקף קבלת תשלום ולא בהכרח את מלוא הסכום.' },
+      { q: 'אפשר לשנות לאיזה שלב הליד עובר?', a: 'כן. בהגדרות הצעת מחיר קובעים לאיזה שלב הליד עובר בשליחת ההצעה, בשליחתה לחתימה, ובתשלום. ברירת המחדל לתשלום היא "הצטרף", ואפשר גם לכבות את ההעברה האוטומטית.' }
+    ],
+    en: [
+      { q: 'Why create the quote from the lead instead of from scratch?', a: 'A quote created from the lead is linked to it. That link lets the system move the lead to the next stage on send, on signature and on payment, and show the quote total as the deal amount. A quote created from scratch with no lead link will not update any lead.' },
+      { q: 'What happens to the lead when the customer pays the quote?', a: 'The quote moves to "Paid" and the linked lead automatically moves to "Won" (or another stage you set), and the lead amount is updated to the quote total. A lead that is already closed, won or lost, is not moved.' },
+      { q: 'And when a payment is charged directly on the lead, without a quote?', a: 'The lead itself moves to "Won" and the deal amount is the amount paid. It fits deals that skip the quote, such as a small sale or a prepayment.' },
+      { q: 'What if the deal closed outside the system, for example a cash payment with no charge?', a: 'Move the lead to "Won" manually. Instead of changing it silently, a "Confirm deal amount" dialog appears where you pick an amount from a quote or the lead amount, or type it in. That keeps your sales numbers and dashboard accurate.' },
+      { q: 'Does a partial payment or deposit mark the quote as paid?', a: 'Currently any successful payment on a quote marks it "Paid". If you collect a deposit, note it in a comment and remember the status reflects that a payment was received, not necessarily the full amount.' },
+      { q: 'Can I change the stage the lead moves to?', a: 'Yes. In the quote settings you choose which stage the lead moves to when the quote is sent, sent for signature and paid. The default for payment is "Won", and you can also turn the automatic move off.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">💼 מדריך לאיש מכירות</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">מליד לכסף — עובדים על הלקוח, המערכת מעדכנת את השאר</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">שיטת עבודה אחת פשוטה: ליד, הצעת מחיר, סליקה — בלי להזיז שלבים ידנית.</p>
+</div>
+
+<p><strong>רוב המכירות הולכות לאיבוד לא בגלל שהלקוח אמר לא, אלא בגלל שאף אחד לא ידע באיזה שלב הוא נמצא.</strong> ליד ששכחו לעדכן, הצעה ששלחו ולא עקבו אחריה, תשלום שהתקבל והליד נשאר "בהצעת מחיר". במדריך הזה אני, ניר סגס, מסביר את השיטה שאני ממליץ עליה לכל איש מכירות בגמבוט: לעבוד על שלושה דברים בלבד, ולתת למערכת לעדכן את כל השאר.</p>
+
+<h2>הרעיון בשורה אחת</h2>
+<p><strong>ליד הוא אדם שמתעניין. הצעת מחיר היא מה שהצענו לו. תשלום הוא ההוכחה שהוא אמר כן.</strong> כל שלב מעדכן את הבא אחריו, ואיש המכירות מתרכז בשיחה עם הלקוח ולא בניהול סטטוסים.</p>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:22px 0;font-size:1.02rem;line-height:1.9;text-align:center;">
+  <strong>ליד חדש</strong> ← בירור צורך ← <strong>הצעת מחיר</strong> ← נשלחה ← אושרה / נחתמה ← <strong>שולמה</strong> ← <strong>"הצטרף"</strong>
+</div>
+
+<h2>שלב 1 — ליד נכנס: רואים את כל התמונה בצ׳אט</h2>
+<p>ליד מגיע מפייסבוק, מאתר, מדף נחיתה או מוואטסאפ. כדי שלא תצטרכו לפתוח עוד מסך, כל המידע מופיע בצ׳אט עצמו:</p>
+<ul>
+  <li><strong>טופס שהלקוח מילא</strong> מוצג כבועה בציר הזמן, כמו הודעה נכנסת: "היי! השלמתי את הטופס שלך", עם השאלות והתשובות.</li>
+  <li><strong>מידע על המקור</strong> — מאיפה הגיע: דף נחיתה, UTM, קמפיין, שם המודעה. כך אתם יודעים עם מה הלקוח הגיע לפני שאתם כותבים לו מילה.</li>
+</ul>
+<p>הבועה היא רשומה בציר הזמן ולא הודעת צ׳אט אמיתית, ולכן היא לא פותחת חלון שירות של 24 שעות, לא מעלה מונה "לא נקרא" ולא מפעילה בוט.</p>
+
+<h2>שלב 2 — עובדים על הליד</h2>
+<p>זה החלק שבו אתם מוכרים: שיחה בוואטסאפ, בירור צורך, מענה לשאלות. כמה כללים שחוסכים לידים:</p>
+<ul>
+  <li><strong>מזיזים את הליד בשלבים לפי התקדמות אמיתית</strong> בקנבן או ישירות מהצ׳אט.</li>
+  <li><strong>מפעילים פולואפים ותזכורות.</strong> מי שלא הגיב אחרי הודעה נוספת, מקבל תזכורת אוטומטית אחרי זמן שתגדירו, ולא נשכח.</li>
+  <li><strong>רושמים הערות בליד.</strong> כל מה שנאמר על התקציב, על המועד ועל המתחרים נשמר איפה שכל הצוות רואה.</li>
+</ul>
+
+<h2>שלב 3 — פותחים הצעת מחיר מתוך הליד</h2>
+<p>זה הכלל החשוב ביותר במדריך: <strong>הצעת המחיר נוצרת מתוך הליד, לא מאפס.</strong> כך היא משויכת אליו, ובלי השיוך הזה אף אחד מהעדכונים האוטומטיים בהמשך לא יעבוד.</p>
+<ul>
+  <li>אפשר להגדיר שלב בקנבן שמציע לפתוח הצעה (עם אישור) ברגע שליד נכנס אליו.</li>
+  <li>שמירת הצעה שמשויכת לליד מעבירה אותו לשלב הצעת המחיר.</li>
+  <li>הפריטים, ההנחות והמע״מ נבנים בהצעה, והסכום הסופי שלה הוא הבסיס לסכום העסקה בהמשך.</li>
+</ul>
+
+<h2>שלב 4 — שולחים ומדברים עם הלקוח</h2>
+<p>שולחים את ההצעה בוואטסאפ או לחתימה דיגיטלית. הדיון נמשך בצ׳אט: שאלות, בקשות להנחה, הבהרות. ההצעה נשארת המסמך הרשמי, והשיחה נשארת איפה שהלקוח נוח.</p>
+<p>בהגדרות הצעת מחיר אפשר לקבוע שהליד יעבור אוטומטית לשלב מסוים ברגע ששולחים את ההצעה, וגם ברגע ששולחים אותה לחתימה. כך הקנבן תמיד משקף איפה העסקה באמת.</p>
+
+<h2>שלב 5 — הלקוח מאשר</h2>
+<p>אישור לקוח מתבצע בחתימה דיגיטלית או בסימון ההצעה "אושרה". ההצעה עוברת ל"ממתין לתשלום", ועכשיו נשארה פעולה אחת: לגבות.</p>
+
+<h2>שלב 6 — סליקה: המערכת סוגרת את המעגל</h2>
+<p>אפשר לסלוק בכל דרך: כרטיס אשראי, קישור תשלום ללקוח, מזומן, העברה בנקאית או צ׳ק. אפשר לסלוק מתוך הצעת מחיר, וגם ישירות מתוך הליד. מרגע שהתשלום נקלט, <strong>הכול מתעדכן לבד:</strong></p>
+
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">מה קרה</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">מה מתעדכן אוטומטית</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">נשמרה הצעה עם ליד משויך</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">הליד עובר לשלב הצעת המחיר</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">ההצעה נשלחה או נשלחה לחתימה</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">הליד עובר לשלב שהגדרתם (אם הגדרתם)</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;"><strong>תשלום על הצעת מחיר</strong></td><td style="border:1px solid #e2e8f0;padding:8px 12px;">ההצעה עוברת ל"שולם", הליד המשויך עובר ל"הצטרף", וסכום הליד הופך לסכום ההצעה</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;"><strong>תשלום ישירות על ליד</strong></td><td style="border:1px solid #e2e8f0;padding:8px 12px;">הליד עובר ל"הצטרף", וסכום העסקה הוא הסכום ששולם</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">העברה ידנית ל"הצטרף"</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">קופץ חלון "אישור סכום העסקה"</td></tr>
+  </tbody>
+</table>
+
+<p>בנוסף, כל שינוי כזה נרשם בציר הזמן של ההצעה והליד, ואפשר לחבר אליו בוטומיישן: הודעת תודה ללקוח, משימה למנהל, חשבונית אוטומטית או עדכון למערכת אחרת.</p>
+
+<h2>שלב 7 — כשהעסקה נסגרה מחוץ למערכת</h2>
+<p>לא כל עסקה עוברת סליקה במערכת: תשלום בהעברה שנכנס לבנק, מזומן ביד. במקרה כזה מעבירים את הליד ל"הצטרף" ידנית, מכל מקום: הקנבן, הצ׳אט, רשימת אנשי הקשר או טופס הליד. במקום שהסכום יישאר ריק או לא נכון, קופץ חלון קצר:</p>
+<ul>
+  <li><strong>מהצעת מחיר</strong> — הסכום מהפריטים. אם יש הצעה ששולמה היא מסומנת מראש.</li>
+  <li><strong>סכום הליד</strong> — הערך שכבר הוזן בליד.</li>
+  <li><strong>הזנה ידנית</strong> — כשהסכום הסופי שונה מההצעה.</li>
+</ul>
+<p>הסכום שנבחר נשמר בליד ובציר הזמן, ומזין את הדשבורד, את דוחות המכירות ואת אירועי ההמרה לפרסום (CAPI), כך שמטא וגוגל לומדות מהמכירה האמיתית, בסכום הנכון.</p>
+
+<h2>5 כללי זהב לאיש מכירות</h2>
+<ol>
+  <li><strong>הצעה נפתחת מהליד.</strong> זה מה שמחבר בין השלבים.</li>
+  <li><strong>לא מזיזים שלבים ידנית בלי סיבה.</strong> השליחה והתשלום עושים את זה בשבילכם, ושלב שנוסע לבד הוא שלב שאפשר לסמוך עליו.</li>
+  <li><strong>מאשרים סכום בכל סגירה ידנית.</strong> עשר שניות בחלון הסכום חוסכות דוח מכירות שגוי.</li>
+  <li><strong>מקדמה היא קבלת תשלום.</strong> כל תשלום מוצלח על הצעה מסמן אותה "שולם", לכן רושמים בהערה מה שולם ומה נשאר.</li>
+  <li><strong>מי שנסגר או נפל לא זז.</strong> המערכת לא "מחייה" ליד שסגרתם ידנית, ולא סוגרת ליד שנפל.</li>
+</ol>
+
+<div style="background:#fffbeb;border-inline-start:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:26px 0;font-size:0.95rem;color:#92400e;">
+  ⚙️ <strong>למנהלים:</strong> בהגדרות הצעת מחיר קובעים לאיזה שלב הליד עובר בשליחה, בחתימה ובתשלום. ברירת המחדל לתשלום היא "הצטרף", ואפשר לבחור שלב אחר או לכבות את ההעברה האוטומטית.
+</div>
+
+<h2>מה זה נותן לעסק</h2>
+<ul>
+  <li><strong>קנבן אמין.</strong> כל ליד נמצא בשלב שבו הוא באמת נמצא, כך שאפשר לחזות הכנסות ולא לנחש.</li>
+  <li><strong>פחות עבודה ידנית.</strong> איש המכירות לא מעדכן שלושה מקומות אחרי כל תשלום.</li>
+  <li><strong>סכומי עסקה נכונים.</strong> הדשבורד וההמרות לפרסום מבוססים על הסכום האמיתי.</li>
+  <li><strong>היסטוריה ברורה.</strong> אפשר לראות בציר הזמן מי העביר, מתי ולמה.</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">הכלל הקצר</h3>
+  <p style="margin:0 0 18px;opacity:0.92;font-size:1rem;">עובדים על הליד, פותחים הצעה מתוכו ומדברים עם הלקוח. את השאר, מהאישור ועד ל"הצטרף", המערכת עושה.</p>
+  <a href="/demo/" style="display:inline-block;background:#fff;color:#075E54;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">קבלו הדגמה חינם ←</a>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">💼 Sales rep guide</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">From Lead to Cash — you work the customer, the system updates the rest</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">One simple method: lead, quote, payment — without moving stages by hand.</p>
+</div>
+
+<p><strong>Most deals are not lost because the customer said no, but because nobody knew which stage they were in.</strong> A lead nobody updated, a quote that was sent and never followed up, a payment that arrived while the lead still says "Quote sent". In this guide I, Nir Segas, explain the method I recommend to every Gambot sales rep: work on just three things and let the system update everything else.</p>
+
+<h2>The idea in one line</h2>
+<p><strong>A lead is a person who is interested. A quote is what we offered them. A payment is the proof they said yes.</strong> Each stage updates the next, and the rep focuses on the conversation with the customer, not on managing statuses.</p>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:22px 0;font-size:1.02rem;line-height:1.9;text-align:center;">
+  <strong>New lead</strong> → needs discovery → <strong>Quote</strong> → sent → approved / signed → <strong>paid</strong> → <strong>"Won"</strong>
+</div>
+
+<h2>Step 1 — A lead arrives: see the whole picture in the chat</h2>
+<p>A lead arrives from Facebook, a website, a landing page or WhatsApp. So you don't have to open another screen, everything is shown in the chat itself:</p>
+<ul>
+  <li><strong>A form the customer filled in</strong> is shown as a bubble in the timeline, like an incoming message: "Hi! I completed your form", with the questions and answers.</li>
+  <li><strong>Source info</strong> — where they came from: landing page, UTM, campaign, ad name. You know how the customer arrived before you write a word.</li>
+</ul>
+<p>The bubble is a timeline record, not a real chat message, so it does not open a 24-hour service window, does not raise the unread counter and does not trigger a bot.</p>
+
+<h2>Step 2 — Work the lead</h2>
+<p>This is where you sell: a WhatsApp conversation, needs discovery, answering questions. A few rules that save leads:</p>
+<ul>
+  <li><strong>Move the lead through the stages by real progress</strong>, in the kanban or straight from the chat.</li>
+  <li><strong>Use follow-ups and reminders.</strong> Someone who doesn't answer gets an automatic reminder after the time you set, and is not forgotten.</li>
+  <li><strong>Write notes on the lead.</strong> Everything said about budget, timing and competitors is saved where the whole team can see it.</li>
+</ul>
+
+<h2>Step 3 — Open a quote from the lead</h2>
+<p>This is the most important rule in this guide: <strong>create the quote from the lead, not from scratch.</strong> That links it to the lead, and without that link none of the automatic updates below will work.</p>
+<ul>
+  <li>You can set a kanban stage to offer opening a quote (with your confirmation) as soon as a lead enters it.</li>
+  <li>Saving a quote that is linked to a lead moves it to the quote stage.</li>
+  <li>Items, discounts and VAT are built in the quote, and its final total is the basis for the deal amount later.</li>
+</ul>
+
+<h2>Step 4 — Send and talk to the customer</h2>
+<p>Send the quote on WhatsApp or for digital signature. The discussion continues in the chat: questions, discount requests, clarifications. The quote stays the official document and the conversation stays where the customer is comfortable.</p>
+<p>In the quote settings you can set the lead to move to a specific stage as soon as the quote is sent, and also when it is sent for signature. That way the kanban always reflects where the deal really is.</p>
+
+<h2>Step 5 — The customer approves</h2>
+<p>Customer approval happens through a digital signature or by marking the quote "Accepted". The quote moves to "Awaiting payment", and one action remains: collecting.</p>
+
+<h2>Step 6 — Payment: the system closes the loop</h2>
+<p>You can charge any way: credit card, a payment link to the customer, cash, bank transfer or check. You can charge from the quote, and also directly from the lead. From the moment the payment is recorded, <strong>everything updates by itself:</strong></p>
+
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">What happened</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">What updates automatically</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">A quote linked to a lead was saved</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">The lead moves to the quote stage</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">The quote was sent or sent for signature</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">The lead moves to the stage you set (if you set one)</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;"><strong>Payment on a quote</strong></td><td style="border:1px solid #e2e8f0;padding:8px 12px;">The quote moves to "Paid", the linked lead moves to "Won", and the lead amount becomes the quote total</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;"><strong>Payment directly on a lead</strong></td><td style="border:1px solid #e2e8f0;padding:8px 12px;">The lead moves to "Won" and the deal amount is the amount paid</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">A manual move to "Won"</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">A "Confirm deal amount" dialog appears</td></tr>
+  </tbody>
+</table>
+
+<p>In addition, every such change is recorded in the quote and lead timeline, and you can attach an automation to it: a thank-you message to the customer, a task for a manager, an automatic invoice or an update to another system.</p>
+
+<h2>Step 7 — When the deal closed outside the system</h2>
+<p>Not every deal goes through a charge in the system: a bank transfer that arrived, cash in hand. In that case move the lead to "Won" manually, from anywhere: the kanban, the chat, the contacts list or the lead form. Instead of leaving the amount empty or wrong, a short dialog appears:</p>
+<ul>
+  <li><strong>From a quote</strong> — the total from its items. If there is a paid quote it is preselected.</li>
+  <li><strong>Lead amount</strong> — the value already entered in the lead.</li>
+  <li><strong>Manual entry</strong> — when the final amount differs from the quote.</li>
+</ul>
+<p>The chosen amount is saved in the lead and the timeline, and feeds the dashboard, the sales reports and the ad conversion events (CAPI), so Meta and Google learn from the real sale, with the right amount.</p>
+
+<h2>5 golden rules for a sales rep</h2>
+<ol>
+  <li><strong>A quote starts from the lead.</strong> That is what connects the stages.</li>
+  <li><strong>Don't move stages by hand without a reason.</strong> Sending and payment do it for you, and a stage that moves on its own is one you can trust.</li>
+  <li><strong>Confirm the amount on every manual close.</strong> Ten seconds in the amount dialog save you a wrong sales report.</li>
+  <li><strong>A deposit is a received payment.</strong> Any successful payment on a quote marks it "Paid", so note in a comment what was paid and what remains.</li>
+  <li><strong>Closed or lost stays put.</strong> The system will not "revive" a lead you closed by hand, and will not close a lead that was lost.</li>
+</ol>
+
+<div style="background:#fffbeb;border-inline-start:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:26px 0;font-size:0.95rem;color:#92400e;">
+  ⚙️ <strong>For managers:</strong> in the quote settings you choose which stage the lead moves to on send, on signature and on payment. The default for payment is "Won", and you can pick another stage or turn the automatic move off.
+</div>
+
+<h2>What this gives the business</h2>
+<ul>
+  <li><strong>A reliable kanban.</strong> Every lead sits in the stage it is really in, so you can forecast revenue instead of guessing.</li>
+  <li><strong>Less manual work.</strong> The rep does not update three places after every payment.</li>
+  <li><strong>Correct deal amounts.</strong> The dashboard and the ad conversions are based on the real amount.</li>
+  <li><strong>A clear history.</strong> The timeline shows who moved what, when and why.</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">The short rule</h3>
+  <p style="margin:0 0 18px;opacity:0.92;font-size:1rem;">Work the lead, open a quote from it and talk to the customer. The rest, from approval to "Won", the system does.</p>
+  <a href="/demo/" style="display:inline-block;background:#fff;color:#075E54;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">Get a free demo →</a>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('מליד לכסף — שיטת העבודה המומלצת לאיש מכירות: ליד, הצעת מחיר, סליקה')
 }
 ];
 
