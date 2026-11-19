@@ -102,10 +102,6 @@ const WhatsAppApiPricing = () => {
               <div className="card-features">
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>1 בוט / תהליך אוטומציה</span>
-                </div>
-                <div className="feature">
-                  <FaCheckCircle className="check-icon" />
                   <span>300 שיחות חדשות בחודש</span>
                 </div>
                 <div className="feature">
@@ -141,10 +137,6 @@ const WhatsAppApiPricing = () => {
               <div className="card-features">
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
-                  <span>3 בוטים / תהליכי אוטומציה</span>
-                </div>
-                <div className="feature">
-                  <FaCheckCircle className="check-icon" />
                   <span>1,000 שיחות חדשות בחודש</span>
                 </div>
                 <div className="feature">
@@ -177,10 +169,6 @@ const WhatsAppApiPricing = () => {
               </div>
               
               <div className="card-features">
-                <div className="feature">
-                  <FaCheckCircle className="check-icon" />
-                  <span>6 בוטים / תהליכי אוטומציה</span>
-                </div>
                 <div className="feature">
                   <FaCheckCircle className="check-icon" />
                   <span>3,000 שיחות חדשות בחודש</span>

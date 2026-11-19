@@ -13203,7 +13203,6 @@ const posts = [
     <tbody>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;"><strong>מחיר חודשי</strong></td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪179</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪359</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪645</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">מחיר חודשי בחיוב שנתי</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪143</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪287</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪516</td></tr>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">בוטים / תהליכי אוטומציה</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">6</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">שיחות חדשות בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">300</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">אנשי קשר</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">35,000</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">הודעות דיוור בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
@@ -13212,7 +13211,7 @@ const posts = [
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">אחסון קבצים</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">50 GB</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">משתמשים</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">12</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">מספר וואטסאפ</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">1 כלול בכל חבילה</td></tr>
-      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">ריצות אוטומציה בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">ריצות אוטומציה / שיחות בוט בחודש</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
     </tbody>
   </table>
 </div>
@@ -13368,7 +13367,6 @@ const posts = [
     <tbody>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;"><strong>Monthly price</strong></td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪179</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪359</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;font-weight:700;">₪645</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Monthly price with annual billing</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪143</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪287</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">₪516</td></tr>
-      <tr><td style="padding:10px;border:1px solid #e5e7eb;">Bots / automation flows</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">6</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">New conversations / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">300</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">Contacts</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">3,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">35,000</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Broadcast messages / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">20,000</td></tr>
@@ -13377,7 +13375,7 @@ const posts = [
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">File storage</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">10 GB</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">50 GB</td></tr>
       <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Users</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">2</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">12</td></tr>
       <tr><td style="padding:10px;border:1px solid #e5e7eb;">WhatsApp number</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;" colspan="3">1 included in every plan</td></tr>
-      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Automation runs / month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
+      <tr style="background:#f9fafb;"><td style="padding:10px;border:1px solid #e5e7eb;">Automation runs / bot conversations per month</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">1,500</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">5,000</td><td style="padding:10px;text-align:center;border:1px solid #e5e7eb;">15,000</td></tr>
     </tbody>
   </table>
 </div>
@@ -13766,14 +13764,14 @@ const posts = [
       { q: 'האם צריך מספר טלפון ייעודי כדי לשלוח דיוור חד פעמי?', a: 'לא. ההודעות נשלחות דרך חשבון WhatsApp Business API המאומת של גמבוט, ולכן אין צורך להקים מספר, לפתוח חשבון משלכם או לעבור אימות עסק מול מטא.' },
       { q: 'האם אפשר לשלוח מיד?', a: 'ההזמנה נעשית תוך דקות וללא הקמה מוקדמת, אבל השליחה מתוזמנת לפחות 25 שעות קדימה, כי כל תבנית הודעה צריכה אישור של מטא (בדרך כלל עד 24 שעות). מקבלים מייל כשהתבנית אושרה.' },
       { q: 'כמה זה עולה?', a: 'המחיר מדורג: 0.90 ש"ח להודעה עד 500 הודעות, 0.75 עד 2,000, 0.65 עד 5,000 ו-0.58 עד 10,000. מינימום הזמנה 49 ש"ח. המחירים לפני מע"מ, כוללים את עלויות וואטסאפ ומתייחסים לנמענים בישראל.' },
-      { q: 'מי נראה כשולח ההודעה?', a: 'ההודעה נשלחת מהמספר של גמבוט, ובתחתיתה מופיע “נשלח על ידי גמבוט עבור [שם העסק שלכם]”. תשובות לא מגיעות אליכם, ולכן כדאי להוסיף כפתור אתר או חיוג.' },
+      { q: 'מי נראה כשולח ההודעה?', a: 'ההודעה נשלחת מהמספר של גמבוט, בסוף ההודעה מופיע “נשלח על ידי גמבוט עבור [שם העסק שלכם]”, ובפוטר “להסרה השב הסר”. תשובות לא מגיעות אליכם, ולכן כדאי להוסיף כפתור אתר או חיוג.' },
       { q: 'אפשר להשתמש בזה להזמנה לקבוצת וואטסאפ?', a: 'כן, זה אחד השימושים המרכזיים. כותבים הודעה עם כפתור קישור להזמנה לקבוצה, ובספריית התבניות יש תבנית מוכנה לכך. חשוב לשלוח רק למי שנתן הסכמה לקבל הודעות.' }
     ],
     en: [
       { q: 'Do I need a dedicated phone number to send a one-time broadcast?', a: 'No. Messages are sent through Gambot\'s verified WhatsApp Business API account, so there is no need to set up a number, open your own account or go through Meta business verification.' },
       { q: 'Can I send right away?', a: 'Ordering takes minutes with no prior setup, but the send itself is scheduled at least 25 hours ahead, because every message template needs Meta approval (usually within 24 hours). You get an email as soon as the template is approved.' },
       { q: 'How much does it cost?', a: 'Pricing is tiered: ILS 0.90 per message up to 500 messages, 0.75 up to 2,000, 0.65 up to 5,000 and 0.58 up to 10,000. Minimum order is ILS 49. Prices are before VAT, include WhatsApp fees and apply to recipients in Israel.' },
-      { q: 'Who appears as the sender?', a: 'The message is sent from Gambot\'s number, with the footer "Sent by Gambot on behalf of [your business name]". Replies do not reach you, so add a website or call button.' },
+      { q: 'Who appears as the sender?', a: 'The message is sent from Gambot\'s number, ending with "Sent by Gambot on behalf of [your business name]" and the footer "To unsubscribe reply STOP". Replies do not reach you, so add a website or call button.' },
       { q: 'Can I use it to invite people to a WhatsApp group?', a: 'Yes, that is one of the main uses. Write a message with a link button to the group invitation; the template library includes a ready-made template. Send only to people who gave consent to receive messages.' }
     ]
   },
@@ -13833,7 +13831,7 @@ const posts = [
 
 <h2>מה חשוב לדעת — ומה לא ניתן לעשות</h2>
 <ul>
-  <li><strong>השולח הוא גמבוט.</strong> ההודעה יוצאת מהמספר של גמבוט, ובתחתיתה כתוב “נשלח על ידי גמבוט עבור [שם העסק שלכם]”.</li>
+  <li><strong>השולח הוא גמבוט.</strong> ההודעה יוצאת מהמספר של גמבוט, בסוף ההודעה כתוב “נשלח על ידי גמבוט עבור [שם העסק שלכם]”, ובפוטר “להסרה השב הסר”.</li>
   <li><strong>תשובות לא מגיעות אליכם.</strong> לכן כדאי להוסיף כפתור אתר או חיוג שמפנה אליכם ישירות.</li>
   <li><strong>רק למי שהסכים.</strong> שולחים רק לאנשים שנתנו הסכמה לקבל מכם הודעות, והאחריות על הרשימה והתוכן היא שלכם.</li>
   <li><strong>עד 10,000 הודעות להזמנה.</strong> לכמות גדולה יותר או לליווי מלא יש את שירות הדיוור המנוהל.</li>
@@ -13904,7 +13902,7 @@ const posts = [
 
 <h2>What to know — and what it can't do</h2>
 <ul>
-  <li><strong>The sender is Gambot.</strong> The message goes out from Gambot's number, with the footer "Sent by Gambot on behalf of [your business name]".</li>
+  <li><strong>The sender is Gambot.</strong> The message goes out from Gambot's number, ending with "Sent by Gambot on behalf of [your business name]" and the footer "To unsubscribe reply STOP".</li>
   <li><strong>Replies don't reach you.</strong> Add a website or call button that sends people to you directly.</li>
   <li><strong>Only to people who consented.</strong> Send only to people who agreed to receive messages from you; the list and content are your responsibility.</li>
   <li><strong>Up to 10,000 messages per order.</strong> For more volume or full assistance there is the managed broadcast service.</li>
@@ -14408,6 +14406,314 @@ const posts = [
 `
   },
   seoUrl: getSeoUrl('מליד לכסף — שיטת העבודה המומלצת לאיש מכירות: ליד, הצעת מחיר, סליקה')
+},
+{
+  id: 52,
+  seoTitle: {
+    he: 'הפניית שיחות מהנייד למרכזייה — הקלטה, שיוך לאיש מכירות ובוט AI | גמבוט',
+    en: 'Forward Your Mobile to the Business PBX — Recording, Salesperson Linking & AI Bot | Gambot'
+  },
+  metaDescription: {
+    he: 'מדריך להפניית שיחות מהנייד האישי למרכזייה: מאיפה מוציאים את מספר הארגון, קודי הפניה (*21*, *61*, *67*, *62*), הקלטת שיחות, שיוך השיחה לאיש המכירות ובוט AI שעונה כשלא עונים.',
+    en: 'A guide to forwarding your personal mobile to the business PBX: where to get the organization number, forwarding codes (*21*, *61*, *67*, *62*), call recording, linking the call to the salesperson and an AI bot that answers when you do not.'
+  },
+  keywords: {
+    he: ['הפניית שיחות למרכזייה', 'הפניית שיחות מהנייד', 'מרכזייה וירטואלית', 'הקלטת שיחות מכירות', 'שיוך שיחה לאיש מכירות', 'בוט AI טלפוני', 'מזכירה וירטואלית', 'מרכזיית ענן לעסקים', 'הפניה כשאין מענה', 'גמבוט'],
+    en: ['forward calls to pbx', 'mobile call forwarding business', 'virtual pbx', 'sales call recording', 'ai phone bot', 'virtual receptionist', 'cloud pbx', 'forward on no answer', 'gambot']
+  },
+  title: {
+    he: 'הפניית שיחות מהנייד למרכזייה — מדריך לאיש מכירות: מוקלט, משויך אליך, ובוט AI כשלא עונים',
+    en: 'Forward Your Mobile to the Business PBX — A Salesperson\'s Guide: Recorded, Linked to You, and an AI Bot When You Don\'t Answer'
+  },
+  description: {
+    he: 'הלקוחות ממשיכים להתקשר לנייד שלך. הפניה אחת בטלפון, והשיחה נרשמת, מוקלטת ומשויכת אליך, ואם לא ענית, בוט AI או הצוות ממשיכים.',
+    en: 'Customers keep calling your mobile. One forwarding setting on the phone, and the call is logged, recorded and linked to you; if you did not answer, an AI bot or your team takes over.'
+  },
+  category: 'Telephony',
+  author: 'ניר סגס',
+  publishedDate: '2026-11-18',
+  image: '/blog/communication.jpg',
+  readTime: 9,
+  featured: false,
+  faq: {
+    he: [
+      { q: 'איך מפנים את הנייד למרכזייה של גמבוט?', a: 'מחייגים מהנייד הפניה מותנית למספר הארגון במרכזייה, למשל *61*DID# להפניה כשאין מענה, *67*DID# כשתפוס ו-*62*DID# כשלא זמין. את המספר מעתיקים מהגדרות ← טלפוניה ← "מספרי הטלפון שלי". ביטול הפניה: ##21#.' },
+      { q: 'מאיפה מוציאים את מספר הארגון שאליו מפנים?', a: 'מהגדרות ← טלפוניה (מרכזייה) ← "מספרי הטלפון שלי". זה המספר שמחובר למרכזייה של הארגון, ואליו מפנים כל אנשי המכירות.' },
+      { q: 'האם השיחות המופנות מוקלטות?', a: 'כן. השיחה מגיעה למרכזייה כמו כל שיחה למספר הארגון, ולכן היא מוקלטת לפי הגדרת "הקלטת שיחות", מופיעה בלוג השיחות ובכרטיס הלקוח. מומלץ להפעיל גם הודעה על הקלטת השיחה.' },
+      { q: 'איך השיחה משויכת אליי כאיש המכירות?', a: 'מזינים את מספר הנייד בשלוחה שלכם (באפליקציה: עוד ← הגדרות ← "שיחות נכנסות גם לנייד שלי") ומוודאים שיש שלוחה פעילה. המערכת מזהה את המספר שממנו הופנתה השיחה ומצלצלת קודם אליכם באפליקציה, ושיחה שענית עליה נרשמת על שמך. הזיהוי תלוי בכך שהמפעיל מעביר את המספר המפנה עם השיחה.' },
+      { q: 'מה קורה אם אני לא עונה?', a: 'כשיש הפניה כשאין מענה, השיחה עוברת למרכזייה. שם היא מצלצלת בצוות, ואם אף אחד לא עונה היא מגיעה למסלול הגיבוי: העברה למספר ברירת מחדל, הודעה קולית או ניתוק. אפשר גם להפעיל בוט AI טלפוני שיענה ויאסוף פרטים.' },
+      { q: 'איך מפעילים בוט AI שעונה כשאני לא עונה?', a: 'בונים אוטומציה עם הטריגר "שיחה נכנסת" ושלב GAMBOT AI בערוץ טלפון. כדי שה-AI יענה רק על שיחות מופנות, מומלץ להשתמש במספר ארגון ייעודי להפניות ולשייך אליו את האוטומציה, כי האוטומציה פועלת על כל שיחה שעומדת בתנאים שלה.' },
+      { q: 'אפשר לקבוע כמה זמן הנייד מצלצל לפני ההפניה?', a: 'ברוב המפעילים כן: **61*DID**20# מצלצל 20 שניות לפני ההפניה, בטווח של 5 עד 30 שניות. אם המפעיל לא תומך, מגדירים באזור האישי שלו או בשירות הלקוחות.' },
+      { q: 'האם צריך מספר נפרד לכל איש מכירות?', a: 'לא. כל אנשי המכירות מפנים לאותו מספר ארגון, והמערכת מזהה כל אחד לפי הנייד שרשום בשלוחה שלו. מספר נפרד נדרש רק אם רוצים אוטומציה ייעודית, למשל AI שעונה רק על שיחות מופנות.' }
+    ],
+    en: [
+      { q: 'How do I forward my mobile to the Gambot PBX?', a: 'Dial a conditional forward from the mobile to the organization PBX number, for example *61*DID# for no answer, *67*DID# for busy and *62*DID# for unreachable. Copy the number from Settings → Telephony → "My Phone Numbers". Cancel forwarding with ##21#.' },
+      { q: 'Where do I get the organization number I forward to?', a: 'From Settings → Telephony (PBX) → "My Phone Numbers". It is the number connected to the organization PBX, and all salespeople forward to it.' },
+      { q: 'Are forwarded calls recorded?', a: 'Yes. The call reaches the PBX like any call to the organization number, so it is recorded per the "Call recording" setting and appears in the call log and on the customer record. Turning on the call recording notice is recommended.' },
+      { q: 'How is the call linked to me as the salesperson?', a: 'Save your mobile on your extension (in the app: More → Settings → "Incoming calls also ring my phone") and make sure the extension is active. The system recognizes the number the call was forwarded from and rings you first in the app, and a call you answer is logged under your name. Recognition depends on the carrier passing the forwarding number with the call.' },
+      { q: 'What happens if I do not answer?', a: 'With a no-answer forward, the call moves to the PBX. It rings the team, and if nobody answers it reaches the fallback: forward to a default number, voicemail or hang up. You can also enable a phone AI bot that answers and collects details.' },
+      { q: 'How do I enable an AI bot that answers when I do not?', a: 'Build an automation with the "incoming call" trigger and a GAMBOT AI step on the phone channel. To make the AI answer only forwarded calls, use a dedicated organization number for forwarding and attach the automation to it, because the automation runs on every call that meets its conditions.' },
+      { q: 'Can I set how long the mobile rings before forwarding?', a: 'On most carriers, yes: **61*DID**20# rings 20 seconds before forwarding, in a 5 to 30 second range. If your carrier does not support it, set it in its portal or through customer service.' },
+      { q: 'Do I need a separate number per salesperson?', a: 'No. All salespeople forward to the same organization number, and the system recognizes each one by the mobile saved on their extension. A separate number is only needed for a dedicated automation, for example an AI that answers only forwarded calls.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">📞 מדריך לאיש מכירות</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">הלקוחות ממשיכים להתקשר לנייד שלך — והשיחה נרשמת, מוקלטת ומשויכת אליך</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">הפניית שיחות אחת בנייד, והמרכזייה של גמבוט עושה את השאר: צלצול באפליקציה, הקלטה, לוג, ואם אתה לא עונה, בוט AI או הצוות.</p>
+</div>
+
+<p><strong>איש מכירות לא רוצה לתת ללקוחות מספר חדש. הלקוחות כבר מכירים את הנייד שלו.</strong> הבעיה היא שהשיחות האלה נשארות מחוץ למערכת: אין הקלטה, אין רישום בכרטיס הלקוח, ואם הוא לא ענה, הלקוח פשוט נעלם. במדריך הזה אני, ניר סגס, מראה איך מחברים את הנייד האישי למרכזייה בהגדרה אחת בטלפון, בלי להחליף מספר ובלי להתקין כלום.</p>
+
+<h2>הרעיון בשורה אחת</h2>
+<p><strong>מגדירים בנייד "הפניית שיחות" למספר של הארגון במרכזייה.</strong> הלקוח מחייג אליך כרגיל, חברת הסלולר מעבירה את השיחה למרכזייה, והמרכזייה מטפלת בה כמו כל שיחה נכנסת: מצלצלת, מקליטה, רושמת בלוג ומפעילה אוטומציות.</p>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:22px 0;font-size:1.02rem;line-height:1.9;text-align:center;">
+  <strong>לקוח מחייג לנייד שלך</strong> ← הפניה בחברת הסלולר ← <strong>מספר הארגון במרכזייה</strong> ← מצלצל באפליקציה אצלך ← <strong>מוקלט ונרשם</strong>
+</div>
+
+<h2>שלב 1 — מאיפה מוציאים את המספר שאליו מפנים</h2>
+<p>המספר שאליו מפנים הוא <strong>מספר הארגון במרכזייה</strong> (בלשון המקצוע DID). הוא נמצא בגמבוט בכניסה אחת:</p>
+<ol>
+  <li>נכנסים ל<strong>הגדרות ← טלפוניה (מרכזייה)</strong>.</li>
+  <li>בקטע <strong>"מספרי הטלפון שלי"</strong> מופיעים המספרים שמחוברים למרכזייה של הארגון. מעתיקים את המספר, ברצוי בפורמט ישראלי רגיל, כולל ה-0 בהתחלה (למשל 077XXXXXXX).</li>
+  <li>אם עדיין אין מספר, מוסיפים אחד באותו קטע. מספר חדש כולל הקלטות, CRM ומעקב שיחות.</li>
+</ol>
+<p>כל מי שמפנה בארגון מפנה לאותו מספר. לא צריך מספר נפרד לכל איש מכירות.</p>
+
+<h2>שלב 2 — מגדירים את המספר שלך בגמבוט</h2>
+<p>כדי שהמערכת תדע שהשיחה הזאת שלך, צריך שהנייד שלך יהיה רשום בשלוחה שלך:</p>
+<ul>
+  <li>באפליקציה: <strong>עוד ← הגדרות ← "שיחות נכנסות גם לנייד שלי"</strong>, והזנת מספר הנייד.</li>
+  <li>ודאו שיש לכם <strong>שלוחה פעילה</strong> (הגדרות ← טלפוניה ← שלוחות). רק משתמש עם שלוחה פעילה יכול לענות ולראות את הטלפון במערכת.</li>
+  <li>אם אתם מפנים את הנייד, אין צורך להפעיל גם את "צלצול בנייד". המערכת ממילא לא תחייג אליכם בחזרה כדי לא ליצור לולאה.</li>
+</ul>
+
+<h2>שלב 3 — מגדירים הפניה בנייד</h2>
+<p>ההפניה נקבעת בחיוג רגיל מהנייד, ואפשר להפעיל בדיוק את מה שמתאים לכם. <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">DID</code> הוא מספר הארגון מהשלב הראשון.</p>
+
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">מתי השיחה מופנית</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">קוד חיוג</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">תמיד, בלי לצלצל בנייד</td><td style="border:1px solid #e2e8f0;padding:8px 12px;"><code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*21*DID#</code></td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">כשהקו תפוס</td><td style="border:1px solid #e2e8f0;padding:8px 12px;"><code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*67*DID#</code></td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">כשאין מענה</td><td style="border:1px solid #e2e8f0;padding:8px 12px;"><code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*61*DID#</code></td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">כשהמכשיר כבוי או מחוץ לכיסוי</td><td style="border:1px solid #e2e8f0;padding:8px 12px;"><code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*62*DID#</code></td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">ביטול הפניה</td><td style="border:1px solid #e2e8f0;padding:8px 12px;"><code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">##21#</code></td></tr>
+  </tbody>
+</table>
+<p>דוגמה: אם מספר הארגון הוא 0771234567, חייגו <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*61*0771234567#</code> ולחצו חיוג. מופיעה הודעת אישור מהמפעיל.</p>
+<p><strong>טיפים:</strong></p>
+<ul>
+  <li><strong>בדיקה:</strong> אפשר לחייג <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*#21#</code> (וכן <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*#61#</code> ו-<code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*#62#</code>) כדי לראות מה מוגדר כרגע.</li>
+  <li><strong>כמה שניות הנייד מצלצל לפני שהשיחה עוברת:</strong> ברוב המפעילים אפשר לקבוע זמן להפניה כשאין מענה: <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">**61*DID**20#</code> מצלצל 20 שניות. הטווח הרגיל הוא 5 עד 30 שניות. אם המפעיל שלכם לא תומך, זה נקבע באזור האישי או בשירות הלקוחות שלו.</li>
+  <li><strong>ביטול הכול:</strong> <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">##002#</code> מבטל את כל סוגי ההפניה ברוב המפעילים.</li>
+</ul>
+
+<h2>מה קורה כשהשיחה מגיעה</h2>
+<ul>
+  <li><strong>השיחה מתקבלת במרכזייה</strong> כמו כל שיחה למספר הארגון, ולכן היא <strong>מוקלטת</strong> (לפי הגדרת "הקלטת שיחות"), מופיעה <strong>בלוג השיחות</strong> ובציר הזמן של הלקוח, ומפעילה אוטומציות כמו שיחה שלא נענתה או הודעת טלפון.</li>
+  <li><strong>המערכת מזהה אותך לפי המספר שממנו הופנתה השיחה</strong> ומצלצלת קודם אליך, באפליקציה (סופטפון). אם לא ענית, היא ממשיכה לשאר הצוות.</li>
+  <li><strong>הלקוח לא שומע ברכה, תפריט או מוזיקת המתנה.</strong> שיחה מופנית עוברת ישירות: הוא שומע צלצול רגיל עד שאתה עונה, והשיחה רק מוקלטת ונרשמת. (אפשר לשנות בהגדרות ← טלפוניה ← שיחות נכנסות.)</li>
+  <li><strong>מי המתקשר?</strong> הלקוח. אתה לא מחייג כלום: באפליקציה ובלוג מופיע המספר של הלקוח, ואתה מופיע כמי שענה.</li>
+  <li><strong>שיחה שאתה עונה עליה נרשמת על שמך.</strong> כך המנהל רואה מי דיבר עם איזה לקוח ומתי, והקלטה והסיכום נשמרים בכרטיס.</li>
+  <li><strong>אם אף אחד לא ענה</strong>, פועל המסלול שהוגדר במרכזייה: העברה למספר ברירת מחדל, הודעה קולית או ניתוק (הגדרות ← טלפוניה ← שיחות נכנסות).</li>
+</ul>
+<div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;padding:16px 20px;margin:20px 0;">
+  <strong>חשוב לדעת:</strong> זיהוי איש המכירות תלוי בכך שחברת הסלולר והספק של המרכזייה מעבירים את המספר המפנה עם השיחה. אם הוא לא מועבר, השיחה עדיין תגיע למרכזייה, תוקלט ותצלצל בצוות כרגיל, רק בלי להעדיף אותך. מומלץ לבדוק פעם אחת עם שיחת ניסוי לפני שמסתמכים על זה.
+</div>
+
+<h2>Best practice — מה נכון לעשות</h2>
+
+<h3>1. אל תפנו "תמיד" אם אתם רוצים לענות בעצמכם</h3>
+<p>הפניה קבועה (<code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*21*</code>) גורמת לנייד לא לצלצל בכלל. היא מתאימה לקו עסקי נפרד או לשעות שבהן אתם לא עובדים. לשימוש יומיומי עדיף הפניה מותנית: <strong>תפוס, אין מענה ולא זמין.</strong></p>
+
+<h3>2. ההגדרה הנכונה לרוב אנשי המכירות: שלוש הפניות מותנות</h3>
+<p>מפעילים <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*61*</code> (אין מענה), <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*67*</code> (תפוס) ו-<code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*62*</code> (לא זמין). כך:</p>
+<ul>
+  <li><strong>אתם עונים בנייד</strong> כשאתם פנויים, בלי שום שינוי בהרגל.</li>
+  <li><strong>אתם לא עונים, אתם בשיחה אחרת או שהנייד כבוי:</strong> השיחה לא הולכת לתא קולי של המפעיל אלא למרכזייה, שם היא נרשמת ומטופלת.</li>
+</ul>
+
+<h3>3. "אם אני לא עונה, בוט AI יכול לדבר"</h3>
+<p>זה בדיוק המקום שבו הפניה מותנית משתלמת: הנייד מצלצל אצלכם קודם, ורק אם לא ענית השיחה מגיעה למרכזייה. שם אפשר להפעיל את <strong>GAMBOT AI</strong> שיענה בשיחה, ישאל מה הלקוח צריך, יקליט את הפרטים ויסכם. הוא יכול גם להעביר לנציג אנושי באמצע השיחה, כשיש נציג פנוי.</p>
+<p>איך מחברים:</p>
+<ol>
+  <li>בונים אוטומציה (Botomation) עם הטריגר <strong>שיחה נכנסת</strong>.</li>
+  <li>מוסיפים שלב <strong>GAMBOT AI</strong> ובוחרים בו ערוץ <strong>טלפון</strong>. מגדירים מה ה-AI צריך לברר (שם, נושא, דחיפות, זמן חזרה).</li>
+  <li>מגדירים תנאי לאוטומציה: למשל שעות פעילות, או מספר ארגון ייעודי להפניות.</li>
+</ol>
+<div style="background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:16px 20px;margin:20px 0;">
+  <strong>כלל מעשי:</strong> האוטומציה פועלת על <em>כל</em> שיחה שעומדת בתנאים שלה, לא רק על שיחה מופנית. אם אתם רוצים שה-AI יענה רק כשלא ענית, <strong>קבעו מספר ארגון נפרד להפניות</strong> ושייכו אליו את האוטומציה. שיחות רגילות למספר הראשי ימשיכו לצלצל בצוות.
+</div>
+
+<h3>4. הקלטה: מוודאים שהיא פועלת ומודיעים עליה</h3>
+<ul>
+  <li>בהגדרות ← טלפוניה ← <strong>הקלטת שיחות</strong> מפעילים "הקלט את כל השיחות". אפשר להגביל להקלטה רק כשיש ליד פתוח או פנייה פעילה.</li>
+  <li>בקטע <strong>צלילים והודעות</strong> מפעילים <strong>הודעה על הקלטת השיחה</strong>, למשל "לידיעתך, השיחה מוקלטת לצורכי שירות ואיכות". זה הוגן כלפי הלקוח וחוסך בעיות.</li>
+  <li>ההקלטה נשמרת בכרטיס הלקוח, וניתן לשמוע אותה ולקרוא את הסיכום משם.</li>
+</ul>
+
+<h3>5. בדיקה לפני שמתחילים</h3>
+<ol>
+  <li>הפעילו הפניה אחת, למשל <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*61*DID#</code>.</li>
+  <li>חייגו לנייד שלכם ממספר אחר ואל תענו.</li>
+  <li>ודאו שהאפליקציה מצלצלת, שהשיחה מופיעה בלוג ושההקלטה קיימת.</li>
+  <li>אם המסלול עם ה-AI מוגדר, בדקו גם איך הוא עונה.</li>
+</ol>
+
+<h2>הפתרון המלא: ניוד המספר האישי</h2>
+<p>אם רוצים שכל שיחה תעבור במרכזייה, בלי תלות בהפניה ובלי תלות בכך שהמפעיל מעביר את המספר המפנה, אפשר לנייד את המספר האישי לספק הטלפוניה כך שיהיה קו של המרכזייה. זה עניין מול הספק, ומומלץ לעשות אותו רק למספר שהוא באמת מספר העסק.</p>
+
+<h2>סיכום</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">מה רוצים</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">מה מגדירים</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">לענות בעצמי, ורק אם לא עניתי שהשיחה לא תלך לאיבוד</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">הפניה מותנית: <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*61*</code>, <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*67*</code>, <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*62*</code></td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">שהשיחות יוקלטו ויירשמו בכרטיס הלקוח</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">הפעלת "הקלטת שיחות" בהגדרות הטלפוניה</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">שהשיחה תשויך אליי</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">נייד רשום בשלוחה שלי, ושלוחה פעילה</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">שבוט AI יענה כשאני לא עונה</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">אוטומציה עם שלב GAMBOT AI בערוץ טלפון, על מספר ייעודי להפניות</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">לא להיות תלוי בהפניה בכלל</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">ניוד המספר האישי למרכזייה</td></tr>
+  </tbody>
+</table>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">הכלל הקצר</h3>
+  <p style="margin:0 0 18px;opacity:0.92;font-size:1rem;">הלקוחות מחייגים לנייד כמו תמיד. מה שלא נענה עובר למרכזייה, מוקלט, נרשם ומטופל, ואם צריך, ה-AI עונה.</p>
+  <a href="/demo/" style="display:inline-block;background:#fff;color:#075E54;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">לתיאום הדגמה חינם ←</a>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">📞 Salesperson guide</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">Customers keep calling your mobile — and the call is logged, recorded and linked to you</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">One call-forwarding setting on the phone, and the Gambot PBX does the rest: it rings you in the app, records, logs, and if you do not answer, an AI bot or your team takes over.</p>
+</div>
+
+<p><strong>A salesperson does not want to give customers a new number. They already know the mobile.</strong> The catch is that those calls stay outside the system: no recording, no entry on the customer record, and if the rep did not answer, the customer is simply gone. In this guide I show how to connect a personal mobile to the PBX with one setting on the phone — no new number, nothing to install.</p>
+
+<h2>The idea in one line</h2>
+<p><strong>Set "call forwarding" on the mobile to the organization's number on the PBX.</strong> The customer dials you as usual, the carrier hands the call to the PBX, and the PBX treats it like any inbound call: rings, records, writes the call log and triggers automations.</p>
+
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:18px 22px;margin:22px 0;font-size:1.02rem;line-height:1.9;text-align:center;">
+  <strong>Customer dials your mobile</strong> → carrier forwarding → <strong>organization number on the PBX</strong> → rings in your app → <strong>recorded and logged</strong>
+</div>
+
+<h2>Step 1 — Where to get the number you forward to</h2>
+<p>The forwarding target is the <strong>organization's PBX number</strong> (a DID). In Gambot it is one screen away:</p>
+<ol>
+  <li>Open <strong>Settings → Telephony (PBX)</strong>.</li>
+  <li>The <strong>"My Phone Numbers"</strong> section lists the numbers connected to the organization's PBX. Copy the number in the regular Israeli format, including the leading 0 (for example 077XXXXXXX).</li>
+  <li>If there is no number yet, add one in the same section. A new number includes recording, CRM and call tracking.</li>
+</ol>
+<p>Everyone in the organization forwards to the same number. You do not need a separate number per salesperson.</p>
+
+<h2>Step 2 — Register your mobile in Gambot</h2>
+<p>So the system knows the call is yours, your mobile must be saved on your extension:</p>
+<ul>
+  <li>In the app: <strong>More → Settings → "Incoming calls also ring my phone"</strong>, and enter your mobile number.</li>
+  <li>Make sure you have an <strong>active extension</strong> (Settings → Telephony → Extensions). Only a user with an active extension can answer and see the phone in the system.</li>
+  <li>If you forward your mobile, you do not need to enable "ring mobile" as well. The system will not dial you back anyway, to avoid a loop.</li>
+</ul>
+
+<h2>Step 3 — Set forwarding on the mobile</h2>
+<p>Forwarding is set by dialing a code from the mobile, and you can enable exactly what fits you. <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">DID</code> is the organization number from step 1.</p>
+
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">When the call is forwarded</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">Dial code</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">Always, the mobile does not ring</td><td style="border:1px solid #e2e8f0;padding:8px 12px;"><code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*21*DID#</code></td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">When the line is busy</td><td style="border:1px solid #e2e8f0;padding:8px 12px;"><code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*67*DID#</code></td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">When there is no answer</td><td style="border:1px solid #e2e8f0;padding:8px 12px;"><code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*61*DID#</code></td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">When the phone is off or out of coverage</td><td style="border:1px solid #e2e8f0;padding:8px 12px;"><code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*62*DID#</code></td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">Cancel forwarding</td><td style="border:1px solid #e2e8f0;padding:8px 12px;"><code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">##21#</code></td></tr>
+  </tbody>
+</table>
+<p>Example: if the organization number is 0771234567, dial <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*61*0771234567#</code> and press call. The carrier shows a confirmation message.</p>
+<p><strong>Tips:</strong></p>
+<ul>
+  <li><strong>Check:</strong> dial <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*#21#</code> (also <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*#61#</code> and <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*#62#</code>) to see what is set right now.</li>
+  <li><strong>How long the mobile rings before forwarding:</strong> most carriers let you set the no-answer delay: <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">**61*DID**20#</code> rings 20 seconds. The usual range is 5 to 30 seconds. If your carrier does not support it, set it in its customer portal or ask support.</li>
+  <li><strong>Cancel everything:</strong> <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">##002#</code> cancels all forwarding types on most carriers.</li>
+</ul>
+
+<h2>What happens when the call arrives</h2>
+<ul>
+  <li><strong>The PBX receives it</strong> like any call to the organization number, so it is <strong>recorded</strong> (per the "Call recording" setting), appears in the <strong>call log</strong> and on the customer timeline, and triggers automations such as missed call or voicemail.</li>
+  <li><strong>The system recognizes you by the number the call was forwarded from</strong> and rings you first, in the app (softphone). If you do not answer, it continues to the rest of the team.</li>
+  <li><strong>The customer hears no greeting, menu or hold music.</strong> A forwarded call goes straight through: they hear a normal ring until you answer, and the call is only recorded and logged. (Configurable in Settings → Telephony → Inbound calls.)</li>
+  <li><strong>Who is the caller?</strong> The customer. You dial nothing: the app and the log show the customer's number, and you appear as the one who answered.</li>
+  <li><strong>A call you answer is logged under your name.</strong> The manager sees who spoke to which customer and when, and the recording and summary stay on the record.</li>
+  <li><strong>If nobody answers</strong>, the PBX fallback applies: forward to a default number, voicemail or hang up (Settings → Telephony → Inbound calls).</li>
+</ul>
+<div style="background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;padding:16px 20px;margin:20px 0;">
+  <strong>Good to know:</strong> recognizing the salesperson depends on the mobile carrier and the PBX provider passing the forwarding number with the call. If it is not passed, the call still reaches the PBX, is recorded and rings the team as usual, just without prioritizing you. Run one test call before relying on it.
+</div>
+
+<h2>Best practice</h2>
+
+<h3>1. Do not forward "always" if you want to answer yourself</h3>
+<p>Unconditional forwarding (<code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*21*</code>) means the mobile never rings. It fits a separate business line or hours when you are off. For daily use, prefer conditional forwarding: <strong>busy, no answer and unreachable.</strong></p>
+
+<h3>2. The right setup for most salespeople: three conditional forwards</h3>
+<p>Enable <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*61*</code> (no answer), <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*67*</code> (busy) and <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*62*</code> (unreachable). Then:</p>
+<ul>
+  <li><strong>You answer on your mobile</strong> when you are free, with no change in habit.</li>
+  <li><strong>You do not answer, you are on another call or the phone is off:</strong> the call does not go to the carrier voicemail but to the PBX, where it is logged and handled.</li>
+</ul>
+
+<h3>3. "If I do not answer, an AI bot can talk"</h3>
+<p>This is exactly where conditional forwarding pays off: the mobile rings for you first, and only if you did not answer does the call reach the PBX. There you can enable <strong>GAMBOT AI</strong> to answer, ask what the customer needs, capture the details and summarize. It can also hand the call to a human mid-conversation when an agent is free.</p>
+<p>How to set it up:</p>
+<ol>
+  <li>Create an automation (Botomation) with the <strong>incoming call</strong> trigger.</li>
+  <li>Add a <strong>GAMBOT AI</strong> step and choose the <strong>phone</strong> channel. Define what the AI should find out (name, subject, urgency, callback time).</li>
+  <li>Set a condition on the automation: for example business hours, or a dedicated organization number for forwarding.</li>
+</ol>
+<div style="background:#eff6ff;border:1px solid #93c5fd;border-radius:12px;padding:16px 20px;margin:20px 0;">
+  <strong>Practical rule:</strong> the automation runs on <em>every</em> call that meets its conditions, not only forwarded ones. If you want the AI to answer only when you did not, <strong>use a separate organization number for forwarding</strong> and attach the automation to it. Regular calls to the main number keep ringing the team.
+</div>
+
+<h3>4. Recording: make sure it is on, and announce it</h3>
+<ul>
+  <li>In Settings → Telephony → <strong>Call recording</strong>, turn on "Record all calls". You can limit it to when there is an open lead or an active case.</li>
+  <li>In <strong>Sounds &amp; announcements</strong>, turn on the <strong>call recording notice</strong>, for example "Please note this call is recorded for service and quality". It is fair to the customer and avoids problems.</li>
+  <li>The recording is stored on the customer record, where you can listen and read the summary.</li>
+</ul>
+
+<h3>5. Test before you rely on it</h3>
+<ol>
+  <li>Enable one forward, for example <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*61*DID#</code>.</li>
+  <li>Call your mobile from another number and do not answer.</li>
+  <li>Check that the app rings, the call appears in the log and the recording exists.</li>
+  <li>If the AI route is set, check how it answers too.</li>
+</ol>
+
+<h2>The full solution: port your personal number</h2>
+<p>If you want every call to pass through the PBX, with no dependency on forwarding or on the carrier passing the forwarding number, you can port the personal number to the telephony provider so it becomes a PBX line. That is a matter between you and the provider, and worth doing only for a number that is truly the business number.</p>
+
+<h2>Summary</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">What you want</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">What to set</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">Answer myself, and never lose a call I missed</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Conditional forwarding: <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*61*</code>, <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*67*</code>, <code style="direction:ltr;unicode-bidi:embed;background:#f1f5f9;border-radius:6px;padding:2px 8px;font-weight:700;">*62*</code></td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">Calls recorded and logged on the customer</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Turn on "Call recording" in telephony settings</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">The call linked to me</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Mobile saved on my extension, and an active extension</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">An AI bot answering when I do not</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Automation with a GAMBOT AI step on the phone channel, on a dedicated forwarding number</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">No dependency on forwarding at all</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Port the personal number to the PBX</td></tr>
+  </tbody>
+</table>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">The short rule</h3>
+  <p style="margin:0 0 18px;opacity:0.92;font-size:1rem;">Customers dial your mobile as always. What goes unanswered moves to the PBX, is recorded, logged and handled, and if needed the AI answers.</p>
+  <a href="/demo/" style="display:inline-block;background:#fff;color:#075E54;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">Get a free demo →</a>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('הפניית שיחות מהנייד למרכזייה — מדריך לאיש מכירות: מוקלט, משויך אליך, ובוט AI כשלא עונים')
 }
 ];
 

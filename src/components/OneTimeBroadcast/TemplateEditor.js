@@ -12,7 +12,7 @@ import { OTB_API } from '@/lib/oneTimeBroadcastPricing';
  * The body holds named tokens ({{ColumnName}}); the wizard converts them to {{1}}, {{2}}… on submit.
  */
 
-const LIMITS = { body: 1000, header: 60, button: 25, buttons: 5, quick: 3, url: 2, phone: 1 };
+const LIMITS = { body: 940, header: 60, button: 25, buttons: 5, quick: 3, url: 2, phone: 1 };
 const BTN_TYPES = [
   { value: 'QUICK_REPLY', label: 'תשובה מהירה', icon: '↩' },
   { value: 'URL', label: 'קישור', icon: '🔗' },
@@ -90,7 +90,7 @@ export function specIssues(spec) {
   return out;
 }
 
-export default function TemplateEditor({ columns, value, onChange, fallbacks, onFallbacksChange, footer }) {
+export default function TemplateEditor({ columns, value, onChange, fallbacks, onFallbacksChange, footer, sentBy }) {
   const taRef = useRef(null);
   const [varsOpen, setVarsOpen] = useState(false);
   const [varQuery, setVarQuery] = useState('');
@@ -308,8 +308,15 @@ export default function TemplateEditor({ columns, value, onChange, fallbacks, on
         </div>
       )}
 
+      {sentBy && (
+        <label className="otb-ime-f">
+          <span>שורה אחרונה בהודעה <em>🔒 נקבעת אוטומטית</em></span>
+          <input className="otb-ime-input otb-ime-footer" value={sentBy} readOnly disabled />
+        </label>
+      )}
+
       <label className="otb-ime-f">
-        <span>פוטר <em>🔒 נקבע אוטומטית</em></span>
+        <span>פוטר (הסרה מהרשימה) <em>🔒 נקבע אוטומטית</em></span>
         <input className="otb-ime-input otb-ime-footer" value={footer} readOnly disabled />
       </label>
 

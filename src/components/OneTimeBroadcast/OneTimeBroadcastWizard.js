@@ -125,7 +125,7 @@ function validateTemplateLocal({ body, headers, fallbacks }) {
   const ph = out.match(/\[[^\]\n]{1,40}\]/);
   if (ph) return { error: `השלימו את הטקסט שבסוגריים בהודעה: ${ph[0]}` };
   if (out.length < 10) return { error: 'כתבו את נוסח ההודעה' };
-  if (out.length > 1000) return { error: 'ההודעה ארוכה מדי (עד 1,000 תווים)' };
+  if (out.length > 940) return { error: 'ההודעה ארוכה מדי (עד 940 תווים)' };
   if (varColumns.length > 8) return { error: 'ניתן להשתמש בעד 8 משתנים' };
   if (/\}\}\s*\{\{/.test(out)) return { error: 'שני משתנים לא יכולים להיות צמודים — הפרידו ביניהם במילה' };
   if (/^\s*\{\{\d+\}\}/.test(out) || /\{\{\d+\}\}\s*$/.test(out)) return { error: 'ההודעה לא יכולה להתחיל או להסתיים במשתנה (דרישה של Meta)' };
@@ -442,18 +442,21 @@ export default function OneTimeBroadcastWizard() {
     setFallbacks({}); setConsent(false); setRunAt(''); setEditBody(null); setError(''); setStep(1);
   };
 
-  // The footer names who the message is really from: "Sent by Gambot on behalf of {business}" (Meta: footer ≤ 60 chars, no variables).
+  // The footer is the opt-out instruction (fixed text, Meta: footer ≤ 60 chars, no variables).
+  const footerFor = (lang) => (lang === 'en' ? 'To unsubscribe reply STOP' : 'להסרה השב הסר');
+  // The last line of the message body names who the message is really from: "Sent by Gambot on behalf of {business}".
   // The business name comes from the contact form in step 3 (company, else the person's name); the server builds the same text.
-  const footerFor = (lang, sender) => {
+  const senderMax = 50;
+  const sentByFor = (lang, sender) => {
     const en = lang === 'en';
     const s = String(sender || '').replace(/[{}*_~`\r\n\t]/g, ' ').replace(/\s+/g, ' ').trim();
     const prefix = en ? 'Sent by Gambot on behalf of ' : 'נשלח על ידי גמבוט עבור ';
     if (!s) return en ? 'Sent by Gambot' : 'נשלח על ידי גמבוט';
-    return (prefix + s.slice(0, 60 - prefix.length)).trim();
+    return (prefix + s.slice(0, senderMax)).trim();
   };
   const senderName = (contact.company || contact.name || '').trim();
-  const footer = senderName ? footerFor(templateLang, senderName) : `${templateLang === 'en' ? 'Sent by Gambot on behalf of ' : 'נשלח על ידי גמבוט עבור '}‹${templateLang === 'en' ? 'your business name' : 'שם העסק שלכם'}›`;
-  const senderMax = 60 - (templateLang === 'en' ? 'Sent by Gambot on behalf of '.length : 'נשלח על ידי גמבוט עבור '.length);
+  const footer = footerFor(templateLang);
+  const sentBy = senderName ? sentByFor(templateLang, senderName) : `${templateLang === 'en' ? 'Sent by Gambot on behalf of ' : 'נשלח על ידי גמבוט עבור '}‹${templateLang === 'en' ? 'your business name' : 'שם העסק שלכם'}›`;
   const q = order && order.quote;
 
   // header = { type: 'TEXT', text } | { type: 'IMAGE' | 'VIDEO' | 'DOCUMENT', url, localUrl?, name } | null
@@ -489,6 +492,7 @@ export default function OneTimeBroadcastWizard() {
       <div className="otb-bubble">
         {renderHeader(header)}
         <div className="otb-bubble-text">{text || 'כאן תופיע ההודעה…'}</div>
+        <div className="otb-bubble-text" style={{ marginTop: 8, opacity: 0.75 }}>{sentBy}</div>
         <div className="otb-bubble-footer">
           <span>{footer}</span>
           <span className="otb-help">
@@ -501,7 +505,7 @@ export default function OneTimeBroadcastWizard() {
               onBlur={() => setFooterHelp(false)}
             >?</button>
             <span role="tooltip" className={'otb-help-pop' + (footerHelp ? ' open' : '')}>
-              🔒 בתחתית ההודעה מתווספת אוטומטית השורה <b>“{footer}”</b> (שם העסק נלקח מפרטי ההזמנה בשלב הבא).
+              🔒 בסוף ההודעה מתווספת אוטומטית השורה <b>“{sentBy}”</b> (שם העסק נלקח מפרטי ההזמנה בשלב הבא), ובפוטר <b>“{footer}”</b> — מי שעונה “הסר” מוסר אוטומטית מהרשימה.
               התבנית נשלחת לאישור Meta — לכן התזמון הוא לפחות {OTB_MIN_LEAD_HOURS} שעות קדימה.
             </span>
           </span>
@@ -727,6 +731,7 @@ export default function OneTimeBroadcastWizard() {
               fallbacks={fallbacks}
               onFallbacksChange={setFallbacks}
               footer={footer}
+              sentBy={sentBy}
             />
 
             {error && <div className="otb-error" role="alert">{error}</div>}
@@ -834,7 +839,8 @@ export default function OneTimeBroadcastWizard() {
               <div className="otb-phone"><div className="otb-bubble">
                 {renderHeader(orderHeader)}
                 <div className="otb-bubble-text">{sheet ? previewText : order.template.body}</div>
-                <div className="otb-bubble-footer">{footerFor(order.template.language, senderName)}</div>
+                <div className="otb-bubble-text" style={{ marginTop: 8, opacity: 0.75 }}>{sentByFor(order.template.language, senderName)}</div>
+                <div className="otb-bubble-footer">{footerFor(order.template.language)}</div>
                 {(order.template.buttons || []).map((b, i) => (
                   <div key={i} className="otb-bubble-btn">{BTN_ICON[b.type]} {b.text}</div>
                 ))}

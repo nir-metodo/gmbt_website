@@ -41,12 +41,12 @@ function advance(messages, pending) {
 }
 
 // {{token}} -> highlighted example value, *text* -> bold.
-function renderRich(text, vars) {
+export function renderRich(text, vars, varHint = 'משתנה מהאקסל') {
   return text.split(/(\{\{[^}]+\}\}|\*[^*\n]+\*)/g).map((part, i) => {
     if (part.startsWith('{{')) {
       const key = part.slice(2, -2);
       return (
-        <span key={i} className={styles.var} title={`משתנה מהאקסל: ${key}`}>
+        <span key={i} className={styles.var} title={`${varHint}: ${key}`}>
           {vars[key] ?? key}
         </span>
       );
@@ -56,7 +56,18 @@ function renderRich(text, vars) {
   });
 }
 
-function Chat({ title, start, opening, vars, showAgentCard }) {
+const DEFAULT_AGENT_CARD = {
+  title: 'מה הסוכנות רואה בגמבוט',
+  items: [
+    'השיחה נפתחת בתיבה המשותפת ומשויכת לנציג',
+    'הלקוח מתויג "חידושים" ותשובותיו נשמרות על כרטיס הלקוח',
+    'הפוליסה מגיעה לטיפול עם כל הפרטים, בלי להרים טלפון',
+  ],
+};
+
+// Shared demo chat. Insurance page uses the defaults; other vertical pages (e.g. schools) override the
+// avatar / subtitle / variable hint / "what the team sees" card via props.
+export function Chat({ title, start, opening, vars, showAgentCard, avatar = '🛡️', subtitle = 'חשבון עסקי', varHint, agentCard }) {
   const [state, setState] = useState(() => {
     const first = advance([], start(opening));
     return first;
@@ -86,10 +97,10 @@ function Chat({ title, start, opening, vars, showAgentCard }) {
     <div className={styles.phoneWrap}>
       <div className={styles.phone}>
         <div className={styles.phoneHeader}>
-          <div className={styles.avatar}>🛡️</div>
+          <div className={styles.avatar}>{avatar}</div>
           <div>
             <div className={styles.phoneTitle}>{title}</div>
-            <div className={styles.phoneSub}>חשבון עסקי</div>
+            <div className={styles.phoneSub}>{subtitle}</div>
           </div>
           <button type="button" className={styles.resetBtn} onClick={reset} title="התחילו מחדש">
             ↻ מההתחלה
@@ -99,7 +110,7 @@ function Chat({ title, start, opening, vars, showAgentCard }) {
         <div className={styles.chatBody} ref={bodyRef}>
           {state.msgs.map((m, i) => (
             <div key={i} className={m.from === 'bot' ? styles.bubbleBot : styles.bubbleUser}>
-              {renderRich(m.text, vars)}
+              {renderRich(m.text, vars, varHint)}
             </div>
           ))}
           {state.waiting && state.waiting.type === 'choices' && (
@@ -131,11 +142,11 @@ function Chat({ title, start, opening, vars, showAgentCard }) {
 
       {done && showAgentCard && (
         <div className={styles.agentCard}>
-          <div className={styles.agentCardTitle}>מה הסוכנות רואה בגמבוט</div>
+          <div className={styles.agentCardTitle}>{(agentCard || DEFAULT_AGENT_CARD).title}</div>
           <ul>
-            <li>השיחה נפתחת בתיבה המשותפת ומשויכת לנציג</li>
-            <li>הלקוח מתויג &quot;חידושים&quot; ותשובותיו נשמרות על כרטיס הלקוח</li>
-            <li>הפוליסה מגיעה לטיפול עם כל הפרטים, בלי להרים טלפון</li>
+            {(agentCard || DEFAULT_AGENT_CARD).items.map((it) => (
+              <li key={it}>{it}</li>
+            ))}
           </ul>
         </div>
       )}
@@ -184,7 +195,7 @@ function ExcelPreview({ columns, rows }) {
 
 /* ───────────── FAQ / lead form ───────────── */
 
-function FaqItem({ q, a }) {
+export function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false);
   return (
     <div className={`${styles.faqItem} ${open ? styles.faqOpen : ''}`}>
@@ -197,7 +208,7 @@ function FaqItem({ q, a }) {
   );
 }
 
-function MiniLeadForm({ source = 'insurance-agents-page' }) {
+export function MiniLeadForm({ source = 'insurance-agents-page', buttonText = 'רוצה לראות דוגמה על הסוכנות שלי', waNumber = WA_NUMBER }) {
   const [form, setForm] = useState({ name: '', phone: '' });
   const [status, setStatus] = useState('idle');
 
@@ -249,11 +260,11 @@ function MiniLeadForm({ source = 'insurance-agents-page' }) {
         required
       />
       <button type="submit" className={styles.miniSubmit} disabled={status === 'loading'}>
-        {status === 'loading' ? '⏳ שולח...' : 'רוצה לראות דוגמה על הסוכנות שלי'}
+        {status === 'loading' ? '⏳ שולח...' : buttonText}
       </button>
       {status === 'error' && (
         <p className={styles.formError}>
-          שגיאה. אפשר לשלוח לנו <a href={`https://wa.me/${WA_NUMBER}`}>הודעה בוואטסאפ</a>
+          שגיאה. אפשר לשלוח לנו <a href={`https://wa.me/${waNumber}`}>הודעה בוואטסאפ</a>
         </p>
       )}
     </form>
