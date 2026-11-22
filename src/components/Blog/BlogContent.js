@@ -50,6 +50,10 @@ const POST_CARDS = {
   43: { gradient: 'linear-gradient(135deg,#0369a1,#0891b2)', icon: '⚙️', labelHe: 'התקנת MCP Server', labelEn: 'MCP Server Setup' },
   44: { gradient: 'linear-gradient(135deg,#0891b2,#0369a1)', icon: '🪙', labelHe: 'קרדיטים ותמחור', labelEn: 'Credits & Pricing' },
   48: { gradient: 'linear-gradient(135deg,#d97706,#b45309)', icon: '📧', labelHe: 'מגבלות דיוור במייל', labelEn: 'Email Sending Limits' },
+  // Telephony / virtual PBX posts
+  52: { gradient: 'linear-gradient(135deg,#0f766e,#0d9488)', icon: '📲', labelHe: 'הפניית שיחות למרכזייה', labelEn: 'Call Forwarding to the PBX' },
+  53: { gradient: 'linear-gradient(135deg,#1d4ed8,#4338ca)', icon: '📞', labelHe: 'חיוג מהאפליקציה', labelEn: 'Dialing from the App' },
+  54: { gradient: 'linear-gradient(135deg,#0e7490,#1e3a8a)', icon: '☎️', labelHe: 'מרכזייה וירטואלית', labelEn: 'Virtual PBX' },
 };
 const FALLBACK_CARD = { gradient: 'linear-gradient(135deg,#1565C0,#0288D1)', icon: '💬', labelHe: 'WhatsApp', labelEn: 'WhatsApp' };
 

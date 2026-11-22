@@ -90,7 +90,7 @@ export function specIssues(spec) {
   return out;
 }
 
-export default function TemplateEditor({ columns, value, onChange, fallbacks, onFallbacksChange, footer, sentBy }) {
+export default function TemplateEditor({ columns, value, onChange, fallbacks, onFallbacksChange, footer, sentBy, sentByPrefix, businessName, onBusinessNameChange, businessNameMax }) {
   const taRef = useRef(null);
   const [varsOpen, setVarsOpen] = useState(false);
   const [varQuery, setVarQuery] = useState('');
@@ -226,6 +226,22 @@ export default function TemplateEditor({ columns, value, onChange, fallbacks, on
         {issues.header && <div className="otb-ime-err">{issues.header}</div>}
       </div>
 
+      {sentByPrefix && onBusinessNameChange && (
+        <div className="otb-ime-f">
+          <span>שורה ראשונה בהודעה <em>🔒 ״{sentByPrefix.trim()}״ קבוע ולא ניתן למחיקה — שם העסק ניתן לעריכה</em></span>
+          <div className="otb-ime-row">
+            <input className="otb-ime-input otb-ime-footer" style={{ flex: '0 0 auto', width: 'auto', minWidth: 150 }} value={sentByPrefix.trim()} readOnly disabled />
+            <input
+              className="otb-ime-input"
+              value={businessName || ''}
+              maxLength={businessNameMax || 50}
+              placeholder="שם העסק שלכם"
+              onChange={(e) => onBusinessNameChange(e.target.value)}
+            />
+          </div>
+        </div>
+      )}
+
       <div className="otb-ime-f">
         <span>גוף ההודעה</span>
         <div className="otb-ime-bodybox">
@@ -306,13 +322,6 @@ export default function TemplateEditor({ columns, value, onChange, fallbacks, on
             </label>
           ))}
         </div>
-      )}
-
-      {sentBy && (
-        <label className="otb-ime-f">
-          <span>שורה אחרונה בהודעה <em>🔒 נקבעת אוטומטית</em></span>
-          <input className="otb-ime-input otb-ime-footer" value={sentBy} readOnly disabled />
-        </label>
       )}
 
       <label className="otb-ime-f">

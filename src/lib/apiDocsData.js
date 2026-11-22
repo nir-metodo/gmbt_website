@@ -2802,6 +2802,8 @@ export const API_SCOPES = [
   { scope: 'notes:read', he: 'קריאת הערות', en: 'Read notes' },
   { scope: 'quotes:read', he: 'קריאת הצעות מחיר', en: 'Read quotes' },
   { scope: 'quotes:write', he: 'יצירה/עדכון הצעות מחיר', en: 'Create/update quotes' },
+  { scope: 'catalog:read', he: 'קריאת קטלוג והגדרות סריקת אתר', en: 'Read catalog and website-scan settings' },
+  { scope: 'catalog:write', he: 'עדכון קטלוג, מלאי וסריקת אתר', en: 'Update catalog, stock and website scan' },
   { scope: 'invoices:read', he: 'קריאת חשבוניות', en: 'Read invoices' },
   { scope: 'invoices:write', he: 'יצירה/עדכון/הפקת חשבוניות', en: 'Create/update/issue invoices' },
   { scope: 'orders:read', he: 'קריאת הזמנות', en: 'Read orders' },

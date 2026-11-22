@@ -444,8 +444,9 @@ export default function OneTimeBroadcastWizard() {
 
   // The footer is the opt-out instruction (fixed text, Meta: footer ≤ 60 chars, no variables).
   const footerFor = (lang) => (lang === 'en' ? 'To unsubscribe reply STOP' : 'להסרה השב הסר');
-  // The last line of the message body names who the message is really from: "Sent by Gambot on behalf of {business}".
-  // The business name comes from the contact form in step 3 (company, else the person's name); the server builds the same text.
+  // The FIRST line of the message body names who the message is really from: "Sent by Gambot on behalf of {business}".
+  // The prefix is fixed (the customer can't delete it); the business name is editable in the editor (same field as the company in
+  // step 3, else the person's name); the server builds the same text.
   const senderMax = 50;
   const sentByFor = (lang, sender) => {
     const en = lang === 'en';
@@ -455,6 +456,7 @@ export default function OneTimeBroadcastWizard() {
     return (prefix + s.slice(0, senderMax)).trim();
   };
   const senderName = (contact.company || contact.name || '').trim();
+  const sentByPrefix = templateLang === 'en' ? 'Sent by Gambot on behalf of ' : 'נשלח על ידי גמבוט עבור ';
   const footer = footerFor(templateLang);
   const sentBy = senderName ? sentByFor(templateLang, senderName) : `${templateLang === 'en' ? 'Sent by Gambot on behalf of ' : 'נשלח על ידי גמבוט עבור '}‹${templateLang === 'en' ? 'your business name' : 'שם העסק שלכם'}›`;
   const q = order && order.quote;
@@ -491,8 +493,8 @@ export default function OneTimeBroadcastWizard() {
     <div className="otb-phone">
       <div className="otb-bubble">
         {renderHeader(header)}
+        <div className="otb-bubble-text" style={{ marginBottom: 8, opacity: 0.75 }}>{sentBy}</div>
         <div className="otb-bubble-text">{text || 'כאן תופיע ההודעה…'}</div>
-        <div className="otb-bubble-text" style={{ marginTop: 8, opacity: 0.75 }}>{sentBy}</div>
         <div className="otb-bubble-footer">
           <span>{footer}</span>
           <span className="otb-help">
@@ -505,7 +507,7 @@ export default function OneTimeBroadcastWizard() {
               onBlur={() => setFooterHelp(false)}
             >?</button>
             <span role="tooltip" className={'otb-help-pop' + (footerHelp ? ' open' : '')}>
-              🔒 בסוף ההודעה מתווספת אוטומטית השורה <b>“{sentBy}”</b> (שם העסק נלקח מפרטי ההזמנה בשלב הבא), ובפוטר <b>“{footer}”</b> — מי שעונה “הסר” מוסר אוטומטית מהרשימה.
+              🔒 בראש ההודעה מתווספת אוטומטית השורה <b>“{sentBy}”</b> (את שם העסק אפשר לערוך בעורך), ובפוטר <b>“{footer}”</b> — מי שעונה “הסר” מוסר אוטומטית מהרשימה.
               התבנית נשלחת לאישור Meta — לכן התזמון הוא לפחות {OTB_MIN_LEAD_HOURS} שעות קדימה.
             </span>
           </span>
@@ -732,6 +734,10 @@ export default function OneTimeBroadcastWizard() {
               onFallbacksChange={setFallbacks}
               footer={footer}
               sentBy={sentBy}
+              sentByPrefix={sentByPrefix}
+              businessName={contact.company}
+              onBusinessNameChange={(v) => setContact((p) => ({ ...p, company: v }))}
+              businessNameMax={senderMax}
             />
 
             {error && <div className="otb-error" role="alert">{error}</div>}
@@ -798,7 +804,7 @@ export default function OneTimeBroadcastWizard() {
 
                 <div className="otb-row">
                   <label className="otb-field"><span>שם מלא *</span><input value={contact.name} onChange={(e) => setContact((p) => ({ ...p, name: e.target.value }))} /></label>
-                  <label className="otb-field"><span>שם העסק (יופיע בתחתית ההודעה, עד {senderMax} תווים)</span><input value={contact.company} maxLength={senderMax} onChange={(e) => setContact((p) => ({ ...p, company: e.target.value }))} /></label>
+                  <label className="otb-field"><span>שם העסק (יופיע בראש ההודעה אחרי ״נשלח על ידי גמבוט עבור״, עד {senderMax} תווים)</span><input value={contact.company} maxLength={senderMax} onChange={(e) => setContact((p) => ({ ...p, company: e.target.value }))} /></label>
                 </div>
                 <div className="otb-row">
                   <label className="otb-field"><span>טלפון *</span><input type="tel" value={contact.phone} onChange={(e) => setContact((p) => ({ ...p, phone: e.target.value }))} /></label>
@@ -838,8 +844,8 @@ export default function OneTimeBroadcastWizard() {
             {order.template && (
               <div className="otb-phone"><div className="otb-bubble">
                 {renderHeader(orderHeader)}
+                <div className="otb-bubble-text" style={{ marginBottom: 8, opacity: 0.75 }}>{sentByFor(order.template.language, senderName)}</div>
                 <div className="otb-bubble-text">{sheet ? previewText : order.template.body}</div>
-                <div className="otb-bubble-text" style={{ marginTop: 8, opacity: 0.75 }}>{sentByFor(order.template.language, senderName)}</div>
                 <div className="otb-bubble-footer">{footerFor(order.template.language)}</div>
                 {(order.template.buttons || []).map((b, i) => (
                   <div key={i} className="otb-bubble-btn">{BTN_ICON[b.type]} {b.text}</div>

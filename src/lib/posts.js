@@ -13764,14 +13764,14 @@ const posts = [
       { q: 'האם צריך מספר טלפון ייעודי כדי לשלוח דיוור חד פעמי?', a: 'לא. ההודעות נשלחות דרך חשבון WhatsApp Business API המאומת של גמבוט, ולכן אין צורך להקים מספר, לפתוח חשבון משלכם או לעבור אימות עסק מול מטא.' },
       { q: 'האם אפשר לשלוח מיד?', a: 'ההזמנה נעשית תוך דקות וללא הקמה מוקדמת, אבל השליחה מתוזמנת לפחות 25 שעות קדימה, כי כל תבנית הודעה צריכה אישור של מטא (בדרך כלל עד 24 שעות). מקבלים מייל כשהתבנית אושרה.' },
       { q: 'כמה זה עולה?', a: 'המחיר מדורג: 0.90 ש"ח להודעה עד 500 הודעות, 0.75 עד 2,000, 0.65 עד 5,000 ו-0.58 עד 10,000. מינימום הזמנה 49 ש"ח. המחירים לפני מע"מ, כוללים את עלויות וואטסאפ ומתייחסים לנמענים בישראל.' },
-      { q: 'מי נראה כשולח ההודעה?', a: 'ההודעה נשלחת מהמספר של גמבוט, בסוף ההודעה מופיע “נשלח על ידי גמבוט עבור [שם העסק שלכם]”, ובפוטר “להסרה השב הסר”. תשובות לא מגיעות אליכם, ולכן כדאי להוסיף כפתור אתר או חיוג.' },
+      { q: 'מי נראה כשולח ההודעה?', a: 'ההודעה נשלחת מהמספר של גמבוט, בראש ההודעה מופיע “נשלח על ידי גמבוט עבור [שם העסק שלכם]”, ובפוטר “להסרה השב הסר”. תשובות לא מגיעות אליכם, ולכן כדאי להוסיף כפתור אתר או חיוג.' },
       { q: 'אפשר להשתמש בזה להזמנה לקבוצת וואטסאפ?', a: 'כן, זה אחד השימושים המרכזיים. כותבים הודעה עם כפתור קישור להזמנה לקבוצה, ובספריית התבניות יש תבנית מוכנה לכך. חשוב לשלוח רק למי שנתן הסכמה לקבל הודעות.' }
     ],
     en: [
       { q: 'Do I need a dedicated phone number to send a one-time broadcast?', a: 'No. Messages are sent through Gambot\'s verified WhatsApp Business API account, so there is no need to set up a number, open your own account or go through Meta business verification.' },
       { q: 'Can I send right away?', a: 'Ordering takes minutes with no prior setup, but the send itself is scheduled at least 25 hours ahead, because every message template needs Meta approval (usually within 24 hours). You get an email as soon as the template is approved.' },
       { q: 'How much does it cost?', a: 'Pricing is tiered: ILS 0.90 per message up to 500 messages, 0.75 up to 2,000, 0.65 up to 5,000 and 0.58 up to 10,000. Minimum order is ILS 49. Prices are before VAT, include WhatsApp fees and apply to recipients in Israel.' },
-      { q: 'Who appears as the sender?', a: 'The message is sent from Gambot\'s number, ending with "Sent by Gambot on behalf of [your business name]" and the footer "To unsubscribe reply STOP". Replies do not reach you, so add a website or call button.' },
+      { q: 'Who appears as the sender?', a: 'The message is sent from Gambot\'s number, starting with "Sent by Gambot on behalf of [your business name]" and the footer "To unsubscribe reply STOP". Replies do not reach you, so add a website or call button.' },
       { q: 'Can I use it to invite people to a WhatsApp group?', a: 'Yes, that is one of the main uses. Write a message with a link button to the group invitation; the template library includes a ready-made template. Send only to people who gave consent to receive messages.' }
     ]
   },
@@ -13831,7 +13831,7 @@ const posts = [
 
 <h2>מה חשוב לדעת — ומה לא ניתן לעשות</h2>
 <ul>
-  <li><strong>השולח הוא גמבוט.</strong> ההודעה יוצאת מהמספר של גמבוט, בסוף ההודעה כתוב “נשלח על ידי גמבוט עבור [שם העסק שלכם]”, ובפוטר “להסרה השב הסר”.</li>
+  <li><strong>השולח הוא גמבוט.</strong> ההודעה יוצאת מהמספר של גמבוט, בראש ההודעה כתוב “נשלח על ידי גמבוט עבור [שם העסק שלכם]”, ובפוטר “להסרה השב הסר”.</li>
   <li><strong>תשובות לא מגיעות אליכם.</strong> לכן כדאי להוסיף כפתור אתר או חיוג שמפנה אליכם ישירות.</li>
   <li><strong>רק למי שהסכים.</strong> שולחים רק לאנשים שנתנו הסכמה לקבל מכם הודעות, והאחריות על הרשימה והתוכן היא שלכם.</li>
   <li><strong>עד 10,000 הודעות להזמנה.</strong> לכמות גדולה יותר או לליווי מלא יש את שירות הדיוור המנוהל.</li>
@@ -13902,7 +13902,7 @@ const posts = [
 
 <h2>What to know — and what it can't do</h2>
 <ul>
-  <li><strong>The sender is Gambot.</strong> The message goes out from Gambot's number, ending with "Sent by Gambot on behalf of [your business name]" and the footer "To unsubscribe reply STOP".</li>
+  <li><strong>The sender is Gambot.</strong> The message goes out from Gambot's number, starting with "Sent by Gambot on behalf of [your business name]" and the footer "To unsubscribe reply STOP".</li>
   <li><strong>Replies don't reach you.</strong> Add a website or call button that sends people to you directly.</li>
   <li><strong>Only to people who consented.</strong> Send only to people who agreed to receive messages from you; the list and content are your responsibility.</li>
   <li><strong>Up to 10,000 messages per order.</strong> For more volume or full assistance there is the managed broadcast service.</li>
@@ -14714,6 +14714,336 @@ const posts = [
 `
   },
   seoUrl: getSeoUrl('הפניית שיחות מהנייד למרכזייה — מדריך לאיש מכירות: מוקלט, משויך אליך, ובוט AI כשלא עונים')
+},
+{
+  id: 53,
+  seoTitle: {
+    he: 'חיוג ללקוחות מהאפליקציה — הלקוח רואה את המספר שלך והשיחה עוברת במרכזייה | גמבוט',
+    en: 'Calling Customers from the App — They See Your Own Number and the Call Goes Through the PBX | Gambot'
+  },
+  metaDescription: {
+    he: 'איך עובד חיוג מאפליקציית גמבוט: כברירת מחדל הלקוח רואה את מספר הנייד האישי שלך, השיחה עוברת במרכזייה, מוקלטת ונרשמת בכרטיס הלקוח. ואיך עוברים להצגת מספר הארגון במקום.',
+    en: 'How calling from the Gambot app works: by default the customer sees your personal mobile number, the call goes through the PBX, is recorded and logged on the customer record. And how to switch to showing the organization number instead.'
+  },
+  keywords: {
+    he: ['חיוג מהאפליקציה', 'הצגת מספר נייד ללקוח', 'מספר מזהה בשיחה יוצאת', 'מרכזייה וירטואלית', 'הקלטת שיחות מכירות', 'מספר הארגון בשיחה יוצאת', 'שלוחה לאיש מכירות', 'גמבוט'],
+    en: ['call from app', 'show mobile number to customer', 'outbound caller id', 'virtual pbx', 'sales call recording', 'organization number outbound', 'salesperson extension', 'gambot']
+  },
+  title: {
+    he: 'חיוג ללקוחות מהאפליקציה: הלקוח רואה את המספר שלך, והשיחה עוברת במרכזייה',
+    en: 'Calling Customers from the App: They See Your Own Number, and the Call Goes Through the PBX'
+  },
+  description: {
+    he: 'כל איש מכירות מחייג מהאפליקציה מהמספר האישי שלו, והשיחה מוקלטת ונרשמת בכרטיס הלקוח. הנה איך זה עובד ואיך מחליפים למספר הארגון.',
+    en: 'Every salesperson dials from the app using their own number, and the call is recorded and logged on the customer record. Here is how it works and how to switch to the organization number.'
+  },
+  category: 'Telephony',
+  author: 'ניר סגס',
+  publishedDate: '2026-11-21',
+  image: '/blog/communication.jpg',
+  readTime: 5,
+  featured: false,
+  faq: {
+    he: [
+      { q: 'איזה מספר הלקוח רואה כשאני מחייג מהאפליקציה?', a: 'כברירת מחדל הלקוח רואה את מספר הנייד האישי שלך, זה שנשמר בשלוחה שלך. כך הוא מזהה אותך וחוזר אליך. השיחה עצמה עוברת במרכזייה של הארגון, ולכן היא מוקלטת ונרשמת בכרטיס הלקוח.' },
+      { q: 'איך עוברים להצגת מספר הארגון?', a: 'באפליקציה: עוד ← הגדרות ← בקטע הטלפוניה מכבים את "הלקוח רואה את הנייד שלי". אפשר גם ממסך החיוג (עוד ← שיחות): בבורר "מה הלקוח רואה בשיחה מגמבוט" בוחרים "מספר המשרד". ההגדרה אישית לכל משתמש, ואפשר לחזור בכל רגע.' },
+      { q: 'מה צריך כדי שזה יעבוד?', a: 'שלוחה פעילה בהגדרות הטלפוניה של הארגון ומספר נייד שמור. אם אין מספר נייד, הלקוח יראה את מספר הארגון. כשנכנסים לאפליקציה בפעם הראשונה, הטלפון מהפרופיל נשמר אוטומטית.' },
+      { q: 'מה קורה אם חברת הטלפוניה לא מאשרת את המספר שלי?', a: 'השיחה נעשית אוטומטית ממספר הארגון, בלי שתצטרך לעשות כלום. היא ממשיכה לעבור במרכזייה ולהיות מוקלטת.' },
+      { q: 'מה קורה כשהלקוח מחזיר אליי שיחה?', a: 'אם הלקוח רואה את הנייד שלך הוא יחייג אליו ישירות, והשיחה לא תעבור במרכזייה. כדי שגם שיחות נכנסות יוקלטו וירשמו, מפנים את הנייד למרכזייה (הפניה כשאין מענה, או שהלקוח מחייג למספר הארגון).' },
+      { q: 'האם חיוג מחייגן הטלפון גם מוקלט?', a: 'לא. רק חיוג דרך חייגן המערכת של גמבוט עובר במרכזייה, מוקלט ומתועד. חיוג רגיל מחייגן הטלפון מתועד רק כאירוע, בלי הקלטה. בהגדרות האפליקציה אפשר לבחור את חייגן ברירת המחדל.' },
+      { q: 'האם כל משתמש יכול לבחור מספר אחר?', a: 'כן. ההגדרה נשמרת לכל משתמש בנפרד. אחד יכול להציג את הנייד שלו, ועמית אחר יכול להציג את מספר הארגון.' }
+    ],
+    en: [
+      { q: 'Which number does the customer see when I call from the app?', a: 'By default the customer sees your personal mobile number, the one saved on your extension. That way they recognize you and call you back. The call itself goes through the organization PBX, so it is recorded and logged on the customer record.' },
+      { q: 'How do I switch to showing the organization number?', a: 'In the app: More → Settings → in the telephony section turn off "Customer sees my mobile number". You can also do it from the dial screen (More → Calls): in the "What the customer sees on Gambot calls" selector choose "Office number". The setting is per user and you can switch back any time.' },
+      { q: 'What is required for this to work?', a: 'An active extension in the organization telephony settings and a saved mobile number. With no mobile number the customer sees the organization number. On first sign-in the phone from your profile is saved automatically.' },
+      { q: 'What if the carrier does not approve my number?', a: 'The call is placed automatically from the organization number, with nothing for you to do. It still goes through the PBX and is recorded.' },
+      { q: 'What happens when the customer calls me back?', a: 'If the customer sees your mobile they dial it directly, and the call does not pass through the PBX. To record and log incoming calls as well, forward your mobile to the PBX (a no-answer forward, or have the customer call the organization number).' },
+      { q: 'Is a call from the phone\'s own dialer recorded too?', a: 'No. Only a call through the Gambot system dialer goes through the PBX, is recorded and logged. A regular call from the phone dialer is logged only as an event, with no recording. You can choose the default dialer in the app settings.' },
+      { q: 'Can each user pick a different number?', a: 'Yes. The setting is saved per user. One person can show their mobile, and a colleague can show the organization number.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">📞 מדריך למשתמש</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">מחייגים מהאפליקציה. הלקוח רואה את המספר שלך. השיחה עוברת במרכזייה ומוקלטת.</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">בלי להגדיר כלום: כל איש מכירות מחייג מהמספר האישי שלו, והמערכת רושמת את השיחה בכרטיס הלקוח.</p>
+</div>
+
+<p><strong>לקוח עונה בקלות לשיחה ממספר שהוא מכיר, ומתעלם ממספר מרכזייה לא מוכר.</strong> לכן, כשמחייגים מאפליקציית גמבוט, הלקוח רואה כברירת מחדל את מספר הנייד האישי שלך. במדריך הזה אני, ניר סגס, מסביר איך זה עובד, מה צריך כדי שזה יעבוד, ואיך כל משתמש יכול לעבור להצגת מספר הארגון.</p>
+
+<h2>מה קורה כשלוחצים על כפתור החיוג</h2>
+<ol>
+  <li>לוחצים על "חיוג" בצ׳אט, בכרטיס לקוח, בליד או בכל מקום באפליקציה. אין חלון אישור, השיחה יוצאת מיד.</li>
+  <li>השיחה יוצאת דרך המרכזייה של הארגון, ולא דרך חבילת הדקות של הטלפון.</li>
+  <li>הלקוח רואה את הנייד האישי שלך כמספר המתקשר.</li>
+  <li>השיחה מוקלטת (לפי הגדרת "הקלטת שיחות"), נרשמת בציר הזמן של הלקוח והליד, ומשויכת אליך.</li>
+  <li>אחרי השיחה אפשר לקבל סיכום AI, ואם הוא מזהה שיחה רצינית הליד יכול לעבור אוטומטית לשלב המתאים.</li>
+</ol>
+
+<h2>מה צריך כדי שזה יעבוד</h2>
+<ul>
+  <li><strong>שלוחה פעילה</strong> בהגדרות ← טלפוניה של הארגון (המנהל מפעיל).</li>
+  <li><strong>מספר נייד שמור.</strong> בכניסה הראשונה לאפליקציה הטלפון מהפרופיל נשמר אוטומטית. אפשר לשנות בהגדרות ← "המספר הנייד שלי".</li>
+  <li><strong>חייגן ברירת מחדל: חייגן המערכת</strong> (קו הארגון). בהגדרות האפליקציה: "חייגן ברירת מחדל".</li>
+</ul>
+
+<h2>איך עוברים למספר הארגון</h2>
+<p>אם אתה מעדיף שהלקוח יראה את מספר הארגון, ולא את הנייד שלך, יש שתי דרכים. ההגדרה אישית, ורק אתה מושפע ממנה.</p>
+<h3>דרך 1: בהגדרות</h3>
+<ol>
+  <li>באפליקציה: <strong>עוד ← הגדרות</strong>.</li>
+  <li>בקטע הטלפוניה מכבים את <strong>"הלקוח רואה את הנייד שלי"</strong>.</li>
+</ol>
+<h3>דרך 2: ממסך החיוג</h3>
+<ol>
+  <li>באפליקציה: <strong>עוד ← שיחות</strong>.</li>
+  <li>בבורר <strong>"מה הלקוח רואה בשיחה מגמבוט"</strong> בוחרים <strong>"מספר המשרד"</strong>.</li>
+</ol>
+<p>כדי לחזור להצגת הנייד, מדליקים שוב את אותו מתג, או בוחרים "הנייד שלי" בבורר.</p>
+
+<h2>טוב לדעת</h2>
+<ul>
+  <li><strong>מספר שלא אושר אצל חברת הטלפוניה:</strong> השיחה תצא אוטומטית ממספר הארגון, והיא עדיין עוברת במרכזייה ומוקלטת.</li>
+  <li><strong>כשהלקוח מחזיר שיחה:</strong> אם הוא ראה את הנייד שלך הוא יחייג אליו ישירות, והשיחה לא תעבור במרכזייה. כדי שגם שיחות נכנסות יירשמו, מפנים את הנייד למרכזייה, או נותנים ללקוח את מספר הארגון.</li>
+  <li><strong>חייגן הטלפון:</strong> חיוג רגיל מחייגן הטלפון לא עובר במרכזייה ולא מוקלט. הוא מתועד רק כאירוע.</li>
+</ul>
+
+<h2>סיכום</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">מה אתה רוצה</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">מה עושים</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">שהלקוח יזהה אותי וייענה</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">כלום. זו ברירת המחדל: "הלקוח רואה את הנייד שלי"</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">שהלקוח יראה את מספר הארגון</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">עוד ← הגדרות ← מכבים "הלקוח רואה את הנייד שלי"</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">שהשיחה תוקלט ותירשם בכרטיס</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">מחייגים עם חייגן המערכת ומפעילים "הקלטת שיחות" בהגדרות הטלפוניה</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">שגם שיחות חוזרות יירשמו</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">מפנים את הנייד למרכזייה</td></tr>
+  </tbody>
+</table>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">הכלל הקצר</h3>
+  <p style="margin:0 0 18px;opacity:0.92;font-size:1rem;">מחייגים מהאפליקציה: הלקוח רואה אותך, המערכת מקליטה ורושמת. רוצים להציג את הארגון? מכבים מתג אחד.</p>
+  <a href="/demo/" style="display:inline-block;background:#fff;color:#075E54;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">לדמו חינם →</a>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">📞 User guide</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">You call from the app. The customer sees your number. The call goes through the PBX and is recorded.</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">With no setup: every salesperson dials from their own number, and the system logs the call on the customer record.</p>
+</div>
+
+<p><strong>A customer easily answers a call from a number they know, and ignores an unfamiliar PBX number.</strong> That is why, when you dial from the Gambot app, the customer sees your personal mobile number by default. In this guide, I, Nir Segas, explain how it works, what it needs, and how each user can switch to showing the organization number.</p>
+
+<h2>What happens when you tap the call button</h2>
+<ol>
+  <li>You tap "Call" in a chat, a customer card, a lead or anywhere in the app. There is no confirmation sheet; the call goes out immediately.</li>
+  <li>The call goes out through the organization PBX, not through the phone's minutes.</li>
+  <li>The customer sees your personal mobile as the caller.</li>
+  <li>The call is recorded (per the "Call recording" setting), logged on the customer and lead timeline, and linked to you.</li>
+  <li>After the call you can get an AI summary, and if it detects a serious conversation the lead can move to the right stage automatically.</li>
+</ol>
+
+<h2>What you need</h2>
+<ul>
+  <li><strong>An active extension</strong> in the organization Settings → Telephony (the admin turns it on).</li>
+  <li><strong>A saved mobile number.</strong> On first sign-in the phone from your profile is saved automatically. Change it in Settings → "My mobile number".</li>
+  <li><strong>The default dialer set to the system dialer</strong> (the organization line). In the app settings: "Default dialer".</li>
+</ul>
+
+<h2>How to switch to the organization number</h2>
+<p>If you prefer the customer to see the organization number instead of your mobile, there are two ways. The setting is personal, and only you are affected.</p>
+<h3>Way 1: in Settings</h3>
+<ol>
+  <li>In the app: <strong>More → Settings</strong>.</li>
+  <li>In the telephony section turn off <strong>"Customer sees my mobile number"</strong>.</li>
+</ol>
+<h3>Way 2: from the dial screen</h3>
+<ol>
+  <li>In the app: <strong>More → Calls</strong>.</li>
+  <li>In the <strong>"What the customer sees on Gambot calls"</strong> selector choose <strong>"Office number"</strong>.</li>
+</ol>
+<p>To go back to showing your mobile, turn the same switch on again, or choose "My mobile" in the selector.</p>
+
+<h2>Good to know</h2>
+<ul>
+  <li><strong>A number the carrier does not approve:</strong> the call goes out automatically from the organization number, and it still passes through the PBX and is recorded.</li>
+  <li><strong>When the customer calls back:</strong> if they saw your mobile they dial it directly, and the call does not pass through the PBX. To log incoming calls too, forward your mobile to the PBX, or give the customer the organization number.</li>
+  <li><strong>The phone dialer:</strong> a regular call from the phone's own dialer does not pass through the PBX and is not recorded. It is logged only as an event.</li>
+</ul>
+
+<h2>Summary</h2>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;">
+  <thead><tr><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">What you want</th><th style="border:1px solid #e2e8f0;padding:8px 12px;background:#f1f5f9;">What to do</th></tr></thead>
+  <tbody>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">The customer recognizes me and answers</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Nothing. It is the default: "Customer sees my mobile number"</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">The customer sees the organization number</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">More → Settings → turn off "Customer sees my mobile number"</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">The call recorded and logged on the record</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Dial with the system dialer and turn on "Call recording" in telephony settings</td></tr>
+    <tr><td style="border:1px solid #e2e8f0;padding:8px 12px;">Return calls logged too</td><td style="border:1px solid #e2e8f0;padding:8px 12px;">Forward the mobile to the PBX</td></tr>
+  </tbody>
+</table>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">The short rule</h3>
+  <p style="margin:0 0 18px;opacity:0.92;font-size:1rem;">Call from the app: the customer sees you, and the system records and logs. Want to show the organization instead? Turn off one switch.</p>
+  <a href="/demo/" style="display:inline-block;background:#fff;color:#075E54;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">Get a free demo →</a>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('חיוג ללקוחות מהאפליקציה: הלקוח רואה את המספר שלך, והשיחה עוברת במרכזייה')
+},
+{
+  id: 54,
+  seoTitle: {
+    he: 'מרכזיה וירטואלית לעסק: מספר אחד, כמה מספרים או מספר לכל נציג | גמבוט',
+    en: 'Virtual PBX for Your Business: One Number, Several Numbers, or a Number per Agent | Gambot'
+  },
+  metaDescription: {
+    he: 'שלוש דרכים להפעיל את המרכזייה של גמבוט: מספר ארגון אחד לכולם, כמה מספרים עם מספר ראשי אחד שמוצג, או כל נציג עם המספר שלו כשהכול עדיין עובר במרכזייה, מוקלט ונרשם. כולל הפניית שיחות מהנייד, צלצול באפליקציה והודעת פתיחה וצליל המתנה לפי תחום.',
+    en: 'Three ways to run the Gambot PBX: one organization number for everyone, several numbers with one main number shown, or every agent with their own number while everything still goes through the PBX, recorded and logged. Includes call forwarding from the mobile, ringing in the app, and a greeting with hold music by industry.'
+  },
+  keywords: {
+    he: ['מרכזיה וירטואלית לעסק', 'הפניית שיחות למרכזייה', 'הקלטת שיחות', 'מספר מזהה בשיחה יוצאת', 'שלוחה לכל נציג', 'צליל המתנה', 'הודעת פתיחה למרכזיה', 'גמבוט'],
+    en: ['virtual pbx for business', 'call forwarding to pbx', 'call recording', 'outbound caller id', 'extension per agent', 'hold music', 'pbx greeting', 'gambot']
+  },
+  title: {
+    he: 'מרכזיה וירטואלית לעסק: מספר אחד, כמה מספרים או מספר לכל נציג',
+    en: 'Virtual PBX for Your Business: One Number, Several Numbers, or a Number per Agent'
+  },
+  description: {
+    he: 'איך לבחור את המבנה הנכון: מספר ארגון אחד, כמה מספרים עם מספר ראשי, או כל נציג עם המספר שלו. בכל המבנים השיחות עוברות במרכזייה, מוקלטות ונרשמות בכרטיס הלקוח.',
+    en: 'How to pick the right setup: one organization number, several numbers with a main one, or each agent with their own number. In every setup calls go through the PBX, are recorded and logged on the customer record.'
+  },
+  category: 'Telephony',
+  author: 'ניר סגס',
+  publishedDate: '2026-11-22',
+  image: '/blog/communication.jpg',
+  readTime: 6,
+  featured: false,
+  faq: {
+    he: [
+      { q: 'האם חייבים להפנות את הנייד למרכזייה?', a: 'לא. מי שלא מפנה משתמש באפליקציה: הלקוחות מחייגים למספר הארגון והשיחה מצלצלת באפליקציה. כדי שלא יפספס שיחות כשהאפליקציה סגורה, מפעילים "צלצול גם בנייד" ואז השיחה מצלצלת גם בטלפון הרגיל.' },
+      { q: 'מה ההבדל בין הפניית שיחות לשימוש באפליקציה?', a: 'בהפניה הלקוחות ממשיכים לחייג לנייד הרגיל של הנציג והשיחה עוברת במרכזייה, מצלצלת אצלו כשיחה רגילה ומוקלטת. באפליקציה הלקוחות מחייגים למספר הארגון והשיחה מצלצלת באפליקציה. בשני המקרים היא נרשמת בכרטיס הלקוח.' },
+      { q: 'יש לנו כמה מספרים. איך מציגים ללקוח רק מספר אחד?', a: 'בהגדרות הטלפוניה מסמנים מספר אחד כמספר ברירת המחדל. בשיחות יוצאות הלקוח רואה אותו. שיחות שנכנסות לשאר המספרים מגיעות לאותו צוות.' },
+      { q: 'האם כל נציג יכול לחייג ולקבל במספר שלו?', a: 'כן. כל נציג מקבל שלוחה, שומר את הנייד שלו ובוחר שהלקוח יראה את המספר שלו. השיחה עוברת במרכזייה ולכן מוקלטת. בשיחות נכנסות הנציג מפנה את הנייד למספר הארגון, והמערכת מזהה אותו ומצלצלת רק אצלו.' },
+      { q: 'אפשר לשים הודעת פתיחה וצליל המתנה?', a: 'כן. בהגדרות הטלפוניה, בקטע "צלילים והודעות", כותבים ברכה שהמערכת מקריאה בקול, ובוחרים צליל המתנה מהספרייה או מעלים קובץ משלכם. יש תבניות מוכנות לפי תחום: רואה חשבון, סוכן ביטוח, חנות, קליניקה, עורך דין, נדל״ן, מכון יופי, מסעדה ועסק שירותים כללי.' },
+      { q: 'האם שיחות שמחויגות מחייגן הטלפון מוקלטות?', a: 'לא. רק שיחה שעוברת במרכזייה של גמבוט מוקלטת ומתועדת בכרטיס הלקוח.' }
+    ],
+    en: [
+      { q: 'Do we have to forward the mobile to the PBX?', a: 'No. Whoever does not forward uses the app: customers dial the organization number and the call rings in the app. To avoid missing calls while the app is closed, turn on "Also ring my mobile" and the call also rings on the regular phone.' },
+      { q: 'What is the difference between forwarding and using the app?', a: 'With forwarding, customers keep dialing the agent\'s regular mobile and the call goes through the PBX, rings as a normal call and is recorded. With the app, customers dial the organization number and the call rings in the app. In both cases it is logged on the customer record.' },
+      { q: 'We have several numbers. How do we show the customer only one?', a: 'In the telephony settings mark one number as the default. On outgoing calls the customer sees it. Calls to the other numbers reach the same team.' },
+      { q: 'Can every agent dial and receive on their own number?', a: 'Yes. Each agent gets an extension, saves their mobile and chooses that the customer sees their number. The call goes through the PBX, so it is recorded. For incoming calls the agent forwards the mobile to the organization number, and the system recognizes them and rings only them.' },
+      { q: 'Can I add a greeting and hold music?', a: 'Yes. In the telephony settings, under "Sounds and announcements", write a greeting that the system reads aloud, and pick hold music from the library or upload your own file. There are ready-made templates by industry: accountant, insurance agent, store, clinic, law office, real estate, beauty salon, restaurant and general services.' },
+      { q: 'Are calls placed from the phone dialer recorded?', a: 'No. Only a call that goes through the Gambot PBX is recorded and logged on the customer record.' }
+    ]
+  },
+  content: {
+    he: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">📞 מדריך למנהל</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">שלושה מבנים למרכזייה. בכולם השיחות מוקלטות ונרשמות בכרטיס הלקוח.</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">בוחרים לפי איך העסק עובד, ואפשר לשנות בכל רגע.</p>
+</div>
+
+<p><strong>כל עסק מנהל שיחות אחרת:</strong> יש מי שמחזיק מספר אחד לכולם, יש מי שיש לו כמה קווים, ויש מי שרוצה שכל איש מכירות יחייג ויקבל במספר שלו. במדריך הזה אני, ניר סגס, מסביר את שלושת המבנים ואיך לבחור ביניהם.</p>
+
+<h2>מבנה 1: מספר ארגון אחד</h2>
+<p>הלקוחות מחייגים למספר אחד, והוא גם המספר שהם רואים כשהצוות מחייג אליהם. השיחה מצלצלת אצל הצוות, מוקלטת ונרשמת. זה המבנה הפשוט ביותר, ואין בו הגדרות מיוחדות.</p>
+
+<h2>מבנה 2: כמה מספרים, מספר ראשי אחד</h2>
+<p>לארגון יש כמה קווים, אבל הלקוח צריך לראות רק אחד. בהגדרות הטלפוניה מסמנים מספר אחד כברירת מחדל: בשיחות יוצאות הלקוח רואה אותו. שיחות שנכנסות לשאר המספרים מגיעות לאותו צוות, כך שאין צורך לנהל כמה מערכות.</p>
+
+<h2>מבנה 3: כל נציג עם המספר שלו, והכול עובר במרכזייה</h2>
+<p>כל נציג מקבל שלוחה, שומר את הנייד שלו, והלקוח רואה אותו. כשהנציג מחייג מהאפליקציה, השיחה עוברת במרכזייה ולכן מוקלטת ונרשמת. אם חברת הטלפוניה לא מאשרת את המספר, השיחה יוצאת אוטומטית ממספר הארגון.</p>
+<p>בשיחות נכנסות יש שתי דרכים:</p>
+<ul>
+  <li><strong>הפניית שיחות:</strong> הנציג מפנה את הנייד למספר הארגון. הלקוחות ממשיכים לחייג אליו כרגיל, המערכת מזהה למי שייכת השיחה ומצלצלת רק אצלו, והשיחה מוקלטת.</li>
+  <li><strong>האפליקציה:</strong> מי שלא רוצה להפנות מקבל שיחות באפליקציה. כדי לא לפספס שיחות כשהיא סגורה, מפעילים "צלצול גם בנייד".</li>
+</ul>
+
+<h2>הודעת פתיחה וצליל המתנה לפי תחום</h2>
+<p>בהגדרות הטלפוניה, בקטע "צלילים והודעות", כותבים ברכה שהמערכת מקריאה בקול ובוחרים צליל המתנה מהספרייה. אפשר גם להעלות קובץ משלכם. כדי להתחיל מהר יש תבניות מוכנות לפי תחום, והן ממלאות ברכה וצליל מתאימים:</p>
+<ul>
+  <li>🧾 רואה חשבון</li>
+  <li>🛡️ סוכן ביטוח</li>
+  <li>🛍️ חנות</li>
+  <li>🩺 קליניקה</li>
+  <li>⚖️ עורך דין</li>
+  <li>🏠 נדל״ן</li>
+  <li>💅 מכון יופי</li>
+  <li>🍽️ מסעדה</li>
+  <li>💼 עסק שירותים כללי</li>
+</ul>
+<p>אחרי שבוחרים תבנית אפשר לערוך את הטקסט ולהחליף את המוזיקה. נשמרים בלחיצה על "שמור".</p>
+
+<h2>איך בוחרים</h2>
+<ul>
+  <li>רוצים הכול במקום אחד: <strong>מספר ארגון אחד</strong>.</li>
+  <li>יש כמה קווים והלקוח צריך לראות אחד: <strong>מספר ברירת מחדל</strong>.</li>
+  <li>רוצים מראה אישי לכל איש מכירות: <strong>שלוחה לכל נציג</strong>, עם הפניית שיחות או אפליקציה.</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">רוצים לראות איך זה נראה אצלכם?</h3>
+  <p style="margin:0 0 18px;opacity:0.92;font-size:1rem;">נראה לכם את המרכזייה בהדגמה קצרה, ונגדיר יחד את המבנה שמתאים לעסק.</p>
+  <a href="/demo/" style="display:inline-block;background:#fff;color:#075E54;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">לקבוע הדגמה</a>
+</div>
+`,
+    en: `
+<div style="background:linear-gradient(135deg,#128C7E 0%,#075E54 100%);color:#fff;border-radius:16px;padding:28px 32px;margin-bottom:32px;">
+  <div style="font-size:0.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:0.8;margin-bottom:8px;">📞 Manager's guide</div>
+  <div style="font-size:1.5rem;font-weight:800;line-height:1.35;">Three PBX setups. In all of them calls are recorded and logged on the customer record.</div>
+  <p style="margin:12px 0 0;opacity:0.92;font-size:0.98rem;">Pick by how your business works, and change it any time.</p>
+</div>
+
+<p><strong>Every business handles calls differently:</strong> some keep one number for everyone, some have several lines, and some want each salesperson to dial and receive on their own number. In this guide I, Nir Segas, explain the three setups and how to choose.</p>
+
+<h2>Setup 1: one organization number</h2>
+<p>Customers dial one number, and it is also the number they see when the team calls them. The call rings the team, is recorded and logged. This is the simplest setup, with nothing special to configure.</p>
+
+<h2>Setup 2: several numbers, one main number</h2>
+<p>The organization has several lines, but the customer should see only one. In the telephony settings mark one number as the default: on outgoing calls the customer sees it. Calls to the other numbers reach the same team, so there is no need to manage several systems.</p>
+
+<h2>Setup 3: each agent on their own number, everything through the PBX</h2>
+<p>Each agent gets an extension, saves their mobile, and the customer sees it. When the agent dials from the app the call goes through the PBX, so it is recorded and logged. If the carrier does not approve the number, the call is placed automatically from the organization number.</p>
+<p>For incoming calls there are two ways:</p>
+<ul>
+  <li><strong>Call forwarding:</strong> the agent forwards the mobile to the organization number. Customers keep dialing it as usual, the system recognizes whose call it is and rings only them, and the call is recorded.</li>
+  <li><strong>The app:</strong> whoever does not want to forward receives calls in the app. To avoid missing calls while it is closed, turn on "Also ring my mobile".</li>
+</ul>
+
+<h2>Greeting and hold music by industry</h2>
+<p>In the telephony settings, under "Sounds and announcements", write a greeting that the system reads aloud and pick hold music from the library. You can also upload your own file. To start fast there are ready-made templates by industry that fill in a matching greeting and music:</p>
+<ul>
+  <li>🧾 Accountant</li>
+  <li>🛡️ Insurance agent</li>
+  <li>🛍️ Store</li>
+  <li>🩺 Clinic</li>
+  <li>⚖️ Law office</li>
+  <li>🏠 Real estate</li>
+  <li>💅 Beauty salon</li>
+  <li>🍽️ Restaurant</li>
+  <li>💼 General services</li>
+</ul>
+<p>After picking a template you can edit the text and swap the music. Click "Save" to apply.</p>
+
+<h2>How to choose</h2>
+<ul>
+  <li>Want everything in one place: <strong>one organization number</strong>.</li>
+  <li>Several lines and the customer should see one: <strong>a default number</strong>.</li>
+  <li>Want a personal look for each salesperson: <strong>an extension per agent</strong>, with forwarding or the app.</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,#128C7E,#075E54);border-radius:16px;padding:30px;text-align:center;margin:34px 0;color:#fff;">
+  <h3 style="margin:0 0 12px;color:#fff;border:none;">Want to see how it looks for your business?</h3>
+  <p style="margin:0 0 18px;opacity:0.92;font-size:1rem;">We will show you the PBX in a short demo and set up the structure that fits together.</p>
+  <a href="/demo/" style="display:inline-block;background:#fff;color:#075E54;font-weight:700;padding:12px 30px;border-radius:10px;text-decoration:none;font-size:1rem;">Book a demo</a>
+</div>
+`
+  },
+  seoUrl: getSeoUrl('מרכזיה וירטואלית לעסק: מספר אחד, כמה מספרים או מספר לכל נציג')
 }
 ];
 
