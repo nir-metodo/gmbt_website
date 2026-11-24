@@ -237,7 +237,7 @@ export default function CrmPage() {
         <div className={styles.container}>
           <div className={styles.badge}>🚀 CRM חכם · וואטסאפ · לידים · משימות · הצעות מחיר</div>
           <h1 className={styles.heroTitle}>
-            כל הלידים, המשימות והעסקאות<br />
+            CRM לעסקים: כל הלידים, המשימות והעסקאות<br />
             <span className={styles.heroHighlight}>במקום אחד — בלי לאבד כלום</span>
           </h1>
           <p className={styles.heroDesc}>

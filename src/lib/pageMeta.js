@@ -13,15 +13,15 @@ export const PAGE_META = {
     og: { title: 'גמבוט — בוט לוואטסאפ, דיוור, CRM וריבוי נציגים | WhatsApp Business API', description: 'שותף Meta רשמי. בוט תפריטים ובוט AI לעסק, דיוור המוני, CRM וריבוי נציגים, אפליקציה לנייד. ניסיון חינם.' },
   },
   whatsappBot: {
-    title: 'בוט לוואטסאפ לעסק | בוט תפריטים ובוט AI ללא קוד | גמבוט',
-    description: 'בוט לוואטסאפ לעסק: בוט תפריטים, בוט AI וסוכן חכם — בונים ללא קוד, עם ריבוי נציגים, CRM ושירות לקוחות 24/7. שותף Meta רשמי. ניסיון חינם חודש.',
-    keywords: 'בוט לוואטסאפ, בוט לוואטסאפ לעסק, בוט לעסק בוואטסאפ, בוט תפריטים בוואטסאפ, בוט וואטסאפ ישראל, WhatsApp bot, אוטומציה וואטסאפ, workflow designer, בוט ללא קוד, Gambot',
+    title: 'בוט וואטסאפ לעסק | בוט תפריטים ובוט AI ללא קוד | גמבוט',
+    description: 'בוט וואטסאפ לעסק: בוט תפריטים, בוט AI וסוכן חכם — בונים בוט לוואטסאפ ללא קוד, עם ריבוי נציגים, CRM ושירות לקוחות 24/7. שותף Meta רשמי. ניסיון חינם חודש.',
+    keywords: 'בוט וואטסאפ, בוט וואטסאפ לעסק, בוט לוואטסאפ, בוט לוואטסאפ לעסק, בוט לעסק בוואטסאפ, בוט תפריטים בוואטסאפ, בוט וואטסאפ ישראל, WhatsApp bot, אוטומציה וואטסאפ, workflow designer, בוט ללא קוד, Gambot',
     canonical: 'https://gambot.co.il/בוט-וואטסאפ/',
     hreflang: { he: 'https://gambot.co.il/בוט-וואטסאפ/', en: 'https://gambot.co.il/bot-whatsapp/', 'x-default': 'https://gambot.co.il/bot-whatsapp/' },
     schema: {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: 'Gambot - בוט לוואטסאפ',
+      name: 'Gambot - בוט וואטסאפ לעסק',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Web',
       offers: { '@type': 'Offer', price: '179', priceCurrency: 'ILS', priceValidUntil: '2026-12-31' },
@@ -134,7 +134,7 @@ export const PAGE_META = {
     },
   },
   aiLeadBot: {
-    title: 'בוט לידים AI לוואטסאפ | קביעת פגישות + סיכום AI | גמבוט 2026',
+    title: 'בוט לידים וואטסאפ | בוט AI לקביעת פגישות + סיכום AI | גמבוט 2026',
     description: 'בוט לידים AI לוואטסאפ — מנהל שיחת מכירה, קובע פגישה ביומן ושולח סיכום AI עם פרטי הלקוח. אוטומטי לחלוטין, 24/7.',
     keywords: 'בוט לידים וואטסאפ, AI lead bot, ניהול לידים, קביעת פגישות אוטומטית, סיכום AI, WhatsApp CRM',
     canonical: 'https://gambot.co.il/בוט-לידים-וואטסאפ/',

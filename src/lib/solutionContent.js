@@ -6,7 +6,7 @@ export const SOLUTIONS = {
     he: {
       hero: {
         badge: '🤖 שותף מטא רשמי',
-        titleText: 'בוט לוואטסאפ לעסק — בוט תפריטים ובוט AI, ללא שורת קוד',
+        titleText: 'בוט וואטסאפ לעסק — בוט תפריטים ובוט AI, ללא שורת קוד',
         desc: 'בנו בוט לעסק שלכם בוואטסאפ: תפריטים וכפתורים, סוכן AI, ריבוי נציגים ו-CRM — הכול בעברית ובמקום אחד. Workflow Designer חזותי, אינטגרציות ושותף Meta רשמי.',
         stats: [
           { value: '95%', label: 'אחוזי פתיחה' }, { value: '24/7', label: 'מענה אוטומטי' },
@@ -77,7 +77,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '🤖 Official Meta Partner',
-        titleText: 'Professional WhatsApp Bot — No Coding Required',
+        titleText: 'WhatsApp Bot — Build a Professional Bot, No Coding Required',
         desc: 'Advanced visual Workflow Designer. Build complex automations with triggers, AI and integrations — in minutes.',
         stats: [
           { value: '95%', label: 'Open Rate' }, { value: '24/7', label: 'Automated Response' },
@@ -378,7 +378,7 @@ export const SOLUTIONS = {
     he: {
       hero: {
         badge: '🤖 צ\'אטבוט לוואטסאפ',
-        titleText: 'צ\'אטבוט לוואטסאפ — שירות לקוחות 24/7 ללא הפסקה',
+        titleText: 'צ\'אטבוט וואטסאפ — שירות לקוחות 24/7 ללא הפסקה',
         desc: 'צ\'אטבוט חכם שמטפל בפניות, עונה על שאלות ומנהל שיחות — בזמן אמת, בכל שעה.',
         stats: [
           { value: '24/7', label: 'זמינות מלאה' }, { value: 'AI', label: 'Powered by GPT' },
@@ -469,7 +469,7 @@ export const SOLUTIONS = {
     he: {
       hero: {
         badge: '🎯 בוט לידים AI לוואטסאפ',
-        titleText: 'בוט לידים AI לוואטסאפ — מהשיחה הראשונה לפגישה קבועה ביומן, אוטומטית',
+        titleText: 'בוט לידים וואטסאפ — בוט AI מהשיחה הראשונה לפגישה קבועה ביומן, אוטומטית',
         desc: 'Gambot AI מנהל שיחת מכירה ראשונית, מסנן לידים, קובע פגישות ביומן ושולח לכם סיכום AI עם כל פרטי הלקוח — הכל אוטומטי, 24/7.',
         stats: [
           { value: '95%', label: 'אחוזי פתיחה (Meta)' }, { value: 'AI', label: 'סיכום שיחה אוטומטי' },
@@ -520,7 +520,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '🎯 WhatsApp AI Leads Bot',
-        titleText: 'WhatsApp AI Leads Bot — From First Message to Calendar Meeting, Automatically',
+        titleText: 'WhatsApp AI Lead Bot — From First Message to Calendar Meeting, Automatically',
         desc: 'Gambot AI manages the initial sales conversation, qualifies leads, books calendar meetings and sends you an AI summary with all customer details — fully automated, 24/7.',
         stats: [
           { value: '95%', label: 'Open Rate (Meta)' }, { value: 'AI', label: 'Auto Conversation Summary' },
@@ -711,7 +711,7 @@ export const SOLUTIONS = {
     he: {
       hero: {
         badge: '📅 זימון תורים בוואטסאפ',
-        titleText: 'זימון תורים בוואטסאפ — ביומן ב-2 דקות',
+        titleText: 'זימון תורים וואטסאפ — ביומן ב-2 דקות',
         desc: 'לקוחות מזמינים תור ישירות בוואטסאפ. ללא המתנה, ללא טפסים מיותרים — רק תיאום מהיר וחלק.',
         stats: [
           { value: 'Google', label: 'אינטגרציה עם יומן' }, { value: '24/7', label: 'זמינות לזימון' },
@@ -802,7 +802,7 @@ export const SOLUTIONS = {
     he: {
       hero: {
         badge: '📊 דוחות שיווק וואטסאפ',
-        titleText: 'דוחות שיווק שבועיים — ניתוח לידים, קמפיינים וביצועים',
+        titleText: 'דוחות שיווק וואטסאפ — ניתוח לידים, קמפיינים וביצועים שבועי',
         desc: 'דו"ח שיווק שבועי/חודשי אוטומטי ישירות לוואטסאפ שלכם. ראו את הלידים, מה עבד ומה לא — ובצעו החלטות מבוססות נתונים.',
         stats: [
           { value: 'שבועי', label: 'דוח אוטומטי' }, { value: '100%', label: 'ניראות ביצועים' },
@@ -853,7 +853,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '📊 WhatsApp Marketing Reports',
-        titleText: 'Weekly Marketing Reports — Analyze Leads, Campaigns and Performance',
+        titleText: 'WhatsApp Marketing Reports — Analyze Leads, Campaigns and Performance Weekly',
         desc: 'Automated weekly/monthly marketing report delivered directly to your WhatsApp. See your leads, what worked and what didn\'t — make data-driven decisions.',
         stats: [
           { value: 'Weekly', label: 'Auto Report' }, { value: '100%', label: 'Performance Visibility' },
@@ -1142,7 +1142,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '📨 WhatsApp Mailing',
-        titleText: 'WhatsApp Mailing — Reach Every Customer in 2 Seconds',
+        titleText: 'WhatsApp Newsletter & Mailing — Reach Every Customer in 2 Seconds',
         desc: 'Send updates, newsletters and promotions directly to WhatsApp. Open rates unachievable on any other channel.',
         stats: [
           { value: '95%', label: 'Open Rate (Meta)' }, { value: 'x10', label: 'Above Email' },
@@ -1228,7 +1228,7 @@ export const SOLUTIONS = {
     he: {
       hero: {
         badge: '💰 בוט מכירות לוואטסאפ',
-        titleText: 'בוט מכירות לוואטסאפ — מכרו 24/7 ללא צוות מכירות',
+        titleText: 'בוט מכירות וואטסאפ — מכרו 24/7 ללא צוות מכירות',
         desc: 'בוט מכירות חכם שמייצר לידים, מציג מוצרים, שולח הצעות מחיר וסוגר עסקאות — אוטומטית.',
         stats: [
           { value: '95%', label: 'אחוזי פתיחה (Meta)' }, { value: '24/7', label: 'מכירות ללא הפסקה' },
@@ -1319,7 +1319,7 @@ export const SOLUTIONS = {
     he: {
       hero: {
         badge: '🎧 בוט שירות לקוחות',
-        titleText: 'בוט שירות לקוחות בוואטסאפ — תמיכה 24/7',
+        titleText: 'בוט שירות לקוחות וואטסאפ — תמיכה 24/7',
         desc: 'בוט שפותר פניות, עונה על שאלות ומנתב לנציג כשצריך. שביעות רצון לקוחות גבוהה יותר, פחות עומס על הצוות.',
         stats: [
           { value: 'AI', label: 'Powered by GPT' }, { value: '24/7', label: 'זמינות מלאה' },
@@ -1414,7 +1414,7 @@ export const SOLUTIONS = {
     he: {
       hero: {
         badge: '💬 מערכת התכתבות וואטסאפ',
-        titleText: 'מערכת התכתבות מרכזית — ניהול כל שיחות הוואטסאפ במקום אחד',
+        titleText: 'מערכת התכתבות וואטסאפ — ניהול כל שיחות הוואטסאפ במקום אחד',
         desc: 'תיבת דואר נכנס משותפת לכל הצוות. ניהול שיחות, הקצאה לנציגים, תיוגים וסגמנטציה — הכל בממשק אחד.',
         stats: [
           { value: '3 שניות', label: 'זמן מענה ממוצע' }, { value: '100%', label: 'ניראות לשיחות' },
@@ -1465,7 +1465,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '💬 WhatsApp Messaging System',
-        titleText: 'Central Messaging System — Manage All WhatsApp Conversations in One Place',
+        titleText: 'WhatsApp Shared Inbox — Manage All Conversations in One Place',
         desc: 'Shared inbox for your entire team. Manage conversations, assign to agents, tag and segment — all in one interface.',
         stats: [
           { value: '3 sec', label: 'Avg. Response Time' }, { value: '100%', label: 'Conversation Visibility' },
@@ -1557,7 +1557,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '💼 WhatsApp Business',
-        titleText: 'WhatsApp Business — The Platform That Changes the Game',
+        titleText: 'WhatsApp Business API — The Platform That Changes the Game',
         desc: 'Connect to Meta\'s official WhatsApp Business API. Manage conversations, campaigns and automation in one platform.',
         stats: [
           { value: '2B+', label: 'WhatsApp Users Worldwide' }, { value: '95%', label: 'Open Rate' },
@@ -1746,7 +1746,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '📋 Task Management via WhatsApp',
-        titleText: 'Task Management via WhatsApp — Create, Assign & Track Tasks from the Chat',
+        titleText: 'WhatsApp Task Management — Create, Assign & Track Tasks from the Chat',
         desc: 'Manage team tasks directly from WhatsApp. Assign to agents, set deadlines and priorities, get reminders — all integrated with leads, contacts and cases.',
         stats: [
           { value: '📋', label: 'Tasks from Chat' }, { value: '⏰', label: 'Auto Reminders' },
@@ -1839,7 +1839,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '🧾 Tax Authority Approved',
-        titleText: 'Digital Invoices via WhatsApp — Create & Send Directly to Customers',
+        titleText: 'Digital Invoices over WhatsApp — Create & Send Directly to Customers',
         desc: 'Generate tax invoices, receipts and transaction invoices directly from Gambot and send to customers on WhatsApp. Tax Authority Approved, connected to quotes and CRM.',
         stats: [
           { value: '🧾', label: 'Tax Authority Approved' }, { value: '⚡', label: 'Generate in Seconds' },
@@ -1932,7 +1932,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '⏱️ WhatsApp Time Tracking',
-        titleText: 'Employee Time Tracking via WhatsApp — Clock In, Clock Out by Message',
+        titleText: 'Employee Time Tracking over WhatsApp — Clock In, Clock Out by Message',
         desc: 'Employees report work hours directly on WhatsApp. Clock in/out in one tap, breaks, overtime, monthly reports and payroll integration.',
         stats: [
           { value: '⏱️', label: 'Report via WhatsApp' }, { value: '📊', label: 'Monthly Reports' },
@@ -1974,7 +1974,7 @@ export const SOLUTIONS = {
     he: {
       hero: {
         badge: '📞 טלפוניה + וואטסאפ',
-        titleText: 'טלפוניה משולבת וואטסאפ — כל שיחה, כל הודעה, במקום אחד',
+        titleText: 'טלפוניה וואטסאפ — כל שיחה, כל הודעה, במקום אחד',
         desc: 'מערכת טלפון חכמה משולבת וואטסאפ. שיחה לא נענתה? הודעת וואטסאפ אוטומטית. הקלטות שיחות, סיכום AI ומעקב מלא.',
         stats: [
           { value: '📞', label: 'טלפוניה מהדפדפן' }, { value: '📱', label: 'וואטסאפ אוטומטי' },
@@ -2025,7 +2025,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '📞 Telephony + WhatsApp',
-        titleText: 'Telephony Integrated with WhatsApp — Every Call, Every Message, One Place',
+        titleText: 'Telephony + WhatsApp — Every Call, Every Message, One Place',
         desc: 'Smart phone system integrated with WhatsApp. Missed call? Automatic WhatsApp message. Call recording, AI summary and full tracking.',
         stats: [
           { value: '📞', label: 'Browser Calling' }, { value: '📱', label: 'Auto WhatsApp' },
@@ -2141,7 +2141,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '📣 WhatsApp Broadcasting & Marketing',
-        titleText: 'Israel\'s Leading WhatsApp Broadcasting System — Same Number, Meta Approved',
+        titleText: 'WhatsApp Broadcasting System — Israel\'s Leading, Same Number, Meta Approved',
         desc: 'Send marketing broadcasts from the same business WhatsApp number, without fear of blocks. Create templates, broadcast to Excel or contacts, schedule and analyze — all in one place. Open an account and get a one-month free trial.',
         stats: [
           { value: '95%', label: 'Open Rate' }, { value: 'Same #', label: 'WhatsApp Business' },
@@ -2549,7 +2549,7 @@ export const SOLUTIONS = {
     en: {
       hero: {
         badge: '🤖 How to Build a WhatsApp Bot',
-        titleText: 'How to Build a WhatsApp Menu Bot in 15 Minutes — No Code',
+        titleText: 'WhatsApp Bot Builder — Build a Menu Bot in 15 Minutes, No Code',
         desc: 'Build a menu bot (or AI bot) with drag and drop in about 15 minutes, no code. With account setup and Meta verification — roughly half an hour end to end. Runs on your phone (Coexistence), with reminders and advanced reports. Open an account and get a one-month free trial.',
         stats: [
           { value: '⏱️ 15 min', label: 'To Build a Bot' }, { value: 'No Code', label: 'Drag & Drop' },

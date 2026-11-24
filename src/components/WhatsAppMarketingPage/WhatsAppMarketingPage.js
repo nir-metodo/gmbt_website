@@ -232,7 +232,7 @@ export default function WhatsAppMarketingPage() {
         <div className={styles.container}>
           <div className={styles.badge}>💬 WhatsApp Marketing · שיווק שמגיע לכולם</div>
           <h1 className={styles.heroTitle}>
-            98% מהלקוחות שלכם<br />
+            שיווק בוואטסאפ לעסקים: 98% מהלקוחות שלכם<br />
             <span className={styles.heroHighlight}>פותחים וואטסאפ — כל יום</span>
           </h1>
           <p className={styles.heroDesc}>

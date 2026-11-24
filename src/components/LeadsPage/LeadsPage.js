@@ -99,7 +99,7 @@ export default function LeadsPage() {
         <div className={styles.container}>
           <div className={styles.badge}>🎯 מערכת ניהול לידים</div>
           <h1 className={styles.heroTitle}>
-            כל ליד — <span className={styles.heroHighlight}>תגובה אוטומטית בוואטסאפ</span>
+            מערכת ניהול לידים: כל ליד — <span className={styles.heroHighlight}>תגובה אוטומטית בוואטסאפ</span>
             <br />תוך שניות
           </h1>
           <p className={styles.heroDesc}>

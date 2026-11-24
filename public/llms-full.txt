@@ -91,8 +91,10 @@ Envelope: success `{ "success": true, "message": "...", "data": { ... } }`; erro
 | Method and path | Purpose |
 |---|---|
 | POST /messages/send-text | `{ "to": "12025550123", "text": "..." }` free text, only inside the 24-hour window |
-| POST /messages/send-template | `{ "to", "templateId", "variables": [] }` approved template, works outside the window |
+| POST /messages/send-template | `{ "to", "templateId", "variables": [] }` approved template, works outside the window. AUTHENTICATION (OTP) template: `"variables": ["123456"]` (the code) fills the body and the copy-code button |
 | GET /messages/{messageId}/status?phone= | sent / delivered / read / failed |
+| POST /otp/send | `{ "to": "0501234567", "lang"?: "he"|"en", "codeLength"?: 4-8, "expiresInSeconds"?: 60-900, "message"?: "... {{code}} ..." }` sends a one-time code by SMS; returns `otpId` (the code is never returned); 30s resend cooldown, max 5 per hour per number; scope `otp:send` |
+| POST /otp/verify | `{ "otpId" | "to", "code" }` returns `data.verified` true/false (`reason`: invalid_code, expired, too_many_attempts, already_used, not_found; max 5 attempts, single use); scope `otp:verify` |
 | GET /conversations/{phone}/window | `windowOpen`, `canSendFreeText`, `requiresTemplate`, `recommendation` |
 | GET /conversations/{phone}/messages | message history (media messages carry `mediaId` + an authenticated `mediaUrl`) |
 | GET /media/{mediaId} | download a message's media (`?format=redirect` default / `json` / `stream`, `ttlMinutes`); MCP `gambot_get_media_url` |

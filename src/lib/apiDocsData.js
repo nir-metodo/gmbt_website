@@ -149,8 +149,8 @@ export const API_SECTIONS = [
         path: '/messages/send-template',
         scope: 'messages:send',
         summary: {
-          he: 'שליחת תבנית מאושרת עם משתנים. יכולה לפתוח שיחה גם מחוץ לחלון 24 השעות.',
-          en: 'Send an approved template with variables. Can initiate a conversation even outside the 24-hour window.',
+          he: 'שליחת תבנית מאושרת עם משתנים. יכולה לפתוח שיחה גם מחוץ לחלון 24 השעות. תבנית מסוג AUTHENTICATION (קוד אימות): שלחו את הקוד כמשתנה היחיד — variables: ["123456"] — והוא ממלא את גוף ההודעה ואת כפתור "העתק קוד".',
+          en: 'Send an approved template with variables. Can initiate a conversation even outside the 24-hour window. AUTHENTICATION (one-time code) templates: pass the code as the single variable — variables: ["123456"] — it fills the message body and the "Copy code" button.',
         },
         params: [
           { name: 'to', in: 'body', type: 'string', required: true, desc: { he: 'הנמען. מקבל גם phoneNumber.', en: 'Recipient. phoneNumber also accepted.' } },
@@ -212,6 +212,76 @@ export const API_SECTIONS = [
     }
   }
 }`,
+      },
+    ],
+  },
+  {
+    id: 'otp',
+    title: { he: 'קודי אימות (OTP) ב-SMS', en: 'One-time passcodes (OTP) via SMS' },
+    description: {
+      he: 'שליחת קוד אימות חד-פעמי ב-SMS ללקוח הקצה שלכם, ואימות הקוד שהוא הזין. הקוד נוצר ונשמר (כ-hash) אצלנו ולעולם לא מוחזר בתגובה. הגנות מובנות: תוקף, שימוש חד-פעמי, עד 5 ניסיונות שגויים לקוד, המתנה של 30 שניות בין שליחות ועד 5 קודים לשעה לכל מספר.',
+      en: 'Send a one-time passcode by SMS to your end user and verify what they enter. The code is generated and stored (hashed) by Gambot and is never returned in a response. Built-in protections: expiry, single use, max 5 wrong attempts per code, a 30-second resend cooldown and max 5 codes per hour per number.',
+    },
+    endpoints: [
+      {
+        method: 'POST',
+        path: '/otp/send',
+        scope: 'otp:send',
+        summary: {
+          he: 'יוצר קוד אקראי ושולח אותו ב-SMS. מחזיר otpId לשימוש באימות — הקוד עצמו לא מוחזר.',
+          en: 'Generates a random code and sends it by SMS. Returns an otpId to use when verifying — the code itself is never returned.',
+        },
+        params: [
+          { name: 'to', in: 'body', type: 'string', required: true, desc: { he: 'מספר הנייד של המשתמש (05... או 9725...). מקבל גם phoneNumber / phone.', en: 'The user\'s mobile number (05... or 9725...). phoneNumber / phone also accepted.' } },
+          { name: 'lang', in: 'body', type: 'string', required: false, desc: { he: 'שפת הודעת ברירת המחדל: he (ברירת מחדל) או en.', en: 'Language of the default message: he (default) or en.' } },
+          { name: 'message', in: 'body', type: 'string', required: false, desc: { he: 'ניסוח מותאם. חייב לכלול את {{code}}.', en: 'Custom text. Must contain {{code}}.' } },
+          { name: 'codeLength', in: 'body', type: 'number', required: false, desc: { he: 'אורך הקוד, 4–8 (ברירת מחדל 6).', en: 'Code length, 4–8 (default 6).' } },
+          { name: 'expiresInSeconds', in: 'body', type: 'number', required: false, desc: { he: 'תוקף הקוד בשניות, 60–900 (ברירת מחדל 300).', en: 'Code lifetime in seconds, 60–900 (default 300).' } },
+          { name: 'purpose', in: 'body', type: 'string', required: false, desc: { he: 'תווית חופשית לתיעוד (למשל login).', en: 'Free-form label for your records (e.g. login).' } },
+          { name: 'country', in: 'body', type: 'string', required: false, desc: { he: 'מדינת ברירת מחדל למספרים מקומיים (IL וכו\'). בלי זה נעשה שימוש במדינת הארגון.', en: 'Default country for local numbers (IL, etc.). Falls back to the organization\'s country.' } },
+        ],
+        request: `{
+  "to": "0501234567",
+  "lang": "he",
+  "expiresInSeconds": 300
+}`,
+        curl: curl('POST', '/otp/send', `{ "to": "0501234567", "lang": "he" }`),
+        response: `{
+  "success": true,
+  "message": "Code sent.",
+  "data": {
+    "otpId": "3f9c2a7b1d8e4c6f9a0b5d2e7c1a8f34",
+    "to": "972501234567",
+    "channel": "sms",
+    "expiresAt": "2026-11-24T12:10:00Z",
+    "expiresInSeconds": 300,
+    "maxAttempts": 5
+  }
+}`,
+      },
+      {
+        method: 'POST',
+        path: '/otp/verify',
+        scope: 'otp:verify',
+        summary: {
+          he: 'בודק את הקוד שהמשתמש הזין. תשובה 200 עם verified: true/false. קוד תקין נצרך ולא ניתן להשתמש בו שוב.',
+          en: 'Checks the code the user entered. Responds 200 with verified: true/false. A valid code is consumed and cannot be reused.',
+        },
+        params: [
+          { name: 'code', in: 'body', type: 'string', required: true, desc: { he: 'הקוד שהמשתמש הזין.', en: 'The code the user entered.' } },
+          { name: 'otpId', in: 'body', type: 'string', required: false, desc: { he: 'המזהה שהוחזר מ-/otp/send (מומלץ). חובה אחד מ-otpId או to.', en: 'The id returned by /otp/send (recommended). One of otpId or to is required.' } },
+          { name: 'to', in: 'body', type: 'string', required: false, desc: { he: 'לחלופין: מספר הנייד — נבדק הקוד האחרון שנשלח אליו שטרם נוצל.', en: 'Alternatively: the mobile number — the latest unused code sent to it is checked.' } },
+        ],
+        request: `{
+  "otpId": "3f9c2a7b1d8e4c6f9a0b5d2e7c1a8f34",
+  "code": "482910"
+}`,
+        curl: curl('POST', '/otp/verify', `{ "otpId": "3f9c2a7b1d8e4c6f9a0b5d2e7c1a8f34", "code": "482910" }`),
+        response: `{ "success": true, "data": { "verified": true } }
+
+// Wrong code:
+{ "success": true, "data": { "verified": false, "reason": "invalid_code", "attemptsLeft": 4 } }
+// reason: invalid_code | expired | too_many_attempts | already_used | not_found`,
       },
     ],
   },
@@ -1959,7 +2029,7 @@ export const API_SECTIONS = [
   {
     id: 'signatures',
     title: { he: 'חתימה אלקטרונית', en: 'E-Signature' },
-    description: { he: 'קריאה בלבד — מסמכי חתימה, תוצאות החתימה שלהם, ושליפת קישור/י החתימה להפצה. יצירה מתבצעת בממשק Gambot.', en: 'Read-only — signature documents, their signing results, and fetching the signing link(s) to distribute. Creation is done in the Gambot UI.' },
+    description: { he: 'מסמכי חתימה ותוצאות החתימה שלהם, שליפת קישורי חתימה, ויצירת בקשת חתימה מתבנית מסמך עם שליחה אוטומטית בוואטסאפ.', en: 'Signature documents and their signing results, fetching signing links, and creating a signature request from a document template with automatic WhatsApp delivery.' },
     endpoints: [
       {
         method: 'GET', path: '/signatures', scope: 'signatures:read',
@@ -1985,6 +2055,37 @@ export const API_SECTIONS = [
         curl: `curl "${API_BASE}/signatures/DOC_ID/link" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
         response: `{ "success": true, "data": { "documentId": "DOC_ID", "fillOnly": false, "url": "https://gambot.co.il/ORG/esignature/DOC_ID/sign/TOKEN?lang=he", "signers": [ { "name": "דנה", "role": "signer1", "url": "https://gambot.co.il/ORG/esignature/DOC_ID/sign/TOKEN?lang=he" } ] } }`,
         notes: { he: 'קישורי החתימה קיימים לאחר שבקשת החתימה נשלחה. אם למסמך אין עדיין טוקן — מוחזרת שגיאת no_link.', en: 'Signing links exist once the signature request has been sent. If the document has no token yet, a no_link error is returned.' },
+      },
+      {
+        method: 'POST', path: '/signatures', scope: 'signatures:write',
+        summary: { he: 'יצירת בקשת חתימה דיגיטלית מתבנית מסמך ושליחת קישור חתימה אישי לכל חותם בוואטסאפ.', en: 'Create a digital signature request from a document template and send each signer their personal signing link over WhatsApp.' },
+        params: [
+          { name: 'templateId', in: 'body', type: 'string', required: true, desc: { he: 'מזהה תבנית מסמך (GET /documents).', en: 'Document template id (GET /documents).' } },
+          { name: 'signers', in: 'body', type: 'array', required: false, desc: { he: 'חותמים: [{ name, phone, email, role }]. לחלופין contactPhone/contactName/contactEmail לחותם יחיד.', en: 'Signers: [{ name, phone, email, role }]. Or contactPhone/contactName/contactEmail for one signer.' } },
+          { name: 'leadId', in: 'body', type: 'string', required: false, desc: { he: 'מזהה ליד — מילוי מראש.', en: 'Lead id — pre-fill.' } },
+          { name: 'variables', in: 'body', type: 'object', required: false, desc: { he: 'ערכים ידניים למשתני התבנית.', en: 'Manual template variable values.' } },
+          { name: 'expiresInDays', in: 'body', type: 'int', required: false, desc: { he: 'תוקף בימים (ברירת מחדל 30).', en: 'Validity in days (default 30).' } },
+          { name: 'sequential', in: 'body', type: 'bool', required: false, desc: { he: 'חתימה לפי סדר.', en: 'Sign in order.' } },
+          { name: 'send', in: 'body', type: 'bool', required: false, desc: { he: 'ברירת מחדל true. false = יצירה בלבד והחזרת הקישורים.', en: 'Default true. false = create only and return the links.' } },
+          { name: 'message', in: 'body', type: 'string', required: false, desc: { he: 'טקסט מותאם (הקישור יתווסף אחריו).', en: 'Custom text (the link is appended).' } },
+        ],
+        request: `{ "templateId": "TEMPLATE_ID", "signers": [ { "name": "דנה כהן", "phone": "+972501234567" } ] }`,
+        curl: curl('POST', '/signatures', { templateId: 'TEMPLATE_ID', signers: [{ name: 'דנה כהן', phone: '+972501234567' }] }),
+        response: `{ "success": true, "data": { "documentId": "DOC_ID", "signers": [ { "name": "דנה כהן", "role": "signer1", "url": "https://gambot.co.il/ORG/esignature/DOC_ID/sign/TOKEN?lang=he", "delivery": { "channel": "whatsapp", "sent": true, "messageId": "wamid..." } } ] } }`,
+        notes: { he: 'הודעת טקסט חופשי דורשת חלון שיחה פתוח של 24 שעות. אם סגור — delivery.sent=false עם requiresTemplate=true והקישור מוחזר לשליחה בתבנית מאושרת. נספרת כקרדיט API אחד על כל קישור שנשלח. מעקב: GET /signatures/{documentId}.', en: 'Free-text needs an open 24-hour window. If closed, delivery.sent=false with requiresTemplate=true and the url is returned for an approved template. One API credit per delivered link. Track with GET /signatures/{documentId}.' },
+      },
+      {
+        method: 'POST', path: '/signatures/{documentId}/send', scope: 'signatures:write',
+        summary: { he: 'שליחה (או שליחה חוזרת) של קישור החתימה של מסמך קיים בוואטסאפ.', en: 'Send (or re-send) the signing link of an existing signature document over WhatsApp.' },
+        params: [
+          { name: 'documentId', in: 'path', type: 'string', required: true, desc: { he: 'מזהה מסמך החתימה.', en: 'Signature document id.' } },
+          { name: 'signerRole', in: 'body', type: 'string', required: false, desc: { he: 'חותם ספציפי (ברירת מחדל: כל מי שטרם חתם).', en: 'A specific signer (default: everyone who has not signed).' } },
+          { name: 'phone', in: 'body', type: 'string', required: false, desc: { he: 'שליחה למספר אחר.', en: 'Send to a different number.' } },
+          { name: 'message', in: 'body', type: 'string', required: false, desc: { he: 'טקסט מותאם.', en: 'Custom text.' } },
+        ],
+        request: `{ "signerRole": "signer1" }`,
+        curl: curl('POST', '/signatures/DOC_ID/send', { signerRole: 'signer1' }),
+        response: `{ "success": true, "data": { "documentId": "DOC_ID", "signers": [ { "name": "דנה כהן", "role": "signer1", "url": "https://gambot.co.il/ORG/esignature/DOC_ID/sign/TOKEN?lang=he", "delivery": { "channel": "whatsapp", "sent": true } } ] } }`,
       },
     ],
   },
@@ -2017,6 +2118,20 @@ export const API_SECTIONS = [
         curl: `curl "${API_BASE}/forms/FORM_ID/link" \\\n  -H "Authorization: Bearer gmbt_YOUR_TOKEN"`,
         response: `{ "success": true, "data": { "formId": "FORM_ID", "slug": "יצירת-קשר", "url": "https://gambot.co.il/forms/ORG/יצירת-קשר" } }`,
         notes: { he: 'קישור קבוע לשימוש חוזר — כל הגשה נכנסת להגשות של הטופס.', en: 'A stable, reusable link — every submission lands in the form\'s submissions.' },
+      },
+      {
+        method: 'POST', path: '/forms/{formId}/send', scope: 'forms:write',
+        summary: { he: 'שליחת הקישור הציבורי של טופס ווב לנמען בוואטסאפ.', en: 'Send the public link of a web form to a recipient over WhatsApp.' },
+        params: [
+          { name: 'formId', in: 'path', type: 'string', required: true, desc: { he: 'מזהה הטופס.', en: 'Form id.' } },
+          { name: 'to', in: 'body', type: 'string', required: true, desc: { he: 'טלפון הנמען (E.164).', en: 'Recipient phone (E.164).' } },
+          { name: 'message', in: 'body', type: 'string', required: false, desc: { he: 'טקסט מותאם (הקישור יתווסף אחריו).', en: 'Custom text (the link is appended).' } },
+          { name: 'from', in: 'body', type: 'string', required: false, desc: { he: 'מספר שולח (בארגון מרובה מספרים).', en: 'Sender number (multi-number orgs).' } },
+        ],
+        request: `{ "to": "+972501234567" }`,
+        curl: curl('POST', '/forms/FORM_ID/send', { to: '+972501234567' }),
+        response: `{ "success": true, "data": { "formId": "FORM_ID", "url": "https://gambot.co.il/forms/ORG/slug", "delivery": { "channel": "whatsapp", "sent": true, "messageId": "wamid..." } } }`,
+        notes: { he: 'נדרש חלון שיחה פתוח של 24 שעות; אחרת delivery.sent=false והקישור מוחזר. קרדיט API אחד לכל קישור שנשלח.', en: 'Needs an open 24-hour window; otherwise delivery.sent=false and the url is returned. One API credit per delivered link.' },
       },
       {
         method: 'GET', path: '/forms/{formId}/submissions', scope: 'forms:read',
@@ -2084,6 +2199,22 @@ export const API_SECTIONS = [
         curl: curl('POST', '/documents/TEMPLATE_ID/link', { contactPhone: '+972501234567', documentName: 'חוזה שירות', variables: { amount: '1,200 ₪' } }),
         response: `{ "success": true, "message": "Distributable fill link created from the template.", "data": { "url": "https://gambot.co.il/ORG/form/NEW_DOC_ID/TOKEN?lang=he", "documentId": "NEW_DOC_ID", "templateId": "TEMPLATE_ID" } }`,
         notes: { he: 'לתבנית מסמך אין קישור סטטי יחיד — כל לקוח ממלא עותק משלו, ולכן קריאה זו יוצרת מופע מילוי חדש ומחזירה את כתובת ה-/form/ שלו. זהו POST כי הוא יוצר מסמך.', en: 'A document template has no single static link — each customer fills their own copy, so this call creates a new fill instance and returns its /form/ URL. It is a POST because it creates a document.' },
+      },
+      {
+        method: 'POST', path: '/documents/{templateId}/send', scope: 'documents:write',
+        summary: { he: 'יצירת קישור מילוי אישי מתבנית מסמך ושליחתו בוואטסאפ ללקוח.', en: 'Create a personal fill link from a document template and send it to the customer over WhatsApp.' },
+        params: [
+          { name: 'templateId', in: 'path', type: 'string', required: true, desc: { he: 'מזהה התבנית.', en: 'Template id.' } },
+          { name: 'contactPhone', in: 'body', type: 'string', required: true, desc: { he: 'טלפון הנמען (E.164).', en: 'Recipient phone (E.164).' } },
+          { name: 'leadId', in: 'body', type: 'string', required: false, desc: { he: 'מזהה ליד — מילוי מראש.', en: 'Lead id — pre-fill.' } },
+          { name: 'variables', in: 'body', type: 'object', required: false, desc: { he: 'ערכים ידניים למשתני התבנית.', en: 'Manual template variable values.' } },
+          { name: 'message', in: 'body', type: 'string', required: false, desc: { he: 'טקסט מותאם (הקישור יתווסף אחריו).', en: 'Custom text (the link is appended).' } },
+          { name: 'from', in: 'body', type: 'string', required: false, desc: { he: 'מספר שולח (בארגון מרובה מספרים).', en: 'Sender number (multi-number orgs).' } },
+        ],
+        request: `{ "contactPhone": "+972501234567", "variables": { "amount": "1,200 ₪" } }`,
+        curl: curl('POST', '/documents/TEMPLATE_ID/send', { contactPhone: '+972501234567' }),
+        response: `{ "success": true, "data": { "url": "https://gambot.co.il/ORG/form/DOC_ID/TOKEN?lang=he", "documentId": "DOC_ID", "delivery": { "channel": "whatsapp", "sent": true, "messageId": "wamid..." } } }`,
+        notes: { he: 'הודעת טקסט חופשי דורשת חלון שיחה פתוח של 24 שעות. אם החלון סגור — delivery.sent=false עם requiresTemplate=true, והקישור (url) עדיין מוחזר לשליחה בתבנית מאושרת. נספרת כקרדיט API אחד על כל קישור שנשלח.', en: 'Free-text needs an open 24-hour conversation window. If closed, delivery.sent=false with requiresTemplate=true and the url is still returned so you can send it in an approved template. Counts as one API credit per delivered link.' },
       },
     ],
   },
@@ -2506,11 +2637,13 @@ export const API_SECTIONS = [
           { name: 'url', in: 'body', type: 'string', required: true, desc: { he: 'כתובת היעד שתקבל POST-ים (מומלץ https). לדוגמה https://your-server.com/webhook.', en: 'Destination URL that will receive POSTs (https recommended), e.g. https://your-server.com/webhook.' } },
           { name: 'authHeader', in: 'body', type: 'string', required: false, desc: { he: 'ערך שיישלח מילולית ככותרת Authorization בכל קריאה (למשל "Bearer my-secret"). אמתו אותו אצלכם.', en: 'Value sent verbatim as the Authorization header on every call (e.g. "Bearer my-secret"). Verify it on your side.' } },
           { name: 'events', in: 'body', type: 'object', required: false, desc: { he: 'אילו אירועים להעביר: { incomingMessage, messageStatus, templateStatus, other } — כולם boolean, ברירת מחדל true (הכל). אפשר גם לשלוח אותם ברמת השורש.', en: 'Which events to forward: { incomingMessage, messageStatus, templateStatus, other } — all boolean, default true (everything). May also be sent at the top level.' } },
+          { name: 'subscribe', in: 'body', type: 'string[]', required: false, desc: { he: 'אירועי מסמכים/טפסים/תשלומים לקבלה באותה כתובת (כבויים כברירת מחדל): signature.signed, document.submitted, form.submitted, payment.succeeded, invoice.issued. מחליף את הרשימה הנוכחית; ללא שליחה — הרשימה נשארת. אפשר גם דגלי boolean ב-events: signatureSigned, documentSubmitted, formSubmitted, paymentSucceeded, invoiceIssued.', en: 'Documents/forms/payments events to ALSO receive at the same URL (off by default): signature.signed, document.submitted, form.submitted, payment.succeeded, invoice.issued. Replaces the current list; omit to keep it. You can also use boolean flags inside events: signatureSigned, documentSubmitted, formSubmitted, paymentSucceeded, invoiceIssued.' } },
         ],
         request: `{
   "url": "https://your-server.com/webhook",
   "authHeader": "Bearer my-secret",
-  "events": { "incomingMessage": true, "messageStatus": true, "templateStatus": true, "other": true }
+  "events": { "incomingMessage": true, "messageStatus": true, "templateStatus": true, "other": true },
+  "subscribe": ["signature.signed", "form.submitted", "payment.succeeded", "invoice.issued"]
 }`,
         curl: curl('POST', '/webhooks/forward', `{ "url": "https://your-server.com/webhook", "authHeader": "Bearer my-secret" }`),
         response: `{
@@ -2524,8 +2657,8 @@ export const API_SECTIONS = [
   }
 }`,
         notes: {
-          he: 'המטען שתקבלו הוא "מעטפה": { type, event, types[], organization, receivedAt, meta_obj } כאשר meta_obj הוא ה-payload המקורי של מטא. בנוסף ל-Authorization נשלחות הכותרות X-Gambot-Organization ו-X-Gambot-Event.',
-          en: 'The payload you receive is an "envelope": { type, event, types[], organization, receivedAt, meta_obj } where meta_obj is Meta\'s original payload. Alongside Authorization we also send X-Gambot-Organization and X-Gambot-Event headers.',
+          he: 'המטען שתקבלו הוא "מעטפה": { type, event, types[], organization, receivedAt, meta_obj } כאשר meta_obj הוא ה-payload המקורי של מטא. בנוסף ל-Authorization נשלחות הכותרות X-Gambot-Organization ו-X-Gambot-Event. אירועים עסקיים (בהרשמה עם subscribe) מגיעים במעטפה { type, event, eventId, organization, receivedAt, data } במקום meta_obj, עם הכותרת X-Gambot-Message-Id = "<event>:<eventId>" למניעת כפילויות. data: signature.signed / document.submitted → { documentId, documentName, templateId, fillOnly, documentUrl, contactId, signer:{name,phone,email}, fields:{…}, signedAt }; form.submitted → { formId, formTitle, submissionId, submitter:{name,phone,email}, fields:{…}, submittedAt }; payment.succeeded → { transactionId, amount, currency, description, customer:{name,phone,email}, provider, entityType, entityId, paidAt }; invoice.issued → { invoiceId, type, documentNumber, total, currency, customerName, customerEmail, paymentStatus, issuedAt, … }. מסירה שנכשלה נוסה שוב כ-24 שעות.',
+          en: 'The payload you receive is an "envelope": { type, event, types[], organization, receivedAt, meta_obj } where meta_obj is Meta\'s original payload. Alongside Authorization we also send X-Gambot-Organization and X-Gambot-Event headers. BUSINESS EVENTS (opt-in via subscribe) use { type, event, eventId, organization, receivedAt, data } instead of meta_obj, with X-Gambot-Message-Id = "<event>:<eventId>" for de-duplication. data: signature.signed / document.submitted → { documentId, documentName, templateId, fillOnly, documentUrl, contactId, signer:{name,phone,email}, fields:{…}, signedAt }; form.submitted → { formId, formTitle, submissionId, submitter:{name,phone,email}, fields:{…}, submittedAt }; payment.succeeded → { transactionId, amount, currency, description, customer:{name,phone,email}, provider, entityType, entityId, paidAt }; invoice.issued → { invoiceId, type, documentNumber, total, currency, customerName, customerEmail, paymentStatus, issuedAt, … }. Failed deliveries are retried for ~24h.',
         },
       },
       {
@@ -2573,6 +2706,7 @@ export const API_SECTIONS = [
         params: [
           { name: 'url', in: 'body', type: 'string', required: false, desc: { he: 'כתובת לבדיקה במקום הרשומה (מאפשר לבדוק לפני רישום).', en: 'Override URL to test instead of the registered one (lets you test before registering).' } },
           { name: 'authHeader', in: 'body', type: 'string', required: false, desc: { he: 'כותרת Authorization לשליחה בבדיקת ה-URL החלופי.', en: 'Authorization header to send with the override URL test.' } },
+          { name: 'event', in: 'body', type: 'string', required: false, desc: { he: 'שם אירוע עסקי (למשל signature.signed) — שולח דוגמה במבנה האמיתי של אותו אירוע.', en: 'A business event name (e.g. signature.signed) — sends a sample in that event\'s real shape.' } },
         ],
         request: `{ "url": "https://your-server.com/webhook" }`,
         curl: curl('POST', '/webhooks/test', `{ "url": "https://your-server.com/webhook" }`),
@@ -2809,8 +2943,11 @@ export const API_SCOPES = [
   { scope: 'orders:read', he: 'קריאת הזמנות', en: 'Read orders' },
   { scope: 'orders:write', he: 'יצירה/עדכון הזמנות', en: 'Create/update orders' },
   { scope: 'signatures:read', he: 'קריאת מסמכי חתימה', en: 'Read signature documents' },
+  { scope: 'signatures:write', he: 'יצירת בקשות חתימה ושליחת קישורי חתימה', en: 'Create signature requests and send signing links' },
   { scope: 'forms:read', he: 'קריאת טפסים והגשות', en: 'Read forms and submissions' },
+  { scope: 'forms:write', he: 'שליחת קישור טופס ללקוח', en: 'Send a form link to a customer' },
   { scope: 'documents:read', he: 'קריאת תבניות מסמכים והגשות', en: 'Read document templates and submissions' },
+  { scope: 'documents:write', he: 'שליחת מסמך (קישור מילוי) ללקוח', en: 'Send a document (fill link) to a customer' },
   { scope: 'users:read', he: 'קריאת משתמשים', en: 'Read users' },
   { scope: 'users:write', he: 'יצירה/עדכון/מחיקת משתמשים', en: 'Create/update/delete users' },
   { scope: 'campaigns:read', he: 'קריאת קמפיינים ותוצאות', en: 'Read campaigns and results' },

@@ -184,7 +184,7 @@ export default function WhatsAppBusinessPageEn() {
         <div className={styles.container}>
           <div className={styles.badge}>👥 Multi-Agent · 📊 CRM · 📄 Quotes · 📈 Reports</div>
           <h1 className={styles.heroTitle}>
-            Stop losing customers<br />
+            WhatsApp Business System: stop losing customers<br />
             <span className={styles.heroHighlight}>because no one knew who was handling them</span>
           </h1>
           <p className={styles.heroDesc}>

@@ -204,7 +204,7 @@ export default function CrmPageEn() {
         <div className={styles.container}>
           <div className={styles.badge}>🚀 CRM · WhatsApp · Leads · Tasks · Quotes</div>
           <h1 className={styles.heroTitle}>
-            All your leads, tasks and deals<br />
+            CRM for Business: all your leads, tasks and deals<br />
             <span className={styles.heroHighlight}>in one place — never lose a customer again</span>
           </h1>
           <p className={styles.heroDesc}>

@@ -255,7 +255,7 @@ export default function WhatsAppBusinessPage() {
         <div className={styles.container}>
           <div className={styles.badge}>💬 ריבוי נציגים · CRM מובנה · דוחות מתקדמים</div>
           <h1 className={styles.heroTitle}>
-            ניהול כל שיחות הוואטסאפ<br />
+            ריבוי נציגים בוואטסאפ: ניהול כל השיחות<br />
             <span className={styles.heroHighlight}>במקום אחד — עם סדר מלא</span>
           </h1>
           <p className={styles.heroDesc}>

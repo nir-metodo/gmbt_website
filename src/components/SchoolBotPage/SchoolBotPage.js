@@ -138,7 +138,7 @@ export default function SchoolBotPage() {
         <div className={styles.container}>
           <div className={styles.badge}>🎒 לבתי ספר ולצוותי חינוך</div>
           <h1 className={styles.heroTitle}>
-            ההורים מקבלים תשובה מיד,
+            וואטסאפ לבתי ספר: ההורים מקבלים תשובה מיד,
             <br />
             <span className={styles.heroHighlight}>והמורים חוזרים ללמד</span>
           </h1>

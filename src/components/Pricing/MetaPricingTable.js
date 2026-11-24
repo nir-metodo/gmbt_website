@@ -380,8 +380,8 @@ export default function MetaPricingTable() {
         </p>
         <p className="footer-note">
           {isHe
-            ? 'כל הודעות השירות חינמיות עבור לקוחות תכנית Growth/Pro/Business'
-            : 'All service messages are free for Growth/Pro/Business plan customers'}
+            ? 'מאוקטובר 2026 גם הודעות שירות (תשובות רגילות בתוך חלון 24 השעות, של נציג או של בוט) מחויבות לפי תעריף שירות (כתעריף Utility), החל מההודעה ה-1,001 בחודש לכל מספר עסקי'
+            : 'Since October 2026 service messages (regular replies within the 24-hour window, by an agent or a bot) are charged at the service rate (same as Utility), from the 1,001st message each month per business phone number'}
         </p>
       </div>
     </div>

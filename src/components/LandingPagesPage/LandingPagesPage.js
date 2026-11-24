@@ -121,7 +121,7 @@ export default function LandingPagesPage() {
         <div className={styles.container}>
           <div className={styles.badge}>🌐 דפי נחיתה + וואטסאפ</div>
           <h1 className={styles.heroTitle}>
-            כל ליד מדף הנחיתה —
+            דפי נחיתה לוואטסאפ: כל ליד מדף הנחיתה —
             <br /><span className={styles.heroHighlight}>וואטסאפ אוטומטי תוך שניות</span>
           </h1>
           <p className={styles.heroDesc}>

@@ -4,32 +4,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
 import { ClampedDescription, publicDocTableCss } from '../shared/ClampedDescription';
+import { renderRichText } from '../shared/richText';
 
 const CURRENCY_SYMBOLS = { ILS: '₪', USD: '$', EUR: '€', GBP: '£' };
 
 const API_BASE = 'https://gambot.azurewebsites.net/api/Webhooks';
-
-function renderTextWithLinks(text, linkColor = '#2e6155') {
-  if (!text) return null;
-  const markdownLink = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
-  const rawUrl = /(?<!\]\()https?:\/\/[^\s\])"'>]+/g;
-  const combined = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s\])"'>]+)/g;
-  const parts = [];
-  let last = 0;
-  let match;
-  combined.lastIndex = 0;
-  while ((match = combined.exec(text)) !== null) {
-    if (match.index > last) parts.push(text.slice(last, match.index));
-    if (match[1] && match[2]) {
-      parts.push(<a key={match.index} href={match[2]} target="_blank" rel="noopener noreferrer" style={{ color: linkColor, textDecoration: 'underline', fontWeight: 500 }}>{match[1]}</a>);
-    } else {
-      parts.push(<a key={match.index} href={match[3]} target="_blank" rel="noopener noreferrer" style={{ color: linkColor, textDecoration: 'underline', fontWeight: 500 }}>{match[3]}</a>);
-    }
-    last = match.index + match[0].length;
-  }
-  if (last < text.length) parts.push(text.slice(last));
-  return parts;
-}
 
 const STATUS_LABELS = {
   draft: { he: 'טיוטה', color: '#6b7280' },
@@ -456,12 +435,7 @@ export default function PublicQuotePage() {
           <div style={styles.section}>
             <div style={{ ...styles.sectionTitle, color: primaryColor }}>הערות</div>
             <div style={styles.noteText}>
-              {quote.notes.split('\n').map((line, i) => (
-                <React.Fragment key={i}>
-                  {renderTextWithLinks(line, primaryColor)}
-                  {i < quote.notes.split('\n').length - 1 && <br />}
-                </React.Fragment>
-              ))}
+              {renderRichText(quote.notes, { linkColor: primaryColor, rawUrls: true })}
             </div>
           </div>
         )}
@@ -506,12 +480,7 @@ export default function PublicQuotePage() {
           <div style={styles.section}>
             <div style={{ ...styles.sectionTitle, color: primaryColor }}>תנאים</div>
             <div style={styles.noteText}>
-              {quote.terms.split('\n').map((line, i) => (
-                <React.Fragment key={i}>
-                  {renderTextWithLinks(line, primaryColor)}
-                  {i < quote.terms.split('\n').length - 1 && <br />}
-                </React.Fragment>
-              ))}
+              {renderRichText(quote.terms, { linkColor: primaryColor, rawUrls: true })}
             </div>
           </div>
         )}

@@ -74,7 +74,7 @@ const PriceListPage = () => {
                     <h1 className="pl-title">
                         {en
                             ? <>Find the <span className="pl-title-accent">right plan</span> for your business</>
-                            : <>בחרו את <span className="pl-title-accent">התוכנית המתאימה</span> לעסק שלכם</>}
+                            : <>מחירי WhatsApp API: בחרו את <span className="pl-title-accent">התוכנית המתאימה</span> לעסק שלכם</>}
                     </h1>
                     <p className="pl-subtitle">
                         {L('אוטומציות WhatsApp מתקדמות ויכולות AI לעסקים בכל הגדלים', 'Powerful WhatsApp automation and AI for businesses of all sizes')}

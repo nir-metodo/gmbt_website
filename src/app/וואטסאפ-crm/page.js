@@ -122,7 +122,7 @@ export default function WhatsAppCRMPage() {
         <div className={styles.container}>
           <div className={styles.badge}>🗂️ WhatsApp CRM</div>
           <h1 className={styles.heroTitle}>
-            נהל לידים, פניות ומכירות <span className={styles.highlight}>ישירות מוואטסאפ</span>
+            WhatsApp CRM: נהל לידים, פניות ומכירות <span className={styles.highlight}>ישירות מוואטסאפ</span>
           </h1>
           <p className={styles.heroDesc}>
             כל מידע הלקוח במקום אחד — לידים, הצעות מחיר, משימות, פניות והיסטוריית שיחות. CRM שבנוי בתוך וואטסאפ, לא לצידו.

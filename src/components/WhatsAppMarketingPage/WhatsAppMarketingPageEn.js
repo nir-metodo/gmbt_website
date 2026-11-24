@@ -140,7 +140,7 @@ export default function WhatsAppMarketingPageEn() {
         <div className={styles.container}>
           <div className={styles.badge}>📢 WhatsApp Marketing · 95%+ Open Rate · Bot-Powered</div>
           <h1 className={styles.heroTitle}>
-            Why your marketing messages<br />
+            WhatsApp Marketing for Business: why your marketing messages<br />
             <span className={styles.heroHighlight}>are being ignored — and how to fix it</span>
           </h1>
           <p className={styles.heroDesc}>

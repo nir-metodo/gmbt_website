@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import TemplateEditor, { specIssues, headerModeOf, newButton } from './TemplateEditor';
+import DeliveryInfo from './DeliveryInfo';
 import { LIB_DOMAINS, LIB_TEMPLATES, applyLibraryTemplate } from './templateLibrary';
 import {
   OTB_API,
@@ -725,6 +726,7 @@ export default function OneTimeBroadcastWizard() {
             </div>
             <p className="otb-muted">לחצו ״הוסף שדה מהאקסל״ כדי לשלב עמודה כשדה אישי. כל נמען יקבל את הערכים מהשורה שלו.</p>
             {libNote && <div className="otb-note otb-lib-note">📚 {libNote}</div>}
+            <DeliveryInfo />
 
             <TemplateEditor
               columns={fieldColumns}

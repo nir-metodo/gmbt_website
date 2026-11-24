@@ -370,7 +370,7 @@ export default function InsuranceAgentsPage() {
         <div className={styles.container}>
           <div className={styles.badge}>🛡️ לסוכנויות ביטוח</div>
           <h1 className={styles.heroTitle}>
-            חידושי החודש נשלחים בלחיצה אחת,
+            וואטסאפ לסוכני ביטוח: חידושי החודש נשלחים בלחיצה אחת,
             <br />
             <span className={styles.heroHighlight}>והלקוחות עונים לבד</span>
           </h1>

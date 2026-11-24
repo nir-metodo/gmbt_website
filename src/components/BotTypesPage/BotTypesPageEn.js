@@ -187,7 +187,7 @@ export default function BotTypesPageEn() {
         <div className={styles.container}>
           <div className={styles.badge}>🤖 Smart Bot · 🧠 AI Bot · ⚡ Hybrid Bot</div>
           <h1 className={styles.heroTitle}>
-            Which WhatsApp bot<br />
+            WhatsApp Bot Types: which WhatsApp bot<br />
             <span className={styles.heroHighlight}>is right for your business?</span>
           </h1>
           <p className={styles.heroDesc}>
