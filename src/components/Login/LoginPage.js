@@ -15,7 +15,9 @@ export default function LoginPage() {
   const { t, isRTL } = useLanguage();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [organization, setOrganization] = useState('');
+  // Organization ids never contain whitespace: strip ALL of it, whether typed or pasted.
+  const [organization, setOrganizationRaw] = useState('');
+  const setOrganization = (v) => setOrganizationRaw(String(v || '').replace(/[\s\u00A0\u200B-\u200F\u202A-\u202E\uFEFF]+/g, ''));
   const [adminMode, setAdminMode] = useState('org'); // 'org' | 'admin'
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
@@ -51,12 +53,20 @@ export default function LoginPage() {
   const handleShowForgotPassword = () => { resetFormStates(); setShowForgotPassword(true); };
   const handleShowLoginForm = () => { resetFormStates(); setShowForgotPassword(false); };
 
-  const isGambotAdmin = email.toLowerCase().endsWith('@gambot.co.il');
+  const isGambotAdmin = email.trim().toLowerCase().endsWith('@gambot.co.il');
+
+  // Enter inside a text field submits the login (buttons already react to Enter themselves).
+  const handleEnterKey = (e) => {
+    if (e.key !== 'Enter' || e.nativeEvent?.isComposing) return;
+    if (e.target?.tagName !== 'INPUT' || e.target.type === 'checkbox') return;
+    e.preventDefault();
+    if (!isLoading) signInWithEmailAndPassword();
+  };
 
   const signInWithEmailAndPassword = async () => {
     setEmailError(''); setPasswordError('');
 
-    if (!isValidEmail(email)) { setEmailError(t('login.invalidEmail')); return; }
+    if (!isValidEmail(email.trim())) { setEmailError(t('login.invalidEmail')); return; }
     if (!password) { setPasswordError(t('login.passwordRequired')); return; }
     if (isGambotAdmin && adminMode === 'org' && !organization) {
       setEmailError(t('login.organizationRequired')); return;
@@ -71,8 +81,8 @@ export default function LoginPage() {
         : '/api/Webhooks/authenticate';
 
       const payload = useOrgEndpoint
-        ? { username: email, password, organization }
-        : { username: email, password };
+        ? { username: email.trim().toLowerCase(), password, organization }
+        : { username: email.trim().toLowerCase(), password };
 
       const res = await fetch(`${API_URL}${endpoint}`, {
         method: 'POST',
@@ -220,7 +230,7 @@ export default function LoginPage() {
             </button>
           </div>
         ) : !showForgotPassword ? (
-          <div className="login-form">
+          <div className="login-form" onKeyDown={handleEnterKey}>
             <div className="form-fields">
               <div className="input-group">
                 <div className="input-wrapper">
